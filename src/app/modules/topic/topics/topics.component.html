@@ -1,5 +1,5 @@
 <section>
-    <app-topic *ngFor="topic of topicsList"
-        [topic]="topic">
-    </app-topic>
+    <ng-container *ngFor="let topic of topicsList">
+        <app-topic [topic]="topic"></app-topic>
+    </ng-container>
 </section>
