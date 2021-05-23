@@ -13,7 +13,7 @@ import { TopicUtils } from '../utils/topic.utils';
   styleUrls: ['./topic.component.css']
 })
 export class TopicComponent implements OnInit {
-  @Input() set (topic: Topic) {
+  @Input() set topic(topic: Topic) {
     this.imagePath = TopicUtils.imageForTopic(topic);
   }
   public imagePath: string;

@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopicComponent } from './topic/topic.component';
+
 import { MenuComponent } from './menu/menu.component';
-
-
+import { TopicComponent } from './topic/topic.component';
+import { TopicsComponent } from './topics/topics.component';
 
 @NgModule({
   declarations: [
+    MenuComponent,
     TopicComponent,
-    MenuComponent
+    TopicsComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    TopicComponent
+    TopicsComponent
   ]
 })
 export class TopicModule { }
