@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+
+  overflow-x: hidden;
+}
+
+.full-viewport {
+    width: 100vw;
+    height: 100vh;
+}
+
+.full-screen {
+    height: 100%;
+    width: 100%;
+}
+
+.flex-centered__column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/**
+* There’s a special case where the min-height of flex items defaults to the content
+* size rather than zero. According to the spec, this should only apply when overflow
+* is set to visible. For whatever reason, Firefox doesn’t implement it this way 
+* (as of 52.0.1 on Mac), and apparently thinks Chrome has it wrong. So for now,
+* we have to explicitly set the min height to zero, or else the content will overflow
+* its parent even though we’ve set it to scroll. This step needs to be done for every
+* flex-item parent all the way up to the outermost flex-box.
+*
+* Source: https://medium.com/@stephenbunch/how-to-make-a-scrollable-container-with-dynamic-height-using-flexbox-5914a26ae336
+*/
+.flex-container__dynamic-scroll {
+    flex-grow: 1;
+    min-height: 0;
+}

@@ -38,6 +38,9 @@ export const TOPIC_MAP: TopicMap = {
         image: 'health.png',
     },
     [Topic.Home]: {
+        image: 'home.png',
+    },
+    [Topic.Hobby]: {
         image: 'hobby.png',
     },
     [Topic.Study]: {

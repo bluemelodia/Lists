@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { 
+  Component,
+  HostBinding,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { topics } from '../constants/topics.constants';
 
 @Component({
@@ -11,6 +16,8 @@ export class TopicsComponent implements OnInit {
    * TODO: fetch topics from a service, and concat onto default topics list.
    */
   @Input() topicsList = topics;
+
+  @HostBinding('class') containerClasses = 'flex-container__dynamic-scroll';
 
   constructor() { }
 

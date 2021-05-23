@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    overflow: auto;
+}
+
+.topics-container {
+  max-width: 700px;
+  margin: 16px;
+  padding: 16px;
+  background: pink;
+}
