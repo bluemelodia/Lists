@@ -21,6 +21,7 @@ export const topics: Topic[] = [
     Topic.Hobby,
     Topic.Home,
     Topic.Study,
+    Topic.Travel,
     Topic.Work,
 ];
 
@@ -45,6 +46,9 @@ export const TOPIC_MAP: TopicMap = {
     },
     [Topic.Study]: {
         image: 'study.png',
+    },
+    [Topic.Travel]: {
+        image: 'travel.png',
     },
     [Topic.Work]: {
         image: 'work.png',

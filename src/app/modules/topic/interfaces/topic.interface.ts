@@ -6,6 +6,7 @@ export enum Topic {
     Hobby = 'Hobby',
     Home = 'Home',
     Study = 'Study',
+    Travel = 'Travel',
     Work = 'Work',
 }
 

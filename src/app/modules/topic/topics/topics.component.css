@@ -2,11 +2,18 @@
     display: flex;
     overflow: auto;
 
-    max-width: 700px;
+    max-width: 900px;
     margin: 16px;
     padding: 16px;
 }
 
 :host::-webkit-scrollbar {
     display: none;
+}
+
+.topics-list_container {
+    display: grid;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    grid-template-columns: repeat(3, 1fr);
 }

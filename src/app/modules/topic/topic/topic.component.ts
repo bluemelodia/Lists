@@ -15,8 +15,10 @@ import { TopicUtils } from '../utils/topic.utils';
 export class TopicComponent implements OnInit {
   @Input() set topic(topic: Topic) {
     console.log("pass in topic: ", topic);
+    this.name = topic;
     this.imagePath = TopicUtils.imageForTopic(topic);
   }
+  public name: Topic;
   public imagePath: string;
 
   constructor() { }

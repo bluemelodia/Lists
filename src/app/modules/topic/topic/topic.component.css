@@ -1,3 +1,15 @@
+.topic-details__container {
+    position: relative;
+}
+
+.topic-details__name {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .topic-details__image {
     width: 100%;
+    opacity: 35%;
 }
