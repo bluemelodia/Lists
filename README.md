@@ -19,7 +19,8 @@
 9) The user has the opportunity to go to full screen view with any topics, where they can now view and interact with all widgets.
 10) In both the snapshot and full screen views, users can see a list of imminent tasks.
 11) When users decrease the size of the viewport, the column will shift to 2 -> 1 column.
-12) The category screen is mainly a place to add new categories. User shouldn't be able to do everything on the categories page.
+12) The category screen is mainly a place to add new categories and see top-level information. User shouldn't be able to do everything on the categories page.
+13) On the tile view users can see - # of upcoming events.
 
 ### Widgets
 
@@ -60,6 +61,10 @@ Videos, images, and links should all be renderable.
 
 ## Event
 As we get closer to the due date the color of the item should be changed.
+Events markable as one-time or recurring. Can be marked as complete so no more alerts are sent.
+	These two event types should be displayed differently on the calendar view.
+If an item has no deadline, no reminders are sent.
+If an item is overdue the number of days overdue will be shown.
 
 ## Server-side
 
