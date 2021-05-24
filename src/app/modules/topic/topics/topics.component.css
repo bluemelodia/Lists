@@ -1,19 +1,32 @@
 :host {
-    display: flex;
-    overflow: auto;
+  display: flex;
+  overflow: auto;
 
-    max-width: 900px;
-    margin: 16px;
-    padding: 16px;
+  max-width: 1500px;
+  margin: 16px;
+  padding: 16px;
 }
 
 :host::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .topics-list_container {
-    display: grid;
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
-    grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
 }
+
+@media only screen and (max-width: 1200px) {
+  .topics-list_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 800px) {
+    .topics-list_container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+}
+  
