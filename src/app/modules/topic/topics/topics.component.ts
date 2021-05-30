@@ -17,8 +17,6 @@ export class TopicsComponent implements OnInit {
    */
   @Input() topicsList = topics;
 
-  @HostBinding('class') containerClasses = 'flex-container__dynamic-scroll';
-
   constructor() { }
 
   ngOnInit(): void {

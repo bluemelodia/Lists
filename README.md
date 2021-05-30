@@ -21,6 +21,7 @@
 11) When users decrease the size of the viewport, the column will shift to 2 -> 1 column.
 12) The category screen is mainly a place to add new categories and see top-level information. User shouldn't be able to do everything on the categories page.
 13) On the tile view users can see - # of upcoming events.
+14) Either wrap or shrink long title names.
 
 ### Widgets
 

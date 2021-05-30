@@ -1,7 +1,5 @@
-import { 
-    Topic,
-    TopicMap,
-} from '../interfaces/topic.interface';
+import { Topic } from '../../../constants/topics';
+import { TopicMap } from '../interfaces/topic.interface';
 
 export const DEFAULT_IMAGE = 'default.png';
 
@@ -14,7 +12,7 @@ export const DEFAULT_IMAGE = 'default.png';
  * topics.
  */
 export const topics: Topic[] = [
-    Topic.Birthday,
+    Topic.Gifts,
     Topic.Family,
     Topic.Finance,
     Topic.Health,
@@ -26,7 +24,7 @@ export const topics: Topic[] = [
 ];
 
 export const TOPIC_MAP: TopicMap = {
-    [Topic.Birthday]: {
+    [Topic.Gifts]: {
         image: 'birthday.png',
     },
     [Topic.Family]: {

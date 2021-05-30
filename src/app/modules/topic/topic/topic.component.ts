@@ -4,7 +4,7 @@ import {
   OnInit 
 } from '@angular/core';
 
-import { Topic } from '../interfaces/topic.interface';
+import { Topic } from '../../../constants/topics';
 import { TopicUtils } from '../utils/topic.utils';
 
 @Component({

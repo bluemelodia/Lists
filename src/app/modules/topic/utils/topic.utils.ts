@@ -2,7 +2,7 @@ import {
     DEFAULT_IMAGE,
     TOPIC_MAP,
 } from '../constants/topics.constants';
-import { Topic } from "../interfaces/topic.interface";
+import { Topic } from '../../../constants/topics';
 
 export class TopicUtils {
     public static imageForTopic(topic: Topic) {

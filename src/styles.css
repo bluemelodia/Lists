@@ -52,3 +52,9 @@ body::-webkit-scrollbar {
     flex-grow: 1;
     min-height: 0;
 }
+
+/* UI elements. */
+.app-btn {
+    border: none;
+    background-color: transparent;
+}

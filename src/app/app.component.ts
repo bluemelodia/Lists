@@ -6,7 +6,7 @@ import { Component, HostBinding } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @HostBinding('class') containerClasses = 'flex-centered__column flex-container__dynamic-scroll full-viewport';
+  @HostBinding('class') containerClasses = 'flex-centered__column full-viewport';
 
   title = 'lists';
 }

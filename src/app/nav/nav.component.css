@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    height: 44px;
+}
+
+.menu-button {
+    margin: 8px;
+}
+
+.menu-button img {
+    height: 100%;
+}

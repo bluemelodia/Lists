@@ -1,0 +1,10 @@
+:host {
+    background-color: white;
+    display: flex;
+}
+
+ul {
+    list-style: none;
+    margin: 8px;
+    padding: 8px;
+}

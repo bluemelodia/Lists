@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 
 import { TopicModule } from './modules/topic/topic.module';
 import { FooterComponent } from './footer/footer.component';
+import { NavComponent } from './nav/nav.component';
+import { MenuComponent } from './nav/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
+    NavComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
