@@ -11,17 +11,18 @@ export enum MenuItem {
 /**
  * Impose order on the menu items.
  */
-export const MENU = [
-    [MenuItem.Home],
-    [MenuItem.Activity],
-    [MenuItem.Calendar],
-    [MenuItem.Tasks],
-    [MenuItem.Settings],
+export const MENU_LIST: MenuItem[] = [
+    MenuItem.Home,
+    MenuItem.Activity,
+    MenuItem.Calendar,
+    MenuItem.Tasks,
+    MenuItem.Settings,
 ];
 
 interface IMenuDetails {
     route: string;
-    submenu?: IMenu;
+    subMenu?: IMenu;
+    subMenuList?: Topic[];
     expanded?: boolean;
 };
 
@@ -29,7 +30,10 @@ export interface IMenu {
     readonly [key: string]: IMenuDetails;
 }
 
-const TOPIC_ITEMS: IMenu = {
+/**
+ * The topics submenu under Tasks.
+ */
+const TOPICS: IMenu = {
     [Topic.Family]: {
         route: ''
     },
@@ -65,7 +69,21 @@ const TOPIC_ITEMS: IMenu = {
     }
 };
 
-export const MENU_ITEMS: IMenu = {
+const TOPIC_LIST: Topic[] = [
+    Topic.Family,
+    Topic.Finance,
+    Topic.Health,
+    Topic.Hobby,
+    Topic.Home,
+    Topic.Gifts,
+    Topic.Shopping,
+    Topic.Social,
+    Topic.Study,
+    Topic.Travel,
+    Topic.Work,
+];
+
+export const MENU: IMenu = {
     [MenuItem.Home]: {
         route: ''
     },
@@ -77,7 +95,8 @@ export const MENU_ITEMS: IMenu = {
     },
     [MenuItem.Tasks]: {
         route: '',
-        submenu: TOPIC_ITEMS,
+        subMenu: TOPICS,
+        subMenuList: TOPIC_LIST,
         expanded: false,  
     },
     [MenuItem.Settings]: {

@@ -1,9 +1,17 @@
-<ul>
-    <li *ngFor="let item of menu"
-        (click)="onMenuClick(item)">
-        <a>{{ item }}</a>
-        <app-direction *ngIf="menuItems[item].submenu"
-            [expanded]="menuItems[item].expanded">
-        </app-direction>
+<ul [class.top-nav]="level === 0">
+    <li *ngFor="let item of menu">
+        <span class="menu-list_item"
+            [style.paddingLeft.px]="padding"
+            (click)="onMenuClick(item)">
+            <a>{{ item }}</a>
+            <app-direction *ngIf="menuItems[item].subMenu"
+                [expanded]="menuItems[item].expanded">
+            </app-direction>
+        </span>
+        <app-menu *ngIf="menuItems[item].subMenu && menuItems[item].expanded"
+            [level]="lvl + 1" 
+            [menu]="menuItems[item].subMenuList"
+            [menuItems]="menuItems[item].subMenu">
+        </app-menu>
     </li>
 </ul>

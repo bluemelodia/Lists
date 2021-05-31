@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { 
   MENU,
   MenuItem,
-  MENU_ITEMS,
+  MENU_LIST,
 } from '../constants/nav.constants';
 import { NavUtils } from '../utils/nav.utils';
 
@@ -12,8 +12,14 @@ import { NavUtils } from '../utils/nav.utils';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  public menu = MENU;
-  public menuItems = MENU_ITEMS;
+  @Input() menu = MENU_LIST;
+  @Input() menuItems = MENU;
+  @Input() set level(lvl: number) {
+    this.lvl = lvl;
+    this.padding = 16 * (this.lvl + 1);
+  }
+  public lvl = 0;
+  public padding = 16;
 
   constructor() { }
 
@@ -21,9 +27,10 @@ export class MenuComponent implements OnInit {
   }
 
   public onMenuClick(item: MenuItem) {
+    console.log("===> menu: ", this.menu);
+    console.log("menuItems: ", this.menuItems)
     if (NavUtils.getSubMenu(item)) {
       this.menuItems[item].expanded = !this.menuItems[item].expanded;
-      console.log("===> expanded: ", this.menuItems[item].expanded);
     } else {
       // TODO: route
     }

@@ -6,22 +6,29 @@
 
 ul {
   list-style: none;
-  margin-top: 44px;
   padding: 0;
   width: 100%;
 }
 
-li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 44px;
-  padding: 0 16px;
+ul.top-nav {
+    margin-top: 44px;
 }
 
-li:hover,
-li:active,
-li:focus,
-li:focus-within {
+li {
+  display: flex;
+  flex-direction: column;
+  min-height: 44px;
+}
+
+.menu-list_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.menu-list_item:hover,
+.menu-list_item:active,
+.menu-list_item:focus,
+.menu-list_item:focus-within {
   background-color: pink;
 }
