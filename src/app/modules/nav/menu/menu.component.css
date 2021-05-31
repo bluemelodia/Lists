@@ -1,0 +1,27 @@
+:host {
+  background-color: white;
+  display: flex;
+  width: 200px;
+}
+
+ul {
+  list-style: none;
+  margin-top: 44px;
+  padding: 0;
+  width: 100%;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding: 0 16px;
+}
+
+li:hover,
+li:active,
+li:focus,
+li:focus-within {
+  background-color: pink;
+}

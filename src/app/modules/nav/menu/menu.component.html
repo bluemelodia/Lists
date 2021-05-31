@@ -1,0 +1,9 @@
+<ul>
+    <li *ngFor="let item of menu"
+        (click)="onMenuClick(item)">
+        <a>{{ item }}</a>
+        <app-direction *ngIf="menuItems[item].submenu"
+            [expanded]="menuItems[item].expanded">
+        </app-direction>
+    </li>
+</ul>

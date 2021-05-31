@@ -1,7 +1,7 @@
-export interface TopicDetails {
+export interface ITopicDetails{
     image: string;
 }
 
-export interface TopicMap {
-    readonly [key: string]: TopicDetails;
+export interface ITopicMap {
+    readonly [key: string]: ITopicDetails;
 }

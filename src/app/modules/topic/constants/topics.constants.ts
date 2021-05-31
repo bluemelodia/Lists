@@ -1,5 +1,5 @@
 import { Topic } from '../../../constants/topics';
-import { TopicMap } from '../interfaces/topic.interface';
+import { ITopicMap } from '../interfaces/topic.interface';
 
 export const DEFAULT_IMAGE = 'default.png';
 
@@ -23,7 +23,7 @@ export const topics: Topic[] = [
     Topic.Work,
 ];
 
-export const TOPIC_MAP: TopicMap = {
+export const TOPIC_MAP: ITopicMap = {
     [Topic.Gifts]: {
         image: 'birthday.png',
     },

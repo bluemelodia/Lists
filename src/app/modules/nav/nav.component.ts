@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
   public showMenu = false;
 
+  @HostBinding('class.open') public open: Boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -15,5 +17,6 @@ export class NavComponent implements OnInit {
 
   public toggleMenu() {
     this.showMenu = !this.showMenu;
+    this.open = this.showMenu;
   }
 }

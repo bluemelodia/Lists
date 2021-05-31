@@ -5,22 +5,20 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { NavModule } from './modules/nav/nav.module';
 import { TopicModule } from './modules/topic/topic.module';
-import { FooterComponent } from './footer/footer.component';
-import { NavComponent } from './nav/nav.component';
-import { MenuComponent } from './nav/menu/menu.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    NavComponent,
-    MenuComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     AppRoutingModule,
+    NavModule,
     TopicModule,
   ],
   providers: [],

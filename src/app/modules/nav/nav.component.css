@@ -1,13 +1,28 @@
 :host {
+    background-color: white;
     display: flex;
     position: fixed;
     top: 0;
+
     width: 100%;
+    z-index: 9001;
+}
+
+:host.open {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: auto;
 }
 
 nav {
     display: flex;
     height: 44px;
+}
+
+:host.open nav {
+    position: absolute;
+    right: 0;
 }
 
 .menu-button {
