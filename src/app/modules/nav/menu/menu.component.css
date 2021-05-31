@@ -6,12 +6,13 @@
 
 ul {
   list-style: none;
+  overflow: scroll;
   padding: 0;
   width: 100%;
 }
 
 ul.top-nav {
-    margin-top: 44px;
+  margin-top: 44px;
 }
 
 li {
@@ -22,6 +23,7 @@ li {
 
 .menu-list_item {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
 }
