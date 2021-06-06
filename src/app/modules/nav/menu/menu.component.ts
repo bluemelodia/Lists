@@ -33,9 +33,8 @@ export class MenuComponent implements OnInit {
       this.menuItems[item].expanded = !this.menuItems[item].expanded;
     } else {
       // TODO: route
+      this.closeMenu();
     }
-
-    this.closeMenu();
   }
 
   public closeMenu() {

@@ -6,11 +6,11 @@
 }
 
 nav {
-    display: flex;
-    height: 44px;
+  display: flex;
+  height: 44px;
 
-    position: absolute;
-    right: 0;
+  position: absolute;
+  right: 0;
 }
 
 .menu-list {
@@ -19,6 +19,18 @@ nav {
   overflow-y: auto;
   padding: 0;
   width: 100%;
+
+  animation: expand 0.25s ease-in-out;
+}
+
+@keyframes expand {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .menu-list.top-nav {
