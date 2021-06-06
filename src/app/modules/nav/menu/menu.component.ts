@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations'
 import { 
   MENU,
   MenuItem,
@@ -9,7 +10,7 @@ import { NavUtils } from '../utils/nav.utils';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
   @Input() menu = MENU_LIST;
@@ -18,21 +19,26 @@ export class MenuComponent implements OnInit {
     this.lvl = lvl;
     this.padding = 16 * (this.lvl + 1);
   }
+  @Output() onMenuClose = new EventEmitter<void>();
+
   public lvl = 0;
   public padding = 16;
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public onMenuClick(item: MenuItem) {
-    console.log("===> menu: ", this.menu);
-    console.log("menuItems: ", this.menuItems)
     if (NavUtils.getSubMenu(item)) {
       this.menuItems[item].expanded = !this.menuItems[item].expanded;
     } else {
       // TODO: route
     }
+
+    this.closeMenu();
+  }
+
+  public closeMenu() {
+    this.onMenuClose.emit();
   }
 }

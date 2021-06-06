@@ -1,12 +1,22 @@
 :host {
   background-color: white;
   display: flex;
+  flex-direction: column;
   width: 200px;
+}
+
+nav {
+    display: flex;
+    height: 44px;
+
+    position: absolute;
+    right: 0;
 }
 
 .menu-list {
   list-style: none;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   padding: 0;
   width: 100%;
 }

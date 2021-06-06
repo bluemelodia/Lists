@@ -1,18 +1,34 @@
 :host {
-    background-color: white;
-    display: flex;
-    position: fixed;
-    top: 0;
+  background-color: white;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 44px;
 
-    width: 100%;
-    z-index: 9001;
+  z-index: 9001;
+
+  /* This timing applies on the way OUT */
+  transition-timing-function: ease-in;
+
+  /* Quick on the way out */
+  transition: 0.2s;
+
+  /* Hide thing by pushing it outside by default */
+  transform: translateX(-200px);
 }
 
 :host.open {
-    top: 0;
-    left: 0;
     height: 100%;
-    width: auto;
+
+    /* This timing applies on the way IN */
+    transition-timing-function: ease-out;
+
+    /* A litttttle slower on the way in */
+    transition: 0.25s;
+
+    /* Move into place */
+    transform: translateX(0px);
 }
 
 nav {
@@ -21,14 +37,5 @@ nav {
 }
 
 :host.open nav {
-    position: absolute;
-    right: 0;
-}
-
-.menu-button {
-    margin: 8px;
-}
-
-.menu-button img {
-    height: 100%;
+    display: none;
 }

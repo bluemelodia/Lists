@@ -58,3 +58,12 @@ body::-webkit-scrollbar {
     border: none;
     background-color: transparent;
 }
+
+/* Hamburger menu. */
+.menu-button {
+    margin: 8px;
+}
+  
+.menu-button img {
+    height: 100%;
+}

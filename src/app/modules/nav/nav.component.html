@@ -1,8 +1,8 @@
-<app-menu *ngIf="showMenu"></app-menu>
+<app-menu (onMenuClose)="toggleMenu()"></app-menu>
 <nav>
         <button class="menu-button app-btn"
         (click)="toggleMenu()">
-        <img src="./assets/images/nav.svg">
-    </button>
+            <img src="./assets/images/nav.svg">
+        </button>
 </nav>
 
