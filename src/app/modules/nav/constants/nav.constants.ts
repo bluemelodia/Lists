@@ -35,37 +35,37 @@ export interface IMenu {
  */
 const TOPICS: IMenu = {
     [Topic.Family]: {
-        route: ''
+        route: '/family'
     },
     [Topic.Finance]: {
-        route: ''
+        route: '/finance'
     },
     [Topic.Health]: {
-        route: ''
+        route: '/health'
     },
     [Topic.Hobby]: {
-        route: ''
+        route: '/hobby'
     },
     [Topic.Home]: {
-        route: ''
+        route: '/home'
     },
     [Topic.Gifts]: {
-        route: ''
+        route: '/gifts'
     },
     [Topic.Shopping]: {
-        route: ''
+        route: '/shopping'
     },
     [Topic.Social]: {
-        route: ''
+        route: '/social'
     },
     [Topic.Study]: {
-        route: ''
+        route: '/study'
     },
     [Topic.Travel]: {
-        route: ''
+        route: '/travel'
     },
     [Topic.Work]: {
-        route: ''
+        route: '/work'
     }
 };
 
@@ -85,13 +85,13 @@ const TOPIC_LIST: Topic[] = [
 
 export const MENU: IMenu = {
     [MenuItem.Home]: {
-        route: ''
+        route: '/home'
     },
     [MenuItem.Activity]: {
-        route: ''
+        route: '/activity'
     },
     [MenuItem.Calendar]: {
-        route: ''
+        route: '/calendar'
     },
     [MenuItem.Tasks]: {
         route: '',
@@ -100,6 +100,6 @@ export const MENU: IMenu = {
         expanded: false,  
     },
     [MenuItem.Settings]: {
-        route: ''
+        route: '/settings'
     }
 };

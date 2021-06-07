@@ -1,0 +1,1 @@
+export const noCalMessage = 'We are unable to retrieve calendar dates at this time. Please try again later.';

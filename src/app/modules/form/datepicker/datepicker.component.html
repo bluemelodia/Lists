@@ -1,0 +1,24 @@
+<section class="input-container focus-origin" #picker>
+    <input type="text" readonly
+    [ngClass]="{ 'picker-open' : showCal }"
+    [placeholder]="placeholder"
+    [disabled]="disableInput"
+    [value]="disableInput ? disabledDate : (selectedDate | pickerDateFormatter)"
+    (click)="showHideCal()"
+    (keydown)="onKeydownEvent($event)"/>
+    <section class="cal-container" *ngIf="showCal">
+        <app-loader *ngIf="isLoading"></app-loader>
+        <app-calendar #calendar appFocus
+            *ngIf="!isLoading && cal"
+            [id]="calendarId" 
+            [calendar]="cal" 
+            [type]="calendarType"
+            [selectedDay]="selectedDate"
+            (onDateSelected)="selectDate($event)">
+        </app-calendar>
+        <app-no-results 
+            *ngIf="!isLoading && !cal" 
+            [message]="noCalMessage">
+        </app-no-results>
+    </section>
+</section>

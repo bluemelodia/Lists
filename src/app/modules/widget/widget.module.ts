@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuComponent } from './menu/menu.component';
+
+import { BirthdayComponent} from './birthday/birthday.component';
 
 @NgModule({
   declarations: [
-    MenuComponent,
+    BirthdayComponent,
   ],
   imports: [
     CommonModule,
   ],
   exports: [
-    MenuComponent,
+    BirthdayComponent,
   ]
 })
 export class WidgetModule { }

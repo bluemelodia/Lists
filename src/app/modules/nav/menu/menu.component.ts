@@ -1,5 +1,6 @@
-import { Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { 
   MENU,
   MenuItem,
@@ -24,7 +25,7 @@ export class MenuComponent implements OnInit {
   public lvl = 0;
   public padding = 16;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {}
 
@@ -32,7 +33,7 @@ export class MenuComponent implements OnInit {
     if (NavUtils.getSubMenu(item)) {
       this.menuItems[item].expanded = !this.menuItems[item].expanded;
     } else {
-      // TODO: route
+      this.router.navigate([this.menuItems[item].route]);
       this.closeMenu();
     }
   }

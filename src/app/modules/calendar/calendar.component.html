@@ -1,0 +1,48 @@
+<div class="calendar" *ngIf="calendarMonths[monthIdx]">
+    <section class="header-container">
+        <div>
+            <h4>{{ months[calendarMonths[monthIdx].value-1] }} {{ calendarMonths[monthIdx].year }}</h4>
+        </div>
+        <div class="arrow-buttons">
+            <button type="button"
+                id="previous-month"
+                aria-label="Previous Month" 
+                [ngClass]="{ 'focus-option' : monthIdx !== 0 }" 
+                [tabindex]="monthIdx === 0 ? -1 : 0"
+                [attr.aria-hidden]="monthIdx === 0 ? true : false"
+                [disabled]="monthIdx === 0"
+                (click)="previousMonth()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button type="button"
+                id="next-month"
+                aria-label="Next Month"
+                [ngClass]="{ 'focus-option' : monthIdx !== calendarMonths.length-1 }" 
+                [tabindex]="monthIdx === calendarMonths.length-1 ? -1 : 0"
+                [attr.aria-hidden]="monthIdx === calendarMonths.length-1 ? true : false"
+                [disabled]="monthIdx === calendarMonths.length-1"
+                (click)="nextMonth()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>  
+    </section>
+    <section class="body-container">
+        <div class="month-header">
+            <span>S</span>
+            <span>M</span>
+            <span>T</span>
+            <span>W</span>
+            <span>T</span>
+            <span>F</span>
+            <span>S</span>
+        </div>
+        <app-calendar-month [month]="month" 
+            [type]="type"
+            [selectedDate]="selectedDate"
+            (onDateSelect)="selectDate($event)"></app-calendar-month>
+        <button class="tab-stop"
+            tabindex="0"
+            [attr.aria-hidden]="false">
+        </button>
+    </section>
+</div>

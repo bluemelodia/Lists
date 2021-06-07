@@ -1,0 +1,7 @@
+<label class="container">
+    <span class>{{ name }}</span>
+    <input type="checkbox" 
+        [checked]="isChecked"
+        (change)="toggleChecked($event)">
+    <span class="checkmark"></span>
+</label>

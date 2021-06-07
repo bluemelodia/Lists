@@ -1,0 +1,51 @@
+
+.month {
+    width: 100%;
+}
+
+.week { 
+    max-height: 44px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.week .day {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 15%;
+    padding: 3px;
+}
+
+.day:focus {
+    outline: none;
+}
+
+.day:not(.disabled):focus, .selected {
+    border: 2px solid #DD2E44;
+}
+
+.day:not(.disabled):hover, .selected {
+    background-color: #F4ABBA; 
+}
+
+.day:not(.disabled):active {
+    background-color: #FFD8E5;
+}
+
+.solar-date {
+    font-size: 14px;
+}
+
+.day.disabled, .disabled .lunar-date {
+    color: #9E9E9E;
+}
+
+/* Override the standard color so the lunar dates stand out. */
+.lunar-date {
+    font-size: 9px;
+    color: #E91E63;
+}

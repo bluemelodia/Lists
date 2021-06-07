@@ -1,0 +1,13 @@
+<ng-container [ngSwitch]="level">
+    <h1 *ngSwitchCase="HeaderLevel.H1">{{ text }}</h1>
+    <h2 *ngSwitchCase="HeaderLevel.H2">{{ text }}</h2>
+    <h3 *ngSwitchCase="HeaderLevel.H3">{{ text }}</h3>
+    <h4 *ngSwitchCase="HeaderLevel.H4">{{ text }}</h4>
+    <h5 *ngSwitchCase="HeaderLevel.H5">{{ text }}</h5>
+    <h6 *ngSwitchCase="HeaderLevel.H6">{{ text }}</h6>
+</ng-container>
+<span *ngIf="level === HeaderLevel.H1">
+    <i class="fa fa-heart sm-spacer" aria-hidden="true"></i>
+    <i class="fa fa-heart sm-spacer" aria-hidden="true"></i>
+    <i class="fa fa-heart sm-spacer" aria-hidden="true"></i>
+</span>
