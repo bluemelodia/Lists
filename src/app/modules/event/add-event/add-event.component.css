@@ -2,18 +2,13 @@
     display: flex;
 }
 
-.form-container {
-    background-color:#ffdfbf;
-    margin: 15px auto;
-    padding: 15px;
-    max-width: 700px;
-    width: 90%;
+fieldset { 
+    border: none;
 }
 
 .event-form {
     display: flex;
     flex-direction: column;
-    border: 1px solid #DD2E44;
     margin: 0;
 }
 

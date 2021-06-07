@@ -1,15 +1,13 @@
 <section class="form-container">
-    <app-header [level]="headerLevel.H1" text="Add Event"></app-header>
+    <app-header [level]="headerLevel.H1" text="Add Birthday"></app-header>
     <form class="event-form"
         [formGroup]="eventForm"
         (ngSubmit)="onSubmit()">
         <fieldset class="name">
-            <app-header [level]="headerLevel.H3" text="Recipient"></app-header>
-            <section class="input-container">
-                <input type="text" 
+            <input type="text" 
                 formControlName="name"
                 placeholder="Name"/>
-                <div *ngIf="eventFormControl.name.touched || eventFormControl.name.dirty">
+            <div *ngIf="eventFormControl.name.touched || eventFormControl.name.dirty">
                     <span *ngIf="eventFormControl.name.errors?.required"
                         class="input-error">
                         Name is required.
@@ -18,44 +16,7 @@
                         class="input-error">
                         Please enter a valid name.
                     </span>
-                </div> 
-            </section> 
-            <section class="input-container">
-                <input type="text" 
-                formControlName="relationship"
-                placeholder="Relationship"/>
-                <div *ngIf="eventFormControl.relationship.touched || eventFormControl.relationship.dirty">
-                    <span *ngIf="eventFormControl.relationship.errors?.required"
-                        class="input-error">
-                        Relationship is required.
-                    </span>
-                    <span *ngIf="eventFormControl.relationship.errors?.minlength || eventFormControl.relationship.errors?.invalidRelationship"
-                        class="input-error">
-                        Please enter a valid relationship.
-                    </span>
-                </div> 
-            </section> 
-        </fieldset>
-        <fieldset>
-            <app-header [level]="headerLevel.H3" text="Event Details"></app-header>
-            <app-select appFocus [id]="eventTypeID" placeholder="Type of Event"
-                [options]="eventTypeOptions"
-                [selected]="selectedEventType"
-                (onOptionSelected)="setEventSelection($event)">
-            </app-select>
-            <section *ngIf="selectedEventType && selectedEventType.name === eventType.Other" 
-                class="input-container">
-                <input type="text" 
-                formControlName="other"
-                placeholder="Event Description"/>
-                <div *ngIf="eventFormControl.other.touched || eventFormControl.other.dirty">
-                    <span *ngIf="eventFormControl.other.errors?.minlength || eventFormControl.other.errors?.invalidDescription"
-                        class="input-error">
-                        Please enter a valid description.
-                    </span>
-                </div> 
-            </section> 
-            <!-- If the month and day are both fixed, disable the datepicker. -->
+            </div> 
             <app-datepicker appFocus 
                 class="datepicker-container"
                 placeholder="Date"
@@ -63,36 +24,8 @@
                 [disabledDate]="prefilledDate"
                 [calendarType]="calendarType"
                 (onDatePicked)="setSelectedDate($event)">
-            </app-datepicker>
-            <app-select appFocus [id]="recurrenceID" placeholder="Recurrence"
-                [options]="recurrenceOptions"
-                [selected]="prefilledRecurrence ? prefilledRecurrence : selectedRecurrence"
-                [disableInput]="prefilledRecurrence"
-                [disabledOption]="prefilledRecurrence"
-                (onOptionSelected)="setEventRecurrence($event)">
-            </app-select>
-        </fieldset>
-        <fieldset class="event-options">
-            <app-header [level]="headerLevel.H3" text="Actions"></app-header>
-            <app-checkbox 
-                id="action-call"
-                name="Call"
-                [checked]="eventActions.call"
-                (onToggleCheck)="eventActions.call = !eventActions.call">
-            </app-checkbox>
-            <app-checkbox 
-                id="action-call"
-                name="Text"
-                [checked]="eventActions.text"
-                (onToggleCheck)="eventActions.text = !eventActions.text">
-            </app-checkbox>
-            <app-checkbox 
-                id="action-call"
-                name="Buy Present"
-                [checked]="eventActions.gift"
-                (onToggleCheck)="eventActions.gift = !eventActions.gift">
-            </app-checkbox>
-        </fieldset>
+            </app-datepicker> 
+        </fieldset>        
         <button type="submit"
             [disabled]="!eventForm.valid || !selectedDate">
             Submit
