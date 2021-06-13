@@ -1,59 +1,59 @@
-:host {
-    display: flex;
-    flex: 1;
+:host,
+.month,
+.week {
+  display: flex;
+  flex: 1;
 }
 
 .month {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.week { 
-    max-height: 44px;
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
+.week {
+  justify-content: space-between;
 }
 
 .week .day {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-    width: 15%;
-    padding: 3px;
+  width: 15%;
+  padding: 3px;
 }
 
 .day:focus {
-    outline: none;
+  outline: none;
 }
 
-.day:not(.disabled):focus, .selected {
-    border: 2px solid #DD2E44;
+.day:not(.disabled):focus,
+.selected {
+  border: 2px solid #dd2e44;
 }
 
-.day:not(.disabled):hover, .selected {
-    background-color: pink; 
+.day:not(.disabled):hover,
+.selected {
+  background-color: pink;
 }
 
 .day:not(.disabled):active {
-    background-color: #FFD8E5;
+  background-color: #ffd8e5;
 }
 
 .solar-date {
-    font-size: 14px;
+  font-size: 14px;
 }
 
-.day.disabled, .disabled .lunar-date {
-    color: #9E9E9E;
+.day.disabled,
+.disabled .lunar-date {
+  color: #9e9e9e;
 }
 
 /* Override the standard color so the lunar dates stand out. */
 .lunar-date {
-    font-size: 9px;
-    color: #E91E63;
+  font-size: 9px;
+  color: #e91e63;
 }

@@ -4,6 +4,6 @@
     overflow: auto;
 
     display: flex;
+    align-items: flex-start;
     justify-content: center;
-    align-items: center;
 }
