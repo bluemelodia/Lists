@@ -10,13 +10,15 @@ input.picker-open {
 .cal-container {
     position: absolute;
     z-index: 500;
+    height: 300px;
     width: 100%;
     display: flex;
     flex-direction: column;
     overflow: auto;
 
-    background: #fbdde3;
-    padding: 12px;
-    border: 1px solid black;
+    background: white;
+    border: 2px solid pink;
     border-top: none;
+    padding: 12px;
+    top: 37px;
 }

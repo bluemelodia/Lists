@@ -1,11 +1,19 @@
+:host {
+    display: flex;
+    flex: 1;
+}
 
 .month {
-    width: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .week { 
     max-height: 44px;
     display: flex;
+    flex: 1;
     justify-content: space-between;
 }
 
