@@ -6,6 +6,7 @@ import {
   MenuItem,
   MENU_LIST,
 } from '../constants/nav.constants';
+import { NavService } from '../../../services/nav.service';
 import { NavUtils } from '../utils/nav.utils';
 
 @Component({
@@ -25,18 +26,19 @@ export class MenuComponent implements OnInit {
   public lvl = 0;
   public padding = 16;
 
-  constructor(private router: Router) { }
+  constructor(
+    private nav: NavService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {}
 
   public onMenuClick(item: MenuItem) {
-    console.log("===> item: ", item);
     if (NavUtils.getSubMenu(item)) {
       this.menuItems[item].expanded = !this.menuItems[item].expanded;
     } else {
-      console.log("===> close the menu");
       this.router.navigate([this.menuItems[item].route]);
-      this.toggleMenu(false);
+      this.nav.closeNavMenu();
     }
   }
 

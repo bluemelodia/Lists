@@ -22,7 +22,6 @@ export class NavComponent {
         takeUntil(this.ngUnsubscribe$)
       )
       .subscribe((menuState: boolean) => {
-        console.log("===> get menu state from sub: ", menuState);
         this.setMenuOpen(menuState);
       });
   }
@@ -35,6 +34,5 @@ export class NavComponent {
   public setMenuOpen(state: boolean) {
     this.showMenu = state;
     this.open = this.showMenu;
-    console.log("===> is menu open? ", state);
   }
 }
