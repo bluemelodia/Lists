@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UUID } from 'angular2-uuid';
 
 import { CalendarType } from '../../../types/calendar/calendar.types';
+import { SelectedDay } from '../../../types/calendar/calendar-response.types';
 import { 
   EventOption, 
   EventActions, 
@@ -14,8 +15,6 @@ import {
 } from '../../../types/event.types';
 import { HeaderLevel } from '../../../types/header.types';
 import { ValidationService } from '../../../services/validation.service';
-import { ActivatedRoute } from '@angular/router';
-import { SelectedDay } from 'src/app/types/calendar/calendar-response.types';
 
 @Component({
   selector: 'app-add-event',
@@ -43,7 +42,7 @@ export class AddEventComponent implements OnInit {
   prefilledRecurrence: RecurrenceOption;
   headerLevel = HeaderLevel;
 
-  public calendarType: CalendarType;
+  public calendarType: CalendarType = CalendarType.Lunar;
   private paramsSub;
 
   private uuid = UUID.UUID();
@@ -53,15 +52,9 @@ export class AddEventComponent implements OnInit {
   constructor( 
     private fb: FormBuilder,
     private customValidator: ValidationService,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    /* Determine if this is a solar or lunar form. */
-    this.paramsSub = this.route.data.subscribe((data) => {
-      this.calendarType = data.cal;
-    });
-
     /* Set the controls for the form. */
     this.eventForm = this.fb.group({
       name: ['', [

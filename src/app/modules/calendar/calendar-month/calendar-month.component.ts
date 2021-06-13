@@ -9,7 +9,7 @@ import { CalendarMonth, CalendarDay, SelectedDay } from '../../../types/calendar
 })
 export class CalendarMonthComponent {
     @Input() month: Month;
-    @Input() type: CalendarType;
+    @Input() type: CalendarType = CalendarType.Lunar;
     @Input() selectedDate: SelectedDay;
 
     @Output() onDateSelect = new EventEmitter<CalendarDay>();

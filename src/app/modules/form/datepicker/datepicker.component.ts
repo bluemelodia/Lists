@@ -19,7 +19,7 @@ import { FocusService } from '../../../services/focus.service';
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
   @Input() placeholder = '';
-  @Input() calendarType: CalendarType;
+  @Input() calendarType: CalendarType = CalendarType.Lunar;
   @Input() disableInput: boolean;
   @Input() disabledDate: string;
 

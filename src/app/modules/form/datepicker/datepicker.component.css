@@ -10,7 +10,7 @@ input.picker-open {
 .cal-container {
     position: absolute;
     z-index: 500;
-    height: 300px;
+    height: 350px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -21,4 +21,10 @@ input.picker-open {
     border-top: none;
     padding: 12px;
     top: 37px;
+}
+
+@media only screen and (max-width: 500px) {
+    .cal-container {
+        padding: 8px;
+    }
 }
