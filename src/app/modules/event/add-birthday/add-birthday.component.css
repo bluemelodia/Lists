@@ -22,6 +22,10 @@ fieldset {
   margin: 10px;
 }
 
+.instructions {
+  margin-bottom: 12px;
+}
+
 /**
 * Lower the margins so there's more room for the calendar.
 */

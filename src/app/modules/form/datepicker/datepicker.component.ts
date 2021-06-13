@@ -11,6 +11,7 @@ import { noCalMessage } from '../../../types/message.types';
 import { CalendarService } from '../../../services/calendar.service';
 import { ClickService } from '../../../services/click.service';
 import { FocusService } from '../../../services/focus.service';
+import { NavService } from 'src/app/services/nav.service';
 
 @Component({
   selector: 'app-datepicker',
@@ -41,7 +42,8 @@ export class DatepickerComponent implements OnInit, OnDestroy {
   constructor(
     private calendar: CalendarService,
     private clickService: ClickService,
-    private focus: FocusService
+    private focus: FocusService,
+    private nav: NavService,
   ) { }
 
   ngOnInit(): void {
@@ -108,6 +110,13 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
   showHideCal(): void {
     this.showCal = !this.showCal;
+
+    /**
+     * Don't show the open date picker and the nav menu at the same time.
+     */
+    if (this.showCal) {
+      this.nav.closeNavMenu();
+    }
   }
 
   selectDate(date: SelectedDay): void {

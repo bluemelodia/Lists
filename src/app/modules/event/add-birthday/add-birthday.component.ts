@@ -11,8 +11,8 @@ import { ValidationService } from '../../../services/validation.service';
 
 @Component({
   selector: 'app-add-birthday',
-  templateUrl: './add-event.component.html',
-  styleUrls: ['./add-event.component.css']
+  templateUrl: './add-birthday.component.html',
+  styleUrls: ['./add-birthday.component.css']
 })
 export class AddEventComponent implements OnInit {
   birthdayForm: FormGroup;

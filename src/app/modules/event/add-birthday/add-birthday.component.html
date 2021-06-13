@@ -3,6 +3,7 @@
     <form class="event-form"
         [formGroup]="birthdayForm"
         (ngSubmit)="onSubmit()">
+        <span class="instructions">Please enter a name and select a birthdate.</span>
         <fieldset class="name">
             <input type="text" 
                 formControlName="name"
@@ -18,8 +19,6 @@
             <app-datepicker appFocus 
                 class="datepicker-container"
                 placeholder="Date"
-                [disableInput]="prefilledDate"
-                [disabledDate]="prefilledDate"
                 [calendarType]="calendarType"
                 (onDatePicked)="setSelectedDate($event)">
             </app-datepicker>

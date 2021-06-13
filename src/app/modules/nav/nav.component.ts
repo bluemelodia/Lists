@@ -1,4 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { NavService } from "../../services/nav.service";
 
 @Component({
   selector: 'app-nav',
@@ -8,15 +11,31 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
   public showMenu = false;
 
+  private ngUnsubscribe$ = new Subject<void>();
+  private onMenuChange$ = this.nav.onMenuChange$;
+
   @HostBinding('class.open') public open: Boolean = false;
 
-  constructor() { }
+  constructor(private nav: NavService) {
+    this.onMenuChange$
+      .pipe(
+        takeUntil(this.ngUnsubscribe$)
+      )
+      .subscribe((menuState: boolean) => {
+        this.setMenuState(menuState);
+      });
+  }
 
   ngOnInit(): void {
   }
 
   public toggleMenu() {
     this.showMenu = !this.showMenu;
+    this.open = this.showMenu;
+  }
+
+  private setMenuState(state: boolean) {
+    this.showMenu = state;
     this.open = this.showMenu;
   }
 }

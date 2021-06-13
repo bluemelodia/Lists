@@ -6,7 +6,7 @@ import { ElementModule } from '../element/element.module';
 import { FormModule } from '../form/form.module';
 import { DirectiveModule } from '../../directives/directives.module';
 
-import { AddEventComponent } from './add-event/add-event.component';
+import { AddEventComponent } from './add-birthday/add-birthday.component';
 import { EventComponent } from './event.component';
 
 @NgModule({
