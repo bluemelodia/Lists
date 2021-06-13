@@ -14,6 +14,7 @@ export class AppComponent {
   title = 'lists';
 
   closeMenu() {
+    console.log("====> close menu from top");
     this.nav.closeNavMenu();
   }
 }

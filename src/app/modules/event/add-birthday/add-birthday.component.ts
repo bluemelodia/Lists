@@ -14,7 +14,7 @@ import { ValidationService } from '../../../services/validation.service';
   templateUrl: './add-birthday.component.html',
   styleUrls: ['./add-birthday.component.css']
 })
-export class AddEventComponent implements OnInit {
+export class AddBirthdayComponent implements OnInit {
   birthdayForm: FormGroup;
   birthdayActions: EventActions = {
     call: false,
@@ -26,7 +26,6 @@ export class AddEventComponent implements OnInit {
   selectedDate: SelectedDay;
 
   public calendarType: CalendarType = CalendarType.Lunar;
-  private paramsSub;
 
   constructor( 
     private fb: FormBuilder,
@@ -44,10 +43,6 @@ export class AddEventComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
-    this.paramsSub.unsubscribe();
-  }
-
   setSelectedDate(selectedDate: SelectedDay): void {
     console.log("Selected date: ", selectedDate);
     this.selectedDate = selectedDate;
@@ -59,9 +54,6 @@ export class AddEventComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.birthdayForm.valid) {
-      // this.spinner.show(Spinner.RSVP, spinnerConfig);
-      // this.rsvpService.findInvite(this.invitationForm.value.name);
-    }
+    console.log("===> submit: ", this.isLunar, this.birthdayActions, this.birthdayForm);
   }
 }

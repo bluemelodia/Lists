@@ -3,28 +3,27 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ElementModule } from '../element/element.module';
+import { EventRoutingModule } from './event-routing.module';
 import { FormModule } from '../form/form.module';
 import { DirectiveModule } from '../../directives/directives.module';
 
-import { AddEventComponent } from './add-birthday/add-birthday.component';
-import { EventComponent } from './event.component';
+import { AddBirthdayComponent } from './add-birthday/add-birthday.component';
 
 @NgModule({
   declarations: [
-    AddEventComponent,
-    EventComponent
+    AddBirthdayComponent,
   ],
   imports: [
     CommonModule,
     DirectiveModule,
     ElementModule,
+    EventRoutingModule,
     FormModule,
     FormsModule,
     ReactiveFormsModule
   ],
   exports: [
-    AddEventComponent,
-    EventComponent
+    AddBirthdayComponent,
   ]
 })
-export class EventModule { }
+export class AddEventModule { }

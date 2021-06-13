@@ -1,7 +1,7 @@
-<app-menu (onMenuClose)="toggleMenu()"></app-menu>
+<app-menu (onMenuChange)="toggleMenu()"></app-menu>
 <nav>
         <button class="menu-button app-btn"
-        (click)="toggleMenu()">
+        (click)="setMenuOpen(true)">
             <img src="./assets/images/nav.svg">
         </button>
 </nav>

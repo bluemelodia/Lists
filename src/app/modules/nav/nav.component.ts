@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, ɵPlayState } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NavService } from "../../services/nav.service";
@@ -8,7 +8,7 @@ import { NavService } from "../../services/nav.service";
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
   public showMenu = false;
 
   private ngUnsubscribe$ = new Subject<void>();
@@ -22,11 +22,9 @@ export class NavComponent implements OnInit {
         takeUntil(this.ngUnsubscribe$)
       )
       .subscribe((menuState: boolean) => {
-        this.setMenuState(menuState);
+        console.log("===> get menu state from sub: ", menuState);
+        this.setMenuOpen(menuState);
       });
-  }
-
-  ngOnInit(): void {
   }
 
   public toggleMenu() {
@@ -34,8 +32,9 @@ export class NavComponent implements OnInit {
     this.open = this.showMenu;
   }
 
-  private setMenuState(state: boolean) {
+  public setMenuOpen(state: boolean) {
     this.showMenu = state;
     this.open = this.showMenu;
+    console.log("===> is menu open? ", state);
   }
 }

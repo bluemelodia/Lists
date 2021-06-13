@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
     this.lvl = lvl;
     this.padding = 16 * (this.lvl + 1);
   }
-  @Output() onMenuClose = new EventEmitter<void>();
+  @Output() onMenuChange = new EventEmitter<void>();
 
   public lvl = 0;
   public padding = 16;
@@ -30,15 +30,17 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {}
 
   public onMenuClick(item: MenuItem) {
+    console.log("===> item: ", item);
     if (NavUtils.getSubMenu(item)) {
       this.menuItems[item].expanded = !this.menuItems[item].expanded;
     } else {
+      console.log("===> close the menu");
       this.router.navigate([this.menuItems[item].route]);
-      this.closeMenu();
+      this.toggleMenu(false);
     }
   }
 
-  public closeMenu() {
-    this.onMenuClose.emit();
+  public toggleMenu() {
+    this.onMenuChange.emit();
   }
 }
