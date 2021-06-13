@@ -40,6 +40,11 @@ input {
   padding: 8px;
 }
 
+:focus, :focus-visible, input:focus-visible {
+    border: 2px solid red;
+    outline-color: red;
+}
+
 .full-viewport {
   width: 100vw;
   height: 100vh;
