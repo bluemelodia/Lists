@@ -37,7 +37,7 @@
 }
 
 .day:not(.disabled):hover, .selected {
-    background-color: #F4ABBA; 
+    background-color: pink; 
 }
 
 .day:not(.disabled):active {

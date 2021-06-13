@@ -47,11 +47,12 @@
 }
 
 .month-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.38);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  height: 25px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.38);
 }
 
 .month-header span {
