@@ -2,6 +2,7 @@
 
 * {
   font-family: "Raleway", sans-serif;
+  box-sizing: border-box;
 }
 
 body {
@@ -26,15 +27,17 @@ h1 {
 }
 
 button[type="submit"] {
-    height: 40px;
+  height: 40px;
+  margin: 16px 0;
 }
 
 input {
-    border: 2px solid pink;
-    display: inline-block;
-    flex: 1;
-    margin: 0 0 8px 0;
-    padding: 8px;
+  border: 2px solid pink;
+  display: inline-block;
+  flex: 1;
+  font-size: inherit;
+  margin: 0 0 8px 0;
+  padding: 8px;
 }
 
 .full-viewport {

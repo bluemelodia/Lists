@@ -7,13 +7,11 @@
             <input type="text" 
                 formControlName="name"
                 placeholder="Name"/>
-            <div *ngIf="eventFormControl.name.touched || eventFormControl.name.dirty">
-                    <span *ngIf="eventFormControl.name.errors?.required"
-                        class="input-error">
+            <div class="input-error" *ngIf="eventFormControl.name.touched || eventFormControl.name.dirty">
+                    <span *ngIf="eventFormControl.name.errors?.required">
                         Name is required.
                     </span>
-                    <span *ngIf="eventFormControl.name.errors?.minlength || eventFormControl.name.errors?.invalidName"
-                        class="input-error">
+                    <span *ngIf="eventFormControl.name.errors?.minlength || eventFormControl.name.errors?.invalidName">
                         Please enter a valid name.
                     </span>
             </div> 
@@ -25,6 +23,27 @@
                 [calendarType]="calendarType"
                 (onDatePicked)="setSelectedDate($event)">
             </app-datepicker> 
+        </fieldset>
+        <fieldset class="event-options">
+            <app-header [level]="headerLevel.H3" text="Actions"></app-header>
+            <app-checkbox 
+                id="action-call"
+                name="Call"
+                [checked]="eventActions.call"
+                (onToggleCheck)="eventActions.call = !eventActions.call">
+            </app-checkbox>
+            <app-checkbox 
+                id="action-call"
+                name="Text"
+                [checked]="eventActions.text"
+                (onToggleCheck)="eventActions.text = !eventActions.text">
+            </app-checkbox>
+            <app-checkbox 
+                id="action-call"
+                name="Buy Present"
+                [checked]="eventActions.gift"
+                (onToggleCheck)="eventActions.gift = !eventActions.gift">
+            </app-checkbox>
         </fieldset>        
         <button type="submit"
             [disabled]="!eventForm.valid || !selectedDate">
