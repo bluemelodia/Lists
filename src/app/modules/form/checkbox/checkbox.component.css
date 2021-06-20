@@ -40,13 +40,12 @@
 
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
-  background-color: antiquewhite;
+  background-color: #f9eeee;
 }
 
-/* When the checkbox is checked, add a blue background */
+/* When the checkbox is checked, add a background */
 .container input:checked ~ .checkmark {
-  background-color: pink;
-  border: none;
+  background-color: #f9eeee;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -63,11 +62,11 @@
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-  left: 5px;
-  top: 2px;
+  left: 3px;
+  top: 0px;
   width: 2px;
   height: 7px;
-  border: solid white;
+  border: solid #dd2e44;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
