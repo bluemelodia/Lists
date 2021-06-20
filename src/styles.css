@@ -122,6 +122,10 @@ input:focus-visible {
   color: #dd2e44;
 }
 
+button:disabled .arrow-btn {
+  color: #9e9e9e;
+}
+
 /* Hamburger menu. */
 .menu-button {
   height: 100%;
