@@ -21,6 +21,17 @@ nav {
   width: 100%;
 
   animation: expand 0.25s ease-in-out;
+
+  /**
+  * Hide the scrollbar.
+  */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.menu-list::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes expand {
