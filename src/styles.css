@@ -56,6 +56,12 @@ input {
     outline-color: red;
 }
 
+.input-error {
+    color: red;
+    font-size: 0.9rem;
+    margin: 0 0 8px 0;
+} 
+
 .full-viewport {
     width: 100vw;
     height: 100vh;

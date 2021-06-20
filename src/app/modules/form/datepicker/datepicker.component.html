@@ -1,5 +1,5 @@
-<section #picker class="input-container focus-origin">
-    <form [formGroup]="birthdayForm">
+<form #picker [formGroup]="birthdayForm"
+    class="input-container focus-origin">
         <input readonly type="text"
             formControlName="birthday"
             [ngClass]="{ 'picker-open' : showCal }"
@@ -7,7 +7,11 @@
             [value]="selectedDate | pickerDateFormatter"
             (click)="showHideCal()"
             (keydown)="onKeydownEvent($event)"/>
-    </form>
+        <div class="input-error" *ngIf="!birthdayForm.valid">
+            <span *ngIf="!selectedDate">
+                Date is required.
+            </span>
+        </div> 
     <section class="cal-container" *ngIf="showCal">
         <app-loader *ngIf="isLoading"></app-loader>
         <app-calendar #calendar appFocus
@@ -23,4 +27,4 @@
             [message]="noCalMessage">
         </app-no-results>
     </section>
-</section>
+</form>

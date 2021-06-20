@@ -24,11 +24,6 @@
                 [calendarType]="calendarType"
                 (onDatePicked)="setSelectedDate($event)">
             </app-datepicker>
-            <div class="input-error" *ngIf="!birthdayFormControl.valid">
-                <span *ngIf="!selectedDate">
-                    Date is required.
-                </span>
-            </div> 
             <app-checkbox 
                 id="action-lunar"
                 name="Lunar"

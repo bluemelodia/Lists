@@ -1,30 +1,31 @@
 .input-container {
-    display: flex;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 input.picker-open {
-    border-bottom: 0;
+  border-bottom: 0;
 }
 
 .cal-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 380px;
-    overflow: auto;
-    position: absolute;
-    width: 100%;
-    z-index: 500;
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+  overflow: auto;
+  position: absolute;
+  width: 100%;
+  z-index: 500;
 
-    background: white;
-    border: 2px solid pink;
-    border-top: none;
-    padding: 12px;
-    top: 37px;
+  background: white;
+  border: 2px solid pink;
+  border-top: none;
+  padding: 12px;
+  top: 37px;
 }
 
 @media only screen and (max-width: 500px) {
-    .cal-container {
-        padding: 8px;
-    }
+  .cal-container {
+    padding: 8px;
+  }
 }
