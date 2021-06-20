@@ -12,7 +12,7 @@
                 [attr.aria-hidden]="monthIdx === 0 ? true : false"
                 [disabled]="monthIdx === 0"
                 (click)="previousMonth()">
-                <i class="fas fa-chevron-left"></i>
+                <i class="arrow-btn fas fa-chevron-left"></i>
             </button>
             <button type="button"
                 id="next-month"
@@ -22,7 +22,7 @@
                 [attr.aria-hidden]="monthIdx === calendarMonths.length-1 ? true : false"
                 [disabled]="monthIdx === calendarMonths.length-1"
                 (click)="nextMonth()">
-                <i class="fas fa-chevron-right"></i>
+                <i class="arrow-btn fas fa-chevron-right"></i>
             </button>
         </div>  
     </section>

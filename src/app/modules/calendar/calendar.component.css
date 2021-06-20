@@ -33,6 +33,10 @@
   color: #9e9e9e;
 }
 
+.arrow-button__img {
+  font-size: 20px;
+}
+
 .body-container {
   flex: 1;
 }
