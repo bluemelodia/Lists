@@ -26,6 +26,7 @@ export class AddBirthdayComponent implements OnInit {
   selectedDate: SelectedDay;
 
   public calendarType: CalendarType = CalendarType.Lunar;
+  public submitted = false;
 
   constructor( 
     private fb: FormBuilder,
@@ -63,6 +64,7 @@ export class AddBirthdayComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.submitted = true;
     console.log("===> is form valid: ", this.birthdayForm.valid);
     console.log("===> name: ", this.birthdayForm.get('name').dirty, this.birthdayForm.get('name').touched);
     console.log("===> submit: ", this.isLunar, this.birthdayActions, this.birthdayForm);

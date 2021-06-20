@@ -8,8 +8,7 @@
             <input type="text" 
                 formControlName="name"
                 placeholder="Name"/>
-            <div class="input-error" *ngIf="!birthdayFormControl.valid 
-                && (birthdayFormControl.name.touched || birthdayFormControl.name.dirty)">
+            <div class="input-error" *ngIf="!birthdayFormControl.valid && this.submitted">
                     <span *ngIf="birthdayFormControl.name.errors?.required">
                         Name is required.
                     </span>
@@ -22,6 +21,7 @@
                 placeholder="Date"
                 [birthdayForm]="birthdayForm.controls.date"
                 [calendarType]="calendarType"
+                [submitted]="submitted"
                 (onDatePicked)="setSelectedDate($event)">
             </app-datepicker>
             <app-checkbox 

@@ -7,7 +7,7 @@
             [value]="selectedDate | pickerDateFormatter"
             (click)="showHideCal()"
             (keydown)="onKeydownEvent($event)"/>
-        <div class="input-error" *ngIf="!birthdayForm.valid">
+        <div class="input-error" *ngIf="!birthdayForm.valid && submitted">
             <span *ngIf="!selectedDate">
                 Date is required.
             </span>

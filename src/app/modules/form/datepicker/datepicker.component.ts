@@ -23,6 +23,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
   @Input() placeholder = '';
   @Input() calendarType: CalendarType = CalendarType.Lunar;
   @Input() birthdayForm: FormGroup;
+  @Input() submitted: boolean = false;
 
   @Output() onDatePicked = new EventEmitter<SelectedDay>();
 
