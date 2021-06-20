@@ -1,10 +1,13 @@
 <section #picker class="input-container focus-origin">
-    <input readonly type="text"
-        [ngClass]="{ 'picker-open' : showCal }"
-        [placeholder]="placeholder"
-        [value]="selectedDate | pickerDateFormatter"
-        (click)="showHideCal()"
-        (keydown)="onKeydownEvent($event)"/>
+    <form [formGroup]="birthdayForm">
+        <input readonly type="text"
+            formControlName="birthday"
+            [ngClass]="{ 'picker-open' : showCal }"
+            [placeholder]="placeholder"
+            [value]="selectedDate | pickerDateFormatter"
+            (click)="showHideCal()"
+            (keydown)="onKeydownEvent($event)"/>
+    </form>
     <section class="cal-container" *ngIf="showCal">
         <app-loader *ngIf="isLoading"></app-loader>
         <app-calendar #calendar appFocus

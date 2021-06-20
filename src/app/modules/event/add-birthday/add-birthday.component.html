@@ -19,8 +19,8 @@
             </div> 
             <app-datepicker appFocus 
                 class="datepicker-container"
-                formControlName="date"
                 placeholder="Date"
+                [birthdayForm]="birthdayForm.controls.date"
                 [calendarType]="calendarType"
                 (onDatePicked)="setSelectedDate($event)">
             </app-datepicker>
