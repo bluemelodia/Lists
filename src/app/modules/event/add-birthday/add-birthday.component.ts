@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { CalendarType } from '../../../types/calendar/calendar.types';
 import { HeaderLevel } from '../../../types/header.types';
@@ -35,11 +35,20 @@ export class AddBirthdayComponent implements OnInit {
   ngOnInit(): void {
     /* Set the controls for the form. */
     this.birthdayForm = this.fb.group({
-      name: ['', [
-        Validators.required,
-        Validators.minLength(5),
-        this.customValidator.nameValidator()
-      ]]
+      name: [
+        '', 
+        [
+          Validators.required,
+          Validators.minLength(5),
+          this.customValidator.nameValidator()
+        ],
+      ],
+      date: this.fb.group({
+        birthday: ['', [Validators.required]],
+      })
+    },
+    { 
+      updateOn: 'submit'
     });
   }
 
@@ -54,6 +63,8 @@ export class AddBirthdayComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log("===> is form valid: ", this.birthdayForm.valid);
+    console.log("===> name: ", this.birthdayForm.get('name').dirty, this.birthdayForm.get('name').touched);
     console.log("===> submit: ", this.isLunar, this.birthdayActions, this.birthdayForm);
   }
 }

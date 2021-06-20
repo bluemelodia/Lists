@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CalendarModule } from '../calendar/calendar.module';
 import { DirectiveModule } from '../../directives/directives.module';
@@ -26,6 +26,7 @@ import { SelectComponent } from './select/select.component';
     ElementModule,
     FormsModule,
     PipesModule,
+    ReactiveFormsModule,
   ],
   exports: [
     CheckboxComponent,

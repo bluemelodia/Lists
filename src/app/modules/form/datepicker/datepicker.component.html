@@ -1,11 +1,10 @@
-<section class="input-container focus-origin" #picker>
-    <input type="text" readonly
-    [ngClass]="{ 'picker-open' : showCal }"
-    [placeholder]="placeholder"
-    [disabled]="disableInput"
-    [value]="disableInput ? disabledDate : (selectedDate | pickerDateFormatter)"
-    (click)="showHideCal()"
-    (keydown)="onKeydownEvent($event)"/>
+<section #picker class="input-container focus-origin">
+    <input readonly type="text"
+        [ngClass]="{ 'picker-open' : showCal }"
+        [placeholder]="placeholder"
+        [value]="selectedDate | pickerDateFormatter"
+        (click)="showHideCal()"
+        (keydown)="onKeydownEvent($event)"/>
     <section class="cal-container" *ngIf="showCal">
         <app-loader *ngIf="isLoading"></app-loader>
         <app-calendar #calendar appFocus

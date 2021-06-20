@@ -1,4 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
 import { ReplaySubject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { UUID } from 'angular2-uuid';
@@ -20,8 +22,6 @@ import { FocusService } from '../../../services/focus.service';
 export class DatepickerComponent implements OnInit, OnDestroy {
   @Input() placeholder = '';
   @Input() calendarType: CalendarType = CalendarType.Lunar;
-  @Input() disableInput: boolean;
-  @Input() disabledDate: string;
 
   @Output() onDatePicked = new EventEmitter<SelectedDay>();
 
