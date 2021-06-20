@@ -32,11 +32,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 button[class="tab-stop"], button[type="button"] {
-    border: none;
     background-color: transparent;
+    border: none;
 }
 
 button[type="submit"] {
+    background-color: pink;
+    border: 2px solid #dd2e44;
     height: 40px;
     margin: 16px 0;
 }
@@ -52,12 +54,12 @@ input {
 }
 
 :focus, :focus-visible, input:focus-visible {
-    border: 2px solid red;
-    outline-color: red;
+    border: 2px solid #dd2e44;
+    outline-color: #dd2e44;
 }
 
 .input-error {
-    color: red;
+    color: #dd2e44;
     font-size: 0.9rem;
     margin: 0 0 8px 0;
 } 
