@@ -28,32 +28,19 @@
                 name="Lunar"
                 value="isLunar"
                 [checked]="isLunar"
-                (change)="onCheckboxChange($event)"
+                (change)="toggleCheckbox($event)"
                 (onToggleCheck)="isLunar = !isLunar">
             </app-checkbox>
         </fieldset>
         <fieldset class="event-options">
             <app-header [level]="headerLevel.H3" text="Actions"></app-header>
-            <app-checkbox 
-                name="Call"
-                value="call"
-                [checked]="birthdayActions.call"
-                (change)="onCheckboxChange($event)"
-                (onToggleCheck)="birthdayActions.call = !birthdayActions.call">
-            </app-checkbox>
-            <app-checkbox 
-                name="Text"
-                value="text"
-                [checked]="birthdayActions.text"
-                (change)="onCheckboxChange($event)"
-                (onToggleCheck)="birthdayActions.text = !birthdayActions.text">
-            </app-checkbox>
-            <app-checkbox 
-                name="Buy Present"
-                value="present"
-                [checked]="birthdayActions.gift"
-                (change)="onCheckboxChange($event)"
-                (onToggleCheck)="birthdayActions.gift = !birthdayActions.gift">
+            <app-checkbox *ngFor="let option of birthdayChecks; let i = index"
+                [name]="option.action"
+                [checked]="checkboxValue(i)"
+                [formControlName]="option.id"
+                [value]="checkboxValue(i)"
+                (onToggleCheck)="toggleCheckbox(i)"
+               >
             </app-checkbox>
         </fieldset>        
         <button type="submit">

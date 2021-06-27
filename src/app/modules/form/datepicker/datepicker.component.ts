@@ -112,7 +112,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     }
   }
 
-  private showHideCal(): void {
+  public showHideCal(): void {
     this.showCal = !this.showCal;
   }
 
