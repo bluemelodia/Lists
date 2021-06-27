@@ -26,10 +26,10 @@
             <app-checkbox 
                 id="action-lunar"
                 name="Lunar"
-                value="isLunar"
-                [checked]="isLunar"
-                (change)="toggleCheckbox($event)"
-                (onToggleCheck)="isLunar = !isLunar">
+                value="lunarFormControl.value"
+                [checked]="lunarFormControl.value"
+                [formControlName]="lunarFormControl"
+                (onToggleCheck)="toggleLunarValue()">
             </app-checkbox>
         </fieldset>
         <fieldset class="event-options">

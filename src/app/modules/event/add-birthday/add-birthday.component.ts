@@ -25,7 +25,6 @@ export class AddBirthdayComponent implements OnInit {
   birthdayChecks: BirthdayCheck[] = BirthdayCheckboxes;
   birthdayForm: FormGroup;
   headerLevel = HeaderLevel;
-  isLunar = false;
 
   public calendarType: CalendarType = CalendarType.Lunar;
   public submitted = false;
@@ -49,6 +48,7 @@ export class AddBirthdayComponent implements OnInit {
       date: this.fb.group({
         birthday: ['', [Validators.required]],
       }),
+      lunar: this.fb.control(false),
       options: this.fb.array(this.birthdayChecks.map(
         (check: BirthdayCheck) => this.fb.control({ [check.id]: check.value }))
       )
@@ -61,6 +61,10 @@ export class AddBirthdayComponent implements OnInit {
   /* returns the form controls of the form. */
   get birthdayFormControl() {
     return this.birthdayForm.controls;
+  }
+
+  get lunarFormControl() {
+    return this.birthdayFormControl.lunar;
   }
 
   /* methods to get / set the checkbox values */
@@ -76,15 +80,17 @@ export class AddBirthdayComponent implements OnInit {
     return Object.keys(this.checkbox(index))[0];
   }
 
+  public toggleLunarValue() {
+    this.birthdayForm.get('lunar').patchValue(!this.lunarFormControl.value);
+  }
+
   public toggleCheckbox(index: number) {
     const checkArray: FormArray = this.birthdayForm.get('options') as FormArray;
   
     let i: number = 0;
     checkArray.controls.forEach((item: FormControl) => {
-        console.log("===> item: ", item, this.checkboxKey(i), this.checkboxValue(i));
         if (i === index) {
-          item.patchValue({ [this.checkboxKey(i)]: !this.checkboxValue(i) });
-          return;
+          item.patchValue({ [this.checkboxKey(index)]: !this.checkboxValue(index) });
         }
         i++;
       });
