@@ -6,6 +6,7 @@ import { CalendarModule } from '../calendar/calendar.module';
 import { DirectiveModule } from '../../directives/directives.module';
 import { ElementModule } from '../element/element.module';
 import { PipesModule } from '../../pipes/pipes.module';
+import { PickerDateFormatterPipe } from '../../pipes/picker-date-formatter.pipe';
 
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
@@ -33,6 +34,9 @@ import { SelectComponent } from './select/select.component';
     DatepickerComponent,
     RadioComponent,
     SelectComponent
+  ],
+  providers: [
+    PickerDateFormatterPipe,
   ]
 })
 export class FormModule { }

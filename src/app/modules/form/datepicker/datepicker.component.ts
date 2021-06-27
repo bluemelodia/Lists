@@ -1,18 +1,20 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 import { ReplaySubject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { UUID } from 'angular2-uuid';
 
-import { CalendarType } from '../../../types/calendar/calendar.types';
-import { Calendar, CalendarDay, SelectedDay } from '../../../types/calendar/calendar-response.types';
-import { FocusEvent, Key } from '../../../types/focus.types';
-import { noCalMessage } from '../../../types/message.types';
+import { PickerDateFormatterPipe } from '../../../pipes/picker-date-formatter.pipe';
 
 import { CalendarService } from '../../../services/calendar.service';
 import { ClickService } from '../../../services/click.service';
 import { FocusService } from '../../../services/focus.service';
+
+import { CalendarType } from '../../../types/calendar/calendar.types';
+import { Calendar, SelectedDay } from '../../../types/calendar/calendar-response.types';
+import { FocusEvent, Key } from '../../../types/focus.types';
+import { noCalMessage } from '../../../types/message.types';
 
 @Component({
   selector: 'app-datepicker',
@@ -25,8 +27,6 @@ export class DatepickerComponent implements OnInit, OnDestroy {
   @Input() birthdayForm: FormGroup;
   @Input() submitted: boolean = false;
 
-  @Output() onDatePicked = new EventEmitter<SelectedDay>();
-
   @ViewChild('picker', { read: ElementRef, static: false }) picker: ElementRef;
 
   public showCal = false;
@@ -37,27 +37,27 @@ export class DatepickerComponent implements OnInit, OnDestroy {
   private uuid = UUID.UUID();
   public calendarId = `app-calendar-${this.uuid}`;
 
-  public selectedDate: CalendarDay;
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(
     private calendar: CalendarService,
     private clickService: ClickService,
+    private dateFormatterPipe: PickerDateFormatterPipe,
     private focus: FocusService,
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setupSubscriptions();
     this.isLoading = true;
     this.calendar.getCalendar(this.calendarType);
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
 
-  setupSubscriptions() {
+  private setupSubscriptions() {
     this.clickService.clicked
       .pipe(takeUntil(this.destroyed$))
       .subscribe(target => {
@@ -94,7 +94,11 @@ export class DatepickerComponent implements OnInit, OnDestroy {
       });
   }
 
-  onDocumentClick(target: any): void {
+  private get birthday(): AbstractControl {
+    return this.birthdayForm.get('birthday');
+  }
+
+  private onDocumentClick(target: any): void {
     if (!this.picker.nativeElement.contains(target)) {
       if (this.showCal) {
         this.showHideCal();
@@ -102,19 +106,20 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     }
   }
 
-  onKeydownEvent(event: KeyboardEvent): void {
+  public onKeydownEvent(event: KeyboardEvent): void {
     if (event.key === "Enter" || event.key === " ") {
       this.showHideCal();
     }
   }
 
-  showHideCal(): void {
+  private showHideCal(): void {
     this.showCal = !this.showCal;
   }
 
-  selectDate(date: SelectedDay): void {
-    this.selectedDate = date;
+  public selectDate(date: SelectedDay): void {
+    this.birthdayForm.patchValue({
+      birthday: this.dateFormatterPipe.transform(date)
+    });
     this.showHideCal();
-    this.onDatePicked.emit(date);
   }
 }

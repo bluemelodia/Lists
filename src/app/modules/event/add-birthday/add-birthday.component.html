@@ -21,34 +21,38 @@
                 placeholder="Date"
                 [birthdayForm]="birthdayForm.controls.date"
                 [calendarType]="calendarType"
-                [submitted]="submitted"
-                (onDatePicked)="setSelectedDate($event)">
+                [submitted]="submitted">
             </app-datepicker>
             <app-checkbox 
                 id="action-lunar"
                 name="Lunar"
+                value="isLunar"
                 [checked]="isLunar"
+                (change)="onCheckboxChange($event)"
                 (onToggleCheck)="isLunar = !isLunar">
             </app-checkbox>
         </fieldset>
         <fieldset class="event-options">
             <app-header [level]="headerLevel.H3" text="Actions"></app-header>
             <app-checkbox 
-                id="action-call"
                 name="Call"
+                value="call"
                 [checked]="birthdayActions.call"
+                (change)="onCheckboxChange($event)"
                 (onToggleCheck)="birthdayActions.call = !birthdayActions.call">
             </app-checkbox>
             <app-checkbox 
-                id="action-call"
                 name="Text"
+                value="text"
                 [checked]="birthdayActions.text"
+                (change)="onCheckboxChange($event)"
                 (onToggleCheck)="birthdayActions.text = !birthdayActions.text">
             </app-checkbox>
             <app-checkbox 
-                id="action-call"
                 name="Buy Present"
+                value="present"
                 [checked]="birthdayActions.gift"
+                (change)="onCheckboxChange($event)"
                 (onToggleCheck)="birthdayActions.gift = !birthdayActions.gift">
             </app-checkbox>
         </fieldset>        

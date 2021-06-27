@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 import { CalendarType } from '../../../types/calendar/calendar.types';
 import { HeaderLevel } from '../../../types/header.types';
-import { SelectedDay } from '../../../types/calendar/calendar-response.types';
 import { 
   EventActions, 
 } from '../../../types/event.types';
@@ -23,7 +28,6 @@ export class AddBirthdayComponent implements OnInit {
   };
   headerLevel = HeaderLevel;
   isLunar = false;
-  selectedDate: SelectedDay;
 
   public calendarType: CalendarType = CalendarType.Lunar;
   public submitted = false;
@@ -46,16 +50,29 @@ export class AddBirthdayComponent implements OnInit {
       ],
       date: this.fb.group({
         birthday: ['', [Validators.required]],
-      })
+      }),
+      options: this.fb.array([])
     },
     { 
       updateOn: 'submit'
     });
   }
 
-  setSelectedDate(selectedDate: SelectedDay): void {
-    console.log("Selected date: ", selectedDate);
-    this.selectedDate = selectedDate;
+  onCheckboxChange(event) {
+    const checkArray: FormArray = this.birthdayForm.get('options') as FormArray;
+  
+    if (event.target.checked) {
+      checkArray.push(new FormControl(event.target.value));
+    } else {
+      let i: number = 0;
+      checkArray.controls.forEach((item: FormControl) => {
+        if (item.value === event.target.value) {
+          checkArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
   }
 
   /* returns the form controls of the form. */
