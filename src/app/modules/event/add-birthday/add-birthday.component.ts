@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -63,19 +61,7 @@ export class AddBirthdayComponent implements OnInit {
   get birthdayFormControl() {
     return this.birthdayForm.controls;
   }
-
-  get lunarFormControl() {
-    return this.birthdayFormControl.lunar;
-  }
-
-  get checkboxFormControls() {
-    return this.birthdayForm.get('options');
-  }
-
-  public toggleLunarValue() {
-    this.birthdayForm.get('lunar').patchValue(!this.lunarFormControl.value);
-  }
-
+  
   onSubmit(): void {
     this.submitted = true;
     console.log("===> is form valid: ", this.birthdayForm.valid, this.birthdayForm, this.birthdayForm.controls.options);
