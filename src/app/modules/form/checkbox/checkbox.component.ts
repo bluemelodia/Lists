@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-checkbox',
@@ -7,10 +8,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CheckboxComponent implements OnInit {
   @Input() name: string;
+  @Input() checkboxName: string;
   @Input() set checked(isChecked: boolean) {
     this.isChecked = isChecked;
   }
   public isChecked: boolean = false;
+
+  @Input() form: FormGroup;
 
   @Output() onToggleCheck = new EventEmitter<boolean>();
 

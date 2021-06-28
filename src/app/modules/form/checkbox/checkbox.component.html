@@ -1,7 +1,8 @@
-<label class="container">
+<label class="container" [formGroup]="form">
     <span class>{{ name }}</span>
     <input type="checkbox" 
         [checked]="isChecked"
+        [formControlName]="checkboxName"
         (change)="toggleChecked($event)">
     <span class="checkmark"></span>
 </label>
