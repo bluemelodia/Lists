@@ -26,23 +26,26 @@
             <app-checkbox 
                 id="action-lunar"
                 name="Lunar"
-                value="lunarFormControl.value"
                 checkboxName="lunar"
-                [checked]="lunarFormControl.value"
-                [form]="birthdayForm"
-                (onToggleCheck)="toggleLunarValue()">
+                [form]="birthdayForm.controls.options">
             </app-checkbox>
         </fieldset>
         <fieldset class="event-options">
             <app-header [level]="headerLevel.H3" text="Actions"></app-header>
-            <app-checkbox *ngFor="let option of birthdayChecks; let i = index"
-                [name]="option.action"
-                [checkboxName]="option.id"
-                [checked]="checkboxValue(i)"
-                [form]="birthdayForm"
-                [value]="checkboxValue(i)"
-                (onToggleCheck)="toggleCheckbox(i)"
-               >
+            <app-checkbox
+                name="Call"
+                checkboxName="call"
+                [form]="birthdayForm.controls.options">
+            </app-checkbox>
+            <app-checkbox
+                name="Text"
+                checkboxName="text"
+                [form]="birthdayForm.controls.options">
+            </app-checkbox>
+            <app-checkbox
+                name="Buy Present"
+                checkboxName="gift"
+                [form]="birthdayForm.controls.options">
             </app-checkbox>
         </fieldset>        
         <button type="submit">

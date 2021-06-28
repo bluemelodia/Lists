@@ -9,14 +9,8 @@ import { FormGroup } from '@angular/forms';
 export class CheckboxComponent implements OnInit {
   @Input() name: string;
   @Input() checkboxName: string;
-  @Input() set checked(isChecked: boolean) {
-    this.isChecked = isChecked;
-  }
-  public isChecked: boolean = false;
 
   @Input() form: FormGroup;
-
-  @Output() onToggleCheck = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -24,6 +18,9 @@ export class CheckboxComponent implements OnInit {
   }
 
   toggleChecked(event): void {
-    this.onToggleCheck.emit(event.target.checked);
+    console.log("toggle checked => ", this.form.get(this.checkboxName));
+    this.form.get(this.checkboxName).patchValue(
+      event.target.checked
+    );
   }
 }

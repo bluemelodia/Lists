@@ -10,30 +10,6 @@ export enum BirthdayID {
     gift = "buy-present",
 }
 
-export interface BirthdayCheck {
-    action: BirthdayAction,
-    id: string,
-    value: boolean
-};
-
-export const BirthdayCheckboxes: BirthdayCheck[] = [
-    {
-        action: BirthdayAction.call,
-        id: BirthdayID.call,
-        value: false
-    },
-    {
-        action: BirthdayAction.text,
-        id: BirthdayID.text,
-        value: false
-    },
-    {
-        action: BirthdayAction.gift,
-        id: BirthdayID.gift,
-        value: false
-    },
-];
-
 export enum Recurrence {
     Once = 'One Time',
     Weekly = 'Weekly',
