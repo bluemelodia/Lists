@@ -23,4 +23,8 @@ export class CheckboxComponent implements OnInit {
       event.target.checked
     );
   }
+
+  get checkboxValue(): void {
+    return this.form.controls[this.checkboxName].value;
+  }
 }

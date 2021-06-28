@@ -34,17 +34,17 @@
             <app-header [level]="headerLevel.H3" text="Actions"></app-header>
             <app-checkbox
                 name="Call"
-                checkboxName="call"
+                [checkboxName]="birthdayID.call"
                 [form]="birthdayForm.controls.options">
             </app-checkbox>
             <app-checkbox
                 name="Text"
-                checkboxName="text"
+                [checkboxName]="birthdayID.text"
                 [form]="birthdayForm.controls.options">
             </app-checkbox>
             <app-checkbox
                 name="Buy Present"
-                checkboxName="gift"
+                [checkboxName]="birthdayID.gift"
                 [form]="birthdayForm.controls.options">
             </app-checkbox>
         </fieldset>        

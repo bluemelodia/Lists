@@ -10,7 +10,6 @@ import {
 import { CalendarType } from '../../../types/calendar/calendar.types';
 import { HeaderLevel } from '../../../types/header.types';
 import { 
-  BirthdayAction,
   BirthdayID,
 } from '../../../types/event.types';
 
@@ -23,7 +22,7 @@ import { ValidationService } from '../../../services/validation.service';
 })
 export class AddBirthdayComponent implements OnInit {
   birthdayForm: FormGroup;
-  birthdayAction: BirthdayAction;
+  birthdayID = BirthdayID;
   headerLevel = HeaderLevel;
 
   public calendarType: CalendarType = CalendarType.Lunar;
@@ -48,8 +47,8 @@ export class AddBirthdayComponent implements OnInit {
       date: this.fb.group({
         birthday: ['', [Validators.required]],
       }),
-      lunar: this.fb.control(false),
       options: this.fb.group({
+        lunar: this.fb.control(false),
         [BirthdayID.call]: this.fb.control(false),
         [BirthdayID.text]: this.fb.control(false),
         [BirthdayID.gift]: this.fb.control(false),
