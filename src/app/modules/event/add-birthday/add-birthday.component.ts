@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 
 import { CalendarType } from '../../../types/calendar/calendar.types';
+import { BirthdayID } from '../../../types/event.types';
 import { HeaderLevel } from '../../../types/header.types';
-import { 
-  BirthdayID,
-} from '../../../types/event.types';
 
+import { BirthdayService } from '../../../services/birthday.service';
 import { ValidationService } from '../../../services/validation.service';
 
 @Component({
@@ -28,6 +28,7 @@ export class AddBirthdayComponent implements OnInit {
 
   constructor( 
     private fb: FormBuilder,
+    private birthdayService: BirthdayService,
     private customValidator: ValidationService,
   ) { }
 
@@ -62,11 +63,23 @@ export class AddBirthdayComponent implements OnInit {
     return this.birthdayForm.controls;
   }
 
+  get name(): string {
+    return this.birthdayFormControl.name.value;
+  }
+
+  get date(): string {
+    return this.birthdayForm.get('date.birthday')?.value;
+  }
+
   onSubmit(): void {
     console.log("===> is form valid: ", this.birthdayForm.valid, this.birthdayForm, this.birthdayForm.controls.options);
     console.log("===> name: ", this.birthdayForm.get('name').dirty, this.birthdayForm.get('name').touched);
     this.submitted = true;
     if (this.birthdayForm.valid) {
+      this.birthdayService.addBirthday({
+          name: this.name,
+          date: this.date,
+      });
       this.submitted = false;
     }
   }

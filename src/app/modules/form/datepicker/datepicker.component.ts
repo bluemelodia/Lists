@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 import { ReplaySubject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -94,10 +94,6 @@ export class DatepickerComponent implements OnInit, OnDestroy {
       });
   }
 
-  private get birthday(): AbstractControl {
-    return this.birthdayForm.get('birthday');
-  }
-
   private onDocumentClick(target: any): void {
     if (!this.picker.nativeElement.contains(target)) {
       if (this.showCal) {
@@ -118,7 +114,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
   public selectDate(date: SelectedDay): void {
     this.birthdayForm.patchValue({
-      birthday: this.dateFormatterPipe.transform(date)
+      birthday: date
     });
     this.showHideCal();
   }

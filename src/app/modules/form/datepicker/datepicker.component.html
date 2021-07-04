@@ -4,6 +4,7 @@
             formControlName="birthday"
             [ngClass]="{ 'picker-open' : showCal }"
             [placeholder]="placeholder"
+            [value]="birthdayForm.controls.birthday.value | pickerDateFormatter"
             (click)="showHideCal()"
             (keydown)="onKeydownEvent($event)"/>
         <div class="input-error" *ngIf="!birthdayForm.valid && submitted">
