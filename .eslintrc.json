@@ -12,7 +12,8 @@
         "ecmaVersion": 12
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "@angular-eslint",
     ],
     "rules": {
     }

@@ -40,10 +40,10 @@ export class DatepickerComponent implements OnInit, OnDestroy {
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(
-    private calendar: CalendarService,
-    private clickService: ClickService,
-    private dateFormatterPipe: PickerDateFormatterPipe,
-    private focus: FocusService,
+    private readonly calendar: CalendarService,
+    private readonly clickService: ClickService,
+    private readonly dateFormatterPipe: PickerDateFormatterPipe,
+    private readonly focus: FocusService,
   ) { }
 
   public ngOnInit(): void {
