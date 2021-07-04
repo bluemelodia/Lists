@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { PickerDateFormatterPipe } from './picker-date-formatter.pipe';
 
 @NgModule({
-  declarations: [
-    PickerDateFormatterPipe
-  ],
-  imports: [
+	declarations: [
+		PickerDateFormatterPipe
+	],
+	imports: [
 
-  ],
-  exports: [
-    PickerDateFormatterPipe
-  ]
+	],
+	exports: [
+		PickerDateFormatterPipe
+	]
 })
 export class PipesModule { }

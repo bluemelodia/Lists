@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class ClickService {
-  clicked: Subject<HTMLElement> = new Subject<HTMLElement>();
+	clicked: Subject<HTMLElement> = new Subject<HTMLElement>();
 
-  constructor() { }
+	constructor() { }
 }

@@ -61,10 +61,13 @@ export class AddBirthdayComponent implements OnInit {
   get birthdayFormControl() {
     return this.birthdayForm.controls;
   }
-  
+
   onSubmit(): void {
-    this.submitted = true;
     console.log("===> is form valid: ", this.birthdayForm.valid, this.birthdayForm, this.birthdayForm.controls.options);
     console.log("===> name: ", this.birthdayForm.get('name').dirty, this.birthdayForm.get('name').touched);
+    this.submitted = true;
+    if (this.birthdayForm.valid) {
+      this.submitted = false;
+    }
   }
 }

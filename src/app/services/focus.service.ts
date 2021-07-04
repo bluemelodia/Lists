@@ -3,20 +3,20 @@ import { Observable, Subject } from 'rxjs';
 import { Key, FocusEvent } from '../types/focus.types';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class FocusService {
-  private onKeyPressed$ = new Subject<FocusEvent>();
+	private onKeyPressed$ = new Subject<FocusEvent>();
 
-  keyPressed$(): Observable<FocusEvent> {
-    return this.onKeyPressed$;
-  }
+	keyPressed$(): Observable<FocusEvent> {
+		return this.onKeyPressed$;
+	}
 
-  public keyPressed(key: Key, id: string, elementID: string) {
-    this.onKeyPressed$.next({
-        key: key,
-        elementID: elementID,
-        id: id
-    });
-  }
+	public keyPressed(key: Key, id: string, elementID: string) {
+		this.onKeyPressed$.next({
+			key: key,
+			elementID: elementID,
+			id: id
+		});
+	}
 }
