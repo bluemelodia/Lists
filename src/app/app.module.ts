@@ -11,7 +11,6 @@ import { NavModule } from './modules/nav/nav.module';
 import { TopicModule } from './modules/topic/topic.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { RequestInterceptor } from './request.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,13 +27,7 @@ import { RequestInterceptor } from './request.interceptor';
     NavModule,
     TopicModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RequestInterceptor,
-      multi: true,
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

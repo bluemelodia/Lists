@@ -1,0 +1,11 @@
+{
+  "/todo": {
+    "target": {
+        "host": "http://127.0.0.1:9002/todo",
+        "port": 9002
+      },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
+}

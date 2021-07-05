@@ -12,7 +12,7 @@ import { Response, ResponseStatus } from '../types/response.types';
 	providedIn: 'root'
 })
 export class BirthdayService {
-	private addBirthdayURL = BASE_URL + 'getBirthdays/';
+	private addBirthdayURL = BASE_URL + 'addBirthday';
 	private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 	constructor(private http: HttpClient) { }
