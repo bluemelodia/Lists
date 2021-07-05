@@ -4,14 +4,22 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { 
+	take,
+	takeUntil,
+} from 'rxjs/operators';
 
 import { BirthdayOptions } from '../../../types/birthday/birthday.types';
 import { CalendarType } from '../../../types/calendar/calendar.types';
 import { SelectedDay } from '../../../types/calendar/calendar-response.types';
+import { Dialog } from '../../../types/dialog/dialog.types';
 import { BirthdayID } from '../../../types/event.types';
 import { HeaderLevel } from '../../../types/header.types';
+import { ResponseStatus } from '../../../types/response.types';
 
 import { BirthdayService } from '../../../services/birthday.service';
+import { DialogService } from '../../../services/dialog.service';
 import { ValidationService } from '../../../services/validation.service';
 
 @Component({
@@ -27,8 +35,11 @@ export class AddBirthdayComponent implements OnInit {
 	public calendarType: CalendarType = CalendarType.Lunar;
 	public submitted = false;
 
-	constructor( 
+	private ngUnsubscribe$ = new Subject<void>();
+
+	constructor(
 		private fb: FormBuilder,
+		private dialogService: DialogService,
 		private birthdayService: BirthdayService,
 		private customValidator: ValidationService,
 	) { }
@@ -79,12 +90,19 @@ export class AddBirthdayComponent implements OnInit {
 	onSubmit(): void {
 		this.submitted = true;
 		if (this.birthdayForm.valid) {
-			this.birthdayService.addBirthday({
-					name: this.name,
-					date: this.date,
-					options: this.options,
-			});
 			this.submitted = false;
+			this.birthdayService.addBirthday({
+				name: this.name,
+				date: this.date,
+				options: this.options,
+			})
+				.pipe(
+					take(1),
+					takeUntil(this.ngUnsubscribe$)
+				)
+				.subscribe((response: ResponseStatus) => {
+					this.dialogService.showStatusDialog(response, Dialog.AddBirthday);
+				});
 		}
 	}
 }

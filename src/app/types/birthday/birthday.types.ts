@@ -7,6 +7,25 @@ export interface Birthday {
 	options: BirthdayOptions;
 }
 
+/**
+* Format of birthday to send to the service.
+*/
+export interface AddBirthday {
+	id: string;
+	cmonth: number;
+	month: number;
+	cdate: number;
+	date: number;
+	year: number;
+	name: string;
+	call: number;
+	text: number;
+	gift: number;
+	leap: number;
+	cmonthname: string;
+	lunar: number;
+}
+
 export interface BirthdayOptions {
 	lunar: boolean;
 	[BirthdayID.call]: boolean;
