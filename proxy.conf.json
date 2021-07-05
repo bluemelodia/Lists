@@ -1,9 +1,0 @@
-{
-  "/todo/*": {
-    "target": "http://127.0.0.1:9002/todo",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug",
-    "pathRewrite": {"^/todo" : ""}
-  }
-}
