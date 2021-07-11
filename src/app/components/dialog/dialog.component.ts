@@ -7,14 +7,15 @@ import { DialogService } from '../../services/dialog.service';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-  @Input() message: string;
+  public showDialog$;
 
   constructor(private dialogService: DialogService) { }
 
   ngOnInit(): void {
+    this.showDialog$ = this.dialogService.showDialog$;
   }
 
-  hideDialog() {
-    this.dialogService.hideDialog();
+  hideDialog(): void {
+
   }
 }

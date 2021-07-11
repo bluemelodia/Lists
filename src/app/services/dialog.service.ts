@@ -15,11 +15,11 @@ export class DialogService {
 
 	constructor() { }
 
-	showDialog$(): Observable<string> {
+	get showDialog$(): Observable<string> {
 		return this.show$.asObservable();
 	}
 
-	hideDialog$(): Observable<any> {
+	get hideDialog$(): Observable<any> {
 		return this.hide$.asObservable();
 	}
 

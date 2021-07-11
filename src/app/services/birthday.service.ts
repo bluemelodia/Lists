@@ -13,6 +13,7 @@ import { Response, ResponseStatus } from '../types/response.types';
 })
 export class BirthdayService {
 	private addBirthdayURL = BASE_URL + 'addBirthday';
+	private getBirthdayURL = BASE_URL + 'getBirthdays';
 	private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 	constructor(private http: HttpClient) { }
@@ -21,7 +22,7 @@ export class BirthdayService {
 	* TODO: add user ID
 	*/
 	public addBirthday(birthday: Birthday): Observable<ResponseStatus> {
-		console.log("Birthday: ", birthday);
+		console.log("===> add a birthday: ", birthday);
 		return this.http.post<Response>(
 			this.addBirthdayURL, 
 			this.formatBirthday(birthday),
@@ -31,7 +32,24 @@ export class BirthdayService {
 		)
 			.pipe(
 				map((response: Response) => {
+					console.log("===> got add birthday response in service: ", response);
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
+				})
+			);
+	}
+
+	public getBirthdays(id: string): Observable<AddBirthday[]> {
+		console.log("===> get birthdays for id: ", id);
+
+		const userID = id ? id : "guest";
+		const getBirthday = `${this.getBirthdayURL}/${userID}`;
+		return this.http.get<Response>(
+			getBirthday
+		)
+			.pipe(
+				map((response: Response) => {
+					console.log("===> received birthdays: ", response);
+					return [];
 				})
 			);
 	}

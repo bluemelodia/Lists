@@ -101,6 +101,7 @@ export class AddBirthdayComponent implements OnInit {
 					takeUntil(this.ngUnsubscribe$)
 				)
 				.subscribe((response: ResponseStatus) => {
+					console.log("===> add birthday results: ", response);
 					this.dialogService.showStatusDialog(response, Dialog.AddBirthday);
 				});
 		}

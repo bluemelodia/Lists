@@ -1,8 +1,11 @@
-<section class="dialog-overlay">
+<section class="dialog-overlay"
+   *ngIf="showDialog$ | async as dialog" >
     <div class="dialog">
-        <p class="description message">{{ message }}</p>
         <button type="button" 
             class="cancel description"
-            (click)="hideDialog()">Close</button>
+            (click)="hideDialog()">
+            <i class="fas fa-times"></i>
+        </button>
+        <p class="description message">{{ dialog }}</p>
     </div>
 </section>

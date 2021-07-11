@@ -9,12 +9,15 @@ import { AppComponent } from './app.component';
 
 import { NavModule } from './modules/nav/nav.module';
 import { TopicModule } from './modules/topic/topic.module';
+
+import { DialogComponent } from './components/dialog/dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DialogComponent,
     FooterComponent,
     HeaderComponent,
   ],

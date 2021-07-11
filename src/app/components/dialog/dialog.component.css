@@ -1,3 +1,8 @@
+.cancel {
+    align-self: flex-end;
+    color: #dd2e44;
+}
+
 .dialog-overlay {
     background-color: #feecf2d5;
     opacity: 1;
@@ -14,11 +19,14 @@
 }
 
 .dialog {
-    max-width: 500px;
-    margin: 15px;
-    padding: 15px;
-    border: 1px solid pink;
+    padding: 8px;
+    border: 2px solid #dd2e44;
     background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 400px;
 }
 
 .message {
