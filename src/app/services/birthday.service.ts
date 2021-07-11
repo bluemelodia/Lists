@@ -17,7 +17,7 @@ export class BirthdayService {
 	private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 	constructor(private http: HttpClient) { }
-
+	
 	/*
 	* TODO: add user ID
 	*/

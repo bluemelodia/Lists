@@ -10,8 +10,7 @@ import { DialogUtils } from '../utils/dialog.utils';
 })
 export class DialogService {
 	private show$ = new Subject<string>();
-	private hide$ = new Subject();
-	private onHide$ = new Subject();
+	private onClose$ = new Subject<void>();
 
 	constructor() { }
 
@@ -19,12 +18,8 @@ export class DialogService {
 		return this.show$.asObservable();
 	}
 
-	get hideDialog$(): Observable<any> {
-		return this.hide$.asObservable();
-	}
-
-	onDialogHide$(): Observable<any> {
-		return this.onHide$.asObservable();
+	get onDialogClose$(): Observable<void> {
+		return this.onClose$.asObservable();
 	}
 
 	showStatusDialog(status: ResponseStatus, dialogType: Dialog) {
@@ -36,10 +31,7 @@ export class DialogService {
 	}
 
 	hideDialog() {
-		this.hide$.next();
-	}
-
-	onDialogHide() {
-		this.onHide$.next();
+		this.show$.next(null);
+		this.onClose$.next();
 	}
 }

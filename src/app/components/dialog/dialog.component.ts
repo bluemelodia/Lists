@@ -16,6 +16,6 @@ export class DialogComponent implements OnInit {
   }
 
   hideDialog(): void {
-
+    this.dialogService.hideDialog();
   }
 }

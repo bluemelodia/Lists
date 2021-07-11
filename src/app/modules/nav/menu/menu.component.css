@@ -20,7 +20,7 @@ nav {
   padding: 0;
   width: 100%;
 
-  animation: expand 0.25s ease-in-out;
+  animation: appear 0.25s ease-in-out;
 
   /**
   * Hide the scrollbar.
@@ -32,16 +32,6 @@ nav {
 /* Hide scrollbar for Chrome, Safari and Opera */
 .menu-list::-webkit-scrollbar {
   display: none;
-}
-
-@keyframes expand {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .menu-list.top-nav {

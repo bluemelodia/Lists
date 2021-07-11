@@ -135,3 +135,26 @@ button:disabled .arrow-btn {
 .menu-button img {
   height: 100%;
 }
+
+/**
+* Animations
+*/
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes expand {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -104,6 +104,15 @@ export class AddBirthdayComponent implements OnInit {
 					console.log("===> add birthday results: ", response);
 					this.dialogService.showStatusDialog(response, Dialog.AddBirthday);
 				});
+
+			this.dialogService.onDialogClose$
+				.pipe(
+					take(1),
+					takeUntil(this.ngUnsubscribe$)
+				)
+				.subscribe(() => {
+					this.birthdayForm.reset();
+				});
 		}
 	}
 }
