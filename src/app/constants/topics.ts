@@ -1,4 +1,5 @@
 export enum Topic {
+    Birthdays = 'Birthday',
     Family = 'Family',
     Finance = 'Finance',
     Health = 'Health',

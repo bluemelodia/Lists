@@ -103,16 +103,22 @@ export class AddBirthdayComponent implements OnInit {
 				.subscribe((response: ResponseStatus) => {
 					console.log("===> add birthday results: ", response);
 					this.dialogService.showStatusDialog(response, Dialog.AddBirthday);
-				});
 
-			this.dialogService.onDialogClose$
-				.pipe(
-					take(1),
-					takeUntil(this.ngUnsubscribe$)
-				)
-				.subscribe(() => {
-					this.birthdayForm.reset();
+					if (response === ResponseStatus.SUCCESS) {
+						this.subscribeToDialogClose();
+					}
 				});
 		}
+	}
+
+	subscribeToDialogClose(): void {
+		this.dialogService.onDialogClose$
+			.pipe(
+				take(1),
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe(() => {
+				this.birthdayForm.reset();
+			});
 	}
 }

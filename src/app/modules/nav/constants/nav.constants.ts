@@ -37,6 +37,9 @@ export interface IMenu {
  * The topics submenu under Tasks.
  */
 const TOPICS: IMenu = {
+    [Topic.Birthdays]: {
+        route: '/birthdays'
+    },
     [Topic.Family]: {
         route: '/family'
     },
@@ -73,6 +76,7 @@ const TOPICS: IMenu = {
 };
 
 const TOPIC_LIST: Topic[] = [
+    Topic.Birthdays,
     Topic.Family,
     Topic.Finance,
     Topic.Health,

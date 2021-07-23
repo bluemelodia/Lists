@@ -1,12 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { BASE_URL } from '../constants/urls';
 
 import { AddBirthday, Birthday } from '../types/birthday/birthday.types';
+import { Dialog } from '../types/dialog/dialog.types';
 import { Response, ResponseStatus } from '../types/response.types';
+
+import { DialogService } from './dialog.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,7 +19,10 @@ export class BirthdayService {
 	private getBirthdayURL = BASE_URL + 'getBirthdays';
 	private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-	constructor(private http: HttpClient) { }
+	constructor(
+		private dialogService: DialogService,
+		private http: HttpClient
+	) { }
 	
 	/*
 	* TODO: add user ID
@@ -34,8 +40,12 @@ export class BirthdayService {
 				map((response: Response) => {
 					console.log("===> got add birthday response in service: ", response);
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
+				}),
+				catchError((err) => { 
+					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.AddBirthday);
+					return of(null);				
 				})
-			);
+			)
 	}
 
 	public getBirthdays(id: string): Observable<AddBirthday[]> {
