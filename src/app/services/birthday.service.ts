@@ -48,10 +48,9 @@ export class BirthdayService {
 			)
 	}
 
-	public getBirthdays(id: string): Observable<AddBirthday[]> {
-		console.log("===> get birthdays for id: ", id);
+	public getBirthdays(userID: string = "guest"): Observable<AddBirthday[]> {
+		console.log("===> get birthdays for id: ", userID);
 
-		const userID = id ? id : "guest";
 		const getBirthday = `${this.getBirthdayURL}/${userID}`;
 		return this.http.get<Response>(
 			getBirthday
@@ -59,7 +58,11 @@ export class BirthdayService {
 			.pipe(
 				map((response: Response) => {
 					console.log("===> received birthdays: ", response);
-					return [];
+					return response.responseData;
+				}),
+				catchError((err) => { 
+					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
+					return of(null);				
 				})
 			);
 	}

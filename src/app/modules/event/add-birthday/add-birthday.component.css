@@ -12,10 +12,6 @@ fieldset {
   margin: 0;
 }
 
-.form-container {
-  margin: 16px;
-}
-
 .event-form {
   display: flex;
   flex-direction: column;
@@ -30,10 +26,6 @@ fieldset {
 * Lower the margins so there's more room for the calendar.
 */
 @media only screen and (max-width: 500px) {
-  .form-container {
-    margin: 8px;
-  }
-
   .event-form {
     margin: 0;
   }

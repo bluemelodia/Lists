@@ -1,15 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { 
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
+
+import { BirthdayService } from '../../../services/birthday.service';
+import { AddBirthday } from '../../../types/birthday/birthday.types';
 
 @Component({
   selector: 'task-birthdays',
   templateUrl: './birthdays.component.html',
-  styleUrls: ['./birthdays.component.css']
+  styleUrls: ['./birthdays.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BirthdaysComponent implements OnInit {
+export class BirthdaysComponent implements OnInit, OnDestroy {
+  private birthdays$ = new Subject<AddBirthday[]>();
+  public birthdayList$ = this.birthdays$.asObservable();
 
-  constructor() { }
+  private ngUnsubscribe$ = new Subject<void>();
 
-  ngOnInit(): void {
+  constructor(
+    private birthdayService: BirthdayService,
+  ) { }
+
+  public ngOnInit(): void {
+    this.birthdayService.getBirthdays()
+      .pipe(
+        take(1),
+        takeUntil(this.ngUnsubscribe$)
+      )
+      .subscribe((birthdays: AddBirthday[]) => {
+        console.log("Received birthdays: ", birthdays);
+        this.birthdays$.next(birthdays);
+      });
   }
 
+  public ngOnDestroy(): void {
+    this.ngUnsubscribe$.next();
+    this.ngUnsubscribe$.complete();
+  }
 }

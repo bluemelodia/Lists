@@ -1,3 +1,4 @@
 export enum Dialog {
-    AddBirthday
+    AddBirthday,
+    GetBirthday,
 }

@@ -1,0 +1,14 @@
+<p>list works!</p>
+<ul *ngIf="list && list.length === 0">
+    <li *ngFor="let birthday of list">
+        Hi
+    </li>
+</ul>
+<section class="no-results flex-centered__column"
+    *ngIf="list && list.length > 0">
+    <app-header [level]="headerLevel.H1" text="No Birthdays Found"></app-header>
+    <section class="form-container flex-centered__column">
+        <p>You do not currently have any birthday reminders.</p>
+        <button type="submit" routerLink="/add-birthday">Add Birthday</button>
+    </section>
+</section>
