@@ -1,0 +1,34 @@
+.birthday-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.birthday-list__item {
+    border-bottom: 1px solid pink;
+}
+
+.actions {
+    margin: 8px;
+}
+
+.birthday-action {
+    color: pink;
+    font-size: 1.5rem;
+}
+
+.birthday-action.enabled {
+    color: #dd2e44;
+}
+
+.birthday-action:not(:last-child) {
+    margin-right: 8px;
+}
+
+span:not(:last-child) {
+    margin-right: 8px;
+}
+
+button:not(:last-child) {
+    margin-right: 16px;
+}

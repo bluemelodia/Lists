@@ -48,6 +48,10 @@ export class BirthdayService {
 			)
 	}
 
+	/**
+	 * @param userID 
+	 * @returns A sorted list of birthdays for this user.
+	 */
 	public getBirthdays(userID: string = "guest"): Observable<AddBirthday[]> {
 		console.log("===> get birthdays for id: ", userID);
 
@@ -58,7 +62,7 @@ export class BirthdayService {
 			.pipe(
 				map((response: Response) => {
 					console.log("===> received birthdays: ", response);
-					return response.responseData;
+					return this.sortBirthdays(response.responseData);
 				}),
 				catchError((err) => { 
 					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
@@ -85,5 +89,13 @@ export class BirthdayService {
 			lunar: birthday.options.lunar ? 1 : 0,
 		};
 		return addBirthday;
+	}
+
+	private sortBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
+		return birthdays.sort(this.sortByBirthDate);
+	}
+
+	private sortByBirthDate(a: AddBirthday, b: AddBirthday): number {
+		return a.month - b.month || a.date - b.date;
 	}
 }

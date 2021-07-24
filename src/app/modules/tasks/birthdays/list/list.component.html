@@ -1,11 +1,33 @@
-<p>list works!</p>
-<ul *ngIf="list && list.length === 0">
-    <li *ngFor="let birthday of list">
-        Hi
+<ul class="birthday-list" *ngIf="list && list.length > 0">
+    <li class="birthday-list__item" *ngFor="let birthday of list">
+        <section class="form-container flex-centered__column">
+            <app-header [level]="headerLevel.H2" [text]="birthday.name"></app-header>
+            <section>
+                <p>Solar ({{ birthday.year }}) - {{ birthday.month }}/{{ birthday.date }}</p>
+                <p *ngIf="birthday.lunar">
+                    Lunar ({{ birthday.year }}) - {{ birthday.cmonth }}/{{ birthday.cdate }} ({{ birthday.cmonthname }})
+                </p>
+            </section>
+            <section class="actions">
+                <i class="birthday-action fas fa-mobile-alt"
+                    [class.enabled]="birthday.call" 
+                    aria-label="Call"></i>
+                <i class="birthday-action fas fa-comment-dots"
+                    [class.enabled]="birthday.text"
+                    aria-label="Text"></i>
+                <i class="birthday-action fas fa-gift"
+                    [class.enabled]="birthday.gift"
+                    aria-label="Gift"></i>
+            </section>
+            <section>
+                <button type="submit" routerLink="/add-birthday">Edit</button>
+                <button type="submit" routerLink="/add-birthday">Delete</button>
+            </section>
+        </section>
     </li>
 </ul>
 <section class="no-results flex-centered__column"
-    *ngIf="list && list.length > 0">
+    *ngIf="list && list.length === 0">
     <app-header [level]="headerLevel.H1" text="No Birthdays Found"></app-header>
     <section class="form-container flex-centered__column">
         <p>You do not currently have any birthday reminders.</p>
