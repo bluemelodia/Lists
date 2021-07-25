@@ -12,6 +12,7 @@ export interface Birthday {
 */
 export interface AddBirthday {
 	id: string;
+	uuid: string;
 	cmonth: number;
 	month: number;
 	cdate: number;

@@ -20,8 +20,11 @@
                     aria-label="Gift"></i>
             </section>
             <section>
-                <button type="submit" routerLink="/add-birthday">Edit</button>
-                <button type="submit" routerLink="/add-birthday">Delete</button>
+                <button type="submit" routerLink="/edit-birthday">Edit</button>
+                <button type="submit"
+                    (click)="deleteBirthday(birthday.uuid)">
+                    Delete
+                </button>
             </section>
         </section>
     </li>

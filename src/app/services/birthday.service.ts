@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import {v4 as uuidv4} from 'uuid';
 
 import { BASE_URL } from '../constants/urls';
 
@@ -17,6 +18,7 @@ import { DialogService } from './dialog.service';
 export class BirthdayService {
 	private addBirthdayURL = BASE_URL + 'addBirthday';
 	private getBirthdayURL = BASE_URL + 'getBirthdays';
+	private deleteBirthdayURL = BASE_URL + 'deleteBirthday';
 	private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 	constructor(
@@ -40,6 +42,26 @@ export class BirthdayService {
 				map((response: Response) => {
 					console.log("===> got add birthday response in service: ", response);
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
+				}),
+				catchError((err) => { 
+					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.AddBirthday);
+					return of(null);				
+				})
+			)
+	}
+
+	public deleteBirthday(uuid: string): Observable<ResponseStatus> {
+		console.log("==> delete: ", uuid, `${this.deleteBirthdayURL}/guest/${uuid}`);
+		return this.http.delete<Response>(
+			`${this.deleteBirthdayURL}/guest/${uuid}`,
+			{
+				headers: this.headers
+			}
+		)
+			.pipe(
+				map((response: Response) => {
+					console.log("Response: ", response);
+					return ResponseStatus.ERROR;
 				}),
 				catchError((err) => { 
 					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.AddBirthday);
@@ -74,7 +96,8 @@ export class BirthdayService {
 	private formatBirthday(birthday: Birthday): AddBirthday {
 		const date = birthday.date;
 		const addBirthday: AddBirthday = {
-			id: '',
+			id: 'guest',
+			uuid: uuidv4(),
 			cmonth: date.cmonth,
 			month: date.month,
 			cdate: date.cdate,

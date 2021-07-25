@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BirthdayService } from 'src/app/services/birthday.service';
 
 import { AddBirthday } from '../../../../types/birthday/birthday.types';
 import { HeaderLevel } from '../../../../types/header.types';
@@ -13,9 +14,12 @@ export class ListComponent implements OnInit {
 
   headerLevel = HeaderLevel;
 
-  constructor() { }
+  constructor(private birthdayService: BirthdayService) { }
 
   ngOnInit(): void {
   }
 
+  deleteBirthday(uuid: string) {
+    this.birthdayService.deleteBirthday(uuid).subscribe();
+  }
 }
