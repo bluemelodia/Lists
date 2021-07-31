@@ -19,7 +19,7 @@
             [id]="calendarId" 
             [calendar]="cal" 
             [type]="calendarType"
-            [selectedDay]="selectedDate"
+            [selectedDay]="birthdayForm.controls.birthday.value"
             (onDateSelected)="selectDate($event)">
         </app-calendar>
         <app-no-results 

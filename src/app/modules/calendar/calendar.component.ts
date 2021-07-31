@@ -62,7 +62,6 @@ export class CalendarComponent implements OnInit {
 	}
 
 	selectDate(date: SelectedDay) {
-		console.log("Selected Date: ", date);
 		this.onDateSelected.emit(date);
 	}
 }
