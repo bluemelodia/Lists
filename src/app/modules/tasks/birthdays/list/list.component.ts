@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { ResponseStatus } from 'src/app/types/response.types';
 
 import { BirthdayService } from '../../../../services/birthday.service';
 import { AddBirthday } from '../../../../types/birthday/birthday.types';
 import { HeaderLevel } from '../../../../types/header.types';
+import { ResponseStatus } from '../../../../types/response.types';
 
 @Component({
   selector: 'task-birthdays-list',

@@ -4,23 +4,27 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subject } from 'rxjs';
 import { 
+	map,
 	take,
 	takeUntil,
 } from 'rxjs/operators';
 
-import { BirthdayOptions } from '../../../../types/birthday/birthday.types';
+
+import { BirthdayService } from '../../../../services/birthday.service';
+import { DialogService } from '../../../../services/dialog.service';
+import { ValidationService } from '../../../../services/validation.service';
+
+import { AddBirthday, BirthdayOptions } from '../../../../types/birthday/birthday.types';
 import { CalendarType } from '../../../../types/calendar/calendar.types';
 import { SelectedDay } from '../../../../types/calendar/calendar-response.types';
 import { Dialog } from '../../../../types/dialog/dialog.types';
 import { BirthdayID } from '../../../../types/event.types';
 import { HeaderLevel } from '../../../../types/header.types';
 import { ResponseStatus } from '../../../../types/response.types';
-
-import { BirthdayService } from '../../../../services/birthday.service';
-import { DialogService } from '../../../../services/dialog.service';
-import { ValidationService } from '../../../../services/validation.service';
+import { BirthdayUtils } from 'src/app/utils/birthday.utils';
 
 @Component({
 	selector: 'app-add-birthday',
@@ -29,6 +33,7 @@ import { ValidationService } from '../../../../services/validation.service';
 })
 export class AddBirthdayComponent implements OnInit {
 	birthdayForm: FormGroup;
+	birthdayAction = 'Add';
 	birthdayID = BirthdayID;
 	headerLevel = HeaderLevel;
 
@@ -42,6 +47,7 @@ export class AddBirthdayComponent implements OnInit {
 		private dialogService: DialogService,
 		private birthdayService: BirthdayService,
 		private customValidator: ValidationService,
+		private route: ActivatedRoute,
 	) { }
 
 	ngOnInit(): void {
@@ -67,6 +73,34 @@ export class AddBirthdayComponent implements OnInit {
 		},
 		{ 
 			updateOn: 'submit'
+		});
+
+		this.route.queryParamMap
+			.pipe(
+				map((params: ParamMap) => JSON.parse(params.get("birthday")))
+			)
+			.subscribe((birthday: AddBirthday) => {
+				/** Existing birthday. */
+				if (birthday?.uuid) {
+					this.birthdayAction = 'Edit';
+					this.populateFormData(birthday);
+				}
+			});
+	}
+
+
+	private populateFormData(birthday: AddBirthday) {
+		this.birthdayForm.patchValue({
+			name: birthday.name,
+			date: {
+				birthday: BirthdayUtils.createCalendarDate(birthday),
+			},
+			options: {
+				lunar: BirthdayUtils.createCheckboxOption(birthday.lunar),
+				[BirthdayID.call]: BirthdayUtils.createCheckboxOption(birthday.call),
+				[BirthdayID.text]: BirthdayUtils.createCheckboxOption(birthday.text),
+				[BirthdayID.gift]: BirthdayUtils.createCheckboxOption(birthday.gift),
+			}
 		});
 	}
 

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AddBirthdayComponent } from './birthday/add-birthday/add.component';
-import { EditBirthdayComponent } from './birthday/edit-birthday/edit.component';
 
 const routes: Routes = [
   {
@@ -11,7 +10,7 @@ const routes: Routes = [
   },
   { 
     path: 'edit-birthday',
-    component: EditBirthdayComponent,
+    component: AddBirthdayComponent,
   }
 ];
 

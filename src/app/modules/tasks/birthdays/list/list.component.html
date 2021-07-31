@@ -22,7 +22,7 @@
             <section>
                 <button type="submit" 
                     routerLink="/events/edit-birthday"
-                    [queryParams]="birthday">
+                    [queryParams]="{ birthday: birthday | json }">
                     Edit
                 </button>
                 <button type="submit"
