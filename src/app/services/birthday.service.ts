@@ -70,6 +70,11 @@ export class BirthdayService {
 			)
 	}
 
+	public updateBirthays(userID: string = "guest"): void {
+
+
+	}
+
 	/**
 	 * @param userID 
 	 * @returns A sorted list of birthdays for this user.
