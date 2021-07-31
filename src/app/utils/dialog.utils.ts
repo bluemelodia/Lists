@@ -1,3 +1,4 @@
+import { DialogMessage } from "../constants/messages";
 import { Dialog } from "../types/dialog/dialog.types";
 import { ResponseStatus } from "../types/response.types";
 
@@ -6,10 +7,11 @@ export class DialogUtils {
         let message;
         switch (dialogType) {
             case Dialog.AddBirthday:
-                message = this.birthdayMessage(response);
+            case Dialog.DeleteBirthday:
+                message = this.birthdayMessage(response, dialogType);
                 break;
             case Dialog.GetBirthday:
-                message = this.getBirthdaysMessage();
+                message = DialogMessage.FETCH_BIRTHDAYS_ERROR;
                 break;
             default:
                 break;
@@ -18,11 +20,24 @@ export class DialogUtils {
         return message;
     }
 
-    private static birthdayMessage(response: ResponseStatus): string {
-        return response === ResponseStatus.SUCCESS ? 'Added birthday.' : 'An error occurred. Please try again later.';
-    }
+    private static birthdayMessage(response: ResponseStatus, dialogType: Dialog): string {
+        if (response === ResponseStatus.SUCCESS) {
+            let birthdayMessage = '';
 
-    private static getBirthdaysMessage(): string {
-        return 'Unable to fetch list of birthdays at this time. Please try again later.';
+            switch (dialogType) {
+                case Dialog.AddBirthday:
+                    birthdayMessage = 'Added birthday.';
+                    break;
+                case Dialog.DeleteBirthday:
+                    birthdayMessage = 'Deleted birthday.';
+                    break;
+                default:
+                    break;
+            }
+
+            return birthdayMessage;
+        }
+
+        return DialogMessage.GENERIC_ERROR;
     }
 }

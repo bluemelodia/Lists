@@ -27,6 +27,10 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
+    this.getBirthdays();
+  }
+
+  public getBirthdays(): void {
     this.birthdayService.getBirthdays()
       .pipe(
         take(1),

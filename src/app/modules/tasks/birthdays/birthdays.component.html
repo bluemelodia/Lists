@@ -1,1 +1,3 @@
-<task-birthdays-list [list]="birthdayList$ | async"></task-birthdays-list>
+<task-birthdays-list [list]="birthdayList$ | async"
+    (onDeleteBirthday)="getBirthdays()">
+</task-birthdays-list>
