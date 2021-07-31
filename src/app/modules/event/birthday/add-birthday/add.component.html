@@ -1,5 +1,5 @@
 <section class="form-container">
-    <app-header [level]="headerLevel.H1" text="{{ birthdayAction }} Birthday"></app-header>
+    <app-header [level]="headerLevel.H1" text="{{ birthdayConfig.action }} Birthday"></app-header>
     <form class="event-form"
         [formGroup]="birthdayForm"
         (ngSubmit)="onSubmit()">
@@ -49,7 +49,7 @@
             </app-checkbox>
         </fieldset>        
         <button type="submit">
-            Submit
+            {{ birthdayConfig.buttonAction }}
         </button>
     </form>
 </section>

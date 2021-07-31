@@ -12,6 +12,7 @@ import {
 	takeUntil,
 } from 'rxjs/operators';
 
+import { BirthdayFormAction } from '../../../../constants/birthday';
 
 import { BirthdayService } from '../../../../services/birthday.service';
 import { DialogService } from '../../../../services/dialog.service';
@@ -24,7 +25,8 @@ import { Dialog } from '../../../../types/dialog/dialog.types';
 import { BirthdayID } from '../../../../types/event.types';
 import { HeaderLevel } from '../../../../types/header.types';
 import { ResponseStatus } from '../../../../types/response.types';
-import { BirthdayUtils } from 'src/app/utils/birthday.utils';
+
+import { BirthdayUtils } from '../../../../utils/birthday.utils';
 
 @Component({
 	selector: 'app-add-birthday',
@@ -33,7 +35,7 @@ import { BirthdayUtils } from 'src/app/utils/birthday.utils';
 })
 export class AddBirthdayComponent implements OnInit {
 	birthdayForm: FormGroup;
-	birthdayAction = 'Add';
+	birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayFormAction.Add);
 	birthdayID = BirthdayID;
 	headerLevel = HeaderLevel;
 
@@ -82,7 +84,7 @@ export class AddBirthdayComponent implements OnInit {
 			.subscribe((birthday: AddBirthday) => {
 				/** Existing birthday. */
 				if (birthday?.uuid) {
-					this.birthdayAction = 'Edit';
+					this.birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayFormAction.Edit);
 					this.populateFormData(birthday);
 				}
 			});
