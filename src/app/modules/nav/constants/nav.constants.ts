@@ -92,7 +92,7 @@ const TOPIC_LIST: Topic[] = [
 
 const EVENTS: IMenu = {
     [Event.Birthday]: {
-        route: '/add-birthday'
+        route: 'events/add-birthday'
     },
 };
 

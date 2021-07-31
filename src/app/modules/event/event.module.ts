@@ -7,7 +7,7 @@ import { EventRoutingModule } from './event-routing.module';
 import { FormModule } from '../form/form.module';
 import { DirectiveModule } from '../../directives/directives.module';
 
-import { AddBirthdayComponent } from './add-birthday/add-birthday.component';
+import { AddBirthdayComponent } from './birthday/add-birthday/add.component';
 
 @NgModule({
   declarations: [

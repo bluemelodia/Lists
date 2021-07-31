@@ -10,22 +10,22 @@ import {
 	takeUntil,
 } from 'rxjs/operators';
 
-import { BirthdayOptions } from '../../../types/birthday/birthday.types';
-import { CalendarType } from '../../../types/calendar/calendar.types';
-import { SelectedDay } from '../../../types/calendar/calendar-response.types';
-import { Dialog } from '../../../types/dialog/dialog.types';
-import { BirthdayID } from '../../../types/event.types';
-import { HeaderLevel } from '../../../types/header.types';
-import { ResponseStatus } from '../../../types/response.types';
+import { BirthdayOptions } from '../../../../types/birthday/birthday.types';
+import { CalendarType } from '../../../../types/calendar/calendar.types';
+import { SelectedDay } from '../../../../types/calendar/calendar-response.types';
+import { Dialog } from '../../../../types/dialog/dialog.types';
+import { BirthdayID } from '../../../../types/event.types';
+import { HeaderLevel } from '../../../../types/header.types';
+import { ResponseStatus } from '../../../../types/response.types';
 
-import { BirthdayService } from '../../../services/birthday.service';
-import { DialogService } from '../../../services/dialog.service';
-import { ValidationService } from '../../../services/validation.service';
+import { BirthdayService } from '../../../../services/birthday.service';
+import { DialogService } from '../../../../services/dialog.service';
+import { ValidationService } from '../../../../services/validation.service';
 
 @Component({
 	selector: 'app-add-birthday',
-	templateUrl: './add-birthday.component.html',
-	styleUrls: ['./add-birthday.component.css']
+	templateUrl: './add.component.html',
+	styleUrls: ['./add.component.css']
 })
 export class AddBirthdayComponent implements OnInit {
 	birthdayForm: FormGroup;

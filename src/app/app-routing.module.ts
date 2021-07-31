@@ -11,7 +11,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/family/family.module').then(m => m.FamilyModule)
   },
   {
-    path: 'add-birthday',
+    path: 'events',
     loadChildren: () => import('./modules/event/event.module').then(m => m.AddEventModule)
   },
   {
