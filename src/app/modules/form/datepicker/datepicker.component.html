@@ -1,7 +1,6 @@
 <form #picker [formGroup]="birthdayForm"
     class="input-container focus-origin">
         <input readonly type="text"
-            formControlName="birthday"
             [ngClass]="{ 'picker-open' : showCal }"
             [placeholder]="placeholder"
             [value]="birthdayForm.controls.birthday.value | pickerDateFormatter"

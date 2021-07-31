@@ -6,11 +6,10 @@ import { SelectedDay } from '../types/calendar/calendar-response.types';
 })
 export class PickerDateFormatterPipe implements PipeTransform {
 	public transform(value: SelectedDay, ...args: unknown[]): unknown {
-		console.log("===> value: ", value);
 		if (value) {
-			return `${value.month}/${value.value}/${value.year} - ${value.cmonthname} ${value.cmonth}/${value.cdate}`;
+			const cmonthStr = value.cmonth ? ` - ${value.cmonthname} ${value.cmonth}/${value.cdate}` : '';
+			return `${value.month}/${value.value}/${value.year}${cmonthStr}`;
 		}
 		return null;
 	}
-
 }
