@@ -3,10 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, forkJoin, of } from 'rxjs';
 
 import { CalendarType } from '../types/calendar/calendar.types';
-import { CalendarYear, Calendar, CalendarMonth } from '../types/calendar/calendar-response.types';
+import { CalendarYear, Calendar, CalendarMonth, CalendarDay } from '../types/calendar/calendar-response.types';
 import { Response } from '../types/response.types';
-
-import { getCachedCalendar, getParsedCalendar } from '../utils/calendar.utils';
+import { CalendarUtils } from '../utils/calendar.utils';
 
 @Injectable({
 	providedIn: 'root'
@@ -55,7 +54,7 @@ export class CalendarService {
 			/* Separate out the calendars into their respective years. */
 			const curCal = response[currentYear];
 			if (curCal && curCal.statusCode === 0) {
-				let calendar = cal[currentYear] = getParsedCalendar(curCal.responseData);
+				let calendar = cal[currentYear] = CalendarUtils.getParsedCalendar(curCal.responseData);
 
 				/* Only show the current + future months. */
 				const filteredMonths = calendar.months.filter((month) => {
@@ -67,7 +66,7 @@ export class CalendarService {
 
 			const nextCal = response[currentYear + 1];
 			if (nextCal && nextCal.statusCode === 0) {
-				let calendar = cal[currentYear + 1] = getParsedCalendar(nextCal.responseData);
+				let calendar = cal[currentYear + 1] = CalendarUtils.getParsedCalendar(nextCal.responseData);
 				calendarYears.push(calendar);
 				calendarMonths.push(...calendar.months);
 			}
@@ -80,19 +79,18 @@ export class CalendarService {
 			this.calendar$.next({
 				years: calendarYears,
 				months: calendarMonths,
+				days: CalendarUtils.getCalendarDays(),
 				type: type
 			});
 		});
 	}
-
-
 	
 	private getChineseCalendarForYear(year: number): Observable<Response> {
 		/*
 		* If we've already made a request for the calendar, get the results
 		* from the cache. Must be returned as an Observable<Response>.
 		*/
-		const cachedCalendar = getCachedCalendar(year);
+		const cachedCalendar = CalendarUtils.getCachedCalendar(year);
 		if (cachedCalendar) {
 			console.log(`---> 📅 🗃 retrieve ${ year } calendar from cache`,);
 			return of({

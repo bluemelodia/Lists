@@ -1,8 +1,11 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { BirthdayService } from './services/birthday.service';
+import { CalendarService } from './services/calendar.service';
 import { NavService } from './services/nav.service';
 import { AddBirthday } from './types/birthday/birthday.types';
+import { Calendar } from './types/calendar/calendar-response.types';
+import { CalendarType } from './types/calendar/calendar.types';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +15,14 @@ import { AddBirthday } from './types/birthday/birthday.types';
 export class AppComponent implements OnInit {
   constructor(
     private birthdayService: BirthdayService,
+    private calendarService: CalendarService,
     private nav: NavService
   ) {}
 
   @HostBinding('class') containerClasses = 'flex-centered__column full-viewport';
 
   title = 'lists';
+  calendar: Calendar;
 
   ngOnInit() {
     this.startup();
@@ -28,7 +33,23 @@ export class AppComponent implements OnInit {
   }
 
   private startup() {
-    this.patchBirthdays();
+    this.fetchCalendar();
+  }
+
+  /**
+   * Pre-fetch the calendar.
+   */
+  private fetchCalendar() {
+    this.calendarService.getCalendar(CalendarType.Lunar);
+		this.calendarService.onCalendarFetched$
+		.subscribe((calendar: Calendar) => {
+		  if (!calendar) {
+			  return;
+		  }
+
+      this.calendar = calendar;
+      this.patchBirthdays();
+		});
   }
 
   /**
@@ -42,10 +63,12 @@ export class AppComponent implements OnInit {
   patchBirthdays() {
     this.birthdayService.getBirthdays()
       .pipe(
+        map((birthdays: AddBirthday[]) => birthdays.filter((birthday) => birthday.lunar)),
         take(1)
       )
       .subscribe((birthdays: AddBirthday[]) => {
-        console.log("App startup Received birthdays: ", birthdays);
+        console.log("App startup Received birthdays: ", this.calendar, birthdays);
+        this.birthdayService.updateBirthdays(this.calendar, birthdays);
       });
   }
 }

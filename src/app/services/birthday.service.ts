@@ -7,6 +7,7 @@ import {v4 as uuidv4} from 'uuid';
 import { BASE_URL } from '../constants/urls';
 
 import { AddBirthday, Birthday } from '../types/birthday/birthday.types';
+import { Calendar, CalendarDay } from '../types/calendar/calendar-response.types';
 import { Dialog } from '../types/dialog/dialog.types';
 import { Response, ResponseStatus } from '../types/response.types';
 
@@ -70,9 +71,13 @@ export class BirthdayService {
 			)
 	}
 
-	public updateBirthays(userID: string = "guest"): void {
-
-
+	public updateBirthdays(calendar: Calendar, birthdays: AddBirthday[]): void {
+		birthdays.forEach((birthday: AddBirthday) => {
+			const matchingDays = calendar.days.filter((day: CalendarDay) => {
+				return day.cmonthname === birthday.cmonthname && day.cdate === birthday.cdate;
+			});
+			console.log("===> matchingDays: ", matchingDays);
+		});
 	}
 
 	/**

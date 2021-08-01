@@ -13,6 +13,7 @@ export enum CalendarKey {
 export interface Calendar {
     years: CalendarYear[],
     months: CalendarMonth[],
+    days: CalendarDay[],
     type: CalendarType
 }
 
@@ -38,10 +39,7 @@ export interface CalendarDay {
     cmonth?: number,
     leap?: boolean,
     cdate?: number,
-    cmonthname?: string
-}
-
-export interface SelectedDay extends CalendarDay {
+    cmonthname?: string,
     month: number,
-    year: number
+    year: number,
 }

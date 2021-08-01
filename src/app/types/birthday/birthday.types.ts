@@ -1,9 +1,9 @@
-import { SelectedDay } from "../calendar/calendar-response.types";
+import { CalendarDay } from "../calendar/calendar-response.types";
 import { BirthdayID } from "../event.types";
 
 export interface Birthday {
 	name: string;
-	date: SelectedDay;
+	date: CalendarDay;
 	options: BirthdayOptions;
 }
 

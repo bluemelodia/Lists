@@ -12,7 +12,7 @@ import { ClickService } from '../../../services/click.service';
 import { FocusService } from '../../../services/focus.service';
 
 import { CalendarType } from '../../../types/calendar/calendar.types';
-import { Calendar, SelectedDay } from '../../../types/calendar/calendar-response.types';
+import { Calendar, CalendarDay } from '../../../types/calendar/calendar-response.types';
 import { FocusEvent, Key } from '../../../types/focus.types';
 import { noCalMessage } from '../../../types/message.types';
 
@@ -112,7 +112,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
     this.showCal = !this.showCal;
   }
 
-  public selectDate(date: SelectedDay): void {
+  public selectDate(date: CalendarDay): void {
     this.birthdayForm.patchValue({
       birthday: date
     });

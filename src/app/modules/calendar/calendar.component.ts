@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Calendar, CalendarMonth, SelectedDay } from '../../types/calendar/calendar-response.types';
+import { Calendar, CalendarDay, CalendarMonth } from '../../types/calendar/calendar-response.types';
 import { CalendarType, shortMonths } from '../../types/calendar/calendar.types';
 
 @Component({
@@ -9,7 +9,8 @@ import { CalendarType, shortMonths } from '../../types/calendar/calendar.types';
 })
 export class CalendarComponent implements OnInit {
 	@Input() type: CalendarType;
-	@Input() set selectedDay(selected: SelectedDay) {
+	@Input() set selectedDay(selected: CalendarDay) {
+		console.log("==> set selected date: ", selected);
 		/* If user selected a date, open the calendar to the selected month. */
 		if (selected) {
 			this.monthIdx = this.cal.months.findIndex((month) =>
@@ -18,7 +19,7 @@ export class CalendarComponent implements OnInit {
 			this.selectedDate = selected;
 		}
 	}
-	public selectedDate: SelectedDay;
+	public selectedDate: CalendarDay;
 
 	@Input() set calendar(cal: Calendar) {
 		this.cal = cal;
@@ -29,7 +30,7 @@ export class CalendarComponent implements OnInit {
 		this.monthIdx = 0;
 	}
 
-	@Output() onDateSelected = new EventEmitter<SelectedDay>();
+	@Output() onDateSelected = new EventEmitter<CalendarDay>();
 
 	private cal: Calendar;
 	calendarMonths: CalendarMonth[] = [];
@@ -61,7 +62,7 @@ export class CalendarComponent implements OnInit {
 		}
 	}
 
-	selectDate(date: SelectedDay) {
+	selectDate(date: CalendarDay) {
 		this.onDateSelected.emit(date);
 	}
 }

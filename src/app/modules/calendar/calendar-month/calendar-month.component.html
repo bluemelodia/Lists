@@ -12,8 +12,8 @@
                     && day.year === selectedDate.year 
                     && day.month === selectedDate.month 
                     && day.value === selectedDate.value }" 
-            (click)="isSelectableDate(month, day) ? selectDate(day, month.value, month.year) : null"
-            (keydown)="isSelectableDate(month, day) ? onDateKeyPress($event, day, month.value, month.year) : null">
+            (click)="isSelectableDate(month, day) ? selectDate(day) : null"
+            (keydown)="isSelectableDate(month, day) ? onDateKeyPress($event, day) : null">
             <ng-container *ngIf="day.value === -1"></ng-container>
             <ng-container *ngIf="day.value !== -1">
                 <span class="lunar-date" *ngIf="type === calendarType.Lunar">{{ day.cmonthname }}</span>

@@ -20,7 +20,7 @@ import { ValidationService } from '../../../../services/validation.service';
 
 import { AddBirthday, BirthdayOptions } from '../../../../types/birthday/birthday.types';
 import { CalendarType } from '../../../../types/calendar/calendar.types';
-import { SelectedDay } from '../../../../types/calendar/calendar-response.types';
+import { CalendarDay } from '../../../../types/calendar/calendar-response.types';
 import { Dialog } from '../../../../types/dialog/dialog.types';
 import { BirthdayID } from '../../../../types/event.types';
 import { HeaderLevel } from '../../../../types/header.types';
@@ -115,7 +115,7 @@ export class AddBirthdayComponent implements OnInit {
 		return this.birthdayFormControl.name.value;
 	}
 
-	get date(): SelectedDay {
+	get date(): CalendarDay {
 		return this.birthdayForm.get('date.birthday')?.value;
 	}
 

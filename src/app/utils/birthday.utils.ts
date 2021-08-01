@@ -4,11 +4,11 @@ import {
     BirthdayFormSubmitActions,
 } from "../constants/birthday";
 import { AddBirthday } from "../types/birthday/birthday.types";
-import { SelectedDay } from "../types/calendar/calendar-response.types";
+import { CalendarDay } from "../types/calendar/calendar-response.types";
 
 export class BirthdayUtils {
-	public static createCalendarDate(birthday: AddBirthday): SelectedDay {
-		let day: SelectedDay = {
+	public static createCalendarDate(birthday: AddBirthday): CalendarDay {
+		let day: CalendarDay = {
 			value: birthday.date,
 			month: birthday.month,
 			year: birthday.year,

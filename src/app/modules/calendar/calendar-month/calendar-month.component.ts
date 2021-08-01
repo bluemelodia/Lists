@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CalendarType, Month } from '../../../types/calendar/calendar.types';
-import { CalendarMonth, CalendarDay, SelectedDay } from '../../../types/calendar/calendar-response.types';
+import { CalendarMonth, CalendarDay } from '../../../types/calendar/calendar-response.types';
 
 @Component({
   selector: 'app-calendar-month',
@@ -10,7 +10,7 @@ import { CalendarMonth, CalendarDay, SelectedDay } from '../../../types/calendar
 export class CalendarMonthComponent {
     @Input() month: Month;
     @Input() type: CalendarType = CalendarType.Lunar;
-    @Input() selectedDate: SelectedDay;
+    @Input() selectedDate: CalendarDay;
 
     @Output() onDateSelect = new EventEmitter<CalendarDay>();
 
@@ -34,17 +34,14 @@ export class CalendarMonthComponent {
       return !beforeToday;
     }
 
-    selectDate(date: SelectedDay, month: number, year: number): void {
-      const selectedDate = date;
-      selectedDate.month = month;
-      selectedDate.year = year;
-      console.log("Selected: ", selectedDate);
-      this.onDateSelect.emit(selectedDate);
+    selectDate(date: CalendarDay): void {
+      console.log("Selected: ", date);
+      this.onDateSelect.emit(date);
     }
 
-    onDateKeyPress(event: KeyboardEvent, date: SelectedDay, month: number, year: number): void {
+    onDateKeyPress(event: KeyboardEvent, date: CalendarDay): void {
       if (event.key === "Enter" || event.key === " ") {
-        this.selectDate(date, month, year);
+        this.selectDate(date);
       }
     }
 }
