@@ -1,4 +1,4 @@
-export enum BirthdayAction {
+export enum BirthdayFollowUp {
 	call = "Call",
 	text = "Text",
 	gift = "Buy Present",

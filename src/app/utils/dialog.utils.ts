@@ -7,6 +7,7 @@ export class DialogUtils {
         let message;
         switch (dialogType) {
             case Dialog.AddBirthday:
+            case Dialog.EditBirthday:
             case Dialog.DeleteBirthday:
                 message = this.birthdayMessage(response, dialogType);
                 break;
@@ -27,6 +28,9 @@ export class DialogUtils {
             switch (dialogType) {
                 case Dialog.AddBirthday:
                     birthdayMessage = 'Added birthday.';
+                    break;
+                case Dialog.EditBirthday:
+                    birthdayMessage = 'Updated birthday.';
                     break;
                 case Dialog.DeleteBirthday:
                     birthdayMessage = 'Deleted birthday.';

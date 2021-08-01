@@ -12,17 +12,17 @@ import {
 	takeUntil,
 } from 'rxjs/operators';
 
-import { BirthdayFormAction } from '../../../../constants/birthday';
+import { BirthdayAction } from '../../../../constants/birthday';
 
 import { BirthdayService } from '../../../../services/birthday.service';
 import { DialogService } from '../../../../services/dialog.service';
 import { ValidationService } from '../../../../services/validation.service';
 
-import { AddBirthday, BirthdayOptions } from '../../../../types/birthday/birthday.types';
+import { AddBirthday, Birthday, BirthdayOptions } from '../../../../types/birthday/birthday.types';
 import { CalendarType } from '../../../../types/calendar/calendar.types';
 import { CalendarDay } from '../../../../types/calendar/calendar-response.types';
 import { Dialog } from '../../../../types/dialog/dialog.types';
-import { BirthdayID } from '../../../../types/event.types';
+import { BirthdayFollowUp, BirthdayID } from '../../../../types/event.types';
 import { HeaderLevel } from '../../../../types/header.types';
 import { ResponseStatus } from '../../../../types/response.types';
 
@@ -35,7 +35,7 @@ import { BirthdayUtils } from '../../../../utils/birthday.utils';
 })
 export class AddBirthdayComponent implements OnInit {
 	birthdayForm: FormGroup;
-	birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayFormAction.Add);
+	birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayAction.Add);
 	birthdayID = BirthdayID;
 	headerLevel = HeaderLevel;
 
@@ -84,7 +84,7 @@ export class AddBirthdayComponent implements OnInit {
 			.subscribe((birthday: AddBirthday) => {
 				/** Existing birthday. */
 				if (birthday?.uuid) {
-					this.birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayFormAction.Edit);
+					this.birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayAction.Edit);
 					this.populateFormData(birthday);
 				}
 			});
@@ -127,11 +127,14 @@ export class AddBirthdayComponent implements OnInit {
 		this.submitted = true;
 		if (this.birthdayForm.valid) {
 			this.submitted = false;
-			this.birthdayService.addBirthday({
+
+			const birthday: Birthday = {
 				name: this.name,
 				date: this.date,
 				options: this.options,
-			})
+			};
+			
+			this.birthdayService.modifyBirthday(birthday, this.birthdayConfig.action)
 				.pipe(
 					take(1),
 					takeUntil(this.ngUnsubscribe$)

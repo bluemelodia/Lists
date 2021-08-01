@@ -2,6 +2,7 @@ import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { BirthdayAction } from '../constants/birthday';
 
 import { BASE_URL } from '../constants/urls';
 
@@ -18,9 +19,6 @@ import { DialogService } from './dialog.service';
 	providedIn: 'root'
 })
 export class BirthdayService {
-	private addBirthdayURL = BASE_URL + 'addBirthday';
-	private getBirthdayURL = BASE_URL + 'getBirthdays';
-	private deleteBirthdayURL = BASE_URL + 'deleteBirthday';
 	private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 	constructor(
@@ -28,13 +26,22 @@ export class BirthdayService {
 		private http: HttpClient
 	) { }
 	
+	public modifyBirthday(birthday: Birthday, action: BirthdayAction): Observable<ResponseStatus> {
+		switch (action) {
+			case BirthdayAction.Add:
+				return this.postBirthday(birthday);
+			case BirthdayAction.Edit:
+				return this.postBirthday(birthday, true, BirthdayAction.Edit);
+		}
+	}
+
 	/*
 	* TODO: add user ID
 	*/
-	public addBirthday(birthday: Birthday, showDialog = true): Observable<ResponseStatus> {
+	public postBirthday(birthday: Birthday, showDialog = true, action = BirthdayAction.Add): Observable<ResponseStatus> {
 		console.log("===> add a birthday: ", birthday);
 		return this.http.post<Response>(
-			this.addBirthdayURL, 
+			BirthdayUtils.birthdayURLForAction(action),
 			BirthdayUtils.formatBirthday(birthday),
 			{
 				headers: this.headers
@@ -42,12 +49,11 @@ export class BirthdayService {
 		)
 			.pipe(
 				map((response: Response) => {
-					console.log("===> got add birthday response in service: ", response);
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
-				catchError((err) => { 
+				catchError((err) => {
 					if (showDialog) {
-						this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.AddBirthday);
+						this.dialogService.showStatusDialog(ResponseStatus.ERROR, BirthdayUtils.birthdayDialogForAction(action));
 					}
 					return of(null);				
 				})
@@ -55,9 +61,9 @@ export class BirthdayService {
 	}
 
 	public deleteBirthday(uuid: string): Observable<ResponseStatus> {
-		console.log("==> delete: ", uuid, `${this.deleteBirthdayURL}/guest/${uuid}`);
+		console.log("==> delete: ", uuid);
 		return this.http.delete<Response>(
-			`${this.deleteBirthdayURL}/guest/${uuid}`,
+			`${BirthdayUtils.birthdayURLForAction(BirthdayAction.Delete)}/guest/${uuid}`,
 			{
 				headers: this.headers
 			}
@@ -92,7 +98,7 @@ export class BirthdayService {
 						[BirthdayID.gift]: !!birthday.gift
 					}
 				};
-				this.addBirthday(addBirthday, false).subscribe();
+				this.postBirthday(addBirthday, false, BirthdayAction.Add).subscribe();
 			});
 		});
 	}
@@ -104,7 +110,7 @@ export class BirthdayService {
 	public getBirthdays(userID: string = "guest"): Observable<AddBirthday[]> {
 		console.log("===> get birthdays for id: ", userID);
 
-		const getBirthday = `${this.getBirthdayURL}/${userID}`;
+		const getBirthday = `${BirthdayUtils.birthdayURLForAction(BirthdayAction.Fetch)}/${userID}`;
 		return this.http.get<Response>(
 			getBirthday
 		)

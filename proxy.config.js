@@ -2,6 +2,7 @@ const PROXY_CONFIG = [
     {
         context: [
             "/todo/addBirthday",
+            "/todo/editBirthday",
             "/todo/getBirthdays",
             "/todo/deleteBirthday",
         ],

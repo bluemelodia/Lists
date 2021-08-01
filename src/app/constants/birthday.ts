@@ -1,11 +1,13 @@
 export interface BirthdayConfig {
-    action: BirthdayFormAction,
+    action: BirthdayAction,
     buttonAction: string,
 }
 
-export enum BirthdayFormAction {
+export enum BirthdayAction {
     Add = 'Add',
-    Edit = 'Edit'
+    Delete = 'Delete',
+    Edit = 'Edit',
+    Fetch = 'Fetch',
 }
 
 interface BirthdayFormSubmitAction {
@@ -13,6 +15,6 @@ interface BirthdayFormSubmitAction {
 }
 
 export const BirthdayFormSubmitActions: BirthdayFormSubmitAction = {
-    [BirthdayFormAction.Add]: 'Submit',
-    [BirthdayFormAction.Edit]: 'Update'
+    [BirthdayAction.Add]: 'Submit',
+    [BirthdayAction.Edit]: 'Update'
 }

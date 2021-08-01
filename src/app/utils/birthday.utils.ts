@@ -2,13 +2,42 @@ import {v4 as uuidv4} from 'uuid';
 
 import { 
     BirthdayConfig,
-    BirthdayFormAction,
+    BirthdayAction,
     BirthdayFormSubmitActions,
 } from "../constants/birthday";
+import { BASE_URL } from '../constants/urls';
+
 import { AddBirthday, Birthday } from "../types/birthday/birthday.types";
 import { CalendarDay } from "../types/calendar/calendar-response.types";
+import { Dialog } from '../types/dialog/dialog.types';
 
 export class BirthdayUtils {
+	private static addBirthdayURL = BASE_URL + 'addBirthday';
+	private static deleteBirthdayURL = BASE_URL + 'deleteBirthday';
+	private static editBirthdayURL = BASE_URL + 'editBirthday';
+	private static getBirthdayURL = BASE_URL + 'getBirthdays';
+
+	public static birthdayURLForAction(action: BirthdayAction): string {
+		let url: string;
+		
+		switch(action) {
+			case BirthdayAction.Add:
+				url = BirthdayUtils.addBirthdayURL;
+				break;
+			case BirthdayAction.Delete:
+				url = BirthdayUtils.deleteBirthdayURL;
+				break;
+			case BirthdayAction.Edit:
+				url = BirthdayUtils.editBirthdayURL;
+				break;
+			case BirthdayAction.Fetch:
+				url = BirthdayUtils.getBirthdayURL;
+				break;
+		}
+
+		return url;
+	}
+
 	public static createCalendarDate(birthday: AddBirthday): CalendarDay {
 		let day: CalendarDay = {
 			value: birthday.date,
@@ -30,7 +59,7 @@ export class BirthdayUtils {
         return !!value ? false : true;
     }
 
-    public static createBirthdayFormConfig(action: BirthdayFormAction): BirthdayConfig {
+    public static createBirthdayFormConfig(action: BirthdayAction): BirthdayConfig {
         let config: BirthdayConfig = {
             action: action,
             buttonAction: BirthdayFormSubmitActions[action]
@@ -39,7 +68,22 @@ export class BirthdayUtils {
         return config;
     }
 
-    public static formatBirthday(birthday: Birthday): AddBirthday {
+	public static birthdayDialogForAction(action: BirthdayAction): Dialog {
+		let dialogType: Dialog;
+		
+		switch(action) {
+			case BirthdayAction.Add:
+				dialogType = Dialog.AddBirthday;
+				break;
+			case BirthdayAction.Edit:
+				dialogType = Dialog.EditBirthday;
+				break;
+		}
+
+		return dialogType;
+	}
+
+	public static formatBirthday(birthday: Birthday): AddBirthday {
 		const date = birthday.date;
 		const addBirthday: AddBirthday = {
 			id: 'guest',
