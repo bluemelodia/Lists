@@ -56,7 +56,6 @@ export class CalendarUtils {
       const months = [];
       for (let monthObj of monthJSON) {
         const month = monthObj.$;
-        console.log("===< month and year: ", month, year);
         const weeks = CalendarUtils.parseWeek(monthObj[CalendarKey.Week], month.value, year);
         months.push({
           cname: month.cname,

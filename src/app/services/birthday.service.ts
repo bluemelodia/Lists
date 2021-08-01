@@ -2,14 +2,15 @@ import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import {v4 as uuidv4} from 'uuid';
 
 import { BASE_URL } from '../constants/urls';
 
 import { AddBirthday, Birthday } from '../types/birthday/birthday.types';
 import { Calendar, CalendarDay } from '../types/calendar/calendar-response.types';
 import { Dialog } from '../types/dialog/dialog.types';
+import { BirthdayID } from '../types/event.types';
 import { Response, ResponseStatus } from '../types/response.types';
+import { BirthdayUtils } from '../utils/birthday.utils';
 
 import { DialogService } from './dialog.service';
 
@@ -30,11 +31,11 @@ export class BirthdayService {
 	/*
 	* TODO: add user ID
 	*/
-	public addBirthday(birthday: Birthday): Observable<ResponseStatus> {
+	public addBirthday(birthday: Birthday, showDialog = true): Observable<ResponseStatus> {
 		console.log("===> add a birthday: ", birthday);
 		return this.http.post<Response>(
 			this.addBirthdayURL, 
-			this.formatBirthday(birthday),
+			BirthdayUtils.formatBirthday(birthday),
 			{
 				headers: this.headers
 			}
@@ -45,7 +46,9 @@ export class BirthdayService {
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
 				catchError((err) => { 
-					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.AddBirthday);
+					if (showDialog) {
+						this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.AddBirthday);
+					}
 					return of(null);				
 				})
 			)
@@ -76,7 +79,21 @@ export class BirthdayService {
 			const matchingDays = calendar.days.filter((day: CalendarDay) => {
 				return day.cmonthname === birthday.cmonthname && day.cdate === birthday.cdate;
 			});
-			console.log("===> matchingDays: ", matchingDays);
+			console.log("===> matchingDays: ", birthday, matchingDays);
+			matchingDays.forEach((day: CalendarDay) => {
+				const addBirthday: Birthday = {
+					name: birthday.name,
+					uuid: birthday.uuid,
+					date: day,
+					options: {
+						lunar: !!birthday.lunar,
+						[BirthdayID.call]: !!birthday.call,
+						[BirthdayID.text]: !!birthday.text,
+						[BirthdayID.gift]: !!birthday.gift
+					}
+				};
+				this.addBirthday(addBirthday, false);
+			});
 		});
 	}
 
@@ -94,41 +111,12 @@ export class BirthdayService {
 			.pipe(
 				map((response: Response) => {
 					console.log("===> received birthdays: ", response);
-					return this.sortBirthdays(response.responseData);
+					return BirthdayUtils.sortBirthdays(response.responseData);
 				}),
 				catchError((err) => { 
 					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
 					return of(null);				
 				})
 			);
-	}
-
-	private formatBirthday(birthday: Birthday): AddBirthday {
-		const date = birthday.date;
-		const addBirthday: AddBirthday = {
-			id: 'guest',
-			uuid: uuidv4(),
-			cmonth: date.cmonth,
-			month: date.month,
-			cdate: date.cdate,
-			date: date.value,
-			year: date.year,
-			name: birthday.name,
-			call: birthday.options.call ? 1 : 0,
-			text: birthday.options.text ? 1 : 0,
-			gift: birthday.options['buy-present'] ? 1 : 0,
-			leap: date.leap ? 1 : 0,
-			cmonthname: date.cmonthname,
-			lunar: birthday.options.lunar ? 1 : 0,
-		};
-		return addBirthday;
-	}
-
-	private sortBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
-		return birthdays.sort(this.sortByBirthDate);
-	}
-
-	private sortByBirthDate(a: AddBirthday, b: AddBirthday): number {
-		return a.month - b.month || a.date - b.date;
 	}
 }
