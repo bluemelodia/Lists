@@ -47,7 +47,7 @@ export class BirthdayUtils {
 			cmonth: date.cmonth,
 			month: date.month,
 			cdate: date.cdate,
-			date: date.value,
+			date: Number(date.value),
 			year: date.year,
 			name: birthday.name,
 			call: birthday.options.call ? 1 : 0,

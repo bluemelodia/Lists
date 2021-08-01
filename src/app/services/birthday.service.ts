@@ -92,7 +92,7 @@ export class BirthdayService {
 						[BirthdayID.gift]: !!birthday.gift
 					}
 				};
-				this.addBirthday(addBirthday, false);
+				this.addBirthday(addBirthday, false).subscribe();
 			});
 		});
 	}
