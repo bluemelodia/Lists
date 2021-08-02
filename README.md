@@ -11,10 +11,8 @@ from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
 
 ## TODO
 
-- Compute next year's birthday perodically.
-- Allow users to edit birthdays.
 - Calendar should open to the correct month/date even if there's no lunar date.
-
+- Watch out for errors when switching from solar -> lunar, and lunar -> solar.
 
 ### Login
 
