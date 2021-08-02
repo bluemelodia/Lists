@@ -4,8 +4,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { BirthdayAction } from '../constants/birthday';
 
-import { BASE_URL } from '../constants/urls';
-
 import { AddBirthday, Birthday } from '../types/birthday/birthday.types';
 import { Calendar, CalendarDay } from '../types/calendar/calendar-response.types';
 import { Dialog } from '../types/dialog/dialog.types';
@@ -120,6 +118,7 @@ export class BirthdayService {
 					return BirthdayUtils.sortBirthdays(response.responseData);
 				}),
 				catchError((err) => { 
+					console.log("===> get birthday error dialog: ", err);
 					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
 					return of(null);				
 				})

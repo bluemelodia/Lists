@@ -34,6 +34,7 @@ import { BirthdayUtils } from '../../../../utils/birthday.utils';
 	styleUrls: ['./add.component.css']
 })
 export class AddBirthdayComponent implements OnInit {
+	birthday: Birthday;
 	birthdayForm: FormGroup;
 	birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayAction.Add);
 	birthdayID = BirthdayID;
@@ -85,6 +86,10 @@ export class AddBirthdayComponent implements OnInit {
 				/** Existing birthday. */
 				if (birthday?.uuid) {
 					this.birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayAction.Edit);
+					this.birthday = {
+						...this.birthday,
+						uuid: birthday?.uuid
+					};
 					this.populateFormData(birthday);
 				}
 			});
@@ -128,13 +133,14 @@ export class AddBirthdayComponent implements OnInit {
 		if (this.birthdayForm.valid) {
 			this.submitted = false;
 
-			const birthday: Birthday = {
+			this.birthday = {
+				...this.birthday,
 				name: this.name,
 				date: this.date,
 				options: this.options,
 			};
 			
-			this.birthdayService.modifyBirthday(birthday, this.birthdayConfig.action)
+			this.birthdayService.modifyBirthday(this.birthday, this.birthdayConfig.action)
 				.pipe(
 					take(1),
 					takeUntil(this.ngUnsubscribe$)

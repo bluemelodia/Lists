@@ -1,5 +1,3 @@
-import {v4 as uuidv4} from 'uuid';
-
 import { 
     BirthdayConfig,
     BirthdayAction,
@@ -87,7 +85,7 @@ export class BirthdayUtils {
 		const date = birthday.date;
 		const addBirthday: AddBirthday = {
 			id: 'guest',
-			uuid: birthday.uuid || uuidv4(),
+			uuid: birthday.uuid,
 			cmonth: date.cmonth,
 			month: date.month,
 			cdate: date.cdate,
