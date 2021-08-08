@@ -27,7 +27,9 @@ export class ListComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe$ = new Subject<void>();
 
-  constructor(private birthdayService: BirthdayService) { }
+  constructor(
+    private birthdayService: BirthdayService,
+  ) { }
 
   ngOnInit(): void {
   }

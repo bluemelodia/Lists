@@ -7,6 +7,7 @@ import {
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { 
+	filter,
 	map,
 	take,
 	takeUntil,
@@ -21,13 +22,11 @@ import { ValidationService } from '../../../../services/validation.service';
 import { AddBirthday, Birthday, BirthdayOptions } from '../../../../types/birthday/birthday.types';
 import { CalendarType } from '../../../../types/calendar/calendar.types';
 import { CalendarDay } from '../../../../types/calendar/calendar-response.types';
-import { Dialog } from '../../../../types/dialog/dialog.types';
+import { Dialog, DialogAction } from '../../../../types/dialog/dialog.types';
 import { BirthdayID } from '../../../../types/event.types';
 import { HeaderLevel } from '../../../../types/header.types';
 import { ResponseStatus } from '../../../../types/response.types';
-
 import { BirthdayUtils } from '../../../../utils/birthday.utils';
-import { relative } from '@angular-devkit/core';
 
 @Component({
 	selector: 'app-add-birthday',
@@ -167,13 +166,26 @@ export class AddBirthdayComponent implements OnInit {
 		}
 	}
 
-	onCancel(): void {
-		this.router.navigate([ '/birthdays' ], { relativeTo: this.route });
+	onCancel(): void {		
+		this.dialogService.showConfirmDialog(Dialog.CancelEdit)
+			.pipe(
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((action: DialogAction) => {
+				switch(action) {
+					case DialogAction.Close:
+						this.router.navigate([ '/birthdays' ], { relativeTo: this.route });
+						break;
+					case DialogAction.Continue:
+						break;
+				}
+			});
 	}
 
 	subscribeToDialogClose(): void {
-		this.dialogService.onDialogClose$
+		this.dialogService.onDialogAction$
 			.pipe(
+				filter((action: DialogAction) => action === DialogAction.Close),
 				take(1),
 				takeUntil(this.ngUnsubscribe$)
 			)

@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
 import { BirthdayService } from '../../../services/birthday.service';
+import { DialogService } from '../../../services/dialog.service';
 import { AddBirthday } from '../../../types/birthday/birthday.types';
 
 @Component({
@@ -24,6 +25,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 
   constructor(
     private birthdayService: BirthdayService,
+    private dialogService: DialogService,
   ) { }
 
   public ngOnInit(): void {

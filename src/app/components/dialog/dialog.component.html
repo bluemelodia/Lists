@@ -5,11 +5,22 @@
             <span></span>
             {{ dialog.title }}
             <button type="button" 
-                class="cancel description"
+                class="cancel-btn description"
                 (click)="hideDialog()">
                 <i class="fas fa-times"></i>
             </button>
         </header>
         <p class="description message">{{ dialog.message }}</p>
+        <fieldset class="form-actions" *ngIf="dialog.dialogType === dialogType.Confirm">
+            <button type="button"
+                class="cancel"
+                (click)="onCancel()">
+                Cancel
+            </button>        
+            <button type="submit"
+                (click)="onContinue()">
+                Continue
+            </button>
+        </fieldset>
     </div>
 </section>

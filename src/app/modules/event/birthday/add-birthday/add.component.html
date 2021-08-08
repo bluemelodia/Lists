@@ -49,7 +49,9 @@
             </app-checkbox>
         </fieldset>
         <fieldset class="form-actions">
-            <button *ngIf="birthdayConfig.action === birthdayAction.Edit" type="cancel"
+            <button *ngIf="birthdayConfig.action === birthdayAction.Edit"
+                type="button"
+                class="cancel"
                 (click)="onCancel()">
                 Cancel
             </button>        

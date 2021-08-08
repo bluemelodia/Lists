@@ -12,7 +12,18 @@ export class DialogUtils {
         }
     }
 
-    public static messageforDialog(response: ResponseStatus, dialogType: Dialog): string {
+    public static messageforConfirmDialog(dialogType: Dialog): string {
+        let message;
+        switch (dialogType) {
+            case Dialog.CancelEdit:
+                message = DialogMessage.CANCEL_EDIT;
+                break;
+        }
+
+        return message;
+    }
+
+    public static messageforStatusDialog(response: ResponseStatus, dialogType: Dialog): string {
         let message;
         switch (dialogType) {
             case Dialog.AddBirthday:

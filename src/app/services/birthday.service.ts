@@ -69,6 +69,7 @@ export class BirthdayService {
 			.pipe(
 				map((response: Response) => {
 					console.log("Response: ", response);
+					this.dialogService.showStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteBirthday);
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError((err) => { 

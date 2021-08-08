@@ -43,7 +43,8 @@ button[type="button"] {
   border: none;
 }
 
-button[type="submit"], button[type="cancel"] {
+button[type="submit"],
+button.cancel {
   height: 40px;
   margin: 16px 0;
 }
@@ -53,7 +54,7 @@ button[type="submit"] {
   border: 2px solid #dd2e44;
 }
 
-button[type="cancel"] {
+button.cancel {
   background-color: #f9eeee;
   border: 2px solid pink;
 }
@@ -65,9 +66,9 @@ button[type="submit"]:hover {
   color: white;
 }
 
-button[type="cancel"]:active,
-button[type="cancel"]:focus,
-button[type="cancel"]:hover {
+button.cancel:active,
+button.cancel:focus,
+button.cancel:hover {
   background-color: pink;
 }
 
@@ -77,6 +78,19 @@ button[type="cancel"]:hover {
 
 .form-actions button:not(:last-child) {
   margin-right: 10px;
+}
+
+fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
+  margin: 0;
+}
+
+fieldset.form-actions {
+  flex-direction: row;
 }
 
 input {

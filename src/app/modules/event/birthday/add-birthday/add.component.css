@@ -3,19 +3,6 @@
   width: 100%;
 }
 
-fieldset {
-  border: none;
-  display: flex;
-  flex-direction: column;
-
-  padding: 0;
-  margin: 0;
-}
-
-fieldset.form-actions {
-  flex-direction: row;
-}
-
 .event-form {
   display: flex;
   flex-direction: column;
