@@ -147,7 +147,15 @@ export class AddBirthdayComponent implements OnInit {
 				)
 				.subscribe((response: ResponseStatus) => {
 					console.log("===> add birthday results: ", response);
-					this.dialogService.showStatusDialog(response, Dialog.AddBirthday);
+
+					switch(this.birthdayConfig.action) {
+						case BirthdayAction.Add:
+							this.dialogService.showStatusDialog(response, Dialog.AddBirthday);
+							break;
+						case BirthdayAction.Edit:
+							this.dialogService.showStatusDialog(response, Dialog.EditBirthday);
+							break;
+					}
 
 					if (response === ResponseStatus.SUCCESS) {
 						this.subscribeToDialogClose();

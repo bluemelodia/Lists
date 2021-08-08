@@ -3,17 +3,18 @@ import {
     BirthdayAction,
     BirthdayFormSubmitActions,
 } from "../constants/birthday";
-import { BASE_URL } from '../constants/urls';
+import { Endpoint } from '../constants/urls';
 
 import { AddBirthday, Birthday } from "../types/birthday/birthday.types";
 import { CalendarDay } from "../types/calendar/calendar-response.types";
 import { Dialog } from '../types/dialog/dialog.types';
 
 export class BirthdayUtils {
-	private static addBirthdayURL = BASE_URL + 'addBirthday';
-	private static deleteBirthdayURL = BASE_URL + 'deleteBirthday';
-	private static editBirthdayURL = BASE_URL + 'editBirthday';
-	private static getBirthdayURL = BASE_URL + 'getBirthdays';
+	private static baseURL = Endpoint.TODO;
+	private static addBirthdayURL = `${BirthdayUtils.baseURL}/addBirthday`;
+	private static deleteBirthdayURL = `${BirthdayUtils.baseURL}/deleteBirthday`;
+	private static editBirthdayURL = `${BirthdayUtils.baseURL}/editBirthday`;
+	private static getBirthdayURL = `${BirthdayUtils.baseURL}/getBirthdays`;
 
 	public static birthdayURLForAction(action: BirthdayAction): string {
 		let url: string;
@@ -54,7 +55,7 @@ export class BirthdayUtils {
 	}
 
     public static createCheckboxOption(value: number): boolean {
-        return !!value ? false : true;
+        return !!value;
     }
 
     public static createBirthdayFormConfig(action: BirthdayAction): BirthdayConfig {

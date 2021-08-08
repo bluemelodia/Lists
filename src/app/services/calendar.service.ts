@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, forkJoin, of } from 'rxjs';
 
+import { Endpoint } from '../constants/urls';
 import { CalendarType } from '../types/calendar/calendar.types';
 import { CalendarYear, Calendar, CalendarMonth, CalendarDay } from '../types/calendar/calendar-response.types';
 import { Response } from '../types/response.types';
@@ -11,7 +12,7 @@ import { CalendarUtils } from '../utils/calendar.utils';
 	providedIn: 'root'
 })
 export class CalendarService {
-	private baseURL = 'https://presents-please.ue.r.appspot.com/ccal/';
+	private baseURL = Endpoint.CALENDAR;
 	private calendar$ = new BehaviorSubject<Calendar>(null);
 	
 	private currentYear;
@@ -99,7 +100,7 @@ export class CalendarService {
 			});
 		}
 		
-		let url = this.baseURL + year;
+		let url = `${this.baseURL}/${year}`;
 		return this.http.get<Response>(url);
 	}
 
