@@ -85,7 +85,7 @@ export class CalendarUtils {
       const day = dayObj.$;
       if (day) {
         const calendarDay: CalendarDay = {
-          value: day.value, 
+          value: Number(day.value), 
           cmonth: Number(day.cmonth),
           leap: day.leap ? true : false,
           cdate: Number(day.cdate),

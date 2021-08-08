@@ -25,6 +25,8 @@ export class CalendarMonthComponent {
       this.currentYear = date.getFullYear();
       this.currentMonth = date.getMonth()+1;
       this.currentDay = date.getDate();
+
+      console.log(this.month);
     }
 
     isSelectableDate(month: CalendarMonth, day: CalendarDay): boolean {
