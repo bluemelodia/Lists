@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { DirectiveModule } from '../../directives/directives.module';
 import { ElementModule } from '../element/element.module';
 import { EventRoutingModule } from './event-routing.module';
 import { FormModule } from '../form/form.module';
-import { DirectiveModule } from '../../directives/directives.module';
+import { ImageModule } from '../image/image.module';
 
 import { AddBirthdayComponent } from './birthday/add-birthday/add.component';
 
@@ -20,7 +21,8 @@ import { AddBirthdayComponent } from './birthday/add-birthday/add.component';
     EventRoutingModule,
     FormModule,
     FormsModule,
-    ReactiveFormsModule
+    ImageModule,
+    ReactiveFormsModule,
   ],
   exports: [
     AddBirthdayComponent,

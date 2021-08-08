@@ -30,8 +30,16 @@
                 [form]="birthdayForm.controls.options">
             </app-checkbox>
         </fieldset>
+        <fieldset>
+            <app-header [level]="headerLevel.H3" text="Select Image">
+                <span class="event-form__optional" post>Optional</span>
+            </app-header>
+            <app-img-upload></app-img-upload>
+        </fieldset>
         <fieldset class="event-options">
-            <app-header [level]="headerLevel.H3" text="Actions"></app-header>
+            <app-header [level]="headerLevel.H3" text="Actions">
+                <span class="event-form__optional" post>Optional</span>
+            </app-header>
             <app-checkbox
                 name="Call"
                 [checkboxName]="birthdayID.call"
