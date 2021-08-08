@@ -1,3 +1,20 @@
 :host {
     display: flex;
+    flex-direction: column;
+}
+
+.delete-btn {
+    color: #dd2e44;
+    position: absolute;
+    right: 0;
+}
+
+.image-upload__preview {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.image-upload__preview-src {
+    max-width: 40%;
 }

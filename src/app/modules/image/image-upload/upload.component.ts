@@ -1,4 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { 
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { ImageSnippet } from '../../../types/image.types';
 
 @Component({
   selector: 'app-img-upload',
@@ -7,6 +15,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class ImageUploadComponent implements OnInit {
   @Output() onImageUpload = new EventEmitter<string>();
+  @ViewChild('imageInput') filePicker: ElementRef;
+
+  selectedImage: ImageSnippet;
 
   constructor() { }
 
@@ -27,7 +38,11 @@ export class ImageUploadComponent implements OnInit {
       /**
       * Base64 representation of the image.
       */
-      this.onImageUpload.emit(event.target.result);
+      this.selectedImage = {
+        src: event.target.result,
+        file: file
+      }
+      this.onImageUpload.emit(this.selectedImage.src);
     });
 
     /**
@@ -35,5 +50,10 @@ export class ImageUploadComponent implements OnInit {
      * function of the listener above.
      */
     reader.readAsDataURL(file);
+  }
+
+  public deleteImage() {
+    this.selectedImage = null;
+    this.filePicker.nativeElement.value = '';
   }
 }
