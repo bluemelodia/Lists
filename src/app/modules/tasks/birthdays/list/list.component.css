@@ -5,16 +5,20 @@
 }
 
 .birthday-list__item {
-    border-bottom: 1px solid pink;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid pink;
 }
 
 .actions {
-    margin: 8px;
+  margin: 8px 0;
 }
 
 .birthday-action {
-    color: pink;
-    font-size: 1.5rem;
+  color: pink;
+  font-size: 1.5rem;
 }
 
 .birthday-action.enabled {
@@ -23,6 +27,21 @@
 
 .birthday-action:not(:last-child) {
     margin-right: 8px;
+}
+
+.birthday-list__item-info {
+    width: 100%;
+}
+
+.birthday-list__item-photo {
+    height: 160px;
+    margin: 8px;
+}
+
+@media only screen and (max-width: 500px) {
+    .birthday-list__item-photo {
+        display: none;
+    }
 }
 
 span:not(:last-child) {

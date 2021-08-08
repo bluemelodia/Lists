@@ -37,7 +37,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 8px;
+  margin: 8px 0;
+  text-align: center;
 }
 
 /**
@@ -143,6 +144,10 @@ input:focus-visible {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.flex-stretch {
+  align-items: stretch;
 }
 
 /* Form container styles. */

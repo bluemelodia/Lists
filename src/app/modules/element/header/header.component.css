@@ -1,5 +1,25 @@
 :host {
-    display: flex;
-    flex-direction: row;
-    align-items: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+
+  margin: 8px 0;
+}
+
+.heading:not(:first-child) {
+  margin-left: 8px;
+}
+
+.heading:not(:last-child) {
+  margin-right: 8px;
+}
+
+@media only screen and (max-width: 500px) {
+  :host {
+    flex-direction: column;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 8px;
+  }
 }

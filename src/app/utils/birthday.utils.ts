@@ -113,7 +113,6 @@ export class BirthdayUtils {
 			const today = new Date();
 
 			const diffInDays = (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
-			console.log("Diff: ", birthDate, diffInDays);
 			if (-1 < diffInDays && diffInDays <= 0) { // today
 				birthday.status = DateStatus.Today;
 			} else if (0 < diffInDays && diffInDays <= 1) { // tomorrow
@@ -122,7 +121,7 @@ export class BirthdayUtils {
 				birthday.status = DateStatus.Passed;
 			} else if (diffInDays < 7) { // this week
 				birthday.status = DateStatus.ThisWeek;
-			} else if (diffInDays < 14) {
+			} else if (diffInDays < 14) { // in two weeks
 				birthday.status = DateStatus.ComingUp;
 			}
 		});

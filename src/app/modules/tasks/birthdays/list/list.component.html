@@ -1,6 +1,7 @@
 <ul class="birthday-list" *ngIf="list && list.length > 0">
     <li class="birthday-list__item" *ngFor="let birthday of list">
-        <section class="form-container flex-centered__column">
+        <img class="birthday-list__item-photo" src="./assets/images/cake.png"/>
+        <section class="birthday-list__item-info form-container flex-centered__column flex-stretch">
             <app-header [level]="headerLevel.H2" [text]="birthday.name">
                 <app-date-indicator post [status]="birthday.status"></app-date-indicator>
             </app-header>
@@ -21,7 +22,7 @@
                     [class.enabled]="birthday.gift"
                     aria-label="Gift"></i>
             </section>
-            <section>
+            <fieldset class="form-actions">
                 <button type="submit" 
                     routerLink="/events/edit-birthday"
                     [queryParams]="{ birthday: birthday | json }">
@@ -31,7 +32,7 @@
                     (click)="deleteBirthday(birthday.uuid)">
                     Delete
                 </button>
-            </section>
+            </fieldset>
         </section>
     </li>
 </ul>

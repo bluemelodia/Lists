@@ -173,10 +173,10 @@ export class AddBirthdayComponent implements OnInit {
 			)
 			.subscribe((action: DialogAction) => {
 				switch(action) {
-					case DialogAction.Close:
+					case DialogAction.Continue:
 						this.router.navigate([ '/birthdays' ], { relativeTo: this.route });
 						break;
-					case DialogAction.Continue:
+					default:
 						break;
 				}
 			});
