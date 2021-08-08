@@ -7,5 +7,5 @@ interface URL {
 
 export const Endpoint: URL = {
     TODO: '/todo',
-    CALENDAR: '/ccal'
+    CALENDAR: '/ccal',
 }

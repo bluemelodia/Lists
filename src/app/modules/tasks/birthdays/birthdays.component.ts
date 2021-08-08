@@ -1,6 +1,7 @@
 import { 
   ChangeDetectionStrategy,
   Component,
+  HostBinding,
   OnDestroy,
   OnInit
 } from '@angular/core';
@@ -21,6 +22,8 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
   public birthdayList$ = this.birthdays$.asObservable();
 
   private ngUnsubscribe$ = new Subject<void>();
+
+  @HostBinding('class.hide-scrollbar') public css = true; 
 
   constructor(
     private birthdayService: BirthdayService,

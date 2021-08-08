@@ -9,6 +9,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.birthday-list__item:not(:last-child) {
   border-bottom: 1px solid pink;
 }
 
