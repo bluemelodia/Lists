@@ -1,7 +1,9 @@
 <ul class="birthday-list" *ngIf="list && list.length > 0">
     <li class="birthday-list__item" *ngFor="let birthday of list">
         <section class="form-container flex-centered__column">
-            <app-header [level]="headerLevel.H2" [text]="birthday.name"></app-header>
+            <app-header [level]="headerLevel.H2" [text]="birthday.name">
+                <app-date-indicator post [status]="birthday.status"></app-date-indicator>
+            </app-header>
             <section>
                 <p>Solar ({{ birthday.year }}) - {{ birthday.month }}/{{ birthday.date }}</p>
                 <p *ngIf="birthday.lunar">

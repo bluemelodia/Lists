@@ -7,6 +7,7 @@ import { Endpoint } from '../constants/urls';
 
 import { AddBirthday, Birthday } from "../types/birthday/birthday.types";
 import { CalendarDay } from "../types/calendar/calendar-response.types";
+import { DateStatus } from "../types/date/date.types";
 import { Dialog } from '../types/dialog/dialog.types';
 
 export class BirthdayUtils {
@@ -101,7 +102,33 @@ export class BirthdayUtils {
 		return addBirthday;
 	}
 
-    public static sortBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
+	public static sortAndTagBirthdays(birthdays: AddBirthday[]) {
+		BirthdayUtils.tagBirthdays(birthdays);
+		return BirthdayUtils.sortBirthdays(birthdays);
+	}
+
+	private static tagBirthdays(birthdays: AddBirthday[]) {
+		birthdays.forEach((birthday: AddBirthday) => {
+			const birthDate = new Date(birthday.year, birthday.month - 1, birthday.date);
+			const today = new Date();
+
+			const diffInDays = (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
+			console.log("Diff: ", birthDate, diffInDays);
+			if (-1 < diffInDays && diffInDays <= 0) { // today
+				birthday.status = DateStatus.Today;
+			} else if (0 < diffInDays && diffInDays <= 1) { // tomorrow
+				birthday.status = DateStatus.Tomorrow;
+			} else if (diffInDays < 0) { // already passed
+				birthday.status = DateStatus.Passed;
+			} else if (diffInDays < 7) { // this week
+				birthday.status = DateStatus.ThisWeek;
+			} else if (diffInDays < 14) {
+				birthday.status = DateStatus.ComingUp;
+			}
+		});
+	}
+
+    private static sortBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
 		return birthdays.sort(BirthdayUtils.sortByBirthDate);
 	}
 

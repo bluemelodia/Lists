@@ -1,3 +1,4 @@
+<ng-content select="[pre]"></ng-content>
 <ng-container [ngSwitch]="level">
     <h1 *ngSwitchCase="HeaderLevel.H1">{{ text }}</h1>
     <h2 *ngSwitchCase="HeaderLevel.H2">{{ text }}</h2>
@@ -6,3 +7,4 @@
     <h5 *ngSwitchCase="HeaderLevel.H5">{{ text }}</h5>
     <h6 *ngSwitchCase="HeaderLevel.H6">{{ text }}</h6>
 </ng-container>
+<ng-content select="[post]"></ng-content>

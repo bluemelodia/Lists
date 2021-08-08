@@ -34,7 +34,7 @@ export class ListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  deleteBirthday(uuid: string) {
+  public deleteBirthday(uuid: string) {
     this.birthdayService.deleteBirthday(uuid)
       .pipe(
         take(1),
@@ -47,7 +47,7 @@ export class ListComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.ngUnsubscribe$.next();
     this.ngUnsubscribe$.complete();
   }

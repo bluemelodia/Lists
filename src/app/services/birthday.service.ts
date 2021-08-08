@@ -116,7 +116,7 @@ export class BirthdayService {
 			.pipe(
 				map((response: Response) => {
 					console.log("===> received birthdays: ", response);
-					return BirthdayUtils.sortBirthdays(response.responseData);
+					return BirthdayUtils.sortAndTagBirthdays(response.responseData);
 				}),
 				catchError((err) => { 
 					console.log("===> get birthday error dialog: ", err);

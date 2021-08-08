@@ -1,4 +1,5 @@
 import { CalendarDay } from "../calendar/calendar-response.types";
+import { DateStatus } from "../date/date.types";
 import { BirthdayID } from "../event.types";
 
 export interface Birthday {
@@ -26,6 +27,7 @@ export interface AddBirthday {
 	leap: number;
 	cmonthname: string;
 	lunar: number;
+	status?: DateStatus;
 }
 
 export interface BirthdayOptions {
