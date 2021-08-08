@@ -3,6 +3,15 @@ import { Dialog } from "../types/dialog/dialog.types";
 import { ResponseStatus } from "../types/response.types";
 
 export class DialogUtils {
+    public static titleForDialog(response: ResponseStatus) {
+        switch (response) {
+            case ResponseStatus.SUCCESS:
+                return 'Success';
+            case ResponseStatus.ERROR:
+                return 'An Error Occurred';
+        }
+    }
+
     public static messageforDialog(response: ResponseStatus, dialogType: Dialog): string {
         let message;
         switch (dialogType) {

@@ -4,7 +4,7 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { 
 	map,
@@ -22,11 +22,12 @@ import { AddBirthday, Birthday, BirthdayOptions } from '../../../../types/birthd
 import { CalendarType } from '../../../../types/calendar/calendar.types';
 import { CalendarDay } from '../../../../types/calendar/calendar-response.types';
 import { Dialog } from '../../../../types/dialog/dialog.types';
-import { BirthdayFollowUp, BirthdayID } from '../../../../types/event.types';
+import { BirthdayID } from '../../../../types/event.types';
 import { HeaderLevel } from '../../../../types/header.types';
 import { ResponseStatus } from '../../../../types/response.types';
 
 import { BirthdayUtils } from '../../../../utils/birthday.utils';
+import { relative } from '@angular-devkit/core';
 
 @Component({
 	selector: 'app-add-birthday',
@@ -35,6 +36,7 @@ import { BirthdayUtils } from '../../../../utils/birthday.utils';
 })
 export class AddBirthdayComponent implements OnInit {
 	birthday: Birthday;
+	birthdayAction = BirthdayAction;
 	birthdayForm: FormGroup;
 	birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayAction.Add);
 	birthdayID = BirthdayID;
@@ -51,6 +53,7 @@ export class AddBirthdayComponent implements OnInit {
 		private birthdayService: BirthdayService,
 		private customValidator: ValidationService,
 		private route: ActivatedRoute,
+		private router: Router,
 	) { }
 
 	ngOnInit(): void {
@@ -162,6 +165,10 @@ export class AddBirthdayComponent implements OnInit {
 					}
 				});
 		}
+	}
+
+	onCancel(): void {
+		this.router.navigate([ '/birthdays' ], { relativeTo: this.route });
 	}
 
 	subscribeToDialogClose(): void {

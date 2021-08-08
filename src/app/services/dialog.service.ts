@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import { Dialog } from '../types/dialog/dialog.types';
+import { Dialog, DialogConfig, DialogType } from '../types/dialog/dialog.types';
 import { ResponseStatus } from '../types/response.types';
 import { DialogUtils } from '../utils/dialog.utils';
 
@@ -9,12 +9,12 @@ import { DialogUtils } from '../utils/dialog.utils';
 	providedIn: 'root'
 })
 export class DialogService {
-	private show$ = new Subject<string>();
+	private show$ = new Subject<DialogConfig>();
 	private onClose$ = new Subject<void>();
 
 	constructor() { }
 
-	get showDialog$(): Observable<string> {
+	get showDialog$(): Observable<DialogConfig> {
 		return this.show$.asObservable();
 	}
 
@@ -23,11 +23,11 @@ export class DialogService {
 	}
 
 	showStatusDialog(status: ResponseStatus, dialogType: Dialog) {
-		this.show$.next(DialogUtils.messageforDialog(status, dialogType));
-	}
-
-	showDialog(message: string) {
-		this.show$.next(message);
+		this.show$.next({
+			title: DialogUtils.titleForDialog(status),
+			message: DialogUtils.messageforDialog(status, dialogType),
+			dialogType: DialogType.Info
+		});
 	}
 
 	hideDialog() {

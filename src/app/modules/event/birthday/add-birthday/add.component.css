@@ -12,6 +12,10 @@ fieldset {
   margin: 0;
 }
 
+fieldset.form-actions {
+  flex-direction: row;
+}
+
 .event-form {
   display: flex;
   flex-direction: column;

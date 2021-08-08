@@ -106,6 +106,6 @@ export class BirthdayUtils {
 	}
 
 	private static sortByBirthDate(a: AddBirthday, b: AddBirthday): number {
-		return a.month - b.month || a.date - b.date;
+		return a.year - b.year || a.month - b.month || a.date - b.date;
 	}
 }

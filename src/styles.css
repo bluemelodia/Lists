@@ -43,11 +43,19 @@ button[type="button"] {
   border: none;
 }
 
+button[type="submit"], button[type="cancel"] {
+  height: 40px;
+  margin: 16px 0;
+}
+
 button[type="submit"] {
   background-color: pink;
   border: 2px solid #dd2e44;
-  height: 40px;
-  margin: 16px 0;
+}
+
+button[type="cancel"] {
+  background-color: #f9eeee;
+  border: 2px solid pink;
 }
 
 button[type="submit"]:active,
@@ -55,6 +63,20 @@ button[type="submit"]:focus,
 button[type="submit"]:hover {
   background-color: #dd2e44;
   color: white;
+}
+
+button[type="cancel"]:active,
+button[type="cancel"]:focus,
+button[type="cancel"]:hover {
+  background-color: pink;
+}
+
+.form-actions button {
+  width: 100%;
+}
+
+.form-actions button:not(:last-child) {
+  margin-right: 10px;
 }
 
 input {

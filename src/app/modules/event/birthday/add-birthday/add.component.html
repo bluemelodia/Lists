@@ -47,9 +47,15 @@
                 [checkboxName]="birthdayID.gift"
                 [form]="birthdayForm.controls.options">
             </app-checkbox>
-        </fieldset>        
-        <button type="submit">
-            {{ birthdayConfig.buttonAction }}
-        </button>
+        </fieldset>
+        <fieldset class="form-actions">
+            <button *ngIf="birthdayConfig.action === birthdayAction.Edit" type="cancel"
+                (click)="onCancel()">
+                Cancel
+            </button>        
+            <button type="submit">
+                {{ birthdayConfig.buttonAction }}
+            </button>
+        </fieldset>
     </form>
 </section>
