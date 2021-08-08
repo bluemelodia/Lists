@@ -105,7 +105,14 @@ export class BirthdayUtils {
 		return birthdays.sort(BirthdayUtils.sortByBirthDate);
 	}
 
+	/** 
+	 * First sort by the birth date, then differentiate by names.
+	 */
 	private static sortByBirthDate(a: AddBirthday, b: AddBirthday): number {
-		return a.year - b.year || a.month - b.month || a.date - b.date;
+		return a.year - b.year || a.month - b.month || a.date - b.date || BirthdayUtils.sortByName(a.name, b.name);
+	}
+
+	private static sortByName(a: string, b: string): number {
+		return a < b? -1 : (a > b) ? 1 : 0;
 	}
 }
