@@ -7,6 +7,7 @@ export interface Birthday {
 	uuid?: string; /* Birthdays that came from the DB will already have an id. */
 	date: CalendarDay;
 	options: BirthdayOptions;
+	image?: string;
 }
 
 /**
@@ -28,6 +29,7 @@ export interface AddBirthday {
 	cmonthname: string;
 	lunar: number;
 	status?: DateStatus;
+	image?: string;
 }
 
 export interface BirthdayOptions {

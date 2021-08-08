@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageUploadComponent } from './image-upload/upload.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { ImageUploadComponent } from './image-upload/upload.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
   ],
   exports: [
     ImageUploadComponent,

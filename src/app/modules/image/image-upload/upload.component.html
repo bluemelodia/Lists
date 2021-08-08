@@ -1,14 +1,18 @@
 <!-- type: file allows the user to choose 1+ files from device storage
      accept: image/* means any image file -->
-<input #imageInput
-    type="file"
-    accept="image/*"
-    (change)="processFile(imageInput)">
-<section class="image-upload__preview" *ngIf="selectedImage">
-    <img class="image-upload__preview-src" [src]="selectedImage.src"/>
-    <button type="button" 
-        class="delete-btn description"
-        (click)="deleteImage()">
-            <i class="fas fa-times"></i>
-        </button>
-</section>
+<ng-container [formGroup]="form">
+    <input #imageInput
+        type="file"
+        accept="image/*"
+        formControlName="image"
+        (change)="processFile(imageInput)">
+    <section class="image-upload__preview" *ngIf="selectedImage">
+        <img class="image-upload__preview-src" [src]="selectedImage.src"/>
+        <button type="button" 
+            class="delete-btn description"
+            (click)="deleteImage()">
+                <i class="fas fa-times"></i>
+            </button>
+    </section>
+</ng-container>
+

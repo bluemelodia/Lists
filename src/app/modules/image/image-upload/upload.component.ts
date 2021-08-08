@@ -2,10 +2,12 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ImageSnippet } from '../../../types/image.types';
 
 @Component({
@@ -14,7 +16,7 @@ import { ImageSnippet } from '../../../types/image.types';
   styleUrls: ['./upload.component.css']
 })
 export class ImageUploadComponent implements OnInit {
-  @Output() onImageUpload = new EventEmitter<string>();
+  @Input() form: FormGroup;
   @ViewChild('imageInput') filePicker: ElementRef;
 
   selectedImage: ImageSnippet;
@@ -42,7 +44,9 @@ export class ImageUploadComponent implements OnInit {
         src: event.target.result,
         file: file
       }
-      this.onImageUpload.emit(this.selectedImage.src);
+      this.form.patchValue({
+        image: this.selectedImage.src
+      });
     });
 
     /**

@@ -119,8 +119,6 @@ export class BirthdayService {
 					return BirthdayUtils.sortAndTagBirthdays(response.responseData);
 				}),
 				catchError((err) => { 
-					console.log("===> get birthday error dialog: ", err);
-					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
 					return of(null);				
 				})
 			);

@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
   * up-to-date birthdays list.
 	*/
   patchBirthdays() {
-    this.birthdayService.getBirthdays()
+    this.birthdayService.getBirthdays('guest')
       .pipe(
         map((birthdays: AddBirthday[]) => birthdays.filter((birthday) => birthday.lunar)),
         take(1)

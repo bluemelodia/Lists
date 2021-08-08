@@ -74,7 +74,10 @@ export class AddBirthdayComponent implements OnInit {
 				[BirthdayID.call]: this.fb.control(false),
 				[BirthdayID.text]: this.fb.control(false),
 				[BirthdayID.gift]: this.fb.control(false),
-			})
+			}),
+			image: [
+				''
+			]
 		},
 		{ 
 			updateOn: 'submit'
@@ -109,7 +112,8 @@ export class AddBirthdayComponent implements OnInit {
 				[BirthdayID.call]: BirthdayUtils.createCheckboxOption(birthday.call),
 				[BirthdayID.text]: BirthdayUtils.createCheckboxOption(birthday.text),
 				[BirthdayID.gift]: BirthdayUtils.createCheckboxOption(birthday.gift),
-			}
+			},
+			image: birthday.image
 		});
 	}
 
@@ -126,6 +130,10 @@ export class AddBirthdayComponent implements OnInit {
 		return this.birthdayForm.get('date.birthday')?.value;
 	}
 
+	get image(): string {
+		return this.birthdayFormControl.image.value;
+	}
+
 	get options(): BirthdayOptions {
 		return this.birthdayFormControl.options.value;
 	}
@@ -140,6 +148,7 @@ export class AddBirthdayComponent implements OnInit {
 				name: this.name,
 				date: this.date,
 				options: this.options,
+				image: this.image,
 			};
 			
 			this.birthdayService.modifyBirthday(this.birthday, this.birthdayConfig.action)

@@ -5,11 +5,14 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { catchError, take, takeUntil } from 'rxjs/operators';
 
 import { BirthdayService } from '../../../services/birthday.service';
+import { DialogService } from '../../../services/dialog.service';
 import { AddBirthday } from '../../../types/birthday/birthday.types';
+import { Dialog } from '../../../types/dialog/dialog.types';
+import { ResponseStatus } from '../../../types/response.types';
 
 @Component({
   selector: 'task-birthdays',
@@ -27,6 +30,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 
   constructor(
     private birthdayService: BirthdayService,
+    private dialogService: DialogService,
   ) { }
 
   public ngOnInit(): void {
@@ -36,6 +40,10 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
   public getBirthdays(): void {
     this.birthdayService.getBirthdays()
       .pipe(
+        catchError((err) => {
+            this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
+            return of(null);
+        }),
         take(1),
         takeUntil(this.ngUnsubscribe$)
       )
