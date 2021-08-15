@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, forkJoin, of } from 'rxjs';
 
 import { Endpoint } from '../constants/urls';
 import { CalendarType } from '../types/calendar/calendar.types';
-import { CalendarYear, Calendar, CalendarMonth, CalendarDay } from '../types/calendar/calendar-response.types';
+import { CalendarYear, Calendar, CalendarMonth } from '../types/calendar/calendar-response.types';
 import { Response } from '../types/response.types';
 import { CalendarUtils } from '../utils/calendar.utils';
 
@@ -16,9 +16,26 @@ export class CalendarService {
 	private calendar$ = new BehaviorSubject<Calendar>(null);
 	
 	private currentYear;
+	private currentMonth;
+	private currentDay;
 
 	constructor(private http: HttpClient) {
-		this.currentYear = new Date().getFullYear();
+		const today = new Date();
+		this.currentYear = today.getFullYear();
+		this.currentMonth = today.getMonth() + 1;
+		this.currentDay = today.getDate();
+	}
+
+	get year(): number {
+		return this.currentYear;
+	}
+
+	get month(): number {
+		return this.currentMonth;
+	}
+
+	get day(): number {
+		return this.currentDay;
 	}
 
 	/**
@@ -43,31 +60,23 @@ export class CalendarService {
 			}
 
 			const cal = {};
-			const date = new Date();
-			const currentYear = date.getFullYear();
-			/* Add one because the lunar calendar indexes months as 1-12. */
-			const currentMonth = date.getMonth() + 1;
 
 			let calendarYears: CalendarYear[] = [];
 			/* The months in chronological order. */
 			let calendarMonths: CalendarMonth[] = [];
 
 			/* Separate out the calendars into their respective years. */
-			const curCal = response[currentYear];
+			const curCal = response[this.currentYear];
 			if (curCal && curCal.statusCode === 0) {
-				let calendar = cal[currentYear] = CalendarUtils.getParsedCalendar(curCal.responseData);
+				let calendar = cal[this.currentYear] = CalendarUtils.getParsedCalendar(curCal.responseData);
 
-				/* Only show the current + future months. */
-				const filteredMonths = calendar.months.filter((month) => {
-					return month.year > this.currentYear || month.value >= currentMonth
-				});
 				calendarYears.push(calendar);
-				calendarMonths.push(...filteredMonths);
+				calendarMonths.push(...calendar.months);
 			}
 
-			const nextCal = response[currentYear + 1];
+			const nextCal = response[this.currentYear + 1];
 			if (nextCal && nextCal.statusCode === 0) {
-				let calendar = cal[currentYear + 1] = CalendarUtils.getParsedCalendar(nextCal.responseData);
+				let calendar = cal[this.currentYear + 1] = CalendarUtils.getParsedCalendar(nextCal.responseData);
 				calendarYears.push(calendar);
 				calendarMonths.push(...calendar.months);
 			}
@@ -103,5 +112,4 @@ export class CalendarService {
 		let url = `${this.baseURL}/${year}`;
 		return this.http.get<Response>(url);
 	}
-
 }

@@ -3,18 +3,18 @@
         <td class="day focus-option"
             *ngFor="let day of week.days"
             id="{{month.year}}-{{month.value}}-{{day.value}}"
-            [attr.aria-hidden]="isSelectableDate(month, day) ? false : true"
-            [tabindex]="isSelectableDate(month, day) ? 0 : -1"
-            [class.disabled] = "!isSelectableDate(month, day)"
-            [class.focus-option] = "isSelectableDate(month, day)"
+            [attr.aria-hidden]="isSelectableDate(day) ? false : true"
+            [tabindex]="isSelectableDate(day) ? 0 : -1"
+            [class.disabled] = "!isSelectableDate(day)"
+            [class.focus-option] = "isSelectableDate(day)"
             [class.selected] = "selectedDate
                 && day.year === selectedDate.year 
                 && day.month === selectedDate.month 
                 && day.value === selectedDate.value"
-            (click)="isSelectableDate(month, day) ? selectDate(day) : null"
-            (keydown)="isSelectableDate(month, day) ? onDateKeyPress($event, day) : null">
-            <ng-container *ngIf="!isSelectableDate(month, day)"></ng-container>
-            <ng-container *ngIf="isSelectableDate(month, day)">
+            (click)="isSelectableDate(day) ? selectDate(day) : null"
+            (keydown)="isSelectableDate(day) ? onDateKeyPress($event, day) : null">
+            <ng-container *ngIf="!isSelectableDate(day)"></ng-container>
+            <ng-container *ngIf="isSelectableDate(day)">
                 <span class="lunar-date" *ngIf="type === calendarType.Lunar">{{ day.cmonthname }}</span>
                 <span class="solar-date">{{ day.value }}</span>
                 <span class="lunar-date" *ngIf="type === calendarType.Lunar">

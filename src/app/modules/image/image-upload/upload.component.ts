@@ -26,6 +26,9 @@ export class ImageUploadComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
+  /**
+   * Ensure the preview image is removed once the form is reset.
+   */
   ngOnChanges(): void {
     this.form.get('image')?.valueChanges.subscribe((val: string) => {
       if (!val) {
@@ -38,7 +41,6 @@ export class ImageUploadComponent implements OnInit, OnChanges {
     /**
      * Get the first file.
      */
-    console.log("===> input: ", input);
     const file: File = input.files[0];
     /**
      * Asynchronously read file contents on the user's computer.

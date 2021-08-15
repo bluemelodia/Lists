@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CalendarType, Month } from '../../../types/calendar/calendar.types';
-import { CalendarMonth, CalendarDay } from '../../../types/calendar/calendar-response.types';
+import { CalendarDay } from '../../../types/calendar/calendar-response.types';
+import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
   selector: 'app-calendar-month',
@@ -20,20 +21,16 @@ export class CalendarMonthComponent {
     currentMonth: number;
     currentYear: number;
 
-    ngOnInit(): void {
-      const date = new Date();
-      this.currentYear = date.getFullYear();
-      this.currentMonth = date.getMonth()+1;
-      this.currentDay = date.getDate();
+    constructor(private calendarService: CalendarService) {}
 
-      console.log(this.month);
+    ngOnInit(): void {
+      this.currentYear = this.calendarService.year;
+      this.currentMonth = this.calendarService.month;
+      this.currentDay = this.calendarService.day;
     }
 
-    isSelectableDate(month: CalendarMonth, day: CalendarDay): boolean {
-      if (day.value < 0) return false;
-
-      const beforeToday = month.year === this.currentYear && month.value === this.currentMonth && day.value < this.currentDay;
-      return !beforeToday;
+    isSelectableDate(day: CalendarDay): boolean {
+      return day.value > 0;
     }
 
     selectDate(date: CalendarDay): void {

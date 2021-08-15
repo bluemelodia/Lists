@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { CalendarService } from '../../services/calendar.service';
 import { Calendar, CalendarDay, CalendarMonth } from '../../types/calendar/calendar-response.types';
 import { CalendarType, shortMonths } from '../../types/calendar/calendar.types';
 
@@ -26,8 +28,9 @@ export class CalendarComponent implements OnInit {
 		this.calendarMonths = this.cal.months;
 
 		/* Have the calendar open to the current month and year. */
-		this.month = this.cal.months[0];
-		this.monthIdx = 0;
+		this.monthIdx = this.cal.months.findIndex((month) =>
+			month.value === this.calendarService.month && month.year === this.calendarService.year);
+		this.month = this.cal.months[this.monthIdx];
 	}
 
 	@Output() onDateSelected = new EventEmitter<CalendarDay>();
@@ -39,11 +42,9 @@ export class CalendarComponent implements OnInit {
 	months = shortMonths;
 
 	month: CalendarMonth;
-	currentMonth: number;
-	currentYear: number;
 	monthIdx: number;
 
-	constructor() { }
+	constructor(private calendarService: CalendarService) { }
 
 	ngOnInit(): void {}
 
