@@ -7,7 +7,7 @@ export interface Birthday {
 	uuid?: string; /* Birthdays that came from the DB will already have an id. */
 	date: CalendarDay;
 	options: BirthdayOptions;
-	image?: string;
+	profile?: BirthdayProfile;
 }
 
 /**
@@ -37,4 +37,8 @@ export interface BirthdayOptions {
 	[BirthdayID.call]: boolean;
 	[BirthdayID.text]: boolean;
 	[BirthdayID.gift]: boolean;
+}
+
+export interface BirthdayProfile {
+	image: string;
 }

@@ -19,7 +19,7 @@ import { BirthdayService } from '../../../../services/birthday.service';
 import { DialogService } from '../../../../services/dialog.service';
 import { ValidationService } from '../../../../services/validation.service';
 
-import { AddBirthday, Birthday, BirthdayOptions } from '../../../../types/birthday/birthday.types';
+import { AddBirthday, Birthday, BirthdayOptions, BirthdayProfile } from '../../../../types/birthday/birthday.types';
 import { CalendarType } from '../../../../types/calendar/calendar.types';
 import { CalendarDay } from '../../../../types/calendar/calendar-response.types';
 import { Dialog, DialogAction } from '../../../../types/dialog/dialog.types';
@@ -75,9 +75,9 @@ export class AddBirthdayComponent implements OnInit {
 				[BirthdayID.text]: this.fb.control(false),
 				[BirthdayID.gift]: this.fb.control(false),
 			}),
-			image: [
-				''
-			]
+			profile: this.fb.group({
+				image: ['']
+			})
 		},
 		{ 
 			updateOn: 'submit'
@@ -113,7 +113,9 @@ export class AddBirthdayComponent implements OnInit {
 				[BirthdayID.text]: BirthdayUtils.createCheckboxOption(birthday.text),
 				[BirthdayID.gift]: BirthdayUtils.createCheckboxOption(birthday.gift),
 			},
-			image: birthday.image
+			profile: {
+				image: birthday.image
+			}
 		});
 	}
 
@@ -130,12 +132,12 @@ export class AddBirthdayComponent implements OnInit {
 		return this.birthdayForm.get('date.birthday')?.value;
 	}
 
-	get image(): string {
-		return this.birthdayFormControl.image.value;
-	}
-
 	get options(): BirthdayOptions {
 		return this.birthdayFormControl.options.value;
+	}
+
+	get profile(): BirthdayProfile {
+		return this.birthdayFormControl.profile.value;
 	}
 
 	onSubmit(): void {
@@ -148,9 +150,10 @@ export class AddBirthdayComponent implements OnInit {
 				name: this.name,
 				date: this.date,
 				options: this.options,
-				image: this.image,
+				profile: this.profile,
 			};
-			
+			console.log("===> submit this birthday: ", this.birthday);
+
 			this.birthdayService.modifyBirthday(this.birthday, this.birthdayConfig.action)
 				.pipe(
 					take(1),

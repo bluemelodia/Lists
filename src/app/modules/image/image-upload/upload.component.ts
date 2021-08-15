@@ -1,10 +1,9 @@
 import { 
   Component,
   ElementRef,
-  EventEmitter,
   Input,
+  OnChanges,
   OnInit,
-  Output,
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -15,8 +14,9 @@ import { ImageSnippet } from '../../../types/image.types';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class ImageUploadComponent implements OnInit {
+export class ImageUploadComponent implements OnInit, OnChanges {
   @Input() form: FormGroup;
+
   @ViewChild('imageInput') filePicker: ElementRef;
 
   selectedImage: ImageSnippet;
@@ -26,10 +26,19 @@ export class ImageUploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnChanges(): void {
+    this.form.get('image')?.valueChanges.subscribe((val: string) => {
+      if (!val) {
+        this.deleteImage();
+      }
+    });
+  }
+
   public processFile(input: any) {
     /**
      * Get the first file.
      */
+    console.log("===> input: ", input);
     const file: File = input.files[0];
     /**
      * Asynchronously read file contents on the user's computer.
@@ -44,9 +53,6 @@ export class ImageUploadComponent implements OnInit {
         src: event.target.result,
         file: file
       }
-      this.form.patchValue({
-        image: this.selectedImage.src
-      });
     });
 
     /**
