@@ -23,6 +23,17 @@ export class DialogUtils {
         return message;
     }
 
+    public static messageForErrorDialog(dialogType: Dialog): string {
+        let message;
+        switch (dialogType) {
+            case Dialog.UploadFailed:
+                message = DialogMessage.UPLOAD_ERROR;
+                break;
+        }
+
+        return message;
+    }
+
     public static messageforStatusDialog(response: ResponseStatus, dialogType: Dialog): string {
         let message;
         switch (dialogType) {

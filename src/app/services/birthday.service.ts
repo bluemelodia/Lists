@@ -51,7 +51,7 @@ export class BirthdayService {
 				}),
 				catchError((err) => {
 					if (showDialog) {
-						this.dialogService.showStatusDialog(ResponseStatus.ERROR, BirthdayUtils.birthdayDialogForAction(action));
+						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, BirthdayUtils.birthdayDialogForAction(action));
 					}
 					return of(null);				
 				})
@@ -69,11 +69,11 @@ export class BirthdayService {
 			.pipe(
 				map((response: Response) => {
 					console.info("🍰 ✅ BirthdayService, delete birthday success: ", response);
-					this.dialogService.showStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteBirthday);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteBirthday);
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError((err) => { 
-					this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.DeleteBirthday);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.DeleteBirthday);
 					return of(null);				
 				})
 			)

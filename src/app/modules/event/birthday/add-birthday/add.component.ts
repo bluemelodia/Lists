@@ -165,10 +165,10 @@ export class AddBirthdayComponent implements OnInit {
 
 					switch(this.birthdayConfig.action) {
 						case BirthdayAction.Add:
-							this.dialogService.showStatusDialog(response, Dialog.AddBirthday);
+							this.dialogService.showResponseStatusDialog(response, Dialog.AddBirthday);
 							break;
 						case BirthdayAction.Edit:
-							this.dialogService.showStatusDialog(response, Dialog.EditBirthday);
+							this.dialogService.showResponseStatusDialog(response, Dialog.EditBirthday);
 							break;
 					}
 

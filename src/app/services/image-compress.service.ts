@@ -45,7 +45,7 @@ export class CompressImageService {
             * Image is loaded, size information is available.
             */
             const width = img.width;
-            const height = img.width;
+            const height = img.height;
             const ratio = this.calculateRatio(width, height);
 
             const finalWidth = width * ratio;

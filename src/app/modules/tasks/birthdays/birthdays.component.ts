@@ -41,7 +41,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
     this.birthdayService.getBirthdays()
       .pipe(
         catchError((err) => {
-            this.dialogService.showStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
+            this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
             return of(null);
         }),
         take(1),

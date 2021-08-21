@@ -22,7 +22,7 @@ export class DialogService {
 		return this.onAction$.asObservable();
 	}
 
-	showStatusDialog(status: ResponseStatus, dialogType: Dialog) {
+	showResponseStatusDialog(status: ResponseStatus, dialogType: Dialog) {
 		this.show$.next({
 			title: DialogUtils.titleForDialog(status),
 			message: DialogUtils.messageforStatusDialog(status, dialogType),
@@ -38,6 +38,14 @@ export class DialogService {
 		});
 
 		return this.onDialogAction$;
+	}
+
+	showErrorDialog(dialogType: Dialog) {
+		this.show$.next({
+			title: 'Error',
+			message: DialogUtils.messageForErrorDialog(dialogType),
+			dialogType: DialogType.Error
+		});
 	}
 
 	hideDialog() {

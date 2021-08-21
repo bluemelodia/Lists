@@ -7,10 +7,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { catchError, switchMap, takeUntil } from 'rxjs/operators';
 
 import { CompressImageService } from '../../../services/image-compress.service';
+import { DialogService } from '../../../services/dialog.service';
+import { Dialog } from '../../../types/dialog/dialog.types';
 
 @Component({
   selector: 'app-img-upload',
@@ -27,7 +29,10 @@ export class ImageUploadComponent implements OnInit, OnChanges {
 
   private readonly base64Prefix = "data:image/jpeg;base64,";
 
-  constructor(private compressImageService: CompressImageService) { }
+  constructor(
+    private compressImageService: CompressImageService,
+    private dialogService: DialogService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -60,6 +65,10 @@ export class ImageUploadComponent implements OnInit, OnChanges {
         switchMap((file: File) => {
           console.info(`📂 ✅ UploadComponent, image size after compression: ${file?.size} bytes.`);
           return this.compressImageService.convertFileToBase64(file);
+        }),
+        catchError((err) => {
+          this.dialogService.showErrorDialog(Dialog.UploadFailed);
+          return of(null);
         }),
         takeUntil(this.ngUnsubscribe$),
       )

@@ -4,6 +4,7 @@ export enum Dialog {
     EditBirthday,
     DeleteBirthday,
     GetBirthday,
+    UploadFailed,
 }
 
 export enum DialogAction {
@@ -14,6 +15,7 @@ export enum DialogAction {
 
 export enum DialogType {
     Confirm,
+    Error,
     Info
 }
 
