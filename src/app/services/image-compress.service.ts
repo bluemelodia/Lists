@@ -16,6 +16,24 @@ export class CompressImageService {
         return this.onImageCompressed$.asObservable();
     }
 
+    /**
+    * Converts the file to its base64 representation.
+    * 
+    * ReplaySubject is used here, because the same file will always return the same Base64 string.
+    * 
+    * Source: https://tutorialsforangular.com/2020/12/17/converting-files-to-base64-in-angular/
+    */
+    public convertFileToBase64(file : File) : Observable<string> {
+      const result = new Subject<string>();
+      const reader = new FileReader();
+      reader.readAsBinaryString(file);
+      reader.onload = (event) => {
+        console.info("📷 ✅ CompressImageService, converted to base64 string.");
+        result.next(btoa(event.target.result.toString()))
+      };
+      return result;
+    }
+
     public compress(file: File) {
         var reader = new FileReader;
 
@@ -29,7 +47,11 @@ export class CompressImageService {
             const width = img.width;
             const height = img.width;
             const ratio = this.calculateRatio(width, height);
-            this.convertImage(file, width * ratio, height * ratio);
+
+            const finalWidth = width * ratio;
+            const finalHeight = height * ratio;
+            console.info(`📷 ✅ CompressImageService, width -> ${finalWidth}, height -> ${finalHeight}.`);
+            this.convertImage(file, finalWidth, finalHeight);
           };
       
           img.src = reader.result as string; // is the data URL because called with readAsDataURL
@@ -40,18 +62,18 @@ export class CompressImageService {
     private calculateRatio(width: number, height: number): number {
         let ratio = this.QUALITY;
 
-        /**
-         * Perform the compression along the greater dimension.
-         */
-        if (height > width) {
-          let finalHeight = height > this.MAX_HEIGHT ? this.MAX_HEIGHT : height;
-          ratio = finalHeight / height;
+        let finalHeight = height > this.MAX_HEIGHT ? this.MAX_HEIGHT : height;
+        ratio = finalHeight / height;
 
-        } else {
+        if (width > height) {
           let finalWidth = width > this.MAX_WIDTH ? this.MAX_WIDTH : width;
-          ratio = finalWidth / width;
+          const widthRatio = finalWidth / width;
+          if (widthRatio > ratio) {
+            ratio = widthRatio;
+          }
         }
-        console.info("📷 ✅ CompressImageService computed computed ratio: ", ratio);
+
+        console.info("📷 ✅ CompressImageService computed compression ratio: ", ratio);
         return ratio;
     }
 

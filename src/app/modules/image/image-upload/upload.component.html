@@ -6,8 +6,8 @@
         accept="image/*"
         formControlName="fileName"
         (change)="processFile(imageInput)">
-    <section class="image-upload__preview" *ngIf="selectedImage">
-        <img class="image-upload__preview-src" [src]="selectedImage.src"/>
+    <section class="image-upload__preview" *ngIf="selectedImageUrl$ | async as imgUrl">
+        <img class="image-upload__preview-src" [src]="imgUrl"/>
         <button type="button" 
             class="delete-btn description"
             (click)="deleteImage()">

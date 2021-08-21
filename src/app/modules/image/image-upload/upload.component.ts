@@ -8,10 +8,9 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { CompressImageService } from '../../../services/image-compress.service';
-import { ImageSnippet } from '../../../types/image.types';
 
 @Component({
   selector: 'app-img-upload',
@@ -23,8 +22,10 @@ export class ImageUploadComponent implements OnInit, OnChanges {
 
   @ViewChild('imageInput') filePicker: ElementRef;
 
-  selectedImage: ImageSnippet;
+  public selectedImageUrl$ = new Subject<string>();
   private ngUnsubscribe$ = new Subject<void>();
+
+  private readonly base64Prefix = "data:image/jpeg;base64,";
 
   constructor(private compressImageService: CompressImageService) { }
 
@@ -48,7 +49,7 @@ export class ImageUploadComponent implements OnInit, OnChanges {
      * Get the first file.
      */
     const file: File = input.files[0];
-    console.log(`Image size before compressed: ${file.size} bytes.`);
+    console.info(`📂 ✅ UploadComponent, image size before compression: ${file.size} bytes.`);
 
     this.compressImageService.compress(file);
   }
@@ -56,16 +57,20 @@ export class ImageUploadComponent implements OnInit, OnChanges {
   private addSubscriptions() {
     this.compressImageService.imageCompressed$
       .pipe(
-        take(1),
+        switchMap((file: File) => {
+          console.info(`📂 ✅ UploadComponent, image size after compression: ${file?.size} bytes.`);
+          return this.compressImageService.convertFileToBase64(file);
+        }),
         takeUntil(this.ngUnsubscribe$),
       )
-      .subscribe((file: File) => {
-          console.log("===> got compressed file: ", file);
+      .subscribe((stringRep: string) => {
+        console.info("📂 ✅ UploadComponent, received base64 string: ", stringRep);
+        this.selectedImageUrl$.next(`${this.base64Prefix}${stringRep}`);
       });
   }
 
   public deleteImage() {
-    this.selectedImage = null;
+    this.selectedImageUrl$.next(null);
     this.filePicker.nativeElement.value = '';
   }
 }
