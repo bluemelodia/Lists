@@ -73,8 +73,11 @@ export class ImageUploadComponent implements OnInit, OnChanges {
         takeUntil(this.ngUnsubscribe$),
       )
       .subscribe((stringRep: string) => {
-        console.info("📂 ✅ UploadComponent, received base64 string: ", stringRep);
+        console.info(`📂 ✅ UploadComponent, successfully converted to base64.`);
         this.selectedImageUrl$.next(`${this.base64Prefix}${stringRep}`);
+        this.form.patchValue({
+            image: stringRep
+        });
       });
   }
 

@@ -115,6 +115,7 @@ export class AddBirthdayComponent implements OnInit {
 				[BirthdayID.gift]: BirthdayUtils.createCheckboxOption(birthday.gift),
 			},
 			profile: {
+				fileName: birthday.fileName,
 				image: birthday.image
 			}
 		});
