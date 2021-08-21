@@ -1,5 +1,5 @@
 :host {
-  background-color: white;
+  background-color: transparent;
   display: flex;
   position: fixed;
   top: 0;
@@ -19,23 +19,23 @@
 }
 
 :host.open {
-    height: 100%;
+  height: 100%;
 
-    /* This timing applies on the way IN */
-    transition-timing-function: ease-out;
+  /* This timing applies on the way IN */
+  transition-timing-function: ease-out;
 
-    /* A litttttle slower on the way in */
-    transition: 0.25s;
+  /* A litttttle slower on the way in */
+  transition: 0.25s;
 
-    /* Move into place */
-    transform: translateX(0px);
+  /* Move into place */
+  transform: translateX(0px);
 }
 
 nav {
-    display: flex;
-    height: 44px;
+  display: flex;
+  height: 44px;
 }
 
 :host.open nav {
-    display: none;
+  display: none;
 }
