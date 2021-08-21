@@ -1,7 +1,9 @@
 <ul class="birthday-list" *ngIf="list && list.length > 0">
     <li class="birthday-list__item" *ngFor="let birthday of list">
-        <img *ngIf="birthday.image" src="{{ base64Prefix }}{{ birthday.image }}"/>
-        <img *ngIf="!birthday.image" class="birthday-list__item-photo" src="./assets/images/cake.png"/>
+        <section class="birthday-list__photo-container">
+            <img *ngIf="birthday.image" class="birthday-list__item-photo" src="{{ base64Prefix }}{{ birthday.image }}"/>
+            <img *ngIf="!birthday.image" class="birthday-list__item-photo" src="./assets/images/cake.png"/>
+        </section>
         <section class="birthday-list__item-info form-container flex-centered__column flex-stretch">
             <app-header [level]="headerLevel.H2" [text]="birthday.name">
                 <app-date-indicator post [status]="birthday.status"></app-date-indicator>
