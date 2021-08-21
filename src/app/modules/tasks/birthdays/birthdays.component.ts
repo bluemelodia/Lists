@@ -6,7 +6,7 @@ import {
   OnInit
 } from '@angular/core';
 import { of, Subject } from 'rxjs';
-import { catchError, map, take, takeUntil } from 'rxjs/operators';
+import { catchError, finalize, map, take, takeUntil } from 'rxjs/operators';
 
 import { BirthdayService } from '../../../services/birthday.service';
 import { CalendarService } from '../../../services/calendar.service';
@@ -26,6 +26,8 @@ import { ResponseStatus } from '../../../types/response.types';
 export class BirthdaysComponent implements OnInit, OnDestroy {
   private birthdays$ = new Subject<AddBirthday[]>();
   public birthdayList$ = this.birthdays$.asObservable();
+  public isLoading = false;
+
   private calendar: Calendar;
 
   private ngUnsubscribe$ = new Subject<void>();
@@ -48,8 +50,14 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
   * Pre-fetch the calendar.
   */
   private fetchCalendar() {
+    this.isLoading = true;
     this.calendarService.getCalendar(CalendarType.Lunar);
     this.calendarService.onCalendarFetched$
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
       .subscribe((calendar: Calendar) => {
         if (!calendar) {
           return;
@@ -69,23 +77,31 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
   * up-to-date birthdays list.
 	*/
   private patchBirthdays() {
-      this.birthdayService.getBirthdays('guest')
-        .pipe(
-          map((birthdays: AddBirthday[]) => birthdays.filter((birthday) => birthday.lunar)),
-          take(1)
-        )
-        .subscribe((birthdays: AddBirthday[]) => {
-          console.info("🍰 ✅ BirthdaysComponent, BirthdayService returned birthdays: ", birthdays);
-          this.birthdayService.updateBirthdays(this.calendar, birthdays);
-        });
+    this.isLoading = true;
+    this.birthdayService.getBirthdays('guest')
+      .pipe(
+        map((birthdays: AddBirthday[]) => birthdays.filter((birthday) => birthday.lunar)),
+        take(1),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe((birthdays: AddBirthday[]) => {
+        console.info("🍰 ✅ BirthdaysComponent, BirthdayService returned birthdays: ", birthdays);
+        this.birthdayService.updateBirthdays(this.calendar, birthdays);
+      });
   }
 
   public getBirthdays(): void {
+    this.isLoading = true;
     this.birthdayService.getBirthdays()
       .pipe(
         catchError((err) => {
             this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
             return of(null);
+        }),
+        finalize(() => {
+          this.isLoading = false;
         }),
         take(1),
         takeUntil(this.ngUnsubscribe$)
