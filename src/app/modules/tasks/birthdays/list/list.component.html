@@ -5,9 +5,9 @@
             <img *ngIf="!birthday.image" class="birthday-list__item-photo" src="./assets/images/cake.png"/>
         </section>
         <section class="birthday-list__item-info form-container flex-centered__column flex-stretch">
-            <app-header [level]="headerLevel.H2" [text]="birthday.name">
+            <app-heading [level]="headerLevel.H2" [text]="birthday.name">
                 <app-date-indicator post [status]="birthday.status"></app-date-indicator>
-            </app-header>
+            </app-heading>
             <section>
                 <p>Solar ({{ birthday.year }}) - {{ birthday.month }}/{{ birthday.date }}</p>
                 <p *ngIf="birthday.lunar">
@@ -28,7 +28,7 @@
             <fieldset class="form-actions">
                 <button type="submit" 
                     routerLink="/events/edit-birthday"
-                    [queryParams]="{ birthday: birthday | json }">
+                    [queryParams]="{ title: 'Edit Birthday', birthday: birthday | json }">
                     Edit
                 </button>
                 <button type="submit"
@@ -41,7 +41,7 @@
 </ul>
 <section class="no-results flex-centered__column"
     *ngIf="list && list.length === 0">
-    <app-header [level]="headerLevel.H1" text="No Birthdays Found"></app-header>
+    <app-heading [level]="headerLevel.H1" text="No Birthdays Found"></app-heading>
     <section class="form-container flex-centered__column">
         <p>You do not currently have any birthday reminders.</p>
         <button type="submit" routerLink="/events/add-birthday">Add Birthday</button>

@@ -1,5 +1,5 @@
 <section class="form-container">
-    <app-header [level]="headerLevel.H1" text="{{ birthdayConfig.action }} Birthday"></app-header>
+    <app-heading [level]="headerLevel.H1" text="{{ birthdayConfig.action }} Birthday"></app-heading>
     <form class="event-form"
         [formGroup]="birthdayForm"
         (ngSubmit)="onSubmit()">
@@ -31,15 +31,15 @@
             </app-checkbox>
         </fieldset>
         <fieldset>
-            <app-header [level]="headerLevel.H3" text="Select Image">
+            <app-heading [level]="headerLevel.H3" text="Select Image">
                 <span class="event-form__optional" post>Optional</span>
-            </app-header>
+            </app-heading>
             <app-img-upload [form]="birthdayForm.controls.profile"></app-img-upload>
         </fieldset>
         <fieldset class="event-options">
-            <app-header [level]="headerLevel.H3" text="Actions">
+            <app-heading [level]="headerLevel.H3" text="Actions">
                 <span class="event-form__optional" post>Optional</span>
-            </app-header>
+            </app-heading>
             <app-checkbox
                 name="Call"
                 [checkboxName]="birthdayID.call"

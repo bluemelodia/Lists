@@ -24,6 +24,7 @@ export const MENU_LIST: MenuItem[] = [
 
 interface IMenuDetails {
     route: string;
+    title?: string;
     subMenu?: IMenu;
     subMenuList?: Topic[] | Event[];
     expanded?: boolean;
@@ -38,40 +39,52 @@ export interface IMenu {
  */
 const TOPICS: IMenu = {
     [Topic.Birthdays]: {
-        route: '/birthdays'
+        route: '/birthdays',
+        title: 'Birthdays'
     },
     [Topic.Family]: {
-        route: '/family'
+        route: '/family',
+        title: 'Family'
     },
     [Topic.Finance]: {
-        route: '/finance'
+        route: '/finance',
+        title: 'Finances'
     },
     [Topic.Health]: {
-        route: '/health'
+        route: '/health',
+        title: 'Health'
     },
     [Topic.Hobby]: {
-        route: '/hobby'
+        route: '/hobby',
+        title: 'Hobbies'
     },
     [Topic.Home]: {
-        route: '/home'
+        route: '/home',
+        title: 'Home'
     },
     [Topic.Gifts]: {
-        route: '/gifts'
+        route: '/gifts',
+        title: 'Gifts'
     },
     [Topic.Shopping]: {
-        route: '/shopping'
+        route: '/shopping',
+        title: 'Shopping'
     },
     [Topic.Social]: {
-        route: '/social'
+        route: '/social',
+        title: 'Social'
     },
     [Topic.Study]: {
-        route: '/study'
+        route: '/study',
+        title: 'Study'
     },
     [Topic.Travel]: {
-        route: '/travel'
+        route: '/travel',
+        title: 'Travel'
     },
     [Topic.Work]: {
-        route: '/work'
+        route: '/work',
+        title: 'Work'
     }
 };
 
@@ -92,7 +105,8 @@ const TOPIC_LIST: Topic[] = [
 
 const EVENTS: IMenu = {
     [Event.Birthday]: {
-        route: 'events/add-birthday'
+        route: 'events/add-birthday',
+        title: 'Add Birthday'
     },
 };
 
@@ -102,10 +116,12 @@ const EVENT_LIST: Event[] = [
 
 export const MENU: IMenu = {
     [MenuItem.Home]: {
-        route: '/home'
+        route: '/home',
+        title: 'Home'
     },
     [MenuItem.Activity]: {
-        route: '/activity'
+        route: '/activity',
+        title: 'Activity'
     },
     [MenuItem.AddEvent]: {
         route: '',
@@ -114,15 +130,17 @@ export const MENU: IMenu = {
         expanded: false,
     },
     [MenuItem.Calendar]: {
-        route: '/calendar'
+        route: '/calendar',
+        title: 'Calendar'
     },
     [MenuItem.Tasks]: {
         route: '',
         subMenu: TOPICS,
         subMenuList: TOPIC_LIST,
-        expanded: false,  
+        expanded: false,
     },
     [MenuItem.Settings]: {
-        route: '/settings'
+        route: '/settings',
+        title: 'Settings'
     }
 };

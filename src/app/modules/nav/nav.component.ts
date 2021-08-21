@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit, ɵPlayState } from '@angular/core';
+import { Component, HostBinding, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NavService } from "../../services/nav.service";
@@ -8,7 +8,7 @@ import { NavService } from "../../services/nav.service";
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent {
+export class NavComponent implements OnDestroy {
   public showMenu = false;
 
   private ngUnsubscribe$ = new Subject<void>();
@@ -35,4 +35,9 @@ export class NavComponent {
     this.showMenu = state;
     this.open = this.showMenu;
   }
+
+  ngOnDestroy(): void {
+		this.ngUnsubscribe$.next();
+		this.ngUnsubscribe$.complete();
+	}
 }

@@ -3,6 +3,7 @@ import {
   ElementRef,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -19,7 +20,7 @@ import { Dialog } from '../../../types/dialog/dialog.types';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class ImageUploadComponent implements OnInit, OnChanges {
+export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
   @Input() form: FormGroup;
 
   @ViewChild('imageInput') filePicker: ElementRef;
@@ -86,4 +87,9 @@ export class ImageUploadComponent implements OnInit, OnChanges {
     this.selectedImageUrl$.next(null);
     this.filePicker.nativeElement.value = '';
   }
+
+  ngOnDestroy(): void {
+		this.ngUnsubscribe$.next();
+		this.ngUnsubscribe$.complete();
+	}
 }

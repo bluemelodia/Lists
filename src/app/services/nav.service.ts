@@ -7,11 +7,18 @@ import { Observable, Subject } from 'rxjs';
 })
 export class NavService {
 	private menuState$ = new Subject<boolean>();
-
-	constructor(private router: Router) { }
+	private menuTitleChanged$ = new Subject<string>();
 
 	public get onMenuChange$(): Observable<boolean> {
 		return this.menuState$.asObservable();
+	}
+
+	public get onMenuTitleChange$(): Observable<string> {
+		return this.menuTitleChanged$.asObservable();
+	}
+
+	public setTitle(title: string) {
+		this.menuTitleChanged$.next(title);
 	}
 
 	/**

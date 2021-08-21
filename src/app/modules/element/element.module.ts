@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
+import { HeadingComponent } from './heading/heading.component';
 import { LoaderComponent } from './loader/loader.component';
 import { NoResultsComponent } from './no-results/no-results.component';
 
 @NgModule({
     declarations: [
-        HeaderComponent,
+        HeadingComponent,
         LoaderComponent,
         NoResultsComponent
     ],
@@ -14,7 +14,7 @@ import { NoResultsComponent } from './no-results/no-results.component';
         CommonModule
     ],
     exports: [
-        HeaderComponent,
+        HeadingComponent,
         LoaderComponent,
         NoResultsComponent
     ]

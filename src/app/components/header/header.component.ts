@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { NavService } from '../../services/nav.service';
 
 @Component({
 	selector: 'app-header',
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+	private ngUnsubscribe$ = new Subject<void>();
+	public title$ = new Subject<string>();
 
-	constructor() { }
+	constructor(private navService: NavService) { }
 
 	ngOnInit(): void {
+		this.navService.onMenuTitleChange$
+			.pipe(
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((title: string) => {
+				console.log("===> change header title: ", title);
+				this.title$.next(title);
+			});
 	}
 
+	ngOnDestroy(): void {
+		this.ngUnsubscribe$.next();
+		this.ngUnsubscribe$.complete();
+	}
 }

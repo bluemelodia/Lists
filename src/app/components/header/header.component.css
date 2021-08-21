@@ -5,7 +5,11 @@
   justify-content: center;
 
   width: 100%;
-  height: 54px;
+  height: 44px;
 
   background-color: #ffc0cb;
+  /**
+  * Prevents the header from going below 44px.
+  */
+  flex-shrink: 0;
 }

@@ -17,11 +17,11 @@ const routes: Routes = [
   {
     path: 'birthdays',
     loadChildren: () => import('./modules/tasks/birthdays/birthdays.module').then(m => m.BirthdaysTaskModule)
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

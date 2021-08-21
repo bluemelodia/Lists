@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
 	FormBuilder,
 	FormGroup,
@@ -33,7 +33,7 @@ import { BirthdayUtils } from '../../../../utils/birthday.utils';
 	templateUrl: './add.component.html',
 	styleUrls: ['./add.component.css']
 })
-export class AddBirthdayComponent implements OnInit {
+export class AddBirthdayComponent implements OnInit, OnDestroy {
 	birthday: Birthday;
 	birthdayAction = BirthdayAction;
 	birthdayForm: FormGroup;
@@ -188,7 +188,10 @@ export class AddBirthdayComponent implements OnInit {
 			.subscribe((action: DialogAction) => {
 				switch(action) {
 					case DialogAction.Continue:
-						this.router.navigate([ '/birthdays' ], { relativeTo: this.route });
+						this.router.navigate([ '/birthdays' ], { 
+							queryParams: { title: 'Birthdays' },
+							relativeTo: this.route
+						});
 						break;
 					default:
 						break;
@@ -206,5 +209,10 @@ export class AddBirthdayComponent implements OnInit {
 			.subscribe(() => {
 				this.birthdayForm.reset();
 			});
+	}
+
+	ngOnDestroy(): void {
+		this.ngUnsubscribe$.next();
+		this.ngUnsubscribe$.complete();
 	}
 }

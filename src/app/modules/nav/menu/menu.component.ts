@@ -37,7 +37,8 @@ export class MenuComponent implements OnInit {
     if (NavUtils.getSubMenu(item)) {
       this.menuItems[item].expanded = !this.menuItems[item].expanded;
     } else {
-      this.router.navigate([this.menuItems[item].route]);
+      console.log("===> navigate to route: ", this.menuItems[item]);
+      this.router.navigate([this.menuItems[item].route],{ queryParams: { title: this.menuItems[item].title }});
       this.nav.closeNavMenu();
     }
   }
