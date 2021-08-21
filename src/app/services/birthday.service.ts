@@ -1,6 +1,6 @@
-import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { BirthdayAction } from '../constants/birthday';
 
@@ -19,10 +19,16 @@ import { DialogService } from './dialog.service';
 export class BirthdayService {
 	private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
+	public birthdaysChanged$ = new Subject<void>();
+
 	constructor(
 		private dialogService: DialogService,
 		private http: HttpClient
 	) { }
+
+	get birthdaysListChanged$(): Observable<void> {
+		return this.birthdaysChanged$.asObservable();
+	}
 	
 	public modifyBirthday(birthday: Birthday, action: BirthdayAction): Observable<ResponseStatus> {
 		switch (action) {
@@ -47,6 +53,7 @@ export class BirthdayService {
 		)
 			.pipe(
 				map((response: Response) => {
+					this.birthdaysChanged$.next();
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
 				catchError((err) => {
@@ -69,6 +76,7 @@ export class BirthdayService {
 			.pipe(
 				map((response: Response) => {
 					console.info("🍰 ✅ BirthdayService, delete birthday success: ", response);
+					this.birthdaysChanged$.next();
 					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteBirthday);
 					return ResponseStatus.SUCCESS;
 				}),
