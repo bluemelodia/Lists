@@ -30,7 +30,7 @@ export interface AddBirthday {
 	lunar: number;
 	status?: DateStatus;
 	image?: string;
-	fileName?: string;
+	filename?: string;
 }
 
 export interface BirthdayOptions {

@@ -98,7 +98,7 @@ export class BirthdayUtils {
 			leap: date.leap ? 1 : 0,
 			cmonthname: date.cmonthname,
 			lunar: birthday.options.lunar ? 1 : 0,
-			fileName: BirthdayUtils.extractFileURL(birthday.profile?.fileName),
+			filename: BirthdayUtils.extractFileURL(birthday.profile?.fileName),
 			image: birthday.profile?.image,
 		};
 		console.log("====> send this birthday: ", addBirthday);

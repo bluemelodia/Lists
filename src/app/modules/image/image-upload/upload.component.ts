@@ -43,6 +43,7 @@ export class ImageUploadComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.addSubscriptions();
     this.form.get('image')?.valueChanges.subscribe((val: string) => {
+      console.log("===> image changed: ", val);
       if (!val) {
         this.deleteImage();
       }

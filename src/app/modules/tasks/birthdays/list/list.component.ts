@@ -25,6 +25,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
   headerLevel = HeaderLevel;
 
+  public readonly base64Prefix = "data:image/jpeg;base64,";
   private ngUnsubscribe$ = new Subject<void>();
 
   constructor(
