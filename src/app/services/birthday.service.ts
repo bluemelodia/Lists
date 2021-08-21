@@ -95,6 +95,10 @@ export class BirthdayService {
 						[BirthdayID.call]: !!birthday.call,
 						[BirthdayID.text]: !!birthday.text,
 						[BirthdayID.gift]: !!birthday.gift
+					},
+					profile: {
+						image: birthday.image,
+						fileName: birthday.filename
 					}
 				};
 				this.postBirthday(addBirthday, false, BirthdayAction.Add).subscribe();
