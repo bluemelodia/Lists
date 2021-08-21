@@ -76,7 +76,8 @@ export class AddBirthdayComponent implements OnInit {
 				[BirthdayID.gift]: this.fb.control(false),
 			}),
 			profile: this.fb.group({
-				image: ['']
+				image: [''],
+				fileName: ['']
 			})
 		},
 		{ 
@@ -152,7 +153,7 @@ export class AddBirthdayComponent implements OnInit {
 				options: this.options,
 				profile: this.profile,
 			};
-			console.log("===> submit this birthday: ", this.birthday);
+			console.info("🥳 💁🏻‍♀️ AddBirthdayComponent, submit birthday: ", this.birthday);
 
 			this.birthdayService.modifyBirthday(this.birthday, this.birthdayConfig.action)
 				.pipe(
@@ -160,7 +161,7 @@ export class AddBirthdayComponent implements OnInit {
 					takeUntil(this.ngUnsubscribe$)
 				)
 				.subscribe((response: ResponseStatus) => {
-					console.log("===> add birthday results: ", response);
+					console.info("🥳 💁🏻‍♀️ AddBirthdayComponent, add birthday results: ", response);
 
 					switch(this.birthdayConfig.action) {
 						case BirthdayAction.Add:

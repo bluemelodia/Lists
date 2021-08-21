@@ -24,7 +24,7 @@ import { noCalMessage } from '../../../types/message.types';
 export class DatepickerComponent implements OnInit, OnDestroy {
   @Input() placeholder = '';
   @Input() calendarType: CalendarType = CalendarType.Lunar;
-  @Input() birthdayForm: FormGroup;
+  @Input() form: FormGroup;
   @Input() submitted: boolean = false;
 
   @ViewChild('picker', { read: ElementRef, static: false }) picker: ElementRef;
@@ -113,7 +113,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
   }
 
   public selectDate(date: CalendarDay): void {
-    this.birthdayForm.patchValue({
+    this.form.patchValue({
       birthday: date
     });
     this.showHideCal();

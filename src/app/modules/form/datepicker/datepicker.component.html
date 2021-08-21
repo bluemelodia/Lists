@@ -1,12 +1,12 @@
-<form #picker [formGroup]="birthdayForm"
+<form #picker [formGroup]="form"
     class="input-container focus-origin">
         <input readonly type="text"
             [ngClass]="{ 'picker-open' : showCal }"
             [placeholder]="placeholder"
-            [value]="birthdayForm.controls.birthday.value | pickerDateFormatter"
+            [value]="form.controls.birthday.value | pickerDateFormatter"
             (click)="showHideCal()"
             (keydown)="onKeydownEvent($event)"/>
-        <div class="input-error" *ngIf="!birthdayForm.valid && submitted">
+        <div class="input-error" *ngIf="!form.valid && submitted">
             <span *ngIf="!selectedDate">
                 Date is required.
             </span>
@@ -18,7 +18,7 @@
             [id]="calendarId" 
             [calendar]="cal" 
             [type]="calendarType"
-            [selectedDay]="birthdayForm.controls.birthday.value"
+            [selectedDay]="form.controls.birthday.value"
             (onDateSelected)="selectDate($event)">
         </app-calendar>
         <app-no-results 

@@ -4,7 +4,7 @@
     <input #imageInput
         type="file"
         accept="image/*"
-        formControlName="image"
+        formControlName="fileName"
         (change)="processFile(imageInput)">
     <section class="image-upload__preview" *ngIf="selectedImage">
         <img class="image-upload__preview-src" [src]="selectedImage.src"/>

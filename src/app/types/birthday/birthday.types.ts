@@ -30,6 +30,7 @@ export interface AddBirthday {
 	lunar: number;
 	status?: DateStatus;
 	image?: string;
+	fileName?: string;
 }
 
 export interface BirthdayOptions {
@@ -40,5 +41,6 @@ export interface BirthdayOptions {
 }
 
 export interface BirthdayProfile {
+	fileName: string;
 	image: string;
 }

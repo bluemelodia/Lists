@@ -48,7 +48,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe$)
       )
       .subscribe((birthdays: AddBirthday[]) => {
-        console.log("Received birthdays: ", birthdays);
+        console.info("🍰 ✅ BirthdaysComponent, received birthdays: ", birthdays);
         this.birthdays$.next(birthdays);
       });
   }

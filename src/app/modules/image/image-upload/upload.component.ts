@@ -7,6 +7,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
+
+import { CompressImageService } from '../../../services/image-compress.service';
 import { ImageSnippet } from '../../../types/image.types';
 
 @Component({
@@ -20,8 +24,9 @@ export class ImageUploadComponent implements OnInit, OnChanges {
   @ViewChild('imageInput') filePicker: ElementRef;
 
   selectedImage: ImageSnippet;
+  private ngUnsubscribe$ = new Subject<void>();
 
-  constructor() { }
+  constructor(private compressImageService: CompressImageService) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +35,7 @@ export class ImageUploadComponent implements OnInit, OnChanges {
    * Ensure the preview image is removed once the form is reset.
    */
   ngOnChanges(): void {
+    this.addSubscriptions();
     this.form.get('image')?.valueChanges.subscribe((val: string) => {
       if (!val) {
         this.deleteImage();
@@ -42,26 +48,20 @@ export class ImageUploadComponent implements OnInit, OnChanges {
      * Get the first file.
      */
     const file: File = input.files[0];
-    /**
-     * Asynchronously read file contents on the user's computer.
-     * Used to access additional file properties.
-     */
-    const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-      /**
-      * Base64 representation of the image.
-      */
-      this.selectedImage = {
-        src: event.target.result,
-        file: file
-      }
-    });
+    console.log(`Image size before compressed: ${file.size} bytes.`);
 
-    /**
-     * Get a base64 representation of the image in the callback
-     * function of the listener above.
-     */
-    reader.readAsDataURL(file);
+    this.compressImageService.compress(file);
+  }
+
+  private addSubscriptions() {
+    this.compressImageService.imageCompressed$
+      .pipe(
+        take(1),
+        takeUntil(this.ngUnsubscribe$),
+      )
+      .subscribe((file: File) => {
+          console.log("===> got compressed file: ", file);
+      });
   }
 
   public deleteImage() {

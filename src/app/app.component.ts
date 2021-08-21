@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
         take(1)
       )
       .subscribe((birthdays: AddBirthday[]) => {
-        console.log("App startup Received birthdays: ", this.calendar, birthdays);
+        console.info("🍰 ✅ @App startup, BirthdayService returned birthdays: ", birthdays);
         this.birthdayService.updateBirthdays(this.calendar, birthdays);
       });
   }

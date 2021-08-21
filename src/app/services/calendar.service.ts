@@ -85,7 +85,6 @@ export class CalendarService {
 			 * There is no real difference between the solar and lunar data. 
 			 * We use the lunar API for both.
 			 */
-			console.log("cals; ", calendarMonths);
 			this.calendar$.next({
 				years: calendarYears,
 				months: calendarMonths,
@@ -102,7 +101,7 @@ export class CalendarService {
 		*/
 		const cachedCalendar = CalendarUtils.getCachedCalendar(year);
 		if (cachedCalendar) {
-			console.log(`---> 📅 🗃 retrieve ${ year } calendar from cache`,);
+			console.info(`📅 🗃 CalendarService, retrieve ${ year } calendar from cache`,);
 			return of({
 				statusCode: 0,
 				responseData: cachedCalendar

@@ -98,8 +98,23 @@ export class BirthdayUtils {
 			leap: date.leap ? 1 : 0,
 			cmonthname: date.cmonthname,
 			lunar: birthday.options.lunar ? 1 : 0,
+			fileName: BirthdayUtils.extractFileURL(birthday.profile?.fileName),
+			image: birthday.profile?.image,
 		};
+		console.log("====> send this birthday: ", addBirthday);
 		return addBirthday;
+	}
+
+	private static extractFileURL(fileName: string) {
+		if (!fileName) {
+			return null;
+		}
+
+		/**
+		 * The string is prefixed with C:\fakepath\, to prevent malicious software 
+		 * from guessing the user's file structure.
+		 */
+		return fileName.substring(fileName.lastIndexOf('\\') + 1);
 	}
 
 	public static sortAndTagBirthdays(birthdays: AddBirthday[]) {

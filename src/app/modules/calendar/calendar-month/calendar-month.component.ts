@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { CalendarService } from '../../../services/calendar.service';
 import { CalendarType, Month } from '../../../types/calendar/calendar.types';
 import { CalendarDay } from '../../../types/calendar/calendar-response.types';
-import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
   selector: 'app-calendar-month',
@@ -34,7 +35,6 @@ export class CalendarMonthComponent {
     }
 
     selectDate(date: CalendarDay): void {
-      console.log("Selected: ", date);
       this.onDateSelect.emit(date);
     }
 

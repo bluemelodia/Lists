@@ -37,7 +37,7 @@ export class BirthdayService {
 	* TODO: add user ID
 	*/
 	public postBirthday(birthday: Birthday, showDialog = true, action = BirthdayAction.Add): Observable<ResponseStatus> {
-		console.log("===> add a birthday: ", birthday);
+		console.info("🍰 🏁 BirthdayService, add a birthday: ", birthday);
 		return this.http.post<Response>(
 			BirthdayUtils.birthdayURLForAction(action),
 			BirthdayUtils.formatBirthday(birthday),
@@ -59,7 +59,7 @@ export class BirthdayService {
 	}
 
 	public deleteBirthday(uuid: string): Observable<ResponseStatus> {
-		console.log("==> delete: ", uuid);
+		console.info("🍰 🏁 BirthdayService, delete birthday: ", uuid);
 		return this.http.delete<Response>(
 			`${BirthdayUtils.birthdayURLForAction(BirthdayAction.Delete)}/guest/${uuid}`,
 			{
@@ -68,7 +68,7 @@ export class BirthdayService {
 		)
 			.pipe(
 				map((response: Response) => {
-					console.log("Response: ", response);
+					console.info("🍰 ✅ BirthdayService, delete birthday success: ", response);
 					this.dialogService.showStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteBirthday);
 					return ResponseStatus.SUCCESS;
 				}),
@@ -84,7 +84,7 @@ export class BirthdayService {
 			const matchingDays = calendar.days.filter((day: CalendarDay) => {
 				return day.cmonthname === birthday.cmonthname && day.cdate === birthday.cdate;
 			});
-			console.log("===> matchingDays: ", birthday, matchingDays);
+			console.info("🍰 🏁 BirthdayService, find matching days: ", birthday, matchingDays);
 			matchingDays.forEach((day: CalendarDay) => {
 				const addBirthday: Birthday = {
 					name: birthday.name,
@@ -107,7 +107,7 @@ export class BirthdayService {
 	 * @returns A sorted list of birthdays for this user.
 	 */
 	public getBirthdays(userID: string = "guest"): Observable<AddBirthday[]> {
-		console.log("===> get birthdays for id: ", userID);
+		console.info("🍰 🏁 BirthdayService, get birthdays for id: ", userID);
 
 		const getBirthday = `${BirthdayUtils.birthdayURLForAction(BirthdayAction.Fetch)}/${userID}`;
 		return this.http.get<Response>(
@@ -115,7 +115,7 @@ export class BirthdayService {
 		)
 			.pipe(
 				map((response: Response) => {
-					console.log("===> received birthdays: ", response);
+					console.info("🍰 ✅ BirthdayService, received birthdays: ", response);
 					return BirthdayUtils.sortAndTagBirthdays(response.responseData);
 				}),
 				catchError((err) => { 

@@ -12,7 +12,7 @@ import { CalendarType, shortMonths } from '../../types/calendar/calendar.types';
 export class CalendarComponent implements OnInit {
 	@Input() type: CalendarType;
 	@Input() set selectedDay(selected: CalendarDay) {
-		console.log("==> set selected date: ", selected);
+		console.info("📆 💁🏻‍♀️ CalendarComponent, set selected date: ", selected);
 		/* If user selected a date, open the calendar to the selected month. */
 		if (selected) {
 			this.monthIdx = this.cal.months.findIndex((month) =>
