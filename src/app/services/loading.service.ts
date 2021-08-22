@@ -12,10 +12,12 @@ export class LoadingService {
 	}
 
 	public startLoading() {
+        console.info("⭕️ 🏁 LoadingService ---> startLoading");
         this.loadingStateChanged$.next(true);
     }
 
     public stopLoading() {
+        console.info("⭕️ 🛑 LoadingService ---> stopLoading");
         this.loadingStateChanged$.next(false);
     }
 }
