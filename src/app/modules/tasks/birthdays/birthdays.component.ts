@@ -62,6 +62,8 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
         if (numChanges) {
           console.info("🍰 ✅ BirthdaysComponent ---> addSubscriptions, birthdays list refreshed, retrieve new list.");
           this.getBirthdays(true);
+        } else {
+          this.loadingService.stopLoading();
         }
       });
 
@@ -85,10 +87,13 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
       .pipe(
         catchError((err) => {
             this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
+            this.loadingService.stopLoading();
             return of(null);
         }),
         finalize(() => {
-          this.loadingService.stopLoading();
+          if (refresh) {
+            this.loadingService.stopLoading();
+          }
         }),
         take(1),
         takeUntil(this.ngUnsubscribe$)

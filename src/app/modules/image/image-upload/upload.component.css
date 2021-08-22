@@ -9,6 +9,10 @@
     right: 0;
 }
 
+.image-upload__picker {
+    width: 100%;
+}
+
 .image-upload__preview {
     display: flex;
     justify-content: center;

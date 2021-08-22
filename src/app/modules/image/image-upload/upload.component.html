@@ -2,6 +2,7 @@
      accept: image/* means any image file -->
 <ng-container [formGroup]="uploadForm">
     <input #imageInput
+        class="image-upload__picker"
         type="file"
         accept="image/*"
         formControlName="fileName"
