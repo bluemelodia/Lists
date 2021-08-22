@@ -51,7 +51,7 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
     this.uploadForm.get('image')?.valueChanges.subscribe((val: string) => {
       console.log("===> image changed: ", val);
       if (!val) {
-        this.deleteImage();
+        this.clearImage();
       }
     });
   }
@@ -66,7 +66,18 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
     this.compressImageService.compress(file);
   }
 
+  /**
+   * If the user manually deletes the image, then it's because they don't want it submitted. 
+   * If the form clears the image, then it's because the form needs to cleared.
+   */
   public deleteImage() {
+    this.uploadForm.patchValue({
+      image: null
+    });
+    this.clearImage();
+  }
+
+  public clearImage() {
     this.selectedImageUrl$.next(null);
     this.filePicker.nativeElement.value = '';
   }
