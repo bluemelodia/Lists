@@ -12,7 +12,7 @@
             </span>
         </div> 
     <section class="cal-container" *ngIf="showCal">
-        <app-loader [isLoading]="isLoading"></app-loader>
+        <app-loader *ngIf="isLoading"></app-loader>
         <app-calendar #calendar appFocus
             *ngIf="!isLoading && cal"
             [id]="calendarId" 

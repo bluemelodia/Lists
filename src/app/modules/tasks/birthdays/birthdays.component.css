@@ -8,10 +8,6 @@
   padding: 16px;
 }
 
-:host.hide-container {
-    opacity: 0;
-}
-
 :host.hide-scrollbar {
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */

@@ -2,9 +2,7 @@
 <app-header></app-header>
 <section class="app-container"
     (click)="closeMenu()">
-    <app-loader [isLoading]="loadingState$ | async"
-        fullScreen="true">
-    </app-loader>
+    <app-loader *ngIf="loadingState$ | async" fullScreen="true"></app-loader>
     <router-outlet></router-outlet>
     <!--<app-topics></app-topics>-->
 </section>

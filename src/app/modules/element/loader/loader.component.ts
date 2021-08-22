@@ -6,7 +6,6 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
   styleUrls: ['./loader.component.css']
 })
 export class LoaderComponent implements OnInit {
-  @Input() isLoading: boolean;
   @Input() fullScreen = false;
 
   @HostBinding('class') public get hostClasses() {
