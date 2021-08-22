@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((title: string) => {
-				console.log("===> change header title: ", title);
 				this.title$.next(title);
 			});
 	}

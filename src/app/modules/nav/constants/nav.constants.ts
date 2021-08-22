@@ -22,7 +22,7 @@ export const MENU_LIST: MenuItem[] = [
     MenuItem.Settings,
 ];
 
-interface IMenuDetails {
+export interface IMenuDetails {
     route: string;
     title?: string;
     subMenu?: IMenu;
@@ -37,7 +37,7 @@ export interface IMenu {
 /**
  * The topics submenu under Tasks.
  */
-const TOPICS: IMenu = {
+export const TOPICS: IMenu = {
     [Topic.Birthdays]: {
         route: '/birthdays',
         title: 'Birthdays'

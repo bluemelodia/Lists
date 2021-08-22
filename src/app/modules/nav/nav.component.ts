@@ -12,11 +12,11 @@ export class NavComponent implements OnDestroy {
   public showMenu = false;
 
   private ngUnsubscribe$ = new Subject<void>();
-  private onMenuChange$ = this.nav.onMenuChange$;
+  private onMenuChange$ = this.navService.onMenuChange$;
 
   @HostBinding('class.open') public open: Boolean = false;
 
-  constructor(private nav: NavService) {
+  constructor(private navService: NavService) {
     this.onMenuChange$
       .pipe(
         takeUntil(this.ngUnsubscribe$)

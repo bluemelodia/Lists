@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { 
   MENU,
@@ -27,8 +26,7 @@ export class MenuComponent implements OnInit {
   public padding = 16;
 
   constructor(
-    private nav: NavService,
-    private router: Router,
+    private navService: NavService,
   ) { }
 
   ngOnInit(): void {}
@@ -37,9 +35,8 @@ export class MenuComponent implements OnInit {
     if (NavUtils.getSubMenu(item)) {
       this.menuItems[item].expanded = !this.menuItems[item].expanded;
     } else {
-      console.log("===> navigate to route: ", this.menuItems[item]);
-      this.router.navigate([this.menuItems[item].route],{ queryParams: { title: this.menuItems[item].title }});
-      this.nav.closeNavMenu();
+      this.navService.navigate(this.menuItems[item].route, this.menuItems[item].title);
+      this.navService.closeNavMenu();
     }
   }
 

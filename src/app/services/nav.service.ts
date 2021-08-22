@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { Topic } from '../constants/topics';
+import { IMenuDetails } from '../modules/nav/constants/nav.constants';
+import { NavUtils } from '../modules/nav/utils/nav.utils';
 
 @Injectable({
 	providedIn: 'root'
@@ -8,6 +11,8 @@ import { Observable, Subject } from 'rxjs';
 export class NavService {
 	private menuState$ = new Subject<boolean>();
 	private menuTitleChanged$ = new Subject<string>();
+
+	constructor(private router: Router) {}
 
 	public get onMenuChange$(): Observable<boolean> {
 		return this.menuState$.asObservable();
@@ -19,6 +24,20 @@ export class NavService {
 
 	public setTitle(title: string) {
 		this.menuTitleChanged$.next(title);
+	}
+
+
+	public navigateToTopic(topic: Topic, additionalParams?: Params) {
+		const destinationTopic: IMenuDetails = NavUtils.getTopic(topic);
+		this.navigate(destinationTopic.route, destinationTopic.title, additionalParams);
+	}
+
+	/**
+	* Convenience method for navigating the user from page to page.
+	*/
+	public navigate(route: string, title: string, additionalParams?: Params) {
+		console.info(`🚀 ✅ NavService route to ${route} with title ${title}.`);
+		this.router.navigate([route],{ queryParams: { title: title, ...additionalParams }});
 	}
 
 	/**

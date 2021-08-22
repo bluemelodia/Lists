@@ -14,9 +14,11 @@ import {
 } from 'rxjs/operators';
 
 import { BirthdayAction } from '../../../../constants/birthday';
+import { Topic } from '../../../../constants/topics';
 
 import { BirthdayService } from '../../../../services/birthday.service';
 import { DialogService } from '../../../../services/dialog.service';
+import { NavService } from '../../../../services/nav.service';
 import { ValidationService } from '../../../../services/validation.service';
 
 import { AddBirthday, Birthday, BirthdayOptions, BirthdayProfile } from '../../../../types/birthday/birthday.types';
@@ -26,6 +28,8 @@ import { Dialog, DialogAction } from '../../../../types/dialog/dialog.types';
 import { BirthdayID } from '../../../../types/event.types';
 import { HeaderLevel } from '../../../../types/header.types';
 import { ResponseStatus } from '../../../../types/response.types';
+
+import { NavUtils } from '../../../nav/utils/nav.utils';
 import { BirthdayUtils } from '../../../../utils/birthday.utils';
 
 @Component({
@@ -51,8 +55,8 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		private dialogService: DialogService,
 		private birthdayService: BirthdayService,
 		private customValidator: ValidationService,
+		private navService: NavService,
 		private route: ActivatedRoute,
-		private router: Router,
 	) { }
 
 	ngOnInit(): void {
@@ -191,10 +195,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			.subscribe((action: DialogAction) => {
 				switch(action) {
 					case DialogAction.Continue:
-						this.router.navigate([ '/birthdays' ], { 
-							queryParams: { title: 'Birthdays' },
-							relativeTo: this.route
-						});
+						this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
 						break;
 					default:
 						break;
@@ -211,6 +212,13 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			)
 			.subscribe(() => {
 				this.birthdayForm.reset();
+
+				/**
+				* Once the user successfully edits the form, take them back to the birthday list.
+				*/
+				if (this.birthdayConfig.action === BirthdayAction.Edit) {
+					this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
+				}
 			});
 	}
 

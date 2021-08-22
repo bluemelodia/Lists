@@ -9,7 +9,7 @@ import { NavService } from './services/nav.service';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private nav: NavService,
+    private navService: NavService,
     private route: ActivatedRoute,
   ) {}
 
@@ -26,11 +26,11 @@ export class AppComponent implements OnInit {
    */
   setupSubscriptions() {
     this.route.queryParams.subscribe((params) => {
-        this.nav.setTitle(params?.title);
+        this.navService.setTitle(params?.title);
     });
   }
 
   closeMenu() {
-    this.nav.closeNavMenu();
+    this.navService.closeNavMenu();
   }
 }
