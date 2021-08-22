@@ -103,6 +103,10 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 
 
 	private populateFormData(birthday: AddBirthday) {
+		console.info("🥳 💾 AddBirthdayComponent, add existing birthday: ", birthday);
+		/**
+		 * Don't patch the file name, it opens up security risks.
+		 */
 		this.birthdayForm.patchValue({
 			name: birthday.name,
 			date: {
@@ -115,7 +119,6 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				[BirthdayID.gift]: BirthdayUtils.createCheckboxOption(birthday.gift),
 			},
 			profile: {
-				fileName: birthday.filename,
 				image: birthday.image
 			}
 		});

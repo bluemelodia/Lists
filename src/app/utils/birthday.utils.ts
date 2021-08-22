@@ -101,7 +101,7 @@ export class BirthdayUtils {
 			filename: BirthdayUtils.extractFileURL(birthday.profile?.fileName),
 			image: birthday.profile?.image,
 		};
-		console.log("====> send this birthday: ", addBirthday);
+		//console.log("====> send this birthday: ", addBirthday);
 		return addBirthday;
 	}
 

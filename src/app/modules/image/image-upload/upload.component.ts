@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { of, Subject } from 'rxjs';
+import { of, ReplaySubject, Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil } from 'rxjs/operators';
 
 import { CompressImageService } from '../../../services/image-compress.service';
@@ -21,11 +21,16 @@ import { Dialog } from '../../../types/dialog/dialog.types';
   styleUrls: ['./upload.component.css']
 })
 export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() form: FormGroup;
+  @Input() set form(form: FormGroup) {
+    console.log("===> upload form: ", form);
+    this.uploadForm = form;
+    this.patchImage();
+  }
+  public uploadForm: FormGroup;
 
   @ViewChild('imageInput') filePicker: ElementRef;
 
-  public selectedImageUrl$ = new Subject<string>();
+  public selectedImageUrl$ = new ReplaySubject<string>();
   private ngUnsubscribe$ = new Subject<void>();
 
   private readonly base64Prefix = "data:image/jpeg;base64,";
@@ -43,7 +48,7 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
    */
   ngOnChanges(): void {
     this.addSubscriptions();
-    this.form.get('image')?.valueChanges.subscribe((val: string) => {
+    this.uploadForm.get('image')?.valueChanges.subscribe((val: string) => {
       console.log("===> image changed: ", val);
       if (!val) {
         this.deleteImage();
@@ -59,6 +64,11 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
     console.info(`📂 ✅ UploadComponent, image size before compression: ${file.size} bytes.`);
 
     this.compressImageService.compress(file);
+  }
+
+  public deleteImage() {
+    this.selectedImageUrl$.next(null);
+    this.filePicker.nativeElement.value = '';
   }
 
   private addSubscriptions() {
@@ -77,15 +87,18 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
       .subscribe((stringRep: string) => {
         console.info(`📂 ✅ UploadComponent, successfully converted to base64.`);
         this.selectedImageUrl$.next(`${this.base64Prefix}${stringRep}`);
-        this.form.patchValue({
+        this.uploadForm.patchValue({
             image: stringRep
         });
       });
   }
 
-  public deleteImage() {
-    this.selectedImageUrl$.next(null);
-    this.filePicker.nativeElement.value = '';
+  private patchImage() {
+    const uploadedImage = this.uploadForm?.get("image")?.value;
+    if (uploadedImage) {
+      console.info(`📂 💾 UploadComponent, patch user-uploaded image: ${uploadedImage}.`);
+      this.selectedImageUrl$.next(`${this.base64Prefix}${this.uploadForm.get("image").value}`);
+    }
   }
 
   ngOnDestroy(): void {
