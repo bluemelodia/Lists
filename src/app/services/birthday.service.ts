@@ -1,15 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { BirthdayAction } from '../constants/birthday';
 
 import { AddBirthday, Birthday } from '../types/birthday/birthday.types';
 import { Calendar, CalendarDay } from '../types/calendar/calendar-response.types';
+import { CalendarType } from '../types/calendar/calendar.types';
 import { Dialog } from '../types/dialog/dialog.types';
 import { BirthdayID } from '../types/event.types';
 import { Response, ResponseStatus } from '../types/response.types';
 import { BirthdayUtils } from '../utils/birthday.utils';
+import { CalendarService } from './calendar.service';
 
 import { DialogService } from './dialog.service';
 
@@ -17,16 +19,22 @@ import { DialogService } from './dialog.service';
 	providedIn: 'root'
 })
 export class BirthdayService {
+	private calendar: Calendar;
 	private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-	public birthdaysChanged$ = new Subject<void>();
+	public birthdaysChanged$ = new Subject<number>();
 
 	constructor(
+		private calendarService: CalendarService,
 		private dialogService: DialogService,
 		private http: HttpClient
 	) { }
 
-	get birthdaysListChanged$(): Observable<void> {
+	/**
+	 * Notify any consumers of a need to refresh the birthdays list.
+	 * Ex. after patching has succeeded.
+	 */
+	get birthdaysListChanged$(): Observable<number> {
 		return this.birthdaysChanged$.asObservable();
 	}
 	
@@ -43,7 +51,7 @@ export class BirthdayService {
 	* TODO: add user ID
 	*/
 	public postBirthday(birthday: Birthday, showDialog = true, action = BirthdayAction.Add): Observable<ResponseStatus> {
-		console.info("🍰 🏁 BirthdayService, add a birthday: ", birthday);
+		console.info("🍰 🏁 BirthdayService ---> postBirthday, birthday: ", birthday);
 		return this.http.post<Response>(
 			BirthdayUtils.birthdayURLForAction(action),
 			BirthdayUtils.formatBirthday(birthday),
@@ -53,7 +61,6 @@ export class BirthdayService {
 		)
 			.pipe(
 				map((response: Response) => {
-					this.birthdaysChanged$.next();
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
 				catchError((err) => {
@@ -66,7 +73,7 @@ export class BirthdayService {
 	}
 
 	public deleteBirthday(uuid: string): Observable<ResponseStatus> {
-		console.info("🍰 🏁 BirthdayService, delete birthday: ", uuid);
+		console.info("🍰 🏁 BirthdayService ---> deleteBirthday, delete birthday: ", uuid);
 		return this.http.delete<Response>(
 			`${BirthdayUtils.birthdayURLForAction(BirthdayAction.Delete)}/guest/${uuid}`,
 			{
@@ -75,8 +82,7 @@ export class BirthdayService {
 		)
 			.pipe(
 				map((response: Response) => {
-					console.info("🍰 ✅ BirthdayService, delete birthday success: ", response);
-					this.birthdaysChanged$.next();
+					console.info("🍰 ✅ BirthdayService ---> deleteBirthday success.");
 					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteBirthday);
 					return ResponseStatus.SUCCESS;
 				}),
@@ -87,12 +93,62 @@ export class BirthdayService {
 			)
 	}
 
-	public updateBirthdays(calendar: Calendar, birthdays: AddBirthday[]): void {
-		birthdays.forEach((birthday: AddBirthday) => {
-			const matchingDays = calendar.days.filter((day: CalendarDay) => {
-				return day.cmonthname === birthday.cmonthname && day.cdate === birthday.cdate;
+	public syncBirthdays(birthdayList?: AddBirthday[]): void {
+		this.fetchCalendar(birthdayList);
+	}
+
+	/**
+	* Fetch the calendar, or use existing. The service call only needs to be made
+	* once per application lifecycle.
+	*/
+	private fetchCalendar(birthdayList?: AddBirthday[]) {
+		if (this.calendar) {
+			this.patchBirthdays(birthdayList);
+		} else {
+			this.calendarService.getCalendar(CalendarType.Lunar);
+			this.calendarService.onCalendarFetched$
+				.subscribe((calendar: Calendar) => {
+					if (!calendar) {
+					  return;
+					}
+			  
+				this.calendar = calendar;
+				this.patchBirthdays(birthdayList);
 			});
-			console.info("🍰 🏁 BirthdayService, find matching days: ", birthday, matchingDays);
+		}
+	}
+
+	/**
+	* Check the user's birthday list, silently adding lunar birthdays
+	* for the next year if not already present. When we get the user's
+	* list of birthdays, we will group the lunar birthdays together.
+	*
+	* We do this on the client side so that active users will have an
+	* up-to-date birthdays list.
+	*/
+	private patchBirthdays(birthdayList?: AddBirthday[]) {
+		if (birthdayList) {
+			this.updateBirthdays(birthdayList);
+		} else {
+			this.getBirthdays('guest')
+				.pipe(
+					map((birthdays: AddBirthday[]) => birthdays.filter((birthday) => birthday.lunar)),
+				)
+				.subscribe((birthdays: AddBirthday[]) => {
+					console.info("🍰 ✅ BirthdayService ---> patchBirthdays, get birthday list: ", birthdays);
+					this.updateBirthdays(birthdays);
+				});
+		}
+	}
+
+	private updateBirthdays(birthdays: AddBirthday[]): void {
+		const birthdayBatch = [];
+
+		birthdays.forEach((birthday: AddBirthday) => {
+			const matchingDays = this.calendar.days.filter((day: CalendarDay) => {
+				return day.cmonthname === birthday.cmonthname && day.cdate === birthday.cdate && day.year !== birthday.year;
+			});
+			console.info("🍰 🏁 BirthdayService ---> updateBirthdays, find matching days: ", birthday, matchingDays);
 			matchingDays.forEach((day: CalendarDay) => {
 				const addBirthday: Birthday = {
 					name: birthday.name,
@@ -109,9 +165,20 @@ export class BirthdayService {
 						fileName: birthday.filename
 					}
 				};
-				this.postBirthday(addBirthday, false, BirthdayAction.Add).subscribe();
+				console.info("🍰 🏁 BirthdayService ---> updateBirthdays, push new birthday to batch: ", addBirthday);
+				birthdayBatch.push(
+					this.postBirthday(addBirthday, false, BirthdayAction.Add)
+				);
 			});
 		});
+
+		console.info("🍰 🏁 BirthdayService ---> updateBirthdays, created birthday batch: ", birthdayBatch);
+
+		forkJoin(birthdayBatch)
+			.subscribe((responseStatuses: ResponseStatus[]) => {
+				const numChanged = responseStatuses.filter((status: ResponseStatus) => status === ResponseStatus.SUCCESS).length;
+				this.birthdaysChanged$.next(numChanged);
+			});
 	}
 
 	/**
@@ -119,7 +186,7 @@ export class BirthdayService {
 	 * @returns A sorted list of birthdays for this user.
 	 */
 	public getBirthdays(userID: string = "guest"): Observable<AddBirthday[]> {
-		console.info("🍰 🏁 BirthdayService, get birthdays for id: ", userID);
+		console.info("🍰 🏁 BirthdayService ---> getBirthdays, for id: ", userID);
 
 		const getBirthday = `${BirthdayUtils.birthdayURLForAction(BirthdayAction.Fetch)}/${userID}`;
 		return this.http.get<Response>(
@@ -127,7 +194,7 @@ export class BirthdayService {
 		)
 			.pipe(
 				map((response: Response) => {
-					console.info("🍰 ✅ BirthdayService, received birthdays: ", response);
+					console.info("🍰 ✅ BirthdayService ---> getBirthdays, received birthdays: ", response);
 					return BirthdayUtils.sortAndTagBirthdays(response.responseData);
 				}),
 				catchError((err) => { 

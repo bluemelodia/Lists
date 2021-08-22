@@ -101,7 +101,7 @@ export class CalendarService {
 		*/
 		const cachedCalendar = CalendarUtils.getCachedCalendar(year);
 		if (cachedCalendar) {
-			console.info(`📅 🗃 CalendarService, retrieve ${ year } calendar from cache`,);
+			console.info(`📅 🗃 CalendarService ---> getChineseCalendarForYear, retrieve ${ year } calendar from cache`,);
 			return of({
 				statusCode: 0,
 				responseData: cachedCalendar

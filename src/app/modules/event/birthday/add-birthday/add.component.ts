@@ -29,7 +29,6 @@ import { BirthdayID } from '../../../../types/event.types';
 import { HeaderLevel } from '../../../../types/header.types';
 import { ResponseStatus } from '../../../../types/response.types';
 
-import { NavUtils } from '../../../nav/utils/nav.utils';
 import { BirthdayUtils } from '../../../../utils/birthday.utils';
 
 @Component({
@@ -107,7 +106,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 
 
 	private populateFormData(birthday: AddBirthday) {
-		console.info("🥳 💾 AddBirthdayComponent, add existing birthday: ", birthday);
+		console.info("🥳 💾 AddBirthdayComponent ---> populateFormData, add existing birthday: ", birthday);
 		/**
 		 * Don't patch the file name, it opens up security risks.
 		 */
@@ -161,7 +160,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				options: this.options,
 				profile: this.profile,
 			};
-			console.info("🥳 💁🏻‍♀️ AddBirthdayComponent, submit birthday: ", this.birthday);
+			console.info("🥳 💁🏻‍♀️ AddBirthdayComponent ---> onSubmit, birthday: ", this.birthday);
 
 			this.birthdayService.modifyBirthday(this.birthday, this.birthdayConfig.action)
 				.pipe(
@@ -169,8 +168,6 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 					takeUntil(this.ngUnsubscribe$)
 				)
 				.subscribe((response: ResponseStatus) => {
-					console.info("🥳 💁🏻‍♀️ AddBirthdayComponent, add birthday results: ", response);
-
 					switch(this.birthdayConfig.action) {
 						case BirthdayAction.Add:
 							this.dialogService.showResponseStatusDialog(response, Dialog.AddBirthday);

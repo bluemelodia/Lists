@@ -28,71 +28,40 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
   public birthdayList$ = this.birthdays$.asObservable();
   public isLoading = false;
 
-  private calendar: Calendar;
-
   private ngUnsubscribe$ = new Subject<void>();
 
   @HostBinding('class.hide-scrollbar') public css = true; 
 
   constructor(
     private birthdayService: BirthdayService,
-    private calendarService: CalendarService,
     private dialogService: DialogService,
   ) { }
 
   public ngOnInit(): void {
     console.info("🍰 ✅ BirthdaysComponent init");
-    this.fetchCalendar();
+    this.addSubscriptions();
     this.getBirthdays();
   }
 
-  /**
-  * Pre-fetch the calendar.
-  */
-  private fetchCalendar() {
-    this.isLoading = true;
-    this.calendarService.getCalendar(CalendarType.Lunar);
-    this.calendarService.onCalendarFetched$
+  private addSubscriptions() {
+    this.birthdayService.birthdaysListChanged$
       .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        })
+        takeUntil(this.ngUnsubscribe$)
       )
-      .subscribe((calendar: Calendar) => {
-        if (!calendar) {
-          return;
+      .subscribe((numChanges: number) => {
+        if (numChanges) {
+          console.info("🍰 ✅ BirthdaysComponent ---> addSubscriptions, birthdays list refreshed, retrieve new list.");
+          this.getBirthdays(true);
         }
-  
-        this.calendar = calendar;
-        this.patchBirthdays();
       });
   }
 
   /**
-	* Check the user's birthday list, silently adding lunar birthdays
-	* for the next year if not already present. When we get the user's
-	* list of birthdays, we will group the lunar birthdays together.
-  *
-  * We do this on the client side so that active users will have an
-  * up-to-date birthdays list.
-	*/
-  private patchBirthdays() {
-    this.isLoading = true;
-    this.birthdayService.getBirthdays('guest')
-      .pipe(
-        map((birthdays: AddBirthday[]) => birthdays.filter((birthday) => birthday.lunar)),
-        take(1),
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe((birthdays: AddBirthday[]) => {
-        console.info("🍰 ✅ BirthdaysComponent, BirthdayService returned birthdays: ", birthdays);
-        this.birthdayService.updateBirthdays(this.calendar, birthdays);
-      });
-  }
-
-  public getBirthdays(): void {
+   * Fetch the latest list of birthdays. Refresh should be set to true if
+   * we're fetching the birthdays list as a result of a patch - otherwise,
+   * it should be false.
+   */
+  public getBirthdays(refresh = false): void {
     this.isLoading = true;
     this.birthdayService.getBirthdays()
       .pipe(
@@ -107,8 +76,16 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe$)
       )
       .subscribe((birthdays: AddBirthday[]) => {
-        console.info("🍰 ✅ BirthdaysComponent, received birthdays: ", birthdays);
+        console.info("🍰 ✅ BirthdaysComponent ---> getBirthdays, received birthdays: ", birthdays);
         this.birthdays$.next(birthdays);
+        /**
+        * Send the results to the birthday service, which
+        * will update the server with any lunar birthdays
+        * that need to be added.
+        */
+        if (!refresh) {
+          this.birthdayService.syncBirthdays(birthdays);
+        }
       });
   }
 

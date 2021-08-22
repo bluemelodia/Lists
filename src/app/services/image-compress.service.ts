@@ -28,7 +28,7 @@ export class CompressImageService {
       const reader = new FileReader();
       reader.readAsBinaryString(file);
       reader.onload = (event) => {
-        console.info("📷 ✅ CompressImageService, converted to base64 string.");
+        // console.info("📷 ✅ CompressImageService ---> convertFileToBase64, converted to base64 string.");
         result.next(btoa(event.target.result.toString()))
       };
       return result;
@@ -50,7 +50,7 @@ export class CompressImageService {
 
             const finalWidth = width * ratio;
             const finalHeight = height * ratio;
-            console.info(`📷 ✅ CompressImageService, width -> ${finalWidth}, height -> ${finalHeight}.`);
+            // console.info(`📷 ✅ CompressImageService ---> compress, width -> ${finalWidth}, height -> ${finalHeight}.`);
             this.convertImage(file, finalWidth, finalHeight);
           };
       
@@ -73,7 +73,7 @@ export class CompressImageService {
           }
         }
 
-        console.info("📷 ✅ CompressImageService computed compression ratio: ", ratio);
+        // console.info("📷 ✅ CompressImageService ---> calculateRatio, computed compression ratio: ", ratio);
         return ratio;
     }
 
@@ -85,11 +85,11 @@ export class CompressImageService {
         type: 'jpeg'
       }).then(resp => {
             // Response contains the compressed and resized file
-            console.info("📷 ✅ CompressImageService successfully compressed image: ", resp);
+            // console.info("📷 ✅ CompressImageService ---> convertImage, successfully compressed image: ", resp);
             this.onImageCompressed$.next(resp);
       }).catch(error => {
             // Error
-            console.info("📷 ✅ CompressImageService failed to compress image.");
+            // console.info("📷 ✅ CompressImageService ---> convertImage, failed to compress image.");
             this.onImageCompressed$.next(null);
       })
     }

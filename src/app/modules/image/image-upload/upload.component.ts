@@ -22,7 +22,6 @@ import { Dialog } from '../../../types/dialog/dialog.types';
 })
 export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
   @Input() set form(form: FormGroup) {
-    console.log("===> upload form: ", form);
     this.uploadForm = form;
     this.patchImage();
   }
@@ -49,8 +48,8 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(): void {
     this.addSubscriptions();
     this.uploadForm.get('image')?.valueChanges.subscribe((val: string) => {
-      console.log("===> image changed: ", val);
       if (!val) {
+        console.info("📂 🗑 UploadComponent ---> ngOnChanges, image form field changed, clear the image");
         this.clearImage();
       }
     });
@@ -61,7 +60,7 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
      * Get the first file.
      */
     const file: File = input.files[0];
-    console.info(`📂 ✅ UploadComponent, image size before compression: ${file.size} bytes.`);
+    // console.info(`📂 ✅ UploadComponent ---> processFile, image size before compression: ${file.size} bytes.`);
 
     this.compressImageService.compress(file);
   }
@@ -86,7 +85,7 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
     this.compressImageService.imageCompressed$
       .pipe(
         switchMap((file: File) => {
-          console.info(`📂 ✅ UploadComponent, image size after compression: ${file?.size} bytes.`);
+          // console.info(`📂 ✅ UploadComponent ---> addSubscriptions, image size after compression: ${file?.size} bytes.`);
           return this.compressImageService.convertFileToBase64(file);
         }),
         catchError((err) => {
@@ -96,7 +95,7 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
         takeUntil(this.ngUnsubscribe$),
       )
       .subscribe((stringRep: string) => {
-        console.info(`📂 ✅ UploadComponent, successfully converted to base64.`);
+        // console.info(`📂 ✅ UploadComponent ---> addSubscriptions, successfully converted to base64.`);
         this.selectedImageUrl$.next(`${this.base64Prefix}${stringRep}`);
         this.uploadForm.patchValue({
             image: stringRep
@@ -107,7 +106,7 @@ export class ImageUploadComponent implements OnInit, OnChanges, OnDestroy {
   private patchImage() {
     const uploadedImage = this.uploadForm?.get("image")?.value;
     if (uploadedImage) {
-      console.info(`📂 💾 UploadComponent, patch user-uploaded image: ${uploadedImage}.`);
+      // console.info(`📂 💾 UploadComponent --> patchImage, patch user-uploaded image: ${uploadedImage}.`);
       this.selectedImageUrl$.next(`${this.base64Prefix}${this.uploadForm.get("image").value}`);
     }
   }
