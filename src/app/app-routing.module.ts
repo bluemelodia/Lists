@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'birthdays',
     loadChildren: () => import('./modules/tasks/birthdays/birthdays.module').then(m => m.BirthdaysTaskModule)
   },
+  {
+    path: 'settings',
+    loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule)
+  }
 ];
 
 @NgModule({

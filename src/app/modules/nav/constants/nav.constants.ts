@@ -42,6 +42,10 @@ export const TOPICS: IMenu = {
         route: '/birthdays',
         title: 'Birthdays'
     },
+    [Topic.Career]: {
+        route: '/career',
+        title: 'Career'
+    },
     [Topic.Family]: {
         route: '/family',
         title: 'Family'
@@ -54,53 +58,24 @@ export const TOPICS: IMenu = {
         route: '/health',
         title: 'Health'
     },
-    [Topic.Hobby]: {
-        route: '/hobby',
-        title: 'Hobbies'
-    },
-    [Topic.Home]: {
-        route: '/home',
-        title: 'Home'
-    },
-    [Topic.Gifts]: {
-        route: '/gifts',
-        title: 'Gifts'
-    },
-    [Topic.Shopping]: {
-        route: '/shopping',
-        title: 'Shopping'
-    },
     [Topic.Social]: {
         route: '/social',
         title: 'Social'
     },
-    [Topic.Study]: {
-        route: '/study',
-        title: 'Study'
-    },
     [Topic.Travel]: {
         route: '/travel',
         title: 'Travel'
-    },
-    [Topic.Work]: {
-        route: '/work',
-        title: 'Work'
     }
 };
 
 const TOPIC_LIST: Topic[] = [
     Topic.Birthdays,
+    Topic.Career,
     Topic.Family,
     Topic.Finance,
     Topic.Health,
-    Topic.Hobby,
-    Topic.Home,
-    Topic.Gifts,
-    Topic.Shopping,
     Topic.Social,
-    Topic.Study,
     Topic.Travel,
-    Topic.Work,
 ];
 
 const EVENTS: IMenu = {

@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { NavModule } from './modules/nav/nav.module';
-import { TopicModule } from './modules/topic/topic.module';
 
 import { DialogComponent } from './components/dialog/dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -30,7 +29,6 @@ import { ElementModule } from './modules/element/element.module';
     HttpClientModule,
     ElementModule,
     NavModule,
-    TopicModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
