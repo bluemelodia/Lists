@@ -3,7 +3,7 @@
     <form class="event-form"
         [formGroup]="birthdayForm"
         (ngSubmit)="onSubmit()">
-        <span class="instructions">Please enter a name and select a birthdate.</span>
+        <span class="form-instructions">Provide the recipient's name and birthdate.</span>
         <fieldset class="name">
             <input type="text" 
                 formControlName="name"
@@ -31,15 +31,17 @@
             </app-checkbox>
         </fieldset>
         <fieldset>
-            <app-heading [level]="headerLevel.H3" text="Select Image">
+            <app-heading [level]="headerLevel.H3" text="Select Profile Image">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
+            <span class="form-instructions">Choose a profile image to represent the birthday recipient.</span>
             <app-img-upload [form]="birthdayForm.controls.profile"></app-img-upload>
         </fieldset>
         <fieldset class="event-options">
             <app-heading [level]="headerLevel.H3" text="Actions">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
+            <span class="form-instructions">Select the actions you would like to perform on or close to the recipient's birthday.</span>
             <app-checkbox
                 name="Call"
                 [checkboxName]="birthdayID.call"

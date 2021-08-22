@@ -5,7 +5,7 @@ import {
     MenuItem,
     TOPICS,
 } from '../constants/nav.constants';
-import { Topic } from '../../../constants/topics';
+import { Topic } from '../../../constants/topics.constants';
 
 export class NavUtils {
     public static getSubMenu(item: MenuItem): IMenu {

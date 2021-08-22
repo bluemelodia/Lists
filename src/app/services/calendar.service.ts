@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, forkJoin, of } from 'rxjs';
 
-import { Endpoint } from '../constants/urls';
+import { Endpoint } from '../constants/urls.constants';
 import { CalendarType } from '../types/calendar/calendar.types';
 import { CalendarYear, Calendar, CalendarMonth } from '../types/calendar/calendar-response.types';
 import { Response } from '../types/response.types';

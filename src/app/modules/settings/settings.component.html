@@ -1,4 +1,26 @@
 <section class="form-container">
-    <app-heading [level]="headerLevel.H1" text="Settings"></app-heading>
+    <app-heading [level]="headerLevel.H1" text="User Settings"></app-heading>
+    <form [formGroup]="settingsForm">
+        <fieldset class="event-options">
+            <app-heading [level]="headerLevel.H3" text="Birthday Reminders">
+                <span class="event-form__optional" post>Optional</span>
+            </app-heading>
+            <span class="form-instructions">Select the channels where you would like to receive upcoming birthday reminders.</span>
+            <app-checkbox
+                name="Email"
+                [checkboxName]="channel.email"
+                [form]="settingsForm.controls.channels">
+            </app-checkbox>
+            <app-checkbox
+                name="Text Message"
+                [checkboxName]="channel.text"
+                [form]="settingsForm.controls.channels">
+            </app-checkbox>
+            <app-checkbox
+                name="Push Notification"
+                [checkboxName]="channel.notification"
+                [form]="settingsForm.controls.channels">
+            </app-checkbox>
+        </fieldset>
+    </form>
 </section>
-Settings works!

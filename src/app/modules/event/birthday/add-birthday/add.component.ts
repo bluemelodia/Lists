@@ -13,8 +13,8 @@ import {
 	takeUntil,
 } from 'rxjs/operators';
 
-import { BirthdayAction } from '../../../../constants/birthday';
-import { Topic } from '../../../../constants/topics';
+import { BirthdayAction } from '../../../../constants/birthday.constants';
+import { Topic } from '../../../../constants/topics.constants';
 
 import { BirthdayService } from '../../../../services/birthday.service';
 import { DialogService } from '../../../../services/dialog.service';

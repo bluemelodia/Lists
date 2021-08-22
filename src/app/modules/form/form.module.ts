@@ -39,4 +39,4 @@ import { SelectComponent } from './select/select.component';
     PickerDateFormatterPipe,
   ]
 })
-export class FormModule { }
+export class FormElementModule { }

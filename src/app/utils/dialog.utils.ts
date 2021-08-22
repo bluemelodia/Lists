@@ -1,4 +1,4 @@
-import { DialogMessage } from "../constants/messages";
+import { DialogMessage } from "../constants/messages.constants";
 import { Dialog } from "../types/dialog/dialog.types";
 import { ResponseStatus } from "../types/response.types";
 

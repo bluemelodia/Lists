@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Params, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { Topic } from '../constants/topics';
+import { Topic } from '../constants/topics.constants';
 import { IMenuDetails } from '../modules/nav/constants/nav.constants';
 import { NavUtils } from '../modules/nav/utils/nav.utils';
 

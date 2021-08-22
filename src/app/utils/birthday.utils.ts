@@ -2,8 +2,8 @@ import {
     BirthdayConfig,
     BirthdayAction,
     BirthdayFormSubmitActions,
-} from "../constants/birthday";
-import { Endpoint } from '../constants/urls';
+} from "../constants/birthday.constants";
+import { Endpoint } from '../constants/urls.constants';
 
 import { AddBirthday, Birthday } from "../types/birthday/birthday.types";
 import { CalendarDay } from "../types/calendar/calendar-response.types";

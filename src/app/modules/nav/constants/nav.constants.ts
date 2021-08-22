@@ -1,5 +1,5 @@
-import { Event } from '../../../constants/events';
-import { Topic } from '../../../constants/topics';
+import { Event } from '../../../constants/events.contants';
+import { Topic } from '../../../constants/topics.constants';
 
 export enum MenuItem {
     Home = 'Home',

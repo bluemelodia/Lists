@@ -90,6 +90,10 @@ button.cancel:hover {
   margin-right: 10px;
 }
 
+.form-instructions {
+  margin-bottom: 12px;
+}
+
 fieldset {
   border: none;
   display: flex;
