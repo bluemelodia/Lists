@@ -18,9 +18,6 @@ export class CompressImageService {
 
     /**
     * Converts the file to its base64 representation.
-    * 
-    * ReplaySubject is used here, because the same file will always return the same Base64 string.
-    * 
     * Source: https://tutorialsforangular.com/2020/12/17/converting-files-to-base64-in-angular/
     */
     public convertFileToBase64(file : File) : Observable<string> {

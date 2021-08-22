@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { LoadingService } from './services/loading.service';
 import { NavService } from './services/nav.service';
@@ -25,10 +26,6 @@ export class AppComponent implements OnInit {
   public loadingState$ = new Subject<boolean>();
 
   ngOnInit() {
-
-  }
-
-  ngAfterViewInit() {
     this.setupSubscriptions();
   }
 
