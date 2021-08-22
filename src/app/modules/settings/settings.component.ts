@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderLevel } from '../../types/header.types';
 
 @Component({
   selector: 'app-settings',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
+  headerLevel = HeaderLevel;
 
   constructor() { }
 
