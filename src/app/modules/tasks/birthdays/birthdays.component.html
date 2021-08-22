@@ -1,4 +1,6 @@
-<app-loader *ngIf="isLoading"></app-loader>
-<task-birthdays-list [list]="birthdayList$ | async"
-    (onDeleteBirthday)="getBirthdays()">
-</task-birthdays-list>
+<section class="birthday-list__container">
+    <task-birthdays-list [list]="birthdayList$ | async"
+        (onDeleteBirthday)="getBirthdays()">
+    </task-birthdays-list>
+</section>
+

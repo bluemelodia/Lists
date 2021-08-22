@@ -1,13 +1,20 @@
 .app-container {
-    height: 100%;
-    width: 100%;
-    overflow: auto;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    padding: 16px;
+  padding: 16px;
 
-    background-color: antiquewhite;
+  background-color: antiquewhite;
+}
+
+@media only screen and (max-width: 500px) {
+  .app-container {
+    padding: 4px;
+  }
 }

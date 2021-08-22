@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { ElementModule } from './modules/element/element.module';
+
 /**
  * Lazy load most components, since the user may not visit most of these pages during
  * any given session.
@@ -21,7 +23,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    ElementModule,
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

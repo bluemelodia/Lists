@@ -1,5 +1,8 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+
+import { LoadingService } from './services/loading.service';
 import { NavService } from './services/nav.service';
 
 @Component({
@@ -9,6 +12,7 @@ import { NavService } from './services/nav.service';
 })
 export class AppComponent implements OnInit {
   constructor(
+    private loadingService: LoadingService,
     private navService: NavService,
     private route: ActivatedRoute,
   ) {}
@@ -16,6 +20,8 @@ export class AppComponent implements OnInit {
   @HostBinding('class') containerClasses = 'flex-centered__column full-viewport';
 
   title = 'lists';
+
+  public loadingState$ = new Subject<boolean>();
 
   ngOnInit() {
     this.setupSubscriptions();
@@ -28,6 +34,11 @@ export class AppComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
         this.navService.setTitle(params?.title);
     });
+
+    this.loadingService.loadingChanged$
+      .subscribe((loadingState: boolean) => {
+        this.loadingState$.next(loadingState);
+      });
   }
 
   closeMenu() {

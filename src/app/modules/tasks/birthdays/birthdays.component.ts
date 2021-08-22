@@ -6,7 +6,8 @@ import {
   OnInit
 } from '@angular/core';
 import { of, Subject } from 'rxjs';
-import { catchError, finalize, map, take, takeUntil } from 'rxjs/operators';
+import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
+import { LoadingService } from 'src/app/services/loading.service';
 
 import { BirthdayService } from '../../../services/birthday.service';
 import { DialogService } from '../../../services/dialog.service';
@@ -23,21 +24,28 @@ import { ResponseStatus } from '../../../types/response.types';
 export class BirthdaysComponent implements OnInit, OnDestroy {
   private birthdays$ = new Subject<AddBirthday[]>();
   public birthdayList$ = this.birthdays$.asObservable();
-  public isLoading = false;
+
+  private isLoading = false;
 
   private ngUnsubscribe$ = new Subject<void>();
 
-  @HostBinding('class') public get hostClasses(): string {
-    let classes = [ 'hide-scrollbar' ];
-    if (!this.isLoading) {
-      classes.push('show-borders');
+  @HostBinding('class') public get hostClasses() {
+    let hostStyles = [
+      "hide-scrollbar",
+      "show-borders"
+    ];
+
+    if (this.isLoading) {
+      hostStyles.push("hide-container");
     }
-    return classes.join(" ");
-  }
+
+    return hostStyles.join(" ");
+  } 
 
   constructor(
     private birthdayService: BirthdayService,
     private dialogService: DialogService,
+    private loadingService: LoadingService,
   ) { }
 
   public ngOnInit(): void {
@@ -56,6 +64,14 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
           this.getBirthdays(true);
         }
       });
+
+    this.loadingService.loadingChanged$
+      .pipe(
+        takeUntil(this.ngUnsubscribe$)
+      )
+      .subscribe((loading: boolean) => {
+        this.isLoading = loading;
+      });
   }
 
   /**
@@ -64,7 +80,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
    * it should be false.
    */
   public getBirthdays(refresh = false): void {
-    this.isLoading = true;
+    this.loadingService.startLoading();
     this.birthdayService.getBirthdays()
       .pipe(
         catchError((err) => {
@@ -72,7 +88,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
             return of(null);
         }),
         finalize(() => {
-          this.isLoading = false;
+          this.loadingService.stopLoading();
         }),
         take(1),
         takeUntil(this.ngUnsubscribe$)

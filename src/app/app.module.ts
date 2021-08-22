@@ -13,6 +13,7 @@ import { TopicModule } from './modules/topic/topic.module';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ElementModule } from './modules/element/element.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HeaderComponent } from './components/header/header.component';
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    ElementModule,
     NavModule,
     TopicModule,
   ],

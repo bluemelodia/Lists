@@ -4,8 +4,12 @@
   max-width: 950px;
   overflow: auto;
 
-  background-color: transparent;
+  background-color: white;
   padding: 16px;
+}
+
+:host.hide-container {
+    opacity: 0;
 }
 
 :host.hide-scrollbar {
@@ -15,7 +19,6 @@
 }
 
 :host.show-borders {
-  background-color: white;
   border: 1px solid #dd2e44;
 }
 
