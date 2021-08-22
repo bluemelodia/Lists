@@ -9,11 +9,8 @@ import { of, Subject } from 'rxjs';
 import { catchError, finalize, map, take, takeUntil } from 'rxjs/operators';
 
 import { BirthdayService } from '../../../services/birthday.service';
-import { CalendarService } from '../../../services/calendar.service';
 import { DialogService } from '../../../services/dialog.service';
 import { AddBirthday } from '../../../types/birthday/birthday.types';
-import { CalendarType } from '../../../types/calendar/calendar.types';
-import { Calendar } from '../../../types/calendar/calendar-response.types';
 import { Dialog } from '../../../types/dialog/dialog.types';
 import { ResponseStatus } from '../../../types/response.types';
 
@@ -30,7 +27,13 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe$ = new Subject<void>();
 
-  @HostBinding('class.hide-scrollbar') public css = true; 
+  @HostBinding('class') public get hostClasses(): string {
+    let classes = [ 'hide-scrollbar' ];
+    if (!this.isLoading) {
+      classes.push('show-borders');
+    }
+    return classes.join(" ");
+  }
 
   constructor(
     private birthdayService: BirthdayService,
@@ -38,7 +41,6 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    console.info("🍰 ✅ BirthdaysComponent init");
     this.addSubscriptions();
     this.getBirthdays();
   }

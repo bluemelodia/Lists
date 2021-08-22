@@ -1,6 +1,27 @@
 :host {
-    width: 100%;
-    max-height: 100%;
-    max-width: 700px;
-    overflow: auto;
+  width: 100%;
+  max-height: 100%;
+  max-width: 950px;
+  overflow: auto;
+
+  background-color: transparent;
+  padding: 16px;
+}
+
+:host.hide-scrollbar {
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+:host.show-borders {
+  background-color: white;
+  border: 1px solid #dd2e44;
+}
+
+@media only screen and (max-width: 500px) {
+  :host.show-borders {
+    border: none;
+    padding: 0;
+  }
 }

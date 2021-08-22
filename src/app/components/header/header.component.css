@@ -8,6 +8,7 @@
   height: 44px;
 
   background-color: #ffc0cb;
+  border-bottom: 1px solid #dd2e44;
   /**
   * Prevents the header from going below 44px.
   */
