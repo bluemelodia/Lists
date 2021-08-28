@@ -39,7 +39,7 @@ export class BirthdayUtils {
 	}
 
 	public static createCalendarDate(birthday: AddBirthday): CalendarDay {
-		let day: CalendarDay = {
+		const day: CalendarDay = {
 			value: birthday.date,
 			month: birthday.month,
 			year: birthday.year,
@@ -58,7 +58,7 @@ export class BirthdayUtils {
     }
 
     public static createBirthdayFormConfig(action: BirthdayAction): BirthdayConfig {
-        let config: BirthdayConfig = {
+        const config: BirthdayConfig = {
             action: action,
             buttonAction: BirthdayFormSubmitActions[action]
         };
@@ -117,7 +117,7 @@ export class BirthdayUtils {
 		return fileName.substring(fileName.lastIndexOf('\\') + 1);
 	}
 
-	public static sortAndTagBirthdays(birthdays: AddBirthday[]) {
+	public static sortAndTagBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
 		BirthdayUtils.tagBirthdays(birthdays);
 		return BirthdayUtils.sortBirthdays(birthdays);
 	}

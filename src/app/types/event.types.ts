@@ -19,17 +19,15 @@ export enum Recurrence {
 	Quarterly = 'Quarterly',
 	Biannually = 'Every Six Months',
 	Yearly = 'Yearly'
-};
+}
 
 export interface Option {
 	name: string, 
 	value: any,
 	selected?: boolean
-};
+}
 
-export interface RecurrenceOption extends Option {};
-
-export const recurrenceOptions: RecurrenceOption[] = [
+export const recurrenceOptions: Option[] = [
 	{ name: Recurrence.Once, value: Recurrence.Once, selected: true },
 	{ name: Recurrence.Weekly, value: Recurrence.Weekly, selected: false },
 	{ name: Recurrence.Biweekly, value: Recurrence.Biweekly, selected: false},
@@ -71,7 +69,7 @@ export interface EventOption extends Option {
 	nonConstant?: boolean, /* Date falls on a different day each year. CNY isn't nonConstant as it's always 1/1. */
 	month?: number, 
 	day?: number
-};
+}
 
 /**
  * If it's lunar, then the event date will fall on a different solar date every year.

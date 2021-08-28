@@ -7,10 +7,11 @@ import {
 } from '@angular/core';
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
-import { LoadingService } from 'src/app/services/loading.service';
 
 import { BirthdayService } from '../../../services/birthday.service';
 import { DialogService } from '../../../services/dialog.service';
+import { LoadingService } from '../../../services/loading.service';
+
 import { AddBirthday } from '../../../types/birthday/birthday.types';
 import { Dialog } from '../../../types/dialog/dialog.types';
 import { ResponseStatus } from '../../../types/response.types';

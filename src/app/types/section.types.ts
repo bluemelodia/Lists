@@ -7,7 +7,7 @@ export enum SectionType {
     AddLunar,
     Presents,
     GiftIdeas
-};
+}
 
 /* Types related to navigation. */
 export interface NavItem {

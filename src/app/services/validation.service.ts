@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, AbstractControlOptions, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
-
-import { Channel } from '../modules/settings/types/settings.types';
+import { AbstractControl, AbstractControlOptions, FormGroup, ValidatorFn } from '@angular/forms';
 
 /*
 * Form validation methods.
@@ -12,6 +10,7 @@ import { Channel } from '../modules/settings/types/settings.types';
 export class ValidationService {
 	private static nameRegex = new RegExp('^[A-Z][A-Za-z.\'-]+([ ][A-Z][A-Za-z.\'-]+){1,3}$');
 	private static emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+	private static phoneRegex = `/^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/`;
 
 	constructor() { }
 
@@ -79,9 +78,29 @@ export class ValidationService {
 		}
 	}
 
-	phoneValidator(phoneKey: string[], phoneRequiredKey: string): ValidatorFn {
-		return (group: FormGroup) => {
-			return null;
+	phoneValidator(phoneKey: string, phoneRequiredKey: string): ValidatorFn {
+		return (group: FormGroup): AbstractControlOptions => {
+			/**
+			* Check if user is required to enter the email. Clear all errors first.
+			*/
+			const isPhoneRequired = group.get(phoneRequiredKey)?.value;
+			const phone = group?.controls[phoneKey];
+			phone.setErrors(null);
+
+			if (!isPhoneRequired) {
+				return;
+			}
+
+			if (!phone.value) {
+				phone.setErrors({ missingPhone: true });
+				return;
+			}
+
+			const valid = ValidationService.phoneRegex.match(phone.value);
+			console.log("===> is phone valid: ", phone.value, valid);
+			if (!valid) {
+				phone.setErrors({ invalidPhone: true });
+			}
 		};
 	}
 }

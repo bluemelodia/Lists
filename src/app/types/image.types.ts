@@ -1,6 +1,6 @@
 export interface Image {
     src: string;
-};
+}
 
 export interface ImageSnippet {
     src: string;
@@ -10,4 +10,4 @@ export interface ImageSnippet {
 export enum MenuIcon {
     Open = '../../assets/nav/open.svg',
     Closed = '../../assets/nav/closed.svg'
-};
+}

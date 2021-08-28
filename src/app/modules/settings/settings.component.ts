@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ValidationService } from '../../services/validation.service';
 import { HeaderLevel } from '../../types/header.types';
@@ -31,11 +31,17 @@ export class SettingsComponent implements OnInit {
 				}),
 				email: [
 					'',
+				],
+				phone: [
+					'',
 				]
 			},
 			{
 				updateOn: 'submit',
-				validators: this.customValidator.emailValidator('email', `channels.${Channel.email}`),
+				validators: [
+					this.customValidator.emailValidator('email', `channels.${Channel.email}`),
+					this.customValidator.phoneValidator('phone', `channels.${Channel.text}`)
+				]
 			},
 		);
 	}
@@ -55,6 +61,6 @@ export class SettingsComponent implements OnInit {
 
 	public onSubmit(): void {
 		this.submitted = true;
-		console.log("Errors: ", this.settingsFormControl.email.errors);
+		console.log("Errors: ", this.settingsFormControl.email.errors, this.settingsFormControl.phone.errors);
 	}
 }
