@@ -11,8 +11,7 @@ import { Channel } from '../modules/settings/types/settings.types';
 })
 export class ValidationService {
 	private static nameRegex = new RegExp('^[A-Z][A-Za-z.\'-]+([ ][A-Z][A-Za-z.\'-]+){1,3}$');
-	private static emailRegex = new RegExp(`/^[a-zA-Z0-9.!#$%&'*+\/=?^_\`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}
-		[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/`);
+	private static emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
 	constructor() { }
 
@@ -57,21 +56,22 @@ export class ValidationService {
 	emailValidator(emailKey: string, emailRequiredKey: string): ValidatorFn {		
 		return (group: FormGroup) => {
 			/**
-			* Check if user is required to enter the email.
+			* Check if user is required to enter the email. Clear all errors first.
 			*/
 			const isEmailRequired = group.get(emailRequiredKey)?.value;
-			console.log("===> email required: ", isEmailRequired);
+			const email = group?.controls[emailKey];
+			email.setErrors(null);
+
 			if (!isEmailRequired) {
 				return null;
 			}
 
-			const email = group?.controls[emailKey];
-			console.log("===> email: ", email);
 			if (!email.value) {
 				email.setErrors({ missingEmail: true });
 			}
 
 			const valid = ValidationService.emailRegex.test(email.value);
+			console.log("===> is email valid: ", email.value, valid);
 			if (!valid) {
 				email.setErrors({ invalidEmail: true });
 			}
