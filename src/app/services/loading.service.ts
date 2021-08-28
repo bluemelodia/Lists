@@ -5,19 +5,19 @@ import { Observable, Subject } from 'rxjs';
 	providedIn: 'root'
 })
 export class LoadingService {
-    private loadingStateChanged$ = new Subject<boolean>();
+	private loadingStateChanged$ = new Subject<boolean>();
 
 	public get loadingChanged$(): Observable<boolean> {
 		return this.loadingStateChanged$.asObservable();
 	}
 
-	public startLoading() {
-        console.info("⭕️ 🏁 LoadingService ---> startLoading");
-        this.loadingStateChanged$.next(true);
-    }
+	public startLoading(): void {
+		console.info("⭕️ 🏁 LoadingService ---> startLoading");
+		this.loadingStateChanged$.next(true);
+	}
 
-    public stopLoading() {
-        console.info("⭕️ 🛑 LoadingService ---> stopLoading");
-        this.loadingStateChanged$.next(false);
-    }
+	public stopLoading(): void {
+		console.info("⭕️ 🛑 LoadingService ---> stopLoading");
+		this.loadingStateChanged$.next(false);
+	}
 }

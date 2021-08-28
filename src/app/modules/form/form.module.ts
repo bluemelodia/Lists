@@ -14,29 +14,29 @@ import { RadioComponent } from './radio/radio.component';
 import { SelectComponent } from './select/select.component';
 
 @NgModule({
-  declarations: [
-    CheckboxComponent,
-    DatepickerComponent,
-    RadioComponent,
-    SelectComponent
-  ],
-  imports: [
-    CalendarModule,
-    CommonModule,
-    DirectiveModule,
-    ElementModule,
-    FormsModule,
-    PipesModule,
-    ReactiveFormsModule,
-  ],
-  exports: [
-    CheckboxComponent,
-    DatepickerComponent,
-    RadioComponent,
-    SelectComponent
-  ],
-  providers: [
-    PickerDateFormatterPipe,
-  ]
+	declarations: [
+		CheckboxComponent,
+		DatepickerComponent,
+		RadioComponent,
+		SelectComponent
+	],
+	imports: [
+		CalendarModule,
+		CommonModule,
+		DirectiveModule,
+		ElementModule,
+		FormsModule,
+		PipesModule,
+		ReactiveFormsModule,
+	],
+	exports: [
+		CheckboxComponent,
+		DatepickerComponent,
+		RadioComponent,
+		SelectComponent
+	],
+	providers: [
+		PickerDateFormatterPipe,
+	]
 })
 export class FormElementModule { }

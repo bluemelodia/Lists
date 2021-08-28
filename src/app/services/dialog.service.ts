@@ -12,8 +12,6 @@ export class DialogService {
 	private show$ = new Subject<DialogConfig>();
 	private onAction$ = new Subject<DialogAction>();
 
-	constructor() { }
-
 	get showDialog$(): Observable<DialogConfig> {
 		return this.show$.asObservable();
 	}
@@ -22,7 +20,7 @@ export class DialogService {
 		return this.onAction$.asObservable();
 	}
 
-	showResponseStatusDialog(status: ResponseStatus, dialogType: Dialog) {
+	showResponseStatusDialog(status: ResponseStatus, dialogType: Dialog): void {
 		this.show$.next({
 			title: DialogUtils.titleForDialog(status),
 			message: DialogUtils.messageforStatusDialog(status, dialogType),
@@ -40,7 +38,7 @@ export class DialogService {
 		return this.onDialogAction$;
 	}
 
-	showErrorDialog(dialogType: Dialog) {
+	showErrorDialog(dialogType: Dialog): void {
 		this.show$.next({
 			title: 'Error',
 			message: DialogUtils.messageForErrorDialog(dialogType),
@@ -48,17 +46,17 @@ export class DialogService {
 		});
 	}
 
-	hideDialog() {
+	hideDialog(): void {
 		this.show$.next(null);
 		this.onAction$.next(DialogAction.Close);
 	}
 
-	onCancel() {
+	onCancel(): void {
 		this.show$.next(null);
 		this.onAction$.next(DialogAction.Cancel);
 	}
 
-	onContinue() {
+	onContinue(): void {
 		this.show$.next(null);
 		this.onAction$.next(DialogAction.Continue);
 	}

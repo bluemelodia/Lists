@@ -9,19 +9,19 @@ import { ElementModule } from '../element/element.module';
 import { FormElementModule } from '../form/form.module';
 
 @NgModule({
-  declarations: [
-    SettingsComponent,
-  ],
-  imports: [
-    CommonModule,
-    ElementModule,
-    FormElementModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SettingsRoutingModule,
-  ],
-  exports: [
-    SettingsComponent,
-  ]
+	declarations: [
+		SettingsComponent,
+	],
+	imports: [
+		CommonModule,
+		ElementModule,
+		FormElementModule,
+		FormsModule,
+		ReactiveFormsModule,
+		SettingsRoutingModule,
+	],
+	exports: [
+		SettingsComponent,
+	]
 })
 export class SettingsModule { }

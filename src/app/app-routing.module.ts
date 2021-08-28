@@ -8,29 +8,29 @@ import { ElementModule } from './modules/element/element.module';
  * any given session.
  */
 const routes: Routes = [
-  {
-    path: 'family',
-    loadChildren: () => import('./modules/family/family.module').then(m => m.FamilyModule)
-  },
-  {
-    path: 'events',
-    loadChildren: () => import('./modules/event/event.module').then(m => m.AddEventModule)
-  },
-  {
-    path: 'birthdays',
-    loadChildren: () => import('./modules/tasks/birthdays/birthdays.module').then(m => m.BirthdaysTaskModule)
-  },
-  {
-    path: 'settings',
-    loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule)
-  }
+	{
+		path: 'family',
+		loadChildren: () => import('./modules/family/family.module').then(m => m.FamilyModule)
+	},
+	{
+		path: 'events',
+		loadChildren: () => import('./modules/event/event.module').then(m => m.AddEventModule)
+	},
+	{
+		path: 'birthdays',
+		loadChildren: () => import('./modules/tasks/birthdays/birthdays.module').then(m => m.BirthdaysTaskModule)
+	},
+	{
+		path: 'settings',
+		loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule)
+	}
 ];
 
 @NgModule({
-  imports: [
-    ElementModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [RouterModule],
+	imports: [
+		ElementModule,
+		RouterModule.forRoot(routes)
+	],
+	exports: [RouterModule],
 })
 export class AppRoutingModule { }

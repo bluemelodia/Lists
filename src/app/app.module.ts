@@ -15,22 +15,22 @@ import { HeaderComponent } from './components/header/header.component';
 import { ElementModule } from './modules/element/element.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DialogComponent,
-    FooterComponent,
-    HeaderComponent,
-  ],
-  imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ElementModule,
-    NavModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		DialogComponent,
+		FooterComponent,
+		HeaderComponent,
+	],
+	imports: [
+		BrowserAnimationsModule,
+		BrowserModule,
+		CommonModule,
+		AppRoutingModule,
+		HttpClientModule,
+		ElementModule,
+		NavModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

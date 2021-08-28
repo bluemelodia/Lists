@@ -24,7 +24,7 @@ import { UUID } from 'angular2-uuid';
  * The tab stop should have the 'tab-stop' CSS class.
  */
 @Directive({
-  selector: '[appFocus]'
+	selector: '[appFocus]'
 })
 export class FocusDirective {
   /**
@@ -50,36 +50,36 @@ export class FocusDirective {
    * This will be true when the container is closed (ex. nav menu is closed).
    */
   private getFirstFocusableElement(): HTMLElement {
-    let buttons = this.el.nativeElement.getElementsByClassName('focus-option');
-    buttons = Array.from(buttons).filter((el: HTMLElement) => {
-      return el.classList.contains('focus-origin') || el.getAttribute('aria-hidden') === 'false';
-    });
-    return buttons.length > 1 ? buttons[0] : null;
+  	let buttons = this.el.nativeElement.getElementsByClassName('focus-option');
+  	buttons = Array.from(buttons).filter((el: HTMLElement) => {
+  		return el.classList.contains('focus-origin') || el.getAttribute('aria-hidden') === 'false';
+  	});
+  	return buttons.length > 1 ? buttons[0] : null;
   }
 
   @HostListener('document:keyup', ['$event']) onKeyDownHandler(event: KeyboardEvent) {      
-      const target = event.target as HTMLElement;
+  	const target = event.target as HTMLElement;
 
-      switch (event.key) {
-        case Key.Tab:
-          if (target.classList.contains('tab-stop')) {
-            /**
+  	switch (event.key) {
+  	case Key.Tab:
+  		if (target.classList.contains('tab-stop')) {
+  			/**
             * Tab stop element. If this element has tabindex = -1 and aria-hidden = true, 
             * then allow users to tab outside of the container.
             */
-            const firstElement = this.getFirstFocusableElement();
-            if (firstElement) {
-              firstElement.focus();
-            }
-          } else {
-            this.focus.keyPressed(event.key, target.id, this.id);
-          }
-          break;
-        case Key.Space:
-        case Key.Enter:
-        case Key.Escape:
-          this.focus.keyPressed(event.key, target.id, this.id);
-          break;
-      }
+  			const firstElement = this.getFirstFocusableElement();
+  			if (firstElement) {
+  				firstElement.focus();
+  			}
+  		} else {
+  			this.focus.keyPressed(event.key, target.id, this.id);
+  		}
+  		break;
+  	case Key.Space:
+  	case Key.Enter:
+  	case Key.Escape:
+  		this.focus.keyPressed(event.key, target.id, this.id);
+  		break;
+  	}
   }
 }

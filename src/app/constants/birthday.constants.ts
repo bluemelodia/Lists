@@ -15,6 +15,6 @@ interface BirthdayFormSubmitAction {
 }
 
 export const BirthdayFormSubmitActions: BirthdayFormSubmitAction = {
-    [BirthdayAction.Add]: 'Submit',
-    [BirthdayAction.Edit]: 'Update'
+	[BirthdayAction.Add]: 'Submit',
+	[BirthdayAction.Edit]: 'Update'
 }

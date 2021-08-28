@@ -1,7 +1,7 @@
 import { 
-    BirthdayConfig,
-    BirthdayAction,
-    BirthdayFormSubmitActions,
+	BirthdayConfig,
+	BirthdayAction,
+	BirthdayFormSubmitActions,
 } from "../constants/birthday.constants";
 import { Endpoint } from '../constants/urls.constants';
 
@@ -21,18 +21,18 @@ export class BirthdayUtils {
 		let url: string;
 		
 		switch(action) {
-			case BirthdayAction.Add:
-				url = BirthdayUtils.addBirthdayURL;
-				break;
-			case BirthdayAction.Delete:
-				url = BirthdayUtils.deleteBirthdayURL;
-				break;
-			case BirthdayAction.Edit:
-				url = BirthdayUtils.editBirthdayURL;
-				break;
-			case BirthdayAction.Fetch:
-				url = BirthdayUtils.getBirthdayURL;
-				break;
+		case BirthdayAction.Add:
+			url = BirthdayUtils.addBirthdayURL;
+			break;
+		case BirthdayAction.Delete:
+			url = BirthdayUtils.deleteBirthdayURL;
+			break;
+		case BirthdayAction.Edit:
+			url = BirthdayUtils.editBirthdayURL;
+			break;
+		case BirthdayAction.Fetch:
+			url = BirthdayUtils.getBirthdayURL;
+			break;
 		}
 
 		return url;
@@ -53,29 +53,29 @@ export class BirthdayUtils {
 		return day;
 	}
 
-    public static createCheckboxOption(value: number): boolean {
-        return !!value;
-    }
+	public static createCheckboxOption(value: number): boolean {
+		return !!value;
+	}
 
-    public static createBirthdayFormConfig(action: BirthdayAction): BirthdayConfig {
-        const config: BirthdayConfig = {
-            action: action,
-            buttonAction: BirthdayFormSubmitActions[action]
-        };
+	public static createBirthdayFormConfig(action: BirthdayAction): BirthdayConfig {
+		const config: BirthdayConfig = {
+			action: action,
+			buttonAction: BirthdayFormSubmitActions[action]
+		};
 
-        return config;
-    }
+		return config;
+	}
 
 	public static birthdayDialogForAction(action: BirthdayAction): Dialog {
 		let dialogType: Dialog;
 		
 		switch(action) {
-			case BirthdayAction.Add:
-				dialogType = Dialog.AddBirthday;
-				break;
-			case BirthdayAction.Edit:
-				dialogType = Dialog.EditBirthday;
-				break;
+		case BirthdayAction.Add:
+			dialogType = Dialog.AddBirthday;
+			break;
+		case BirthdayAction.Edit:
+			dialogType = Dialog.EditBirthday;
+			break;
 		}
 
 		return dialogType;
@@ -142,7 +142,8 @@ export class BirthdayUtils {
 		});
 	}
 
-    private static sortBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
+	private static sortBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
+		// eslint-disable-next-line @typescript-eslint/unbound-method
 		return birthdays.sort(BirthdayUtils.sortByBirthDate);
 	}
 

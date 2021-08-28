@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, forkJoin, of } from 'rxjs';
@@ -27,14 +30,17 @@ export class CalendarService {
 	}
 
 	get year(): number {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.currentYear;
 	}
 
 	get month(): number {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.currentMonth;
 	}
 
 	get day(): number {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.currentDay;
 	}
 
@@ -53,45 +59,45 @@ export class CalendarService {
 			[this.currentYear]: this.getChineseCalendarForYear(this.currentYear),
 			[this.currentYear + 1]: this.getChineseCalendarForYear(this.currentYear + 1)
 		})
-		.subscribe((response: Response) => {
-			if (!response) {
-				this.calendar$.next(null);
-				return null;
-			}
+			.subscribe((response: Response) => {
+				if (!response) {
+					this.calendar$.next(null);
+					return null;
+				}
 
-			const cal = {};
+				const cal = {};
 
-			let calendarYears: CalendarYear[] = [];
-			/* The months in chronological order. */
-			let calendarMonths: CalendarMonth[] = [];
+				const calendarYears: CalendarYear[] = [];
+				/* The months in chronological order. */
+				const calendarMonths: CalendarMonth[] = [];
 
-			/* Separate out the calendars into their respective years. */
-			const curCal = response[this.currentYear];
-			if (curCal && curCal.statusCode === 0) {
-				let calendar = cal[this.currentYear] = CalendarUtils.getParsedCalendar(curCal.responseData);
+				/* Separate out the calendars into their respective years. */
+				const curCal = response[this.currentYear];
+				if (curCal && curCal.statusCode === 0) {
+					const calendar = cal[this.currentYear] = CalendarUtils.getParsedCalendar(curCal.responseData);
 
-				calendarYears.push(calendar);
-				calendarMonths.push(...calendar.months);
-			}
+					calendarYears.push(calendar);
+					calendarMonths.push(...calendar.months);
+				}
 
-			const nextCal = response[this.currentYear + 1];
-			if (nextCal && nextCal.statusCode === 0) {
-				let calendar = cal[this.currentYear + 1] = CalendarUtils.getParsedCalendar(nextCal.responseData);
-				calendarYears.push(calendar);
-				calendarMonths.push(...calendar.months);
-			}
+				const nextCal = response[this.currentYear + 1];
+				if (nextCal && nextCal.statusCode === 0) {
+					const calendar = cal[this.currentYear + 1] = CalendarUtils.getParsedCalendar(nextCal.responseData);
+					calendarYears.push(calendar);
+					calendarMonths.push(...calendar.months);
+				}
 
-			/**
+				/**
 			 * There is no real difference between the solar and lunar data. 
 			 * We use the lunar API for both.
 			 */
-			this.calendar$.next({
-				years: calendarYears,
-				months: calendarMonths,
-				days: CalendarUtils.getCalendarDays(),
-				type: type
+				this.calendar$.next({
+					years: calendarYears,
+					months: calendarMonths,
+					days: CalendarUtils.getCalendarDays(),
+					type: type
+				});
 			});
-		});
 	}
 	
 	private getChineseCalendarForYear(year: number): Observable<Response> {
@@ -108,7 +114,7 @@ export class CalendarService {
 			});
 		}
 		
-		let url = `${this.baseURL}/${year}`;
+		const url = `${this.baseURL}/${year}`;
 		return this.http.get<Response>(url);
 	}
 }

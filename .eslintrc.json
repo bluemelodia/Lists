@@ -30,7 +30,7 @@
 				"@angular-eslint"
 			],
 			"rules": {
-				"indent": ["error", 4, "tab"]
+				"indent": ["error", "tab"]
 			}
 		},
 		{

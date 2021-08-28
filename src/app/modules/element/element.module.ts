@@ -5,18 +5,18 @@ import { LoaderComponent } from './loader/loader.component';
 import { NoResultsComponent } from './no-results/no-results.component';
 
 @NgModule({
-    declarations: [
-        HeadingComponent,
-        LoaderComponent,
-        NoResultsComponent
-    ],
-    imports: [
-        CommonModule
-    ],
-    exports: [
-        HeadingComponent,
-        LoaderComponent,
-        NoResultsComponent
-    ]
+	declarations: [
+		HeadingComponent,
+		LoaderComponent,
+		NoResultsComponent
+	],
+	imports: [
+		CommonModule
+	],
+	exports: [
+		HeadingComponent,
+		LoaderComponent,
+		NoResultsComponent
+	]
 })
 export class ElementModule {}

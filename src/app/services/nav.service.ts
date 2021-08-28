@@ -22,12 +22,12 @@ export class NavService {
 		return this.menuTitleChanged$.asObservable();
 	}
 
-	public setTitle(title: string) {
+	public setTitle(title: string): void {
 		this.menuTitleChanged$.next(title);
 	}
 
 
-	public navigateToTopic(topic: Topic, additionalParams?: Params) {
+	public navigateToTopic(topic: Topic, additionalParams?: Params): void {
 		const destinationTopic: IMenuDetails = NavUtils.getTopic(topic);
 		this.navigate(destinationTopic.route, destinationTopic.title, additionalParams);
 	}
@@ -35,15 +35,15 @@ export class NavService {
 	/**
 	* Convenience method for navigating the user from page to page.
 	*/
-	public navigate(route: string, title: string, additionalParams?: Params) {
+	public navigate(route: string, title: string, additionalParams?: Params): void {
 		console.info(`🚀 ✅ NavService ---> navigate, route to ${route} with title ${title}.`);
-		this.router.navigate([route],{ queryParams: { title: title, ...additionalParams }});
+		void this.router.navigate([route],{ queryParams: { title: title, ...additionalParams }});
 	}
 
 	/**
 	 * Other consumers can call this to close the menu.
 	 */
-	closeNavMenu() {
+	closeNavMenu(): void {
 		this.menuState$.next(false);
 	}
 }

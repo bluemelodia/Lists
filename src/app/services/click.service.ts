@@ -6,6 +6,4 @@ import { Subject } from 'rxjs';
 })
 export class ClickService {
 	clicked: Subject<HTMLElement> = new Subject<HTMLElement>();
-
-	constructor() { }
 }

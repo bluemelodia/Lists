@@ -49,11 +49,11 @@ export class CalendarComponent implements OnInit {
 	ngOnInit(): void {}
 
 	previousMonth(): void {
-			/* Check if we are at the first month. */
-			if (this.monthIdx >= 0) {
-				this.monthIdx--;
-				this.month = this.calendarMonths[this.monthIdx];
-			}
+		/* Check if we are at the first month. */
+		if (this.monthIdx >= 0) {
+			this.monthIdx--;
+			this.month = this.calendarMonths[this.monthIdx];
+		}
 	}
 
 	nextMonth(): void {

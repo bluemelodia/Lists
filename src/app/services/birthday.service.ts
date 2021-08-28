@@ -40,10 +40,10 @@ export class BirthdayService {
 	
 	public modifyBirthday(birthday: Birthday, action: BirthdayAction): Observable<ResponseStatus> {
 		switch (action) {
-			case BirthdayAction.Add:
-				return this.postBirthday(birthday);
-			case BirthdayAction.Edit:
-				return this.postBirthday(birthday, true, BirthdayAction.Edit);
+		case BirthdayAction.Add:
+			return this.postBirthday(birthday);
+		case BirthdayAction.Edit:
+			return this.postBirthday(birthday, true, BirthdayAction.Edit);
 		}
 	}
 
@@ -52,6 +52,7 @@ export class BirthdayService {
 	*/
 	public postBirthday(birthday: Birthday, showDialog = true, action = BirthdayAction.Add): Observable<ResponseStatus> {
 		console.info("🍰 🏁 BirthdayService ---> postBirthday, birthday: ", birthday);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.post<Response>(
 			BirthdayUtils.birthdayURLForAction(action),
 			BirthdayUtils.formatBirthday(birthday),
@@ -63,7 +64,7 @@ export class BirthdayService {
 				map((response: Response) => {
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
-				catchError((err) => {
+				catchError(() => {
 					if (showDialog) {
 						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, BirthdayUtils.birthdayDialogForAction(action));
 					}
@@ -74,6 +75,7 @@ export class BirthdayService {
 
 	public deleteBirthday(uuid: string): Observable<ResponseStatus> {
 		console.info("🍰 🏁 BirthdayService ---> deleteBirthday, delete birthday: ", uuid);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.delete<Response>(
 			`${BirthdayUtils.birthdayURLForAction(BirthdayAction.Delete)}/guest/${uuid}`,
 			{
@@ -81,12 +83,12 @@ export class BirthdayService {
 			}
 		)
 			.pipe(
-				map((response: Response) => {
+				map(() => {
 					console.info("🍰 ✅ BirthdayService ---> deleteBirthday success.");
 					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteBirthday);
 					return ResponseStatus.SUCCESS;
 				}),
-				catchError((err) => { 
+				catchError(() => { 
 					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.DeleteBirthday);
 					return of(null);				
 				})
@@ -112,9 +114,9 @@ export class BirthdayService {
 					  return;
 					}
 			  
-				this.calendar = calendar;
-				this.patchBirthdays(birthdayList);
-			});
+					this.calendar = calendar;
+					this.patchBirthdays(birthdayList);
+				});
 		}
 	}
 
@@ -185,10 +187,11 @@ export class BirthdayService {
 	 * @param userID 
 	 * @returns A sorted list of birthdays for this user.
 	 */
-	public getBirthdays(userID: string = "guest"): Observable<AddBirthday[]> {
+	public getBirthdays(userID = "guest"): Observable<AddBirthday[]> {
 		console.info("🍰 🏁 BirthdayService ---> getBirthdays, for id: ", userID);
 
 		const getBirthday = `${BirthdayUtils.birthdayURLForAction(BirthdayAction.Fetch)}/${userID}`;
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.get<Response>(
 			getBirthday
 		)
@@ -197,7 +200,7 @@ export class BirthdayService {
 					console.info("🍰 ✅ BirthdayService ---> getBirthdays, received birthdays: ", response);
 					return BirthdayUtils.sortAndTagBirthdays(response.responseData);
 				}),
-				catchError((err) => { 
+				catchError(() => { 
 					return of(null);				
 				})
 			);

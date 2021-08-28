@@ -5,7 +5,7 @@ import { CalendarDay } from '../types/calendar/calendar-response.types';
 	name: 'pickerDateFormatter'
 })
 export class PickerDateFormatterPipe implements PipeTransform {
-	public transform(value: CalendarDay, ...args: unknown[]): unknown {
+	public transform(value: CalendarDay): unknown {
 		if (value) {
 			const cmonthStr = value.cmonth ? ` - ${value.cmonthname} ${value.cmonth}/${value.cdate}` : '';
 			return `${value.month}/${value.value}/${value.year}${cmonthStr}`;

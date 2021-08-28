@@ -5,15 +5,15 @@ import { CalendarComponent } from './calendar.component';
 import { CalendarMonthComponent } from './calendar-month/calendar-month.component';
 
 @NgModule({
-  declarations: [
-    CalendarComponent,
-    CalendarMonthComponent,
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    CalendarComponent
-  ]
+	declarations: [
+		CalendarComponent,
+		CalendarMonthComponent,
+	],
+	imports: [
+		CommonModule
+	],
+	exports: [
+		CalendarComponent
+	]
 })
 export class CalendarModule { }

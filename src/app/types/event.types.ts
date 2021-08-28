@@ -2,7 +2,7 @@ export enum BirthdayFollowUp {
 	call = "Call",
 	text = "Text",
 	gift = "Buy Present",
-};
+}
 
 export enum BirthdayID {
 	call = "call",
@@ -23,6 +23,7 @@ export enum Recurrence {
 
 export interface Option {
 	name: string, 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	value: any,
 	selected?: boolean
 }
@@ -61,7 +62,7 @@ export enum EventType {
 	Valentines = 'Valentines',
 	Xmas = 'Xmas',
 	Other = 'Other'
-};
+}
 
 export interface EventOption extends Option {
 	recurrence?: Recurrence,

@@ -17,15 +17,15 @@ import { FocusEvent, Key } from '../../../types/focus.types';
 import { noCalMessage } from '../../../types/message.types';
 
 @Component({
-  selector: 'app-datepicker',
-  templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.css']
+	selector: 'app-datepicker',
+	templateUrl: './datepicker.component.html',
+	styleUrls: ['./datepicker.component.css']
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
   @Input() placeholder = '';
   @Input() calendarType: CalendarType = CalendarType.Lunar;
   @Input() form: FormGroup;
-  @Input() submitted: boolean = false;
+  @Input() submitted = false;
 
   @ViewChild('picker', { read: ElementRef, static: false }) picker: ElementRef;
 
@@ -47,75 +47,75 @@ export class DatepickerComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.setupSubscriptions();
-    this.isLoading = true;
-    this.calendar.getCalendar(this.calendarType);
+  	this.setupSubscriptions();
+  	this.isLoading = true;
+  	this.calendar.getCalendar(this.calendarType);
   }
 
   public ngOnDestroy(): void {
-    this.destroyed$.next();
-    this.destroyed$.complete();
+  	this.destroyed$.next();
+  	this.destroyed$.complete();
   }
 
   private setupSubscriptions() {
-    this.clickService.clicked
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe(target => {
-          this.onDocumentClick(target);
-      });
+  	this.clickService.clicked
+  		.pipe(takeUntil(this.destroyed$))
+  		.subscribe(target => {
+  			this.onDocumentClick(target);
+  		});
 
-    this.calendar.onCalendarFetched$
-      .pipe(
-        takeUntil(this.destroyed$)
-      ) 
-      .subscribe((calendar: Calendar) => {
-        this.isLoading = false;
-        if (!calendar) {
-          return;
-        }
+  	this.calendar.onCalendarFetched$
+  		.pipe(
+  			takeUntil(this.destroyed$)
+  		) 
+  		.subscribe((calendar: Calendar) => {
+  			this.isLoading = false;
+  			if (!calendar) {
+  				return;
+  			}
 
-        this.cal = calendar;
-      });
+  			this.cal = calendar;
+  		});
 
-      this.focus.keyPressed$()
-        .pipe(
-          filter((event: FocusEvent) => event.elementID === this.calendarId),
-          takeUntil(this.destroyed$)
-        )
-        .subscribe((event: FocusEvent) => {
-          switch (event.key) {
-            case Key.Escape:
-              // console.log("Event: ", event, this.showCal);
-              if (this.showCal) {
-                  this.showHideCal();
-              }
-              break;
-          }
-      });
+  	this.focus.keyPressed$()
+  		.pipe(
+  			filter((event: FocusEvent) => event.elementID === this.calendarId),
+  			takeUntil(this.destroyed$)
+  		)
+  		.subscribe((event: FocusEvent) => {
+  			switch (event.key) {
+  			case Key.Escape:
+  				// console.log("Event: ", event, this.showCal);
+  				if (this.showCal) {
+  					this.showHideCal();
+  				}
+  				break;
+  			}
+  		});
   }
 
   private onDocumentClick(target: any): void {
-    if (!this.picker.nativeElement.contains(target)) {
-      if (this.showCal) {
-        this.showHideCal();
-      }
-    }
+  	if (!this.picker.nativeElement.contains(target)) {
+  		if (this.showCal) {
+  			this.showHideCal();
+  		}
+  	}
   }
 
   public onKeydownEvent(event: KeyboardEvent): void {
-    if (event.key === "Enter" || event.key === " ") {
-      this.showHideCal();
-    }
+  	if (event.key === "Enter" || event.key === " ") {
+  		this.showHideCal();
+  	}
   }
 
   public showHideCal(): void {
-    this.showCal = !this.showCal;
+  	this.showCal = !this.showCal;
   }
 
   public selectDate(date: CalendarDay): void {
-    this.form.patchValue({
-      birthday: date
-    });
-    this.showHideCal();
+  	this.form.patchValue({
+  		birthday: date
+  	});
+  	this.showHideCal();
   }
 }

@@ -5,9 +5,9 @@ import { DialogService } from '../../services/dialog.service';
 import { DialogConfig, DialogType } from '../../types/dialog/dialog.types';
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+	selector: 'app-dialog',
+	templateUrl: './dialog.component.html',
+	styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent {
   public dialogType = DialogType;
@@ -16,14 +16,14 @@ export class DialogComponent {
   constructor(private dialogService: DialogService) { }
 
   onCancel(): void {
-    this.dialogService.onCancel();
+  	this.dialogService.onCancel();
   }
 
   onContinue(): void {
-    this.dialogService.onContinue();
+  	this.dialogService.onContinue();
   }
 
   hideDialog(): void {
-    this.dialogService.hideDialog();
+  	this.dialogService.hideDialog();
   }
 }

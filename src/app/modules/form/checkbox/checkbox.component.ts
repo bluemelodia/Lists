@@ -2,9 +2,9 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-checkbox',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.css']
+	selector: 'app-checkbox',
+	templateUrl: './checkbox.component.html',
+	styleUrls: ['./checkbox.component.css']
 })
 export class CheckboxComponent {
   @Input() name: string;
@@ -14,12 +14,12 @@ export class CheckboxComponent {
   constructor() { }
 
   get checkboxValue(): void {
-    return this.form.controls[this.checkboxName].value;
+  	return this.form.controls[this.checkboxName].value;
   }
 
   toggleChecked(event): void {
-    this.form.get(this.checkboxName).patchValue(
-      event.target.checked
-    );
+  	this.form.get(this.checkboxName).patchValue(
+  		event.target.checked
+  	);
   }
 }

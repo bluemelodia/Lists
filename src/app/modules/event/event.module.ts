@@ -11,21 +11,21 @@ import { ImageModule } from '../image/image.module';
 import { AddBirthdayComponent } from './birthday/add-birthday/add.component';
 
 @NgModule({
-  declarations: [
-    AddBirthdayComponent,
-  ],
-  imports: [
-    CommonModule,
-    DirectiveModule,
-    ElementModule,
-    EventRoutingModule,
-    FormElementModule,
-    FormsModule,
-    ImageModule,
-    ReactiveFormsModule,
-  ],
-  exports: [
-    AddBirthdayComponent,
-  ]
+	declarations: [
+		AddBirthdayComponent,
+	],
+	imports: [
+		CommonModule,
+		DirectiveModule,
+		ElementModule,
+		EventRoutingModule,
+		FormElementModule,
+		FormsModule,
+		ImageModule,
+		ReactiveFormsModule,
+	],
+	exports: [
+		AddBirthdayComponent,
+	]
 })
 export class AddEventModule { }

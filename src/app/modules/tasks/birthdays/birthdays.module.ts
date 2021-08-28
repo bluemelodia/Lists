@@ -9,18 +9,18 @@ import { ElementModule } from '../../element/element.module';
 import { IndicatorModule } from '../../indicator/indicator.module';
 
 @NgModule({
-  declarations: [
-    BirthdaysComponent,
-    ListComponent,
-  ],
-  imports: [
-    CommonModule,
-    ElementModule,
-    BirthdayTasksRoutingModule,
-    IndicatorModule,
-  ],
-  exports: [
-    BirthdaysComponent,
-  ]
+	declarations: [
+		BirthdaysComponent,
+		ListComponent,
+	],
+	imports: [
+		CommonModule,
+		ElementModule,
+		BirthdayTasksRoutingModule,
+		IndicatorModule,
+	],
+	exports: [
+		BirthdaysComponent,
+	]
 })
 export class BirthdaysTaskModule { }

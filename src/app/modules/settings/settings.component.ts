@@ -22,7 +22,7 @@ export class SettingsComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-				/* Set the controls for the form. */
+		/* Set the controls for the form. */
 		this.settingsForm = this.fb.group(
 			{
 				channels: this.fb.group({

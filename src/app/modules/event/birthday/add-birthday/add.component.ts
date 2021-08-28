@@ -169,12 +169,12 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				)
 				.subscribe((response: ResponseStatus) => {
 					switch(this.birthdayConfig.action) {
-						case BirthdayAction.Add:
-							this.dialogService.showResponseStatusDialog(response, Dialog.AddBirthday);
-							break;
-						case BirthdayAction.Edit:
-							this.dialogService.showResponseStatusDialog(response, Dialog.EditBirthday);
-							break;
+					case BirthdayAction.Add:
+						this.dialogService.showResponseStatusDialog(response, Dialog.AddBirthday);
+						break;
+					case BirthdayAction.Edit:
+						this.dialogService.showResponseStatusDialog(response, Dialog.EditBirthday);
+						break;
 					}
 
 					if (response === ResponseStatus.SUCCESS) {
@@ -191,11 +191,11 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((action: DialogAction) => {
 				switch(action) {
-					case DialogAction.Continue:
-						this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
-						break;
-					default:
-						break;
+				case DialogAction.Continue:
+					this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
+					break;
+				default:
+					break;
 				}
 			});
 	}

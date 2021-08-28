@@ -6,16 +6,16 @@ import { MenuComponent } from './menu/menu.component';
 import { NavComponent } from './nav.component';
 
 @NgModule({
-  declarations: [
-    MenuComponent,
-    NavComponent,
-  ],
-  imports: [
-    CommonModule,
-    DirectionModule,
-  ],
-  exports: [
-    NavComponent,
-  ]
+	declarations: [
+		MenuComponent,
+		NavComponent,
+	],
+	imports: [
+		CommonModule,
+		DirectionModule,
+	],
+	exports: [
+		NavComponent,
+	]
 })
 export class NavModule { }

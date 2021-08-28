@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { BirthdaysComponent } from './birthdays.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: BirthdaysComponent,
-  },
+	{
+		path: '',
+		component: BirthdaysComponent,
+	},
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule]
 })
 export class BirthdayTasksRoutingModule { }

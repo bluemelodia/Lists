@@ -12,7 +12,7 @@ export class FocusService {
 		return this.onKeyPressed$;
 	}
 
-	public keyPressed(key: Key, id: string, elementID: string) {
+	public keyPressed(key: Key, id: string, elementID: string): void {
 		this.onKeyPressed$.next({
 			key: key,
 			elementID: elementID,

@@ -7,17 +7,17 @@ import { LoadingService } from './services/loading.service';
 import { NavService } from './services/nav.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  constructor(
+	constructor(
     private loadingService: LoadingService,
     private navService: NavService,
     private route: ActivatedRoute,
-  ) {}
+	) {}
 
   @HostBinding('class') containerClasses = 'flex-centered__column full-viewport';
 
@@ -26,24 +26,24 @@ export class AppComponent implements OnInit {
   public loadingState$ = new Subject<boolean>();
 
   ngOnInit() {
-    this.setupSubscriptions();
+  	this.setupSubscriptions();
   }
 
   /**
    * Set the header title according to the route.
    */
   setupSubscriptions() {
-    this.route.queryParams.subscribe((params) => {
-        this.navService.setTitle(params?.title);
-    });
+  	this.route.queryParams.subscribe((params) => {
+  		this.navService.setTitle(params?.title);
+  	});
 
-    this.loadingService.loadingChanged$
-      .subscribe((loadingState: boolean) => {
-        this.loadingState$.next(loadingState);
-      });
+  	this.loadingService.loadingChanged$
+  		.subscribe((loadingState: boolean) => {
+  			this.loadingState$.next(loadingState);
+  		});
   }
 
   closeMenu() {
-    this.navService.closeNavMenu();
+  	this.navService.closeNavMenu();
   }
 }

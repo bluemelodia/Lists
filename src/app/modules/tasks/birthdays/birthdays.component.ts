@@ -1,9 +1,9 @@
-import { 
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  OnDestroy,
-  OnInit
+import {
+	ChangeDetectionStrategy,
+	Component,
+	HostBinding,
+	OnDestroy,
+	OnInit
 } from '@angular/core';
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
@@ -17,104 +17,104 @@ import { Dialog } from '../../../types/dialog/dialog.types';
 import { ResponseStatus } from '../../../types/response.types';
 
 @Component({
-  selector: 'task-birthdays',
-  templateUrl: './birthdays.component.html',
-  styleUrls: ['./birthdays.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+	selector: 'task-birthdays',
+	templateUrl: './birthdays.component.html',
+	styleUrls: ['./birthdays.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BirthdaysComponent implements OnInit, OnDestroy {
-  private birthdays$ = new Subject<AddBirthday[]>();
-  public birthdayList$ = this.birthdays$.asObservable();
+	private birthdays$ = new Subject<AddBirthday[]>();
+	public birthdayList$ = this.birthdays$.asObservable();
 
-  private isLoading = false;
+	private isLoading = false;
 
-  private ngUnsubscribe$ = new Subject<void>();
+	private ngUnsubscribe$ = new Subject<void>();
 
-  @HostBinding('class') public get hostClasses() {
-    let hostStyles = [
-      "hide-scrollbar",
-      "show-borders"
-    ];
+	@HostBinding('class') public get hostClasses(): string {
+		const hostStyles = [
+			"hide-scrollbar",
+			"show-borders"
+		];
 
-    if (this.isLoading) {
-      hostStyles.push("hide-container");
-    }
+		if (this.isLoading) {
+			hostStyles.push("hide-container");
+		}
 
-    return hostStyles.join(" ");
-  } 
+		return hostStyles.join(" ");
+	}
 
-  constructor(
-    private birthdayService: BirthdayService,
-    private dialogService: DialogService,
-    private loadingService: LoadingService,
-  ) { }
+	constructor(
+		private birthdayService: BirthdayService,
+		private dialogService: DialogService,
+		private loadingService: LoadingService,
+	) { }
 
-  public ngOnInit(): void {
-    this.addSubscriptions();
-    this.getBirthdays();
-  }
+	public ngOnInit(): void {
+		this.addSubscriptions();
+		this.getBirthdays();
+	}
 
-  private addSubscriptions() {
-    this.birthdayService.birthdaysListChanged$
-      .pipe(
-        takeUntil(this.ngUnsubscribe$)
-      )
-      .subscribe((numChanges: number) => {
-        if (numChanges) {
-          console.info("🍰 ✅ BirthdaysComponent ---> addSubscriptions, birthdays list refreshed, retrieve new list.");
-          this.getBirthdays(true);
-        } else {
-          this.loadingService.stopLoading();
-        }
-      });
+	private addSubscriptions() {
+		this.birthdayService.birthdaysListChanged$
+			.pipe(
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((numChanges: number) => {
+				if (numChanges) {
+					console.info("🍰 ✅ BirthdaysComponent ---> addSubscriptions, birthdays list refreshed, retrieve new list.");
+					this.getBirthdays(true);
+				} else {
+					this.loadingService.stopLoading();
+				}
+			});
 
-    this.loadingService.loadingChanged$
-      .pipe(
-        takeUntil(this.ngUnsubscribe$)
-      )
-      .subscribe((loading: boolean) => {
-        this.isLoading = loading;
-      });
-  }
+		this.loadingService.loadingChanged$
+			.pipe(
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((loading: boolean) => {
+				this.isLoading = loading;
+			});
+	}
 
-  /**
-   * Fetch the latest list of birthdays. Refresh should be set to true if
-   * we're fetching the birthdays list as a result of a patch - otherwise,
-   * it should be false.
-   */
-  public getBirthdays(refresh = false): void {
-    this.loadingService.startLoading();
-    this.birthdayService.getBirthdays()
-      .pipe(
-        catchError((err) => {
-            this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
-            this.loadingService.stopLoading();
-            return of(null);
-        }),
-        finalize(() => {
-          if (refresh) {
-            this.loadingService.stopLoading();
-          }
-        }),
-        take(1),
-        takeUntil(this.ngUnsubscribe$)
-      )
-      .subscribe((birthdays: AddBirthday[]) => {
-        console.info("🍰 ✅ BirthdaysComponent ---> getBirthdays, received birthdays: ", birthdays);
-        this.birthdays$.next(birthdays);
-        /**
-        * Send the results to the birthday service, which
-        * will update the server with any lunar birthdays
-        * that need to be added.
-        */
-        if (!refresh) {
-          this.birthdayService.syncBirthdays(birthdays);
-        }
-      });
-  }
+	/**
+	* Fetch the latest list of birthdays. Refresh should be set to true if
+	* we're fetching the birthdays list as a result of a patch - otherwise,
+	* it should be false.
+	*/
+	public getBirthdays(refresh = false): void {
+		this.loadingService.startLoading();
+		this.birthdayService.getBirthdays()
+			.pipe(
+				catchError(() => {
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
+					this.loadingService.stopLoading();
+					return of(null);
+				}),
+				finalize(() => {
+					if (refresh) {
+						this.loadingService.stopLoading();
+					}
+				}),
+				take(1),
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((birthdays: AddBirthday[]) => {
+				console.info("🍰 ✅ BirthdaysComponent ---> getBirthdays, received birthdays: ", birthdays);
+				this.birthdays$.next(birthdays);
+				/**
+				* Send the results to the birthday service, which
+				* will update the server with any lunar birthdays
+				* that need to be added.
+				*/
+				if (!refresh) {
+					this.birthdayService.syncBirthdays(birthdays);
+				}
+			});
+	}
 
-  public ngOnDestroy(): void {
-    this.ngUnsubscribe$.next();
-    this.ngUnsubscribe$.complete();
-  }
+	public ngOnDestroy(): void {
+		this.ngUnsubscribe$.next();
+		this.ngUnsubscribe$.complete();
+	}
 }

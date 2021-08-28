@@ -5,9 +5,9 @@ import { CalendarType, Month } from '../../../types/calendar/calendar.types';
 import { CalendarDay } from '../../../types/calendar/calendar-response.types';
 
 @Component({
-  selector: 'app-calendar-month',
-  templateUrl: './calendar-month.component.html',
-  styleUrls: ['./calendar-month.component.css']
+	selector: 'app-calendar-month',
+	templateUrl: './calendar-month.component.html',
+	styleUrls: ['./calendar-month.component.css']
 })
 export class CalendarMonthComponent {
     @Input() month: Month;
@@ -25,22 +25,22 @@ export class CalendarMonthComponent {
     constructor(private calendarService: CalendarService) {}
 
     ngOnInit(): void {
-      this.currentYear = this.calendarService.year;
-      this.currentMonth = this.calendarService.month;
-      this.currentDay = this.calendarService.day;
+    	this.currentYear = this.calendarService.year;
+    	this.currentMonth = this.calendarService.month;
+    	this.currentDay = this.calendarService.day;
     }
 
     isSelectableDate(day: CalendarDay): boolean {
-      return day.value > 0;
+    	return day.value > 0;
     }
 
     selectDate(date: CalendarDay): void {
-      this.onDateSelect.emit(date);
+    	this.onDateSelect.emit(date);
     }
 
     onDateKeyPress(event: KeyboardEvent, date: CalendarDay): void {
-      if (event.key === "Enter" || event.key === " ") {
-        this.selectDate(date);
-      }
+    	if (event.key === "Enter" || event.key === " ") {
+    		this.selectDate(date);
+    	}
     }
 }
