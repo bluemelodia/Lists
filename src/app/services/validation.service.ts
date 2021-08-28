@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+
+import { Channel } from '../modules/settings/types/settings.types';
 
 /*
 * Form validation methods.
@@ -8,20 +10,25 @@ import { AbstractControl, ValidatorFn } from '@angular/forms';
 	providedIn: 'root'
 })
 export class ValidationService {
+	private static nameRegex = new RegExp('^[A-Z][A-Za-z.\'-]+([ ][A-Z][A-Za-z.\'-]+){1,3}$');
+	private static emailRegex = new RegExp(`/^[a-zA-Z0-9.!#$%&'*+\/=?^_\`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}
+		[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/`);
 
 	constructor() { }
 
+	/**
+	 * Individual field validators.
+	 */
 	nameValidator(): ValidatorFn {
 		return (control: AbstractControl): { [key: string]: any } => {
 			if (!control.value) {
 				return null;
 			}
-			const regex = new RegExp('^[A-Z][A-Za-z.\'-]+([ ][A-Z][A-Za-z.\'-]+){1,3}$');
-			const valid = regex.test(control.value);
+			const valid = ValidationService.nameRegex.test(control.value);
 			return valid? null : { invalidName: true };
 		}
 	}
-
+	
 	relationshipValidator(): ValidatorFn {
 		return (control: AbstractControl): { [key: string]: any } => {
 			if (!control.value) {
@@ -41,6 +48,29 @@ export class ValidationService {
 			const regex = new RegExp('^[A-Za-z0-9,.!$\' ]+$');
 			const valid = regex.test(control.value);
 			return valid? null : { invalidDescription: true };
+		}
+	}
+
+	/**
+	 * Form-level validators.
+	 */
+	emailValidator(emailKey: string, emailRequiredKey: string): ValidatorFn {
+		return (group: FormGroup): { [key: string]: any } => {
+			/**
+			* Check if user is required to enter the email.
+			*/
+			const isEmailRequired = group?.controls[emailRequiredKey];
+			if (!isEmailRequired) {
+				return null;
+			}
+
+			const email = group?.controls[emailKey];
+			if (!email) {
+				return { missingEmail: true };
+			}
+
+			const valid = ValidationService.emailRegex.test(email.value);
+			return valid? null : { invalidEmail: true };
 		}
 	}
 }

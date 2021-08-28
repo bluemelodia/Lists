@@ -1,6 +1,7 @@
 <section class="form-container">
     <app-heading [level]="headerLevel.H1" text="User Settings"></app-heading>
-    <form [formGroup]="settingsForm">
+    <form [formGroup]="settingsForm"
+        (ngSubmit)="onSubmit()">
         <fieldset class="event-options">
             <app-heading [level]="headerLevel.H3" text="Birthday Reminders">
                 <span class="event-form__optional" post>Optional</span>
@@ -11,6 +12,19 @@
                 [checkboxName]="channel.email"
                 [form]="settingsForm.controls.channels">
             </app-checkbox>
+            <fieldset class="email" *ngIf="isChannelChecked(channel.email)">
+                <input type="email" 
+                    formControlName="email"
+                    placeholder="Email"/>
+                <div class="input-error" *ngIf="!settingsFormControl.valid && this.submitted">
+                        <span *ngIf="settingsFormControl.email.errors?.missingEmail">
+                            Please enter an email address.
+                        </span>    
+                        <span *ngIf="settingsFormControl.email.errors?.invalidEmail">
+                            Please enter a valid email address.
+                        </span>
+                </div>
+            </fieldset>
             <app-checkbox
                 name="Text Message"
                 [checkboxName]="channel.text"
@@ -21,6 +35,11 @@
                 [checkboxName]="channel.notification"
                 [form]="settingsForm.controls.channels">
             </app-checkbox>
+        </fieldset>
+        <fieldset class="form-actions">  
+            <button type="submit">
+                Update
+            </button>
         </fieldset>
     </form>
 </section>
