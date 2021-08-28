@@ -28,14 +28,14 @@ export class SettingsComponent implements OnInit {
 				channels: this.fb.group({
 					[Channel.email]: this.fb.control(false),
 					[Channel.text]: this.fb.control(false),
-					[Channel.notification]: this.fb.control(false),
 				}),
 				email: [
 					'',
 				]
 			},
 			{
-				validator: this.customValidator.emailValidator('email', `channels.${Channel.email}`),
+				updateOn: 'submit',
+				validators: this.customValidator.emailValidator('email', `channels.${Channel.email}`),
 			},
 		);
 	}

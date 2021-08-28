@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, AbstractControlOptions, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 
 import { Channel } from '../modules/settings/types/settings.types';
 
@@ -54,7 +54,7 @@ export class ValidationService {
 	 * Form-level validators.
 	 */
 	emailValidator(emailKey: string, emailRequiredKey: string): ValidatorFn {		
-		return (group: FormGroup) => {
+		return (group: FormGroup): AbstractControlOptions => {
 			/**
 			* Check if user is required to enter the email. Clear all errors first.
 			*/
@@ -63,11 +63,12 @@ export class ValidationService {
 			email.setErrors(null);
 
 			if (!isEmailRequired) {
-				return null;
+				return;
 			}
 
 			if (!email.value) {
 				email.setErrors({ missingEmail: true });
+				return;
 			}
 
 			const valid = ValidationService.emailRegex.test(email.value);
@@ -76,5 +77,11 @@ export class ValidationService {
 				email.setErrors({ invalidEmail: true });
 			}
 		}
+	}
+
+	phoneValidator(phoneKey: string[], phoneRequiredKey: string): ValidatorFn {
+		return (group: FormGroup) => {
+			return null;
+		};
 	}
 }
