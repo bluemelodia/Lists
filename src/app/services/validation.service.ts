@@ -54,23 +54,27 @@ export class ValidationService {
 	/**
 	 * Form-level validators.
 	 */
-	emailValidator(emailKey: string, emailRequiredKey: string): ValidatorFn {
-		return (group: FormGroup): { [key: string]: any } => {
+	emailValidator(emailKey: string, emailRequiredKey: string): ValidatorFn {		
+		return (group: FormGroup) => {
 			/**
 			* Check if user is required to enter the email.
 			*/
-			const isEmailRequired = group?.controls[emailRequiredKey];
+			const isEmailRequired = group.get(emailRequiredKey)?.value;
+			console.log("===> email required: ", isEmailRequired);
 			if (!isEmailRequired) {
 				return null;
 			}
 
 			const email = group?.controls[emailKey];
-			if (!email) {
-				return { missingEmail: true };
+			console.log("===> email: ", email);
+			if (!email.value) {
+				email.setErrors({ missingEmail: true });
 			}
 
 			const valid = ValidationService.emailRegex.test(email.value);
-			return valid? null : { invalidEmail: true };
+			if (!valid) {
+				email.setErrors({ invalidEmail: true });
+			}
 		}
 	}
 }

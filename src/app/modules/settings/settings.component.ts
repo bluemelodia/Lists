@@ -36,7 +36,6 @@ export class SettingsComponent implements OnInit {
 			},
 			{
 				validator: this.customValidator.emailValidator('email', `channels.${Channel.email}`),
-				updateOn: 'submit',
 			},
 		);
 	}
