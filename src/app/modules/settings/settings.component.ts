@@ -44,6 +44,7 @@ export class SettingsComponent implements OnInit {
 					'',
 				],
 				tasks: this.fb.group({
+					[Topic.Birthdays]: this.fb.control(false),
 					[Topic.Career]: this.fb.control(false),
 					[Topic.Family]: this.fb.control(false),
 					[Topic.Finance]: this.fb.control(false),

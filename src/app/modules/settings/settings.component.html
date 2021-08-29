@@ -49,7 +49,11 @@
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
             <span class="form-instructions">Select the events and tasks you would like to receive reminders for.</span>
-			
+			<app-checkbox
+                [name]="topic.Birthdays"
+                [checkboxName]="topic.Birthdays"
+                [form]="settingsForm.controls.tasks">
+            </app-checkbox>
 			<app-checkbox
                 [name]="topic.Career"
                 [checkboxName]="topic.Career"
