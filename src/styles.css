@@ -263,7 +263,7 @@ button:disabled .arrow-btn {
 */
 
 input[type="tel"] {
-  padding-left: 75px;
+  padding-left: 75px !important;
 }
 
 input.phone-input__container {
@@ -277,6 +277,7 @@ input.phone-input__container::placeholder {
 
 .iti {
   position: relative;
+  margin-bottom: 8px;
 }
 
 .iti .iti__flag-container {
@@ -319,19 +320,31 @@ input.phone-input__container::placeholder {
   position: absolute;
 }
 
+.dropdown-menu.country-dropdown {
+	max-height: 300px;
+	width: 100% !important;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
 .iti__country-list {
   list-style: none;
-  margin: 0 8px;
+  margin: 0;
   padding: 0;
 }
 
-.iti__country {
-  line-height: 44px;
+.iti__flag-box {
+	display: none;
 }
 
-.dropdown-menu.country-dropdown {
-  max-height: 300px;
-  width: 100% !important;
-  overflow-x: hidden;
-  overflow-y: auto;
+.iti__country {
+  display: flex;
+  justify-content: space-between;
+  line-height: 44px;
+  padding: 0 8px;
 }
+
+.iti__divider {
+	border-bottom: 1px solid pink;
+}
+
