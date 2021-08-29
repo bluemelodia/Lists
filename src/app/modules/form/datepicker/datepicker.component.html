@@ -19,7 +19,7 @@
             [calendar]="cal" 
             [type]="calendarType"
             [selectedDay]="form.controls.birthday.value"
-            (onDateSelected)="selectDate($event)">
+            (dateSelected)="selectDate($event)">
         </app-calendar>
         <app-no-results 
             *ngIf="!isLoading && !cal" 

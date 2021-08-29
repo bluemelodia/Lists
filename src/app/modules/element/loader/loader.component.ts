@@ -1,26 +1,20 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, } from '@angular/core';
 
 @Component({
 	selector: 'app-loader',
 	templateUrl: './loader.component.html',
 	styleUrls: ['./loader.component.css']
 })
-export class LoaderComponent implements OnInit {
-  @Input() fullScreen = false;
+export class LoaderComponent {
+	@Input() fullScreen = false;
 
-  @HostBinding('class') public get hostClasses() {
-  	const hostStyles = [];
+	@HostBinding('class') public get hostClasses(): string {
+		const hostStyles = [];
 
-  	if (this.fullScreen) {
-  		hostStyles.push("full-screen");
-  	}
+		if (this.fullScreen) {
+			hostStyles.push("full-screen");
+		}
 
-  	return hostStyles.join(" ");
-  } 
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+		return hostStyles.join(" ");
+	}
 }

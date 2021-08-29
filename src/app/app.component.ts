@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { filter } from 'rxjs/operators';
 
 import { LoadingService } from './services/loading.service';
 import { NavService } from './services/nav.service';
@@ -14,36 +13,36 @@ import { NavService } from './services/nav.service';
 })
 export class AppComponent implements OnInit {
 	constructor(
-    private loadingService: LoadingService,
-    private navService: NavService,
-    private route: ActivatedRoute,
-	) {}
+		private loadingService: LoadingService,
+		private navService: NavService,
+		private route: ActivatedRoute,
+	) { }
 
-  @HostBinding('class') containerClasses = 'flex-centered__column full-viewport';
+	@HostBinding('class') containerClasses = 'flex-centered__column full-viewport';
 
-  title = 'lists';
+	title = 'lists';
 
-  public loadingState$ = new Subject<boolean>();
+	public loadingState$ = new Subject<boolean>();
 
-  ngOnInit() {
-  	this.setupSubscriptions();
-  }
+	ngOnInit(): void {
+		this.setupSubscriptions();
+	}
 
-  /**
-   * Set the header title according to the route.
-   */
-  setupSubscriptions() {
-  	this.route.queryParams.subscribe((params) => {
-  		this.navService.setTitle(params?.title);
-  	});
+	/**
+	 * Set the header title according to the route.
+	 */
+	setupSubscriptions(): void {
+		this.route.queryParams.subscribe((params) => {
+			this.navService.setTitle(params?.title);
+		});
 
-  	this.loadingService.loadingChanged$
-  		.subscribe((loadingState: boolean) => {
-  			this.loadingState$.next(loadingState);
-  		});
-  }
+		this.loadingService.loadingChanged$
+			.subscribe((loadingState: boolean) => {
+				this.loadingState$.next(loadingState);
+			});
+	}
 
-  closeMenu() {
-  	this.navService.closeNavMenu();
-  }
+	closeMenu(): void {
+		this.navService.closeNavMenu();
+	}
 }

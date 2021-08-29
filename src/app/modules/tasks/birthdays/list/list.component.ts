@@ -1,9 +1,8 @@
-import { 
+import {
 	Component,
 	EventEmitter,
 	Input,
 	OnDestroy,
-	OnInit,
 	Output
 } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -19,37 +18,34 @@ import { ResponseStatus } from '../../../../types/response.types';
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit, OnDestroy {
-  @Input() list: AddBirthday[];
-  @Output() onDeleteBirthday = new EventEmitter();
+export class ListComponent implements OnDestroy {
+	@Input() list: AddBirthday[];
+	@Output() deletedBirthday = new EventEmitter();
 
-  headerLevel = HeaderLevel;
+	headerLevel = HeaderLevel;
 
-  public readonly base64Prefix = "data:image/jpeg;base64,";
-  private ngUnsubscribe$ = new Subject<void>();
+	public readonly base64Prefix = "data:image/jpeg;base64,";
+	private ngUnsubscribe$ = new Subject<void>();
 
-  constructor(
-    private birthdayService: BirthdayService,
-  ) { }
+	constructor(
+		private birthdayService: BirthdayService,
+	) { }
 
-  ngOnInit(): void {
-  }
+	public deleteBirthday(uuid: string): void {
+		this.birthdayService.deleteBirthday(uuid)
+			.pipe(
+				take(1),
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((response: ResponseStatus) => {
+				if (response === ResponseStatus.SUCCESS) {
+					this.deletedBirthday.emit(null);
+				}
+			});
+	}
 
-  public deleteBirthday(uuid: string) {
-  	this.birthdayService.deleteBirthday(uuid)
-  		.pipe(
-  			take(1),
-  			takeUntil(this.ngUnsubscribe$)
-  		)
-  		.subscribe((response: ResponseStatus) => {
-  			if (response === ResponseStatus.SUCCESS) {
-  				this.onDeleteBirthday.emit(null);
-  			}
-  		});
-  }
-
-  public ngOnDestroy(): void {
-  	this.ngUnsubscribe$.next();
-  	this.ngUnsubscribe$.complete();
-  }
+	public ngOnDestroy(): void {
+		this.ngUnsubscribe$.next();
+		this.ngUnsubscribe$.complete();
+	}
 }

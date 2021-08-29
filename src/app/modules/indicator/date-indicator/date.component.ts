@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DateStatus } from '../../../types/date/date.types';
 
 @Component({
@@ -6,13 +6,7 @@ import { DateStatus } from '../../../types/date/date.types';
 	templateUrl: './date.component.html',
 	styleUrls: ['./date.component.css']
 })
-export class DateIndicatorComponent implements OnInit {
-  @Input() status: DateStatus;
-  public dateStatus = DateStatus;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class DateIndicatorComponent {
+	@Input() status: DateStatus;
+	public dateStatus = DateStatus;
 }

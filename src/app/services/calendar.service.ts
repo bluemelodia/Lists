@@ -54,7 +54,7 @@ export class CalendarService {
 	/**
 	 * We want a two-year calendar, so wait until both requests complete.
 	 */
-	getCalendar(type: CalendarType) {
+	getCalendar(type: CalendarType): void {
 		forkJoin({
 			[this.currentYear]: this.getChineseCalendarForYear(this.currentYear),
 			[this.currentYear + 1]: this.getChineseCalendarForYear(this.currentYear + 1)
@@ -88,9 +88,9 @@ export class CalendarService {
 				}
 
 				/**
-			 * There is no real difference between the solar and lunar data. 
-			 * We use the lunar API for both.
-			 */
+				* There is no real difference between the solar and lunar data. 
+				* We use the lunar API for both.
+				*/
 				this.calendar$.next({
 					years: calendarYears,
 					months: calendarMonths,

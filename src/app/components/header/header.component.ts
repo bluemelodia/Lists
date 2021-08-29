@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NavService } from '../../services/nav.service';
@@ -8,7 +8,7 @@ import { NavService } from '../../services/nav.service';
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 	private ngUnsubscribe$ = new Subject<void>();
 	public title$ = new Subject<string>();
 

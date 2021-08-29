@@ -143,7 +143,6 @@ export class BirthdayUtils {
 	}
 
 	private static sortBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
-		// eslint-disable-next-line @typescript-eslint/unbound-method
 		return birthdays.sort(BirthdayUtils.sortByBirthDate);
 	}
 

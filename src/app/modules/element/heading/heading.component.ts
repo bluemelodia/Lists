@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, } from '@angular/core';
 import { HeaderLevel } from '../../../types/header.types';
 
 @Component({
@@ -6,14 +6,8 @@ import { HeaderLevel } from '../../../types/header.types';
 	templateUrl: './heading.component.html',
 	styleUrls: ['./heading.component.css']
 })
-export class HeadingComponent implements OnInit {
-  @Input() level: HeaderLevel = HeaderLevel.H2;
-  @Input() text: string;
-  HeaderLevel = HeaderLevel;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class HeadingComponent {
+	@Input() level: HeaderLevel = HeaderLevel.H2;
+	@Input() text: string;
+	HeaderLevel = HeaderLevel;
 }

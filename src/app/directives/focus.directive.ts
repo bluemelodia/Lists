@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable indent */
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { FocusService } from '../services/focus.service';
 import { Key } from '../types/focus.types';
-import { UUID } from 'angular2-uuid';
 
 /**
  * Loop focus for open navigation panels and modals. 
@@ -39,47 +42,41 @@ export class FocusDirective {
   }
 
   /**
-   * Constructor is called during component creation, during which the component DOM
-   * has not yet been initialized (ElementRef & nativeElement exist, but are not in the DOM).
-   * ngOnInit is called once the component is created, so it's a safe place to add the tap stop. 
-   */
-  ngOnInit() {}
-
-  /**
    * Don't do this if there's only one element (there's nothing to loop through).
    * This will be true when the container is closed (ex. nav menu is closed).
    */
-  private getFirstFocusableElement(): HTMLElement {
-  	let buttons = this.el.nativeElement.getElementsByClassName('focus-option');
-  	buttons = Array.from(buttons).filter((el: HTMLElement) => {
-  		return el.classList.contains('focus-origin') || el.getAttribute('aria-hidden') === 'false';
-  	});
-  	return buttons.length > 1 ? buttons[0] : null;
-  }
+	private getFirstFocusableElement(): HTMLElement {
+		let buttons = this.el.nativeElement.getElementsByClassName('focus-option');
+		buttons = Array.from(buttons).filter((el: HTMLElement) => {
+			return el.classList.contains('focus-origin') || el.getAttribute('aria-hidden') === 'false';
+		});
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return buttons.length > 1 ? buttons[0] : null;
+	}
 
-  @HostListener('document:keyup', ['$event']) onKeyDownHandler(event: KeyboardEvent) {      
-  	const target = event.target as HTMLElement;
+	@HostListener('document:keyup', ['$event']) onKeyDownHandler(event: KeyboardEvent): void {      
+		const target = event.target as HTMLElement;
 
-  	switch (event.key) {
-  	case Key.Tab:
-  		if (target.classList.contains('tab-stop')) {
-  			/**
-            * Tab stop element. If this element has tabindex = -1 and aria-hidden = true, 
-            * then allow users to tab outside of the container.
-            */
-  			const firstElement = this.getFirstFocusableElement();
-  			if (firstElement) {
-  				firstElement.focus();
-  			}
-  		} else {
-  			this.focus.keyPressed(event.key, target.id, this.id);
-  		}
-  		break;
-  	case Key.Space:
-  	case Key.Enter:
-  	case Key.Escape:
-  		this.focus.keyPressed(event.key, target.id, this.id);
-  		break;
-  	}
-  }
+		switch (event.key) {
+		case Key.Tab:
+			if (target.classList.contains('tab-stop')) {
+				/**
+				* Tab stop element. If this element has tabindex = -1 and aria-hidden = true, 
+				* then allow users to tab outside of the container.
+				*/
+				const firstElement = this.getFirstFocusableElement();
+				if (firstElement) {
+					firstElement.focus();
+				}
+			} else {
+				this.focus.keyPressed(event.key, target.id, this.id);
+			}
+			break;
+		case Key.Space:
+		case Key.Enter:
+		case Key.Escape:
+			this.focus.keyPressed(event.key, target.id, this.id);
+			break;
+		}
+	}
 }

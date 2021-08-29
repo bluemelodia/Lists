@@ -111,9 +111,9 @@ export class BirthdayService {
 			this.calendarService.onCalendarFetched$
 				.subscribe((calendar: Calendar) => {
 					if (!calendar) {
-					  return;
+						return;
 					}
-			  
+
 					this.calendar = calendar;
 					this.patchBirthdays(birthdayList);
 				});

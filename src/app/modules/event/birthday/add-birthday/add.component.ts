@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
+	AbstractControl,
 	FormBuilder,
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subject } from 'rxjs';
 import { 
 	filter,
@@ -89,6 +90,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 
 		this.route.queryParamMap
 			.pipe(
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 				map((params: ParamMap) => JSON.parse(params.get("birthday")))
 			)
 			.subscribe((birthday: AddBirthday) => {
@@ -128,23 +130,27 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 	}
 
 	/* returns the form controls of the form. */
-	get birthdayFormControl() {
+	get birthdayFormControl(): { [key: string]: AbstractControl } {
 		return this.birthdayForm.controls;
 	}
 
 	get name(): string {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.birthdayFormControl.name.value;
 	}
 
 	get date(): CalendarDay {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.birthdayForm.get('date.birthday')?.value;
 	}
 
 	get options(): BirthdayOptions {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.birthdayFormControl.options.value;
 	}
 
 	get profile(): BirthdayProfile {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.birthdayFormControl.profile.value;
 	}
 

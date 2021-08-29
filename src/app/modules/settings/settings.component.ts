@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, } from '@angular/forms';
 
 import { ValidationService } from '../../services/validation.service';
 import { HeaderLevel } from '../../types/header.types';
@@ -47,7 +47,7 @@ export class SettingsComponent implements OnInit {
 	}
 
 	/* returns the form controls of the form. */
-	get settingsFormControl() {
+	get settingsFormControl(): { [key: string]: AbstractControl } {
 		return this.settingsForm.controls;
 	}
 
@@ -56,6 +56,7 @@ export class SettingsComponent implements OnInit {
 	}
 
 	public isChannelChecked(channel: Channel): boolean {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.getChannel(channel)?.value;
 	}
 

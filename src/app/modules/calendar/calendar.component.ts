@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { CalendarService } from '../../services/calendar.service';
 import { Calendar, CalendarDay, CalendarMonth } from '../../types/calendar/calendar-response.types';
@@ -9,7 +9,7 @@ import { CalendarType, shortMonths } from '../../types/calendar/calendar.types';
 	templateUrl: './calendar.component.html',
 	styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent {
 	@Input() type: CalendarType;
 	@Input() set selectedDay(selected: CalendarDay) {
 		console.info("📆 💁🏻‍♀️ CalendarComponent ---> set selectedDay: ", selected);
@@ -33,7 +33,7 @@ export class CalendarComponent implements OnInit {
 		this.month = this.cal.months[this.monthIdx];
 	}
 
-	@Output() onDateSelected = new EventEmitter<CalendarDay>();
+	@Output() dateSelected = new EventEmitter<CalendarDay>();
 
 	private cal: Calendar;
 	calendarMonths: CalendarMonth[] = [];
@@ -46,8 +46,6 @@ export class CalendarComponent implements OnInit {
 
 	constructor(private calendarService: CalendarService) { }
 
-	ngOnInit(): void {}
-
 	previousMonth(): void {
 		/* Check if we are at the first month. */
 		if (this.monthIdx >= 0) {
@@ -57,13 +55,13 @@ export class CalendarComponent implements OnInit {
 	}
 
 	nextMonth(): void {
-		if (this.monthIdx < this.calendarMonths.length-1) {
+		if (this.monthIdx < this.calendarMonths.length - 1) {
 			this.monthIdx++;
 			this.month = this.calendarMonths[this.monthIdx];
 		}
 	}
 
-	selectDate(date: CalendarDay) {
-		this.onDateSelected.emit(date);
+	selectDate(date: CalendarDay): void {
+		this.dateSelected.emit(date);
 	}
 }

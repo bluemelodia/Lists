@@ -9,6 +9,7 @@ import { AbstractControl, AbstractControlOptions, FormGroup, ValidatorFn } from 
 })
 export class ValidationService {
 	private static nameRegex = new RegExp('^[A-Z][A-Za-z.\'-]+([ ][A-Z][A-Za-z.\'-]+){1,3}$');
+	// eslint-disable-next-line no-useless-escape
 	private static emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 	// eslint-disable-next-line no-useless-escape
 	private static phoneRegex = `/^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/`;

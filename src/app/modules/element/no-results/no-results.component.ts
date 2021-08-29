@@ -1,16 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-no-results',
 	templateUrl: './no-results.component.html',
 	styleUrls: ['./no-results.component.css']
 })
-export class NoResultsComponent implements OnInit {
+export class NoResultsComponent {
   @Input() message = 'No results found.';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

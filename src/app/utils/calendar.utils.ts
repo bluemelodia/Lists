@@ -28,6 +28,7 @@ export class CalendarUtils {
 		return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 	}
 
+	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public static getParsedCalendar(calendar: any): CalendarYear {
 		try {
 			/* Already parsed. */
