@@ -115,6 +115,8 @@ input {
   font-size: inherit;
   margin: 0 0 8px 0;
   padding: 8px;
+
+  width: 100%;
 }
 
 :focus,
@@ -254,4 +256,82 @@ button:disabled .arrow-btn {
   100% {
     opacity: 1;
   }
+}
+
+/**
+* Third-party library overrides.
+*/
+
+input[type="tel"] {
+  padding-left: 75px;
+}
+
+input.phone-input__container {
+  margin: 0px;
+}
+
+input.phone-input__container::placeholder {
+  position: absolute;
+  left: 75px;
+}
+
+.iti {
+  position: relative;
+}
+
+.iti .iti__flag-container {
+  display: flex;
+  align-items: center;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.iti__selected-flag {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.iti__selected-flag .selected-dial-code {
+	margin-left: 10px !important;
+}
+
+.iti .iti__arrow {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  min-height: 100%;
+  min-width: 20px;
+}
+
+.iti .iti__arrow:after {
+  content: "";
+  display: block;
+  background: url("assets/images/down-arrow.png") no-repeat;
+  background-size: contain;
+  height: 12px;
+  width: 100%;
+  float: left;
+}
+
+.iti__flag-container {
+  position: absolute;
+}
+
+.iti__country-list {
+  list-style: none;
+  margin: 0 8px;
+  padding: 0;
+}
+
+.iti__country {
+  line-height: 44px;
+}
+
+.dropdown-menu.country-dropdown {
+  max-height: 300px;
+  width: 100% !important;
+  overflow-x: hidden;
+  overflow-y: auto;
 }

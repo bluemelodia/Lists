@@ -1,16 +1,17 @@
 <div class="wrapper" [formGroup]="form">
-	<ngx-intl-tel-input [cssClass]="'custom'"
+	<ngx-intl-tel-input #phoneInput
+		cssClass="phone-input__container"
 		[preferredCountries]="preferredCountries"
-		[enableAutoCountrySelect]="true"
+		[enableAutoCountrySelect]="false"
 		[enablePlaceholder]="true"
-		[searchCountryFlag]="true"
+		[searchCountryFlag]="false"
 		[searchCountryField]="searchCountryFields"
 		[selectFirstCountry]="false"
 		[selectedCountryISO]="startingCountry"
 		[maxLength]="15"
-		[phoneValidation]="true" 
+		[phoneValidation]="false" 
 		[separateDialCode]="true"
-		[numberFormat]="phoneNumberFormat.National"
+		[numberFormat]="phoneNumberFormat.International"
 		name="phone" 
 		formControlName="phone">
 	</ngx-intl-tel-input>

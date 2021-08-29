@@ -1,0 +1,9 @@
+.wrapper {
+	position: relative;
+}
+
+.phone-input__container {
+	height: 1000px;
+	background-color: red;
+}
+
