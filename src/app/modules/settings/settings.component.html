@@ -2,11 +2,11 @@
     <app-heading [level]="headerLevel.H1" text="User Settings"></app-heading>
     <form [formGroup]="settingsForm"
         (ngSubmit)="onSubmit()">
-        <fieldset class="event-options">
-            <app-heading [level]="headerLevel.H3" text="Birthday Reminders">
+        <fieldset class="notification-channels">
+            <app-heading [level]="headerLevel.H3" text="Channels">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
-            <span class="form-instructions">Select the channels where you would like to receive upcoming birthday reminders.</span>
+            <span class="form-instructions">Select the channels where you would like to receive upcoming reminders.</span>
             <app-checkbox
                 name="Email"
                 [checkboxName]="channel.email"
@@ -43,6 +43,43 @@
                         </span>
                 </div>
             </fieldset>
+        </fieldset>
+		<fieldset class="notification-options">
+            <app-heading [level]="headerLevel.H3" text="Reminders">
+                <span class="event-form__optional" post>Optional</span>
+            </app-heading>
+            <span class="form-instructions">Select the events and tasks you would like to receive reminders for.</span>
+			
+			<app-checkbox
+                [name]="topic.Career"
+                [checkboxName]="topic.Career"
+                [form]="settingsForm.controls.tasks">
+            </app-checkbox>
+            <app-checkbox
+                [name]="topic.Family"
+                [checkboxName]="topic.Family"
+                [form]="settingsForm.controls.tasks">
+            </app-checkbox>
+			<app-checkbox
+                [name]="topic.Finance"
+                [checkboxName]="topic.Finance"
+                [form]="settingsForm.controls.tasks">
+            </app-checkbox>
+			<app-checkbox
+                [name]="topic.Health"
+                [checkboxName]="topic.Health"
+                [form]="settingsForm.controls.tasks">
+            </app-checkbox>
+			<app-checkbox
+                [name]="topic.Social"
+                [checkboxName]="topic.Social"
+                [form]="settingsForm.controls.tasks">
+            </app-checkbox>
+			<app-checkbox
+                [name]="topic.Travel"
+                [checkboxName]="topic.Travel"
+                [form]="settingsForm.controls.tasks">
+            </app-checkbox>
         </fieldset>
         <fieldset class="form-actions">  
             <button type="submit">

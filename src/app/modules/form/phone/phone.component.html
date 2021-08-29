@@ -1,4 +1,6 @@
-<div class="wrapper" inputFocus [formGroup]="form">
+<div class="wrapper" focus 
+	[formGroup]="form"
+	targetClass="phone-input__container">
 	<ngx-intl-tel-input #phoneInput
 		cssClass="phone-input__container"
 		[preferredCountries]="preferredCountries"

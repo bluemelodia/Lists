@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { Topic } from 'src/app/constants/topics.constants';
 
+import { Phone } from '../../constants/phone.constants';
 import { ValidationService } from '../../services/validation.service';
 import { HeaderLevel } from '../../types/header.types';
 import { Channel, VALIDATE_CHANNEL } from './types/settings.types';
@@ -15,6 +17,7 @@ export class SettingsComponent implements OnInit {
 	public channel = Channel;
 	public headerLevel = HeaderLevel;
 	public settingsForm: FormGroup;
+	public topic = Topic;
 	public submitted: boolean;
 	public validateChannel = VALIDATE_CHANNEL;
 
@@ -39,7 +42,16 @@ export class SettingsComponent implements OnInit {
 				],
 				phone: [
 					'',
-				]
+				],
+				tasks: this.fb.group({
+					[Topic.Career]: this.fb.control(false),
+					[Topic.Family]: this.fb.control(false),
+					[Topic.Finance]: this.fb.control(false),
+					[Topic.Health]: this.fb.control(false),
+					[Topic.Social]: this.fb.control(false),
+					[Topic.Study]: this.fb.control(false),
+					[Topic.Travel]: this.fb.control(false),
+				})
 			},
 			{
 				updateOn: 'submit',
@@ -54,6 +66,14 @@ export class SettingsComponent implements OnInit {
 	/* returns the form controls of the form. */
 	get settingsFormControl(): { [key: string]: AbstractControl } {
 		return this.settingsForm.controls;
+	}
+
+	private get phone(): Phone {
+		return this.settingsFormControl.phone.value;
+	}
+
+	private get email(): string {
+		return this.settingsFormControl.email.value;
 	}
 
 	private getChannel(channel: Channel): AbstractControl {
@@ -75,5 +95,6 @@ export class SettingsComponent implements OnInit {
 		this.validatePhone$.next(this.validateChannel[Channel.text]);
 
 		console.log("Errors: ", this.settingsFormControl.email.errors, this.settingsFormControl.phone.errors);
+		console.log("Values: ", this.phone, this.email);
 	}
 }

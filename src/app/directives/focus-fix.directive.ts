@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Directive, ElementRef, HostListener } from "@angular/core";
+import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 import { timer } from "rxjs";
 
 /**
@@ -9,9 +9,11 @@ import { timer } from "rxjs";
  * use a directive to address it instead.
  */
 @Directive({
-	selector: '[inputFocus]'
+	selector: '[focus]'
 })
 export class FocusFixDirective {
+	@Input() targetClass: string;
+
 	private element;
 
 	constructor(el: ElementRef) {
@@ -19,9 +21,9 @@ export class FocusFixDirective {
 	}
 
 	@HostListener('click', ['$event']) onClickHandler(): void {
-		const firstInput = this.element?.nativeElement.querySelector('input');
-
-		timer(0)
+		const firstInput = this.element?.nativeElement.querySelector(`.${this.targetClass}`);
+		console.log("==> input: ", firstInput);
+		timer(50)
 			.subscribe(() => {
 				firstInput?.focus();
 			});
