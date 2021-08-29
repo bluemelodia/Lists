@@ -60,7 +60,6 @@ export class ValidationService {
 			/**
 			* Check if user is required to enter the email. Clear all errors first.
 			*/
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const isEmailRequired = group.get(emailRequiredKey)?.value;
 			const email = group?.controls[emailKey];
 			email.setErrors(null);
@@ -87,7 +86,6 @@ export class ValidationService {
 			/**
 			* Check if user is required to enter the email. Clear all errors first.
 			*/
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const isPhoneRequired = group.get(phoneRequiredKey)?.value;
 			const phone = group?.controls[phoneKey];
 			phone.setErrors(null);

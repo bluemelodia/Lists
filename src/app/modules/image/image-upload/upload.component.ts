@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable indent */
 import {
 	Component,
@@ -106,7 +105,6 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 	}
 
 	private patchImage(): void {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const uploadedImage = this.uploadForm?.get("image")?.value;
 		if (uploadedImage) {
 			// console.info(`📂 💾 UploadComponent --> patchImage, patch user-uploaded image: ${uploadedImage}.`);

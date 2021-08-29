@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable indent */
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { FocusService } from '../services/focus.service';

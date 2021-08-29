@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+
 import { CalendarModule } from '../calendar/calendar.module';
 import { DirectiveModule } from '../../directives/directives.module';
 import { ElementModule } from '../element/element.module';
@@ -12,11 +14,13 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { RadioComponent } from './radio/radio.component';
 import { SelectComponent } from './select/select.component';
+import { PhoneComponent } from './phone/phone.component';
 
 @NgModule({
 	declarations: [
 		CheckboxComponent,
 		DatepickerComponent,
+		PhoneComponent,
 		RadioComponent,
 		SelectComponent
 	],
@@ -26,12 +30,14 @@ import { SelectComponent } from './select/select.component';
 		DirectiveModule,
 		ElementModule,
 		FormsModule,
+		NgxIntlTelInputModule,
 		PipesModule,
 		ReactiveFormsModule,
 	],
 	exports: [
 		CheckboxComponent,
 		DatepickerComponent,
+		PhoneComponent,
 		RadioComponent,
 		SelectComponent
 	],

@@ -78,7 +78,6 @@ export class CompressImageService {
 
 		private convertImage(file, width: number, height: number) {
 			convert({ 
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				file: file,  
 				width: width, 
 				height: height, 

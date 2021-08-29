@@ -38,7 +38,7 @@ export const recurrenceOptions: Option[] = [
 	{ name: Recurrence.Yearly, value: Recurrence.Yearly, selected: false },
 ];
 
-export function getRecurrenceOptionByFrequency(recurrence: Recurrence): RecurrenceOption {
+export function getRecurrenceOptionByFrequency(recurrence: Recurrence): Option {
 	return recurrenceOptions.find((option) => recurrence === option.value);
 }
 

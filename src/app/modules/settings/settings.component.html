@@ -31,9 +31,7 @@
                 [form]="settingsForm.controls.channels">
             </app-checkbox>
             <fieldset class="phone" *ngIf="isChannelChecked(channel.text)">
-                <input type="text" 
-                    formControlName="phone"
-                    placeholder="Phone Number"/>
+				<app-phone [form]="settingsForm"></app-phone>
                 <div class="input-error" *ngIf="!settingsFormControl.valid && this.submitted">
                         <span *ngIf="settingsFormControl.phone.errors?.missingPhone">
                             Please enter a phone number.

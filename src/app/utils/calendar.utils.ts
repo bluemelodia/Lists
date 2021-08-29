@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { CalendarMonth, CalendarWeek, CalendarDay, CalendarYear, CalendarKey } from '../types/calendar/calendar-response.types';
@@ -40,20 +39,20 @@ export class CalendarUtils {
 			const year = calJSON[CalendarKey.Year];
 			const calYear = year.$.value;
 			const months = CalendarUtils.parseMonths(year[CalendarKey.Month], calYear);
-			
-			const cal: CalendarYear = { 
+
+			const cal: CalendarYear = {
 				year: Number(calYear),
 				months: months
 			};
 			// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-			console.info(`📅 ✅ CalendarUtils ---> getParsedCalendar, created calendar for ${ year }: `, cal);
+			console.info(`📅 ✅ CalendarUtils ---> getParsedCalendar, created calendar for ${year}: `, cal);
 			CalendarUtils.cacheCalendar(calYear, cal);
 			return cal;
-		} catch(error) {
+		} catch (error) {
 			console.info(`📅 🚨 CalendarUtils ---> getParsedCalendar, unable to generate calendar: `, error);
 			return null;
 		}
-	}  
+	}
 
 	/* 
 	* Date references are much easier if you add the year field to each month.
@@ -88,11 +87,10 @@ export class CalendarUtils {
 	private static parseDays(daysJSON: any, month: number, year: number): CalendarDay[] {
 		const days = [];
 		for (const dayObj of daysJSON) {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const day = dayObj.$;
 			if (day) {
 				const calendarDay: CalendarDay = {
-					value: Number(day.value), 
+					value: Number(day.value),
 					cmonth: Number(day.cmonth),
 					leap: day.leap ? true : false,
 					cdate: Number(day.cdate),
