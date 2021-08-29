@@ -18,6 +18,10 @@
   scrollbar-width: none; /* Firefox */
 }
 
+:host::-webkit-scrollbar {
+	display: none;
+}
+
 :host.show-borders {
   border: 1px solid #dd2e44;
 }

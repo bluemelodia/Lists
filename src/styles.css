@@ -325,6 +325,20 @@ input.phone-input__container::placeholder {
 	width: 100% !important;
 	overflow-x: hidden;
 	overflow-y: auto;
+
+	top: 37px !important;
+
+	border: 2px solid pink !important;
+    border-top: 0 !important;
+	border-radius: 0 !important;
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.dropdown-menu.country-dropdown::-webkit-scrollbar {
+	display: none;
 }
 
 .iti__country-list {
@@ -342,6 +356,10 @@ input.phone-input__container::placeholder {
   justify-content: space-between;
   line-height: 44px;
   padding: 0 8px;
+}
+
+.iti__country:hover {
+	background-color: pink !important;
 }
 
 .iti__divider {
