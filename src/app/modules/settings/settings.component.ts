@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 import { ValidationService } from '../../services/validation.service';
 import { HeaderLevel } from '../../types/header.types';
-import { Channel } from './types/settings.types';
+import { Channel, VALIDATE_CHANNEL } from './types/settings.types';
 
 @Component({
 	selector: 'app-settings',
@@ -14,7 +15,11 @@ export class SettingsComponent implements OnInit {
 	public channel = Channel;
 	public headerLevel = HeaderLevel;
 	public settingsForm: FormGroup;
-	public submitted = false;
+	public submitted: boolean;
+	public validateChannel = VALIDATE_CHANNEL;
+
+	public validateEmail$ = new Subject<boolean>();
+	public validatePhone$ = new Subject<boolean>();
 
 	constructor(
 		private customValidator: ValidationService,
@@ -60,8 +65,15 @@ export class SettingsComponent implements OnInit {
 		return this.getChannel(channel)?.value;
 	}
 
+	public setChannelValidationStatus(channel: Channel, status: boolean): void {
+		this.validateChannel[channel] = status;
+	}
+
 	public onSubmit(): void {
 		this.submitted = true;
+		this.validateEmail$.next(this.validateChannel[Channel.email]);
+		this.validatePhone$.next(this.validateChannel[Channel.text]);
+
 		console.log("Errors: ", this.settingsFormControl.email.errors, this.settingsFormControl.phone.errors);
 	}
 }

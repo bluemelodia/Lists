@@ -10,17 +10,18 @@
             <app-checkbox
                 name="Email"
                 [checkboxName]="channel.email"
-                [form]="settingsForm.controls.channels">
+                [form]="settingsForm.controls.channels"
+				(valueChanged)="setChannelValidationStatus(channel.email, $event)">
             </app-checkbox>
             <fieldset class="email" *ngIf="isChannelChecked(channel.email)">
                 <input type="email" 
                     formControlName="email"
                     placeholder="Email"/>
-                <div class="input-error" *ngIf="!settingsFormControl.valid && this.submitted">
-                        <span *ngIf="settingsFormControl.email.errors?.missingEmail">
+                <div class="input-error" *ngIf="validateEmail$ | async as validateEmail">
+                        <span *ngIf="validateEmail && settingsFormControl.email.errors?.missingEmail">
                             Please enter an email address.
                         </span>    
-                        <span *ngIf="settingsFormControl.email.errors?.invalidEmail">
+                        <span *ngIf="validateEmail && settingsFormControl.email.errors?.invalidEmail">
                             Please enter a valid email address.
                         </span>
                 </div>
@@ -28,15 +29,16 @@
             <app-checkbox
                 name="Text Message"
                 [checkboxName]="channel.text"
-                [form]="settingsForm.controls.channels">
+                [form]="settingsForm.controls.channels"
+				(valueChanged)="setChannelValidationStatus(channel.text, $event)">
             </app-checkbox>
             <fieldset class="phone" *ngIf="isChannelChecked(channel.text)">
 				<app-phone [form]="settingsForm"></app-phone>
-                <div class="input-error" *ngIf="!settingsFormControl.valid && this.submitted">
-                        <span *ngIf="settingsFormControl.phone.errors?.missingPhone">
+                <div class="input-error" *ngIf="validatePhone$| async as validatePhone">
+                        <span *ngIf="validatePhone && settingsFormControl.phone.errors?.missingPhone">
                             Please enter a phone number.
                         </span>    
-                        <span *ngIf="settingsFormControl.phone.errors?.invalidPhone">
+                        <span *ngIf="validatePhone && settingsFormControl.phone.errors?.invalidPhone">
                             Please enter a valid phone number.
                         </span>
                 </div>

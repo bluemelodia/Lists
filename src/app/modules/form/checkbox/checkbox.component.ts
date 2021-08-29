@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -13,6 +13,8 @@ export class CheckboxComponent {
 	@Input() checkboxName: string;
 	@Input() form: FormGroup;
 
+	@Output() valueChanged = new EventEmitter<boolean>();
+
 	get checkboxValue(): void {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.form.controls[this.checkboxName].value;
@@ -24,5 +26,6 @@ export class CheckboxComponent {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			event.target.checked
 		);
+		this.valueChanged.emit(event.target.checked);
 	}
 }
