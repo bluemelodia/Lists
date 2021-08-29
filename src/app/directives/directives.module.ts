@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
+import { FocusFixDirective } from './focus-fix.directive';
 import { FocusDirective } from './focus.directive';
 
 @NgModule({
 	declarations: [ 
-		FocusDirective
+		FocusDirective,
+		FocusFixDirective,
 	],
 	exports: [
-		FocusDirective
+		FocusDirective,
+		FocusFixDirective,
 	]
 })
 export class DirectiveModule {}

@@ -7,6 +7,7 @@ import { SettingsRoutingModule } from './settings-routing.module';
 
 import { ElementModule } from '../element/element.module';
 import { FormElementModule } from '../form/form.module';
+import { DirectiveModule } from 'src/app/directives/directives.module';
 
 @NgModule({
 	declarations: [
@@ -14,6 +15,7 @@ import { FormElementModule } from '../form/form.module';
 	],
 	imports: [
 		CommonModule,
+		DirectiveModule,
 		ElementModule,
 		FormElementModule,
 		FormsModule,
