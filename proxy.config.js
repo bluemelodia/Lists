@@ -12,6 +12,8 @@ const PROXY_CONFIG = [
             "/todo/editBirthday",
             "/todo/getBirthdays",
             "/todo/deleteBirthday",
+			"/todo/loadSettings",
+			"/todo/saveSettings"
         ],
         target: "http://localhost:9003",
         secure: false

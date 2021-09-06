@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, } from '@angular/forms';
+
 import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 
 import { Topic } from '../../constants/topics.constants';
 
 import { Phone } from '../../interfaces/phone.interface';
-import { TopicSettings } from '../../interfaces/settings.interface';
+import { Settings, TopicSettings } from '../../interfaces/settings.interface';
 
 import { SettingsService } from '../../services/settings.service';
 import { ValidationService } from '../../services/validation.service';
 
 import { Channel, VALIDATE_CHANNEL } from './types/settings.types';
 import { HeaderLevel } from '../../types/header.types';
+import { ResponseStatus } from 'src/app/types/response.types';
 
 @Component({
 	selector: 'app-settings',
@@ -28,6 +31,8 @@ export class SettingsComponent implements OnInit {
 
 	public validateEmail$ = new Subject<boolean>();
 	public validatePhone$ = new Subject<boolean>();
+
+	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
 		private customValidator: ValidationService,
@@ -105,17 +110,26 @@ export class SettingsComponent implements OnInit {
 		this.validateEmail$.next(this.validateChannel[Channel.email]);
 		this.validatePhone$.next(this.validateChannel[Channel.text]);
 
+		console.log("errors: ", this.settingsFormControl.email.errors, this.settingsFormControl.phone.errors)
 		if (!this.settingsFormControl.email.errors && !this.settingsFormControl.phone.errors) {
-			const settings = {
-				phone: {
-					ext: this.phone?.dialCode,
-					number: this.phone?.number,
-				},
+			const settings: Settings = {
+				phone: this.phone,
 				email: this.email,
 				tasks: this.tasks,
 			}
-			console.log("===> form: ", this.settingsForm, settings)
-			this.settingsService.saveSettings();
+			this.settingsService.saveSettings(settings)
+				.pipe(
+					take(1),
+					takeUntil(this.ngUnsubscribe$)
+				)
+				.subscribe((response: ResponseStatus) => {
+					console.log("===> save settings: ", response);
+				});
 		}
+	}
+
+	public ngOnDestroy(): void {
+		this.ngUnsubscribe$.next();
+		this.ngUnsubscribe$.complete();
 	}
 }
