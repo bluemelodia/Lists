@@ -2,7 +2,7 @@ import {
 	BirthdayConfig,
 	BirthdayAction,
 	BirthdayFormSubmitActions,
-} from "../constants/birthday.constants";
+} from "../interfaces/birthday.interface";
 import { Endpoint } from '../constants/urls.constants';
 
 import { AddBirthday, Birthday } from "../types/birthday/birthday.types";

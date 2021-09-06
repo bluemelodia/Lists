@@ -279,31 +279,22 @@ input.phone-input__container::placeholder {
 	left: 75px;
 }
 
+#country-search-box {
+	border-bottom: 1px solid pink !important;
+}
+
 .iti {
 	position: relative;
 	margin-bottom: 8px;
 }
 
-#country-search-box {
-	border-bottom: 1px solid pink !important;
-}
-
 .iti .iti__flag-container {
+	position: absolute;
 	display: flex;
 	align-items: center;
 	left: 0;
 	height: 100%;
 	width: 100%;
-}
-
-.iti__selected-flag {
-	display: flex;
-	align-items: center;
-	height: 100%;
-}
-
-.iti__selected-flag .selected-dial-code {
-	margin-left: 10px !important;
 }
 
 .iti .iti__arrow {
@@ -324,8 +315,18 @@ input.phone-input__container::placeholder {
 	float: left;
 }
 
-.iti__flag-container {
-  position: absolute;
+.iti__selected-flag {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.iti__selected-flag.dropdown-toggle {
+	width: auto !important;
+}
+
+.iti__selected-flag .selected-dial-code {
+	margin-left: 10px !important;
 }
 
 .dropdown-menu.country-dropdown {
@@ -374,4 +375,3 @@ input.phone-input__container::placeholder {
 .iti__divider {
 	border-bottom: 1px solid pink;
 }
-

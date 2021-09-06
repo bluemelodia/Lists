@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { Topic } from 'src/app/constants/topics.constants';
 
-import { Phone } from '../../constants/phone.constants';
+import { Topic } from '../../constants/topics.constants';
+
+import { Phone } from '../../interfaces/phone.interface';
+import { TopicSettings } from '../../interfaces/settings.interface';
+
+import { SettingsService } from '../../services/settings.service';
 import { ValidationService } from '../../services/validation.service';
-import { HeaderLevel } from '../../types/header.types';
+
 import { Channel, VALIDATE_CHANNEL } from './types/settings.types';
+import { HeaderLevel } from '../../types/header.types';
 
 @Component({
 	selector: 'app-settings',
@@ -27,6 +32,7 @@ export class SettingsComponent implements OnInit {
 	constructor(
 		private customValidator: ValidationService,
 		private fb: FormBuilder,
+		private settingsService: SettingsService,
 	) { }
 
 	ngOnInit(): void {
@@ -77,6 +83,10 @@ export class SettingsComponent implements OnInit {
 		return this.settingsFormControl.email.value;
 	}
 
+	private get tasks(): TopicSettings {
+		return this.settingsFormControl.tasks.value;
+	}
+
 	private getChannel(channel: Channel): AbstractControl {
 		return this.settingsForm.get(`channels.${channel}`);
 	}
@@ -95,7 +105,17 @@ export class SettingsComponent implements OnInit {
 		this.validateEmail$.next(this.validateChannel[Channel.email]);
 		this.validatePhone$.next(this.validateChannel[Channel.text]);
 
-		console.log("Errors: ", this.settingsFormControl.email.errors, this.settingsFormControl.phone.errors);
-		console.log("Values: ", this.phone, this.email);
+		if (!this.settingsFormControl.email.errors && !this.settingsFormControl.phone.errors) {
+			const settings = {
+				phone: {
+					ext: this.phone?.dialCode,
+					number: this.phone?.number,
+				},
+				email: this.email,
+				tasks: this.tasks,
+			}
+			console.log("===> form: ", this.settingsForm, settings)
+			this.settingsService.saveSettings();
+		}
 	}
 }

@@ -30,7 +30,7 @@
 				"@angular-eslint"
 			],
 			"rules": {
-				"indent": ["error", "tab"],
+				"indent": ["warning", "tab"],
 				"@typescript-eslint/no-unsafe-assignment": ["off"],
 				"@typescript-eslint/unbound-method": ["off"]
 			}

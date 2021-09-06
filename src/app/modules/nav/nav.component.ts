@@ -1,7 +1,3 @@
-/**
- * eslint doesn't know the right amount of tabs to indent for this file, and keeps giving suggestions to over-indent.
- */
-/* eslint-disable indent */
 import { Component, HostBinding, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

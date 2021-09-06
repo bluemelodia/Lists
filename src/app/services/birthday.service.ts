@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { BirthdayAction } from '../constants/birthday.constants';
+import { BirthdayAction } from '../interfaces/birthday.interface';
 
 import { AddBirthday, Birthday } from '../types/birthday/birthday.types';
 import { Calendar, CalendarDay } from '../types/calendar/calendar-response.types';

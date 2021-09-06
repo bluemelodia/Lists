@@ -1,0 +1,14 @@
+import { Injectable } from "@angular/core";
+
+@Injectable({
+	providedIn: 'root'
+})
+export class SettingsService {
+	public fetchSettings(): void {
+
+	}
+
+	public saveSettings(): void {
+
+	}
+}

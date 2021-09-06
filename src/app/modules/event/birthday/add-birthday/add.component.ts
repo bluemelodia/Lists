@@ -14,7 +14,7 @@ import {
 	takeUntil,
 } from 'rxjs/operators';
 
-import { BirthdayAction } from '../../../../constants/birthday.constants';
+import { BirthdayAction } from '../../../../interfaces/birthday.interface';
 import { Topic } from '../../../../constants/topics.constants';
 
 import { BirthdayService } from '../../../../services/birthday.service';
