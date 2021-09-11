@@ -26,7 +26,6 @@ export class NavService {
 		this.menuTitleChanged$.next(title);
 	}
 
-
 	public navigateToTopic(topic: Topic, additionalParams?: Params): void {
 		const destinationTopic: IMenuDetails = NavUtils.getTopic(topic);
 		this.navigate(destinationTopic.route, destinationTopic.title, additionalParams);

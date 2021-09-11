@@ -33,7 +33,11 @@ export class SettingsService {
 			.pipe(
 				map((response: Response) => {
 					console.info("🛠 ✅ SettingsService ---> fetchSettings, received settings: ", response);
-					return response.responseData;
+					const settings = response.responseData?.length > 0 ? response.responseData[0] : null;
+					if (settings?.preferences) {
+						settings.tasks = JSON.parse(settings.preferences);
+					}
+					return settings;
 				}),
 				catchError(() => {
 					return of(null);

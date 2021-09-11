@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, } from '@angular/forms';
 
 import { Subject } from 'rxjs';
@@ -34,6 +34,7 @@ export class SettingsComponent implements OnInit {
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
+		private cdRef: ChangeDetectorRef,
 		private customValidator: ValidationService,
 		private fb: FormBuilder,
 		private settingsService: SettingsService,
@@ -82,6 +83,18 @@ export class SettingsComponent implements OnInit {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((settings: Settings) => {
+				this.settingsForm.patchValue({
+					channels: {
+						[Channel.email]: !!settings.email,
+						[Channel.text]: !!settings.phone,
+					},
+					email: settings.email,
+					phone: settings.phone,
+					tasks: {
+						...settings.tasks
+					}
+				});
+				this.cdRef.detectChanges();
 				console.log("===> retrieved settings: ", settings);
 			});
 	}
