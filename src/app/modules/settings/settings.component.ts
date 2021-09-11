@@ -14,7 +14,6 @@ import { ValidationService } from '../../services/validation.service';
 
 import { Channel, VALIDATE_CHANNEL } from './types/settings.types';
 import { HeaderLevel } from '../../types/header.types';
-import { ResponseStatus } from 'src/app/types/response.types';
 
 @Component({
 	selector: 'app-settings',
@@ -73,6 +72,18 @@ export class SettingsComponent implements OnInit {
 				]
 			},
 		);
+		this.loadSettings();
+	}
+
+	private loadSettings() {
+		this.settingsService.loadSettings()
+			.pipe(
+				take(1),
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((settings: Settings) => {
+				console.log("===> retrieved settings: ", settings);
+			});
 	}
 
 	/* returns the form controls of the form. */
@@ -110,7 +121,6 @@ export class SettingsComponent implements OnInit {
 		this.validateEmail$.next(this.validateChannel[Channel.email]);
 		this.validatePhone$.next(this.validateChannel[Channel.text]);
 
-		console.log("errors: ", this.settingsFormControl.email.errors, this.settingsFormControl.phone.errors)
 		if (!this.settingsFormControl.email.errors && !this.settingsFormControl.phone.errors) {
 			const settings: Settings = {
 				phone: this.phone,
@@ -122,8 +132,8 @@ export class SettingsComponent implements OnInit {
 					take(1),
 					takeUntil(this.ngUnsubscribe$)
 				)
-				.subscribe((response: ResponseStatus) => {
-					console.log("===> save settings: ", response);
+				.subscribe(() => {
+					this.loadSettings();
 				});
 		}
 	}

@@ -5,7 +5,10 @@ import { catchError, map } from "rxjs/operators";
 
 import { Endpoint } from "../constants/urls.constants";
 import { Settings } from "../interfaces/settings.interface";
+import { Dialog } from "../types/dialog/dialog.types";
 import { Response, ResponseStatus } from '../types/response.types';
+
+import { DialogService } from "./dialog.service";
 
 @Injectable({
 	providedIn: 'root'
@@ -17,11 +20,15 @@ export class SettingsService {
 
 	private headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-	constructor(private http: HttpClient) { }
+	constructor(
+		private dialogService: DialogService,
+		private http: HttpClient,
+	) { }
 
-	public fetchSettings(): Observable<any> {
+	public loadSettings(userID = 'guest'): Observable<Settings> {
+		console.info("🛠 ✅ SettingsService ---> loadSettings: ");
 		return this.http.get<Response>(
-			this.loadSettingsURL
+			`${this.loadSettingsURL}/${userID}`
 		)
 			.pipe(
 				map((response: Response) => {
@@ -34,22 +41,31 @@ export class SettingsService {
 			);
 	}
 
-	public saveSettings(settings: Settings): Observable<ResponseStatus> {
-		console.info("🛠 ✅ SettingsService ---> fetchSettings, saveSettings: ", settings);
+	public saveSettings(settings: Settings): Observable<void> {
+		console.info("🛠 ✅ SettingsService ---> fsaveSettings: ", settings);
 		return this.http.post<Response>(
 			this.saveSettingsURL,
-			settings,
+			this.formatSettings(settings),
 			{
 				headers: this.headers
 			}
 		)
 			.pipe(
 				map((response: Response) => {
-					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
+					this.dialogService.showResponseStatusDialog(response.statusCode, Dialog.SaveSettings);
+					return of(null);
 				}),
 				catchError(() => {
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.SaveSettings);
 					return of(null);
 				})
 			);
+	}
+
+	private formatSettings(settings: Settings): Settings {
+		return {
+			id: 'guest',
+			...settings,
+		}
 	}
 }

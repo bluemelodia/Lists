@@ -1,26 +1,28 @@
 export enum Dialog {
-    AddBirthday,
-    CancelEdit,
-    EditBirthday,
-    DeleteBirthday,
-    GetBirthday,
-    UploadFailed,
+	AddBirthday,
+	CancelEdit,
+	EditBirthday,
+	DeleteBirthday,
+	GetBirthday,
+	LoadSettings,
+	SaveSettings,
+	UploadFailed,
 }
 
 export enum DialogAction {
-    Cancel,
-    Close,
-    Continue,
+	Cancel,
+	Close,
+	Continue,
 }
 
 export enum DialogType {
-    Confirm,
-    Error,
-    Info
+	Confirm,
+	Error,
+	Info
 }
 
 export interface DialogConfig {
-    title: string;
-    message: string;
-    dialogType: DialogType;
+	title: string;
+	message: string;
+	dialogType: DialogType;
 }
