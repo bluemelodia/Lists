@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, } from '@angular/forms';
 
 import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { finalize, take, takeUntil } from 'rxjs/operators';
 
 import { Topic } from '../../constants/topics.constants';
 
@@ -14,6 +14,7 @@ import { ValidationService } from '../../services/validation.service';
 
 import { Channel, VALIDATE_CHANNEL } from './types/settings.types';
 import { HeaderLevel } from '../../types/header.types';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
 	selector: 'app-settings',
@@ -37,6 +38,7 @@ export class SettingsComponent implements OnInit {
 		private cdRef: ChangeDetectorRef,
 		private customValidator: ValidationService,
 		private fb: FormBuilder,
+		private loadingService: LoadingService,
 		private settingsService: SettingsService,
 	) { }
 
@@ -77,10 +79,14 @@ export class SettingsComponent implements OnInit {
 	}
 
 	private loadSettings() {
+		this.loadingService.startLoading();
 		this.settingsService.loadSettings()
 			.pipe(
 				take(1),
-				takeUntil(this.ngUnsubscribe$)
+				takeUntil(this.ngUnsubscribe$),
+				finalize(() => {
+					this.loadingService.stopLoading();
+				})
 			)
 			.subscribe((settings: Settings) => {
 				this.settingsForm.patchValue({
@@ -95,7 +101,6 @@ export class SettingsComponent implements OnInit {
 					}
 				});
 				this.cdRef.detectChanges();
-				console.log("===> retrieved settings: ", settings);
 			});
 	}
 
@@ -140,10 +145,14 @@ export class SettingsComponent implements OnInit {
 				email: this.email,
 				tasks: this.tasks,
 			}
+			this.loadingService.startLoading();
 			this.settingsService.saveSettings(settings)
 				.pipe(
 					take(1),
-					takeUntil(this.ngUnsubscribe$)
+					takeUntil(this.ngUnsubscribe$),
+					finalize(() => {
+						this.loadingService.stopLoading();
+					})
 				)
 				.subscribe(() => {
 					this.loadSettings();
