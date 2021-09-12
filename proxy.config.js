@@ -1,13 +1,14 @@
 const PROXY_CONFIG = [
-    {
+    /*{
         context: [
             "/ccal",
         ],
-        target: "http://localhost:9002",
+        target: "http://localhost:9003",
         secure: false
-    },
+    },*/
     {
         context: [
+			"/todo/ccal",
             "/todo/addBirthday",
             "/todo/editBirthday",
             "/todo/getBirthdays",
@@ -15,7 +16,7 @@ const PROXY_CONFIG = [
 			"/todo/loadSettings",
 			"/todo/saveSettings"
         ],
-        target: "http://localhost:9003",
+        target: "http://localhost:9002",
         secure: false
     }
 ]

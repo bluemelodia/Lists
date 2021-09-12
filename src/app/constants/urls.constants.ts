@@ -2,10 +2,10 @@
 //'https://guacnbean.com/todo/';
 
 interface URL {
-    readonly [key: string]: string;
+	readonly [key: string]: string;
 }
 
 export const Endpoint: URL = {
 	TODO: '/todo',
-	CALENDAR: '/ccal',
+	CALENDAR: '/todo/ccal',
 }

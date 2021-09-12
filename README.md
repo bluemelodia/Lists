@@ -10,8 +10,12 @@ from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
 
 Tutorials:
 <a href="https://www.freecodecamp.org/news/how-to-make-image-upload-easy-with-angular-1ed14cb2773b/">
-How to make image upload easy with Angular
+	How to make image upload easy with Angular
 </a> by Filip Jerga
+
+<a href="https://blog.angular-university.io/angular-push-notifications/">
+	Angular Push Notifications: a Complete Step-by-Step Guide
+</a>
 
 ## TODO
 
