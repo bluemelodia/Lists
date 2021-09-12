@@ -13,6 +13,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ElementModule } from './modules/element/element.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [
@@ -29,6 +31,12 @@ import { ElementModule } from './modules/element/element.module';
 		HttpClientModule,
 		ElementModule,
 		NavModule,
+		ServiceWorkerModule.register('ngsw-worker.js', {
+			enabled: true,
+			// Register the ServiceWorker as soon as the app is stable
+			// or after 30 seconds (whichever comes first).
+			registrationStrategy: 'registerWhenStable:30000'
+		}),
 	],
 	providers: [],
 	bootstrap: [AppComponent]
