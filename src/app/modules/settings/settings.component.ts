@@ -26,6 +26,7 @@ export class SettingsComponent implements OnInit {
 	public headerLevel = HeaderLevel;
 	public settingsForm: FormGroup;
 	public topic = Topic;
+	public startingCountry: string;
 	public submitted: boolean;
 	public validateChannel = VALIDATE_CHANNEL;
 
@@ -89,6 +90,7 @@ export class SettingsComponent implements OnInit {
 				})
 			)
 			.subscribe((settings: Settings) => {
+				this.startingCountry = settings.country;
 				this.settingsForm.patchValue({
 					channels: {
 						[Channel.email]: !!settings.email,
@@ -141,7 +143,8 @@ export class SettingsComponent implements OnInit {
 
 		if (!this.settingsFormControl.email.errors && !this.settingsFormControl.phone.errors) {
 			const settings: Settings = {
-				phone: this.phone,
+				country: this.phone.countryCode,
+				phone: this.phone.number,
 				email: this.email,
 				tasks: this.tasks,
 			}

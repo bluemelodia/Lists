@@ -1,9 +1,8 @@
-import { Phone } from "./phone.interface";
-
 export interface Settings {
 	id?: string,
-	phone: Phone,
+	country: string;
 	email: string,
+	phone: number,
 	tasks: TopicSettings,
 }
 

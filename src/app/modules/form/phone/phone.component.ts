@@ -1,12 +1,12 @@
-import { 
+import {
 	Component,
 	Input,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { PhoneNumberFormat } from 'ngx-intl-tel-input';
+import { CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 
-import { 
+import {
 	PREFERRED_COUNTRIES,
 	SEARCH_COUNTRY_FIELDS,
 	STARTING_COUNTRY,
@@ -19,9 +19,23 @@ import {
 })
 export class PhoneComponent {
 	@Input() form: FormGroup;
+	@Input() set startingCountry(country: string) {
+		this.country = this.getStartingCountry(country);
+	} 
+	public country;
 
 	public phoneNumberFormat = PhoneNumberFormat;
 	public preferredCountries = PREFERRED_COUNTRIES;
-	public startingCountry = STARTING_COUNTRY;
 	public searchCountryFields = SEARCH_COUNTRY_FIELDS;
+
+	private getStartingCountry(country: string) {
+		let startingCountry = STARTING_COUNTRY;
+		Object.keys(CountryISO).forEach((countryKey: string) => {
+			if (country.toLowerCase() === CountryISO[countryKey]) {
+				startingCountry = CountryISO[countryKey];
+			}
+		});
+
+		return startingCountry;
+	}
 }
