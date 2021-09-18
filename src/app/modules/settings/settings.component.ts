@@ -90,7 +90,7 @@ export class SettingsComponent implements OnInit {
 				})
 			)
 			.subscribe((settings: Settings) => {
-				this.startingCountry = settings.country;
+				this.startingCountry = settings?.country;
 				this.settingsForm.patchValue({
 					channels: {
 						[Channel.email]: !!settings.email,
@@ -143,9 +143,9 @@ export class SettingsComponent implements OnInit {
 
 		if (!this.settingsFormControl.email.errors && !this.settingsFormControl.phone.errors) {
 			const settings: Settings = {
-				country: this.phone.countryCode,
-				phone: this.phone.number,
-				email: this.email,
+				country: this.phone?.countryCode,
+				email: this.isChannelChecked(Channel.email) ? this.email : null,
+				phone: this.isChannelChecked(Channel.text) ? this.phone?.number : null,
 				tasks: this.tasks,
 			}
 			this.loadingService.startLoading();

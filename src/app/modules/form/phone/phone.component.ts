@@ -28,10 +28,11 @@ export class PhoneComponent {
 	public preferredCountries = PREFERRED_COUNTRIES;
 	public searchCountryFields = SEARCH_COUNTRY_FIELDS;
 
-	private getStartingCountry(country: string) {
+	private getStartingCountry(country: string): CountryISO {
 		let startingCountry = STARTING_COUNTRY;
+
 		Object.keys(CountryISO).forEach((countryKey: string) => {
-			if (country.toLowerCase() === CountryISO[countryKey]) {
+			if (country?.toLowerCase() === CountryISO[countryKey]) {
 				startingCountry = CountryISO[countryKey];
 			}
 		});
