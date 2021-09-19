@@ -90,16 +90,17 @@ export class SettingsComponent implements OnInit {
 				})
 			)
 			.subscribe((settings: Settings) => {
+				console.info("Patch settings: ", settings);
 				this.startingCountry = settings?.country;
 				this.settingsForm.patchValue({
 					channels: {
-						[Channel.email]: !!settings.email,
-						[Channel.text]: !!settings.phone,
+						[Channel.email]: !!settings?.email,
+						[Channel.text]: !!settings?.phone,
 					},
-					email: settings.email,
-					phone: settings.phone,
+					email: settings?.email,
+					phone: settings?.phone,
 					tasks: {
-						...settings.tasks
+						...settings?.tasks
 					}
 				});
 				this.cdRef.detectChanges();

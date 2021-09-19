@@ -146,7 +146,7 @@ export class BirthdayService {
 	private updateBirthdays(birthdays: AddBirthday[]): void {
 		const birthdayBatch = [];
 
-		birthdays.forEach((birthday: AddBirthday) => {
+		birthdays.filter((birthday) => birthday.lunar === 1).forEach((birthday: AddBirthday) => {
 			const matchingDays = this.calendar.days.filter((day: CalendarDay) => {
 				return day.cmonthname === birthday.cmonthname && day.cdate === birthday.cdate && day.year !== birthday.year;
 			});
@@ -176,11 +176,13 @@ export class BirthdayService {
 
 		console.info("🍰 🏁 BirthdayService ---> updateBirthdays, created birthday batch: ", birthdayBatch);
 
-		forkJoin(birthdayBatch)
+		if (birthdayBatch) {
+			forkJoin(birthdayBatch)
 			.subscribe((responseStatuses: ResponseStatus[]) => {
 				const numChanged = responseStatuses.filter((status: ResponseStatus) => status === ResponseStatus.SUCCESS).length;
 				this.birthdaysChanged$.next(numChanged);
 			});
+		}
 	}
 
 	/**

@@ -92,9 +92,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 					return of(null);
 				}),
 				finalize(() => {
-					if (refresh) {
-						this.loadingService.stopLoading();
-					}
+					this.loadingService.stopLoading();
 				}),
 				take(1),
 				takeUntil(this.ngUnsubscribe$)

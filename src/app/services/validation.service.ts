@@ -12,7 +12,7 @@ export class ValidationService {
 	// eslint-disable-next-line no-useless-escape
 	private static emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 	// eslint-disable-next-line no-useless-escape
-	private static phoneRegex = `/^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/`;
+	private static phoneRegex = `/^\+?\d{3}[- ]?\d{3}[- ]?\d{5}$/`;
 
 	/**
 	 * Individual field validators.
@@ -24,10 +24,10 @@ export class ValidationService {
 				return null;
 			}
 			const valid = ValidationService.nameRegex.test(control.value);
-			return valid? null : { invalidName: true };
+			return valid ? null : { invalidName: true };
 		}
 	}
-	
+
 	relationshipValidator(): ValidatorFn {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		return (control: AbstractControl): { [key: string]: any } => {
@@ -36,7 +36,7 @@ export class ValidationService {
 			}
 			const regex = new RegExp('^[A-Za-z\' ]+$');
 			const valid = regex.test(control.value);
-			return valid? null : { invalidRelationship: true };
+			return valid ? null : { invalidRelationship: true };
 		}
 	}
 
@@ -48,14 +48,14 @@ export class ValidationService {
 			}
 			const regex = new RegExp('^[A-Za-z0-9,.!$\' ]+$');
 			const valid = regex.test(control.value);
-			return valid? null : { invalidDescription: true };
+			return valid ? null : { invalidDescription: true };
 		}
 	}
 
 	/**
 	 * Form-level validators.
 	 */
-	emailValidator(emailKey: string, emailRequiredKey: string): ValidatorFn {		
+	emailValidator(emailKey: string, emailRequiredKey: string): ValidatorFn {
 		return (group: FormGroup): AbstractControlOptions => {
 			/**
 			* Check if user is required to enter the email. Clear all errors first.
