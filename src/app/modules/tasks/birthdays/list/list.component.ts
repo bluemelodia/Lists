@@ -19,7 +19,20 @@ import { ResponseStatus } from '../../../../types/response.types';
 	styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnDestroy {
-	@Input() list: AddBirthday[];
+	@Input() set list(list: AddBirthday[]) {
+		this.fullList = list;
+		list?.forEach((birthday: AddBirthday) => {
+			if (birthday.lunar) {
+				this.lunarBirthdays.push(birthday);
+			} else {
+				this.solarBirthdays.push(birthday);
+			}
+		});
+	}
+	public fullList: AddBirthday[];
+	public solarBirthdays: AddBirthday[] = [];
+	public lunarBirthdays: AddBirthday[] = [];
+
 	@Output() deletedBirthday = new EventEmitter();
 
 	headerLevel = HeaderLevel;

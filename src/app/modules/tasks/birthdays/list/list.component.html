@@ -1,19 +1,30 @@
-<ul class="birthday-list" *ngIf="list && list.length > 0">
-    <li class="birthday-list__item" *ngFor="let birthday of list">
-		<ng-container *ngIf="!birthday.lunar"
-			[ngTemplateOutlet]="birthdayList" 
-			[ngTemplateOutletContext]="{ 'birthday': birthday }">
-		</ng-container>   
-    </li>
-	<li class="birthday-list__item" *ngFor="let birthday of list">
-		<ng-container *ngIf="birthday.lunar"
-			[ngTemplateOutlet]="birthdayList" 
-			[ngTemplateOutletContext]="{ 'birthday': birthday }">
-		</ng-container>    
-	</li>
-</ul>
+<section class="birthday-list__scrollable-container">
+	<app-heading [level]="headerLevel.H1" text="Solar Birthdays"></app-heading>
+	<section class="birthday-list__scrollable-list">
+		<ul class="birthday-list" *ngIf="solarBirthdays.length > 0">
+			<li class="birthday-list__item" *ngFor="let birthday of solarBirthdays">
+				<ng-container [ngTemplateOutlet]="birthdayList" 
+					[ngTemplateOutletContext]="{ 'birthday': birthday }">
+				</ng-container>   
+			</li>
+		</ul>
+	</section>	
+</section>
+<section class="birthday-list__scrollable-container">
+	<app-heading [level]="headerLevel.H1" text="Lunar Birthdays"></app-heading>
+	<section class="birthday-list__scrollable-list">
+		<ul class="birthday-list" *ngIf="lunarBirthdays.length > 0">
+			<li class="birthday-list__item" *ngFor="let birthday of lunarBirthdays">
+				<ng-container [ngTemplateOutlet]="birthdayList" 
+					[ngTemplateOutletContext]="{ 'birthday': birthday }">
+				</ng-container>   
+			</li>
+		</ul>
+	</section>
+</section>
+
 <section class="no-results flex-centered__column"
-    *ngIf="list && list.length === 0">
+    *ngIf="fullList && fullList.length === 0">
     <app-heading [level]="headerLevel.H1" text="No Birthdays Found"></app-heading>
     <section class="form-container flex-centered__column">
         <p>You do not currently have any birthday reminders.</p>
