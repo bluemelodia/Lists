@@ -1,6 +1,7 @@
 import {
 	Component,
 	EventEmitter,
+	HostBinding,
 	Input,
 	OnDestroy,
 	Output
@@ -19,8 +20,20 @@ import { ResponseStatus } from '../../../../types/response.types';
 	styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnDestroy {
+	@HostBinding('class') public get hostClasses(): string {
+		let hostStyles = [];
+		if (this.solarBirthdays.length < 1 || this.lunarBirthdays.length < 1 || this.fullList?.length < 1) {
+			hostStyles.push("single-grid");
+		}
+
+		return hostStyles.join(" ");
+	}
+
 	@Input() set list(list: AddBirthday[]) {
 		this.fullList = list;
+		this.solarBirthdays = [];
+		this.lunarBirthdays = [];
+
 		list?.forEach((birthday: AddBirthday) => {
 			if (birthday.lunar) {
 				this.lunarBirthdays.push(birthday);

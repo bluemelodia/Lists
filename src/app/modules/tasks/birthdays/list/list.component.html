@@ -1,7 +1,8 @@
-<section class="birthday-list__scrollable-container">
+<section *ngIf="solarBirthdays.length > 0"
+	class="birthday-list__scrollable-container">
 	<app-heading [level]="headerLevel.H1" text="Solar Birthdays"></app-heading>
 	<section class="birthday-list__scrollable-list">
-		<ul class="birthday-list" *ngIf="solarBirthdays.length > 0">
+		<ul class="birthday-list">
 			<li class="birthday-list__item" *ngFor="let birthday of solarBirthdays">
 				<ng-container [ngTemplateOutlet]="birthdayList" 
 					[ngTemplateOutletContext]="{ 'birthday': birthday }">
@@ -10,10 +11,11 @@
 		</ul>
 	</section>	
 </section>
-<section class="birthday-list__scrollable-container">
+<section *ngIf="lunarBirthdays.length > 0"
+	class="birthday-list__scrollable-container">
 	<app-heading [level]="headerLevel.H1" text="Lunar Birthdays"></app-heading>
 	<section class="birthday-list__scrollable-list">
-		<ul class="birthday-list" *ngIf="lunarBirthdays.length > 0">
+		<ul class="birthday-list">
 			<li class="birthday-list__item" *ngFor="let birthday of lunarBirthdays">
 				<ng-container [ngTemplateOutlet]="birthdayList" 
 					[ngTemplateOutletContext]="{ 'birthday': birthday }">
