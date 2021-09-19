@@ -1,43 +1,16 @@
 <ul class="birthday-list" *ngIf="list && list.length > 0">
     <li class="birthday-list__item" *ngFor="let birthday of list">
-        <section class="birthday-list__photo-container">
-            <img *ngIf="birthday.image" class="birthday-list__item-photo" src="{{ base64Prefix }}{{ birthday.image }}"/>
-            <img *ngIf="!birthday.image" class="birthday-list__item-photo" src="./assets/images/cake.png"/>
-        </section>
-        <section class="birthday-list__item-info form-container flex-centered__column flex-stretch">
-            <app-heading [level]="headerLevel.H2" [text]="birthday.name">
-                <app-date-indicator post [status]="birthday.status"></app-date-indicator>
-            </app-heading>
-            <section>
-                <p>Solar ({{ birthday.year }}) - {{ birthday.month }}/{{ birthday.date }}</p>
-                <p *ngIf="birthday.lunar">
-                    Lunar ({{ birthday.year }}) - {{ birthday.cmonth }}/{{ birthday.cdate }} ({{ birthday.cmonthname }})
-                </p>
-            </section>
-            <section class="actions">
-                <i class="birthday-action fas fa-mobile-alt"
-                    [class.enabled]="birthday.call" 
-                    aria-label="Call"></i>
-                <i class="birthday-action fas fa-comment-dots"
-                    [class.enabled]="birthday.text"
-                    aria-label="Text"></i>
-                <i class="birthday-action fas fa-gift"
-                    [class.enabled]="birthday.gift"
-                    aria-label="Gift"></i>
-            </section>
-            <fieldset class="form-actions">
-                <button type="submit" 
-                    routerLink="/events/edit-birthday"
-                    [queryParams]="{ title: 'Edit Birthday', birthday: birthday | json }">
-                    Edit
-                </button>
-                <button type="submit"
-                    (click)="deleteBirthday(birthday.uuid)">
-                    Delete
-                </button>
-            </fieldset>
-        </section>
+		<ng-container *ngIf="!birthday.lunar"
+			[ngTemplateOutlet]="birthdayList" 
+			[ngTemplateOutletContext]="{ 'birthday': birthday }">
+		</ng-container>   
     </li>
+	<li class="birthday-list__item" *ngFor="let birthday of list">
+		<ng-container *ngIf="birthday.lunar"
+			[ngTemplateOutlet]="birthdayList" 
+			[ngTemplateOutletContext]="{ 'birthday': birthday }">
+		</ng-container>    
+	</li>
 </ul>
 <section class="no-results flex-centered__column"
     *ngIf="list && list.length === 0">
@@ -47,3 +20,44 @@
         <button type="submit" routerLink="/events/add-birthday">Add Birthday</button>
     </section>
 </section>
+
+<ng-template #birthdayList let-birthday="birthday">
+	<section class="birthday-list__photo-container">
+		<img *ngIf="birthday.image" class="birthday-list__item-photo" src="{{ base64Prefix }}{{ birthday.image }}"/>
+		<img *ngIf="!birthday.image" class="birthday-list__item-photo" src="./assets/images/cake.png"/>
+	</section>
+	<section class="birthday-list__item-info form-container flex-centered__column flex-stretch">
+		<app-heading [level]="headerLevel.H2" [text]="birthday.name">
+			<app-date-indicator post [status]="birthday.status"></app-date-indicator>
+		</app-heading>
+		<section *ngIf="!birthday.lunar">
+			<p>{{ birthday.month }}/{{ birthday.date }}</p>
+		</section>
+		<section *ngIf="birthday.lunar">
+			<p>Solar ({{ birthday.year }}) - {{ birthday.month }}/{{ birthday.date }}</p>
+			<p>Lunar ({{ birthday.year }}) - {{ birthday.cmonth }}/{{ birthday.cdate }} ({{ birthday.cmonthname }})</p>
+		</section>
+		<section class="actions">
+			<i class="birthday-action fas fa-mobile-alt"
+				[class.enabled]="birthday.call" 
+				aria-label="Call"></i>
+			<i class="birthday-action fas fa-comment-dots"
+				[class.enabled]="birthday.text"
+				aria-label="Text"></i>
+			<i class="birthday-action fas fa-gift"
+				[class.enabled]="birthday.gift"
+				aria-label="Gift"></i>
+		</section>
+		<fieldset class="form-actions">
+			<button type="submit" 
+				routerLink="/events/edit-birthday"
+				[queryParams]="{ title: 'Edit Birthday', birthday: birthday | json }">
+				Edit
+			</button>
+			<button type="submit"
+				(click)="deleteBirthday(birthday.uuid)">
+				Delete
+			</button>
+		</fieldset>
+	</section>
+</ng-template>
