@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
+import { BirthdayUtils } from 'src/app/utils/birthday.utils';
 
 import { BirthdayService } from '../../../services/birthday.service';
 import { DialogService } from '../../../services/dialog.service';
@@ -23,18 +24,17 @@ import { ResponseStatus } from '../../../types/response.types';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BirthdaysComponent implements OnInit, OnDestroy {
-	private birthdays$ = new Subject<AddBirthday[]>();
-	public birthdayList$ = this.birthdays$.asObservable();
+	private solarBirthdays$ = new Subject<AddBirthday[]>();
+	private lunarBirthdays$ = new Subject<AddBirthday[]>();
+	public solarList$ = this.solarBirthdays$.asObservable();
+	public lunarList$ = this.lunarBirthdays$.asObservable();
 
 	private isLoading = false;
 
 	private ngUnsubscribe$ = new Subject<void>();
 
 	@HostBinding('class') public get hostClasses(): string {
-		const hostStyles = [
-			"hide-scrollbar",
-			"show-borders"
-		];
+		const hostStyles = [];
 
 		if (this.isLoading) {
 			hostStyles.push("hide-container");
@@ -99,7 +99,11 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((birthdays: AddBirthday[]) => {
 				console.info("🍰 ✅ BirthdaysComponent ---> getBirthdays, received birthdays: ", birthdays);
-				this.birthdays$.next(birthdays);
+				
+				const birthdayList = BirthdayUtils.createBirthdayLists(birthdays);
+				this.solarBirthdays$.next(birthdayList.solar);
+				this.lunarBirthdays$.next(birthdayList.lunar);
+
 				/**
 				* Send the results to the birthday service, which
 				* will update the server with any lunar birthdays

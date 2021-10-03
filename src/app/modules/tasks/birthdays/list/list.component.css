@@ -1,13 +1,13 @@
 :host {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 100%;
-  height: 100%;
-  overflow: hidden;
-}
+	background: white;
+	border: 1px solid #dd2e44;
+	padding: 16px;
 
-:host.single-grid {
-  grid-template-rows: 1fr;
+	height: 100%;
+    overflow: hidden;
+
+	display: grid;
+	grid-template-rows: 44px 1fr;
 }
 
 .birthday-list {
@@ -17,9 +17,18 @@
 }
 
 .birthday-list__scrollable-container {
-  display: grid;
-  overflow: hidden;
-  grid-template-rows: 44px 1fr;
+	width: 100%;
+	overflow-y: auto;
+}
+
+.birthday-list__scrollable-container.hide-scrollbar {
+	/* Hide scrollbar for IE, Edge and Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+  
+.birthday-list__scrollable-container::-webkit-scrollbar {
+	display: none;
 }
 
 .birthday-list__scrollable-list::-webkit-scrollbar {

@@ -2,6 +2,7 @@ import {
 	BirthdayConfig,
 	BirthdayAction,
 	BirthdayFormSubmitActions,
+	BirthdayList,
 } from "../interfaces/birthday.interface";
 import { Endpoint } from '../constants/urls.constants';
 
@@ -117,9 +118,28 @@ export class BirthdayUtils {
 		return fileName.substring(fileName.lastIndexOf('\\') + 1);
 	}
 
-	public static sortAndTagBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
+	public static processBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
 		BirthdayUtils.tagBirthdays(birthdays);
 		return BirthdayUtils.sortBirthdays(birthdays);
+	}
+
+	public static createBirthdayLists(birthdays: AddBirthday[]): BirthdayList {
+		const solarBirthdays = [];
+		const lunarBirthdays = [];
+	
+		birthdays?.forEach((birthday: AddBirthday) => {
+			if (birthday.lunar) {
+				lunarBirthdays.push(birthday);
+			} else {
+				solarBirthdays.push(birthday);
+			}
+		});
+
+		return {
+			list: birthdays,
+			lunar: lunarBirthdays,
+			solar: solarBirthdays,
+		}
 	}
 
 	private static tagBirthdays(birthdays: AddBirthday[]) {

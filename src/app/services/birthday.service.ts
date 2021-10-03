@@ -200,7 +200,7 @@ export class BirthdayService {
 			.pipe(
 				map((response: Response) => {
 					console.info("🍰 ✅ BirthdayService ---> getBirthdays, received birthdays: ", response);
-					return BirthdayUtils.sortAndTagBirthdays(response.responseData);
+					return BirthdayUtils.processBirthdays(response.responseData);
 				}),
 				catchError(() => { 
 					return of(null);				

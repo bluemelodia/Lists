@@ -66,7 +66,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				'', 
 				[
 					Validators.required,
-					Validators.minLength(5),
+					Validators.minLength(1),
 					this.customValidator.nameValidator()
 				],
 			],
