@@ -4,7 +4,6 @@ import { Topic } from '../../../constants/topics.constants';
 export enum MenuItem {
     Home = 'Home',
     AddEvent = "Add Event",
-    Activity = 'Activity',
     Calendar = 'Calendar',
     Tasks = 'Tasks',
     Settings = 'Settings'
@@ -16,7 +15,6 @@ export enum MenuItem {
 export const MENU_LIST: MenuItem[] = [
 	MenuItem.Home,
 	MenuItem.AddEvent,
-	MenuItem.Activity,
 	MenuItem.Calendar,
 	MenuItem.Tasks,
 	MenuItem.Settings,
@@ -42,40 +40,25 @@ export const TOPICS: IMenu = {
 		route: '/birthdays',
 		title: 'Birthdays'
 	},
-	[Topic.Career]: {
-		route: '/career',
-		title: 'Career'
+	[Topic.Meetings]: {
+		route: '/meetings',
+		title: 'Meetings'
 	},
-	[Topic.Family]: {
-		route: '/family',
-		title: 'Family'
+	[Topic.Payments]: {
+		route: '/payments',
+		title: 'Payments'
 	},
-	[Topic.Finance]: {
-		route: '/finance',
-		title: 'Finances'
+	[Topic.Projects]: {
+		route: '/projects',
+		title: 'Projects'
 	},
-	[Topic.Health]: {
-		route: '/health',
-		title: 'Health'
-	},
-	[Topic.Social]: {
-		route: '/social',
-		title: 'Social'
-	},
-	[Topic.Travel]: {
-		route: '/travel',
-		title: 'Travel'
-	}
 };
 
 const TOPIC_LIST: Topic[] = [
 	Topic.Birthdays,
-	Topic.Career,
-	Topic.Family,
-	Topic.Finance,
-	Topic.Health,
-	Topic.Social,
-	Topic.Travel,
+	Topic.Meetings,
+	Topic.Payments,
+	Topic.Projects,
 ];
 
 const EVENTS: IMenu = {
@@ -83,20 +66,31 @@ const EVENTS: IMenu = {
 		route: 'events/add-birthday',
 		title: 'Add Birthday'
 	},
+	[Event.Meeting]: {
+		route: 'events/add-birthday',
+		title: 'Add Meeting'
+	},
+	[Event.Payment]: {
+		route: 'events/add-birthday',
+		title: 'Add Payment'
+	},
+	[Event.Project]: {
+		route: 'events/add-birthday',
+		title: 'Add Project'
+	},
 };
 
 const EVENT_LIST: Event[] = [
 	Event.Birthday,
+	Event.Meeting,
+	Event.Payment,
+	Event.Project
 ];
 
 export const MENU: IMenu = {
 	[MenuItem.Home]: {
 		route: '/home',
 		title: 'Home'
-	},
-	[MenuItem.Activity]: {
-		route: '/activity',
-		title: 'Activity'
 	},
 	[MenuItem.AddEvent]: {
 		route: '',
