@@ -1,6 +1,6 @@
 <app-heading [level]="headerLevel.H1" [text]="header"></app-heading>
 
-<section *ngIf="list.length > 0"
+<section *ngIf="list && list.length > 0"
 	class="birthday-list__scrollable-container hide-scrollbar">
 	<section class="birthday-list__scrollable-list">
 		<ul class="birthday-list">

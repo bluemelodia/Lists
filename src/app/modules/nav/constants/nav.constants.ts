@@ -3,7 +3,7 @@ import { Topic } from '../../../constants/topics.constants';
 
 export enum MenuItem {
     Home = 'Home',
-    AddEvent = "Add Event",
+    AddEvent = "Add Events and Reminders",
     Calendar = 'Calendar',
     Tasks = 'Tasks',
     Settings = 'Settings'
