@@ -11,16 +11,22 @@ input.options-open {
 }
 
 .options {
-  position: absolute;
-  z-index: 500;
-  width: 100%;
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
-  display: flex;
-  flex-direction: column;
+    position: absolute;
+    width: 100%;
+    z-index: 500;
 
-  max-height: 150px;
-  overflow: auto;
-  visibility: hidden;
+    background: white;
+    border: 2px solid pink;
+    border-top: none;
+    top: 37px;
+
+	max-height: 150px;
+	overflow: auto;
+	visibility: hidden;
 }
 
 .options.show {

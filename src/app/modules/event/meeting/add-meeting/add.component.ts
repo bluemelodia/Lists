@@ -9,6 +9,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 import { CalendarType } from '../../../../interfaces/calendar/calendar.interface';
+import { recurrenceOptions } from '../../../../interfaces/event.interface';
+import { HeaderLevel } from '../../../../interfaces/header.interface';
 import { AddMeeting, Meeting, MeetingAction } from '../../../../interfaces/meeting.interface';
 import { FormUtils } from '../../../../utils/form.utils';
 import { MeetingUtils } from '../../../../utils/meeting.utils';
@@ -20,14 +22,18 @@ import { MeetingUtils } from '../../../../utils/meeting.utils';
 })
 export class AddMeetingComponent implements OnInit {
 	maxChars = 255;
+	maxDescription = 1000;
 	minChars = 1;
 
 	meeting: Meeting;
+	meetingAction = MeetingAction;
 	meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Add);
 	meetingForm: FormGroup;
 
 	public calendarType: CalendarType = CalendarType.Solar;
+	public headerLevel = HeaderLevel;
 	public submitted = false;
+	public recurrence = recurrenceOptions;
 
 	constructor(
 		private fb: FormBuilder,
@@ -46,12 +52,12 @@ export class AddMeetingComponent implements OnInit {
 				],
 			],
 			date: this.fb.group({
-				meeting: ['', [Validators.required]],
+				day: ['', [Validators.required]],
 			}),
 			description: [
 				'',
 				[
-					Validators.maxLength(255),
+					Validators.maxLength(this.maxDescription),
 				]
 			],
 			location: [
@@ -99,7 +105,7 @@ export class AddMeetingComponent implements OnInit {
 		this.meetingForm.patchValue({
 			name: meeting.name,
 			date: {
-				meeting: FormUtils.createCalendarDate(meeting.time),
+				day: FormUtils.createCalendarDate(meeting.time),
 			},
 			description: meeting.description,
 			location: meeting.location,

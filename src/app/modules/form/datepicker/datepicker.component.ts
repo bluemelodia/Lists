@@ -117,7 +117,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
 	public selectDate(date: CalendarDay): void {
 		this.form.patchValue({
-			birthday: date
+			day: date
 		});
 		this.showHideCal();
 	}

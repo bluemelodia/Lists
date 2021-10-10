@@ -76,7 +76,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				],
 			],
 			date: this.fb.group({
-				birthday: ['', [Validators.required]],
+				day: ['', [Validators.required]],
 			}),
 			options: this.fb.group({
 				lunar: this.fb.control(false),
@@ -119,7 +119,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		this.birthdayForm.patchValue({
 			name: birthday.name,
 			date: {
-				birthday: BirthdayUtils.createCalendarDate(birthday),
+				day: BirthdayUtils.createCalendarDate(birthday),
 			},
 			options: {
 				lunar: FormUtils.createCheckboxOption(birthday.lunar),
@@ -145,7 +145,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 
 	get date(): CalendarDay {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return this.birthdayForm.get('date.birthday')?.value;
+		return this.birthdayForm.get('date.day')?.value;
 	}
 
 	get options(): BirthdayOptions {

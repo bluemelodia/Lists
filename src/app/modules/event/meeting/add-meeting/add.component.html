@@ -1,13 +1,13 @@
 <section class="form-container">
-	<app-heading text="{{ meetingConfig.action }} Event"></app-heading>
+	<app-heading [level]="headerLevel.H1" text="{{ meetingConfig.action }} Event"></app-heading>
     <form class="event-form"
         [formGroup]="meetingForm"
         (ngSubmit)="onSubmit()">
-        <span class="form-instructions">Provide the details of the meeting.</span>
+        <span class="form-instructions">Provide details about the meeting.</span>
 		<fieldset class="name">
             <input type="text" 
                 formControlName="name"
-                placeholder="Name"/>
+                placeholder="Event Name"/>
             <div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
                     <span *ngIf="meetingFormControl.name.errors?.required">
                         Name is required.
@@ -19,59 +19,65 @@
 						Name should not exceed {{ maxChars }} characters.
 					</span>
             </div> 
-           <app-datepicker appFocus 
+            <app-datepicker appFocus 
                 class="datepicker-container"
                 placeholder="Date"
                 [calendarType]="calendarType"
                 [form]="meetingForm.controls.date"
                 [submitted]="submitted">
             </app-datepicker>
-            <app-checkbox 
-                id="action-virtual"
-                name="Virtual"
-                checkboxName="virtual"
-                [form]="meetingForm.controls.options">
-            </app-checkbox>
         </fieldset>
-        <!--
-        <fieldset>
-            <app-heading [level]="headerLevel.H3" text="Select Profile Image">
+		<fieldset class="location">
+            <input type="text" 
+                formControlName="location"
+                placeholder="Location"/>
+			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+				<span *ngIf="meetingFormControl.location.errors?.maxlength">
+					Location should not exceed {{ maxChars }} characters.
+				</span>
+			</div> 
+			<app-checkbox 
+				id="action-virtual"
+				name="Virtual"
+				checkboxName="virtual"
+				[form]="meetingForm.controls.options">
+			</app-checkbox>
+		</fieldset>
+		<fieldset class="description">
+			<app-heading [level]="headerLevel.H3" text="Additional Details">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
-            <span class="form-instructions">Choose a profile image to represent the birthday recipient.</span>
-            <app-img-upload [form]="meetingForm.controls.profile"></app-img-upload>
-        </fieldset>
-        <fieldset class="event-options">
-            <app-heading [level]="headerLevel.H3" text="Actions">
+			<span for="event-description" class="form-instructions">Add additional information about the event.</span>
+            <textarea id="event-description"
+				rows="5"
+                formControlName="description"
+                placeholder="Description"></textarea>
+			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+				<span *ngIf="meetingFormControl.description.errors?.maxlength">
+					Description should not exceed {{ maxDescription }} characters.
+				</span>
+			</div> 
+		</fieldset>
+		<fieldset class="recurrence">
+			<app-heading [level]="headerLevel.H3" text="Recurrence">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
-            <span class="form-instructions">Select the actions you would like to perform on or close to the recipient's birthday.</span>
-            <app-checkbox
-                name="Call"
-                [checkboxName]="birthdayID.call"
-                [form]="meetingForm.controls.options">
-            </app-checkbox>
-            <app-checkbox
-                name="Text"
-                [checkboxName]="birthdayID.text"
-                [form]="meetingForm.controls.options">
-            </app-checkbox>
-            <app-checkbox
-                name="Buy Present"
-                [checkboxName]="birthdayID.gift"
-                [form]="meetingForm.controls.options">
-            </app-checkbox>
-        </fieldset>
+			<span for="event-description" class="form-instructions">Choose a recurrence option for the event.</span>
+			<app-select id="event-recurrence"
+				[options]="recurrence"
+				placeholder="Select Recurrence">
+			</app-select>
+		</fieldset>
         <fieldset class="form-actions">
-            <button *ngIf="birthdayConfig.action === birthdayAction.Edit"
+            <button *ngIf="meetingConfig.action === meetingAction.Edit"
                 type="button"
                 class="cancel"
                 (click)="onCancel()">
                 Cancel
             </button>        
             <button type="submit">
-                {{ birthdayConfig.buttonAction }}
+                {{ meetingConfig.buttonAction }}
             </button>
-        </fieldset>--->
+        </fieldset>
     </form>
 </section>

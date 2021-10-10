@@ -107,7 +107,7 @@ fieldset.form-actions {
   	flex-direction: row;
 }
 
-input {
+input, textarea {
 	background-color: #f9eeee;
 	border: 2px solid pink;
 	display: inline-block;
@@ -119,9 +119,14 @@ input {
 	width: 100%;
 }
 
+textarea {
+	resize: none;
+}
+
 :focus,
 :focus-visible,
-input:focus-visible {
+input:focus-visible
+textarea:focus-visible {
 	border: 2px solid #dd2e44;
 	outline-color: #dd2e44;
 }
