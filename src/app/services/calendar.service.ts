@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, forkJoin, of } from 'rxjs';
 
 import { Endpoint } from '../constants/urls.constants';
-import { CalendarType } from '../types/calendar/calendar.types';
-import { CalendarYear, Calendar, CalendarMonth } from '../types/calendar/calendar-response.types';
-import { Response } from '../types/response.types';
+import { CalendarType } from '../interfaces/calendar/calendar.interface';
+import { CalendarYear, Calendar, CalendarMonth } from '../interfaces/calendar/calendar-response.interface';
+import { Response } from '../interfaces/response.interface';
 import { CalendarUtils } from '../utils/calendar.utils';
 
 @Injectable({
@@ -16,7 +16,7 @@ import { CalendarUtils } from '../utils/calendar.utils';
 export class CalendarService {
 	private baseURL = Endpoint.CALENDAR;
 	private calendar$ = new BehaviorSubject<Calendar>(null);
-	
+
 	private currentYear;
 	private currentMonth;
 	private currentDay;
@@ -98,7 +98,7 @@ export class CalendarService {
 				});
 			});
 	}
-	
+
 	private getChineseCalendarForYear(year: number): Observable<Response> {
 		/*
 		* If we've already made a request for the calendar, get the results
@@ -106,13 +106,13 @@ export class CalendarService {
 		*/
 		const cachedCalendar = CalendarUtils.getCachedCalendar(year);
 		if (cachedCalendar) {
-			console.info(`📅 🗃 CalendarService ---> getChineseCalendarForYear, retrieve ${ year } calendar from cache`,);
+			console.info(`📅 🗃 CalendarService ---> getChineseCalendarForYear, retrieve ${year} calendar from cache`,);
 			return of({
 				statusCode: 0,
 				responseData: cachedCalendar
 			});
 		}
-		
+
 		const url = `${this.baseURL}/${year}`;
 		return this.http.get<Response>(url);
 	}

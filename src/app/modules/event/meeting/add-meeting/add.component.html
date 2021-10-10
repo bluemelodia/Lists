@@ -1,0 +1,73 @@
+<section class="form-container">
+	<app-heading [level]="headerLevel.H1" text="{{ meetingConfig.action }} Event"></app-heading>
+    <form class="event-form"
+        [formGroup]="meetingForm"
+        (ngSubmit)="onSubmit()">
+        <span class="form-instructions">Provide the details of the meeting.</span>
+        <!--<fieldset class="name">
+            <input type="text" 
+                formControlName="name"
+                placeholder="Name"/>
+            <div class="input-error" *ngIf="!birthdayFormControl.valid && this.submitted">
+                    <span *ngIf="birthdayFormControl.name.errors?.required">
+                        Name is required.
+                    </span>
+                    <span *ngIf="birthdayFormControl.name.errors?.minlength || birthdayFormControl.name.errors?.invalidName">
+                        Please enter a valid name.
+                    </span>
+            </div> 
+            <app-datepicker appFocus 
+                class="datepicker-container"
+                placeholder="Date"
+                [calendarType]="calendarType"
+                [form]="meetingForm.controls.date"
+                [submitted]="submitted">
+            </app-datepicker>
+            <app-checkbox 
+                id="action-lunar"
+                name="Lunar"
+                checkboxName="lunar"
+                [form]="meetingForm.controls.options">
+            </app-checkbox>
+        </fieldset>
+        <fieldset>
+            <app-heading [level]="headerLevel.H3" text="Select Profile Image">
+                <span class="event-form__optional" post>Optional</span>
+            </app-heading>
+            <span class="form-instructions">Choose a profile image to represent the birthday recipient.</span>
+            <app-img-upload [form]="meetingForm.controls.profile"></app-img-upload>
+        </fieldset>
+        <fieldset class="event-options">
+            <app-heading [level]="headerLevel.H3" text="Actions">
+                <span class="event-form__optional" post>Optional</span>
+            </app-heading>
+            <span class="form-instructions">Select the actions you would like to perform on or close to the recipient's birthday.</span>
+            <app-checkbox
+                name="Call"
+                [checkboxName]="birthdayID.call"
+                [form]="meetingForm.controls.options">
+            </app-checkbox>
+            <app-checkbox
+                name="Text"
+                [checkboxName]="birthdayID.text"
+                [form]="meetingForm.controls.options">
+            </app-checkbox>
+            <app-checkbox
+                name="Buy Present"
+                [checkboxName]="birthdayID.gift"
+                [form]="meetingForm.controls.options">
+            </app-checkbox>
+        </fieldset>
+        <fieldset class="form-actions">
+            <button *ngIf="birthdayConfig.action === birthdayAction.Edit"
+                type="button"
+                class="cancel"
+                (click)="onCancel()">
+                Cancel
+            </button>        
+            <button type="submit">
+                {{ birthdayConfig.buttonAction }}
+            </button>
+        </fieldset>--->
+    </form>
+</section>

@@ -1,4 +1,6 @@
-import { 
+import {
+	AddBirthday,
+	Birthday,
 	BirthdayConfig,
 	BirthdayAction,
 	BirthdayFormSubmitActions,
@@ -6,10 +8,9 @@ import {
 } from "../interfaces/birthday.interface";
 import { Endpoint } from '../constants/urls.constants';
 
-import { AddBirthday, Birthday } from "../types/birthday/birthday.types";
-import { CalendarDay } from "../types/calendar/calendar-response.types";
-import { DateStatus } from "../types/date/date.types";
-import { Dialog } from '../types/dialog/dialog.types';
+import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
+import { DateStatus } from "../interfaces/date.interface";
+import { Dialog } from '../interfaces/dialog.interface';
 
 export class BirthdayUtils {
 	private static baseURL = Endpoint.TODO;
@@ -20,20 +21,20 @@ export class BirthdayUtils {
 
 	public static birthdayURLForAction(action: BirthdayAction): string {
 		let url: string;
-		
-		switch(action) {
-		case BirthdayAction.Add:
-			url = BirthdayUtils.addBirthdayURL;
-			break;
-		case BirthdayAction.Delete:
-			url = BirthdayUtils.deleteBirthdayURL;
-			break;
-		case BirthdayAction.Edit:
-			url = BirthdayUtils.editBirthdayURL;
-			break;
-		case BirthdayAction.Fetch:
-			url = BirthdayUtils.getBirthdayURL;
-			break;
+
+		switch (action) {
+			case BirthdayAction.Add:
+				url = BirthdayUtils.addBirthdayURL;
+				break;
+			case BirthdayAction.Delete:
+				url = BirthdayUtils.deleteBirthdayURL;
+				break;
+			case BirthdayAction.Edit:
+				url = BirthdayUtils.editBirthdayURL;
+				break;
+			case BirthdayAction.Fetch:
+				url = BirthdayUtils.getBirthdayURL;
+				break;
 		}
 
 		return url;
@@ -54,10 +55,6 @@ export class BirthdayUtils {
 		return day;
 	}
 
-	public static createCheckboxOption(value: number): boolean {
-		return !!value;
-	}
-
 	public static createBirthdayFormConfig(action: BirthdayAction): BirthdayConfig {
 		const config: BirthdayConfig = {
 			action: action,
@@ -69,14 +66,14 @@ export class BirthdayUtils {
 
 	public static birthdayDialogForAction(action: BirthdayAction): Dialog {
 		let dialogType: Dialog;
-		
-		switch(action) {
-		case BirthdayAction.Add:
-			dialogType = Dialog.AddBirthday;
-			break;
-		case BirthdayAction.Edit:
-			dialogType = Dialog.EditBirthday;
-			break;
+
+		switch (action) {
+			case BirthdayAction.Add:
+				dialogType = Dialog.AddBirthday;
+				break;
+			case BirthdayAction.Edit:
+				dialogType = Dialog.EditBirthday;
+				break;
 		}
 
 		return dialogType;
@@ -126,7 +123,7 @@ export class BirthdayUtils {
 	public static createBirthdayLists(birthdays: AddBirthday[]): BirthdayList {
 		const solarBirthdays = [];
 		const lunarBirthdays = [];
-	
+
 		birthdays?.forEach((birthday: AddBirthday) => {
 			if (birthday.lunar) {
 				lunarBirthdays.push(birthday);
@@ -174,6 +171,6 @@ export class BirthdayUtils {
 	}
 
 	private static sortByName(a: string, b: string): number {
-		return a < b? -1 : (a > b) ? 1 : 0;
+		return a < b ? -1 : (a > b) ? 1 : 0;
 	}
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DialogService } from '../../services/dialog.service';
-import { DialogConfig, DialogType } from '../../types/dialog/dialog.types';
+import { DialogConfig, DialogType } from '../../interfaces/dialog.interface';
 
 @Component({
 	selector: 'app-dialog',

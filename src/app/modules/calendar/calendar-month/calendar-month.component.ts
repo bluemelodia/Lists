@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { CalendarService } from '../../../services/calendar.service';
-import { CalendarType, Month } from '../../../types/calendar/calendar.types';
-import { CalendarDay } from '../../../types/calendar/calendar-response.types';
+import { CalendarType, Month } from '../../../interfaces/calendar/calendar.interface';
+import { CalendarDay } from '../../../interfaces/calendar/calendar-response.interface';
 
 @Component({
 	selector: 'app-calendar-month',

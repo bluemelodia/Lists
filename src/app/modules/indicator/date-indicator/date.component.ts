@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DateStatus } from '../../../types/date/date.types';
+import { DateStatus } from '../../../interfaces/date.interface';
 
 @Component({
 	selector: 'app-date-indicator',

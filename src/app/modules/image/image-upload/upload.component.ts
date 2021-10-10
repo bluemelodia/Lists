@@ -14,7 +14,7 @@ import { catchError, switchMap, takeUntil } from 'rxjs/operators';
 
 import { CompressImageService } from '../../../services/image-compress.service';
 import { DialogService } from '../../../services/dialog.service';
-import { Dialog } from '../../../types/dialog/dialog.types';
+import { Dialog } from '../../../interfaces/dialog.interface';
 
 @Component({
 	selector: 'app-img-upload',

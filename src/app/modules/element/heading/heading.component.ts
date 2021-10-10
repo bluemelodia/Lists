@@ -1,5 +1,5 @@
 import { Component, Input, } from '@angular/core';
-import { HeaderLevel } from '../../../types/header.types';
+import { HeaderLevel } from '../../../interfaces/header.interface';
 
 @Component({
 	selector: 'app-heading',

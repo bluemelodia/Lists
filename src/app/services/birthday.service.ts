@@ -2,17 +2,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { BirthdayAction } from '../interfaces/birthday.interface';
 
-import { AddBirthday, Birthday } from '../types/birthday/birthday.types';
-import { Calendar, CalendarDay } from '../types/calendar/calendar-response.types';
-import { CalendarType } from '../types/calendar/calendar.types';
-import { Dialog } from '../types/dialog/dialog.types';
-import { BirthdayID } from '../types/event.types';
-import { Response, ResponseStatus } from '../types/response.types';
+import { 
+	AddBirthday,
+	Birthday,
+	BirthdayAction,
+	BirthdayID,
+} from '../interfaces/birthday.interface';
+import { Calendar, CalendarDay } from '../interfaces/calendar/calendar-response.interface';
+import { CalendarType } from '../interfaces/calendar/calendar.interface';
+import { Dialog } from '../interfaces/dialog.interface';
+import { Response, ResponseStatus } from '../interfaces/response.interface';
 import { BirthdayUtils } from '../utils/birthday.utils';
-import { CalendarService } from './calendar.service';
 
+// services
+import { CalendarService } from './calendar.service';
 import { DialogService } from './dialog.service';
 
 @Injectable({
@@ -37,13 +41,13 @@ export class BirthdayService {
 	get birthdaysListChanged$(): Observable<number> {
 		return this.birthdaysChanged$.asObservable();
 	}
-	
+
 	public modifyBirthday(birthday: Birthday, action: BirthdayAction): Observable<ResponseStatus> {
 		switch (action) {
-		case BirthdayAction.Add:
-			return this.postBirthday(birthday);
-		case BirthdayAction.Edit:
-			return this.postBirthday(birthday, true, BirthdayAction.Edit);
+			case BirthdayAction.Add:
+				return this.postBirthday(birthday);
+			case BirthdayAction.Edit:
+				return this.postBirthday(birthday, true, BirthdayAction.Edit);
 		}
 	}
 
@@ -68,7 +72,7 @@ export class BirthdayService {
 					if (showDialog) {
 						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, BirthdayUtils.birthdayDialogForAction(action));
 					}
-					return of(null);				
+					return of(null);
 				})
 			)
 	}
@@ -88,9 +92,9 @@ export class BirthdayService {
 					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteBirthday);
 					return ResponseStatus.SUCCESS;
 				}),
-				catchError(() => { 
+				catchError(() => {
 					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.DeleteBirthday);
-					return of(null);				
+					return of(null);
 				})
 			)
 	}
@@ -178,10 +182,10 @@ export class BirthdayService {
 
 		if (birthdayBatch) {
 			forkJoin(birthdayBatch)
-			.subscribe((responseStatuses: ResponseStatus[]) => {
-				const numChanged = responseStatuses.filter((status: ResponseStatus) => status === ResponseStatus.SUCCESS).length;
-				this.birthdaysChanged$.next(numChanged);
-			});
+				.subscribe((responseStatuses: ResponseStatus[]) => {
+					const numChanged = responseStatuses.filter((status: ResponseStatus) => status === ResponseStatus.SUCCESS).length;
+					this.birthdaysChanged$.next(numChanged);
+				});
 		}
 	}
 
@@ -202,8 +206,8 @@ export class BirthdayService {
 					console.info("🍰 ✅ BirthdayService ---> getBirthdays, received birthdays: ", response);
 					return BirthdayUtils.processBirthdays(response.responseData);
 				}),
-				catchError(() => { 
-					return of(null);				
+				catchError(() => {
+					return of(null);
 				})
 			);
 	}

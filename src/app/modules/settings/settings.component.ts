@@ -6,15 +6,19 @@ import { finalize, take, takeUntil } from 'rxjs/operators';
 
 import { Topic } from '../../constants/topics.constants';
 
+import { HeaderLevel } from '../../interfaces/header.interface';
 import { Phone } from '../../interfaces/phone.interface';
-import { Settings, TopicSettings } from '../../interfaces/settings.interface';
+import { 
+	Channel,
+	Settings,
+	TopicSettings,
+	VALIDATE_CHANNEL,
+} from './interfaces/settings.interface';
 
-import { SettingsService } from '../../services/settings.service';
+import { LoadingService } from '../../services/loading.service';
+import { SettingsService } from './services/settings.service';
 import { ValidationService } from '../../services/validation.service';
 
-import { Channel, VALIDATE_CHANNEL } from './types/settings.types';
-import { HeaderLevel } from '../../types/header.types';
-import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
 	selector: 'app-settings',

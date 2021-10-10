@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AddBirthdayComponent } from './birthday/add-birthday/add.component';
+import { AddMeetingComponent } from './meeting/add-meeting/add.component';
 
 const routes: Routes = [
 	{
@@ -11,6 +12,14 @@ const routes: Routes = [
 	{ 
 		path: 'edit-birthday',
 		component: AddBirthdayComponent,
+	},
+	{
+		path: 'add-meeting',
+		component: AddMeetingComponent,
+	},
+	{
+		path: 'edit-meeting',
+		component: AddMeetingComponent,
 	}
 ];
 

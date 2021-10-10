@@ -10,9 +10,9 @@ import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
 import { BirthdayService } from '../../../../services/birthday.service';
-import { AddBirthday } from '../../../../types/birthday/birthday.types';
-import { HeaderLevel } from '../../../../types/header.types';
-import { ResponseStatus } from '../../../../types/response.types';
+import { AddBirthday } from '../../../../interfaces/birthday.interface';
+import { HeaderLevel } from '../../../../interfaces/header.interface';
+import { ResponseStatus } from '../../../../interfaces/response.interface';
 
 @Component({
 	selector: 'task-birthdays-list',

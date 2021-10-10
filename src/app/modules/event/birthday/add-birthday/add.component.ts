@@ -7,14 +7,14 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subject } from 'rxjs';
-import { 
+import {
 	filter,
 	map,
 	take,
 	takeUntil,
 } from 'rxjs/operators';
 
-import { BirthdayAction } from '../../../../interfaces/birthday.interface';
+import { BirthdayAction, BirthdayID } from '../../../../interfaces/birthday.interface';
 import { Topic } from '../../../../constants/topics.constants';
 
 import { BirthdayService } from '../../../../services/birthday.service';
@@ -22,15 +22,20 @@ import { DialogService } from '../../../../services/dialog.service';
 import { NavService } from '../../../../services/nav.service';
 import { ValidationService } from '../../../../services/validation.service';
 
-import { AddBirthday, Birthday, BirthdayOptions, BirthdayProfile } from '../../../../types/birthday/birthday.types';
-import { CalendarType } from '../../../../types/calendar/calendar.types';
-import { CalendarDay } from '../../../../types/calendar/calendar-response.types';
-import { Dialog, DialogAction } from '../../../../types/dialog/dialog.types';
-import { BirthdayID } from '../../../../types/event.types';
-import { HeaderLevel } from '../../../../types/header.types';
-import { ResponseStatus } from '../../../../types/response.types';
+import { 
+	AddBirthday,
+	Birthday,
+	BirthdayOptions,
+	BirthdayProfile,
+} from '../../../../interfaces/birthday.interface';
+import { CalendarType } from '../../../../interfaces/calendar/calendar.interface';
+import { CalendarDay } from '../../../../interfaces/calendar/calendar-response.interface';
+import { Dialog, DialogAction } from '../../../../interfaces/dialog.interface';
+import { HeaderLevel } from '../../../../interfaces/header.interface';
+import { ResponseStatus } from '../../../../interfaces/response.interface';
 
 import { BirthdayUtils } from '../../../../utils/birthday.utils';
+import { FormUtils } from '../../../../utils/form.utils';
 
 @Component({
 	selector: 'app-add-birthday',
@@ -63,7 +68,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		/* Set the controls for the form. */
 		this.birthdayForm = this.fb.group({
 			name: [
-				'', 
+				'',
 				[
 					Validators.required,
 					Validators.minLength(1),
@@ -84,7 +89,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				fileName: ['']
 			})
 		},
-		{ 
+		{
 			updateOn: 'submit'
 		});
 
@@ -106,7 +111,6 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			});
 	}
 
-
 	private populateFormData(birthday: AddBirthday) {
 		console.info("🥳 💾 AddBirthdayComponent ---> populateFormData, add existing birthday: ", birthday);
 		/**
@@ -118,10 +122,10 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				birthday: BirthdayUtils.createCalendarDate(birthday),
 			},
 			options: {
-				lunar: BirthdayUtils.createCheckboxOption(birthday.lunar),
-				[BirthdayID.call]: BirthdayUtils.createCheckboxOption(birthday.call),
-				[BirthdayID.text]: BirthdayUtils.createCheckboxOption(birthday.text),
-				[BirthdayID.gift]: BirthdayUtils.createCheckboxOption(birthday.gift),
+				lunar: FormUtils.createCheckboxOption(birthday.lunar),
+				[BirthdayID.call]: FormUtils.createCheckboxOption(birthday.call),
+				[BirthdayID.text]: FormUtils.createCheckboxOption(birthday.text),
+				[BirthdayID.gift]: FormUtils.createCheckboxOption(birthday.gift),
 			},
 			profile: {
 				image: birthday.image
@@ -174,13 +178,13 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 					takeUntil(this.ngUnsubscribe$)
 				)
 				.subscribe((response: ResponseStatus) => {
-					switch(this.birthdayConfig.action) {
-					case BirthdayAction.Add:
-						this.dialogService.showResponseStatusDialog(response, Dialog.AddBirthday);
-						break;
-					case BirthdayAction.Edit:
-						this.dialogService.showResponseStatusDialog(response, Dialog.EditBirthday);
-						break;
+					switch (this.birthdayConfig.action) {
+						case BirthdayAction.Add:
+							this.dialogService.showResponseStatusDialog(response, Dialog.AddBirthday);
+							break;
+						case BirthdayAction.Edit:
+							this.dialogService.showResponseStatusDialog(response, Dialog.EditBirthday);
+							break;
 					}
 
 					if (response === ResponseStatus.SUCCESS) {
@@ -190,18 +194,18 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	onCancel(): void {		
+	onCancel(): void {
 		this.dialogService.showConfirmDialog(Dialog.CancelEdit)
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((action: DialogAction) => {
-				switch(action) {
-				case DialogAction.Continue:
-					this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
-					break;
-				default:
-					break;
+				switch (action) {
+					case DialogAction.Continue:
+						this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
+						break;
+					default:
+						break;
 				}
 			});
 	}

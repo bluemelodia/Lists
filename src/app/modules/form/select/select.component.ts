@@ -7,8 +7,8 @@ import { filter, takeUntil } from 'rxjs/operators';
 
 import { ClickService } from '../../../services/click.service';
 import { FocusService } from '../../../services/focus.service';
-import { FocusEvent, Key } from '../../../types/focus.types';
-import { Option } from '../../../types/event.types';
+import { FocusEvent, Key } from '../../../interfaces/focus.interface';
+import { Option } from '../../../interfaces/event.interface';
 
 @Component({
 	selector: 'app-select',

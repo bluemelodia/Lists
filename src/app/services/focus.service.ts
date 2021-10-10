@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Key, FocusEvent } from '../types/focus.types';
+import { Key, FocusEvent } from '../interfaces/focus.interface';
 
 @Injectable({
 	providedIn: 'root'

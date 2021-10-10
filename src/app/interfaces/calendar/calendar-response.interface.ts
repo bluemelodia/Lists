@@ -1,4 +1,4 @@
-import { CalendarType } from './calendar.types';
+import { CalendarType } from './calendar.interface';
 
 export enum CalendarKey {
     Year = "ccal:year",

@@ -26,6 +26,11 @@ How to make image upload easy with Angular
 - Allow users to add reminders (ex. payment reminders)
 - Show users a calendar of upcoming events.
 
+- Make the app more responsive, adding animations.
+- Make edit/delete buttons less obvious, ie. interact with the cell first to show these options.
+
+- Show a list of upcoming events on the home page (four widgets, so four sections).
+
 ## Navigation
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.

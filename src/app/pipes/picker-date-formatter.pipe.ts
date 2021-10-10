@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CalendarDay } from '../types/calendar/calendar-response.types';
+import { CalendarDay } from '../interfaces/calendar/calendar-response.interface';
 
 @Pipe({
 	name: 'pickerDateFormatter'

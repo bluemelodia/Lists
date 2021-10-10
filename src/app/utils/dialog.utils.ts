@@ -1,6 +1,6 @@
 import { DialogMessage } from "../constants/messages.constants";
-import { Dialog } from "../types/dialog/dialog.types";
-import { ResponseStatus } from "../types/response.types";
+import { Dialog } from "../interfaces/dialog.interface";
+import { ResponseStatus } from "../interfaces/response.interface";
 
 export class DialogUtils {
 	public static titleForDialog(response: ResponseStatus): string {

@@ -1,50 +1,50 @@
 /* The container */
 .container {
-    display: block;
-    position: relative;
-    margin: 0;
-    margin-bottom: 2px;
-    padding: 2px;
-    padding-left: 35px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  display: block;
+  position: relative;
+  margin: 0;
+  margin-bottom: 2px;
+  padding: 2px;
+  padding-left: 35px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-  
+
 /* Hide the browser's default radio button */
 .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
 }
-  
+
 /* Create a custom radio button */
 .checkmark {
-    position: absolute;
-    top: 6.5px;
-    left: 0;
-    height: 15px;
-    width: 15px;
-    background-color: #eee;
-    border: 2px solid #845f00;
-    border-radius: 50%;
+  position: absolute;
+  top: 6.5px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+  border: 2px solid #845f00;
+  border-radius: 50%;
 }
-  
+
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
-    background-color: antiquewhite;
+  background-color: #bfa5a6;
 }
-  
+
 /* When the radio button is checked, add a blue background */
 .container input:checked ~ .checkmark {
-    background-color: #845f00;
-    border: 2px solid #845f00;
+  background-color: #845f00;
+  border: 2px solid #845f00;
 }
 
 @media only screen and (max-width: 580px) {
-    .checkmark {
-        top: 4.5px;
-    }
+  .checkmark {
+    top: 4.5px;
+  }
 }

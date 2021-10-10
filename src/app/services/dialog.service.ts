@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import { Dialog, DialogAction, DialogConfig, DialogType } from '../types/dialog/dialog.types';
-import { ResponseStatus } from '../types/response.types';
+import { Dialog, DialogAction, DialogConfig, DialogType } from '../interfaces/dialog.interface';
+import { ResponseStatus } from '../interfaces/response.interface';
 import { DialogUtils } from '../utils/dialog.utils';
 
 @Injectable({

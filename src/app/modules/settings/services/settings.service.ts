@@ -3,12 +3,12 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
-import { Endpoint } from "../constants/urls.constants";
+import { Endpoint } from "../../../constants/urls.constants";
+import { Dialog } from "../../../interfaces/dialog.interface";
+import { Response, ResponseStatus } from '../../../interfaces/response.interface';
 import { Settings } from "../interfaces/settings.interface";
-import { Dialog } from "../types/dialog/dialog.types";
-import { Response, ResponseStatus } from '../types/response.types';
 
-import { DialogService } from "./dialog.service";
+import { DialogService } from "../../../services/dialog.service";
 
 @Injectable({
 	providedIn: 'root'

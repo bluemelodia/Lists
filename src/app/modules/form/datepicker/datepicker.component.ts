@@ -13,10 +13,10 @@ import { CalendarService } from '../../../services/calendar.service';
 import { ClickService } from '../../../services/click.service';
 import { FocusService } from '../../../services/focus.service';
 
-import { CalendarType } from '../../../types/calendar/calendar.types';
-import { Calendar, CalendarDay } from '../../../types/calendar/calendar-response.types';
-import { FocusEvent, Key } from '../../../types/focus.types';
-import { noCalMessage } from '../../../types/message.types';
+import { CalendarType } from '../../../interfaces/calendar/calendar.interface';
+import { Calendar, CalendarDay } from '../../../interfaces/calendar/calendar-response.interface';
+import { FocusEvent, Key } from '../../../interfaces/focus.interface';
+import { noCalMessage } from '../../../interfaces/message.interface';
 
 @Component({
 	selector: 'app-datepicker',
@@ -24,29 +24,29 @@ import { noCalMessage } from '../../../types/message.types';
 	styleUrls: ['./datepicker.component.css']
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
-  @Input() placeholder = '';
-  @Input() calendarType: CalendarType = CalendarType.Lunar;
-  @Input() form: FormGroup;
-  @Input() submitted = false;
+	@Input() placeholder = '';
+	@Input() calendarType: CalendarType = CalendarType.Lunar;
+	@Input() form: FormGroup;
+	@Input() submitted = false;
 
-  @ViewChild('picker', { read: ElementRef, static: false }) picker: ElementRef;
+	@ViewChild('picker', { read: ElementRef, static: false }) picker: ElementRef;
 
-  public showCal = false;
-  public isLoading = false;
-  public noCalMessage = noCalMessage;
+	public showCal = false;
+	public isLoading = false;
+	public noCalMessage = noCalMessage;
 
-  public cal: Calendar;
-  private uuid = UUID.UUID();
-  public calendarId = `app-calendar-${this.uuid}`;
+	public cal: Calendar;
+	private uuid = UUID.UUID();
+	public calendarId = `app-calendar-${this.uuid}`;
 
-  private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
+	private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor(
-    private readonly calendar: CalendarService,
-    private readonly clickService: ClickService,
-    private readonly dateFormatterPipe: PickerDateFormatterPipe,
-    private readonly focus: FocusService,
-  ) { }
+	constructor(
+		private readonly calendar: CalendarService,
+		private readonly clickService: ClickService,
+		private readonly dateFormatterPipe: PickerDateFormatterPipe,
+		private readonly focus: FocusService,
+	) { }
 
 	public ngOnInit(): void {
 		this.setupSubscriptions();
@@ -69,7 +69,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 		this.calendar.onCalendarFetched$
 			.pipe(
 				takeUntil(this.destroyed$)
-			) 
+			)
 			.subscribe((calendar: Calendar) => {
 				this.isLoading = false;
 				if (!calendar) {
@@ -86,12 +86,12 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((event: FocusEvent) => {
 				switch (event.key) {
-				case Key.Escape:
-					// console.log("Event: ", event, this.showCal);
-					if (this.showCal) {
-						this.showHideCal();
-					}
-					break;
+					case Key.Escape:
+						// console.log("Event: ", event, this.showCal);
+						if (this.showCal) {
+							this.showHideCal();
+						}
+						break;
 				}
 			});
 	}

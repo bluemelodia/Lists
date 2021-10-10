@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { FocusService } from '../services/focus.service';
-import { Key } from '../types/focus.types';
+import { Key } from '../interfaces/focus.interface';
 
 /**
  * Loop focus for open navigation panels and modals. 

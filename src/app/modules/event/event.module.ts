@@ -9,10 +9,12 @@ import { FormElementModule } from '../form/form.module';
 import { ImageModule } from '../image/image.module';
 
 import { AddBirthdayComponent } from './birthday/add-birthday/add.component';
+import { AddMeetingComponent } from './meeting/add-meeting/add.component';
 
 @NgModule({
 	declarations: [
 		AddBirthdayComponent,
+  		AddMeetingComponent,
 	],
 	imports: [
 		CommonModule,
@@ -26,6 +28,7 @@ import { AddBirthdayComponent } from './birthday/add-birthday/add.component';
 	],
 	exports: [
 		AddBirthdayComponent,
+		AddMeetingComponent,
 	]
 })
 export class AddEventModule { }

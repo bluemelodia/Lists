@@ -13,9 +13,9 @@ import { BirthdayService } from '../../../services/birthday.service';
 import { DialogService } from '../../../services/dialog.service';
 import { LoadingService } from '../../../services/loading.service';
 
-import { AddBirthday } from '../../../types/birthday/birthday.types';
-import { Dialog } from '../../../types/dialog/dialog.types';
-import { ResponseStatus } from '../../../types/response.types';
+import { AddBirthday } from '../../../interfaces/birthday.interface';
+import { Dialog } from '../../../interfaces/dialog.interface';
+import { ResponseStatus } from '../../../interfaces/response.interface';
 
 @Component({
 	selector: 'task-birthdays',
@@ -99,7 +99,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((birthdays: AddBirthday[]) => {
 				console.info("🍰 ✅ BirthdaysComponent ---> getBirthdays, received birthdays: ", birthdays);
-				
+
 				const birthdayList = BirthdayUtils.createBirthdayLists(birthdays);
 				this.solarBirthdays$.next(birthdayList.solar);
 				this.lunarBirthdays$.next(birthdayList.lunar);
