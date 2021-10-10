@@ -1,5 +1,5 @@
 import { CalendarDay } from "./calendar/calendar-response.interface";
-import { Recurrence } from "./event.interface";
+import { Option } from "./event.interface";
 
 export interface MeetingConfig {
 	action: MeetingAction,
@@ -12,8 +12,8 @@ export interface Meeting {
 	location: string;
 	virtual?: boolean;
 	name: string;
-	recurring: Recurrence;
-	time: Date;
+	recurring: Option;
+	time: CalendarDay;
 }
 
 /**
@@ -25,7 +25,7 @@ export interface AddMeeting {
 	location: string;
 	virtual?: number;
 	name: string;
-	recurring: Recurrence;
+	recurring: string;
 	time: string;
 }
 

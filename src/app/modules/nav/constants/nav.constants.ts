@@ -2,11 +2,11 @@ import { Event } from '../../../constants/events.contants';
 import { Topic } from '../../../constants/topics.constants';
 
 export enum MenuItem {
-    Home = 'Home',
-    AddEvent = "Add Events and Reminders",
-    Calendar = 'Calendar',
-    Tasks = 'Tasks',
-    Settings = 'Settings'
+	Home = 'Home',
+	AddEvent = "Add Events and Reminders",
+	Calendar = 'Calendar',
+	Tasks = 'Tasks',
+	Settings = 'Settings'
 }
 
 /**
@@ -21,15 +21,15 @@ export const MENU_LIST: MenuItem[] = [
 ];
 
 export interface IMenuDetails {
-    route: string;
-    title?: string;
-    subMenu?: IMenu;
-    subMenuList?: Topic[] | Event[];
-    expanded?: boolean;
+	route: string;
+	title?: string;
+	subMenu?: IMenu;
+	subMenuList?: Topic[] | Event[];
+	expanded?: boolean;
 }
 
 export interface IMenu {
-    readonly [key: string]: IMenuDetails;
+	readonly [key: string]: IMenuDetails;
 }
 
 /**
@@ -74,9 +74,9 @@ const EVENTS: IMenu = {
 		route: 'events/add-birthday',
 		title: 'Add Payment'
 	},
-	[Event.Project]: {
+	[Event.Task]: {
 		route: 'events/add-birthday',
-		title: 'Add Project'
+		title: 'Add Task'
 	},
 };
 
@@ -84,7 +84,7 @@ const EVENT_LIST: Event[] = [
 	Event.Birthday,
 	Event.Meeting,
 	Event.Payment,
-	Event.Project
+	Event.Task
 ];
 
 export const MENU: IMenu = {

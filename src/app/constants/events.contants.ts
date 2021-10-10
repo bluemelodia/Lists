@@ -1,8 +1,8 @@
 export enum Event {
-    Birthday = 'Birthday',
+	Birthday = 'Birthday',
 	Meeting = 'Meeting',
 	Payment = 'Payment',
-	Project = 'Project',
+	Task = 'Task',
 }
 
 export enum Location {

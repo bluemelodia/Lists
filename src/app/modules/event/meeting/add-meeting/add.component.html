@@ -65,7 +65,8 @@
 			<span for="event-description" class="form-instructions">Choose a recurrence option for the event.</span>
 			<app-select id="event-recurrence"
 				[options]="recurrence"
-				placeholder="Select Recurrence">
+				placeholder="Select Recurrence"
+				(optionSelected)="setEventRecurrence($event)">
 			</app-select>
 		</fieldset>
         <fieldset class="form-actions">

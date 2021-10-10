@@ -7,11 +7,16 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { CalendarDay } from 'src/app/interfaces/calendar/calendar-response.interface';
 
 import { CalendarType } from '../../../../interfaces/calendar/calendar.interface';
-import { recurrenceOptions } from '../../../../interfaces/event.interface';
+import { Option, Recurrence, recurrenceOptions } from '../../../../interfaces/event.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
-import { AddMeeting, Meeting, MeetingAction } from '../../../../interfaces/meeting.interface';
+import { 
+	AddMeeting,
+	Meeting,
+	MeetingAction,
+} from '../../../../interfaces/meeting.interface';
 import { FormUtils } from '../../../../utils/form.utils';
 import { MeetingUtils } from '../../../../utils/meeting.utils';
 
@@ -34,6 +39,10 @@ export class AddMeetingComponent implements OnInit {
 	public headerLevel = HeaderLevel;
 	public submitted = false;
 	public recurrence = recurrenceOptions;
+
+	selectedRecurrence: Option = recurrenceOptions.find((recurrence) => {
+		return recurrence.selected || recurrence.name === Recurrence.Once;
+	});
 
 	constructor(
 		private fb: FormBuilder,
@@ -121,6 +130,54 @@ export class AddMeetingComponent implements OnInit {
 		return this.meetingForm.controls;
 	}
 
+	get name(): string {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return this.meetingFormControl.name.value;
+	}
+
+	get date(): CalendarDay {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return this.meetingForm.get('date.day')?.value;
+	}
+
+	get location(): string {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return this.meetingFormControl.location.value;
+	}
+
+	get description(): string {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return this.meetingFormControl.description.value;
+	}
+
+	setEventRecurrence(recurrence: Option) {
+		this.selectedRecurrence = recurrence;
+	}
+
+	get eventRecurrence(): Option {
+		return this.selectedRecurrence;
+	}
+
+	get isVirtual(): boolean {
+		return this.meetingForm.get('options.virtual')?.value;
+	}
+
 	onSubmit(): void {
+		this.submitted = true;
+
+		if (this.meetingForm.valid) {
+			this.submitted = false;
+			this.meeting = {
+				...this.meeting,
+				description: this.description,
+				location: this.location,
+				virtual: this.isVirtual,
+				name: this.name,
+				recurring: this.eventRecurrence,
+				time: this.date,
+			};
+
+			console.info("🥳 💁🏻‍♀️ AddMeetingComponent ---> onSubmit, meeting: ", this.meeting);
+		}
 	}
 }

@@ -30,6 +30,8 @@ How to make image upload easy with Angular
 - Make edit/delete buttons less obvious, ie. interact with the cell first to show these options.
 
 - Show a list of upcoming events on the home page (four widgets, so four sections).
+- Add accessibility, don't have two modals open at the same time.
+- Add ESLinting
 
 ## Navigation
 
