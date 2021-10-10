@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { 
+	AbstractControl,
 	FormBuilder,
 	FormGroup,
 	Validators,
@@ -7,7 +8,7 @@ import {
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/operators';
 
-import { HeaderLevel } from '../../../../interfaces/header.interface';
+import { CalendarType } from '../../../../interfaces/calendar/calendar.interface';
 import { AddMeeting, Meeting, MeetingAction } from '../../../../interfaces/meeting.interface';
 import { FormUtils } from '../../../../utils/form.utils';
 import { MeetingUtils } from '../../../../utils/meeting.utils';
@@ -18,10 +19,15 @@ import { MeetingUtils } from '../../../../utils/meeting.utils';
   styleUrls: ['./add.component.css']
 })
 export class AddMeetingComponent implements OnInit {
-	headerLevel: HeaderLevel;
+	maxChars = 255;
+	minChars = 1;
+
 	meeting: Meeting;
 	meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Add);
 	meetingForm: FormGroup;
+
+	public calendarType: CalendarType = CalendarType.Solar;
+	public submitted = false;
 
 	constructor(
 		private fb: FormBuilder,
@@ -35,8 +41,8 @@ export class AddMeetingComponent implements OnInit {
 				'',
 				[
 					Validators.required,
-					Validators.minLength(1),
-					Validators.maxLength(255),
+					Validators.minLength(this.minChars),
+					Validators.maxLength(this.maxChars),
 				],
 			],
 			date: this.fb.group({
@@ -93,7 +99,7 @@ export class AddMeetingComponent implements OnInit {
 		this.meetingForm.patchValue({
 			name: meeting.name,
 			date: {
-				meeting: meeting.time,
+				meeting: FormUtils.createCalendarDate(meeting.time),
 			},
 			description: meeting.description,
 			location: meeting.location,
@@ -102,6 +108,11 @@ export class AddMeetingComponent implements OnInit {
 			},
 			recurrence: meeting.recurring,
 		});
+	}
+
+	/* returns the form controls of the form. */
+	get meetingFormControl(): { [key: string]: AbstractControl } {
+		return this.meetingForm.controls;
 	}
 
 	onSubmit(): void {

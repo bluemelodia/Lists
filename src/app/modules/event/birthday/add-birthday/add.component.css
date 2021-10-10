@@ -6,16 +6,6 @@
   border: 1px solid #dd2e44;
 }
 
-.event-form {
-  display: flex;
-  flex-direction: column;
-  margin: 10px 0;
-}
-
-.event-form__optional {
-  margin: 8px 0;
-}
-
 /**
 * Lower the margins so there's more room for the calendar.
 */

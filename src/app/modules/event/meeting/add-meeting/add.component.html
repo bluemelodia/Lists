@@ -1,22 +1,25 @@
 <section class="form-container">
-	<app-heading [level]="headerLevel.H1" text="{{ meetingConfig.action }} Event"></app-heading>
+	<app-heading text="{{ meetingConfig.action }} Event"></app-heading>
     <form class="event-form"
         [formGroup]="meetingForm"
         (ngSubmit)="onSubmit()">
         <span class="form-instructions">Provide the details of the meeting.</span>
-        <!--<fieldset class="name">
+		<fieldset class="name">
             <input type="text" 
                 formControlName="name"
                 placeholder="Name"/>
-            <div class="input-error" *ngIf="!birthdayFormControl.valid && this.submitted">
-                    <span *ngIf="birthdayFormControl.name.errors?.required">
+            <div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+                    <span *ngIf="meetingFormControl.name.errors?.required">
                         Name is required.
                     </span>
-                    <span *ngIf="birthdayFormControl.name.errors?.minlength || birthdayFormControl.name.errors?.invalidName">
-                        Please enter a valid name.
+                    <span *ngIf="meetingFormControl.name.errors?.minlength">
+                        Please enter a longer name.
                     </span>
+					<span *ngIf="meetingFormControl.name.errors?.maxlength">
+						Name should not exceed {{ maxChars }} characters.
+					</span>
             </div> 
-            <app-datepicker appFocus 
+           <app-datepicker appFocus 
                 class="datepicker-container"
                 placeholder="Date"
                 [calendarType]="calendarType"
@@ -24,12 +27,13 @@
                 [submitted]="submitted">
             </app-datepicker>
             <app-checkbox 
-                id="action-lunar"
-                name="Lunar"
-                checkboxName="lunar"
+                id="action-virtual"
+                name="Virtual"
+                checkboxName="virtual"
                 [form]="meetingForm.controls.options">
             </app-checkbox>
         </fieldset>
+        <!--
         <fieldset>
             <app-heading [level]="headerLevel.H3" text="Select Profile Image">
                 <span class="event-form__optional" post>Optional</span>
