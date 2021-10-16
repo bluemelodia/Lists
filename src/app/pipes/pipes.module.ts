@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { PickerDateFormatterPipe } from './picker-date-formatter.pipe';
+import { NgModule } from "@angular/core";
+import { PickerDateFormatterPipe } from "./picker-date-formatter.pipe";
 
 @NgModule({
 	declarations: [

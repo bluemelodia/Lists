@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Observable, Subject } from "rxjs";
 
-import { Dialog, DialogAction, DialogConfig, DialogType } from '../interfaces/dialog.interface';
-import { ResponseStatus } from '../interfaces/response.interface';
-import { DialogUtils } from '../utils/dialog.utils';
+import { Dialog, DialogAction, DialogConfig, DialogType } from "../interfaces/dialog.interface";
+import { ResponseStatus } from "../interfaces/response.interface";
+import { DialogUtils } from "../utils/dialog.utils";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class DialogService {
 	private show$ = new Subject<DialogConfig>();
@@ -30,7 +30,7 @@ export class DialogService {
 
 	showConfirmDialog(dialogType: Dialog): Observable<DialogAction> {
 		this.show$.next({
-			title: 'Confirm',
+			title: "Confirm",
 			message: DialogUtils.messageforConfirmDialog(dialogType),
 			dialogType: DialogType.Confirm
 		});
@@ -40,7 +40,7 @@ export class DialogService {
 
 	showErrorDialog(dialogType: Dialog): void {
 		this.show$.next({
-			title: 'Error',
+			title: "Error",
 			message: DialogUtils.messageForErrorDialog(dialogType),
 			dialogType: DialogType.Error
 		});

@@ -9,12 +9,16 @@ const PROXY_CONFIG = [
     {
         context: [
 			"/todo/ccal",
-            "/todo/addBirthday",
-            "/todo/editBirthday",
-            "/todo/getBirthdays",
-            "/todo/deleteBirthday",
-			"/todo/loadSettings",
-			"/todo/saveSettings"
+            "/todo/birthdays/getBirthdays",
+			"/todo/birthdays/deleteBirthday",
+            "/todo/birthdays/addBirthday",
+            "/todo/birthdays/editBirthday",
+			"/todo/meetings/addMeeting",
+			"/todo/meetings/deleteMeeting",
+			"/todo/meetings/editMeeting",
+			"/todo/meetings/getMeetings",
+            "/todo/settings/loadSettings",
+			"/todo/settings/saveSettings",
         ],
         target: "http://localhost:9002",
         secure: false

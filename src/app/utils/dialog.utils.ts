@@ -6,9 +6,9 @@ export class DialogUtils {
 	public static titleForDialog(response: ResponseStatus): string {
 		switch (response) {
 			case ResponseStatus.SUCCESS:
-				return 'Success';
+				return "Success";
 			case ResponseStatus.ERROR:
-				return 'An Error Occurred';
+				return "An Error Occurred";
 		}
 	}
 
@@ -60,17 +60,17 @@ export class DialogUtils {
 
 	private static birthdayMessage(response: ResponseStatus, dialogType: Dialog): string {
 		if (response === ResponseStatus.SUCCESS) {
-			let birthdayMessage = '';
+			let birthdayMessage = "";
 
 			switch (dialogType) {
 				case Dialog.AddBirthday:
-					birthdayMessage = 'Added birthday.';
+					birthdayMessage = "Added birthday.";
 					break;
 				case Dialog.EditBirthday:
-					birthdayMessage = 'Updated birthday.';
+					birthdayMessage = "Updated birthday.";
 					break;
 				case Dialog.DeleteBirthday:
-					birthdayMessage = 'Deleted birthday.';
+					birthdayMessage = "Deleted birthday.";
 					break;
 				default:
 					break;
@@ -84,11 +84,11 @@ export class DialogUtils {
 
 	private static settingsMessage(response: ResponseStatus, dialogType: Dialog): string {
 		if (response === ResponseStatus.SUCCESS) {
-			let settingsMessage = '';
+			let settingsMessage = "";
 
 			switch (dialogType) {
 				case Dialog.SaveSettings:
-					settingsMessage = 'Saved settings.';
+					settingsMessage = "Saved settings.";
 					break;
 				default:
 					break;

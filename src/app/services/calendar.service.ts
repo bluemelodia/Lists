@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, forkJoin, of } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject, Observable, forkJoin, of } from "rxjs";
 
-import { Endpoint } from '../constants/urls.constants';
-import { CalendarType } from '../interfaces/calendar/calendar.interface';
-import { CalendarYear, Calendar, CalendarMonth } from '../interfaces/calendar/calendar-response.interface';
-import { Response } from '../interfaces/response.interface';
-import { CalendarUtils } from '../utils/calendar.utils';
+import { Endpoint } from "../constants/urls.constants";
+import { CalendarType } from "../interfaces/calendar/calendar.interface";
+import { CalendarYear, Calendar, CalendarMonth } from "../interfaces/calendar/calendar-response.interface";
+import { Response } from "../interfaces/response.interface";
+import { CalendarUtils } from "../utils/calendar.utils";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class CalendarService {
 	private baseURL = Endpoint.CALENDAR;
@@ -101,7 +101,7 @@ export class CalendarService {
 
 	private getChineseCalendarForYear(year: number): Observable<Response> {
 		/*
-		* If we've already made a request for the calendar, get the results
+		* If we"ve already made a request for the calendar, get the results
 		* from the cache. Must be returned as an Observable<Response>.
 		*/
 		const cachedCalendar = CalendarUtils.getCachedCalendar(year);

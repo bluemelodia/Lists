@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from '@angular/common';
-import { HeadingComponent } from './heading/heading.component';
-import { LoaderComponent } from './loader/loader.component';
-import { NoResultsComponent } from './no-results/no-results.component';
+import { CommonModule } from "@angular/common";
+import { HeadingComponent } from "./heading/heading.component";
+import { LoaderComponent } from "./loader/loader.component";
+import { NoResultsComponent } from "./no-results/no-results.component";
 
 @NgModule({
 	declarations: [
@@ -19,4 +19,4 @@ import { NoResultsComponent } from './no-results/no-results.component';
 		NoResultsComponent
 	]
 })
-export class ElementModule {}
+export class ElementModule { }

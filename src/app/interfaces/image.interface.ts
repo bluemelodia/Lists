@@ -1,13 +1,13 @@
 export interface Image {
-    src: string;
+	src: string;
 }
 
 export interface ImageSnippet {
-    src: string;
-    file: File;
+	src: string;
+	file: File;
 }
 
 export enum MenuIcon {
-    Open = '../../assets/nav/open.svg',
-    Closed = '../../assets/nav/closed.svg'
+	Open = "../../assets/nav/open.svg",
+	Closed = "../../assets/nav/closed.svg"
 }

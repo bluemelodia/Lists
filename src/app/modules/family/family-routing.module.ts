@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { FamilyComponent } from './family.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { FamilyComponent } from "./family.component";
 
 
 const routes: Routes = [
 	{
-		path: '',
+		path: "",
 		component: FamilyComponent
 	}
 ];

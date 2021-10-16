@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { Key, FocusEvent } from '../interfaces/focus.interface';
+import { Injectable } from "@angular/core";
+import { Observable, Subject } from "rxjs";
+import { Key, FocusEvent } from "../interfaces/focus.interface";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class FocusService {
 	private onKeyPressed$ = new Subject<FocusEvent>();

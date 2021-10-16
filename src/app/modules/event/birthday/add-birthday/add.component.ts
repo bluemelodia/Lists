@@ -1,46 +1,46 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
 	FormGroup,
 	Validators,
-} from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Subject } from 'rxjs';
+} from "@angular/forms";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Subject } from "rxjs";
 import {
 	filter,
 	map,
 	take,
 	takeUntil,
-} from 'rxjs/operators';
+} from "rxjs/operators";
 
-import { BirthdayAction, BirthdayID } from '../../../../interfaces/birthday.interface';
-import { Topic } from '../../../../constants/topics.constants';
+import { BirthdayAction, BirthdayID } from "../../../../interfaces/birthday.interface";
+import { Topic } from "../../../../constants/topics.constants";
 
-import { BirthdayService } from '../../../../services/birthday.service';
-import { DialogService } from '../../../../services/dialog.service';
-import { NavService } from '../../../../services/nav.service';
-import { ValidationService } from '../../../../services/validation.service';
+import { BirthdayService } from "../../../../services/birthday.service";
+import { DialogService } from "../../../../services/dialog.service";
+import { NavService } from "../../../../services/nav.service";
+import { ValidationService } from "../../../../services/validation.service";
 
-import { 
-	AddBirthday,
+import {
 	Birthday,
 	BirthdayOptions,
 	BirthdayProfile,
-} from '../../../../interfaces/birthday.interface';
-import { CalendarType } from '../../../../interfaces/calendar/calendar.interface';
-import { CalendarDay } from '../../../../interfaces/calendar/calendar-response.interface';
-import { Dialog, DialogAction } from '../../../../interfaces/dialog.interface';
-import { HeaderLevel } from '../../../../interfaces/header.interface';
-import { ResponseStatus } from '../../../../interfaces/response.interface';
+} from "../../../../interfaces/birthday.interface";
+import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
+import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
+import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
+import { HeaderLevel } from "../../../../interfaces/header.interface";
+import { ResponseStatus } from "../../../../interfaces/response.interface";
+import { AddBirthday } from "../../../../interfaces/service/service-objects.interface";
 
-import { BirthdayUtils } from '../../../../utils/birthday.utils';
-import { FormUtils } from '../../../../utils/form.utils';
+import { BirthdayUtils } from "../../../../utils/birthday.utils";
+import { FormUtils } from "../../../../utils/form.utils";
 
 @Component({
-	selector: 'app-add-birthday',
-	templateUrl: './add.component.html',
-	styleUrls: ['./add.component.css']
+	selector: "app-add-birthday",
+	templateUrl: "./add.component.html",
+	styleUrls: ["./add.component.css"]
 })
 export class AddBirthdayComponent implements OnInit, OnDestroy {
 	birthday: Birthday;
@@ -68,7 +68,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		/* Set the controls for the form. */
 		this.birthdayForm = this.fb.group({
 			name: [
-				'',
+				"",
 				[
 					Validators.required,
 					Validators.minLength(1),
@@ -76,7 +76,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				],
 			],
 			date: this.fb.group({
-				day: ['', [Validators.required]],
+				day: ["", [Validators.required]],
 			}),
 			options: this.fb.group({
 				lunar: this.fb.control(false),
@@ -85,13 +85,13 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				[BirthdayID.gift]: this.fb.control(false),
 			}),
 			profile: this.fb.group({
-				image: [''],
-				fileName: ['']
+				image: [""],
+				fileName: [""]
 			})
 		},
-		{
-			updateOn: 'submit'
-		});
+			{
+				updateOn: "submit"
+			});
 
 		this.route.queryParamMap
 			.pipe(
@@ -114,7 +114,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 	private populateFormData(birthday: AddBirthday) {
 		console.info("🥳 💾 AddBirthdayComponent ---> populateFormData, add existing birthday: ", birthday);
 		/**
-		 * Don't patch the file name, it opens up security risks.
+		 * Don"t patch the file name, it opens up security risks.
 		 */
 		this.birthdayForm.patchValue({
 			name: birthday.name,
@@ -145,7 +145,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 
 	get date(): CalendarDay {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return this.birthdayForm.get('date.day')?.value;
+		return this.birthdayForm.get("date.day")?.value;
 	}
 
 	get options(): BirthdayOptions {

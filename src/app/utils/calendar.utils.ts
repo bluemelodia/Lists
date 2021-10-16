@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import { CalendarMonth, CalendarWeek, CalendarDay, CalendarYear, CalendarKey } from '../interfaces/calendar/calendar-response.interface';
+import { CalendarMonth, CalendarWeek, CalendarDay, CalendarYear, CalendarKey } from "../interfaces/calendar/calendar-response.interface";
 
 export class CalendarUtils {
 	/*

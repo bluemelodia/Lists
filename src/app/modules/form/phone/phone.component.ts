@@ -1,27 +1,27 @@
 import {
 	Component,
 	Input,
-} from '@angular/core';
-import { FormGroup } from '@angular/forms';
+} from "@angular/core";
+import { FormGroup } from "@angular/forms";
 
-import { CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+import { CountryISO, PhoneNumberFormat } from "ngx-intl-tel-input";
 
 import {
 	PREFERRED_COUNTRIES,
 	SEARCH_COUNTRY_FIELDS,
 	STARTING_COUNTRY,
-} from './constants/phone.constants';
+} from "./constants/phone.constants";
 
 @Component({
-	selector: 'app-phone',
-	templateUrl: './phone.component.html',
-	styleUrls: ['./phone.component.css']
+	selector: "app-phone",
+	templateUrl: "./phone.component.html",
+	styleUrls: ["./phone.component.css"]
 })
 export class PhoneComponent {
 	@Input() form: FormGroup;
 	@Input() set startingCountry(country: string) {
 		this.country = this.getStartingCountry(country);
-	} 
+	}
 	public country;
 
 	public phoneNumberFormat = PhoneNumberFormat;

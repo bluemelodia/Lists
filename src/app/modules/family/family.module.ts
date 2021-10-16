@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { FamilyComponent } from './family.component';
-import { FamilyRoutingModule } from './family-routing.module';
+import { FamilyComponent } from "./family.component";
+import { FamilyRoutingModule } from "./family-routing.module";
 
 @NgModule({
 	declarations: [

@@ -1,30 +1,30 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { forkJoin, Observable, of, Subject } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { forkJoin, Observable, of, Subject } from "rxjs";
+import { catchError, map } from "rxjs/operators";
 
-import { 
-	AddBirthday,
+import {
 	Birthday,
 	BirthdayAction,
 	BirthdayID,
-} from '../interfaces/birthday.interface';
-import { Calendar, CalendarDay } from '../interfaces/calendar/calendar-response.interface';
-import { CalendarType } from '../interfaces/calendar/calendar.interface';
-import { Dialog } from '../interfaces/dialog.interface';
-import { Response, ResponseStatus } from '../interfaces/response.interface';
-import { BirthdayUtils } from '../utils/birthday.utils';
+} from "../interfaces/birthday.interface";
+import { Calendar, CalendarDay } from "../interfaces/calendar/calendar-response.interface";
+import { CalendarType } from "../interfaces/calendar/calendar.interface";
+import { Dialog } from "../interfaces/dialog.interface";
+import { Response, ResponseStatus } from "../interfaces/response.interface";
+import { AddBirthday } from "../interfaces/service/service-objects.interface";
+import { BirthdayUtils } from "../utils/birthday.utils";
 
 // services
-import { CalendarService } from './calendar.service';
-import { DialogService } from './dialog.service';
+import { CalendarService } from "./calendar.service";
+import { DialogService } from "./dialog.service";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class BirthdayService {
 	private calendar: Calendar;
-	private headers = new HttpHeaders().set('Content-Type', 'application/json');
+	private headers = new HttpHeaders().set("Content-Type", "application/json");
 
 	public birthdaysChanged$ = new Subject<number>();
 
@@ -125,8 +125,8 @@ export class BirthdayService {
 	}
 
 	/**
-	* Check the user's birthday list, silently adding lunar birthdays
-	* for the next year if not already present. When we get the user's
+	* Check the user"s birthday list, silently adding lunar birthdays
+	* for the next year if not already present. When we get the user"s
 	* list of birthdays, we will group the lunar birthdays together.
 	*
 	* We do this on the client side so that active users will have an
@@ -136,9 +136,9 @@ export class BirthdayService {
 		if (birthdayList) {
 			this.updateBirthdays(birthdayList);
 		} else {
-			this.getBirthdays('guest')
+			this.getBirthdays("guest")
 				.pipe(
-					map((birthdays: AddBirthday[]) => birthdays.filter((birthday) => birthday.lunar)),
+					map((birthdays: AddBirthday[]) => birthdays?.filter((birthday) => birthday.lunar)),
 				)
 				.subscribe((birthdays: AddBirthday[]) => {
 					console.info("🍰 ✅ BirthdayService ---> patchBirthdays, get birthday list: ", birthdays);
@@ -150,8 +150,8 @@ export class BirthdayService {
 	private updateBirthdays(birthdays: AddBirthday[]): void {
 		const birthdayBatch = [];
 
-		birthdays.filter((birthday) => birthday.lunar === 1).forEach((birthday: AddBirthday) => {
-			const matchingDays = this.calendar.days.filter((day: CalendarDay) => {
+		birthdays?.filter((birthday) => birthday.lunar === 1).forEach((birthday: AddBirthday) => {
+			const matchingDays = this.calendar?.days?.filter((day: CalendarDay) => {
 				return day.cmonthname === birthday.cmonthname && day.cdate === birthday.cdate && day.year !== birthday.year;
 			});
 			console.info("🍰 🏁 BirthdayService ---> updateBirthdays, find matching days: ", birthday, matchingDays);
@@ -183,7 +183,7 @@ export class BirthdayService {
 		if (birthdayBatch) {
 			forkJoin(birthdayBatch)
 				.subscribe((responseStatuses: ResponseStatus[]) => {
-					const numChanged = responseStatuses.filter((status: ResponseStatus) => status === ResponseStatus.SUCCESS).length;
+					const numChanged = responseStatuses?.filter((status: ResponseStatus) => status === ResponseStatus.SUCCESS).length;
 					this.birthdaysChanged$.next(numChanged);
 				});
 		}

@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Subject } from "rxjs";
 
-import { LoadingService } from './services/loading.service';
-import { NavService } from './services/nav.service';
+import { LoadingService } from "./services/loading.service";
+import { NavService } from "./services/nav.service";
 
 @Component({
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.css'],
+	selector: "app-root",
+	templateUrl: "./app.component.html",
+	styleUrls: ["./app.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
@@ -18,9 +18,9 @@ export class AppComponent implements OnInit {
 		private route: ActivatedRoute,
 	) { }
 
-	@HostBinding('class') containerClasses = 'flex-centered__column full-viewport';
+	@HostBinding("class") containerClasses = "flex-centered__column full-viewport";
 
-	title = 'lists';
+	title = "lists";
 
 	public loadingState$ = new Subject<boolean>();
 

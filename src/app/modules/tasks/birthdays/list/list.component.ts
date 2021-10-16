@@ -5,22 +5,22 @@ import {
 	Input,
 	OnDestroy,
 	Output
-} from '@angular/core';
-import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+} from "@angular/core";
+import { Subject } from "rxjs";
+import { take, takeUntil } from "rxjs/operators";
 
-import { BirthdayService } from '../../../../services/birthday.service';
-import { AddBirthday } from '../../../../interfaces/birthday.interface';
-import { HeaderLevel } from '../../../../interfaces/header.interface';
-import { ResponseStatus } from '../../../../interfaces/response.interface';
+import { BirthdayService } from "../../../../services/birthday.service";
+import { HeaderLevel } from "../../../../interfaces/header.interface";
+import { ResponseStatus } from "../../../../interfaces/response.interface";
+import { AddBirthday } from "../../../../interfaces/service/service-objects.interface";
 
 @Component({
-	selector: 'task-birthdays-list',
-	templateUrl: './list.component.html',
-	styleUrls: ['./list.component.css']
+	selector: "task-birthdays-list",
+	templateUrl: "./list.component.html",
+	styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnDestroy {
-	@HostBinding('class') public get hostClasses(): string {
+	@HostBinding("class") public get hostClasses(): string {
 		let hostStyles = [];
 		return hostStyles.join(" ");
 	}

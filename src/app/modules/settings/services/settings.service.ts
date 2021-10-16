@@ -5,27 +5,27 @@ import { catchError, map } from "rxjs/operators";
 
 import { Endpoint } from "../../../constants/urls.constants";
 import { Dialog } from "../../../interfaces/dialog.interface";
-import { Response, ResponseStatus } from '../../../interfaces/response.interface';
+import { Response, ResponseStatus } from "../../../interfaces/response.interface";
 import { Settings } from "../interfaces/settings.interface";
 
 import { DialogService } from "../../../services/dialog.service";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class SettingsService {
-	private baseURL = Endpoint.TODO;
+	private baseURL = Endpoint.SETTINGS;
 	private saveSettingsURL = `${this.baseURL}/saveSettings`;
 	private loadSettingsURL = `${this.baseURL}/loadSettings`;
 
-	private headers = new HttpHeaders().set('Content-Type', 'application/json');
+	private headers = new HttpHeaders().set("Content-Type", "application/json");
 
 	constructor(
 		private dialogService: DialogService,
 		private http: HttpClient,
 	) { }
 
-	public loadSettings(userID = 'guest'): Observable<Settings> {
+	public loadSettings(userID = "guest"): Observable<Settings> {
 		console.info("🛠 ✅ SettingsService ---> loadSettings: ");
 		return this.http.get<Response>(
 			`${this.loadSettingsURL}/${userID}`
@@ -68,7 +68,7 @@ export class SettingsService {
 
 	private formatSettings(settings: Settings): Settings {
 		return {
-			id: 'guest',
+			id: "guest",
 			...settings,
 		}
 	}

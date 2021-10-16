@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { DirectionComponent } from './direction.component';
+import { DirectionComponent } from "./direction.component";
 
 @NgModule({
 	declarations: [

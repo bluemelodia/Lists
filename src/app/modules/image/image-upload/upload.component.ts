@@ -7,19 +7,19 @@ import {
 	OnChanges,
 	OnDestroy,
 	ViewChild,
-} from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { of, ReplaySubject, Subject } from 'rxjs';
-import { catchError, switchMap, takeUntil } from 'rxjs/operators';
+} from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { of, ReplaySubject, Subject } from "rxjs";
+import { catchError, switchMap, takeUntil } from "rxjs/operators";
 
-import { CompressImageService } from '../../../services/image-compress.service';
-import { DialogService } from '../../../services/dialog.service';
-import { Dialog } from '../../../interfaces/dialog.interface';
+import { CompressImageService } from "../../../services/image-compress.service";
+import { DialogService } from "../../../services/dialog.service";
+import { Dialog } from "../../../interfaces/dialog.interface";
 
 @Component({
-	selector: 'app-img-upload',
-	templateUrl: './upload.component.html',
-	styleUrls: ['./upload.component.css']
+	selector: "app-img-upload",
+	templateUrl: "./upload.component.html",
+	styleUrls: ["./upload.component.css"]
 })
 export class ImageUploadComponent implements OnChanges, OnDestroy {
 	@Input() set form(form: FormGroup) {
@@ -28,7 +28,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 	}
 	public uploadForm: FormGroup;
 
-	@ViewChild('imageInput') filePicker: ElementRef;
+	@ViewChild("imageInput") filePicker: ElementRef;
 
 	public selectedImageUrl$ = new ReplaySubject<string>();
 	private ngUnsubscribe$ = new Subject<void>();
@@ -45,7 +45,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 	 */
 	ngOnChanges(): void {
 		this.addSubscriptions();
-		this.uploadForm.get('image')?.valueChanges.subscribe((val: string) => {
+		this.uploadForm.get("image")?.valueChanges.subscribe((val: string) => {
 			if (!val) {
 				console.info("📂 🗑 UploadComponent ---> ngOnChanges, image form field changed, clear the image");
 				this.clearImage();
@@ -65,8 +65,8 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 	}
 
 	/**
-	 * If the user manually deletes the image, then it's because they don't want it submitted. 
-	 * If the form clears the image, then it's because the form needs to cleared.
+	 * If the user manually deletes the image, then it"s because they don"t want it submitted. 
+	 * If the form clears the image, then it"s because the form needs to cleared.
 	 */
 	public deleteImage(): void {
 		this.uploadForm.patchValue({
@@ -78,7 +78,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 	public clearImage(): void {
 		this.selectedImageUrl$.next(null);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-		this.filePicker.nativeElement.value = '';
+		this.filePicker.nativeElement.value = "";
 	}
 
 	private addSubscriptions(): void {

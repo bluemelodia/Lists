@@ -1,19 +1,19 @@
 import {
-	AddBirthday,
 	Birthday,
 	BirthdayConfig,
 	BirthdayAction,
 	BirthdayFormSubmitActions,
 	BirthdayList,
 } from "../interfaces/birthday.interface";
-import { Endpoint } from '../constants/urls.constants';
+import { Endpoint } from "../constants/urls.constants";
 
 import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
 import { DateStatus } from "../interfaces/date.interface";
-import { Dialog } from '../interfaces/dialog.interface';
+import { Dialog } from "../interfaces/dialog.interface";
+import { AddBirthday } from "../interfaces/service/service-objects.interface";
 
 export class BirthdayUtils {
-	private static baseURL = Endpoint.TODO;
+	private static baseURL = Endpoint.BIRTHDAY;
 	private static addBirthdayURL = `${BirthdayUtils.baseURL}/addBirthday`;
 	private static deleteBirthdayURL = `${BirthdayUtils.baseURL}/deleteBirthday`;
 	private static editBirthdayURL = `${BirthdayUtils.baseURL}/editBirthday`;
@@ -82,7 +82,7 @@ export class BirthdayUtils {
 	public static formatBirthday(birthday: Birthday): AddBirthday {
 		const date = birthday.date;
 		const addBirthday: AddBirthday = {
-			id: 'guest',
+			id: "guest",
 			uuid: birthday.uuid,
 			cmonth: date.cmonth,
 			month: date.month,
@@ -92,7 +92,7 @@ export class BirthdayUtils {
 			name: birthday.name,
 			call: birthday.options.call ? 1 : 0,
 			text: birthday.options.text ? 1 : 0,
-			gift: birthday.options['buy-present'] ? 1 : 0,
+			gift: birthday.options["buy-present"] ? 1 : 0,
 			leap: date.leap ? 1 : 0,
 			cmonthname: date.cmonthname,
 			lunar: birthday.options.lunar ? 1 : 0,
@@ -110,9 +110,9 @@ export class BirthdayUtils {
 
 		/**
 		 * The string is prefixed with C:\fakepath\, to prevent malicious software 
-		 * from guessing the user's file structure.
+		 * from guessing the user"s file structure.
 		 */
-		return fileName.substring(fileName.lastIndexOf('\\') + 1);
+		return fileName.substring(fileName.lastIndexOf("\\") + 1);
 	}
 
 	public static processBirthdays(birthdays: AddBirthday[]): AddBirthday[] {

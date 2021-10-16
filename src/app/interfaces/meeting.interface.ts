@@ -7,6 +7,7 @@ export interface MeetingConfig {
 }
 
 export interface Meeting {
+	id?: string;
 	uuid?: string;
 	description?: string;
 	location: string;
@@ -16,24 +17,11 @@ export interface Meeting {
 	time: CalendarDay;
 }
 
-/**
-* Format of meeting to send to the service.
-*/
-export interface AddMeeting {
-	uuid?: string;
-	description?: string;
-	location: string;
-	virtual?: number;
-	name: string;
-	recurring: string;
-	time: string;
-}
-
 export enum MeetingAction {
-	Add = 'Add',
-	Delete = 'Delete',
-	Edit = 'Edit',
-	Fetch = 'Fetch',
+	Add = "Add",
+	Delete = "Delete",
+	Edit = "Edit",
+	Fetch = "Fetch",
 }
 
 interface MeetingFormSubmitAction {
@@ -41,6 +29,6 @@ interface MeetingFormSubmitAction {
 }
 
 export const MeetingFormSubmitActions: MeetingFormSubmitAction = {
-	[MeetingAction.Add]: 'Submit',
-	[MeetingAction.Edit]: 'Update'
+	[MeetingAction.Add]: "Submit",
+	[MeetingAction.Edit]: "Update"
 }

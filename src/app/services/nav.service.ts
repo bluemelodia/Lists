@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Params, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { Topic } from '../constants/topics.constants';
-import { IMenuDetails } from '../modules/nav/constants/nav.constants';
-import { NavUtils } from '../modules/nav/utils/nav.utils';
+import { Injectable } from "@angular/core";
+import { Params, Router } from "@angular/router";
+import { Observable, Subject } from "rxjs";
+import { Topic } from "../constants/topics.constants";
+import { IMenuDetails } from "../modules/nav/constants/nav.constants";
+import { NavUtils } from "../modules/nav/utils/nav.utils";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class NavService {
 	private menuState$ = new Subject<boolean>();
 	private menuTitleChanged$ = new Subject<string>();
 
-	constructor(private router: Router) {}
+	constructor(private router: Router) { }
 
 	public get onMenuChange$(): Observable<boolean> {
 		return this.menuState$.asObservable();
@@ -36,7 +36,7 @@ export class NavService {
 	*/
 	public navigate(route: string, title: string, additionalParams?: Params): void {
 		console.info(`🚀 ✅ NavService ---> navigate, route to ${route} with title ${title}.`);
-		void this.router.navigate([route],{ queryParams: { title: title, ...additionalParams }});
+		void this.router.navigate([route], { queryParams: { title: title, ...additionalParams } });
 	}
 
 	/**

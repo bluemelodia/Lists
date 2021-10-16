@@ -1,7 +1,7 @@
-import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
+import { CountryISO, SearchCountryField } from "ngx-intl-tel-input";
 
 export const PREFERRED_COUNTRIES = [
-	CountryISO.UnitedStates, 
+	CountryISO.UnitedStates,
 	CountryISO.Canada,
 ];
 export const SEARCH_COUNTRY_FIELDS = [

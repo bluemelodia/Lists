@@ -1,29 +1,29 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { AbstractControl, FormBuilder, FormGroup, } from "@angular/forms";
 
-import { Subject } from 'rxjs';
-import { finalize, take, takeUntil } from 'rxjs/operators';
+import { Subject } from "rxjs";
+import { finalize, take, takeUntil } from "rxjs/operators";
 
-import { Topic } from '../../constants/topics.constants';
+import { Topic } from "../../constants/topics.constants";
 
-import { HeaderLevel } from '../../interfaces/header.interface';
-import { Phone } from '../../interfaces/phone.interface';
-import { 
+import { HeaderLevel } from "../../interfaces/header.interface";
+import { Phone } from "../../interfaces/phone.interface";
+import {
 	Channel,
 	Settings,
 	TopicSettings,
 	VALIDATE_CHANNEL,
-} from './interfaces/settings.interface';
+} from "./interfaces/settings.interface";
 
-import { LoadingService } from '../../services/loading.service';
-import { SettingsService } from './services/settings.service';
-import { ValidationService } from '../../services/validation.service';
+import { LoadingService } from "../../services/loading.service";
+import { SettingsService } from "./services/settings.service";
+import { ValidationService } from "../../services/validation.service";
 
 
 @Component({
-	selector: 'app-settings',
-	templateUrl: './settings.component.html',
-	styleUrls: ['./settings.component.css']
+	selector: "app-settings",
+	templateUrl: "./settings.component.html",
+	styleUrls: ["./settings.component.css"]
 })
 export class SettingsComponent implements OnInit {
 	public channel = Channel;
@@ -56,20 +56,20 @@ export class SettingsComponent implements OnInit {
 					[Channel.text]: this.fb.control(false),
 				}),
 				email: [
-					'',
+					"",
 				],
 				phone: [
-					'',
+					"",
 				],
 				tasks: this.fb.group({
 					[Topic.Birthdays]: this.fb.control(false),
 				})
 			},
 			{
-				updateOn: 'submit',
+				updateOn: "submit",
 				validators: [
-					this.customValidator.emailValidator('email', `channels.${Channel.email}`),
-					this.customValidator.phoneValidator('phone', `channels.${Channel.text}`)
+					this.customValidator.emailValidator("email", `channels.${Channel.email}`),
+					this.customValidator.phoneValidator("phone", `channels.${Channel.text}`)
 				]
 			},
 		);

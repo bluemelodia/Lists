@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, EventEmitter, Input, Output, } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 
 @Component({
-	selector: 'app-checkbox',
-	templateUrl: './checkbox.component.html',
-	styleUrls: ['./checkbox.component.css']
+	selector: "app-checkbox",
+	templateUrl: "./checkbox.component.html",
+	styleUrls: ["./checkbox.component.css"]
 })
 export class CheckboxComponent {
 	@Input() name: string;

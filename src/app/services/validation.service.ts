@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { AbstractControl, AbstractControlOptions, FormGroup, ValidatorFn } from '@angular/forms';
+import { Injectable } from "@angular/core";
+import { AbstractControl, AbstractControlOptions, FormGroup, ValidatorFn } from "@angular/forms";
 
 /*
 * Form validation methods.
 */
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class ValidationService {
-	private static nameRegex = new RegExp('^[A-Z][A-Za-z.\'-]+([ ][A-Z][A-Za-z.\'-]+){0,3}$');
+	private static nameRegex = new RegExp("^[A-Z][A-Za-z.\"-]+([ ][A-Z][A-Za-z.\"-]+){0,3}$");
 	// eslint-disable-next-line no-useless-escape
 	private static emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 	// eslint-disable-next-line no-useless-escape
@@ -34,7 +34,7 @@ export class ValidationService {
 			if (!control.value) {
 				return null;
 			}
-			const regex = new RegExp('^[A-Za-z\' ]+$');
+			const regex = new RegExp("^[A-Za-z\" ]+$");
 			const valid = regex.test(control.value);
 			return valid ? null : { invalidRelationship: true };
 		}
@@ -46,7 +46,7 @@ export class ValidationService {
 			if (!control.value) {
 				return null;
 			}
-			const regex = new RegExp('^[A-Za-z0-9,.!$\' ]+$');
+			const regex = new RegExp("^[A-Za-z0-9,.!$\" ]+$");
 			const valid = regex.test(control.value);
 			return valid ? null : { invalidDescription: true };
 		}

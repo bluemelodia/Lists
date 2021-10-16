@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-import { CalendarService } from '../../services/calendar.service';
-import { Calendar, CalendarDay, CalendarMonth } from '../../interfaces/calendar/calendar-response.interface';
-import { CalendarType, shortMonths } from '../../interfaces/calendar/calendar.interface';
+import { CalendarService } from "../../services/calendar.service";
+import { Calendar, CalendarDay, CalendarMonth } from "../../interfaces/calendar/calendar-response.interface";
+import { CalendarType, shortMonths } from "../../interfaces/calendar/calendar.interface";
 
 @Component({
-	selector: 'app-calendar',
-	templateUrl: './calendar.component.html',
-	styleUrls: ['./calendar.component.css']
+	selector: "app-calendar",
+	templateUrl: "./calendar.component.html",
+	styleUrls: ["./calendar.component.css"]
 })
 export class CalendarComponent {
 	@Input() type: CalendarType;

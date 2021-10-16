@@ -1,29 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { 
+import { Component, OnInit } from "@angular/core";
+import {
 	AbstractControl,
 	FormBuilder,
 	FormGroup,
 	Validators,
-} from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { CalendarDay } from 'src/app/interfaces/calendar/calendar-response.interface';
+} from "@angular/forms";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { map } from "rxjs/operators";
 
-import { CalendarType } from '../../../../interfaces/calendar/calendar.interface';
-import { Option, Recurrence, recurrenceOptions } from '../../../../interfaces/event.interface';
-import { HeaderLevel } from '../../../../interfaces/header.interface';
-import { 
-	AddMeeting,
+import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
+import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
+import { Option, Recurrence, recurrenceOptions } from "../../../../interfaces/event.interface";
+import { HeaderLevel } from "../../../../interfaces/header.interface";
+import {
 	Meeting,
 	MeetingAction,
-} from '../../../../interfaces/meeting.interface';
-import { FormUtils } from '../../../../utils/form.utils';
-import { MeetingUtils } from '../../../../utils/meeting.utils';
+} from "../../../../interfaces/meeting.interface";
+
+import { MeetingService } from "../../../../services/meeting.service";
+import { MeetingUtils } from "../../../../utils/meeting.utils";
 
 @Component({
-  selector: 'app-add-meeting',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+	selector: "app-add-meeting",
+	templateUrl: "./add.component.html",
+	styleUrls: ["./add.component.css"]
 })
 export class AddMeetingComponent implements OnInit {
 	maxChars = 255;
@@ -46,6 +46,7 @@ export class AddMeetingComponent implements OnInit {
 
 	constructor(
 		private fb: FormBuilder,
+		private meetingService: MeetingService,
 		private route: ActivatedRoute,
 	) { }
 
@@ -53,7 +54,7 @@ export class AddMeetingComponent implements OnInit {
 		/* Set the controls for the form. */
 		this.meetingForm = this.fb.group({
 			name: [
-				'',
+				"",
 				[
 					Validators.required,
 					Validators.minLength(this.minChars),
@@ -61,16 +62,16 @@ export class AddMeetingComponent implements OnInit {
 				],
 			],
 			date: this.fb.group({
-				day: ['', [Validators.required]],
+				day: ["", [Validators.required]],
 			}),
 			description: [
-				'',
+				"",
 				[
 					Validators.maxLength(this.maxDescription),
 				]
 			],
 			location: [
-				'',
+				"",
 				[
 					Validators.required,
 					Validators.minLength(1),
@@ -81,19 +82,19 @@ export class AddMeetingComponent implements OnInit {
 				virtual: this.fb.control(false),
 			}),
 			recurrence: [
-				'',
+				"",
 			]
 		},
-		{
-			updateOn: 'submit'
-		});
+			{
+				updateOn: "submit"
+			});
 
 		this.route.queryParamMap
 			.pipe(
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-				map((params: ParamMap) => JSON.parse(params.get("birthday")))
+				map((params: ParamMap) => JSON.parse(params.get("meeting")))
 			)
-			.subscribe((meeting: AddMeeting) => {
+			.subscribe((meeting: Meeting) => {
 				/** Existing birthday. */
 				if (meeting?.uuid) {
 					this.meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Edit);
@@ -106,20 +107,20 @@ export class AddMeetingComponent implements OnInit {
 			});
 	}
 
-	private populateFormData(meeting: AddMeeting) {
+	private populateFormData(meeting: Meeting) {
 		console.info("🥳 💾 AddMeetingComponent ---> populateFormData, add existing meeting: ", meeting);
 		/**
-		 * Don't patch the file name, it opens up security risks.
+		 * Don"t patch the file name, it opens up security risks.
 		 */
 		this.meetingForm.patchValue({
 			name: meeting.name,
 			date: {
-				day: FormUtils.createCalendarDate(meeting.time),
+				day: meeting.time,
 			},
 			description: meeting.description,
 			location: meeting.location,
 			options: {
-				virtual: FormUtils.createCheckboxOption(meeting.virtual),
+				virtual: meeting.virtual,
 			},
 			recurrence: meeting.recurring,
 		});
@@ -137,7 +138,7 @@ export class AddMeetingComponent implements OnInit {
 
 	get date(): CalendarDay {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return this.meetingForm.get('date.day')?.value;
+		return this.meetingForm.get("date.day")?.value;
 	}
 
 	get location(): string {
@@ -159,7 +160,7 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	get isVirtual(): boolean {
-		return this.meetingForm.get('options.virtual')?.value;
+		return this.meetingForm.get("options.virtual")?.value;
 	}
 
 	onSubmit(): void {

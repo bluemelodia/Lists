@@ -1,17 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import {
 	MENU,
 	MenuItem,
 	MENU_LIST,
-} from '../constants/nav.constants';
-import { NavService } from '../../../services/nav.service';
-import { NavUtils } from '../utils/nav.utils';
+} from "../constants/nav.constants";
+import { NavService } from "../../../services/nav.service";
+import { NavUtils } from "../utils/nav.utils";
 
 @Component({
-	selector: 'app-menu',
-	templateUrl: './menu.component.html',
-	styleUrls: ['./menu.component.css'],
+	selector: "app-menu",
+	templateUrl: "./menu.component.html",
+	styleUrls: ["./menu.component.css"],
 })
 export class MenuComponent {
 	@Input() menu = MENU_LIST;

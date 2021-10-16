@@ -4,8 +4,8 @@ import {
 	MENU,
 	MenuItem,
 	TOPICS,
-} from '../constants/nav.constants';
-import { Topic } from '../../../constants/topics.constants';
+} from "../constants/nav.constants";
+import { Topic } from "../../../constants/topics.constants";
 
 export class NavUtils {
 	public static getSubMenu(item: MenuItem): IMenu {

@@ -1,35 +1,35 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 
-import { ReplaySubject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
-import { UUID } from 'angular2-uuid';
+import { ReplaySubject } from "rxjs";
+import { filter, takeUntil } from "rxjs/operators";
+import { UUID } from "angular2-uuid";
 
-import { PickerDateFormatterPipe } from '../../../pipes/picker-date-formatter.pipe';
+import { PickerDateFormatterPipe } from "../../../pipes/picker-date-formatter.pipe";
 
-import { CalendarService } from '../../../services/calendar.service';
-import { ClickService } from '../../../services/click.service';
-import { FocusService } from '../../../services/focus.service';
+import { CalendarService } from "../../../services/calendar.service";
+import { ClickService } from "../../../services/click.service";
+import { FocusService } from "../../../services/focus.service";
 
-import { CalendarType } from '../../../interfaces/calendar/calendar.interface';
-import { Calendar, CalendarDay } from '../../../interfaces/calendar/calendar-response.interface';
-import { FocusEvent, Key } from '../../../interfaces/focus.interface';
-import { noCalMessage } from '../../../interfaces/message.interface';
+import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
+import { Calendar, CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
+import { FocusEvent, Key } from "../../../interfaces/focus.interface";
+import { noCalMessage } from "../../../interfaces/message.interface";
 
 @Component({
-	selector: 'app-datepicker',
-	templateUrl: './datepicker.component.html',
-	styleUrls: ['./datepicker.component.css']
+	selector: "app-datepicker",
+	templateUrl: "./datepicker.component.html",
+	styleUrls: ["./datepicker.component.css"]
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
-	@Input() placeholder = '';
+	@Input() placeholder = "";
 	@Input() calendarType: CalendarType = CalendarType.Lunar;
 	@Input() form: FormGroup;
 	@Input() submitted = false;
 
-	@ViewChild('picker', { read: ElementRef, static: false }) picker: ElementRef;
+	@ViewChild("picker", { read: ElementRef, static: false }) picker: ElementRef;
 
 	public showCal = false;
 	public isLoading = false;

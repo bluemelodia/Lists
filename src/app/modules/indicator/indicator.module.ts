@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DateIndicatorComponent } from './date-indicator/date.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { DateIndicatorComponent } from "./date-indicator/date.component";
 
 @NgModule({
 	declarations: [

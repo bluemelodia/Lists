@@ -1,5 +1,5 @@
 import { CalendarDay } from "./calendar/calendar-response.interface";
-import { DateStatus } from "./date.interface";
+import { AddBirthday } from "./service/service-objects.interface";
 
 export interface Birthday {
 	name: string;
@@ -7,29 +7,6 @@ export interface Birthday {
 	date: CalendarDay;
 	options: BirthdayOptions;
 	profile?: BirthdayProfile;
-}
-
-/**
-* Format of birthday to send to the service.
-*/
-export interface AddBirthday {
-	id: string;
-	uuid: string;
-	cmonth: number;
-	month: number;
-	cdate: number;
-	date: number;
-	year: number;
-	name: string;
-	call: number;
-	text: number;
-	gift: number;
-	leap: number;
-	cmonthname: string;
-	lunar: number;
-	status?: DateStatus;
-	image?: string;
-	filename?: string;
 }
 
 export interface BirthdayList {
@@ -44,10 +21,10 @@ export interface BirthdayConfig {
 }
 
 export enum BirthdayAction {
-	Add = 'Add',
-	Delete = 'Delete',
-	Edit = 'Edit',
-	Fetch = 'Fetch',
+	Add = "Add",
+	Delete = "Delete",
+	Edit = "Edit",
+	Fetch = "Fetch",
 }
 
 interface BirthdayFormSubmitAction {
@@ -55,12 +32,12 @@ interface BirthdayFormSubmitAction {
 }
 
 export const BirthdayFormSubmitActions: BirthdayFormSubmitAction = {
-	[BirthdayAction.Add]: 'Submit',
-	[BirthdayAction.Edit]: 'Update'
+	[BirthdayAction.Add]: "Submit",
+	[BirthdayAction.Edit]: "Update"
 }
 
 /**
-* Actions to perform on the recipient's birthday (user-selected). 
+* Actions to perform on the recipient"s birthday (user-selected). 
 */
 export enum BirthdayID {
 	call = "call",

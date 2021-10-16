@@ -4,23 +4,23 @@ import {
 	HostBinding,
 	OnDestroy,
 	OnInit
-} from '@angular/core';
-import { of, Subject } from 'rxjs';
-import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
-import { BirthdayUtils } from 'src/app/utils/birthday.utils';
+} from "@angular/core";
+import { of, Subject } from "rxjs";
+import { catchError, finalize, take, takeUntil } from "rxjs/operators";
+import { BirthdayUtils } from "../../../utils/birthday.utils";
 
-import { BirthdayService } from '../../../services/birthday.service';
-import { DialogService } from '../../../services/dialog.service';
-import { LoadingService } from '../../../services/loading.service';
+import { BirthdayService } from "../../../services/birthday.service";
+import { DialogService } from "../../../services/dialog.service";
+import { LoadingService } from "../../../services/loading.service";
 
-import { AddBirthday } from '../../../interfaces/birthday.interface';
-import { Dialog } from '../../../interfaces/dialog.interface';
-import { ResponseStatus } from '../../../interfaces/response.interface';
+import { Dialog } from "../../../interfaces/dialog.interface";
+import { AddBirthday } from "../../../interfaces/service/service-objects.interface";
+import { ResponseStatus } from "../../../interfaces/response.interface";
 
 @Component({
-	selector: 'task-birthdays',
-	templateUrl: './birthdays.component.html',
-	styleUrls: ['./birthdays.component.css'],
+	selector: "task-birthdays",
+	templateUrl: "./birthdays.component.html",
+	styleUrls: ["./birthdays.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BirthdaysComponent implements OnInit, OnDestroy {
@@ -33,7 +33,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 
 	private ngUnsubscribe$ = new Subject<void>();
 
-	@HostBinding('class') public get hostClasses(): string {
+	@HostBinding("class") public get hostClasses(): string {
 		const hostStyles = [];
 
 		if (this.isLoading) {
@@ -79,7 +79,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 
 	/**
 	* Fetch the latest list of birthdays. Refresh should be set to true if
-	* we're fetching the birthdays list as a result of a patch - otherwise,
+	* we"re fetching the birthdays list as a result of a patch - otherwise,
 	* it should be false.
 	*/
 	public getBirthdays(refresh = false): void {

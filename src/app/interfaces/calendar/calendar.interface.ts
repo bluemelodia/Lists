@@ -1,21 +1,21 @@
 export enum CalendarType {
-    Lunar = 'lunar',
-    Solar = 'solar'
+	Lunar = "lunar",
+	Solar = "solar"
 }
 
 export enum Month {
-    January = 'January',
-    February = 'February',
-    March = 'March',
-    April = 'April',
-    May = 'May',
-    June = 'June',
-    July = 'July',
-    August = 'August',
-    September = 'September',
-    October = 'October',
-    November = 'November',
-    December = 'December'
+	January = "January",
+	February = "February",
+	March = "March",
+	April = "April",
+	May = "May",
+	June = "June",
+	July = "July",
+	August = "August",
+	September = "September",
+	October = "October",
+	November = "November",
+	December = "December"
 }
 
 export const months = [
@@ -34,18 +34,18 @@ export const months = [
 ];
 
 export const shortMonths = [
-	'Jan',
-	'Feb',
-	'Mar',
-	'Apr',
-	'May',
-	'Jun',
-	'Jul',
-	'Aug',
-	'Sep',
-	'Oct',
-	'Nov',
-	'Dec'
+	"Jan",
+	"Feb",
+	"Mar",
+	"Apr",
+	"May",
+	"Jun",
+	"Jul",
+	"Aug",
+	"Sep",
+	"Oct",
+	"Nov",
+	"Dec"
 ];
 
 export const monthLengths = [
@@ -61,4 +61,4 @@ export const monthLengths = [
 	31, // Oct
 	30, // Nov
 	31 // Dec
-]; 
+];
