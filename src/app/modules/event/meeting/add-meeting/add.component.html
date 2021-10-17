@@ -19,13 +19,6 @@
 						Name should not exceed {{ maxChars }} characters.
 					</span>
             </div> 
-            <app-datepicker appFocus 
-                class="datepicker-container"
-                placeholder="Date"
-                [calendarType]="calendarType"
-                [form]="meetingForm.controls.date"
-                [submitted]="submitted">
-            </app-datepicker>
         </fieldset>
 		<fieldset class="location">
             <input type="text" 
@@ -42,6 +35,27 @@
 				checkboxName="virtual"
 				[form]="meetingForm.controls.options">
 			</app-checkbox>
+		</fieldset>
+		<fieldset class="dates">
+			<app-heading [level]="headerLevel.H3" text="Date and Time">
+            </app-heading>
+			<span for="event-description" class="form-instructions">Choose start and end dates and times.</span>
+			<app-datepicker appFocus 
+				class="datepicker-container"
+				placeholder="Start Date"
+				fieldName="Start date"
+				[calendarType]="calendarType"
+				[form]="meetingForm.controls.startDate"
+				[submitted]="submitted">
+			</app-datepicker>
+			<app-datepicker appFocus 
+				class="datepicker-container"
+				placeholder="End Date"
+				fieldName="End date"
+				[calendarType]="calendarType"
+				[form]="meetingForm.controls.endDate"
+				[submitted]="submitted">
+			</app-datepicker>
 		</fieldset>
 		<fieldset class="description">
 			<app-heading [level]="headerLevel.H3" text="Additional Details">

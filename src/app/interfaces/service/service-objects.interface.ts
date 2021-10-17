@@ -11,6 +11,38 @@ export interface AddDate {
 	value?: number;
 }
 
+export interface AddStartDate {
+	start_cdate: number;
+	start_cmonth: number;
+	start_month: number;
+	start_date: number;
+	start_year: number;
+	start_leap: number;
+	start_cmonthname: string;
+	start_value?: number;	
+}
+
+export interface AddEndDate {
+	end_cdate: number;
+	end_cmonth: number;
+	end_month: number;
+	end_date: number;
+	end_year: number;
+	end_leap: number;
+	end_cmonthname: string;
+	end_value?: number;	
+}
+
+export interface AddStartTime {
+	start_hour: number;
+	start_minute: number;
+}
+
+export interface AddEndTime {
+	end_hour: number;
+	end_minute: number;
+}
+
 export interface AddRecurrence {
 	optionName: string;
 	optionValue: string;
@@ -36,7 +68,7 @@ export interface AddBirthday extends AddDate {
 /**
 * Format of meeting to send to the service.
 */
-export interface AddMeeting extends AddDate, AddRecurrence {
+export interface AddMeeting extends AddStartDate, AddEndDate, AddStartTime, AddEndTime, AddRecurrence {
 	id: string;
 	uuid?: string;
 	description?: string;

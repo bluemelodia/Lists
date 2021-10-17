@@ -80,7 +80,10 @@ export class AddMeetingComponent implements OnInit {
 					Validators.maxLength(this.maxChars),
 				],
 			],
-			date: this.fb.group({
+			startDate: this.fb.group({
+				day: ["", [Validators.required]],
+			}),
+			endDate: this.fb.group({
 				day: ["", [Validators.required]],
 			}),
 			description: [
@@ -133,8 +136,11 @@ export class AddMeetingComponent implements OnInit {
 		 */
 		this.meetingForm.patchValue({
 			name: meeting.name,
-			date: {
-				day: meeting.time,
+			startDate: {
+				day: meeting.startDate,
+			},
+			endDate: {
+				day: meeting.endDate,
 			},
 			description: meeting.description,
 			location: meeting.location,
@@ -155,9 +161,14 @@ export class AddMeetingComponent implements OnInit {
 		return this.meetingFormControl.name.value;
 	}
 
-	get date(): CalendarDay {
+	get startDate(): CalendarDay {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return this.meetingForm.get("date.day")?.value;
+		return this.meetingForm.get("startDate.day")?.value;
+	}
+
+	get endDate(): CalendarDay {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return this.meetingForm.get("endDate.day")?.value;
 	}
 
 	get location(): string {
@@ -194,7 +205,8 @@ export class AddMeetingComponent implements OnInit {
 				virtual: this.isVirtual,
 				name: this.name,
 				recurring: this.eventRecurrence,
-				time: this.date,
+				startDate: this.startDate,
+				endDate: this.endDate,
 			};
 
 			console.info("🧳 💁🏻‍♀️ AddMeetingComponent ---> onSubmit, meeting: ", this.meeting);

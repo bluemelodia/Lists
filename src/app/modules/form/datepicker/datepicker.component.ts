@@ -25,6 +25,7 @@ import { noCalMessage } from "../../../interfaces/message.interface";
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
 	@Input() placeholder = "";
+	@Input() fieldName = "Date";
 	@Input() calendarType: CalendarType = CalendarType.Lunar;
 	@Input() form: FormGroup;
 	@Input() submitted = false;

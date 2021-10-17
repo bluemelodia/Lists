@@ -14,7 +14,12 @@ export interface Meeting {
 	virtual?: boolean;
 	name: string;
 	recurring: Option;
-	time: CalendarDay;
+	startDate: CalendarDay;
+	endDate: CalendarDay;
+	startHour: number;
+	startMinute: number;
+	endHour: number;
+	endMinute: number;
 }
 
 export enum MeetingAction {

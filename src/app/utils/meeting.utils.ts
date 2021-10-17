@@ -63,7 +63,8 @@ export class MeetingUtils {
 	}
 
 	public static createAddMeeting(meeting: Meeting): AddMeeting {
-		const time = meeting.time;
+		const startDate = meeting.startDate;
+		const endDate = meeting.endDate;
 		const recurrence = meeting.recurring;
 
 		const addMeeting: AddMeeting = {
@@ -74,18 +75,30 @@ export class MeetingUtils {
 			virtual: meeting.virtual ? 1 : 0,
 			name: meeting.name,
 			/* Separate out each CalendarDay field to send to the service. */
-			value: time.value,
-			cmonth: time.cmonth,
-			month: time.month,
-			cdate: time.cdate,
-			date: Number(time.value),
-			year: time.year,
-			leap: time.leap ? 1 : 0,
-			cmonthname: time.cmonthname,
+			start_value: startDate.value,
+			start_cmonth: startDate.cmonth,
+			start_month: startDate.month,
+			start_cdate: startDate.cdate,
+			start_date: Number(startDate.value),
+			start_year: startDate.year,
+			start_leap: startDate.leap ? 1 : 0,
+			start_cmonthname: startDate.cmonthname,
+			end_value: endDate.value,
+			end_cmonth: endDate.cmonth,
+			end_month: endDate.month,
+			end_cdate: endDate.cdate,
+			end_date: Number(endDate.value),
+			end_year: endDate.year,
+			end_leap: endDate.leap ? 1 : 0,
+			end_cmonthname: endDate.cmonthname,
 			/* Separate out each occurrence field to send to the service. */
 			optionName: recurrence.name,
 			optionValue: recurrence.value,
 			optionSelected: recurrence.selected ? 1 : 0,
+			start_hour: meeting.startHour,
+			start_minute: meeting.startMinute,
+			end_hour: meeting.endHour,
+			end_minute: meeting.endMinute
 		};
 		return addMeeting;
 	}
@@ -97,14 +110,24 @@ export class MeetingUtils {
 			selected: !!addMeeting.optionSelected,
 		};
 
-		const time: CalendarDay = {
-			value: addMeeting.value,
-			cmonth: addMeeting.cmonth,
-			leap: !!addMeeting.leap,
-			cdate: addMeeting.cdate,
-			cmonthname: addMeeting.cmonthname,
-			month: addMeeting.month,
-			year: addMeeting.year,
+		const startDate: CalendarDay = {
+			value: addMeeting.start_value,
+			cmonth: addMeeting.start_cmonth,
+			leap: !!addMeeting.start_leap,
+			cdate: addMeeting.start_cdate,
+			cmonthname: addMeeting.start_cmonthname,
+			month: addMeeting.start_month,
+			year: addMeeting.start_year,
+		};
+
+		const endDate: CalendarDay = {
+			value: addMeeting.end_value,
+			cmonth: addMeeting.end_cmonth,
+			leap: !!addMeeting.end_leap,
+			cdate: addMeeting.end_cdate,
+			cmonthname: addMeeting.end_cmonthname,
+			month: addMeeting.end_month,
+			year: addMeeting.end_year,
 		};
 
 		const meeting: Meeting = {
@@ -115,8 +138,13 @@ export class MeetingUtils {
 			virtual: !!addMeeting.virtual,
 			name: addMeeting.name,
 			recurring: recurring,
-			time: time,
-		}
+			startDate: startDate,
+			endDate: endDate,
+			startHour: addMeeting.start_hour,
+			startMinute: addMeeting.start_minute,
+			endHour: addMeeting.end_hour,
+			endMinute: addMeeting.end_minute,
+		};
 
 		return meeting;
 	}

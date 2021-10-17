@@ -8,7 +8,7 @@
             (keydown)="onKeydownEvent($event)"/>
         <div class="input-error" *ngIf="!form.valid && submitted">
             <span *ngIf="!selectedDate">
-                Date is required.
+				{{fieldName}} is required.
             </span>
         </div> 
     <section class="cal-container" *ngIf="showCal">
