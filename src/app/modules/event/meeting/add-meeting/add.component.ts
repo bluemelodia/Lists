@@ -156,6 +156,8 @@ export class AddMeetingComponent implements OnInit {
 				virtual: meeting.virtual,
 			},
 			recurrence: meeting.recurring,
+			startTime: meeting.startTime,
+			endTime: meeting.endTime,
 		});
 	}
 
@@ -177,6 +179,14 @@ export class AddMeetingComponent implements OnInit {
 	get endDate(): CalendarDay {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.meetingForm.get("endDate.day")?.value;
+	}
+
+	get startTime() {
+		return this.meetingFormControl.startTime.value;
+	}
+
+	get endTime() {
+		return this.meetingFormControl.endTime.value;
 	}
 
 	get location(): string {
@@ -203,6 +213,7 @@ export class AddMeetingComponent implements OnInit {
 
 	onSubmit(): void {
 		this.submitted = true;
+		console.log("===> start: ", this.startTime, this.endTime);
 
 		if (this.meetingForm.valid) {
 			this.submitted = false;
@@ -215,6 +226,8 @@ export class AddMeetingComponent implements OnInit {
 				recurring: this.eventRecurrence,
 				startDate: this.startDate,
 				endDate: this.endDate,
+				startTime: this.startTime,
+				endTime: this.endTime,
 			};
 
 			console.info("🧳 💁🏻‍♀️ AddMeetingComponent ---> onSubmit, meeting: ", this.meeting);

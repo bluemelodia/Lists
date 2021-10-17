@@ -16,10 +16,8 @@ export interface Meeting {
 	recurring: Option;
 	startDate: CalendarDay;
 	endDate: CalendarDay;
-	startHour: number;
-	startMinute: number;
-	endHour: number;
-	endMinute: number;
+	startTime: string;
+	endTime: string;
 }
 
 export enum MeetingAction {

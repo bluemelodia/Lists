@@ -10,6 +10,11 @@ import {
 } from "../interfaces/meeting.interface";
 import { AddMeeting } from "../interfaces/service/service-objects.interface";
 
+interface Time {
+	hours: number,
+	minutes: number,
+}
+
 export class MeetingUtils {
 	private static baseURL = Endpoint.MEETING;
 	private static addMeetingURL = `${MeetingUtils.baseURL}/addMeeting`;
@@ -67,6 +72,9 @@ export class MeetingUtils {
 		const endDate = meeting.endDate;
 		const recurrence = meeting.recurring;
 
+		const startTime = MeetingUtils.get24HourTime(meeting.startTime);
+		const endTime = MeetingUtils.get24HourTime(meeting.endTime);
+
 		const addMeeting: AddMeeting = {
 			id: "guest",
 			uuid: meeting.uuid,
@@ -95,12 +103,56 @@ export class MeetingUtils {
 			optionName: recurrence.name,
 			optionValue: recurrence.value,
 			optionSelected: recurrence.selected ? 1 : 0,
-			start_hour: meeting.startHour,
-			start_minute: meeting.startMinute,
-			end_hour: meeting.endHour,
-			end_minute: meeting.endMinute
+			/* Format: 12:00 AM. */
+			start_hour: startTime.hours,
+			start_minute: startTime.minutes,
+			end_hour: endTime.hours,
+			end_minute: endTime.minutes
 		};
 		return addMeeting;
+	}
+
+	private static get12HourTime(hours: number, minutes: number): string {
+		let time = '';
+		if (hours > 12) { // 1pm - 11pm
+			time += `${hours - 12}`;
+		} else if (hours === 0) { // 12am
+			time += '12';
+		} else { // 1am to 11am
+			time += hours;
+		}
+
+		time += `:${minutes}`;
+		time += hours >= 12 ? ' PM' : ' AM';
+
+		return time;
+	}
+
+	private static get24HourTime(timeStr: string): Time {
+		const time = timeStr.split(":");
+		let hour = 0;
+		let min = 0;
+		if (time?.length > 0) {
+			const minsAndZone = time[1].split(" ");
+			hour = Number(time[0]);
+			if (minsAndZone?.length > 0) {
+				min = Number(minsAndZone[0]);
+				if (minsAndZone[1] === 'PM') {
+					if (hour !== 12) {
+						hour += 12;
+					}
+				} else {
+					if (hour === 12) { // 12AM -> 0
+						hour = 0;
+					}
+				}
+			}
+		}
+
+		return {
+			hours: hour,
+			minutes: min
+		};
 	}
 
 	public static createMeeting(addMeeting: AddMeeting): Meeting {
@@ -130,6 +182,9 @@ export class MeetingUtils {
 			year: addMeeting.end_year,
 		};
 
+		const startTime = MeetingUtils.get12HourTime(addMeeting.start_hour, addMeeting.start_minute);
+		const endTime = MeetingUtils.get12HourTime(addMeeting.end_hour, addMeeting.end_minute);
+
 		const meeting: Meeting = {
 			id: addMeeting.id,
 			uuid: addMeeting.uuid,
@@ -140,10 +195,8 @@ export class MeetingUtils {
 			recurring: recurring,
 			startDate: startDate,
 			endDate: endDate,
-			startHour: addMeeting.start_hour,
-			startMinute: addMeeting.start_minute,
-			endHour: addMeeting.end_hour,
-			endMinute: addMeeting.end_minute,
+			startTime: startTime,
+			endTime: endTime,
 		};
 
 		return meeting;

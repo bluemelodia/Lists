@@ -1,6 +1,6 @@
 export const appTheme = {
 	container: {
-		bodyBackgroundColor: '#f9eeee',
+		bodyBackgroundColor: '#ffc0cb',
 		buttonColor: '#000'
 	},
 	dial: {
