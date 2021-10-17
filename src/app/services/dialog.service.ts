@@ -21,6 +21,7 @@ export class DialogService {
 	}
 
 	showResponseStatusDialog(status: ResponseStatus, dialogType: Dialog): void {
+		console.log("show: ", status, DialogUtils.titleForDialog(status), DialogUtils.messageforStatusDialog(status, dialogType));
 		this.show$.next({
 			title: DialogUtils.titleForDialog(status),
 			message: DialogUtils.messageforStatusDialog(status, dialogType),

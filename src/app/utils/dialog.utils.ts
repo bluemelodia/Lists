@@ -43,10 +43,14 @@ export class DialogUtils {
 			case Dialog.AddBirthday:
 			case Dialog.EditBirthday:
 			case Dialog.DeleteBirthday:
+			case Dialog.GetBirthday:
 				message = this.birthdayMessage(response, dialogType);
 				break;
-			case Dialog.GetBirthday:
-				message = DialogMessage.FETCH_BIRTHDAYS_ERROR;
+			case Dialog.AddMeeting:
+			case Dialog.EditMeeting:
+			case Dialog.DeleteMeeting:
+			case Dialog.GetMeetings:
+				message = this.meetingMessage(response, dialogType);
 				break;
 			case Dialog.SaveSettings:
 				message = this.settingsMessage(response, dialogType);
@@ -59,9 +63,8 @@ export class DialogUtils {
 	}
 
 	private static birthdayMessage(response: ResponseStatus, dialogType: Dialog): string {
+		let birthdayMessage = DialogMessage.GENERIC_ERROR;
 		if (response === ResponseStatus.SUCCESS) {
-			let birthdayMessage = "";
-
 			switch (dialogType) {
 				case Dialog.AddBirthday:
 					birthdayMessage = "Added birthday.";
@@ -75,11 +78,43 @@ export class DialogUtils {
 				default:
 					break;
 			}
+		} else {
+			switch (dialogType) {
+				case Dialog.GetBirthday:
+					birthdayMessage = DialogMessage.FETCH_BIRTHDAYS_ERROR;
+					break;
+			}
 
-			return birthdayMessage;
 		}
 
-		return DialogMessage.GENERIC_ERROR;
+		return birthdayMessage;
+	}
+
+	private static meetingMessage(response: ResponseStatus, dialogType: Dialog): string {
+		let meetingMessage = DialogMessage.GENERIC_ERROR;
+		if (response === ResponseStatus.SUCCESS) {
+			switch (dialogType) {
+				case Dialog.AddMeeting:
+					meetingMessage = "Created new meeting.";
+					break;
+				case Dialog.EditMeeting:
+					meetingMessage = "Updated meeting details.";
+					break;
+				case Dialog.DeleteMeeting:
+					meetingMessage = 'Deleted meeting.';
+					break;
+				default:
+					break;
+			}
+		} else {
+			switch(dialogType) {
+				case Dialog.GetMeetings:
+					meetingMessage = DialogMessage.FETCH_MEETINGS_ERROR;
+					break;
+			}
+		}
+
+		return meetingMessage;
 	}
 
 	private static settingsMessage(response: ResponseStatus, dialogType: Dialog): string {

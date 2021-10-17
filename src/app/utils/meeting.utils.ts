@@ -1,5 +1,6 @@
 import { Endpoint } from "../constants/urls.constants";
 import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
+import { Dialog } from "../interfaces/dialog.interface";
 import { Option } from "../interfaces/event.interface";
 import {
 	Meeting,
@@ -10,7 +11,7 @@ import {
 import { AddMeeting } from "../interfaces/service/service-objects.interface";
 
 export class MeetingUtils {
-	private static baseURL = Endpoint.TODO;
+	private static baseURL = Endpoint.MEETING;
 	private static addMeetingURL = `${MeetingUtils.baseURL}/addMeeting`;
 	private static deleteMeetingURL = `${MeetingUtils.baseURL}/deleteMeeting`;
 	private static editMeetingURL = `${MeetingUtils.baseURL}/editMeeting`;
@@ -35,6 +36,21 @@ export class MeetingUtils {
 		}
 
 		return url;
+	}
+
+	public static meetingDialogForAction(action: MeetingAction): Dialog {
+		let dialogType: Dialog;
+
+		switch (action) {
+			case MeetingAction.Add:
+				dialogType = Dialog.AddMeeting;
+				break;
+			case MeetingAction.Edit:
+				dialogType = Dialog.EditMeeting;
+				break;
+		}
+
+		return dialogType;
 	}
 
 	public static createMeetingFormConfig(action: MeetingAction): MeetingConfig {

@@ -6,18 +6,33 @@ import {
 	Validators,
 } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { map } from "rxjs/operators";
+import { Subject } from "rxjs";
+import {
+	filter,
+	map,
+	take,
+	takeUntil,
+} from "rxjs/operators";
 
+import { Topic } from "../../../../constants/topics.constants";
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
-import { Option, Recurrence, recurrenceOptions } from "../../../../interfaces/event.interface";
+import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
+import {
+	Option,
+	Recurrence,
+	recurrenceOptions,
+} from "../../../../interfaces/event.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import {
 	Meeting,
 	MeetingAction,
 } from "../../../../interfaces/meeting.interface";
+import { ResponseStatus } from "../../../../interfaces/response.interface";
 
+import { DialogService } from "../../../../services/dialog.service";
 import { MeetingService } from "../../../../services/meeting.service";
+import { NavService } from "../../../../services/nav.service";
 import { MeetingUtils } from "../../../../utils/meeting.utils";
 
 @Component({
@@ -40,13 +55,17 @@ export class AddMeetingComponent implements OnInit {
 	public submitted = false;
 	public recurrence = recurrenceOptions;
 
+	private ngUnsubscribe$ = new Subject<void>();
+
 	selectedRecurrence: Option = recurrenceOptions.find((recurrence) => {
 		return recurrence.selected || recurrence.name === Recurrence.Once;
 	});
 
 	constructor(
+		private dialogService: DialogService,
 		private fb: FormBuilder,
 		private meetingService: MeetingService,
+		private navService: NavService,
 		private route: ActivatedRoute,
 	) { }
 
@@ -108,7 +127,7 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	private populateFormData(meeting: Meeting) {
-		console.info("🥳 💾 AddMeetingComponent ---> populateFormData, add existing meeting: ", meeting);
+		console.info("🧳 💾 AddMeetingComponent ---> populateFormData, add existing meeting: ", meeting);
 		/**
 		 * Don"t patch the file name, it opens up security risks.
 		 */
@@ -178,7 +197,50 @@ export class AddMeetingComponent implements OnInit {
 				time: this.date,
 			};
 
-			console.info("🥳 💁🏻‍♀️ AddMeetingComponent ---> onSubmit, meeting: ", this.meeting);
+			console.info("🧳 💁🏻‍♀️ AddMeetingComponent ---> onSubmit, meeting: ", this.meeting);
+			this.meetingService.modifyMeeting(this.meeting, this.meetingConfig.action)
+				.pipe(
+					take(1),
+					takeUntil(this.ngUnsubscribe$)
+				)
+				.subscribe((response: ResponseStatus) => {
+					switch (this.meetingConfig.action) {
+						case MeetingAction.Add:
+							this.dialogService.showResponseStatusDialog(response, Dialog.AddMeeting);
+							break;
+						case MeetingAction.Edit:
+							this.dialogService.showResponseStatusDialog(response, Dialog.EditMeeting);
+							break;
+					}
+
+					if (response === ResponseStatus.SUCCESS) {
+						this.subscribeToDialogClose();
+					}
+				});
 		}
+	}
+
+	subscribeToDialogClose(): void {
+		this.dialogService.onDialogAction$
+			.pipe(
+				filter((action: DialogAction) => action === DialogAction.Close),
+				take(1),
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe(() => {
+				this.meetingForm.reset();
+
+				/**
+				* Once the user successfully edits the form, take them back to the meeting list.
+				*/
+				if (this.meetingConfig.action === MeetingAction.Edit) {
+					this.navService.navigateToTopic(Topic.Meetings, { relativeTo: this.route });
+				}
+			});
+	}
+
+	ngOnDestroy(): void {
+		this.ngUnsubscribe$.next();
+		this.ngUnsubscribe$.complete();
 	}
 }
