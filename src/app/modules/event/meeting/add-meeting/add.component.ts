@@ -30,6 +30,7 @@ import {
 } from "../../../../interfaces/meeting.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 
+import { appTheme } from "../../../../modules/form/timepicker/time-picker.constants";
 import { DialogService } from "../../../../services/dialog.service";
 import { MeetingService } from "../../../../services/meeting.service";
 import { NavService } from "../../../../services/nav.service";
@@ -54,6 +55,7 @@ export class AddMeetingComponent implements OnInit {
 	public headerLevel = HeaderLevel;
 	public submitted = false;
 	public recurrence = recurrenceOptions;
+	public timePickerTheme = appTheme;
 
 	private ngUnsubscribe$ = new Subject<void>();
 
@@ -86,6 +88,12 @@ export class AddMeetingComponent implements OnInit {
 			endDate: this.fb.group({
 				day: ["", [Validators.required]],
 			}),
+			startTime: [
+				"", [Validators.required]
+			],
+			endTime: [
+				"", [Validators.required]
+			],
 			description: [
 				"",
 				[

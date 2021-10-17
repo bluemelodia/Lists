@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { NgxIntlTelInputModule } from "ngx-intl-tel-input";
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 
 import { CalendarModule } from "../calendar/calendar.module";
 import { DirectiveModule } from "../../directives/directives.module";
@@ -31,12 +32,14 @@ import { PhoneComponent } from "./phone/phone.component";
 		ElementModule,
 		FormsModule,
 		NgxIntlTelInputModule,
+		NgxMaterialTimepickerModule,
 		PipesModule,
 		ReactiveFormsModule,
 	],
 	exports: [
 		CheckboxComponent,
 		DatepickerComponent,
+		NgxMaterialTimepickerModule,
 		PhoneComponent,
 		RadioComponent,
 		SelectComponent

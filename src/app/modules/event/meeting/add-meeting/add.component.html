@@ -36,10 +36,10 @@
 				[form]="meetingForm.controls.options">
 			</app-checkbox>
 		</fieldset>
-		<fieldset class="dates">
-			<app-heading [level]="headerLevel.H3" text="Date and Time">
+		<fieldset class="start-date">
+			<app-heading [level]="headerLevel.H3" text="Start Date">
             </app-heading>
-			<span for="event-description" class="form-instructions">Choose start and end dates and times.</span>
+			<span for="event-description" class="form-instructions">Choose start date and time.</span>
 			<app-datepicker appFocus 
 				class="datepicker-container"
 				placeholder="Start Date"
@@ -48,6 +48,23 @@
 				[form]="meetingForm.controls.startDate"
 				[submitted]="submitted">
 			</app-datepicker>
+			<input formControlName="startTime" 
+				placeholder="Start Time"
+				aria-label="Start Time"
+                [ngxTimepicker]="startDial" readonly>
+            <ngx-material-timepicker #startDial
+				[appendToInput]="true" 
+				[theme]="timePickerTheme"></ngx-material-timepicker>
+			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+                <span *ngIf="meetingFormControl.startTime.errors?.required">
+                    Start time is required.
+                </span>
+            </div> 	
+		</fieldset>
+		<fieldset class="end-date">
+			<app-heading [level]="headerLevel.H3" text="End Date">
+            </app-heading>
+			<span for="event-description" class="form-instructions">Choose end date and time.</span>
 			<app-datepicker appFocus 
 				class="datepicker-container"
 				placeholder="End Date"
@@ -56,6 +73,18 @@
 				[form]="meetingForm.controls.endDate"
 				[submitted]="submitted">
 			</app-datepicker>
+			<input formControlName="endTime"
+				placeholder="End Time"
+				aria-label="End Time"
+                [ngxTimepicker]="endDial" readonly>
+            <ngx-material-timepicker #endDial
+				[appendToInput]="true" 
+				[theme]="timePickerTheme"></ngx-material-timepicker>
+			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+				<span *ngIf="meetingFormControl.endTime.errors?.required">
+					End time is required.
+				</span>
+			</div> 	
 		</fieldset>
 		<fieldset class="description">
 			<app-heading [level]="headerLevel.H3" text="Additional Details">
