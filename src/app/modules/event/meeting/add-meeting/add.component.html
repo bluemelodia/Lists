@@ -25,6 +25,9 @@
                 formControlName="location"
                 placeholder="Location"/>
 			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+				<span *ngIf="meetingFormControl.location.errors?.required">
+					Location is required.
+				</span>
 				<span *ngIf="meetingFormControl.location.errors?.maxlength">
 					Location should not exceed {{ maxChars }} characters.
 				</span>
@@ -48,6 +51,14 @@
 				[form]="meetingForm.controls.startDate"
 				[submitted]="submitted">
 			</app-datepicker>
+			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+                <span *ngIf="meetingForm.errors?.startDateInPast">
+					Start date cannot be in the past.
+				</span>
+				<span *ngIf="meetingForm.errors?.startDateAfterEnd">
+					Start date must be before end date.
+				</span>
+            </div> 	
 			<input formControlName="startTime" 
 				placeholder="Start Time"
 				aria-label="Start Time"
@@ -61,6 +72,9 @@
                 <span *ngIf="meetingFormControl.startTime.errors?.required">
                     Start time is required.
                 </span>
+				<span *ngIf="meetingForm.errors?.startTimeInPast">
+					Start time cannot be in the past.
+				</span>
             </div> 	
 		</fieldset>
 		<fieldset class="end-date">
@@ -87,6 +101,9 @@
 			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
 				<span *ngIf="meetingFormControl.endTime.errors?.required">
 					End time is required.
+				</span>
+				<span *ngIf="meetingForm.errors?.startTimeAfterEnd">
+					End time must be after start time.
 				</span>
 			</div> 	
 		</fieldset>

@@ -11,6 +11,7 @@
             <span *ngIf="dateFormControl.day.errors?.required">
 				{{fieldName}} is required.
             </span>
+			{{ form.errors }}
         </div> 
 		<section class="cal-container" *ngIf="cal.showCal">
 			<app-loader *ngIf="cal.isLoading"></app-loader>

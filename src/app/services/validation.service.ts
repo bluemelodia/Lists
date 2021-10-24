@@ -93,7 +93,6 @@ export class ValidationService {
 			const eDate = control.get(startTime).value;
 			const sTime = control.get(endDate).value;
 			const eTime = control.get(endTime).value;
-			console.log("time validation: ", control, sDate, eDate, sTime, eTime);
 
 			if (!sDate || !eDate || !sTime || !eTime) {
 				return null;
@@ -101,18 +100,40 @@ export class ValidationService {
 
 			let validationMap = {};
 
-			const startingDate = new Date(sDate.month - 1, sDate.value, sDate.year).getTime();
-			const endingDate = new Date(eDate.month - 1, eDate.value, eDate.year).getTime();
+			const startingDate = new Date(sDate.year, sDate.month - 1, sDate.value);
+			const endingDate = new Date(eDate.year, eDate.month - 1, eDate.value);
 			const startingTime = TimeUtils.get24HourTime(sTime);
 			const endingTime = TimeUtils.get24HourTime(eTime);
-			const now = new Date().getTime();
+			const now = new Date();
+			console.log("time validation: ", new Date(sDate.year, sDate.month - 1, sDate.value), new Date(eDate.year, eDate.month - 1, eDate.value), startingTime, endingTime, now);
+
+			const startYear = startingDate.getFullYear();
+			const nowYear = now.getFullYear();
+			const endYear = endingDate.getFullYear();
+			const startMonth = startingDate.getMonth();
+			const nowMonth = now.getMonth();
+			const endMonth = endingDate.getMonth();
+			const startDay = startingDate.getDate();
+			const nowDay = now.getDate();
+			const endDay = endingDate.getDate();
+
+			const isSameMonth = startYear === nowYear && startMonth < nowMonth
+			|| startYear === nowYear && startMonth === nowMonth;
+			const isSameDay = isSameMonth && startDay === nowDay;
 
 			// Allow users to have the start time & end time at the same time (essentially a reminder).
-			if (startingDate < now) {
+			if (startYear < nowYear || isSameMonth && startDay < nowDay) {
 				validationMap["startDateInPast"] = true;
-			} else if (startingDate > endingDate) {
+			} 
+			if (isSameMonth && isSameDay && (startingTime.hours < now.getHours() 
+				|| startingTime.hours === now.getHours() && startingTime.minutes < now.getMinutes())) {
+				validationMap["startTimeInPast"] = true;
+			}
+			if (startingDate > endingDate) {
 				validationMap["startDateAfterEnd"] = true;
-			} else if (startingDate === endingDate) {
+			}
+			if (startYear === endYear && startMonth === endMonth && startDay === endDay) {
+				console.log("===> check hours");
 				if (startingTime.hours > endingTime.hours ||
 					startingTime.hours === endingTime.hours && startingTime.minutes > endingTime.minutes) {
 					validationMap["startTimeAfterEnd"] = true;
@@ -120,7 +141,7 @@ export class ValidationService {
 			}
 
 			console.log("validationMap: ", validationMap);
-			return Object.keys(validationMap).length === 0 ? null : validationMap;
+			return Object.keys(validationMap).length < 1 ? null : validationMap;
 		}
 	}
 }
