@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { AbstractControl, FormGroup } from "@angular/forms";
 
 import { of, ReplaySubject } from "rxjs";
 import { catchError, filter, takeUntil } from "rxjs/operators";
@@ -117,6 +117,11 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 						break;
 				}
 			});
+	}
+
+	/* returns the form controls of the form. */
+	public get dateFormControl(): { [key: string]: AbstractControl } {
+		return this.form?.controls;
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any

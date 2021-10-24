@@ -8,7 +8,7 @@
             (click)="showHideCal()"
             (keydown)="onKeydownEvent($event)"/>
         <div class="input-error" *ngIf="!form.valid && submitted">
-            <span *ngIf="!selectedDate">
+            <span *ngIf="dateFormControl.day.errors?.required">
 				{{fieldName}} is required.
             </span>
         </div> 

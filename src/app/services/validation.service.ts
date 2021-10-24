@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, AbstractControlOptions, FormGroup, ValidatorFn } from "@angular/forms";
+import { TimeUtils } from "../utils/time.utils";
 
 /*
 * Form validation methods.
@@ -25,30 +26,6 @@ export class ValidationService {
 			}
 			const valid = ValidationService.nameRegex.test(control.value);
 			return valid ? null : { invalidName: true };
-		}
-	}
-
-	relationshipValidator(): ValidatorFn {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		return (control: AbstractControl): { [key: string]: any } => {
-			if (!control.value) {
-				return null;
-			}
-			const regex = new RegExp("^[A-Za-z\" ]+$");
-			const valid = regex.test(control.value);
-			return valid ? null : { invalidRelationship: true };
-		}
-	}
-
-	descriptionValidator(): ValidatorFn {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		return (control: AbstractControl): { [key: string]: any } => {
-			if (!control.value) {
-				return null;
-			}
-			const regex = new RegExp("^[A-Za-z0-9,.!$\" ]+$");
-			const valid = regex.test(control.value);
-			return valid ? null : { invalidDescription: true };
 		}
 	}
 
@@ -105,5 +82,45 @@ export class ValidationService {
 				phone.setErrors({ invalidPhone: true });
 			}
 		};
+	}
+
+	/**
+	 * Date and time validator.
+	 */
+	dateAndTimeValidator(startDate: string, startTime: string, endDate: string, endTime: string): ValidatorFn {
+		return (control: AbstractControl): { [key: string]: any } => {
+			const sDate = control.get(startDate).value;
+			const eDate = control.get(startTime).value;
+			const sTime = control.get(endDate).value;
+			const eTime = control.get(endTime).value;
+			console.log("time validation: ", control, sDate, eDate, sTime, eTime);
+
+			if (!sDate || !eDate || !sTime || !eTime) {
+				return null;
+			}
+
+			let validationMap = {};
+
+			const startingDate = new Date(sDate.month - 1, sDate.value, sDate.year).getTime();
+			const endingDate = new Date(eDate.month - 1, eDate.value, eDate.year).getTime();
+			const startingTime = TimeUtils.get24HourTime(sTime);
+			const endingTime = TimeUtils.get24HourTime(eTime);
+			const now = new Date().getTime();
+
+			// Allow users to have the start time & end time at the same time (essentially a reminder).
+			if (startingDate < now) {
+				validationMap["startDateInPast"] = true;
+			} else if (startingDate > endingDate) {
+				validationMap["startDateAfterEnd"] = true;
+			} else if (startingDate === endingDate) {
+				if (startingTime.hours > endingTime.hours ||
+					startingTime.hours === endingTime.hours && startingTime.minutes > endingTime.minutes) {
+					validationMap["startTimeAfterEnd"] = true;
+				}
+			}
+
+			console.log("validationMap: ", validationMap);
+			return Object.keys(validationMap).length === 0 ? null : validationMap;
+		}
 	}
 }

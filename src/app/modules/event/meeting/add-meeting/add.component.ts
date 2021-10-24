@@ -34,6 +34,7 @@ import { appTheme } from "../../../../modules/form/timepicker/time-picker.consta
 import { DialogService } from "../../../../services/dialog.service";
 import { MeetingService } from "../../../../services/meeting.service";
 import { NavService } from "../../../../services/nav.service";
+import { ValidationService } from "../../../../services/validation.service";
 import { MeetingUtils } from "../../../../utils/meeting.utils";
 
 @Component({
@@ -64,6 +65,7 @@ export class AddMeetingComponent implements OnInit {
 	});
 
 	constructor(
+		private customValidators: ValidationService,
 		private dialogService: DialogService,
 		private fb: FormBuilder,
 		private meetingService: MeetingService,
@@ -116,7 +118,10 @@ export class AddMeetingComponent implements OnInit {
 			]
 		},
 			{
-				updateOn: "submit"
+				updateOn: "submit",
+				validators: [
+					this.customValidators.dateAndTimeValidator("startDate.day", "endDate.day", "startTime", "endTime")
+				]
 			});
 
 		this.route.queryParamMap
@@ -211,9 +216,23 @@ export class AddMeetingComponent implements OnInit {
 		return this.meetingForm.get("options.virtual")?.value;
 	}
 
+	onStartTimeChanged($event): void {
+		console.log("START CHNAGED: ", $event);
+		this.meetingForm.patchValue({
+			startTime: $event,
+		});
+	}
+	
+	onEndTimeChanged($event): void {
+		console.log("END CHANGED: ", $event);
+		this.meetingForm.patchValue({
+			endTime: $event,
+		});
+	}
+
 	onSubmit(): void {
 		this.submitted = true;
-		console.log("===> start: ", this.startTime, this.endTime);
+		console.log("===> start: ", this.meetingFormControl);
 
 		if (this.meetingForm.valid) {
 			this.submitted = false;

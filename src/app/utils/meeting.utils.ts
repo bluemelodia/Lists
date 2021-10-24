@@ -9,11 +9,7 @@ import {
 	MeetingFormSubmitActions,
 } from "../interfaces/meeting.interface";
 import { AddMeeting } from "../interfaces/service/service-objects.interface";
-
-interface Time {
-	hours: number,
-	minutes: number,
-}
+import { TimeUtils } from "./time.utils";
 
 export class MeetingUtils {
 	private static baseURL = Endpoint.MEETING;
@@ -72,8 +68,8 @@ export class MeetingUtils {
 		const endDate = meeting.endDate;
 		const recurrence = meeting.recurring;
 
-		const startTime = MeetingUtils.get24HourTime(meeting.startTime);
-		const endTime = MeetingUtils.get24HourTime(meeting.endTime);
+		const startTime = TimeUtils.get24HourTime(meeting.startTime);
+		const endTime = TimeUtils.get24HourTime(meeting.endTime);
 
 		const addMeeting: AddMeeting = {
 			id: "guest",
@@ -112,49 +108,6 @@ export class MeetingUtils {
 		return addMeeting;
 	}
 
-	private static get12HourTime(hours: number, minutes: number): string {
-		let time = '';
-		if (hours > 12) { // 1pm - 11pm
-			time += `${hours - 12}`;
-		} else if (hours === 0) { // 12am
-			time += '12';
-		} else { // 1am to 11am
-			time += hours;
-		}
-
-		time += `:${minutes}`;
-		time += hours >= 12 ? ' PM' : ' AM';
-
-		return time;
-	}
-
-	private static get24HourTime(timeStr: string): Time {
-		const time = timeStr.split(":");
-		let hour = 0;
-		let min = 0;
-		if (time?.length > 0) {
-			const minsAndZone = time[1].split(" ");
-			hour = Number(time[0]);
-			if (minsAndZone?.length > 0) {
-				min = Number(minsAndZone[0]);
-				if (minsAndZone[1] === 'PM') {
-					if (hour !== 12) {
-						hour += 12;
-					}
-				} else {
-					if (hour === 12) { // 12AM -> 0
-						hour = 0;
-					}
-				}
-			}
-		}
-
-		return {
-			hours: hour,
-			minutes: min
-		};
-	}
-
 	public static createMeeting(addMeeting: AddMeeting): Meeting {
 		const recurring: Option = {
 			name: addMeeting.optionName,
@@ -182,8 +135,8 @@ export class MeetingUtils {
 			year: addMeeting.end_year,
 		};
 
-		const startTime = MeetingUtils.get12HourTime(addMeeting.start_hour, addMeeting.start_minute);
-		const endTime = MeetingUtils.get12HourTime(addMeeting.end_hour, addMeeting.end_minute);
+		const startTime = TimeUtils.get12HourTime(addMeeting.start_hour, addMeeting.start_minute);
+		const endTime = TimeUtils.get12HourTime(addMeeting.end_hour, addMeeting.end_minute);
 
 		const meeting: Meeting = {
 			id: addMeeting.id,
