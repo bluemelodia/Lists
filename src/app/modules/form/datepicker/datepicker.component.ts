@@ -3,8 +3,8 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
-import { ReplaySubject } from "rxjs";
-import { filter, takeUntil } from "rxjs/operators";
+import { of, ReplaySubject } from "rxjs";
+import { catchError, filter, takeUntil } from "rxjs/operators";
 import { UUID } from "angular2-uuid";
 
 import { PickerDateFormatterPipe } from "../../../pipes/picker-date-formatter.pipe";
@@ -17,6 +17,12 @@ import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
 import { Calendar, CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
 import { FocusEvent, Key } from "../../../interfaces/focus.interface";
 import { noCalMessage } from "../../../interfaces/message.interface";
+
+interface CalendarData {
+	calendar: Calendar;
+	isLoading: boolean;
+	showCal: boolean;
+}
 
 @Component({
 	selector: "app-datepicker",
@@ -32,13 +38,19 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
 	@ViewChild("picker", { read: ElementRef, static: false }) picker: ElementRef;
 
-	public showCal = false;
-	public isLoading = false;
 	public noCalMessage = noCalMessage;
 
 	public cal: Calendar;
 	private uuid = UUID.UUID();
 	public calendarId = `app-calendar-${this.uuid}`;
+	
+	private calendarData: CalendarData = {
+		isLoading: false,
+		calendar: null,
+		showCal: false,
+	};
+	private calendarData$ = new ReplaySubject<CalendarData>();
+	public calendar$ = this.calendarData$.asObservable();
 
 	private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
@@ -51,7 +63,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
 	public ngOnInit(): void {
 		this.setupSubscriptions();
-		this.isLoading = true;
+		this.toggleLoading(true);
 		this.calendar.getCalendar(this.calendarType);
 	}
 
@@ -69,15 +81,25 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
 		this.calendar.onCalendarFetched$
 			.pipe(
-				takeUntil(this.destroyed$)
+				takeUntil(this.destroyed$),
+				catchError(() => {
+					this.toggleLoading(false);
+					return of(null);
+				})
 			)
 			.subscribe((calendar: Calendar) => {
-				this.isLoading = false;
+				console.log("===> on calendar fetched: ", calendar);
 				if (!calendar) {
 					return;
 				}
 
 				this.cal = calendar;
+				this.calendarData = {
+					...this.calendarData,
+					isLoading: false,
+					calendar: this.cal,
+				};
+				this.calendarData$.next(this.calendarData);
 			});
 
 		this.focus.keyPressed$()
@@ -89,7 +111,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 				switch (event.key) {
 					case Key.Escape:
 						// console.log("Event: ", event, this.showCal);
-						if (this.showCal) {
+						if (this.calendarData.showCal) {
 							this.showHideCal();
 						}
 						break;
@@ -100,7 +122,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	private onDocumentClick(target: any): void {
 		if (!this.picker.nativeElement.contains(target)) {
-			if (this.showCal) {
+			if (this.calendarData.showCal) {
 				this.showHideCal();
 			}
 		}
@@ -112,8 +134,14 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 		}
 	}
 
+	private toggleLoading(isLoading: boolean): void {
+		this.calendarData.isLoading = isLoading;
+		this.calendarData$.next(this.calendarData);
+	}
+
 	public showHideCal(): void {
-		this.showCal = !this.showCal;
+		this.calendarData.showCal = !this.calendarData.showCal;
+		this.calendarData$.next(this.calendarData);
 	}
 
 	public selectDate(date: CalendarDay): void {

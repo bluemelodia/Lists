@@ -1,7 +1,8 @@
 <form #picker [formGroup]="form"
     class="input-container focus-origin">
+	<ng-container *ngIf="calendar$ | async as cal">
         <input readonly type="text"
-            [ngClass]="{ 'picker-open' : showCal }"
+            [ngClass]="{ 'picker-open' : cal.showCal }"
             [placeholder]="placeholder"
             [value]="form.controls.day.value | pickerDateFormatter: calendarType"
             (click)="showHideCal()"
@@ -11,19 +12,20 @@
 				{{fieldName}} is required.
             </span>
         </div> 
-    <section class="cal-container" *ngIf="showCal">
-        <app-loader *ngIf="isLoading"></app-loader>
-        <app-calendar #calendar appFocus
-            *ngIf="!isLoading && cal"
-            [id]="calendarId" 
-            [calendar]="cal" 
-            [type]="calendarType"
-            [selectedDay]="form.controls.day.value"
-            (dateSelected)="selectDate($event)">
-        </app-calendar>
-        <app-no-results 
-            *ngIf="!isLoading && !cal" 
-            [message]="noCalMessage">
-        </app-no-results>
-    </section>
+		<section class="cal-container" *ngIf="cal.showCal">
+			<app-loader *ngIf="cal.isLoading"></app-loader>
+			<app-calendar #calendar appFocus
+				*ngIf="!cal.isLoading && cal.calendar"
+				[id]="calendarId" 
+				[calendar]="cal.calendar" 
+				[type]="calendarType"
+				[selectedDay]="form.controls.day.value"
+				(dateSelected)="selectDate($event)">
+			</app-calendar>
+			<app-no-results 
+				*ngIf="!cal.isLoading && !cal.calendar" 
+				[message]="noCalMessage">
+			</app-no-results>
+		</section>
+	</ng-container>
 </form>
