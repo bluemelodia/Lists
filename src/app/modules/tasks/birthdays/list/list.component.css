@@ -1,94 +1,50 @@
 :host {
-	background: white;
-	border: 1px solid #dd2e44;
-	padding: 16px;
+  background: white;
+  border: 1px solid #dd2e44;
+  padding: 16px;
 
-	height: 100%;
-    overflow: hidden;
+  height: 100%;
+  overflow: hidden;
 
-	display: grid;
-	grid-template-rows: 44px 1fr;
-}
-
-.birthday-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.birthday-list__scrollable-container {
-	width: 100%;
-	overflow-y: auto;
-}
-
-.birthday-list__scrollable-container.hide-scrollbar {
-	/* Hide scrollbar for IE, Edge and Firefox */
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
-}
-  
-.birthday-list__scrollable-container::-webkit-scrollbar {
-	display: none;
-}
-
-.birthday-list__scrollable-list::-webkit-scrollbar {
-  display: none;
-}
-
-.birthday-list__scrollable-list {
-  overflow-y: scroll;
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-.birthday-list__item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.birthday-list__item:not(:last-child) {
-  border-bottom: 1px solid pink;
+  display: grid;
+  grid-template-rows: 44px 1fr;
 }
 
 .actions {
   margin: 8px 0;
 }
 
-.birthday-action {
+.task-action {
   color: pink;
   font-size: 1.5rem;
 }
 
-.birthday-action.enabled {
+.task-action.enabled {
   color: #dd2e44;
 }
 
-.birthday-action:not(:last-child) {
+.task-action:not(:last-child) {
   margin-right: 8px;
 }
 
-.birthday-list__item-info {
+.task-list__item-info {
   width: 100%;
 }
 
-.birthday-list__photo-container {
+.task-list__photo-container {
   display: flex;
   justify-content: center;
   margin-left: 16px;
   width: 25%;
 }
 
-.birthday-list__item-photo {
+.task-list__item-photo {
   max-height: 160px;
   max-width: 100%;
 }
 
 @media only screen and (max-width: 500px) {
-  .birthday-list__photo-container {
+  .task-list__photo-container {
     display: none;
   }
 }

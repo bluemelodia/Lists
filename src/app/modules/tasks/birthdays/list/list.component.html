@@ -1,10 +1,10 @@
 <app-heading [level]="headerLevel.H1" [text]="header"></app-heading>
 
 <section *ngIf="list && list.length > 0"
-	class="birthday-list__scrollable-container hide-scrollbar">
-	<section class="birthday-list__scrollable-list">
-		<ul class="birthday-list">
-			<li class="birthday-list__item" *ngFor="let birthday of list">
+	class="task-list__scrollable-container hide-scrollbar">
+	<section class="task-list__scrollable-list">
+		<ul class="task-list">
+			<li class="task-list__item" *ngFor="let birthday of list">
 				<ng-container [ngTemplateOutlet]="birthdayList" 
 					[ngTemplateOutletContext]="{ 'birthday': birthday }">
 				</ng-container>   
@@ -19,11 +19,11 @@
 </section>
 
 <ng-template #birthdayList let-birthday="birthday">
-	<section class="birthday-list__photo-container">
-		<img *ngIf="birthday.image" class="birthday-list__item-photo" src="{{ base64Prefix }}{{ birthday.image }}"/>
-		<img *ngIf="!birthday.image" class="birthday-list__item-photo" src="./assets/images/cake.png"/>
+	<section class="task-list__photo-container">
+		<img *ngIf="birthday.image" class="task-list__item-photo" src="{{ base64Prefix }}{{ birthday.image }}"/>
+		<img *ngIf="!birthday.image" class="task-list__item-photo" src="./assets/images/cake.png"/>
 	</section>
-	<section class="birthday-list__item-info form-container flex-centered__column flex-stretch">
+	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
 		<app-heading [level]="headerLevel.H2" [text]="birthday.name">
 			<app-date-indicator post [status]="birthday.status"></app-date-indicator>
 		</app-heading>
@@ -35,13 +35,13 @@
 			<p>Lunar ({{ birthday.year }}) - {{ birthday.cmonth }}/{{ birthday.cdate }} ({{ birthday.cmonthname }})</p>
 		</section>
 		<section class="actions">
-			<i class="birthday-action fas fa-mobile-alt"
+			<i class="task-action fas fa-mobile-alt"
 				[class.enabled]="birthday.call" 
 				aria-label="Call"></i>
-			<i class="birthday-action fas fa-comment-dots"
+			<i class="task-action fas fa-comment-dots"
 				[class.enabled]="birthday.text"
 				aria-label="Text"></i>
-			<i class="birthday-action fas fa-gift"
+			<i class="task-action fas fa-gift"
 				[class.enabled]="birthday.gift"
 				aria-label="Gift"></i>
 		</section>

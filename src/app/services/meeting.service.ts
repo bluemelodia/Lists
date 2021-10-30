@@ -7,6 +7,7 @@ import { DialogService } from "./dialog.service";
 import { Meeting, MeetingAction } from "../interfaces/meeting.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { MeetingUtils } from "../utils/meeting.utils";
+import { AddMeeting } from "../interfaces/service/service-objects.interface";
 
 @Injectable({
 	providedIn: "root"
@@ -43,4 +44,27 @@ export class MeetingService {
 				})
 			);
 	}
+
+	/**
+	* @param userID 
+	* @returns A sorted list of birthdays for this user.
+	*/
+	public getMeetings(userID = "guest"): Observable<AddMeeting[]> {
+		console.info("🍰 🏁 MeetingService ---> getMeetings, for id: ", userID);
+	
+		const getMeeting = `${MeetingUtils.meetingURLForAction(MeetingAction.Fetch)}/${userID}`;
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return this.http.get<Response>(
+			getMeeting
+		)
+			.pipe(
+				map((response: Response) => {
+					console.info("🍰 ✅ BirthdayService ---> getBirthdays, received birthdays: ", response);
+					//return BirthdayUtils.processBirthdays(response.responseData);
+				}),
+				catchError(() => {
+					return of(null);
+				})
+			);
+		}
 }

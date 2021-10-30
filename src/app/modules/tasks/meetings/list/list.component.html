@@ -1,15 +1,15 @@
-<!--<section *ngIf="list && list.length > 0"
-	class="birthday-list__scrollable-container hide-scrollbar">
-	<section class="birthday-list__scrollable-list">
-		<ul class="birthday-list">
-			<li class="birthday-list__item" *ngFor="let birthday of list">
+<section *ngIf="list && list.length > 0"
+	class="task-list__scrollable-container hide-scrollbar">
+	<section class="task-list__scrollable-list">
+		<ul class="task-list">
+			<li class="task-list__item" *ngFor="let birthday of list">
 				<ng-container [ngTemplateOutlet]="birthdayList" 
 					[ngTemplateOutletContext]="{ 'birthday': birthday }">
 				</ng-container>   
 			</li>
 		</ul>
 	</section>	
-</section>-->
+</section>
 
 <section class="no-results flex-centered__column"
     *ngIf="list && list.length === 0">
