@@ -117,7 +117,7 @@ export class BirthdayUtils {
 
 	public static processBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
 		BirthdayUtils.tagBirthdays(birthdays);
-		return BirthdayUtils.sortBirthdays(birthdays);
+		return birthdays;
 	}
 
 	public static createBirthdayLists(birthdays: AddBirthday[]): BirthdayList {
@@ -132,19 +132,20 @@ export class BirthdayUtils {
 			}
 		});
 
+		lunarBirthdays.sort(BirthdayUtils.sortLunarBirthdays);
+		solarBirthdays.sort(BirthdayUtils.sortSolarBirthdays);
+
 		return {
 			list: birthdays,
 			lunar: lunarBirthdays,
-			solar: solarBirthdays,
+			solar: solarBirthdays
 		}
 	}
 
 	private static tagBirthdays(birthdays: AddBirthday[]) {
 		birthdays.forEach((birthday: AddBirthday) => {
-			const birthDate = new Date(birthday.year, birthday.month - 1, birthday.date);
-			const today = new Date();
+			const diffInDays = birthday.lunar ? BirthdayUtils.getLunarDiff(birthday) : BirthdayUtils.getSolarDiff(birthday);
 
-			const diffInDays = (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
 			if (-1 < diffInDays && diffInDays <= 0) { // today
 				birthday.status = DateStatus.Today;
 			} else if (0 < diffInDays && diffInDays <= 1) { // tomorrow
@@ -159,15 +160,29 @@ export class BirthdayUtils {
 		});
 	}
 
-	private static sortBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
-		return birthdays.sort(BirthdayUtils.sortByBirthDate);
+	private static getSolarDiff(birthday: AddBirthday): number {
+		const today = new Date();
+		const birthDate = new Date(today.getFullYear(), birthday.month - 1, birthday.date);
+
+		return (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
+	}
+
+	private static getLunarDiff(birthday: AddBirthday): number {
+		const today = new Date();
+		const birthDate = new Date(birthday.year, birthday.month - 1, birthday.date);
+
+		return (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
 	}
 
 	/** 
 	 * First sort by the birth date, then differentiate by names.
 	 */
-	private static sortByBirthDate(a: AddBirthday, b: AddBirthday): number {
-		return a.year - b.year || a.month - b.month || a.date - b.date || BirthdayUtils.sortByName(a.name, b.name);
+	private static sortLunarBirthdays(a: AddBirthday, b: AddBirthday): number {
+		return a.year - b.year || BirthdayUtils.sortSolarBirthdays(a, b);
+	}
+
+	private static sortSolarBirthdays(a: AddBirthday, b: AddBirthday): number {
+		return a.month - b.month || a.date - b.date || BirthdayUtils.sortByName(a.name, b.name);
 	}
 
 	private static sortByName(a: string, b: string): number {

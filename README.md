@@ -33,8 +33,6 @@ How to make image upload easy with Angular
 - Add accessibility, don't have two modals open at the same time.
 - Add ESLinting
 
-- Don't let the user submit an end date/time that's before the start date/time. Add the same validation to the server side.
-
 ## Navigation
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.

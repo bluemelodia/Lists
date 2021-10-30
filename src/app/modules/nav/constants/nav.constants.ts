@@ -75,7 +75,7 @@ const EVENTS: IMenu = {
 		title: "Add Payment"
 	},
 	[Event.Task]: {
-		route: "events/add-birthday",
+		route: "events/add-task",
 		title: "Add Task"
 	},
 };
