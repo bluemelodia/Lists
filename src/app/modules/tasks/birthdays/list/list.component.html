@@ -15,11 +15,7 @@
 
 <section class="no-results flex-centered__column"
     *ngIf="list && list.length === 0">
-    <app-heading [level]="headerLevel.H1" text="No Birthdays Found"></app-heading>
-    <section class="form-container flex-centered__column">
-        <p>You do not currently have any birthday reminders.</p>
-        <button type="submit" routerLink="/events/add-birthday">Add Birthday</button>
-    </section>
+    <app-no-items [config]="noItemsConfig"></app-no-items>
 </section>
 
 <ng-template #birthdayList let-birthday="birthday">

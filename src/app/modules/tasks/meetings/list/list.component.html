@@ -13,9 +13,5 @@
 
 <section class="no-results flex-centered__column"
     *ngIf="list && list.length === 0">
-    <app-heading [level]="headerLevel.H1" text="No Meetings Found"></app-heading>
-    <section class="form-container flex-centered__column">
-        <p>You do not currently have any upcoming meetings.</p>
-        <button type="submit" routerLink="/events/add-meeting">Add Meeting</button>
-    </section>
+    <app-no-items [config]="noItemsConfig"></app-no-items>
 </section>

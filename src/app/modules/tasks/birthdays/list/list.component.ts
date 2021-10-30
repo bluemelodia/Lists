@@ -9,8 +9,10 @@ import {
 import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
 
+import { Event } from "../../../../constants/events.contants";
 import { BirthdayService } from "../../../../services/birthday.service";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
+import { NO_ITEMS_CONFIG } from "../../../../interfaces/no-items.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddBirthday } from "../../../../interfaces/service/service-objects.interface";
 
@@ -30,6 +32,7 @@ export class ListComponent implements OnDestroy {
 	@Output() deletedBirthday = new EventEmitter();
 
 	headerLevel = HeaderLevel;
+	noItemsConfig = NO_ITEMS_CONFIG[Event.Birthday];
 
 	public readonly base64Prefix = "data:image/jpeg;base64,";
 	private ngUnsubscribe$ = new Subject<void>();
