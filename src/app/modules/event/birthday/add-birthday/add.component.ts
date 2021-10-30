@@ -114,7 +114,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 	private populateFormData(birthday: AddBirthday) {
 		console.info("🥳 💾 AddBirthdayComponent ---> populateFormData, add existing birthday: ", birthday);
 		/**
-		 * Don"t patch the file name, it opens up security risks.
+		 * Don't patch the file name, it opens up security risks.
 		 */
 		this.birthdayForm.patchValue({
 			name: birthday.name,

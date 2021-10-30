@@ -3,9 +3,9 @@ import { Topic } from "../../../constants/topics.constants";
 
 export enum MenuItem {
 	Home = "Home",
-	AddEvent = "Add Events and Reminders",
+	AddEvent = "Create",
 	Calendar = "Calendar",
-	Tasks = "Tasks",
+	Tasks = "Lists",
 	Settings = "Settings"
 }
 
@@ -14,8 +14,8 @@ export enum MenuItem {
  */
 export const MENU_LIST: MenuItem[] = [
 	MenuItem.Home,
-	MenuItem.AddEvent,
 	MenuItem.Calendar,
+	MenuItem.AddEvent,
 	MenuItem.Tasks,
 	MenuItem.Settings,
 ];

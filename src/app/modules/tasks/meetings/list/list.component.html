@@ -1,0 +1,21 @@
+<!--<section *ngIf="list && list.length > 0"
+	class="birthday-list__scrollable-container hide-scrollbar">
+	<section class="birthday-list__scrollable-list">
+		<ul class="birthday-list">
+			<li class="birthday-list__item" *ngFor="let birthday of list">
+				<ng-container [ngTemplateOutlet]="birthdayList" 
+					[ngTemplateOutletContext]="{ 'birthday': birthday }">
+				</ng-container>   
+			</li>
+		</ul>
+	</section>	
+</section>-->
+
+<section class="no-results flex-centered__column"
+    *ngIf="list && list.length === 0">
+    <app-heading [level]="headerLevel.H1" text="No Meetings Found"></app-heading>
+    <section class="form-container flex-centered__column">
+        <p>You do not currently have any upcoming meetings.</p>
+        <button type="submit" routerLink="/events/add-meeting">Add Meeting</button>
+    </section>
+</section>
