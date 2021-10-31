@@ -1,4 +1,4 @@
 <section class="form-container">
 	<app-heading [level]="headerLevel.H1" [text]="header"></app-heading>
-	<task-meetings-list></task-meetings-list>
+	<task-meetings-list [list]="meetingList$ | async"></task-meetings-list>
 </section>

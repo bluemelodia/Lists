@@ -2,9 +2,9 @@
 	class="task-list__scrollable-container hide-scrollbar">
 	<section class="task-list__scrollable-list">
 		<ul class="task-list">
-			<li class="task-list__item" *ngFor="let birthday of list">
-				<ng-container [ngTemplateOutlet]="birthdayList" 
-					[ngTemplateOutletContext]="{ 'birthday': birthday }">
+			<li class="task-list__item" *ngFor="let meeting of list">
+				<ng-container [ngTemplateOutlet]="meetingList" 
+					[ngTemplateOutletContext]="{ 'meeting': meeting }">
 				</ng-container>   
 			</li>
 		</ul>
@@ -15,3 +15,21 @@
     *ngIf="list && list.length === 0">
     <app-no-items [config]="noItemsConfig"></app-no-items>
 </section>
+
+<ng-template #meetingList let-meeting="meeting">
+	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
+		<app-heading [level]="headerLevel.H2" [text]="meeting.name"></app-heading>
+		<p>{{ meeting | meetingFormatter}}</p>
+		<fieldset class="form-actions">
+			<button type="submit" 
+				routerLink="/events/edit-meeting"
+				[queryParams]="{ title: 'Edit Meeting', birthday: meeting | json }">
+				Edit
+			</button>
+			<button type="submit"
+				(click)="deleteMeeting(meeting.uuid)">
+				Delete
+			</button>
+		</fieldset>
+	</section>
+</ng-template>

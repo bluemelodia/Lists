@@ -20,6 +20,9 @@ export class MeetingsComponent implements OnInit {
 	headerLevel = HeaderLevel;
 	header = 'Upcoming Meetings';
 
+	private meetings$ = new Subject<AddMeeting[]>();
+	public meetingList$ = this.meetings$.asObservable();
+
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
@@ -48,7 +51,7 @@ export class MeetingsComponent implements OnInit {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((meetings: AddMeeting[]) => {
-				console.log("===> meetings: ", meetings);
+				this.meetings$.next(meetings);
 			});
 	}
 

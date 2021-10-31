@@ -154,4 +154,78 @@ export class MeetingUtils {
 
 		return meeting;
 	}
+
+	/** 
+	* Only return unended meetings.
+	*/
+	public static processMeetings(meetings: AddMeeting[]): AddMeeting[] {
+		const currentTime = new Date().getTime();
+		return meetings.filter((meeting: AddMeeting) => {
+			const meetingEnd = new Date(meeting.end_year, meeting.end_month - 1, meeting.end_date, meeting.end_hour, meeting.end_minute);
+			return currentTime < meetingEnd.getTime();
+		});
+	}
+
+	public static getMeetingDay(meetingDay: number): string {
+		switch (meetingDay) {
+			case 0:
+				return "Mon";
+			case 1:
+				return "Tues";
+			case 2:
+				return "Wed";
+			case 3:
+				return "Thu";
+			case 4:
+				return "Fri";
+			case 5:
+				return "Sat";
+			case 6:
+				return "Sun";
+		}
+	}
+
+	public static getMeetingMonth(month: number): string {
+		switch (month) {
+			case 0:
+				return "January";
+			case 1:
+				return "February";
+			case 2:
+				return "March";
+			case 3:
+				return "April";
+			case 4:
+				return "May";
+			case 5:
+				return "June";
+			case 6:
+				return "July";
+			case 7:
+				return "August";
+			case 8:
+				return "September";
+			case 9:
+				return "October";
+			case 10:
+				return "November";
+			case 11:
+				return "December";
+		}
+	}
+
+	public static getMeetingDate(date: number): string {
+		const remainder = date % 10;
+		let suffix = 'th';
+
+		if (remainder === 1 && date !== 11) { // 1st, 21st, 31st
+			suffix = 'st';
+		} else if (remainder === 2 && date !== 12) { // 2nd, 22nd
+			suffix = 'nd';
+		} else if (remainder === 3 && date !== 13) { // 3rd, 23rd
+			suffix = 'rd';
+		}
+
+		return `${date}${suffix}`;
+	}
 }
