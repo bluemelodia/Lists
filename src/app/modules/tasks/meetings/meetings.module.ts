@@ -5,7 +5,9 @@ import { ElementModule } from '../../element/element.module';
 import { ListComponent } from './list/list.component';
 import { MeetingsComponent } from './meetings.component';
 import { MeetingTasksRoutingModule } from './meetings-routing.module';
-import { PipesModule } from 'src/app/pipes/pipes.module';
+
+import { IndicatorModule } from '../../indicator/indicator.module';
+import { PipesModule } from '../../../pipes/pipes.module';
 
 @NgModule({
 	declarations: [
@@ -15,6 +17,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
 	imports: [
 		CommonModule,
 		ElementModule,
+		IndicatorModule,
 		MeetingTasksRoutingModule,
 		PipesModule,
 	],

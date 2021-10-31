@@ -18,8 +18,14 @@
 
 <ng-template #meetingList let-meeting="meeting">
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
-		<app-heading [level]="headerLevel.H2" [text]="meeting.name"></app-heading>
+		<app-heading [level]="headerLevel.H2" [text]="meeting.name">
+			<app-meeting-indicator post [isVirtual]="meeting.virtual"
+				[recurrence]="meeting.optionValue">
+			</app-meeting-indicator>
+		</app-heading>
 		<p>{{ meeting | meetingFormatter}}</p>
+		<p>{{ meeting.location }}</p>
+		<p>{{ meeting.description }} </p>
 		<fieldset class="form-actions">
 			<button type="submit" 
 				routerLink="/events/edit-meeting"

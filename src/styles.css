@@ -240,6 +240,34 @@ button:disabled .arrow-btn {
   background-color: #d63031;
 }
 
+.badge.virtual {
+  background-color: #0984e3;
+}
+
+.badge.weekly {
+  background-color: #009432;
+}
+
+.badge.biweekly {
+  background-color: #006266;
+}
+
+.badge.monthly {
+  background-color: #ed4c67;
+}
+
+.badge.quarterly {
+  background-color: #b53471;
+}
+
+.badge.biannually {
+  background-color: #833471;
+}
+
+.badge.annually {
+  background-color: #6f1e51;
+}
+
 /* Hamburger menu. */
 .menu-button {
   height: 100%;

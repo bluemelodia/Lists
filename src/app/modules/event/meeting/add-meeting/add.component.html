@@ -127,6 +127,7 @@
 				rows="5"
                 formControlName="description"
                 placeholder="Description"></textarea>
+			Max {{ maxChars }} characters.
 			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
 				<span *ngIf="meetingFormControl.description.errors?.maxlength">
 					Description should not exceed {{ maxDescription }} characters.
