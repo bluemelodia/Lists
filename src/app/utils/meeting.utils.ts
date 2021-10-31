@@ -1,7 +1,7 @@
 import { Endpoint } from "../constants/urls.constants";
 import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
 import { Dialog } from "../interfaces/dialog.interface";
-import { Option } from "../interfaces/event.interface";
+import { Option, Recurrence } from "../interfaces/event.interface";
 import {
 	Meeting,
 	MeetingAction,
@@ -161,8 +161,12 @@ export class MeetingUtils {
 	public static processMeetings(meetings: AddMeeting[]): AddMeeting[] {
 		const currentTime = new Date().getTime();
 		return meetings.filter((meeting: AddMeeting) => {
+			/** 
+			* Don't filter out recurring meetings.
+			*/
+			const isRecurring = !meeting.optionValue || meeting.optionValue !== Recurrence.Once;
 			const meetingEnd = new Date(meeting.end_year, meeting.end_month - 1, meeting.end_date, meeting.end_hour, meeting.end_minute);
-			return currentTime < meetingEnd.getTime();
+			return isRecurring ? true : currentTime < meetingEnd.getTime();
 		});
 	}
 
