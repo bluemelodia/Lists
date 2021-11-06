@@ -7,10 +7,7 @@
             [tabindex]="isSelectableDate(day) ? 0 : -1"
             [class.disabled] = "!isSelectableDate(day)"
             [class.focus-option] = "isSelectableDate(day)"
-            [class.selected] = "selectedDate
-                && day.year === selectedDate.year 
-                && day.month === selectedDate.month 
-                && day.value === selectedDate.value"
+            [class.selected] = "isSelectedDate(day)"
             (click)="isSelectableDate(day) ? selectDate(day) : null"
             (keydown)="isSelectableDate(day) ? onDateKeyPress($event, day) : null">
             <ng-container *ngIf="!isSelectableDate(day)"></ng-container>

@@ -128,7 +128,7 @@ export class MeetingUtils {
 
 	public static createStartDate(addMeeting: AddMeeting): CalendarDay {
 		return {
-			value: addMeeting.start_value,
+			value: Number(addMeeting.start_value),
 			cmonth: addMeeting.start_cmonth,
 			leap: !!addMeeting.start_leap,
 			cdate: addMeeting.start_cdate,
@@ -140,7 +140,7 @@ export class MeetingUtils {
 
 	public static createEndDate(addMeeting: AddMeeting): CalendarDay {
 		return {
-			value: addMeeting.end_value,
+			value: Number(addMeeting.end_value),
 			cmonth: addMeeting.end_cmonth,
 			leap: !!addMeeting.end_leap,
 			cdate: addMeeting.end_cdate,

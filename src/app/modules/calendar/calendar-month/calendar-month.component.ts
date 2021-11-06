@@ -34,6 +34,13 @@ export class CalendarMonthComponent implements OnInit {
 		return day.value > 0;
 	}
 
+	isSelectedDate(day: CalendarDay): boolean {
+		return this.selectedDate
+			&& day.year === this.selectedDate.year 
+            && day.month === this.selectedDate.month 
+            && day.value === this.selectedDate.value;
+	}
+
 	selectDate(date: CalendarDay): void {
 		this.dateSelect.emit(date);
 	}

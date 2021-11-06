@@ -20,7 +20,7 @@
 				[id]="calendarId" 
 				[calendar]="cal.calendar" 
 				[type]="calendarType"
-				[selectedDay]="form.controls.day.value"
+				[selectedDay]="form.controls[controlName]?.value"
 				(dateSelected)="selectDate($event)">
 			</app-calendar>
 			<app-no-results 

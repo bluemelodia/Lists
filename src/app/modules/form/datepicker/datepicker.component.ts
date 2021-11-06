@@ -32,6 +32,7 @@ interface CalendarData {
 export class DatepickerComponent implements OnInit, OnDestroy {
 	@Input() placeholder = "";
 	@Input() fieldName = "Date";
+	@Input() controlName: string = "";
 	@Input() calendarType: CalendarType = CalendarType.Lunar;
 	@Input() form: FormGroup;
 	@Input() submitted = false;
