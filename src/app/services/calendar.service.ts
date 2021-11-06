@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable, forkJoin, of } from "rxjs";
+import { forkJoin, Observable, of, ReplaySubject } from "rxjs";
 
 import { Endpoint } from "../constants/urls.constants";
 import { CalendarType } from "../interfaces/calendar/calendar.interface";
@@ -15,7 +15,7 @@ import { CalendarUtils } from "../utils/calendar.utils";
 })
 export class CalendarService {
 	private baseURL = Endpoint.CALENDAR;
-	private calendar$ = new BehaviorSubject<Calendar>(null);
+	private calendar$ = new ReplaySubject<Calendar>(null);
 
 	private currentYear;
 	private currentMonth;
@@ -43,9 +43,6 @@ export class CalendarService {
 		return this.currentDay;
 	}
 
-	/**
-	 * Lunar-specific logic.
-	 */
 	get onCalendarFetched$(): Observable<Calendar> {
 		return this.calendar$.asObservable();
 	}

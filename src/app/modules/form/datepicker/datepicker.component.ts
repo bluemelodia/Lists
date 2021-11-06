@@ -4,7 +4,7 @@ import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@ang
 import { AbstractControl, FormGroup } from "@angular/forms";
 
 import { of, ReplaySubject } from "rxjs";
-import { catchError, filter, takeUntil } from "rxjs/operators";
+import { catchError, filter, map, takeUntil } from "rxjs/operators";
 import { UUID } from "angular2-uuid";
 
 import { PickerDateFormatterPipe } from "../../../pipes/picker-date-formatter.pipe";
@@ -43,7 +43,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 	public cal: Calendar;
 	private uuid = UUID.UUID();
 	public calendarId = `app-calendar-${this.uuid}`;
-	
+
 	private calendarData: CalendarData = {
 		isLoading: false,
 		calendar: null,
@@ -82,25 +82,27 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 		this.calendar.onCalendarFetched$
 			.pipe(
 				takeUntil(this.destroyed$),
+				map((calendar: Calendar) => {
+					console.log("===> calendar: ", calendar);
+					if (!calendar) {
+						throw new Error('Unable to fetch calendar.');
+					}
+
+					this.cal = calendar;
+					this.calendarData = {
+						...this.calendarData,
+						isLoading: false,
+						calendar: this.cal,
+					};
+					this.calendarData$.next(this.calendarData);
+					return of(null);
+				}),
 				catchError(() => {
 					this.toggleLoading(false);
 					return of(null);
 				})
 			)
-			.subscribe((calendar: Calendar) => {
-				console.log("===> on calendar fetched: ", calendar);
-				if (!calendar) {
-					return;
-				}
-
-				this.cal = calendar;
-				this.calendarData = {
-					...this.calendarData,
-					isLoading: false,
-					calendar: this.cal,
-				};
-				this.calendarData$.next(this.calendarData);
-			});
+			.subscribe();
 
 		this.focus.keyPressed$()
 			.pipe(
