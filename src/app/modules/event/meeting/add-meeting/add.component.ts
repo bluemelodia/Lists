@@ -24,6 +24,7 @@ import {
 	MeetingAction,
 } from "../../../../interfaces/meeting.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
+import { AddMeeting } from "../../../../interfaces/service/service-objects.interface";
 
 import { appTheme } from "../../../../modules/form/timepicker/time-picker.constants";
 import { DialogService } from "../../../../services/dialog.service";
@@ -116,15 +117,17 @@ export class AddMeetingComponent implements OnInit {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 				map((params: ParamMap) => JSON.parse(params.get("meeting")))
 			)
-			.subscribe((meeting: Meeting) => {
+			.subscribe((meeting: AddMeeting) => {
+				const mtg = MeetingUtils.createMeeting(meeting);
+
 				/** Existing meeting. */
-				if (meeting?.uuid) {
+				if (mtg?.uuid) {
 					this.meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Edit);
 					this.meeting = {
 						...this.meeting,
-						uuid: meeting?.uuid
+						uuid: mtg?.uuid
 					};
-					this.populateFormData(meeting);
+					this.populateFormData(mtg);
 				}
 			});
 	}

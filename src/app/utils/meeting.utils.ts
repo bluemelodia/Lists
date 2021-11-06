@@ -104,25 +104,8 @@ export class MeetingUtils {
 	}
 
 	public static createMeeting(addMeeting: AddMeeting): Meeting {
-		const startDate: CalendarDay = {
-			value: addMeeting.start_value,
-			cmonth: addMeeting.start_cmonth,
-			leap: !!addMeeting.start_leap,
-			cdate: addMeeting.start_cdate,
-			cmonthname: addMeeting.start_cmonthname,
-			month: addMeeting.start_month,
-			year: addMeeting.start_year,
-		};
-
-		const endDate: CalendarDay = {
-			value: addMeeting.end_value,
-			cmonth: addMeeting.end_cmonth,
-			leap: !!addMeeting.end_leap,
-			cdate: addMeeting.end_cdate,
-			cmonthname: addMeeting.end_cmonthname,
-			month: addMeeting.end_month,
-			year: addMeeting.end_year,
-		};
+		const startDate: CalendarDay = MeetingUtils.createStartDate(addMeeting);
+		const endDate: CalendarDay = MeetingUtils.createEndDate(addMeeting);
 
 		const startTime = TimeUtils.get12HourTime(addMeeting.start_hour, addMeeting.start_minute);
 		const endTime = TimeUtils.get12HourTime(addMeeting.end_hour, addMeeting.end_minute);
@@ -141,6 +124,30 @@ export class MeetingUtils {
 		};
 
 		return meeting;
+	}
+
+	public static createStartDate(addMeeting: AddMeeting): CalendarDay {
+		return {
+			value: addMeeting.start_value,
+			cmonth: addMeeting.start_cmonth,
+			leap: !!addMeeting.start_leap,
+			cdate: addMeeting.start_cdate,
+			cmonthname: addMeeting.start_cmonthname,
+			month: addMeeting.start_month,
+			year: addMeeting.start_year,
+		};
+	}
+
+	public static createEndDate(addMeeting: AddMeeting): CalendarDay {
+		return {
+			value: addMeeting.end_value,
+			cmonth: addMeeting.end_cmonth,
+			leap: !!addMeeting.end_leap,
+			cdate: addMeeting.end_cdate,
+			cmonthname: addMeeting.end_cmonthname,
+			month: addMeeting.end_month,
+			year: addMeeting.end_year,
+		};
 	}
 
 	/** 
