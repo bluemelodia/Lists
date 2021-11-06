@@ -14,7 +14,7 @@ export class TimeUtils {
 			time += hours;
 		}
 
-		time += `:${minutes}`;
+		time += `:${minutes < 10 ? `0${minutes}` : minutes }`;
 		time += hours >= 12 ? ' PM' : ' AM';
 
 		return time;

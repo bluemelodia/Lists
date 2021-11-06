@@ -22,14 +22,15 @@
 			<app-meeting-indicator post [isVirtual]="meeting.virtual">
 			</app-meeting-indicator>
 		</app-heading>
-		<p>{{ meeting | meetingFormatter}}</p>
-		<p>{{ meeting.location }}</p>
-		<p>{{ meeting.description }} </p>
+		<p class="task-details__wrapper"><span class="task-details__label">Start</span>{{ meeting | meetingFormatter: true }}</p>
+		<p class="task-details__wrapper"><span class="task-details__label">End</span>{{ meeting | meetingFormatter: false }}</p>
+		<p class="task-details__wrapper"><span class="task-details__label">Location</span>{{ meeting.location }}</p>
+		<p *ngIf="meeting.description"><span class="task-details__label">Details</span>{{ meeting.description }} </p>
 		<fieldset class="form-actions">
 			<button type="submit" 
 				routerLink="/events/edit-meeting"
-				[queryParams]="{ title: 'Edit Meeting', birthday: meeting | json }">
-				Edit
+				[queryParams]="{ title: 'Edit Meeting', meeting: meeting | json }">
+				Edit  
 			</button>
 			<button type="submit"
 				(click)="deleteMeeting(meeting.uuid)">

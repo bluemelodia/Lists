@@ -323,6 +323,10 @@ button:disabled .arrow-btn {
   border-bottom: 1px solid pink;
 }
 
+.task-list__item-info {
+	width: 100%;
+}
+
 /**
 * Animations
 */

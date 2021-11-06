@@ -117,7 +117,7 @@ export class AddMeetingComponent implements OnInit {
 				map((params: ParamMap) => JSON.parse(params.get("meeting")))
 			)
 			.subscribe((meeting: Meeting) => {
-				/** Existing birthday. */
+				/** Existing meeting. */
 				if (meeting?.uuid) {
 					this.meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Edit);
 					this.meeting = {
@@ -247,6 +247,22 @@ export class AddMeetingComponent implements OnInit {
 					}
 				});
 		}
+	}
+
+	onCancel(): void {
+		this.dialogService.showConfirmDialog(Dialog.CancelEdit)
+			.pipe(
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((action: DialogAction) => {
+				switch (action) {
+					case DialogAction.Continue:
+						this.navService.navigateToTopic(Topic.Meetings, { relativeTo: this.route });
+						break;
+					default:
+						break;
+				}
+			});
 	}
 
 	subscribeToDialogClose(): void {

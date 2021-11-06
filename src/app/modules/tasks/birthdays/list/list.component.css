@@ -27,10 +27,6 @@
   margin-right: 8px;
 }
 
-.task-list__item-info {
-  width: 100%;
-}
-
 .task-list__photo-container {
   display: flex;
   justify-content: center;
