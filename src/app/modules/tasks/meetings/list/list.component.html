@@ -24,10 +24,22 @@
 				<app-date-indicator [status]="meeting.status"></app-date-indicator>
 			</span>
 		</app-heading>
-		<p class="task-details__wrapper"><span class="task-details__label">Start</span>{{ meeting | meetingFormatter: true }}</p>
-		<p class="task-details__wrapper"><span class="task-details__label">End</span>{{ meeting | meetingFormatter: false }}</p>
-		<p class="task-details__wrapper"><span class="task-details__label">Location</span>{{ meeting.location }}</p>
-		<p *ngIf="meeting.description"><span class="task-details__label">Details</span>{{ meeting.description }} </p>
+		<p class="task-details__wrapper">
+			<span class="task-details__label">Start</span>
+			<span class="task-details__description">{{ meeting | meetingFormatter: true }}</span>
+		</p>
+		<p class="task-details__wrapper">
+			<span class="task-details__label">End</span>
+			<span class="task-details__description">{{ meeting | meetingFormatter: false }}</span>
+		</p>
+		<p class="task-details__wrapper">
+			<span class="task-details__label">Location</span>
+			<span class="task-details__description">{{ meeting.location }}</span>
+		</p>
+		<p *ngIf="meeting.description">
+			<span class="task-details__label">Details</span>
+			<span class="task-details__description">{{ meeting.description }}</span>
+		</p>
 		<fieldset class="form-actions">
 			<button type="submit" 
 				routerLink="/events/edit-meeting"
