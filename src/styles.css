@@ -328,6 +328,15 @@ button:disabled .arrow-btn {
 }
 
 /**
+* Modifiers
+*/
+.truncate {
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+
+/**
 * Animations
 */
 

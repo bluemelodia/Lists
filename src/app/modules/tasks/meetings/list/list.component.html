@@ -19,8 +19,10 @@
 <ng-template #meetingList let-meeting="meeting">
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
 		<app-heading [level]="headerLevel.H2" [text]="meeting.name">
-			<app-meeting-indicator post [isVirtual]="meeting.virtual">
-			</app-meeting-indicator>
+			<span class="task-list__badges" post>
+				<app-meeting-indicator [isVirtual]="meeting.virtual"></app-meeting-indicator>
+				<app-date-indicator [status]="meeting.status"></app-date-indicator>
+			</span>
 		</app-heading>
 		<p class="task-details__wrapper"><span class="task-details__label">Start</span>{{ meeting | meetingFormatter: true }}</p>
 		<p class="task-details__wrapper"><span class="task-details__label">End</span>{{ meeting | meetingFormatter: false }}</p>

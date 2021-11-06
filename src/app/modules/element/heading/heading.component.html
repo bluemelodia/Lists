@@ -1,10 +1,10 @@
 <ng-content select="[pre]"></ng-content>
 <ng-container [ngSwitch]="level">
-    <h1 class="heading" *ngSwitchCase="HeaderLevel.H1">{{ text }}</h1>
-    <h2 class="heading" *ngSwitchCase="HeaderLevel.H2">{{ text }}</h2>
-    <h3 class="heading" *ngSwitchCase="HeaderLevel.H3">{{ text }}</h3>
-    <h4 class="heading" *ngSwitchCase="HeaderLevel.H4">{{ text }}</h4>
-    <h5 class="heading" *ngSwitchCase="HeaderLevel.H5">{{ text }}</h5>
-    <h6 class="heading" *ngSwitchCase="HeaderLevel.H6">{{ text }}</h6>
+    <h1 class="heading truncate" *ngSwitchCase="HeaderLevel.H1">{{ text }}</h1>
+    <h2 class="heading truncate" *ngSwitchCase="HeaderLevel.H2">{{ text }}</h2>
+    <h3 class="heading truncate" *ngSwitchCase="HeaderLevel.H3">{{ text }}</h3>
+    <h4 class="heading truncate" *ngSwitchCase="HeaderLevel.H4">{{ text }}</h4>
+    <h5 class="heading truncate" *ngSwitchCase="HeaderLevel.H5">{{ text }}</h5>
+    <h6 class="heading truncate" *ngSwitchCase="HeaderLevel.H6">{{ text }}</h6>
 </ng-container>
 <ng-content select="[post]"></ng-content>

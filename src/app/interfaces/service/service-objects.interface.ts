@@ -67,6 +67,7 @@ export interface AddMeeting extends AddStartDate, AddEndDate, AddStartTime, AddE
 	uuid?: string;
 	description?: string;
 	location: string;
+	status?: DateStatus;
 	virtual?: number;
 	name: string;
 }

@@ -1,5 +1,6 @@
 import { Endpoint } from "../constants/urls.constants";
 import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
+import { DateStatus } from "../interfaces/date.interface";
 import { Dialog } from "../interfaces/dialog.interface";
 import {
 	Meeting,
@@ -146,10 +147,29 @@ export class MeetingUtils {
 	* Only return unended meetings.
 	*/
 	public static processMeetings(meetings: AddMeeting[]): AddMeeting[] {
+		MeetingUtils.tagMeetings(meetings);
+
 		const currentTime = new Date().getTime();
 		return meetings.filter((meeting: AddMeeting) => {
 			const meetingEnd = new Date(meeting.end_year, meeting.end_month - 1, meeting.end_date, meeting.end_hour, meeting.end_minute);
 			return currentTime < meetingEnd.getTime();
+		});
+	}
+
+	private static tagMeetings(meetings: AddMeeting[]) {
+		meetings.forEach((meeting: AddMeeting) => {
+			const diffInDays = MeetingUtils.getMeetingDiff(meeting);
+			if (-1 < diffInDays && diffInDays <= 0) { // today
+				meeting.status = DateStatus.Today;
+			} else if (0 < diffInDays && diffInDays <= 1) { // tomorrow
+				meeting.status = DateStatus.Tomorrow;
+			} else if (diffInDays < 0) { // already passed
+				meeting.status = DateStatus.Passed;
+			} else if (diffInDays < 7) { // this week
+				meeting.status = DateStatus.ThisWeek;
+			} else if (diffInDays < 14) { // in two weeks
+				meeting.status = DateStatus.ComingUp;
+			}
 		});
 	}
 
@@ -214,5 +234,12 @@ export class MeetingUtils {
 		}
 
 		return `${date}${suffix}`;
+	}
+
+	private static getMeetingDiff(meeting: AddMeeting): number {
+		const today = new Date();
+		const meetingDate = new Date(meeting.start_year, meeting.start_month - 1, meeting.start_date);
+
+		return (meetingDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
 	}
 }
