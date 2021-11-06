@@ -1,9 +1,1 @@
 <span *ngIf="isVirtual" class="badge virtual">Virtual</span>
-<ng-container [ngSwitch]="recurrence">
-    <span class="badge weekly" *ngSwitchCase="recurrenceStatus.Weekly">Weekly</span>
-    <span class="badge biweekly" *ngSwitchCase="recurrenceStatus.Biweekly">Bi-weekly</span>
-    <span class="badge monthly" *ngSwitchCase="recurrenceStatus.Monthly">Monthly</span>
-    <span class="badge quarterly" *ngSwitchCase="recurrenceStatus.Quarterly">Quarterly</span>
-	<span class="badge biannually" *ngSwitchCase="recurrenceStatus.Biannually">Bi-annually</span>
-    <span class="badge annually" *ngSwitchCase="recurrenceStatus.Yearly">Annually</span>
-</ng-container>

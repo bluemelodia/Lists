@@ -21,8 +21,6 @@ How to make image upload easy with Angular
 
 - User logins and session. Modify logic so that users only see their own account information.
 - Daily jobs scanning for upcoming birthdays and events.
-- Allow users to add one-time events (ex. dentist's appointments, social outings)
-- Allow users to add recurring events
 - Allow users to add reminders (ex. payment reminders)
 - Show users a calendar of upcoming events.
 
@@ -32,6 +30,7 @@ How to make image upload easy with Angular
 - Show a list of upcoming events on the home page (four widgets, so four sections).
 - Add accessibility, don't have two modals open at the same time.
 - Add ESLinting
+
 
 ## Navigation
 

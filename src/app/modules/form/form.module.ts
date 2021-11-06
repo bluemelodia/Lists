@@ -14,7 +14,6 @@ import { PickerDateFormatterPipe } from "../../pipes/picker-date-formatter.pipe"
 import { CheckboxComponent } from "./checkbox/checkbox.component";
 import { DatepickerComponent } from "./datepicker/datepicker.component";
 import { RadioComponent } from "./radio/radio.component";
-import { SelectComponent } from "./select/select.component";
 import { PhoneComponent } from "./phone/phone.component";
 
 @NgModule({
@@ -23,7 +22,6 @@ import { PhoneComponent } from "./phone/phone.component";
 		DatepickerComponent,
 		PhoneComponent,
 		RadioComponent,
-		SelectComponent
 	],
 	imports: [
 		CalendarModule,
@@ -42,7 +40,6 @@ import { PhoneComponent } from "./phone/phone.component";
 		NgxMaterialTimepickerModule,
 		PhoneComponent,
 		RadioComponent,
-		SelectComponent
 	],
 	providers: [
 		PickerDateFormatterPipe,

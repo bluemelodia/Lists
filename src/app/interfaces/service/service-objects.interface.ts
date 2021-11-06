@@ -43,12 +43,6 @@ export interface AddEndTime {
 	end_minute: number;
 }
 
-export interface AddRecurrence {
-	optionName: string;
-	optionValue: string;
-	optionSelected: number;
-}
-
 /**
 * Format of birthday to send to the service.
 */
@@ -68,7 +62,7 @@ export interface AddBirthday extends AddDate {
 /**
 * Format of meeting to send to the service.
 */
-export interface AddMeeting extends AddStartDate, AddEndDate, AddStartTime, AddEndTime, AddRecurrence {
+export interface AddMeeting extends AddStartDate, AddEndDate, AddStartTime, AddEndTime {
 	id: string;
 	uuid?: string;
 	description?: string;

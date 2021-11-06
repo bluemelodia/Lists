@@ -1,5 +1,4 @@
 import { CalendarDay } from "./calendar/calendar-response.interface";
-import { Option } from "./event.interface";
 
 export interface MeetingConfig {
 	action: MeetingAction,
@@ -13,7 +12,6 @@ export interface Meeting {
 	location: string;
 	virtual?: boolean;
 	name: string;
-	recurring: Option;
 	startDate: CalendarDay;
 	endDate: CalendarDay;
 	startTime: string;

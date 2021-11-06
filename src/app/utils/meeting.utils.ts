@@ -1,7 +1,6 @@
 import { Endpoint } from "../constants/urls.constants";
 import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
 import { Dialog } from "../interfaces/dialog.interface";
-import { Option, Recurrence } from "../interfaces/event.interface";
 import {
 	Meeting,
 	MeetingAction,
@@ -66,7 +65,6 @@ export class MeetingUtils {
 	public static createAddMeeting(meeting: Meeting): AddMeeting {
 		const startDate = meeting.startDate;
 		const endDate = meeting.endDate;
-		const recurrence = meeting.recurring;
 
 		const startTime = TimeUtils.get24HourTime(meeting.startTime);
 		const endTime = TimeUtils.get24HourTime(meeting.endTime);
@@ -95,10 +93,6 @@ export class MeetingUtils {
 			end_year: endDate.year,
 			end_leap: endDate.leap ? 1 : 0,
 			end_cmonthname: endDate.cmonthname,
-			/* Separate out each occurrence field to send to the service. */
-			optionName: recurrence.name,
-			optionValue: recurrence.value,
-			optionSelected: recurrence.selected ? 1 : 0,
 			/* Format: 12:00 AM. */
 			start_hour: startTime.hours,
 			start_minute: startTime.minutes,
@@ -109,12 +103,6 @@ export class MeetingUtils {
 	}
 
 	public static createMeeting(addMeeting: AddMeeting): Meeting {
-		const recurring: Option = {
-			name: addMeeting.optionName,
-			value: addMeeting.optionValue,
-			selected: !!addMeeting.optionSelected,
-		};
-
 		const startDate: CalendarDay = {
 			value: addMeeting.start_value,
 			cmonth: addMeeting.start_cmonth,
@@ -145,7 +133,6 @@ export class MeetingUtils {
 			location: addMeeting.location,
 			virtual: !!addMeeting.virtual,
 			name: addMeeting.name,
-			recurring: recurring,
 			startDate: startDate,
 			endDate: endDate,
 			startTime: startTime,
@@ -161,12 +148,8 @@ export class MeetingUtils {
 	public static processMeetings(meetings: AddMeeting[]): AddMeeting[] {
 		const currentTime = new Date().getTime();
 		return meetings.filter((meeting: AddMeeting) => {
-			/** 
-			* Don't filter out recurring meetings.
-			*/
-			const isRecurring = !meeting.optionValue || meeting.optionValue !== Recurrence.Once;
 			const meetingEnd = new Date(meeting.end_year, meeting.end_month - 1, meeting.end_date, meeting.end_hour, meeting.end_minute);
-			return isRecurring ? true : currentTime < meetingEnd.getTime();
+			return currentTime < meetingEnd.getTime();
 		});
 	}
 

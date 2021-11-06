@@ -107,17 +107,6 @@
 				</span>
 			</div> 	
 		</fieldset>
-		<fieldset class="recurrence">
-			<app-heading [level]="headerLevel.H3" text="Recurrence">
-                <span class="event-form__optional" post>Optional</span>
-            </app-heading>
-			<span for="event-description" class="form-instructions">Choose a recurrence option for the event.</span>
-			<app-select id="event-recurrence"
-				[options]="recurrence"
-				placeholder="Select Recurrence"
-				(optionSelected)="setEventRecurrence($event)">
-			</app-select>
-		</fieldset>
 		<fieldset class="description">
 			<app-heading [level]="headerLevel.H3" text="Additional Details">
                 <span class="event-form__optional" post>Optional</span>

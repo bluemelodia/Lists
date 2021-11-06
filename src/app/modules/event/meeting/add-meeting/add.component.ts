@@ -18,11 +18,6 @@ import { Topic } from "../../../../constants/topics.constants";
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
 import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
-import {
-	Option,
-	Recurrence,
-	recurrenceOptions,
-} from "../../../../interfaces/event.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import {
 	Meeting,
@@ -55,14 +50,9 @@ export class AddMeetingComponent implements OnInit {
 	public calendarType: CalendarType = CalendarType.Solar;
 	public headerLevel = HeaderLevel;
 	public submitted = false;
-	public recurrence = recurrenceOptions;
 	public timePickerTheme = appTheme;
 
 	private ngUnsubscribe$ = new Subject<void>();
-
-	selectedRecurrence: Option = recurrenceOptions.find((recurrence) => {
-		return recurrence.selected || recurrence.name === Recurrence.Once;
-	});
 
 	constructor(
 		private customValidators: ValidationService,
@@ -113,9 +103,6 @@ export class AddMeetingComponent implements OnInit {
 			options: this.fb.group({
 				virtual: this.fb.control(false),
 			}),
-			recurrence: [
-				"",
-			]
 		},
 			{
 				updateOn: "submit",
@@ -160,7 +147,6 @@ export class AddMeetingComponent implements OnInit {
 			options: {
 				virtual: meeting.virtual,
 			},
-			recurrence: meeting.recurring,
 			startTime: meeting.startTime,
 			endTime: meeting.endTime,
 		});
@@ -204,14 +190,6 @@ export class AddMeetingComponent implements OnInit {
 		return this.meetingFormControl.description.value;
 	}
 
-	setEventRecurrence(recurrence: Option) {
-		this.selectedRecurrence = recurrence;
-	}
-
-	get eventRecurrence(): Option {
-		return this.selectedRecurrence;
-	}
-
 	get isVirtual(): boolean {
 		return this.meetingForm.get("options.virtual")?.value;
 	}
@@ -222,7 +200,7 @@ export class AddMeetingComponent implements OnInit {
 			startTime: $event,
 		});
 	}
-	
+
 	onEndTimeChanged($event): void {
 		console.log("END CHANGED: ", $event);
 		this.meetingForm.patchValue({
@@ -242,7 +220,6 @@ export class AddMeetingComponent implements OnInit {
 				location: this.location,
 				virtual: this.isVirtual,
 				name: this.name,
-				recurring: this.eventRecurrence,
 				startDate: this.startDate,
 				endDate: this.endDate,
 				startTime: this.startTime,

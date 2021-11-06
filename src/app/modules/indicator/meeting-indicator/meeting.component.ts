@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Recurrence } from '../../../interfaces/event.interface';
 
 @Component({
   selector: 'app-meeting-indicator',
@@ -8,9 +7,6 @@ import { Recurrence } from '../../../interfaces/event.interface';
 })
 export class MeetingIndicatorComponent implements OnInit {
 	@Input() isVirtual: boolean;
-	@Input() recurrence: Recurrence;
-
-	public recurrenceStatus = Recurrence;
 
 	constructor() { }
 
