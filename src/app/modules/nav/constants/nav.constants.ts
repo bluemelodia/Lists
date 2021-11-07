@@ -44,9 +44,9 @@ export const TOPICS: IMenu = {
 		route: "/meetings",
 		title: "Meetings"
 	},
-	[Topic.Payments]: {
-		route: "/payments",
-		title: "Payments"
+	[Topic.Gifts]: {
+		route: "/gifts",
+		title: "Gifts"
 	},
 	[Topic.Projects]: {
 		route: "/projects",
@@ -56,8 +56,8 @@ export const TOPICS: IMenu = {
 
 const TOPIC_LIST: Topic[] = [
 	Topic.Birthdays,
+	Topic.Gifts,
 	Topic.Meetings,
-	Topic.Payments,
 	Topic.Projects,
 ];
 
@@ -66,13 +66,13 @@ const EVENTS: IMenu = {
 		route: "events/add-birthday",
 		title: "Add Birthday"
 	},
+	[Event.Gift]: {
+		route: "events/add-gift",
+		title: "Add Gift"
+	},
 	[Event.Meeting]: {
 		route: "events/add-meeting",
 		title: "Add Meeting"
-	},
-	[Event.Payment]: {
-		route: "events/add-birthday",
-		title: "Add Payment"
 	},
 	[Event.Task]: {
 		route: "events/add-task",
@@ -82,8 +82,8 @@ const EVENTS: IMenu = {
 
 const EVENT_LIST: Event[] = [
 	Event.Birthday,
+	Event.Gift,
 	Event.Meeting,
-	Event.Payment,
 	Event.Task
 ];
 

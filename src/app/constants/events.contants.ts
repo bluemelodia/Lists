@@ -1,7 +1,7 @@
 export enum Event {
 	Birthday = "Birthday",
+	Gift = "Gift",
 	Meeting = "Meeting",
-	Payment = "Payment",
 	Task = "Task",
 }
 

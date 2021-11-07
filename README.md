@@ -22,6 +22,7 @@ How to make image upload easy with Angular
 - User logins and session. Modify logic so that users only see their own account information.
 - Daily jobs scanning for upcoming birthdays and events.
 - Allow users to add reminders (ex. payment reminders)
+- Let users budget gifts for friends/family and keep track of their addresses. Let users enter a budget/email/address for each recipient (for sending gifts) - the gifts page will sync this same thing and also get gift history.
 - Show users a calendar of upcoming events.
 - Text users the meeting reminder.
 

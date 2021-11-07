@@ -26,7 +26,7 @@ import {
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddMeeting } from "../../../../interfaces/service/service-objects.interface";
 
-import { appTheme } from "../../../../modules/form/timepicker/time-picker.constants";
+import { appTheme } from "../../../form/timepicker/time-picker.constants";
 import { DialogService } from "../../../../services/dialog.service";
 import { MeetingService } from "../../../../services/meeting.service";
 import { NavService } from "../../../../services/nav.service";
@@ -118,6 +118,9 @@ export class AddMeetingComponent implements OnInit {
 				map((params: ParamMap) => JSON.parse(params.get("meeting")))
 			)
 			.subscribe((meeting: AddMeeting) => {
+				if (!meeting) {
+					return;
+				}
 				const mtg = MeetingUtils.createMeeting(meeting);
 
 				/** Existing meeting. */
