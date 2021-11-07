@@ -13,7 +13,7 @@ export class ValidationService {
 	// eslint-disable-next-line no-useless-escape
 	private static emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 	// eslint-disable-next-line no-useless-escape
-	private static phoneRegex = `^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$`;
+	private static phoneRegex = new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im);
 
 	/**
 	 * Individual field validators.
@@ -76,7 +76,7 @@ export class ValidationService {
 				return;
 			}
 
-			const valid = !!ValidationService.phoneRegex.match(phone?.value?.number);
+			const valid = ValidationService.phoneRegex.test(phone?.value?.number);
 			console.log("===> is phone valid: ", phone?.value?.number, valid);
 			if (!valid) {
 				phone.setErrors({ invalidPhone: true });
@@ -118,14 +118,14 @@ export class ValidationService {
 			const endDay = endingDate.getDate();
 
 			const isSameMonth = startYear === nowYear && startMonth < nowMonth
-			|| startYear === nowYear && startMonth === nowMonth;
+				|| startYear === nowYear && startMonth === nowMonth;
 			const isSameDay = isSameMonth && startDay === nowDay;
 
 			// Allow users to have the start time & end time at the same time (essentially a reminder).
 			if (startYear < nowYear || isSameMonth && startDay < nowDay) {
 				validationMap["startDateInPast"] = true;
-			} 
-			if (isSameMonth && isSameDay && (startingTime.hours < now.getHours() 
+			}
+			if (isSameMonth && isSameDay && (startingTime.hours < now.getHours()
 				|| startingTime.hours === now.getHours() && startingTime.minutes < now.getMinutes())) {
 				validationMap["startTimeInPast"] = true;
 			}
