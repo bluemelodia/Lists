@@ -13,7 +13,7 @@ export class ValidationService {
 	// eslint-disable-next-line no-useless-escape
 	private static emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 	// eslint-disable-next-line no-useless-escape
-	private static phoneRegex = `/^\+?\d{3}[- ]?\d{3}[- ]?\d{5}$/`;
+	private static phoneRegex = `^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$`;
 
 	/**
 	 * Individual field validators.
@@ -76,8 +76,8 @@ export class ValidationService {
 				return;
 			}
 
-			const valid = ValidationService.phoneRegex.match(phone.value);
-			console.log("===> is phone valid: ", phone.value, valid);
+			const valid = !!ValidationService.phoneRegex.match(phone?.value?.number);
+			console.log("===> is phone valid: ", phone?.value?.number, valid);
 			if (!valid) {
 				phone.setErrors({ invalidPhone: true });
 			}

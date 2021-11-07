@@ -34,11 +34,11 @@
             </app-checkbox>
             <fieldset class="phone" *ngIf="isChannelChecked(channel.text)">
 				<app-phone [form]="settingsForm" [startingCountry]="startingCountry"></app-phone>
-                <div class="input-error" *ngIf="validatePhone$| async as validatePhone">
-                        <span *ngIf="validatePhone && settingsFormControl.phone.errors?.missingPhone">
+                <div class="input-error" *ngIf="submitted">
+                        <span *ngIf="settingsFormControl.phone.errors?.missingPhone">
                             Please enter a phone number.
                         </span>    
-                        <span *ngIf="validatePhone && settingsFormControl.phone.errors?.invalidPhone">
+                        <span *ngIf="settingsFormControl.phone.errors?.invalidPhone">
                             Please enter a valid phone number.
                         </span>
                 </div>
@@ -52,6 +52,11 @@
 			<app-checkbox
                 [name]="topic.Birthdays"
                 [checkboxName]="topic.Birthdays"
+                [form]="settingsForm.controls.tasks">
+            </app-checkbox>
+			<app-checkbox
+                [name]="topic.Meetings"
+                [checkboxName]="topic.Meetings"
                 [form]="settingsForm.controls.tasks">
             </app-checkbox>
         </fieldset>

@@ -63,6 +63,7 @@ export class SettingsComponent implements OnInit {
 				],
 				tasks: this.fb.group({
 					[Topic.Birthdays]: this.fb.control(false),
+					[Topic.Meetings]: this.fb.control(false),
 				})
 			},
 			{

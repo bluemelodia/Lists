@@ -23,6 +23,7 @@ How to make image upload easy with Angular
 - Daily jobs scanning for upcoming birthdays and events.
 - Allow users to add reminders (ex. payment reminders)
 - Show users a calendar of upcoming events.
+- Text users the meeting reminder.
 
 - Make the app more responsive, adding animations.
 - Make edit/delete buttons less obvious, ie. interact with the cell first to show these options.
@@ -30,7 +31,6 @@ How to make image upload easy with Angular
 - Show a list of upcoming events on the home page (four widgets, so four sections).
 - Add accessibility, don't have two modals open at the same time.
 - Add ESLinting
-
 
 ## Navigation
 
