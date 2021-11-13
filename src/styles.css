@@ -82,6 +82,11 @@ button.cancel:hover {
 /**
 * Form-relevant styles.
 */
+.form-container {
+	margin: 24px;
+    max-width: 700px;
+}
+
 .form-actions button {
   width: 100%;
 }
@@ -169,19 +174,6 @@ input:focus-visible textarea:focus-visible {
 
 .flex-stretch {
   align-items: stretch;
-}
-
-/* Form container styles. */
-.form-container,
-.no-results {
-  margin: 16px;
-}
-
-@media only screen and (max-width: 500px) {
-  .form-container,
-  .no-results {
-    margin: 8px;
-  }
 }
 
 /**

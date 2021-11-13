@@ -1,16 +1,20 @@
 :host {
-  max-width: 900px;
-  width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  background: white;
-  border: 1px solid #dd2e44;
+	background: white;
+	
+	flex-grow: 1;
+	min-height: 0;
+	width: 100%;
 }
 
 /**
 * Lower the margins so there's more room for the calendar.
 */
 @media only screen and (max-width: 500px) {
-  .event-form {
-    margin: 0;
-  }
+	.event-form {
+		margin: 0;
+	}
 }
