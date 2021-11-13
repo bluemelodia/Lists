@@ -1,7 +1,8 @@
 .app-container {
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
+  padding: 16px;
 
   display: flex;
   flex-direction: column;
@@ -9,4 +10,10 @@
   justify-content: center;
 
   background-color: white;
+}
+
+@media only screen and (max-width: 500px) {
+	.app-container {
+		padding: 8px;
+	}
 }
