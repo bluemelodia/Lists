@@ -80,6 +80,20 @@ button.cancel:hover {
 }
 
 /**
+* Section-relevant styles.
+*/
+.section-container {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    flex-grow: 1;
+    min-height: 0;
+    overflow: auto;
+    width: 100%;
+}
+
+/**
 * Form-relevant styles.
 */
 .form-container {
