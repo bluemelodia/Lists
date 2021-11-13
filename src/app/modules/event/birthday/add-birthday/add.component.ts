@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, HostBinding, OnDestroy, OnInit } from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
@@ -54,6 +54,8 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 	public submitted = false;
 
 	private ngUnsubscribe$ = new Subject<void>();
+	
+	@HostBinding("class") containerClasses = "section-container";
 
 	constructor(
 		private fb: FormBuilder,

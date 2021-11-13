@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
@@ -18,12 +18,13 @@ import { MeetingService } from '../../../services/meeting.service';
 })
 export class MeetingsComponent implements OnInit {
 	headerLevel = HeaderLevel;
-	header = 'Upcoming Meetings';
 
 	private meetings$ = new Subject<AddMeeting[]>();
 	public meetingList$ = this.meetings$.asObservable();
 
 	private ngUnsubscribe$ = new Subject<void>();
+
+	@HostBinding("class") containerClasses = "section-container";
 
 	constructor(
 		private dialogService: DialogService,

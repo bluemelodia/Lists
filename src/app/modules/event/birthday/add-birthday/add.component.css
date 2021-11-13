@@ -1,21 +1,8 @@
-:host {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	background: white;
-	
-	flex-grow: 1;
-	min-height: 0;
-	overflow: auto;
-	width: 100%;
-}
-
 /**
 * Lower the margins so there's more room for the calendar.
 */
 @media only screen and (max-width: 500px) {
-	.event-form {
-		margin: 0;
-	}
+  .event-form {
+    margin: 0;
+  }
 }

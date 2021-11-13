@@ -1,5 +1,4 @@
 <section class="form-container">
-	<app-heading [level]="headerLevel.H1" text="{{ meetingConfig.action }} Event"></app-heading>
     <form class="event-form"
         [formGroup]="meetingForm"
         (ngSubmit)="onSubmit()">
@@ -113,7 +112,7 @@
 			<app-heading [level]="headerLevel.H3" text="Additional Details">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
-			<span for="event-description" class="form-instructions">Add additional information about the event.</span>
+			<span for="event-description" class="form-instructions">Add additional information about the meeting.</span>
             <textarea id="event-description"
 				rows="5"
                 formControlName="description"

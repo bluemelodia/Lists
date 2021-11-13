@@ -1,3 +1,7 @@
+:host {
+	width: 100%;
+}
+
 .task-list__badges {
   display: flex;
   align-items: center;

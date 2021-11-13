@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, HostBinding, OnInit } from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
@@ -54,6 +54,8 @@ export class AddMeetingComponent implements OnInit {
 	public timePickerTheme = appTheme;
 
 	private ngUnsubscribe$ = new Subject<void>();
+
+	@HostBinding("class") containerClasses = "section-container";
 
 	constructor(
 		private customValidators: ValidationService,

@@ -1,6 +1,6 @@
 export enum Topic {
-	Birthdays = "Birthday",
+	Birthdays = "Birthdays",
 	Gifts = "Gifts",
-	Meetings = "Meeting",
-	Projects = "Task",
+	Meetings = "Meetings",
+	Projects = "Tasks",
 }
