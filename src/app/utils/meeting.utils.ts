@@ -157,10 +157,19 @@ export class MeetingUtils {
 		MeetingUtils.tagMeetings(meetings);
 
 		const currentTime = new Date().getTime();
-		return meetings.filter((meeting: AddMeeting) => {
+		const filteredMeetings = meetings.filter((meeting: AddMeeting) => {
 			const meetingEnd = new Date(meeting.end_year, meeting.end_month - 1, meeting.end_date, meeting.end_hour, meeting.end_minute);
 			return currentTime < meetingEnd.getTime();
 		});
+		return filteredMeetings.sort(this.sortMeetings);
+	}
+
+	private static sortMeetings(a: AddMeeting, b: AddMeeting): number {
+		return a.start_year - b.start_year || a.start_month - b.start_month || a.start_date - b.start_date || a.start_hour - b.start_hour || a.start_minute - b.start_minute || MeetingUtils.sortByName(a.name, b.name);
+	}
+
+	private static sortByName(a: string, b: string): number {
+		return a < b ? -1 : (a > b) ? 1 : 0;
 	}
 
 	private static tagMeetings(meetings: AddMeeting[]) {

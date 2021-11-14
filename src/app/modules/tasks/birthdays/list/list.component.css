@@ -1,6 +1,5 @@
 :host {
   background: white;
-  border: 1px solid #dd2e44;
   padding: 16px;
 
   height: 100%;
@@ -10,27 +9,29 @@
   grid-template-rows: 44px 1fr;
 }
 
+.birthday {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .actions {
   margin: 8px 0;
-}
-
-.task-action {
-  color: pink;
-  font-size: 1.5rem;
-}
-
-.task-action.enabled {
-  color: #dd2e44;
 }
 
 .task-action:not(:last-child) {
   margin-right: 8px;
 }
 
+.task-list__header-info {
+	display: flex;
+}
+
 .task-list__photo-container {
   display: flex;
   justify-content: center;
-  margin-left: 16px;
+  margin-right: 16px;
   width: 25%;
 }
 

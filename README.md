@@ -25,8 +25,10 @@ How to make image upload easy with Angular
 - Let users budget gifts for friends/family and keep track of their addresses. Let users enter a budget/email/address for each recipient (for sending gifts) - the gifts page will sync this same thing and also get gift history.
 - Show users a calendar of upcoming events.
 - Text users the meeting reminder.
+- Make birthday cells shorter so that users can see more in one row.
 
 - Make the app more responsive, adding animations.
+- Allow users to edit/delete more easily (ex. on click).
 - Make edit/delete buttons less obvious, ie. interact with the cell first to show these options.
 
 - Show a list of upcoming events on the home page (four widgets, so four sections).

@@ -1,0 +1,13 @@
+.action {
+	background: none;
+	border: none;
+}
+
+.task-action {
+	color: pink;
+	font-size: 1.5rem;
+}
+  
+.task-action.enabled {
+	color: #dd2e44;
+}

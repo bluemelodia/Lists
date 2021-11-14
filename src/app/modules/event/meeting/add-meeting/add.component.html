@@ -2,6 +2,7 @@
     <form class="event-form"
         [formGroup]="meetingForm"
         (ngSubmit)="onSubmit()">
+		<app-heading [level]="headerLevel.H2" text="Meeting Details"></app-heading>
         <span class="form-instructions">Provide details about the meeting.</span>
 		<fieldset class="name">
             <input type="text" 

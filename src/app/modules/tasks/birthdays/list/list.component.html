@@ -25,34 +25,49 @@
 	</section>
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
 		<app-heading [level]="headerLevel.H2" [text]="birthday.name">
-			<app-date-indicator post [status]="birthday.status"></app-date-indicator>
+			<section class="actions" post>
+				<app-action ariaLabel="Edit"
+					[enabled]="true"
+					[icon]="icon.Edit">
+				</app-action>
+				<app-action ariaLabel="Delete"
+					(click)="deleteBirthday(birthday.uuid)"
+					[enabled]="true"
+					[icon]="icon.Delete">
+				</app-action>
+			</section>
 		</app-heading>
-		<section *ngIf="!birthday.lunar">
-			<p>{{ birthday.month }}/{{ birthday.date }}</p>
-		</section>
-		<section *ngIf="birthday.lunar">
-			<p>Solar ({{ birthday.year }}) - {{ birthday.month }}/{{ birthday.date }}</p>
-			<p>Lunar ({{ birthday.year }}) - {{ birthday.cmonth }}/{{ birthday.cdate }} ({{ birthday.cmonthname }})</p>
+		<section class="birthday">
+			<p *ngIf="!birthday.lunar">{{ birthday.month }}/{{ birthday.date }}</p>
+			<ng-container *ngIf="birthday.lunar">
+				<p>Solar ({{ birthday.year }}) - {{ birthday.month }}/{{ birthday.date }}</p>
+				<p>Lunar ({{ birthday.year }}) - {{ birthday.cmonth }}/{{ birthday.cdate }} ({{ birthday.cmonthname }})</p>
+			</ng-container>
+			<app-date-indicator post [status]="birthday.status"></app-date-indicator>
 		</section>
 		<section class="actions">
-			<i class="task-action fas fa-mobile-alt"
-				[class.enabled]="birthday.call" 
-				aria-label="Call"></i>
-			<i class="task-action fas fa-comment-dots"
-				[class.enabled]="birthday.text"
-				aria-label="Text"></i>
-			<i class="task-action fas fa-gift"
-				[class.enabled]="birthday.gift"
-				aria-label="Gift"></i>
+			<app-action ariaLabel="Call"
+				[enabled]="birthday.call"
+				[icon]="icon.Call">
+			</app-action>
+			<app-action ariaLabel="Text"
+				[enabled]="birthday.text"
+				[icon]="icon.Text">
+			</app-action>
+			<app-action ariaLabel="Gift"
+				[enabled]="birthday.gift"
+				[icon]="icon.Gift">
+			</app-action>
+			
 		</section>
 		<fieldset class="form-actions">
 			<button type="submit" 
 				routerLink="/events/edit-birthday"
 				[queryParams]="{ title: 'Edit Birthday', birthday: birthday | json }">
-				Edit
+				<i class="fas fa-edit"></i>
 			</button>
 			<button type="submit"
-				(click)="deleteBirthday(birthday.uuid)">
+				>
 				Delete
 			</button>
 		</fieldset>

@@ -47,7 +47,7 @@ export class MeetingService {
 
 	/**
 	* @param userID 
-	* @returns A sorted list of birthdays for this user.
+	* @returns A sorted list of meetings for this user.
 	*/
 	public getMeetings(userID = "guest"): Observable<AddMeeting[]> {
 		console.info("🧳 🏁 MeetingService ---> getMeetings, for id: ", userID);
