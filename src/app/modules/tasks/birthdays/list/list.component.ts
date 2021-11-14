@@ -11,9 +11,12 @@ import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
 
 import { BirthdayService } from "../../../../services/birthday.service";
+import { DialogService } from "../../../../services/dialog.service";
 
 import { ActionIcon } from "../../../../constants/actions.constants";
 import { Event } from "../../../../constants/events.contants";
+
+import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { NO_ITEMS_CONFIG } from "../../../../interfaces/no-items.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
@@ -43,8 +46,25 @@ export class ListComponent implements OnDestroy {
 
 	constructor(
 		private birthdayService: BirthdayService,
+		private dialogService: DialogService,
 		private router: Router,
 	) { }
+
+	public onDeleteClicked(uuid: string): void {
+		this.dialogService.showConfirmDialog(Dialog.DeleteBirthday)
+		.pipe(
+			takeUntil(this.ngUnsubscribe$)
+		)
+		.subscribe((action: DialogAction) => {
+			switch (action) {
+				case DialogAction.Continue:
+					this.deleteBirthday(uuid);
+					break;
+				default:
+					break;
+			}
+		});
+	}
 
 	public deleteBirthday(uuid: string): void {
 		this.birthdayService.deleteBirthday(uuid)

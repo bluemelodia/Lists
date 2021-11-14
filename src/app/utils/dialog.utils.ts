@@ -18,6 +18,9 @@ export class DialogUtils {
 			case Dialog.CancelEdit:
 				message = DialogMessage.CANCEL_EDIT;
 				break;
+			case Dialog.DeleteBirthday:
+				message = DialogMessage.DELETE_CONFIRM;
+				break;
 		}
 
 		return message;
