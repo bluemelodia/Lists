@@ -1,13 +1,17 @@
 .action {
-	background: none;
-	border: none;
+  background: none;
+  border: none;
+
+  /* Min allowed touch area. */
+  height: 44px;
+  width: 44px;
 }
 
 .action-icon {
-	color: pink;
-	font-size: 1.5rem;
+  color: pink;
+  font-size: 1.8rem;
 }
-  
+
 .action-icon.enabled {
-	color: #dd2e44;
+  color: #dd2e44;
 }

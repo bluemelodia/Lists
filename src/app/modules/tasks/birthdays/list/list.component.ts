@@ -13,7 +13,7 @@ import { take, takeUntil } from "rxjs/operators";
 import { BirthdayService } from "../../../../services/birthday.service";
 import { DialogService } from "../../../../services/dialog.service";
 
-import { Icon } from "../../../../constants/actions.constants";
+import { Icon } from "../../../../constants/icons.constants";
 import { Event } from "../../../../constants/events.contants";
 
 import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";

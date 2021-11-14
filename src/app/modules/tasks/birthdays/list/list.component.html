@@ -25,7 +25,7 @@
 	</section>
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
 		<app-heading [level]="headerLevel.H2" [text]="birthday.name">
-			<section class="actions" post>
+			<section class="actions edit-actions" post>
 				<app-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
@@ -66,19 +66,21 @@
 				</section>
 			</ng-container>
 		</section>
-		<section class="actions">
-			<app-action ariaLabel="Call"
-				[enabled]="birthday.call"
-				[icon]="icon.Call">
-			</app-action>
-			<app-action ariaLabel="Text"
-				[enabled]="birthday.text"
-				[icon]="icon.Text">
-			</app-action>
-			<app-action ariaLabel="Gift"
-				[enabled]="birthday.gift"
-				[icon]="icon.Gift">
-			</app-action>
+		<section class="actions birthday-actions">
+			<section>
+				<app-action ariaLabel="Call"
+					[enabled]="birthday.call"
+					[icon]="icon.Call">
+				</app-action>
+				<app-action ariaLabel="Text"
+					[enabled]="birthday.text"
+					[icon]="icon.Text">
+				</app-action>
+				<app-action ariaLabel="Gift"
+					[enabled]="birthday.gift"
+					[icon]="icon.Gift">
+				</app-action>
+			</section>
 			<app-date-indicator post [status]="birthday.status"></app-date-indicator>
 		</section>
 	</section>

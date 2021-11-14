@@ -32,13 +32,6 @@
   	margin-right: 8px;
 }
 
-.actions {
-  	display: flex;
-	justify-content: flex-end;
-	flex: 1;
-	margin: 8px 0;
-}
-
 .task-action:not(:last-child) {
   margin-right: 8px;
 }
@@ -59,10 +52,30 @@
   max-width: 100%;
 }
 
+.actions {
+	display: flex;
+  flex: 1;
+  margin: 8px 0;
+}
+
+.edit-actions {
+	border-right: 4px solid pink;
+  	justify-content: flex-end;
+}
+
+.birthday-actions {
+  border-left: 4px solid pink;
+  justify-content: space-between;
+}
+
 @media only screen and (max-width: 500px) {
-  .task-list__photo-container {
-    display: none;
-  }
+	:host {
+		padding: 4px;
+	}
+
+	.task-list__photo-container {
+		display: none;
+	}
 }
 
 span:not(:last-child) {

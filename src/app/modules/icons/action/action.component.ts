@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Icon } from '../../../constants/actions.constants';
+import { Icon } from '../../../constants/icons.constants';
 
 @Component({
 	selector: 'app-action',
