@@ -81,7 +81,7 @@ export class ListComponent implements OnDestroy {
 
 	public editBirthday(birthday: AddBirthday): void {
 		this.router.navigate(["/events/edit-birthday"], {
-			queryParams: { title: 'Edit Birthday', birthday: JSON.stringify(birthday) }
+			queryParams: { title: 'Edit Recipient', birthday: JSON.stringify(birthday) }
 		});
 	}
 

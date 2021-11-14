@@ -63,15 +63,12 @@ export class ValidationService {
 			/**
 			* Check if user is required to enter the email. Clear all errors first.
 			*/
+			console.log("===> validate phone: ", phoneKey, phoneRequiredKey);
 			const isPhoneRequired = group.get(phoneRequiredKey)?.value;
 			const phone = group?.controls[phoneKey];
 			phone.setErrors(null);
 
-			if (!isPhoneRequired) {
-				return;
-			}
-
-			if (!phone.value) {
+			if (isPhoneRequired && !phone.value) {
 				phone.setErrors({ missingPhone: true });
 				return;
 			}

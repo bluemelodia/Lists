@@ -22,7 +22,6 @@ export class FocusFixDirective {
 
 	@HostListener("click", ["$event"]) onClickHandler(): void {
 		const firstInput = this.element?.nativeElement.querySelector(`.${this.targetClass}`);
-		console.log("==> input: ", firstInput);
 		timer(50)
 			.subscribe(() => {
 				firstInput?.focus();

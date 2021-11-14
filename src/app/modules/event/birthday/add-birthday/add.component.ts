@@ -14,7 +14,6 @@ import {
 	takeUntil,
 } from "rxjs/operators";
 
-import { BirthdayAction, BirthdayID } from "../../../../interfaces/birthday.interface";
 import { Topic } from "../../../../constants/topics.constants";
 
 import { BirthdayService } from "../../../../services/birthday.service";
@@ -24,6 +23,8 @@ import { ValidationService } from "../../../../services/validation.service";
 
 import {
 	Birthday,
+	BirthdayAction,
+	BirthdayID,
 	BirthdayOptions,
 	BirthdayProfile,
 } from "../../../../interfaces/birthday.interface";
@@ -33,6 +34,7 @@ import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddBirthday } from "../../../../interfaces/service/service-objects.interface";
+import { Channel, VALIDATE_CHANNEL } from "../../../../interfaces/settings.interface";
 
 import { BirthdayUtils } from "../../../../utils/birthday.utils";
 import { FormUtils } from "../../../../utils/form.utils";
@@ -51,17 +53,20 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 	headerLevel = HeaderLevel;
 
 	public calendarType: CalendarType = CalendarType.Lunar;
+	public startingCountry: string;
 	public submitted = false;
+	public validateChannel = VALIDATE_CHANNEL;
 
+	public validatePhone$ = new Subject<boolean>();
 	private ngUnsubscribe$ = new Subject<void>();
-	
+
 	@HostBinding("class") containerClasses = "section-container";
 
 	constructor(
 		private fb: FormBuilder,
+		private customValidator: ValidationService,
 		private dialogService: DialogService,
 		private birthdayService: BirthdayService,
-		private customValidator: ValidationService,
 		private navService: NavService,
 		private route: ActivatedRoute,
 	) { }
@@ -76,6 +81,9 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 					Validators.minLength(1),
 					this.customValidator.nameValidator()
 				],
+			],
+			phone: [
+				"",
 			],
 			date: this.fb.group({
 				day: ["", [Validators.required]],
@@ -92,7 +100,11 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			})
 		},
 			{
-				updateOn: "submit"
+				updateOn: "submit",
+				validators: [
+					/*this.customValidator.emailValidator("email", `channels.${Channel.email}`),*/
+					this.customValidator.phoneValidator("phone", `channels.${Channel.text}`)
+				]
 			});
 
 		this.route.queryParamMap
@@ -160,8 +172,15 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		return this.birthdayFormControl.profile.value;
 	}
 
+	public setChannelValidationStatus(channel: Channel, status: boolean): void {
+		this.validateChannel[channel] = status;
+	}
+
 	onSubmit(): void {
 		this.submitted = true;
+		this.validatePhone$.next(this.validateChannel[Channel.text]);
+		console.log("birthdayForm: ", this.birthdayForm);
+
 		if (this.birthdayForm.valid) {
 			this.submitted = false;
 

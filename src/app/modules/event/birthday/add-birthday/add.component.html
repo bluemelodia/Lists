@@ -31,6 +31,20 @@
                 [form]="birthdayForm.controls.options">
             </app-checkbox>
         </fieldset>
+		<fieldset>
+			<app-heading [level]="headerLevel.H3" text="Contact Information">
+                <span class="event-form__optional" post>Optional</span>
+            </app-heading>
+			<span class="form-instructions">Enter the recpient's contact details.</span>
+			<fieldset class="phone">
+				<app-phone [form]="birthdayForm" [startingCountry]="startingCountry"></app-phone>
+				<div class="input-error">  
+					<span *ngIf="birthdayFormControl.phone.errors?.invalidPhone">
+						Please enter a valid phone number.
+					</span>
+				</div>
+			</fieldset>
+		</fieldset>
         <fieldset>
             <app-heading [level]="headerLevel.H3" text="Profile Image">
                 <span class="event-form__optional" post>Optional</span>

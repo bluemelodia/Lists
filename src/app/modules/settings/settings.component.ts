@@ -9,11 +9,10 @@ import { Topic } from "../../constants/topics.constants";
 import { HeaderLevel } from "../../interfaces/header.interface";
 import { Phone } from "../../interfaces/phone.interface";
 import {
-	Channel,
 	Settings,
 	TopicSettings,
-	VALIDATE_CHANNEL,
 } from "./interfaces/settings.interface";
+import { Channel, ChannelValidation, VALIDATE_CHANNEL } from "../../interfaces/settings.interface";
 
 import { LoadingService } from "../../services/loading.service";
 import { SettingsService } from "./services/settings.service";
@@ -34,8 +33,7 @@ export class SettingsComponent implements OnInit {
 	public submitted: boolean;
 	public validateChannel = VALIDATE_CHANNEL;
 
-	public validateEmail$ = new Subject<boolean>();
-	public validatePhone$ = new Subject<boolean>();
+	public validateChannels$ = new Subject<ChannelValidation>();
 
 	private ngUnsubscribe$ = new Subject<void>();
 
@@ -101,6 +99,10 @@ export class SettingsComponent implements OnInit {
 						...settings?.tasks
 					}
 				});
+				
+				this.setChannelValidationStatus(Channel.email, !!settings?.email);
+				this.setChannelValidationStatus(Channel.text, !!settings?.phone);
+
 				this.cdRef.detectChanges();
 			});
 	}
@@ -137,10 +139,12 @@ export class SettingsComponent implements OnInit {
 
 	public onSubmit(): void {
 		this.submitted = true;
-		this.validateEmail$.next(this.validateChannel[Channel.email]);
-		this.validatePhone$.next(this.validateChannel[Channel.text]);
+		this.validateChannels$.next(this.validateChannel);
+
+		console.log("===> err: ", this.settingsFormControl.phone);
 
 		if (!this.settingsFormControl.email.errors && !this.settingsFormControl.phone.errors) {
+			this.submitted = false;
 			const settings: Settings = {
 				country: this.phone?.countryCode,
 				email: this.isChannelChecked(Channel.email) ? this.email : null,

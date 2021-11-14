@@ -13,7 +13,7 @@ export interface NoItem {
 export const NO_ITEMS_CONFIG: NoItemConfig = {
 	[Event.Birthday]: {
 		header: 'No Birthdays Found',
-		actionText: 'Add Birthday',
+		actionText: 'Add Recipient',
 		body: 'You do not currently have any upcoming birthdays.',
 		route: '/events/add-birthday'
 	},

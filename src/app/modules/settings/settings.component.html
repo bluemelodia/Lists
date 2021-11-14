@@ -17,11 +17,11 @@
                 <input type="email" 
                     formControlName="email"
                     placeholder="Email"/>
-                <div class="input-error" *ngIf="validateEmail$ | async as validateEmail">
-                        <span *ngIf="validateEmail && settingsFormControl.email.errors?.missingEmail">
+                <div class="input-error" *ngIf="submitted && validateChannel[channel.email]">
+                        <span *ngIf="settingsFormControl.email.errors?.missingEmail">
                             Please enter an email address.
                         </span>    
-                        <span *ngIf="validateEmail && settingsFormControl.email.errors?.invalidEmail">
+                        <span *ngIf="settingsFormControl.email.errors?.invalidEmail">
                             Please enter a valid email address.
                         </span>
                 </div>
@@ -34,11 +34,11 @@
             </app-checkbox>
             <fieldset class="phone" *ngIf="isChannelChecked(channel.text)">
 				<app-phone [form]="settingsForm" [startingCountry]="startingCountry"></app-phone>
-                <div class="input-error"  *ngIf="validateEmail$ | async as validateEmail">
-                        <span *ngIf="validateEmail && settingsFormControl.phone.errors?.missingPhone">
+                <div class="input-error"  *ngIf="submitted && validateChannel[channel.text]">
+                        <span *ngIf="settingsFormControl.phone.errors?.missingPhone">
                             Please enter a phone number.
                         </span>    
-                        <span *ngIf="validateEmail && settingsFormControl.phone.errors?.invalidPhone">
+                        <span *ngIf="settingsFormControl.phone.errors?.invalidPhone">
                             Please enter a valid phone number.
                         </span>
                 </div>
