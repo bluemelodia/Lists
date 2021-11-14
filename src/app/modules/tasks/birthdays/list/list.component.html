@@ -28,12 +28,13 @@
 			<section class="actions" post>
 				<app-action ariaLabel="Edit"
 					[enabled]="true"
-					[icon]="icon.Edit">
+					[icon]="icon.Edit"
+					(actionSelected)="editBirthday(birthday)">
 				</app-action>
 				<app-action ariaLabel="Delete"
-					(click)="deleteBirthday(birthday.uuid)"
 					[enabled]="true"
-					[icon]="icon.Delete">
+					[icon]="icon.Delete"
+					(actionSelected)="deleteBirthday(birthday.uuid)">
 				</app-action>
 			</section>
 		</app-heading>
@@ -58,18 +59,6 @@
 				[enabled]="birthday.gift"
 				[icon]="icon.Gift">
 			</app-action>
-			
 		</section>
-		<fieldset class="form-actions">
-			<button type="submit" 
-				routerLink="/events/edit-birthday"
-				[queryParams]="{ title: 'Edit Birthday', birthday: birthday | json }">
-				<i class="fas fa-edit"></i>
-			</button>
-			<button type="submit"
-				>
-				Delete
-			</button>
-		</fieldset>
 	</section>
 </ng-template>

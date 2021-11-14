@@ -6,16 +6,18 @@ import {
 	OnDestroy,
 	Output
 } from "@angular/core";
+import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
 
-import { Event } from "../../../../constants/events.contants";
 import { BirthdayService } from "../../../../services/birthday.service";
+
+import { ActionIcon } from "../../../../constants/actions.constants";
+import { Event } from "../../../../constants/events.contants";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { NO_ITEMS_CONFIG } from "../../../../interfaces/no-items.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddBirthday } from "../../../../interfaces/service/service-objects.interface";
-import { ActionIcon } from "src/app/constants/actions.constants";
 
 @Component({
 	selector: "task-birthdays-list",
@@ -41,6 +43,7 @@ export class ListComponent implements OnDestroy {
 
 	constructor(
 		private birthdayService: BirthdayService,
+		private router: Router,
 	) { }
 
 	public deleteBirthday(uuid: string): void {
@@ -54,6 +57,12 @@ export class ListComponent implements OnDestroy {
 					this.deletedBirthday.emit(null);
 				}
 			});
+	}
+
+	public editBirthday(birthday: AddBirthday): void {
+		this.router.navigate(["/events/edit-birthday"], {
+			queryParams: { title: 'Edit Birthday', birthday: JSON.stringify(birthday) }
+		});
 	}
 
 	public ngOnDestroy(): void {

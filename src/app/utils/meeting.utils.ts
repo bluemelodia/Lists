@@ -177,7 +177,7 @@ export class MeetingUtils {
 			const diff = MeetingUtils.getMeetingDiff(meeting)
 			const diffInDays = diff / (1000 * 3600 * 24);
 			if (diff < 0) { // already started
-				meeting.status = DateStatus.Passed;
+				meeting.status = DateStatus.Started;
 			} else if (-1 < diffInDays && diffInDays <= 0) { // today
 				meeting.status = DateStatus.Today;
 			} else if (0 < diffInDays && diffInDays <= 1) { // tomorrow
