@@ -21,7 +21,7 @@
 		<app-heading [level]="headerLevel.H2" [text]="meeting.name">
 			<span class="task-list__badges" post>
 				<app-meeting-indicator [isVirtual]="meeting.virtual"></app-meeting-indicator>
-				<app-date-indicator [status]="meeting.status"></app-date-indicator>
+				<app-date-indicator *ngIf="meeting.status" [status]="meeting.status"></app-date-indicator>
 			</span>
 		</app-heading>
 		<p class="task-details__wrapper">
