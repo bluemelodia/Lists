@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Icon } from 'src/app/constants/icons.constants';
+import { Icon } from '../../../constants/icons.constants';
 
 /** 
 * Use for decorative icons that are not expected to be interactive.

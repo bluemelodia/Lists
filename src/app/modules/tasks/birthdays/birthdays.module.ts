@@ -15,9 +15,9 @@ import { IndicatorModule } from "../../indicator/indicator.module";
 		ListComponent,
 	],
 	imports: [
-		IconsModule,
 		CommonModule,
 		ElementModule,
+		IconsModule,
 		BirthdayTasksRoutingModule,
 		IndicatorModule,
 	],

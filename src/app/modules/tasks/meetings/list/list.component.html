@@ -22,7 +22,20 @@
 			<app-meeting-indicator [isVirtual]="meeting.virtual"></app-meeting-indicator>
 			<app-date-indicator *ngIf="meeting.status" [status]="meeting.status"></app-date-indicator>
 		</span>
-		<app-heading [level]="headerLevel.H2" [text]="meeting.name"></app-heading>
+		<app-heading [level]="headerLevel.H2" [text]="meeting.name">
+			<section class="actions edit-actions" post>
+				<app-action ariaLabel="Edit"
+					[enabled]="true"
+					[icon]="icon.Edit"
+					(actionSelected)="editMeeting(meeting)">
+				</app-action>
+				<app-action ariaLabel="Delete"
+					[enabled]="true"
+					[icon]="icon.Delete"
+					(actionSelected)="onDeleteClicked(meeting.uuid)">
+				</app-action>
+			</section>
+		</app-heading>
 		<p class="task-details__wrapper">
 			<span class="task-details__label">Start</span>
 			<span class="task-details__description">{{ meeting | meetingFormatter: true }}</span>
@@ -39,16 +52,5 @@
 			<span class="task-details__label">Details</span>
 			<span class="task-details__description">{{ meeting.description }}</span>
 		</p>
-		<fieldset class="form-actions">
-			<button type="submit" 
-				routerLink="/events/edit-meeting"
-				[queryParams]="{ title: 'Edit Meeting', meeting: meeting | json }">
-				Edit  
-			</button>
-			<button type="submit"
-				(click)="deleteMeeting(meeting.uuid)">
-				Delete
-			</button>
-		</fieldset>
 	</section>
 </ng-template>

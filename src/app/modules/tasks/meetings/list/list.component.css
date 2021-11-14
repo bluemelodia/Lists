@@ -9,7 +9,7 @@
   flex-grow: 1;
   flex-shrink: 0;
   justify-content: flex-end;
-  margin-top: 8px;
+  margin: 8px 0;
 }
 
 .task-list__badges *:not(:last-child) {
@@ -35,4 +35,12 @@
 
 .task-details__description {
 	word-wrap: break-word;
+}
+
+.edit-actions {
+    display: flex;
+	justify-content: flex-end;
+	flex: 1;
+	
+	border-right: 4px solid pink;
 }

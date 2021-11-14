@@ -6,8 +6,9 @@ import { catchError, map } from "rxjs/operators";
 import { DialogService } from "./dialog.service";
 import { Meeting, MeetingAction } from "../interfaces/meeting.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
-import { MeetingUtils } from "../utils/meeting.utils";
+import { Dialog } from "../interfaces/dialog.interface";
 import { AddMeeting } from "../interfaces/service/service-objects.interface";
+import { MeetingUtils } from "../utils/meeting.utils";
 
 @Injectable({
 	providedIn: "root"
@@ -66,5 +67,28 @@ export class MeetingService {
 					return of(null);
 				})
 			);
-		}
+	}
+
+	public deleteMeeting(uuid: string): Observable<ResponseStatus> {
+		console.info("🧳 🏁 MeetingService ---> delete meeting: ", uuid);
+
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return this.http.delete<Response>(
+			`${MeetingUtils.meetingURLForAction(MeetingAction.Delete)}/guest/${uuid}`,
+			{
+				headers: this.headers
+			}
+		)
+			.pipe(
+				map(() => {
+					console.info("🧳 🏁 MeetingService ---> deleteMeeting success");
+					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteMeeting);
+					return ResponseStatus.SUCCESS;
+				}),
+				catchError(() => {
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.DeleteMeeting);
+					return of(null);
+				})
+			)
+	}
 }

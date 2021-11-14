@@ -8,6 +8,7 @@ import { MeetingTasksRoutingModule } from './meetings-routing.module';
 
 import { IndicatorModule } from '../../indicator/indicator.module';
 import { PipesModule } from '../../../pipes/pipes.module';
+import { IconsModule } from '../../icons/icons.module';
 
 @NgModule({
 	declarations: [
@@ -17,6 +18,7 @@ import { PipesModule } from '../../../pipes/pipes.module';
 	imports: [
 		CommonModule,
 		ElementModule,
+		IconsModule,
 		IndicatorModule,
 		MeetingTasksRoutingModule,
 		PipesModule,

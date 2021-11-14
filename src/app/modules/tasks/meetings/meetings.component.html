@@ -1,3 +1,4 @@
 <section class="form-container">
-	<task-meetings-list [list]="meetingList$ | async"></task-meetings-list>
+	<task-meetings-list [list]="meetingList$ | async"
+		(deletedMeeting)="getMeetings()"></task-meetings-list>
 </section>
