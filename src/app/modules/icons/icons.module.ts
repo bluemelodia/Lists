@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActionComponent } from './action/action.component';
+import { DecoratorComponent } from './decorator/decorator.component';
 
 @NgModule({
   declarations: [
-    ActionComponent
+    ActionComponent,
+    DecoratorComponent,
   ],
   imports: [
     CommonModule
   ],
   exports: [
-	  ActionComponent
+	  ActionComponent,
+	  DecoratorComponent,
   ]
 })
-export class ActionsModule { }
+export class IconsModule { }

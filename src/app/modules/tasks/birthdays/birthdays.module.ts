@@ -5,7 +5,7 @@ import { BirthdaysComponent } from "./birthdays.component";
 import { BirthdayTasksRoutingModule } from "./birthdays-routing.module";
 import { ListComponent } from "./list/list.component";
 
-import { ActionsModule } from "../../actions/actions.module";
+import { IconsModule } from "../../icons/icons.module";
 import { ElementModule } from "../../element/element.module";
 import { IndicatorModule } from "../../indicator/indicator.module";
 
@@ -15,7 +15,7 @@ import { IndicatorModule } from "../../indicator/indicator.module";
 		ListComponent,
 	],
 	imports: [
-		ActionsModule,
+		IconsModule,
 		CommonModule,
 		ElementModule,
 		BirthdayTasksRoutingModule,

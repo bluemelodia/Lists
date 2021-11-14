@@ -3,11 +3,11 @@
 	border: none;
 }
 
-.task-action {
+.action-icon {
 	color: pink;
 	font-size: 1.5rem;
 }
   
-.task-action.enabled {
+.action-icon.enabled {
 	color: #dd2e44;
 }

@@ -38,13 +38,34 @@
 				</app-action>
 			</section>
 		</app-heading>
-		<section class="birthday">
-			<p *ngIf="!birthday.lunar">{{ birthday.month }}/{{ birthday.date }}</p>
-			<ng-container *ngIf="birthday.lunar">
-				<p>Solar ({{ birthday.year }}) - {{ birthday.month }}/{{ birthday.date }}</p>
-				<p>Lunar ({{ birthday.year }}) - {{ birthday.cmonth }}/{{ birthday.cdate }} ({{ birthday.cmonthname }})</p>
+		<section class="task-list__birthday-container">
+			<ng-container *ngIf="!birthday.lunar">
+				<section class="task-list__birthday-status">
+					<p class="task-list__birthday">{{ birthday.month }}/{{ birthday.date }}</p>
+					<app-date-indicator post [status]="birthday.status"></app-date-indicator>
+				</section>
 			</ng-container>
-			<app-date-indicator post [status]="birthday.status"></app-date-indicator>
+			<ng-container *ngIf="birthday.lunar">
+				<section class="task-list__birthday-status">
+					<p class="task-list__birthday">
+						<app-action ariaLabel="Solar"
+							[enabled]="true"
+							[icon]="icon.Solar">
+						</app-action>
+						({{ birthday.year }}) - {{ birthday.month }}/{{ birthday.date }}
+					</p>
+				</section>
+				<section class="task-list__birthday-status">
+					<p class="task-list__birthday">
+						<app-action ariaLabel="Lunar"
+							[enabled]="true"
+							[icon]="icon.Lunar">
+						</app-action>
+						({{ birthday.year }}) - {{ birthday.cmonth }}/{{ birthday.cdate }} ({{ birthday.cmonthname }})
+					</p>
+					<app-date-indicator post [status]="birthday.status"></app-date-indicator>
+				</section>
+			</ng-container>
 		</section>
 		<section class="actions">
 			<app-action ariaLabel="Call"
