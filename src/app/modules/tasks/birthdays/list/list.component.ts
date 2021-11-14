@@ -13,7 +13,7 @@ import { take, takeUntil } from "rxjs/operators";
 import { BirthdayService } from "../../../../services/birthday.service";
 import { DialogService } from "../../../../services/dialog.service";
 
-import { ActionIcon } from "../../../../constants/actions.constants";
+import { Icon } from "../../../../constants/actions.constants";
 import { Event } from "../../../../constants/events.contants";
 
 import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
@@ -40,7 +40,7 @@ export class ListComponent implements OnDestroy {
 	headerLevel = HeaderLevel;
 	noItemsConfig = NO_ITEMS_CONFIG[Event.Birthday];
 
-	public icon = ActionIcon;
+	public icon = Icon;
 	public readonly base64Prefix = "data:image/jpeg;base64,";
 	private ngUnsubscribe$ = new Subject<void>();
 
@@ -52,18 +52,18 @@ export class ListComponent implements OnDestroy {
 
 	public onDeleteClicked(uuid: string): void {
 		this.dialogService.showConfirmDialog(Dialog.DeleteBirthday)
-		.pipe(
-			takeUntil(this.ngUnsubscribe$)
-		)
-		.subscribe((action: DialogAction) => {
-			switch (action) {
-				case DialogAction.Continue:
-					this.deleteBirthday(uuid);
-					break;
-				default:
-					break;
-			}
-		});
+			.pipe(
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((action: DialogAction) => {
+				switch (action) {
+					case DialogAction.Continue:
+						this.deleteBirthday(uuid);
+						break;
+					default:
+						break;
+				}
+			});
 	}
 
 	public deleteBirthday(uuid: string): void {

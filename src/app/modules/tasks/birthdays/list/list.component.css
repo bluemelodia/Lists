@@ -12,15 +12,17 @@
 .task-list__birthday-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+
+  border-left: 4px solid pink;
 }
 
 .task-list__birthday-status {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 
@@ -31,7 +33,10 @@
 }
 
 .actions {
-  margin: 8px 0;
+  	display: flex;
+	justify-content: flex-end;
+	flex: 1;
+	margin: 8px 0;
 }
 
 .task-action:not(:last-child) {
@@ -57,11 +62,6 @@
 @media only screen and (max-width: 500px) {
   .task-list__photo-container {
     display: none;
-  }
-
-  .task-list__birthday-container {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }
 
