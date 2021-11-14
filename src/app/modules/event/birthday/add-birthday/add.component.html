@@ -8,7 +8,7 @@
             <input type="text" 
                 formControlName="name"
                 placeholder="Name"/>
-            <div class="input-error" *ngIf="!birthdayFormControl.valid && this.submitted">
+            <div class="input-error" *ngIf="!birthdayFormControl.valid && submitted">
                     <span *ngIf="birthdayFormControl.name.errors?.required">
                         Name is required.
                     </span>
@@ -38,7 +38,7 @@
 			<span class="form-instructions">Enter the recpient's contact details.</span>
 			<fieldset class="phone">
 				<app-phone [form]="birthdayForm" [startingCountry]="startingCountry"></app-phone>
-				<div class="input-error">  
+				<div class="input-error" *ngIf="submitted">  
 					<span *ngIf="birthdayFormControl.phone.errors?.invalidPhone">
 						Please enter a valid phone number.
 					</span>

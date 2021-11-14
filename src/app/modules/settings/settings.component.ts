@@ -141,8 +141,6 @@ export class SettingsComponent implements OnInit {
 		this.submitted = true;
 		this.validateChannels$.next(this.validateChannel);
 
-		console.log("===> err: ", this.settingsFormControl.phone);
-
 		if (!this.settingsFormControl.email.errors && !this.settingsFormControl.phone.errors) {
 			this.submitted = false;
 			const settings: Settings = {

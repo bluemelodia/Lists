@@ -63,7 +63,6 @@ export class ValidationService {
 			/**
 			* Check if user is required to enter the email. Clear all errors first.
 			*/
-			console.log("===> validate phone: ", phoneKey, phoneRequiredKey);
 			const isPhoneRequired = group.get(phoneRequiredKey)?.value;
 			const phone = group?.controls[phoneKey];
 			phone.setErrors(null);
@@ -74,7 +73,13 @@ export class ValidationService {
 			}
 
 			const valid = ValidationService.phoneRegex.test(phone?.value?.number);
-			console.log("===> is phone valid: ", phone?.value?.number, valid);
+			
+			/**
+			* If the phone number is optional, empty string is fine.
+			*/
+			if (!isPhoneRequired && !phone?.value?.number) {
+				return;
+			}
 			if (!valid) {
 				phone.setErrors({ invalidPhone: true });
 			}
