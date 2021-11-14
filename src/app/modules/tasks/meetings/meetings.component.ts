@@ -52,6 +52,7 @@ export class MeetingsComponent implements OnInit {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((meetings: AddMeeting[]) => {
+				console.log("===> new meetings: ", meetings);
 				this.meetings$.next(meetings);
 			});
 	}

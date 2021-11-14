@@ -313,6 +313,7 @@ button:disabled .arrow-btn {
 
 .task-list__item-info {
 	width: 100%;
+	margin: 4px;
 }
 
 /**

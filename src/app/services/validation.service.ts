@@ -122,13 +122,6 @@ export class ValidationService {
 			const isSameDay = isSameMonth && startDay === nowDay;
 
 			// Allow users to have the start time & end time at the same time (essentially a reminder).
-			if (startYear < nowYear || isSameMonth && startDay < nowDay) {
-				validationMap["startDateInPast"] = true;
-			}
-			if (isSameMonth && isSameDay && (startingTime.hours < now.getHours()
-				|| startingTime.hours === now.getHours() && startingTime.minutes < now.getMinutes())) {
-				validationMap["startTimeInPast"] = true;
-			}
 			if (startingDate > endingDate) {
 				validationMap["startDateAfterEnd"] = true;
 			}

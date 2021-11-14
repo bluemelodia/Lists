@@ -53,9 +53,6 @@
 				[submitted]="submitted">
 			</app-datepicker>
 			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
-                <span *ngIf="meetingForm.errors?.startDateInPast">
-					Start date cannot be in the past.
-				</span>
 				<span *ngIf="meetingForm.errors?.startDateAfterEnd">
 					Start date must be before end date.
 				</span>
@@ -73,9 +70,6 @@
                 <span *ngIf="meetingFormControl.startTime.errors?.required">
                     Start time is required.
                 </span>
-				<span *ngIf="meetingForm.errors?.startTimeInPast">
-					Start time cannot be in the past.
-				</span>
             </div> 	
 		</fieldset>
 		<fieldset class="end-date">
