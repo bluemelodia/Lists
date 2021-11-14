@@ -155,7 +155,10 @@ export class MeetingUtils {
 	*/
 	public static processMeetings(meetings: AddMeeting[]): AddMeeting[] {
 		MeetingUtils.tagMeetings(meetings);
+		return MeetingUtils.filterPastMeetings(meetings);
+	}
 
+	public static filterPastMeetings(meetings: AddMeeting[]): AddMeeting[] {
 		const currentTime = new Date().getTime();
 		const filteredMeetings = meetings.filter((meeting: AddMeeting) => {
 			const meetingEnd = new Date(meeting.end_year, meeting.end_month - 1, meeting.end_date, meeting.end_hour, meeting.end_minute);
@@ -165,7 +168,12 @@ export class MeetingUtils {
 	}
 
 	private static sortMeetings(a: AddMeeting, b: AddMeeting): number {
-		return a.start_year - b.start_year || a.start_month - b.start_month || a.start_date - b.start_date || a.start_hour - b.start_hour || a.start_minute - b.start_minute || MeetingUtils.sortByName(a.name, b.name);
+		return a.start_year - b.start_year 
+			|| a.start_month - b.start_month 
+			|| a.start_date - b.start_date 
+			|| a.start_hour - b.start_hour 
+			|| a.start_minute - b.start_minute 
+			|| MeetingUtils.sortByName(a.name, b.name);
 	}
 
 	private static sortByName(a: string, b: string): number {
@@ -176,7 +184,9 @@ export class MeetingUtils {
 		meetings.forEach((meeting: AddMeeting) => {
 			const diff = MeetingUtils.getMeetingDiff(meeting)
 			const diffInDays = diff / (1000 * 3600 * 24);
-			if (diff < 0) { // already started
+			if (MeetingUtils.isEnded(meeting)) {
+				meeting.status = DateStatus.Ended;
+			} else if (diff < 0) { // already started
 				meeting.status = DateStatus.Started;
 			} else if (-1 < diffInDays && diffInDays <= 0) { // today
 				meeting.status = DateStatus.Today;
@@ -256,8 +266,12 @@ export class MeetingUtils {
 	private static getMeetingDiff(meeting: AddMeeting): number {
 		const today = new Date();
 		const meetingDate = new Date(meeting.start_year, meeting.start_month - 1, meeting.start_date, meeting.start_hour, meeting.start_minute);
-		console.log("compare: ", today, meetingDate);
-
 		return(meetingDate.getTime() - today.getTime());
+	}
+
+	private static isEnded(meeting: AddMeeting): boolean {
+		const today = new Date();
+		const meetingDate = new Date(meeting.end_year, meeting.end_month - 1, meeting.end_date, meeting.end_hour, meeting.end_minute);
+		return (meetingDate.getTime() - today.getTime()) < 0;
 	}
 }
