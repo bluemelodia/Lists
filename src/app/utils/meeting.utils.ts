@@ -174,13 +174,14 @@ export class MeetingUtils {
 
 	private static tagMeetings(meetings: AddMeeting[]) {
 		meetings.forEach((meeting: AddMeeting) => {
-			const diffInDays = MeetingUtils.getMeetingDiff(meeting);
-			if (-1 < diffInDays && diffInDays <= 0) { // today
+			const diff = MeetingUtils.getMeetingDiff(meeting)
+			const diffInDays = diff / (1000 * 3600 * 24);
+			if (diff < 0) { // already started
+				meeting.status = DateStatus.Passed;
+			} else if (-1 < diffInDays && diffInDays <= 0) { // today
 				meeting.status = DateStatus.Today;
 			} else if (0 < diffInDays && diffInDays <= 1) { // tomorrow
 				meeting.status = DateStatus.Tomorrow;
-			} else if (diffInDays < 0) { // already passed
-				meeting.status = DateStatus.Passed;
 			} else if (diffInDays < 7) { // this week
 				meeting.status = DateStatus.ThisWeek;
 			} else if (diffInDays < 14) { // in two weeks
@@ -192,19 +193,19 @@ export class MeetingUtils {
 	public static getMeetingDay(meetingDay: number): string {
 		switch (meetingDay) {
 			case 0:
-				return "Mon";
-			case 1:
-				return "Tues";
-			case 2:
-				return "Wed";
-			case 3:
-				return "Thu";
-			case 4:
-				return "Fri";
-			case 5:
-				return "Sat";
-			case 6:
 				return "Sun";
+			case 1:
+				return "Mon";
+			case 2:
+				return "Tues";
+			case 3:
+				return "Wed";
+			case 4:
+				return "Thu";
+			case 5:
+				return "Fri";
+			case 6:
+				return "Sat";
 		}
 	}
 
@@ -254,8 +255,9 @@ export class MeetingUtils {
 
 	private static getMeetingDiff(meeting: AddMeeting): number {
 		const today = new Date();
-		const meetingDate = new Date(meeting.start_year, meeting.start_month - 1, meeting.start_date);
+		const meetingDate = new Date(meeting.start_year, meeting.start_month - 1, meeting.start_date, meeting.start_hour, meeting.start_minute);
+		console.log("compare: ", today, meetingDate);
 
-		return (meetingDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
+		return(meetingDate.getTime() - today.getTime());
 	}
 }
