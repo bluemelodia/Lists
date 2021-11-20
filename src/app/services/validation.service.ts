@@ -41,17 +41,19 @@ export class ValidationService {
 			const email = group?.controls[emailKey];
 			email.setErrors(null);
 
-			if (!isEmailRequired) {
-				return;
-			}
-
-			if (!email.value) {
+			if (isEmailRequired && !email.value) {
 				email.setErrors({ missingEmail: true });
 				return;
 			}
 
+			/**
+			* If the email is optional, empty string is fine.
+			*/
+			if (!isEmailRequired && !email?.value) {
+				return;
+			}
+			
 			const valid = ValidationService.emailRegex.test(email.value);
-			console.log("===> is email valid: ", email.value, valid);
 			if (!valid) {
 				email.setErrors({ invalidEmail: true });
 			}
@@ -71,8 +73,6 @@ export class ValidationService {
 				phone.setErrors({ missingPhone: true });
 				return;
 			}
-
-			const valid = ValidationService.phoneRegex.test(phone?.value?.number);
 			
 			/**
 			* If the phone number is optional, empty string is fine.
@@ -80,6 +80,8 @@ export class ValidationService {
 			if (!isPhoneRequired && !phone?.value?.number) {
 				return;
 			}
+
+			const valid = ValidationService.phoneRegex.test(phone?.value?.number);
 			if (!valid) {
 				phone.setErrors({ invalidPhone: true });
 			}

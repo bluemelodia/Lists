@@ -36,6 +36,16 @@
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
 			<span class="form-instructions">Enter the recpient's contact details.</span>
+			<fieldset class="email">
+                <input type="email" 
+                    formControlName="email"
+                    placeholder="Email"/>
+                <div class="input-error" *ngIf="submitted">  
+                    <span *ngIf="birthdayFormControl.email.errors?.invalidEmail">
+                        Please enter a valid email address.
+                    </span>
+                </div>
+            </fieldset>
 			<fieldset class="phone">
 				<app-phone [form]="birthdayForm" [startingCountry]="startingCountry"></app-phone>
 				<div class="input-error" *ngIf="submitted">  

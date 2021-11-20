@@ -57,7 +57,6 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 	public submitted = false;
 	public validateChannel = VALIDATE_CHANNEL;
 
-	public validatePhone$ = new Subject<boolean>();
 	private ngUnsubscribe$ = new Subject<void>();
 
 	@HostBinding("class") containerClasses = "section-container";
@@ -82,6 +81,9 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 					this.customValidator.nameValidator()
 				],
 			],
+			email: [
+				"",
+			],
 			phone: [
 				"",
 			],
@@ -102,7 +104,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			{
 				updateOn: "submit",
 				validators: [
-					/*this.customValidator.emailValidator("email", `channels.${Channel.email}`),*/
+					this.customValidator.emailValidator("email", `channels.${Channel.email}`),
 					this.customValidator.phoneValidator("phone", `channels.${Channel.text}`)
 				]
 			});
@@ -178,7 +180,6 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 
 	onSubmit(): void {
 		this.submitted = true;
-		this.validatePhone$.next(this.validateChannel[Channel.text]);
 		console.log("birthdayForm: ", this.birthdayForm);
 
 		if (this.birthdayForm.valid) {

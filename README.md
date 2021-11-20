@@ -31,12 +31,14 @@ How to make image upload easy with Angular
 - Add ESLinting
 
 - Let users budget gifts for friends/family and keep track of their addresses. Let users enter a budget/email/address for each recipient (for sending gifts) - the gifts page will sync this same thing and also get gift history.
-	- Add this to the Add Recipient form.
-		- Phone number, email address, physical address.
-		- Budget.
-	- Then you can see each recipient on the gifts page, and add a list of gifts purchased for them.
+
+  - Add this to the Add Recipient form.
+    - Phone number, email address, physical address.
+    - Budget.
+  - Then you can see each recipient on the gifts page, and add a list of gifts purchased for them.
 
 - Fix issue with undefined dates sent out in emails.
+- Add to the birthday DB schema - with the contact info.
 
 ## Navigation
 
