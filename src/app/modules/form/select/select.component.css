@@ -1,0 +1,67 @@
+.input-container {
+	position: relative;
+  }
+  
+  input {
+	margin-bottom: 0;
+  }
+  
+  input.options-open {
+	border-bottom: 0;
+  }
+  
+  .options {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: flex-start;
+  
+	  position: absolute;
+	  width: 100%;
+	  z-index: 500;
+  
+	  background: white;
+	  border: 2px solid pink;
+	  border-top: none;
+	  top: 37px;
+  
+	  max-height: 150px;
+	  overflow: auto;
+	  visibility: hidden;
+  }
+  
+  .options.show {
+	visibility: visible;
+	border-top: none;
+  }
+  
+  .option {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+  
+	padding: 8px 12px;
+	text-align: left;
+  }
+  
+  .option:hover,
+  .option.selected {
+	background-color: pink;
+  }
+  
+  .sm-spacer {
+	display: none;
+  }
+  
+  /**
+  * z-index increases from top to bottom of the document. To ensure the border-bottom is 
+  * visible for the element receiving focus, increase its z-index.
+  */
+  .option:focus-visible,
+  .option:focus-within {
+	z-index: 100;
+  }
+  
+  .option:focus-visible .sm-spacer,
+  .option:focus-within .sm-spacer {
+	display: block;
+  }

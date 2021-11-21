@@ -15,13 +15,17 @@ import { CheckboxComponent } from "./checkbox/checkbox.component";
 import { DatepickerComponent } from "./datepicker/datepicker.component";
 import { RadioComponent } from "./radio/radio.component";
 import { PhoneComponent } from "./phone/phone.component";
+import { SelectComponent } from './select/select.component';
+import { AddressComponent } from "./address/address.component";
 
 @NgModule({
 	declarations: [
+		AddressComponent,
 		CheckboxComponent,
 		DatepickerComponent,
 		PhoneComponent,
 		RadioComponent,
+  		SelectComponent,
 	],
 	imports: [
 		CalendarModule,
@@ -35,6 +39,7 @@ import { PhoneComponent } from "./phone/phone.component";
 		ReactiveFormsModule,
 	],
 	exports: [
+		AddressComponent,
 		CheckboxComponent,
 		DatepickerComponent,
 		NgxMaterialTimepickerModule,

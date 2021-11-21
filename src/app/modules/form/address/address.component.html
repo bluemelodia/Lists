@@ -1,0 +1,35 @@
+<form #picker [formGroup]="form"
+    class="input-container focus-origin">
+	<app-select [options]="countries"
+		placeholder="Country"
+		selected="United States"></app-select>
+	<!--<ng-container *ngIf="calendar$ | async as cal">
+        <input readonly type="text"
+            [ngClass]="{ 'picker-open' : cal.showCal }"
+            [placeholder]="placeholder"
+            [value]="form.controls.day.value | pickerDateFormatter: calendarType"
+            (click)="showHideCal()"
+            (keydown)="onKeydownEvent($event)"/>
+        <div class="input-error" *ngIf="!form.valid && submitted">
+            <span *ngIf="dateFormControl.day.errors?.required">
+				{{fieldName}} is required.
+            </span>
+			{{ form.errors }}
+        </div> 
+		<section class="cal-container" *ngIf="cal.showCal">
+			<app-loader *ngIf="cal.isLoading"></app-loader>
+			<app-calendar #calendar appFocus
+				*ngIf="!cal.isLoading && cal.calendar"
+				[id]="calendarId" 
+				[calendar]="cal.calendar" 
+				[type]="calendarType"
+				[selectedDay]="form.controls[controlName]?.value"
+				(dateSelected)="selectDate($event)">
+			</app-calendar>
+			<app-no-results 
+				*ngIf="!cal.isLoading && !cal.calendar" 
+				[message]="noCalMessage">
+			</app-no-results>
+		</section>
+	</ng-container>-->
+</form>
