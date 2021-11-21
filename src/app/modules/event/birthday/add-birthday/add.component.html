@@ -9,12 +9,12 @@
                 formControlName="name"
                 placeholder="Name"/>
             <div class="input-error" *ngIf="!birthdayFormControl.valid && submitted">
-                    <span *ngIf="birthdayFormControl.name.errors?.required">
-                        Name is required.
-                    </span>
-                    <span *ngIf="birthdayFormControl.name.errors?.minlength || birthdayFormControl.name.errors?.invalidName">
-                        Please enter a valid name.
-                    </span>
+                <span *ngIf="birthdayFormControl.name.errors?.required">
+                     Name is required.
+                </span>
+                <span *ngIf="birthdayFormControl.name.errors?.minlength || birthdayFormControl.name.errors?.invalidName">
+                    Please enter a valid name.
+                </span>
             </div> 
             <app-datepicker appFocus 
                 class="datepicker-container"
@@ -36,8 +36,7 @@
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
 			<span class="form-instructions">Enter the recpient's contact details.</span>
-			<fieldset class="email">
-                <input type="email" 
+			<input type="email" 
                     formControlName="email"
                     placeholder="Email"/>
                 <div class="input-error" *ngIf="submitted">  
@@ -45,16 +44,18 @@
                         Please enter a valid email address.
                     </span>
                 </div>
-            </fieldset>
-			<fieldset class="phone">
 				<app-phone [form]="birthdayForm" [startingCountry]="startingCountry"></app-phone>
 				<div class="input-error" *ngIf="submitted">  
 					<span *ngIf="birthdayFormControl.phone.errors?.invalidPhone">
 						Please enter a valid phone number.
 					</span>
 				</div>
-			</fieldset>
-			<app-address></app-address>
+		</fieldset>
+		<fieldset>
+				<app-heading [level]="headerLevel.H3" text="Address">
+					<span class="event-form__optional" post>Optional</span>
+				</app-heading>
+				<app-address></app-address>
 		</fieldset>
         <fieldset>
             <app-heading [level]="headerLevel.H3" text="Profile Image">

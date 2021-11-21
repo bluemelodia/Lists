@@ -126,6 +126,7 @@ fieldset {
 
   padding: 0;
   margin: 0;
+  margin-bottom: 8px;
 }
 
 fieldset.form-actions {
@@ -139,10 +140,18 @@ textarea {
   display: inline-block;
   flex: 1;
   font-size: inherit;
-  margin: 0 0 8px 0;
+  margin: 0;
   padding: 8px;
 
   width: 100%;
+}
+
+input:not(:last-of-type), input:not(:last-child) {
+	margin-bottom: 8px;
+}
+
+app-datepicker input {
+	margin-bottom: 8px;
 }
 
 textarea {
@@ -376,7 +385,6 @@ input.phone-input__container::placeholder {
 
 .iti {
   position: relative;
-  margin-bottom: 8px;
 }
 
 .iti .iti__flag-container {

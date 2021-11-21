@@ -4,7 +4,7 @@
         (ngSubmit)="onSubmit()">
 		<app-heading [level]="headerLevel.H2" text="Meeting Details"></app-heading>
         <span class="form-instructions">Provide details about the meeting.</span>
-		<fieldset class="name">
+		<fieldset class="event-details">
             <input type="text" 
                 formControlName="name"
                 placeholder="Event Name"/>
@@ -19,9 +19,7 @@
 						Name should not exceed {{ maxChars }} characters.
 					</span>
             </div> 
-        </fieldset>
-		<fieldset class="location">
-            <input type="text" 
+			<input type="text" 
                 formControlName="location"
                 placeholder="Location"/>
 			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
@@ -38,7 +36,7 @@
 				checkboxName="virtual"
 				[form]="meetingForm.controls.options">
 			</app-checkbox>
-		</fieldset>
+        </fieldset>
 		<fieldset class="start-date">
 			<app-heading [level]="headerLevel.H3" text="Start Date">
             </app-heading>
