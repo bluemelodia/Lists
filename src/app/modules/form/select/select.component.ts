@@ -8,6 +8,7 @@ import { filter, takeUntil } from "rxjs/operators";
 import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
 import { FocusEvent, Key } from "../../../interfaces/focus.interface";
+import { FormGroup } from "@angular/forms";
 
 @Component({
 	selector: "app-select",
@@ -18,6 +19,7 @@ export class SelectComponent implements OnInit, OnDestroy {
 	@Input() placeholder = "";
 	@Input() id: string;
 	@Input() default: string;
+	@Input() form: FormGroup;
 	@Input() options: Set<string>;
 	@Input() selected: string;
 

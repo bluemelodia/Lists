@@ -56,13 +56,13 @@
 					<span class="event-form__optional" post>Optional</span>
 				</app-heading>
 				<span class="form-instructions">Enter the recpient's mailing address.</span>
-				<app-address></app-address>
+				<app-address [form]="birthdayForm.controls.address"></app-address>
 		</fieldset>
         <fieldset>
             <app-heading [level]="headerLevel.H3" text="Profile Image">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
-            <span class="form-instructions">Choose a profile image to represent the birthday recipient.</span>
+            <span class="form-instructions">Choose a profile image to represent the recipient.</span>
             <app-img-upload [form]="birthdayForm.controls.profile"></app-img-upload>
         </fieldset>
         <fieldset class="event-options">

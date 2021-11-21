@@ -1,26 +1,29 @@
-<section class="input-container" #select>
-    <input type="text" readonly
-        [ngClass]="{ 'options-open' : showOptionList }"
-        [placeholder]="placeholder"
-        [value]="selected ? selected : null"
-        (click)="showHideOptions()"
-        (keydown)="onKeydownEvent($event)"/>
-    <section *ngIf="showOptionList"
-        class="options"
-        [ngClass]="{ 'show' : showOptionList }">
-        <button *ngFor="let option of options; let i = index"
-            type="button"
-            class="option focus-option"
-            [tabindex]="showOptionList ? 0 : -1"
-            [attr.aria-hidden]="showOptionList ? false : true"
-            [ngClass]="{ 'selected' : selected === option, 'focus-origin' : i === 0 }"
-            (click)="selectOption(option)">
-            {{ option }}
-            <i class="fa fa-heart sm-spacer" aria-hidden="true"></i>
-        </button>
-        <button class="tab-stop"
-            [tabindex]="showOptionList ? 0 : -1"
-            [attr.aria-hidden]="showOptionList ? false : true">
-        </button>
-    </section>
-</section>
+<form [formGroup]="form">
+	<section class="input-container" #select>
+		<input type="text" readonly
+			[ngClass]="{ 'options-open' : showOptionList }"
+			formControlName="country"
+			[placeholder]="placeholder"
+			[value]="selected ? selected : null"
+			(click)="showHideOptions()"
+			(keydown)="onKeydownEvent($event)"/>
+		<section *ngIf="showOptionList"
+			class="options"
+			[ngClass]="{ 'show' : showOptionList }">
+			<button *ngFor="let option of options; let i = index"
+				type="button"
+				class="option focus-option"
+				[tabindex]="showOptionList ? 0 : -1"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[ngClass]="{ 'selected' : selected === option, 'focus-origin' : i === 0 }"
+				(click)="selectOption(option)">
+				{{ option }}
+				<i class="fa fa-heart sm-spacer" aria-hidden="true"></i>
+			</button>
+			<button class="tab-stop"
+				[tabindex]="showOptionList ? 0 : -1"
+				[attr.aria-hidden]="showOptionList ? false : true">
+			</button>
+		</section>
+	</section>
+</form>

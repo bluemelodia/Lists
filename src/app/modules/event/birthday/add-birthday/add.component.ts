@@ -87,6 +87,13 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			phone: [
 				"",
 			],
+			address: this.fb.group({
+				street: [""],
+				unit: [""],
+				state: [""],
+				zip: [""],
+				country: [""],
+			}),
 			date: this.fb.group({
 				day: ["", [Validators.required]],
 			}),
