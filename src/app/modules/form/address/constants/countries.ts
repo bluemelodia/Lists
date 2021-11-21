@@ -1,67 +1,85 @@
-export const countries = {
+export interface Country {
+	readonly [key: string]: CountryData;
+}
+
+export interface CountryData {
+	name: string;
+	region?: Region;
+	areas?: string[];
+}
+
+export enum Region {
+	State = "State",
+	Oblast = "Oblast",
+	Prefecture = "Prefecture",
+	Province = "Province",
+}
+
+export const countries: Country = {
     "BD":{
-        "name":"Bangladesh"
+        name: "Bangladesh"
     },
     "BE":{
-        "name":"Belgium"
+        name: "Belgium"
     },
     "BF":{
-        "name":"Burkina Faso"
+        name: "Burkina Faso"
     },
     "BG":{
-        "name":"Bulgaria"
+        name: "Bulgaria"
     },
     "BA":{
-        "name":"Bosnia and Herzegovina"
+        name: "Bosnia and Herzegovina"
     },
     "BB":{
-        "name":"Barbados"
+        name: "Barbados"
     },
     "WF":{
-        "name":"Wallis and Futuna"
+        name: "Wallis and Futuna"
     },
     "BL":{
-        "name":"Saint Barthelemy"
+        name: "Saint Barthelemy"
     },
     "BM":{
-        "name":"Bermuda"
+        name: "Bermuda"
     },
     "BN":{
-        "name":"Brunei"
+        name: "Brunei"
     },
     "BO":{
-        "name":"Bolivia"
+        name: "Bolivia"
     },
     "BH":{
-        "name":"Bahrain"
+        name: "Bahrain"
     },
     "BI":{
-        "name":"Burundi"
+        name: "Burundi"
     },
     "BJ":{
-        "name":"Benin"
+        name: "Benin"
     },
     "BT":{
-        "name":"Bhutan"
+        name: "Bhutan"
     },
     "JM":{
-        "name":"Jamaica"
+        name: "Jamaica"
     },
     "BV":{
-        "name":"Bouvet Island"
+        name: "Bouvet Island"
     },
     "BW":{
-        "name":"Botswana"
+        name: "Botswana"
     },
     "WS":{
-        "name":"Samoa"
+        name: "Samoa"
     },
     "BQ":{
-        "name":"Bonaire, Saint Eustatius and Saba "
+        name: "Bonaire, Saint Eustatius and Saba "
     },
     "BR":{
-        "name":"Brazil",
-		"states": [
+        name: "Brazil",
+		region: Region.State,
+		areas: [
 			"Acre",
 			"Alagoas",
 			"Amapá",
@@ -92,215 +110,423 @@ export const countries = {
 		]
     },
     "BS":{
-        "name":"Bahamas"
+        name: "Bahamas"
     },
     "JE":{
-        "name":"Jersey"
+        name: "Jersey"
     },
     "BY":{
-        "name":"Belarus"
+        name: "Belarus"
     },
     "BZ":{
-        "name":"Belize"
+        name: "Belize"
     },
     "RU":{
-        "name":"Russia"
+        name: "Russia",
+		region: Region.Oblast,
+		areas: [
+			"Amur",
+			"Arkhangelsk",
+			"Astrakhan",
+			"Belgorod",
+			"Bryansk",
+			"Chelyabinsk",
+			"Irkutsk",
+			"Ivanovo",
+			"Kaliningrad",
+			"Kaluga",
+			"Kemerovo",
+			"Kirov",
+			"Kostroma",
+			"Kurgan",
+			"Kursk",
+			"Leningrad",
+			"Lipetsk",
+			"Magadan",
+			"Moscow",
+			"Murmansk",
+			"Nizhny Novgorod",
+			"Novgorod",
+			"Novosibirsk",
+			"Omsk",
+			"Orenburg",
+			"Oryol",
+			"Penza",
+			"Pskov",
+			"Rostov",
+			"Ryazan",
+			"Sakhalin",
+			"Samara",
+			"Saratov",
+			"Smolensk",
+			"Sverdlovsk",
+			"Tambov",
+			"Tomsk",
+			"Tver",
+			"Tula",
+			"Tyumen",
+			"Ulyanovsk",
+			"Vladimir",
+			"Volgograd",
+			"Vologda",
+			"Voronezh",
+			"Yaroslavl",
+		]
     },
     "RW":{
-        "name":"Rwanda"
+        name: "Rwanda"
     },
     "RS":{
-        "name":"Serbia"
+        name: "Serbia"
     },
     "TL":{
-        "name":"East Timor"
+        name: "East Timor"
     },
     "RE":{
-        "name":"Reunion"
+        name: "Reunion"
     },
     "TM":{
-        "name":"Turkmenistan"
+        name: "Turkmenistan"
     },
     "TJ":{
-        "name":"Tajikistan"
+        name: "Tajikistan"
     },
     "RO":{
-        "name":"Romania"
+        name: "Romania"
     },
     "TK":{
-        "name":"Tokelau"
+        name: "Tokelau"
     },
     "GW":{
-        "name":"Guinea-Bissau"
+        name: "Guinea-Bissau"
     },
     "GU":{
-        "name":"Guam"
+        name: "Guam"
     },
     "GT":{
-        "name":"Guatemala"
+        name: "Guatemala"
     },
     "GS":{
-        "name":"South Georgia and the South Sandwich Islands"
+        name: "South Georgia and the South Sandwich Islands"
     },
     "GR":{
-        "name":"Greece"
+        name: "Greece"
     },
     "GQ":{
-        "name":"Equatorial Guinea"
+        name: "Equatorial Guinea"
     },
     "GP":{
-        "name":"Guadeloupe"
+        name: "Guadeloupe"
     },
     "JP":{
-        "name":"Japan"
+        name: "Japan",
+		region: Region.Prefecture,
+		areas: [
+			"Aichi",
+			"Akita",
+			"Aomori",
+			"Chiba",
+			"Ehime",
+			"Fukui",
+			"Fukuoka",
+			"Fukushima",
+			"Gifu",
+			"Gunma",
+			"Hiroshima",
+			"Hokkaido",
+			"Hyōgo",
+			"Ibaraki",
+			"Ishikawa",
+			"Iwate",
+			"Kagawa",
+			"Kagoshima",
+			"Kanagawa",
+			"Kōchi",
+			"Kumamoto",
+			"Kyoto",
+			"Mie",
+			"Miyazaki",
+			"Nagano",
+			"Nagasaki",
+			"Nara",
+			"Niigata",
+			"Ōita",
+			"Okayama",
+			"Okinawa",
+			"Osaka",
+			"Saga",
+			"Saitama",
+			"Shiga",
+			"Shimane",
+			"Shizuoka",
+			"Tochigi",
+			"Tokushima",
+			"Tokyo",
+			"Tottori",
+			"Toyama",
+			"Wakayama",
+			"Yamaguchi",
+			"Yamanashi",
+		]
     },
     "GY":{
-        "name":"Guyana"
+        name: "Guyana"
     },
     "GG":{
-        "name":"Guernsey"
+        name: "Guernsey"
     },
     "GF":{
-        "name":"French Guiana"
+        name: "French Guiana"
     },
     "GE":{
-        "name":"Georgia"
+        name: "Georgia"
     },
     "GD":{
-        "name":"Grenada"
+        name: "Grenada"
     },
     "GB":{
-        "name":"United Kingdom"
+        name: "United Kingdom"
     },
     "GA":{
-        "name":"Gabon"
+        name: "Gabon"
     },
     "SV":{
-        "name":"El Salvador"
+        name: "El Salvador"
     },
     "GN":{
-        "name":"Guinea"
+        name: "Guinea"
     },
     "GM":{
-        "name":"Gambia"
+        name: "Gambia"
     },
     "GL":{
-        "name":"Greenland"
+        name: "Greenland"
     },
     "GI":{
-        "name":"Gibraltar"
+        name: "Gibraltar"
     },
     "GH":{
-        "name":"Ghana"
+        name: "Ghana"
     },
     "OM":{
-        "name":"Oman"
+        name: "Oman"
     },
     "TN":{
-        "name":"Tunisia"
+        name: "Tunisia"
     },
     "JO":{
-        "name":"Jordan"
+        name: "Jordan"
     },
     "HR":{
-        "name":"Croatia"
+        name: "Croatia"
     },
     "HT":{
-        "name":"Haiti"
+        name: "Haiti"
     },
     "HU":{
-        "name":"Hungary"
+        name: "Hungary"
     },
     "HK":{
-        "name":"Hong Kong"
+        name: "Hong Kong"
     },
     "HN":{
-        "name":"Honduras"
+        name: "Honduras"
     },
     "HM":{
-        "name":"Heard Island and McDonald Islands"
+        name: "Heard Island and McDonald Islands"
     },
     "VE":{
-        "name":"Venezuela"
+        name: "Venezuela"
     },
     "PR":{
-        "name":"Puerto Rico"
+        name: "Puerto Rico"
     },
     "PS":{
-        "name":"Palestinian Territory"
+        name: "Palestinian Territory"
     },
     "PW":{
-        "name":"Palau"
+        name: "Palau"
     },
     "PT":{
-        "name":"Portugal"
+        name: "Portugal"
     },
     "SJ":{
-        "name":"Svalbard and Jan Mayen"
+        name: "Svalbard and Jan Mayen"
     },
     "PY":{
-        "name":"Paraguay"
+        name: "Paraguay"
     },
     "IQ":{
-        "name":"Iraq"
+        name: "Iraq"
     },
     "PA":{
-        "name":"Panama"
+        name: "Panama"
     },
     "PF":{
-        "name":"French Polynesia"
+        name: "French Polynesia"
     },
     "PG":{
-        "name":"Papua New Guinea"
+        name: "Papua New Guinea"
     },
     "PE":{
-        "name":"Peru"
+        name: "Peru"
     },
     "PK":{
-        "name":"Pakistan"
+        name: "Pakistan"
     },
     "PH":{
-        "name":"Philippines"
+        name: "Philippines"
     },
     "PN":{
-        "name":"Pitcairn"
+        name: "Pitcairn"
     },
     "PL":{
-        "name":"Poland"
+        name: "Poland"
     },
     "PM":{
-        "name":"Saint Pierre and Miquelon"
+        name: "Saint Pierre and Miquelon"
     },
     "ZM":{
-        "name":"Zambia"
+        name: "Zambia"
     },
     "EH":{
-        "name":"Western Sahara"
+        name: "Western Sahara"
     },
     "EE":{
-        "name":"Estonia"
+        name: "Estonia"
     },
     "EG":{
-        "name":"Egypt"
+        name: "Egypt"
     },
     "ZA":{
-        "name":"South Africa"
+        name: "South Africa"
     },
     "EC":{
-        "name":"Ecuador"
+        name: "Ecuador"
     },
     "IT":{
-        "name":"Italy"
+        name: "Italy",
+		region: Region.Province,
+		areas: [
+			"Agrigento",
+			"Alessandria",
+			"Ancona",
+			"Aosta",
+			"Arezzo",
+			"Ascoli Piceno",
+			"Asti",
+			"Avellino",
+			"Bari",
+			"Barletta-Andria-Trani",
+			"Belluno",
+			"Benevento",
+			"Bergamo",
+			"Biella",
+			"Bologna",
+			"Brescia",
+			"Brindisi",
+			"Cagliari",
+			"Caltanissetta",
+			"Campobasso",
+			"Caserta",
+			"Catania",
+			"Catanzaro",
+			"Chieti",
+			"Como",
+			"Cosenza",
+			"Cremona",
+			"Crotone",
+			"Cuneo",
+			"Enna",
+			"Fermo",
+			"Ferrara",
+			"Florence",
+			"Foggia",
+			"Forlì-Cesena",
+			"Frosinone",
+			"Genoa",
+			"Gorizia",
+			"Grosseto",
+			"Imperia",
+			"Isernia",
+			"La Spezia",
+			"L'Aquila",
+			"Latina",
+			"Lecce",
+			"Lecco",
+			"Livorno",
+			"Lodi",
+			"Lucca",
+			"Macerata",
+			"Mantua",
+			"Massa and Carrara",
+			"Matera",
+			"Messina",
+			"Milan",
+			"Modena",
+			"Monza and Brianza",
+			"Naples",
+			"Novara",
+			"Nuoro",
+			"Oristano",
+			"Padua",
+			"Palermo",
+			"Parma",
+			"Pavia",
+			"Perugia",
+			"Pesaro and Urbino",
+			"Pescara",
+			"Piacenza",
+			"Pisa",
+			"Pistoia",
+			"Pordenone",
+			"Potenza",
+			"Prato",
+			"Ragusa",
+			"Ravenna",
+			"Reggio Calabria",
+			"Reggio Emilia",
+			"Rieti",
+			"Rimini",
+			"Rome",
+			"Rovigo",
+			"Salerno",
+			"Sassari",
+			"Savona",
+			"Siena",
+			"Sondrio",
+			"South Sardinia",
+			"South Tyrol",
+			"Syracuse",
+			"Taranto",
+			"Teramo",
+			"Terni",
+			"Trapani",
+			"Trento",
+			"Treviso",
+			"Trieste",
+			"Turin",
+			"Udine",
+			"Varese",
+			"Venice",
+			"Verbano-Cusio-Ossola",
+			"Vercelli",
+			"Verona",
+			"Vibo Valentia",
+			"Vicenza",
+			"Viterbo",
+		]
     },
     "VN":{
-        "name":"Vietnam"
+        name: "Vietnam"
     },
     "SB":{
-        "name":"Solomon Islands"
+        name: "Solomon Islands"
     },
     "ET":{
-        "name":"Ethiopia",
-		"states": [
+        name: "Ethiopia",
+		region: Region.State,
+		areas: [
 			"Afar",
 			"Amhara",
 			"Benishangul-Gumuz",
@@ -313,182 +539,271 @@ export const countries = {
 		]
     },
     "SO":{
-        "name":"Somalia"
+        name: "Somalia"
     },
     "ZW":{
-        "name":"Zimbabwe"
+        name: "Zimbabwe"
     },
     "SA":{
-        "name":"Saudi Arabia"
+        name: "Saudi Arabia"
     },
     "ES":{
-        "name":"Spain"
+        name: "Spain",
+		region: Region.Province,
+		areas: [
+			"La Coruña",
+			"Álava",
+			"Albacete",
+			"Alicante",
+			"Almería",
+			"Asturias",
+			"Ávila",
+			"Badajoz",
+			"Balearic Islands",
+			"Barcelona",
+			"Biscay",
+			"Burgos",
+			"Cáceres",
+			"Cádiz",
+			"Cantabria",
+			"Castellón",
+			"Ciudad Real",
+			"Córdoba",
+			"Cuenca",
+			"Guipúzcoa",
+			"Girona",
+			"Granada",
+			"Guadalajara",
+			"Huelva",
+			"Huesca",
+			"Jaén",
+			"La Rioja",
+			"Las Palmas",
+			"León",
+			"Lleida",
+			"Lugo",
+			"Madrid",
+			"Málaga",
+			"Murcia",
+			"Navarre",
+			"Ourense",
+			"Palencia",
+			"Pontevedra",
+			"Salamanca",
+			"Santa Cruz de Tenerife",
+			"Segovia",
+			"Seville",
+			"Soria",
+			"Tarragona",
+			"Teruel",
+			"Toledo",
+			"Valencia",
+			"Valladolid",
+			"Zamora",
+			"Zaragoza",
+		]
     },
     "ER":{
-        "name":"Eritrea"
+        name: "Eritrea"
     },
     "ME":{
-        "name":"Montenegro"
+        name: "Montenegro"
     },
     "MD":{
-        "name":"Moldova"
+        name: "Moldova"
     },
     "MG":{
-        "name":"Madagascar"
+        name: "Madagascar"
     },
     "MF":{
-        "name":"Saint Martin"
+        name: "Saint Martin"
     },
     "MA":{
-        "name":"Morocco"
+        name: "Morocco"
     },
     "MC":{
-        "name":"Monaco"
+        name: "Monaco"
     },
     "UZ":{
-        "name":"Uzbekistan"
+        name: "Uzbekistan"
     },
     "MM":{
-        "name":"Myanmar"
+        name: "Myanmar"
     },
     "ML":{
-        "name":"Mali"
+        name: "Mali"
     },
     "MO":{
-        "name":"Macao"
+        name: "Macao"
     },
     "MN":{
-        "name":"Mongolia"
+        name: "Mongolia"
     },
     "MH":{
-        "name":"Marshall Islands"
+        name: "Marshall Islands"
     },
     "MK":{
-        "name":"Macedonia"
+        name: "Macedonia"
     },
     "MU":{
-        "name":"Mauritius"
+        name: "Mauritius"
     },
     "MT":{
-        "name":"Malta"
+        name: "Malta"
     },
     "MW":{
-        "name":"Malawi"
+        name: "Malawi"
     },
     "MV":{
-        "name":"Maldives"
+        name: "Maldives"
     },
     "MQ":{
-        "name":"Martinique"
+        name: "Martinique"
     },
     "MP":{
-        "name":"Northern Mariana Islands"
+        name: "Northern Mariana Islands"
     },
     "MS":{
-        "name":"Montserrat"
+        name: "Montserrat"
     },
     "MR":{
-        "name":"Mauritania"
+        name: "Mauritania"
     },
     "IM":{
-        "name":"Isle of Man"
+        name: "Isle of Man"
     },
     "UG":{
-        "name":"Uganda"
+        name: "Uganda"
     },
     "TZ":{
-        "name":"Tanzania"
+        name: "Tanzania"
     },
     "MY":{
-        "name":"Malaysia"
+        name: "Malaysia"
     },
     "MX":{
-        "name":"Mexico"
+        name: "Mexico",
+		region: Region.State,
+		areas: [
+			"Aguascalientes",
+			"Baja California",
+			"Baja California Sur",
+			"Campeche",
+			"Chiapas",
+			"Chihuahua",
+			"Coahuila",
+			"Colima",
+			"Durango",
+			"Guanajuato",
+			"Guerrero",
+			"Hidalgo",
+			"Jalisco",
+			"México",
+			"Mexico City",
+			"Michoacán",
+			"Morelos",
+			"Nayarit",
+			"Nuevo León",
+			"Oaxaca",
+			"Puebla",
+			"Querétaro",
+			"Quintana Roo",
+			"San Luis Potosí",
+			"Sinaloa",
+			"Sonora",
+			"Tabasco",
+			"Tamaulipas",
+			"Tlaxcala",
+			"Veracruz",
+			"Yucatán",
+			"Zacatecas",
+		]
     },
     "IL":{
-        "name":"Israel"
+        name: "Israel"
     },
     "FR":{
-        "name":"France"
+        name: "France"
     },
     "IO":{
-        "name":"British Indian Ocean Territory"
+        name: "British Indian Ocean Territory"
     },
     "SH":{
-        "name":"Saint Helena"
+        name: "Saint Helena"
     },
     "FI":{
-        "name":"Finland"
+        name: "Finland"
     },
     "FJ":{
-        "name":"Fiji"
+        name: "Fiji"
     },
     "FK":{
-        "name":"Falkland Islands"
+        name: "Falkland Islands"
     },
     "FM":{
-        "name":"Micronesia"
+        name: "Micronesia"
     },
     "FO":{
-        "name":"Faroe Islands"
+        name: "Faroe Islands"
     },
     "NI":{
-        "name":"Nicaragua"
+        name: "Nicaragua"
     },
     "NL":{
-        "name":"Netherlands"
+        name: "Netherlands"
     },
     "NO":{
-        "name":"Norway"
+        name: "Norway"
     },
     "NA":{
-        "name":"Namibia"
+        name: "Namibia"
     },
     "VU":{
-        "name":"Vanuatu"
+        name: "Vanuatu"
     },
     "NC":{
-        "name":"New Caledonia"
+        name: "New Caledonia"
     },
     "NE":{
-        "name":"Niger"
+        name: "Niger"
     },
     "NF":{
-        "name":"Norfolk Island"
+        name: "Norfolk Island"
     },
     "NG":{
-        "name":"Nigeria"
+        name: "Nigeria"
     },
     "NZ":{
-        "name":"New Zealand"
+        name: "New Zealand"
     },
     "NP":{
-        "name":"Nepal"
+        name: "Nepal"
     },
     "NR":{
-        "name":"Nauru"
+        name: "Nauru"
     },
     "NU":{
-        "name":"Niue"
+        name: "Niue"
     },
     "CK":{
-        "name":"Cook Islands"
+        name: "Cook Islands"
     },
     "XK":{
-        "name":"Kosovo"
+        name: "Kosovo"
     },
     "CI":{
-        "name":"Ivory Coast"
+        name: "Ivory Coast"
     },
     "CH":{
-        "name":"Switzerland"
+        name: "Switzerland"
     },
     "CO":{
-        "name":"Colombia"
+        name: "Colombia"
     },
     "CN":{
-        "name":"China",
-		"provinces": [
+        name: "China",
+		region: Region.Province,
+		areas: [
 			"Anhui",
 			"Fujian",
 			"Gansu",
@@ -518,17 +833,18 @@ export const countries = {
 		]
     },
     "CM":{
-        "name":"Cameroon"
+        name: "Cameroon"
     },
     "CL":{
-        "name":"Chile"
+        name: "Chile"
     },
     "CC":{
-        "name":"Cocos Islands"
+        name: "Cocos Islands"
     },
     "CA":{
-        "name":"Canada",
-		"provinces": [
+        name: "Canada",
+		region: Region.Province,
+		areas: [
 			"Alberta", 
 			"British Columbia", 
 			"Manitoba",
@@ -542,263 +858,264 @@ export const countries = {
 		],
     },
     "CG":{
-        "name":"Republic of the Congo"
+        name: "Republic of the Congo"
     },
     "CF":{
-        "name":"Central African Republic"
+        name: "Central African Republic"
     },
     "CD":{
-        "name":"Democratic Republic of the Congo"
+        name: "Democratic Republic of the Congo"
     },
     "CZ":{
-        "name":"Czech Republic"
+        name: "Czech Republic"
     },
     "CY":{
-        "name":"Cyprus"
+        name: "Cyprus"
     },
     "CX":{
-        "name":"Christmas Island"
+        name: "Christmas Island"
     },
     "CR":{
-        "name":"Costa Rica"
+        name: "Costa Rica"
     },
     "CW":{
-        "name":"Curacao"
+        name: "Curacao"
     },
     "CV":{
-        "name":"Cape Verde"
+        name: "Cape Verde"
     },
     "CU":{
-        "name":"Cuba"
+        name: "Cuba"
     },
     "SZ":{
-        "name":"Swaziland"
+        name: "Swaziland"
     },
     "SY":{
-        "name":"Syria"
+        name: "Syria"
     },
     "SX":{
-        "name":"Sint Maarten"
+        name: "Sint Maarten"
     },
     "KG":{
-        "name":"Kyrgyzstan"
+        name: "Kyrgyzstan"
     },
     "KE":{
-        "name":"Kenya"
+        name: "Kenya"
     },
     "SS":{
-        "name":"South Sudan"
+        name: "South Sudan"
     },
     "SR":{
-        "name":"Suriname"
+        name: "Suriname"
     },
     "KI":{
-        "name":"Kiribati"
+        name: "Kiribati"
     },
     "KH":{
-        "name":"Cambodia"
+        name: "Cambodia"
     },
     "KN":{
-        "name":"Saint Kitts and Nevis"
+        name: "Saint Kitts and Nevis"
     },
     "KM":{
-        "name":"Comoros"
+        name: "Comoros"
     },
     "ST":{
-        "name":"Sao Tome and Principe"
+        name: "Sao Tome and Principe"
     },
     "SK":{
-        "name":"Slovakia"
+        name: "Slovakia"
     },
     "KR":{
-        "name":"South Korea"
+        name: "South Korea"
     },
     "SI":{
-        "name":"Slovenia"
+        name: "Slovenia"
     },
     "KP":{
-        "name":"North Korea"
+        name: "North Korea"
     },
     "KW":{
-        "name":"Kuwait"
+        name: "Kuwait"
     },
     "SN":{
-        "name":"Senegal"
+        name: "Senegal"
     },
     "SM":{
-        "name":"San Marino"
+        name: "San Marino"
     },
     "SL":{
-        "name":"Sierra Leone"
+        name: "Sierra Leone"
     },
     "SC":{
-        "name":"Seychelles"
+        name: "Seychelles"
     },
     "KZ":{
-        "name":"Kazakhstan"
+        name: "Kazakhstan"
     },
     "KY":{
-        "name":"Cayman Islands"
+        name: "Cayman Islands"
     },
     "SG":{
-        "name":"Singapore"
+        name: "Singapore"
     },
     "SE":{
-        "name":"Sweden"
+        name: "Sweden"
     },
     "SD":{
-        "name":"Sudan"
+        name: "Sudan"
     },
     "DO":{
-        "name":"Dominican Republic"
+        name: "Dominican Republic"
     },
     "DM":{
-        "name":"Dominica"
+        name: "Dominica"
     },
     "DJ":{
-        "name":"Djibouti"
+        name: "Djibouti"
     },
     "DK":{
-        "name":"Denmark"
+        name: "Denmark"
     },
     "VG":{
-        "name":"British Virgin Islands"
+        name: "British Virgin Islands"
     },
     "DE":{
-        "name":"Germany"
+        name: "Germany"
     },
     "YE":{
-        "name":"Yemen"
+        name: "Yemen"
     },
     "DZ":{
-        "name":"Algeria"
+        name: "Algeria"
     },
     "US":{
-        "name":"United States"
+        name: "United States"
     },
     "UY":{
-        "name":"Uruguay"
+        name: "Uruguay"
     },
     "YT":{
-        "name":"Mayotte"
+        name: "Mayotte"
     },
     "UM":{
-        "name":"United States Minor Outlying Islands"
+        name: "United States Minor Outlying Islands"
     },
     "LB":{
-        "name":"Lebanon"
+        name: "Lebanon"
     },
     "LC":{
-        "name":"Saint Lucia"
+        name: "Saint Lucia"
     },
     "LA":{
-        "name":"Laos"
+        name: "Laos"
     },
     "TV":{
-        "name":"Tuvalu"
+        name: "Tuvalu"
     },
     "TW":{
-        "name":"Taiwan"
+        name: "Taiwan"
     },
     "TT":{
-        "name":"Trinidad and Tobago"
+        name: "Trinidad and Tobago"
     },
     "TR":{
-        "name":"Turkey"
+        name: "Turkey"
     },
     "LK":{
-        "name":"Sri Lanka"
+        name: "Sri Lanka"
     },
     "LI":{
-        "name":"Liechtenstein"
+        name: "Liechtenstein"
     },
     "LV":{
-        "name":"Latvia"
+        name: "Latvia"
     },
     "TO":{
-        "name":"Tonga"
+        name: "Tonga"
     },
     "LT":{
-        "name":"Lithuania"
+        name: "Lithuania"
     },
     "LU":{
-        "name":"Luxembourg"
+        name: "Luxembourg"
     },
     "LR":{
-        "name":"Liberia"
+        name: "Liberia"
     },
     "LS":{
-        "name":"Lesotho"
+        name: "Lesotho"
     },
     "TH":{
-        "name":"Thailand"
+        name: "Thailand"
     },
     "TF":{
-        "name":"French Southern Territories"
+        name: "French Southern Territories"
     },
     "TG":{
-        "name":"Togo"
+        name: "Togo"
     },
     "TD":{
-        "name":"Chad"
+        name: "Chad"
     },
     "TC":{
-        "name":"Turks and Caicos Islands"
+        name: "Turks and Caicos Islands"
     },
     "LY":{
-        "name":"Libya"
+        name: "Libya"
     },
     "VA":{
-        "name":"Vatican"
+        name: "Vatican"
     },
     "VC":{
-        "name":"Saint Vincent and the Grenadines"
+        name: "Saint Vincent and the Grenadines"
     },
     "AE":{
-        "name":"United Arab Emirates"
+        name: "United Arab Emirates"
     },
     "AD":{
-        "name":"Andorra"
+        name: "Andorra"
     },
     "AG":{
-        "name":"Antigua and Barbuda"
+        name: "Antigua and Barbuda"
     },
     "AF":{
-        "name":"Afghanistan"
+        name: "Afghanistan"
     },
     "AI":{
-        "name":"Anguilla"
+        name: "Anguilla"
     },
     "VI":{
-        "name":"U.S. Virgin Islands"
+        name: "U.S. Virgin Islands"
     },
     "IS":{
-        "name":"Iceland"
+        name: "Iceland"
     },
     "IR":{
-        "name":"Iran"
+        name: "Iran"
     },
     "AM":{
-        "name":"Armenia"
+        name: "Armenia"
     },
     "AL":{
-        "name":"Albania"
+        name: "Albania"
     },
     "AO":{
-        "name":"Angola"
+        name: "Angola"
     },
     "AQ":{
-        "name":"Antarctica"
+        name: "Antarctica"
     },
     "AS":{
-        "name":"American Samoa"
+        name: "American Samoa"
     },
     "AR":{
-        "name":"Argentina"
+        name: "Argentina"
     },
     "AU":{
-        "name":"Australia",
-		"states": [
+        name: "Australia",
+		region: Region.State,
+		areas: [
 			"New South Wales",
 			"Queensland",
 			"South Australia", 
@@ -808,14 +1125,15 @@ export const countries = {
 		]
     },
     "AT":{
-        "name":"Austria"
+        name: "Austria"
     },
     "AW":{
-        "name":"Aruba"
+        name: "Aruba"
     },
     "IN":{
-        "name":"India",
-		"states": [
+        name: "India",
+		region: Region.State,
+		areas: [
 			"Andhra Pradesh",
 			"Arunachal Pradesh",
 			"Assam",
@@ -847,17 +1165,18 @@ export const countries = {
 		],
     },
     "AX":{
-        "name":"Aland Islands"
+        name: "Aland Islands"
     },
     "AZ":{
-        "name":"Azerbaijan"
+        name: "Azerbaijan"
     },
     "IE":{
-        "name":"Ireland"
+        name: "Ireland"
     },
     "ID":{
-        "name":"Indonesia",
-		"provinces": [
+        name: "Indonesia",
+		region: Region.State,
+		areas: [
 			"Aceh",
 			"Bali",
 			"Bangka Belitung Islands",
@@ -895,12 +1214,12 @@ export const countries = {
 		],
     },
     "UA":{
-        "name":"Ukraine"
+        name: "Ukraine"
     },
     "QA":{
-        "name":"Qatar"
+        name: "Qatar"
     },
     "MZ":{
-        "name":"Mozambique"
+        name: "Mozambique"
     }
 };
