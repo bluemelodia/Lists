@@ -156,6 +156,7 @@ app-datepicker input {
 
 textarea {
   resize: none;
+  margin-bottom: 8px;
 }
 
 :focus,
