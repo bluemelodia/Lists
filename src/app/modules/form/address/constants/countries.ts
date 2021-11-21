@@ -299,7 +299,18 @@ export const countries = {
         "name":"Solomon Islands"
     },
     "ET":{
-        "name":"Ethiopia"
+        "name":"Ethiopia",
+		"states": [
+			"Afar",
+			"Amhara",
+			"Benishangul-Gumuz",
+			"Gambela",
+			"Harari",
+			"Oromia",
+			"Somali",
+			"Southern Nations",
+			"Tigray",
+		]
     },
     "SO":{
         "name":"Somalia"
@@ -803,7 +814,37 @@ export const countries = {
         "name":"Aruba"
     },
     "IN":{
-        "name":"India"
+        "name":"India",
+		"states": [
+			"Andhra Pradesh",
+			"Arunachal Pradesh",
+			"Assam",
+			"Bihar",
+			"Chhattisgarh",
+			"Goa",
+			"Gujarat",
+			"Haryana",
+			"Himachal Pradesh",
+			"Jharkhand",
+			"Karnataka",
+			"Kerala",
+			"Madhya Pradesh",
+			"Maharashtra",
+			"Manipur",
+			"Meghalaya",
+			"Mizoram",
+			"Nagaland",
+			"Odisha",
+			"Punjab",
+			"Rajasthan",
+			"Sikkim",
+			"Tamil Nadu",
+			"Telangana",
+			"Tripura",
+			"Uttar Pradesh",
+			"Uttarakhand",
+			"West Bengal",
+		],
     },
     "AX":{
         "name":"Aland Islands"
@@ -815,7 +856,43 @@ export const countries = {
         "name":"Ireland"
     },
     "ID":{
-        "name":"Indonesia"
+        "name":"Indonesia",
+		"provinces": [
+			"Aceh",
+			"Bali",
+			"Bangka Belitung Islands",
+			"Banten",
+			"Bengkulu",
+			"Central Java",
+			"Central Kalimantan",
+			"Central Sulawesi",
+			"East Java",
+			"East Kalimantan",
+			"East Nusa Tenggara",
+			"Gorontalo",
+			"Special Capital Region of Jakarta",
+			"Jambi",
+			"Lampung",
+			"Maluku",
+			"North Kalimantan",
+			"North Maluku",
+			"North Sulawesi",
+			"North Sumatra",
+			"Papua",
+			"Riau",
+			"Riau Islands",
+			"Southeast Sulawesi",
+			"South Kalimantan",
+			"South Sulawesi",
+			"South Sumatra",
+			"West Java",
+			"West Kalimantan",
+			"West Nusa Tenggara",
+			"West Papua",
+			"West Sulawesi",
+			"West Sumatra",
+			"Special Region of Yogyakarta",
+		],
     },
     "UA":{
         "name":"Ukraine"
