@@ -90,6 +90,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			address: this.fb.group({
 				street: [""],
 				unit: [""],
+				city: [""],
 				state: [""],
 				zip: [""],
 				country: [""],

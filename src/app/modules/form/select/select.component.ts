@@ -2,25 +2,27 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+
 import { ReplaySubject } from "rxjs";
 import { filter, takeUntil } from "rxjs/operators";
 
 import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
 import { FocusEvent, Key } from "../../../interfaces/focus.interface";
-import { FormGroup } from "@angular/forms";
+import { Country, CountryData } from "../address/constants/countries";
 
 @Component({
-	selector: "app-select",
+	selector: "country-select",
 	templateUrl: "./select.component.html",
 	styleUrls: ["./select.component.css"]
 })
-export class SelectComponent implements OnInit, OnDestroy {
+export class CountrySelectComponent implements OnInit, OnDestroy {
 	@Input() placeholder = "";
 	@Input() id: string;
 	@Input() default: string;
 	@Input() form: FormGroup;
-	@Input() options: Set<string>;
+	@Input() options: Country;
 	@Input() selected: string;
 
 	@Output() optionSelected = new EventEmitter<string>();
@@ -82,9 +84,9 @@ export class SelectComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	selectOption(option: string): void {
-		this.selected = option;
+	selectOption(optionKey: string): void {
+		this.selected = optionKey;
 		this.showOptionList = false;
-		this.optionSelected.emit(option);
+		this.optionSelected.emit(optionKey);
 	}
 }

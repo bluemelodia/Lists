@@ -4,21 +4,26 @@
 		<input type="text" 
 			formControlName="street"
 			placeholder="Street Address"/>
-		<input type="text" 
-			formControlName="unit"
-			placeholder="Apartment Number"/>
+		<fieldset class="condensed">
+			<input type="text" 
+				formControlName="unit"
+				placeholder="Apartment Number"/>
+			<input type="text" 
+				formControlName="city"
+				placeholder="City"/>
+		</fieldset>
 		<!-- Some countries use alphanumeric zip codes. -->
 		<fieldset class="condensed">
 			<input type="text"
 			formControlName="state"
-			placeholder="State / Region"/>
+			placeholder="State / Province / Region"/>
 			<input type="text"
 				formControlName="zip"
 				placeholder="Zip Code"/>
 		</fieldset>
-		<app-select [options]="countries"
+		<country-select [options]="countries"
 			[form]="form"
 			placeholder="Country"
-			selected="United States"></app-select>
+			selected="United States"></country-select>
 	</fieldset>
 </form>

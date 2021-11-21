@@ -4,20 +4,20 @@
 			[ngClass]="{ 'options-open' : showOptionList }"
 			formControlName="country"
 			[placeholder]="placeholder"
-			[value]="selected ? selected : null"
+			[value]="selected ? options[selected]?.name : null"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">
-			<button *ngFor="let option of options; let i = index"
+			<button *ngFor="let option of options | keyvalue; let i = index"
 				type="button"
 				class="option focus-option"
 				[tabindex]="showOptionList ? 0 : -1"
 				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : selected === option, 'focus-origin' : i === 0 }"
-				(click)="selectOption(option)">
-				{{ option }}
+				[ngClass]="{ 'selected' : selected === option.key, 'focus-origin' : i === 0 }"
+				(click)="selectOption(option.key)">
+				{{ option.value?.name }}
 				<i class="fa fa-heart sm-spacer" aria-hidden="true"></i>
 			</button>
 			<button class="tab-stop"

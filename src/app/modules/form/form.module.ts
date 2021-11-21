@@ -11,12 +11,12 @@ import { ElementModule } from "../element/element.module";
 import { PipesModule } from "../../pipes/pipes.module";
 import { PickerDateFormatterPipe } from "../../pipes/picker-date-formatter.pipe";
 
+import { AddressComponent } from "./address/address.component";
 import { CheckboxComponent } from "./checkbox/checkbox.component";
 import { DatepickerComponent } from "./datepicker/datepicker.component";
 import { RadioComponent } from "./radio/radio.component";
 import { PhoneComponent } from "./phone/phone.component";
-import { SelectComponent } from './select/select.component';
-import { AddressComponent } from "./address/address.component";
+import { CountrySelectComponent } from './select/select.component';
 
 @NgModule({
 	declarations: [
@@ -25,7 +25,7 @@ import { AddressComponent } from "./address/address.component";
 		DatepickerComponent,
 		PhoneComponent,
 		RadioComponent,
-  		SelectComponent,
+		CountrySelectComponent,
 	],
 	imports: [
 		CalendarModule,
