@@ -16,106 +16,266 @@ export enum Region {
 }
 
 export const countries: Country = {
-    BD: {
-        name: "Bangladesh",
-        code: "BD",
+    AF: {
+        name: "Afghanistan",
+        code: "AF",
     },
-    BE: {
-        name: "Belgium",
-		code: "BE",
+	AX: {
+        name: "Aland Islands",
+        code: "AX",
     },
-    BF: {
-        name: "Burkina Faso",
-        code: "BF",
+	AL: {
+        name: "Albania",
+        code: "AL",
     },
-    BG: {
-        name: "Bulgaria",
-        code: "BG",
+	DZ: {
+        name: "Algeria",
+        code: "DZ",
     },
-    BA: {
-        name: "Bosnia and Herzegovina",
-        code: "BA",
+	AS: {
+        name: "American Samoa",
+        code: "AS",
     },
-    BB: {
-        name: "Barbados",
-        code: "BB",
+	AD: {
+        name: "Andorra",
+        code: "AD",
     },
-    WF: {
-        name: "Wallis and Futuna",
-        code: "WF",
+	AO: {
+        name: "Angola",
+        code: "AO",
     },
-    BL: {
-        name: "Saint Barthelemy",
-        code: "BL",
+    AI: {
+        name: "Anguilla",
+        code: "AI",
     },
-    BM: {
-        name: "Bermuda",
-        code: "BM",
+	AQ: {
+        name: "Antarctica",
+        code: "AQ",
     },
-    BN: {
-        name: "Brunei",
-        code: "BN",
+	AG: {
+        name: "Antigua and Barbuda",
+        code: "AG",
     },
-    BO: {
-        name: "Bolivia",
-        code: "BO",
+	AR: {
+        name: "Argentina",
+        code: "AR",
     },
-    BH: {
-        name: "Bahrain",
-        code: "BH",
+	AM: {
+        name: "Armenia",
+        code: "AM",
     },
-    BI: {
-        name: "Burundi",
-        code: "BI",
+	AW: {
+        name: "Aruba",
+        code: "AW",
     },
-    BJ: {
-        name: "Benin",
-        code: "BJ",
+	AU: {
+        name: "Australia",
+        code: "AU",
     },
-    BT: {
-        name: "Bhutan",
-        code: "BT",
+	AT: {
+        name: "Austria",
+        code: "AT",
     },
-    JM: {
-        name: "Jamaica",
-        code: "JM",
-    },
-    BV: {
-        name: "Bouvet Island",
-        code: "BV",
-    },
-    BW: {
-        name: "Botswana",
-        code: "BW",
-    },
-    WS: {
-        name: "Samoa",
-        code: "WS",
-    },
-    BQ: {
-        name: "Bonaire, Saint Eustatius and Saba ",
-        code: "BQ",
-    },
-    BR: {
-        name: "Brazil",
-        code: "BR",
+    AZ: {
+        name: "Azerbaijan",
+        code: "AZ",
     },
     BS: {
         name: "Bahamas",
         code: "BS",
     },
+	BH: {
+        name: "Bahrain",
+        code: "BH",
+    },
+	BD: {
+        name: "Bangladesh",
+        code: "BD",
+    },
+	BB: {
+        name: "Barbados",
+        code: "BB",
+    },
+	BY: {
+        name: "Belarus",
+        code: "BY",
+    },
+    BE: {
+        name: "Belgium",
+		code: "BE",
+    },
+	BZ: {
+        name: "Belize",
+        code: "BZ",
+    },
+	BJ: {
+        name: "Benin",
+        code: "BJ",
+    },
+	BM: {
+        name: "Bermuda",
+        code: "BM",
+    },
+	BT: {
+        name: "Bhutan",
+        code: "BT",
+    },
+	BO: {
+        name: "Bolivia",
+        code: "BO",
+    },
+	BQ: {
+        name: "Bonaire, Saint Eustatius and Saba ",
+        code: "BQ",
+    },
+	BA: {
+        name: "Bosnia and Herzegovina",
+        code: "BA",
+    },
+	BW: {
+        name: "Botswana",
+        code: "BW",
+    },
+	BV: {
+        name: "Bouvet Island",
+        code: "BV",
+    },
+	BR: {
+        name: "Brazil",
+        code: "BR",
+    },
+	IO: {
+        name: "British Indian Ocean Territory",
+        code: "IO",
+    },
+	VG: {
+        name: "British Virgin Islands",
+        code: "VG",
+    },
+	BN: {
+        name: "Brunei",
+        code: "BN",
+    },
+	BG: {
+        name: "Bulgaria",
+        code: "BG",
+    },
+    BF: {
+        name: "Burkina Faso",
+        code: "BF",
+    },
+	BI: {
+        name: "Burundi",
+        code: "BI",
+    },
+	KH: {
+        name: "Cambodia",
+        code: "KH",
+    },
+	CM: {
+        name: "Cameroon",
+        code: "CM",
+    },
+	CA: {
+        name: "Canada",
+        code: "CA",
+    },
+	CV: {
+        name: "Cape Verde",
+        code: "CV",
+    },
+	KY: {
+        name: "Cayman Islands",
+        code: "KY",
+    },
+	CF: {
+        name: "Central African Republic",
+        code: "CF",
+    },
+	TD: {
+        name: "Chad",
+        code: "TD",
+    },
+	CL: {
+        name: "Chile",
+        code: "CL",
+    },
+	CN: {
+        name: "China",
+        code: "CN",
+    },
+	CX: {
+        name: "Christmas Island",
+        code: "CX",
+    },
+	CC: {
+        name: "Cocos Islands",
+        code: "CC",
+    },
+	CO: {
+        name: "Colombia",
+        code: "CO",
+    },
+	KM: {
+        name: "Comoros",
+        code: "KM",
+    },
+	CK: {
+        name: "Cook Islands",
+        code: "CK",
+    },
+	CR: {
+        name: "Costa Rica",
+        code: "CR",
+    },
+	HR: {
+        name: "Croatia",
+        code: "HR",
+    },
+	CW: {
+        name: "Curacao",
+        code: "CW",
+    },
+	CU: {
+        name: "Cuba",
+        code: "CU",
+    },
+	CY: {
+        name: "Cyprus",
+        code: "CY",
+    },
+	CZ: {
+        name: "Czech Republic",
+        code: "CZ",
+    },
+    BL: {
+        name: "Saint Barthelemy",
+        code: "BL",
+    },
+    WF: {
+        name: "Wallis and Futuna",
+        code: "WF",
+    },
+    TL: {
+        name: "East Timor",
+        code: "TL",
+    },
+    JM: {
+        name: "Jamaica",
+        code: "JM",
+    },
+    
+    
+    WS: {
+        name: "Samoa",
+        code: "WS",
+    },
+    
     JE: {
         name: "Jersey",
         code: "JE",
     },
-    BY: {
-        name: "Belarus",
-        code: "BY",
-    },
-    BZ: {
-        name: "Belize",
-        code: "BZ",
-    },
+    
     RU: {
         name: "Russia",
         code: "RU",
@@ -128,10 +288,7 @@ export const countries: Country = {
         name: "Serbia",
         code: "RS",
     },
-    TL: {
-        name: "East Timor",
-        code: "TL",
-    },
+    
     RE: {
         name: "Reunion",
         code: "RE",
@@ -248,10 +405,7 @@ export const countries: Country = {
         name: "Jordan",
         code: "JO",
     },
-    HR: {
-        name: "Croatia",
-        code: "HR",
-    },
+    
     HT: {
         name: "Haiti",
         code: "HT",
@@ -512,10 +666,7 @@ export const countries: Country = {
         name: "France",
         code: "FR",
     },
-    IO: {
-        name: "British Indian Ocean Territory",
-        code: "IO",
-    },
+    
     SH: {
         name: "Saint Helena",
         code: "SH",
@@ -592,10 +743,7 @@ export const countries: Country = {
         name: "Niue",
         code: "NU",
     },
-    CK: {
-        name: "Cook Islands",
-        code: "CK",
-    },
+    
     XK: {
         name: "Kosovo",
         code: "XK",
@@ -608,70 +756,17 @@ export const countries: Country = {
         name: "Switzerland",
         code: "CH",
     },
-    CO: {
-        name: "Colombia",
-        code: "CO",
-    },
-    CN: {
-        name: "China",
-        code: "CN",
-    },
-    CM: {
-        name: "Cameroon",
-        code: "CM",
-    },
-    CL: {
-        name: "Chile",
-        code: "CL",
-    },
-    CC: {
-        name: "Cocos Islands",
-        code: "CC",
-    },
-    CA: {
-        name: "Canada",
-        code: "CA",
-    },
+    
     CG: {
         name: "Republic of the Congo",
         code: "CG",
     },
-    CF: {
-        name: "Central African Republic",
-        code: "CF",
-    },
+
     CD: {
         name: "Democratic Republic of the Congo",
         code: "CD",
     },
-    CZ: {
-        name: "Czech Republic",
-        code: "CZ",
-    },
-    CY: {
-        name: "Cyprus",
-        code: "CY",
-    },
-    CX: {
-        name: "Christmas Island",
-        code: "CX",
-    },
-    CR: {
-        name: "Costa Rica",
-        code: "CR",
-    },
-    CW: {
-        name: "Curacao",
-        code: "CW",
-    },
-    CV: {
-        name: "Cape Verde",
-        code: "CV",
-    },
-    CU: {
-        name: "Cuba",
-        code: "CU",
-    },
+
     SZ: {
         name: "Swaziland",
         code: "SZ",
@@ -704,18 +799,12 @@ export const countries: Country = {
         name: "Kiribati",
         code: "KI",
     },
-    KH: {
-        name: "Cambodia",
-        code: "KH",
-    },
+    
     KN: {
         name: "Saint Kitts and Nevis",
         code: "KN",
     },
-    KM: {
-        name: "Comoros",
-        code: "KM",
-    },
+    
     ST: {
         name: "Sao Tome and Principe",
         code: "ST",
@@ -760,10 +849,7 @@ export const countries: Country = {
         name: "Kazakhstan",
         code: "KZ",
     },
-    KY: {
-        name: "Cayman Islands",
-        code: "KY",
-    },
+    
     SG: {
         name: "Singapore",
         code: "SG",
@@ -792,10 +878,7 @@ export const countries: Country = {
         name: "Denmark",
         code: "DK",
     },
-    VG: {
-        name: "British Virgin Islands",
-        code: "VG",
-    },
+
     DE: {
         name: "Germany",
         code: "DE",
@@ -804,10 +887,7 @@ export const countries: Country = {
         name: "Yemen",
         code: "YE",
     },
-    DZ: {
-        name: "Algeria",
-        code: "DZ",
-    },
+    
     US: {
         name: "United States",
         code: "US",
@@ -896,10 +976,7 @@ export const countries: Country = {
         name: "Togo",
         code: "TG",
     },
-    TD: {
-        name: "Chad",
-        code: "TD",
-    },
+    
     TC: {
         name: "Turks and Caicos Islands",
         code: "TC",
@@ -920,22 +997,6 @@ export const countries: Country = {
         name: "United Arab Emirates",
         code: "AE",
     },
-    AD: {
-        name: "Andorra",
-        code: "AD",
-    },
-    AG: {
-        name: "Antigua and Barbuda",
-        code: "AG",
-    },
-    AF: {
-        name: "Afghanistan",
-        code: "AF",
-    },
-    AI: {
-        name: "Anguilla",
-        code: "AI",
-    },
     VI: {
         name: "U.S. Virgin Islands",
         code: "VI",
@@ -948,54 +1009,12 @@ export const countries: Country = {
         name: "Iran",
         code: "IR",
     },
-    AM: {
-        name: "Armenia",
-        code: "AM",
-    },
-    AL: {
-        name: "Albania",
-        code: "AL",
-    },
-    AO: {
-        name: "Angola",
-        code: "AO",
-    },
-    AQ: {
-        name: "Antarctica",
-        code: "AQ",
-    },
-    AS: {
-        name: "American Samoa",
-        code: "AS",
-    },
-    AR: {
-        name: "Argentina",
-        code: "AR",
-    },
-    AU: {
-        name: "Australia",
-        code: "AU",
-    },
-    AT: {
-        name: "Austria",
-        code: "AT",
-    },
-    AW: {
-        name: "Aruba",
-        code: "AW",
-    },
+    
     IN: {
         name: "India",
         code: "IN",
     },
-    AX: {
-        name: "Aland Islands",
-        code: "AX",
-    },
-    AZ: {
-        name: "Azerbaijan",
-        code: "AZ",
-    },
+    
     IE: {
         name: "Ireland",
         code: "IE",

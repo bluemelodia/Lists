@@ -15,6 +15,7 @@ import {
 } from "rxjs/operators";
 
 import { Topic } from "../../../../constants/topics.constants";
+import { countries } from "../../../form/address/constants/countries";
 
 import { BirthdayService } from "../../../../services/birthday.service";
 import { DialogService } from "../../../../services/dialog.service";
@@ -57,6 +58,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 	public submitted = false;
 	public validateChannel = VALIDATE_CHANNEL;
 
+	private countries = countries;
 	private ngUnsubscribe$ = new Subject<void>();
 
 	@HostBinding("class") containerClasses = "section-container";
@@ -94,8 +96,8 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				state: [""],
 				zip: [""],
 				country: this.fb.group({
-					name: [""],
-					countryCode: [""]
+					name: [this.countries["US"].name],
+					code: [this.countries["US"].code]
 				}),
 			}),
 			date: this.fb.group({

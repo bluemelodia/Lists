@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
 import { ReplaySubject } from "rxjs";
@@ -11,7 +11,8 @@ import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
 import { FocusEvent, Key } from "../../../interfaces/focus.interface";
 
-import { Country, CountryData } from "../address/constants/countries";
+import { CountryData } from "../address/constants/countries";
+import { CountryUtils } from "../address/utils/countries.utils";
 
 @Component({
 	selector: "country-select",
@@ -23,10 +24,8 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
 	@Input() id: string;
 	@Input() default: string;
 	@Input() form: FormGroup;
-	@Input() options: Country;
-	@Input() selected: CountryData;
 
-	@Output() optionSelected = new EventEmitter<CountryData>();
+	public countries = CountryUtils.getCountries();
 
 	@ViewChild("select", { read: ElementRef, static: false }) select: ElementRef;
 
@@ -66,6 +65,8 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
 		this.destroyed$.complete();
 	}
 
+	
+
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	onDocumentClick(target: any): void {
 		if (!this.select.nativeElement.contains(target)) {
@@ -86,9 +87,11 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
 	}
 
 	selectOption(option: CountryData): void {
-		this.selected = option;
-		console.log("===<. selected: ", option);
+		console.log("===<. selected: ", option, this.form.get('country')?.value);
 		this.showOptionList = false;
-		this.optionSelected.emit(option);
+		this.form.get("country").patchValue({
+			name: option.name,
+			code: option.code,
+		});
 	}
 }
