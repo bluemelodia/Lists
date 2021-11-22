@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { countries } from './constants/countries';
+
+import { countries, CountryData } from './constants/countries';
 
 @Component({
   selector: 'app-address',
@@ -9,6 +10,7 @@ import { countries } from './constants/countries';
 })
 export class AddressComponent implements OnInit {
 	@Input() form: FormGroup;
+	@Input() selected: CountryData = countries['US'];
 
 	public countries = countries;
 
@@ -17,7 +19,11 @@ export class AddressComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
-	public onCountrySelected(country: string): void {
+	public onCountrySelected(country: CountryData): void {
 		console.log("selected: ", country);
+		this.form.get("country").patchValue({
+			name: country.name,
+			countryCode: country.code,
+		});
 	}
 }

@@ -10,6 +10,7 @@ import { filter, takeUntil } from "rxjs/operators";
 import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
 import { FocusEvent, Key } from "../../../interfaces/focus.interface";
+
 import { Country, CountryData } from "../address/constants/countries";
 
 @Component({
@@ -23,9 +24,9 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
 	@Input() default: string;
 	@Input() form: FormGroup;
 	@Input() options: Country;
-	@Input() selected: string;
+	@Input() selected: CountryData;
 
-	@Output() optionSelected = new EventEmitter<string>();
+	@Output() optionSelected = new EventEmitter<CountryData>();
 
 	@ViewChild("select", { read: ElementRef, static: false }) select: ElementRef;
 
@@ -84,9 +85,10 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	selectOption(optionKey: string): void {
-		this.selected = optionKey;
+	selectOption(option: CountryData): void {
+		this.selected = option;
+		console.log("===<. selected: ", option);
 		this.showOptionList = false;
-		this.optionSelected.emit(optionKey);
+		this.optionSelected.emit(option);
 	}
 }

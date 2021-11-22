@@ -4,7 +4,7 @@
 			[ngClass]="{ 'options-open' : showOptionList }"
 			formControlName="country"
 			[placeholder]="placeholder"
-			[value]="selected ? options[selected]?.name : null"
+			[value]="selected?.name"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
@@ -15,8 +15,8 @@
 				class="option focus-option"
 				[tabindex]="showOptionList ? 0 : -1"
 				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : selected === option.key, 'focus-origin' : i === 0 }"
-				(click)="selectOption(option.key)">
+				[ngClass]="{ 'selected' : selected.code === option.key, 'focus-origin' : i === 0 }"
+				(click)="selectOption(option)">
 				{{ option.value?.name }}
 				<i class="fa fa-heart sm-spacer" aria-hidden="true"></i>
 			</button>

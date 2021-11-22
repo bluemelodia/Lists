@@ -21,9 +21,10 @@
 				formControlName="zip"
 				placeholder="Zip Code"/>
 		</fieldset>
-		<country-select [options]="countries"
-			[form]="form"
+		<country-select [form]="form"
+			[options]="countries"
+			[selected]="selected"
 			placeholder="Country"
-			selected="United States"></country-select>
+			(optionSelected)="onCountrySelected($event)"></country-select>
 	</fieldset>
 </form>
