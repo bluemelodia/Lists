@@ -110,7 +110,7 @@ export class AddMeetingComponent implements OnInit {
 			{
 				updateOn: "submit",
 				validators: [
-					this.customValidators.dateAndTimeValidator("startDate", "endDate", "startTime", "endTime")
+					this.customValidators.dateAndTimeValidator("startDate.day", "endDate.day", "startTime", "endTime")
 				]
 			});
 

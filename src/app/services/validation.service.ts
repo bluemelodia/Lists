@@ -119,23 +119,24 @@ export class ValidationService {
 	 */
 	dateAndTimeValidator(startDate: string, startTime: string, endDate: string, endTime: string): ValidatorFn {
 		return (group: FormGroup): AbstractControlOptions => {
-			const sDateCtrl = group?.controls[startDate];
-			const sDate = sDateCtrl.value?.day;
+			const sDateCtrl = group?.get(startDate);
+			const sDate = sDateCtrl.value;
 			sDateCtrl.setErrors(null);
 
-			const eDateCtrl = group?.controls[startTime];
-			const eDate = eDateCtrl.value?.day;
+			const eDateCtrl = group?.get(endDate);
+			const eDate = eDateCtrl.value;
 			eDateCtrl.setErrors(null);
 
-			const sTimeCtrl = group?.controls[endDate];
+			const sTimeCtrl = group?.get(startTime);
 			const sTime = sTimeCtrl.value;
 			sTimeCtrl.setErrors(null);
 
-			const eTimeCtrl = group?.controls[endTime];
+			const eTimeCtrl = group?.get(endTime);
 			const eTime = eTimeCtrl.value;
 			eTimeCtrl.setErrors(null);
 
-			console.log(sDate, eDate, sTime, eTime);
+			console.log("validate start date: ", sDate);
+			console.log("validate end date: ", eDate);
 			if (!sDate || !eDate || !sTime || !eTime) {
 				if (!sDate) {
 					sDateCtrl.setErrors({

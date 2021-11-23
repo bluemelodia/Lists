@@ -51,10 +51,10 @@
 				[submitted]="submitted">
 			</app-datepicker>
 			<div class="input-error after-picker" *ngIf="submitted && meetingFormControl.startDate?.errors">
-				<span *ngIf="meetingFormControl.startDate?.errors?.required">
+				<span *ngIf="meetingFormControl.startDate?.day?.errors?.required">
 					Start date is required.
 				</span>
-				<span *ngIf="meetingFormControl.startDate?.errors?.startDateAfterEnd">
+				<span *ngIf="meetingFormControl.startDate?.day?.errors?.startDateAfterEnd">
 					Start date must be before end date.
 				</span>
             </div> 	
@@ -87,7 +87,7 @@
 				[submitted]="submitted">
 			</app-datepicker>
 			<div class="input-error after-picker" *ngIf="submitted && meetingFormControl.endDate?.errors">
-				<span *ngIf="meetingFormControl.endDate?.errors?.required">
+				<span *ngIf="meetingFormControl.endDate?.day?.errors?.required">
 					End date is required.
 				</span>
 			</div>
