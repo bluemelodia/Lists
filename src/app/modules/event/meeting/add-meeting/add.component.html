@@ -8,7 +8,7 @@
             <input type="text" 
                 formControlName="name"
                 placeholder="Event Name"/>
-            <div class="input-error" *ngIf="submitted && !meetingFormControl.name.errors">
+            <div class="input-error" *ngIf="submitted && meetingFormControl.name.errors">
                     <span *ngIf="meetingFormControl.name.errors?.required">
                         Name is required.
                     </span>
@@ -22,7 +22,7 @@
 			<input type="text" 
                 formControlName="location"
                 placeholder="Location"/>
-			<div class="input-error" *ngIf="submitted && !meetingFormControl.location.errors">
+			<div class="input-error" *ngIf="submitted && meetingFormControl.location.errors">
 				<span *ngIf="meetingFormControl.location.errors?.required">
 					Location is required.
 				</span>
@@ -50,8 +50,11 @@
 				[form]="meetingForm.controls.startDate"
 				[submitted]="submitted">
 			</app-datepicker>
-			<div class="input-error" *ngIf="submitted && !meetingFormControl.startDate?.errors">
-				<span *ngIf="meetingForm.startDate?.errors?.startDateAfterEnd">
+			<div class="input-error after-picker" *ngIf="submitted && meetingFormControl.startDate?.errors">
+				<span *ngIf="meetingFormControl.startDate?.errors?.required">
+					Start date is required.
+				</span>
+				<span *ngIf="meetingFormControl.startDate?.errors?.startDateAfterEnd">
 					Start date must be before end date.
 				</span>
             </div> 	
@@ -64,7 +67,7 @@
 				[theme]="timePickerTheme"
 				(timeChanged)="onStartTimeChanged($event)">
 			</ngx-material-timepicker>
-			<div class="input-error after-picker" *ngIf="submitted && !meetingFormControl.valid">
+			<div class="input-error after-picker" *ngIf="submitted && meetingFormControl.startTime.errors">
                 <span *ngIf="meetingFormControl.startTime.errors?.required">
                     Start time is required.
                 </span>
@@ -83,6 +86,11 @@
 				[form]="meetingForm.controls.endDate"
 				[submitted]="submitted">
 			</app-datepicker>
+			<div class="input-error after-picker" *ngIf="submitted && meetingFormControl.endDate?.errors">
+				<span *ngIf="meetingFormControl.endDate?.errors?.required">
+					End date is required.
+				</span>
+			</div>
 			<input formControlName="endTime"
 				placeholder="End Time"
 				aria-label="End Time"
@@ -92,11 +100,11 @@
 				[theme]="timePickerTheme"
 				(timeChanged)="onEndTimeChanged($event)">
 			</ngx-material-timepicker>
-			<div class="input-error after-picker" *ngIf="submitted && !meetingFormControl.endTime.errors">
+			<div class="input-error after-picker" *ngIf="submitted && meetingFormControl.endTime.errors">
 				<span *ngIf="meetingFormControl.endTime.errors?.required">
 					End time is required.
 				</span>
-				<span *ngIf="meetingForm.endTime.errors?.startTimeAfterEnd">
+				<span *ngIf="meetingFormControl.endTime.errors?.startTimeAfterEnd">
 					End time must be after start time.
 				</span>
 			</div> 	
