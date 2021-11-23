@@ -8,7 +8,7 @@
             <input type="text" 
                 formControlName="name"
                 placeholder="Event Name"/>
-            <div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+            <div class="input-error" *ngIf="submitted && !meetingFormControl.name.errors">
                     <span *ngIf="meetingFormControl.name.errors?.required">
                         Name is required.
                     </span>
@@ -22,7 +22,7 @@
 			<input type="text" 
                 formControlName="location"
                 placeholder="Location"/>
-			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+			<div class="input-error" *ngIf="submitted && !meetingFormControl.location.errors">
 				<span *ngIf="meetingFormControl.location.errors?.required">
 					Location is required.
 				</span>
@@ -50,8 +50,8 @@
 				[form]="meetingForm.controls.startDate"
 				[submitted]="submitted">
 			</app-datepicker>
-			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
-				<span *ngIf="meetingForm.errors?.startDateAfterEnd">
+			<div class="input-error" *ngIf="submitted && !meetingFormControl.startDate?.errors">
+				<span *ngIf="meetingForm.startDate?.errors?.startDateAfterEnd">
 					Start date must be before end date.
 				</span>
             </div> 	
@@ -64,7 +64,7 @@
 				[theme]="timePickerTheme"
 				(timeChanged)="onStartTimeChanged($event)">
 			</ngx-material-timepicker>
-			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+			<div class="input-error after-picker" *ngIf="submitted && !meetingFormControl.valid">
                 <span *ngIf="meetingFormControl.startTime.errors?.required">
                     Start time is required.
                 </span>
@@ -92,11 +92,11 @@
 				[theme]="timePickerTheme"
 				(timeChanged)="onEndTimeChanged($event)">
 			</ngx-material-timepicker>
-			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+			<div class="input-error after-picker" *ngIf="submitted && !meetingFormControl.endTime.errors">
 				<span *ngIf="meetingFormControl.endTime.errors?.required">
 					End time is required.
 				</span>
-				<span *ngIf="meetingForm.errors?.startTimeAfterEnd">
+				<span *ngIf="meetingForm.endTime.errors?.startTimeAfterEnd">
 					End time must be after start time.
 				</span>
 			</div> 	
@@ -111,7 +111,7 @@
                 formControlName="description"
                 placeholder="Description"></textarea>
 			Max {{ maxChars }} characters.
-			<div class="input-error" *ngIf="!meetingFormControl.valid && this.submitted">
+			<div class="input-error" *ngIf="submitted && !meetingFormControl.description.errors">
 				<span *ngIf="meetingFormControl.description.errors?.maxlength">
 					Description should not exceed {{ maxDescription }} characters.
 				</span>

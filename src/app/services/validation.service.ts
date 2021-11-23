@@ -118,53 +118,76 @@ export class ValidationService {
 	 * Date and time validator.
 	 */
 	dateAndTimeValidator(startDate: string, startTime: string, endDate: string, endTime: string): ValidatorFn {
-		return (control: AbstractControl): { [key: string]: any } => {
-			const sDate = control.get(startDate).value;
-			const eDate = control.get(startTime).value;
-			const sTime = control.get(endDate).value;
-			const eTime = control.get(endTime).value;
+		return (group: FormGroup): AbstractControlOptions => {
+			const sDateCtrl = group?.controls[startDate];
+			const sDate = sDateCtrl.value?.day;
+			sDateCtrl.setErrors(null);
+
+			const eDateCtrl = group?.controls[startTime];
+			const eDate = eDateCtrl.value?.day;
+			eDateCtrl.setErrors(null);
+
+			const sTimeCtrl = group?.controls[endDate];
+			const sTime = sTimeCtrl.value;
+			sTimeCtrl.setErrors(null);
+
+			const eTimeCtrl = group?.controls[endTime];
+			const eTime = eTimeCtrl.value;
+			eTimeCtrl.setErrors(null);
 
 			if (!sDate || !eDate || !sTime || !eTime) {
+				if (!sDate) {
+					sDateCtrl.setErrors({
+						"required": true
+					});
+				}
+	
+				if (!sTime) {
+					sTimeCtrl.setErrors({
+						"required": true
+					});
+				}
+	
+				if (!eDate) {
+					eDateCtrl.setErrors({
+						"required": true
+					});
+				}
+	
+				if (!eTime) {
+					eTimeCtrl.setErrors({
+						"required": true
+					});
+				}
 				return null;
 			}
-
-			let validationMap = {};
 
 			const startingDate = new Date(sDate.year, sDate.month - 1, sDate.value);
 			const endingDate = new Date(eDate.year, eDate.month - 1, eDate.value);
 			const startingTime = TimeUtils.get24HourTime(sTime);
 			const endingTime = TimeUtils.get24HourTime(eTime);
-			const now = new Date();
-			console.log("time validation: ", new Date(sDate.year, sDate.month - 1, sDate.value), new Date(eDate.year, eDate.month - 1, eDate.value), startingTime, endingTime, now);
 
 			const startYear = startingDate.getFullYear();
-			const nowYear = now.getFullYear();
 			const endYear = endingDate.getFullYear();
 			const startMonth = startingDate.getMonth();
-			const nowMonth = now.getMonth();
 			const endMonth = endingDate.getMonth();
 			const startDay = startingDate.getDate();
-			const nowDay = now.getDate();
 			const endDay = endingDate.getDate();
-
-			const isSameMonth = startYear === nowYear && startMonth < nowMonth
-				|| startYear === nowYear && startMonth === nowMonth;
-			const isSameDay = isSameMonth && startDay === nowDay;
 
 			// Allow users to have the start time & end time at the same time (essentially a reminder).
 			if (startingDate > endingDate) {
-				validationMap["startDateAfterEnd"] = true;
+				sDateCtrl.setErrors({
+					"startDateAfterEnd": true
+				});
 			}
 			if (startYear === endYear && startMonth === endMonth && startDay === endDay) {
-				console.log("===> check hours");
 				if (startingTime.hours > endingTime.hours ||
 					startingTime.hours === endingTime.hours && startingTime.minutes > endingTime.minutes) {
-					validationMap["startTimeAfterEnd"] = true;
+					eTimeCtrl.setErrors({
+						"startTimeAfterEnd": true
+					});
 				}
 			}
-
-			console.log("validationMap: ", validationMap);
-			return Object.keys(validationMap).length < 1 ? null : validationMap;
 		}
 	}
 }

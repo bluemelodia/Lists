@@ -78,16 +78,16 @@ export class AddMeetingComponent implements OnInit {
 				],
 			],
 			startDate: this.fb.group({
-				day: ["", [Validators.required]],
+				day: [""],
 			}),
 			endDate: this.fb.group({
-				day: ["", [Validators.required]],
+				day: [""],
 			}),
 			startTime: [
-				"", [Validators.required]
+				""
 			],
 			endTime: [
-				"", [Validators.required]
+				""
 			],
 			description: [
 				"",
@@ -110,7 +110,7 @@ export class AddMeetingComponent implements OnInit {
 			{
 				updateOn: "submit",
 				validators: [
-					this.customValidators.dateAndTimeValidator("startDate.day", "endDate.day", "startTime", "endTime")
+					this.customValidators.dateAndTimeValidator("startDate", "endDate", "startTime", "endTime")
 				]
 			});
 

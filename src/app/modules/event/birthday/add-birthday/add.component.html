@@ -8,7 +8,7 @@
             <input type="text" 
                 formControlName="name"
                 placeholder="Name"/>
-            <div class="input-error" *ngIf="!birthdayFormControl.valid && submitted">
+            <div class="input-error" *ngIf="submitted && !birthdayFormControl.name.errors">
                 <span *ngIf="birthdayFormControl.name.errors?.required">
                      Name is required.
                 </span>

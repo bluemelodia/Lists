@@ -168,7 +168,7 @@ input:focus-visible textarea:focus-visible {
   margin: 8px 0;
 }
 
-input + .input-error {
+input + .input-error, .input-error.after-picker {
   margin-top: 0;
 }
 
