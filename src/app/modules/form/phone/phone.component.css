@@ -1,9 +1,8 @@
-.wrapper {
-	position: relative;
+:host {
+	margin-bottom: 8px;
 }
 
-.phone-input__container {
-	height: 1000px;
-	background-color: red;
+.wrapper {
+	position: relative;
 }
 

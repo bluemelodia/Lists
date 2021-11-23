@@ -135,6 +135,7 @@ export class ValidationService {
 			const eTime = eTimeCtrl.value;
 			eTimeCtrl.setErrors(null);
 
+			console.log(sDate, eDate, sTime, eTime);
 			if (!sDate || !eDate || !sTime || !eTime) {
 				if (!sDate) {
 					sDateCtrl.setErrors({
@@ -188,6 +189,7 @@ export class ValidationService {
 					});
 				}
 			}
+			return null;
 		}
 	}
 }

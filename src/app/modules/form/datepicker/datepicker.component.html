@@ -7,6 +7,11 @@
             [value]="form.controls.day.value | pickerDateFormatter: calendarType"
             (click)="showHideCal()"
             (keydown)="onKeydownEvent($event)"/>
+        <div class="input-error" *ngIf="submitted && dateFormControl.day.errors">
+            <span *ngIf="dateFormControl.day.errors?.required">
+				{{fieldName}} is required.
+            </span>
+        </div> 
 		<section class="cal-container" *ngIf="cal.showCal">
 			<app-loader *ngIf="cal.isLoading"></app-loader>
 			<app-calendar #calendar appFocus
