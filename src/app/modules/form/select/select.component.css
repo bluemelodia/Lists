@@ -2,10 +2,6 @@
 	position: relative;
   }
   
-  input {
-	margin-bottom: 0;
-  }
-  
   input.options-open {
 	border-bottom: 0;
   }

@@ -39,13 +39,13 @@
 			<input type="email" 
                 formControlName="email"
                  placeholder="Email"/>
-            <div class="input-error" *ngIf="submitted">  
+            <div class="input-error" *ngIf="submitted && birthdayFormControl.email.errors">  
                 <span *ngIf="birthdayFormControl.email.errors?.invalidEmail">
                     Please enter a valid email address.
                 </span>
             </div>
 			<app-phone [form]="birthdayForm" [startingCountry]="startingCountry"></app-phone>
-			<div class="input-error" *ngIf="submitted">  
+			<div class="input-error" *ngIf="submitted && birthdayFormControl.phone.errors">  
 				<span *ngIf="birthdayFormControl.phone.errors?.invalidPhone">
 					Please enter a valid phone number.
 				</span>
@@ -57,7 +57,7 @@
 				</app-heading>
 				<span class="form-instructions">Enter the recpient's mailing address.</span>
 				<app-address [form]="birthdayForm.controls.address"></app-address>
-				<div class="input-error" *ngIf="submitted">
+				<div class="input-error" *ngIf="submitted && birthdayFormControl.address.errors">
 					<span *ngIf="birthdayFormControl.address.errors?.missingStreetAddress">
 						Please enter a street address.
 					</span>
