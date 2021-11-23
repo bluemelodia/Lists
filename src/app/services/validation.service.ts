@@ -88,6 +88,32 @@ export class ValidationService {
 		};
 	}
 
+	addressValidator(addressKey: string): ValidatorFn {
+		return (group: FormGroup): AbstractControlOptions => {
+			const address = group?.controls[addressKey];
+			address.setErrors(null);
+
+			/* User didn't enter basic address fields. */
+			if (!address.value?.street && !address.value?.city && !address.value?.zip) {
+				return null;
+			} else {
+				let validationMap = {};
+				if (!address.value?.street) {
+					validationMap["missingStreetAddress"] = true;
+				}
+
+				if (!address.value?.city) {
+					validationMap["missingCity"] = true;
+				}
+
+				if (!address.value?.zip) {
+					validationMap["missingZip"] = true;
+				}
+				address.setErrors(validationMap);
+			}
+		}
+	}
+
 	/**
 	 * Date and time validator.
 	 */

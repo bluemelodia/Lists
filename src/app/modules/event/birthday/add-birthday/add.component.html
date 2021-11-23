@@ -57,6 +57,17 @@
 				</app-heading>
 				<span class="form-instructions">Enter the recpient's mailing address.</span>
 				<app-address [form]="birthdayForm.controls.address"></app-address>
+				<div class="input-error" *ngIf="submitted">
+					<span *ngIf="birthdayFormControl.address.errors?.missingStreetAddress">
+						Please enter a street address.
+					</span>
+					<span *ngIf="birthdayFormControl.address.errors?.missingCity">
+						Please enter a city.
+					</span>
+					<span *ngIf="birthdayFormControl.address.errors?.missingZip">
+						Please enter a zip code.
+					</span>
+				</div>
 		</fieldset>
         <fieldset>
             <app-heading [level]="headerLevel.H3" text="Profile Image">

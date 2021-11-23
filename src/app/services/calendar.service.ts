@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { forkJoin, Observable, of, ReplaySubject } from "rxjs";
+import { forkJoin, Observable, of, Subject } from "rxjs";
 
 import { Endpoint } from "../constants/urls.constants";
 import { CalendarType } from "../interfaces/calendar/calendar.interface";
@@ -15,7 +15,7 @@ import { CalendarUtils } from "../utils/calendar.utils";
 })
 export class CalendarService {
 	private baseURL = Endpoint.CALENDAR;
-	private calendar$ = new ReplaySubject<Calendar>(null);
+	private calendar$ = new Subject<Calendar>();
 
 	private currentYear;
 	private currentMonth;
@@ -50,15 +50,14 @@ export class CalendarService {
 	/**
 	 * We want a two-year calendar, so wait until both requests complete.
 	 */
-	getCalendar(type: CalendarType): void {
+	getCalendar(type: CalendarType): void {		
 		forkJoin({
 			[this.currentYear]: this.getChineseCalendarForYear(this.currentYear),
 			[this.currentYear + 1]: this.getChineseCalendarForYear(this.currentYear + 1)
 		})
 			.subscribe((response: Response) => {
 				if (!response) {
-					this.calendar$.next(null);
-					return null;
+					throw new Error("Unable to load calendar.")
 				}
 
 				const cal = {};
@@ -93,6 +92,9 @@ export class CalendarService {
 					days: CalendarUtils.getCalendarDays(),
 					type: type
 				});
+			}, () => {
+				this.calendar$.next(null);
+				return of(null);
 			});
 	}
 

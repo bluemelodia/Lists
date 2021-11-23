@@ -64,7 +64,6 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
 	public ngOnInit(): void {
 		this.setupSubscriptions();
-		this.toggleLoading(true);
 		this.calendar.getCalendar(this.calendarType);
 	}
 

@@ -113,9 +113,15 @@ export class BirthdayService {
 		} else {
 			this.calendarService.getCalendar(CalendarType.Lunar);
 			this.calendarService.onCalendarFetched$
+				.pipe(
+					catchError(() => {
+						this.birthdaysChanged$.next(-1);
+						return of(null);
+					})
+				)
 				.subscribe((calendar: Calendar) => {
 					if (!calendar) {
-						return;
+						throw new Error('Unable to fetch calendar.');
 					}
 
 					this.calendar = calendar;

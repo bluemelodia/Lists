@@ -10,3 +10,7 @@
     font-size: 2rem;
     margin: 8px;
 }
+
+.error-message {
+	text-align: center;
+}

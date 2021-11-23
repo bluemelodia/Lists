@@ -118,7 +118,8 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				updateOn: "submit",
 				validators: [
 					this.customValidator.emailValidator("email", `channels.${Channel.email}`),
-					this.customValidator.phoneValidator("phone", `channels.${Channel.text}`)
+					this.customValidator.phoneValidator("phone", `channels.${Channel.text}`),
+					this.customValidator.addressValidator("address"),
 				]
 			});
 
