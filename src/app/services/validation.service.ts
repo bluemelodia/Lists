@@ -119,13 +119,12 @@ export class ValidationService {
 	 */
 	dateAndTimeValidator(startDate: string, endDate: string, startTime: string, endTime: string): ValidatorFn {
 		return (group: FormGroup): AbstractControlOptions => {
+			console.log("===> call mr@@@@@@");
 			const sDateCtrl = group?.get(startDate);
 			const sDate = sDateCtrl.value;
-			sDateCtrl.setErrors(null);
 
 			const eDateCtrl = group?.get(endDate);
 			const eDate = eDateCtrl.value;
-			eDateCtrl.setErrors(null);
 
 			const sTimeCtrl = group?.get(startTime);
 			const sTime = sTimeCtrl.value;
@@ -134,18 +133,6 @@ export class ValidationService {
 			const eTimeCtrl = group?.get(endTime);
 			const eTime = eTimeCtrl.value;
 			eTimeCtrl.setErrors(null);
-			
-			if (!sDate) {
-				sDateCtrl.setErrors({
-					"required": true
-				});
-			}
-	
-			if (!eDate) {
-				eDateCtrl.setErrors({
-					"required": true
-				});
-			}
 
 			const startingDate = new Date(sDate.year, sDate.month - 1, sDate.value);
 			const endingDate = new Date(eDate.year, eDate.month - 1, eDate.value);

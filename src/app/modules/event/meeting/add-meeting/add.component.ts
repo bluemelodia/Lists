@@ -78,10 +78,10 @@ export class AddMeetingComponent implements OnInit {
 				],
 			],
 			startDate: this.fb.group({
-				day: [""],
+				day: ["", [Validators.required]],
 			}),
 			endDate: this.fb.group({
-				day: [""],
+				day: ["", [Validators.required]],
 			}),
 			startTime: [
 				""
