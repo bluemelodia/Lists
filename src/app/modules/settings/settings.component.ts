@@ -33,8 +33,6 @@ export class SettingsComponent implements OnInit {
 	public submitted: boolean;
 	public validateChannel = VALIDATE_CHANNEL;
 
-	public validateChannels$ = new Subject<ChannelValidation>();
-
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
@@ -139,7 +137,6 @@ export class SettingsComponent implements OnInit {
 
 	public onSubmit(): void {
 		this.submitted = true;
-		this.validateChannels$.next(this.validateChannel);
 
 		if (!this.settingsFormControl.email.errors && !this.settingsFormControl.phone.errors) {
 			this.submitted = false;

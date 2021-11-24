@@ -17,6 +17,9 @@ How to make image upload easy with Angular
 	Angular Push Notifications: a Complete Step-by-Step Guide
 </a>
 
+## Known Issues
+- updateOn: "submit" does not work consistently with all input forms. dateAndTimeValidator runs in-between submits (ex. user updates the Add Meeting datepicker field, and the error will update in real time, instead of on the next submit). 
+
 ## TODO
 
 - User logins and session. Modify logic so that users only see their own account information.
@@ -33,7 +36,6 @@ How to make image upload easy with Angular
 - Let users budget gifts for friends/family and keep track of their addresses. Let users enter a budget/email/address for each recipient (for sending gifts) - the gifts page will sync this same thing and also get gift history.
 
   - Add this to the Add Recipient form.
-    - Phone number, email address, physical address.
     - Budget.
   - Then you can see each recipient on the gifts page, and add a list of gifts purchased for them.
 
