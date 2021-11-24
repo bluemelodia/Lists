@@ -117,7 +117,7 @@ export class ValidationService {
 	/**
 	 * Date and time validator.
 	 */
-	dateAndTimeValidator(startDate: string, startTime: string, endDate: string, endTime: string): ValidatorFn {
+	dateAndTimeValidator(startDate: string, endDate: string, startTime: string, endTime: string): ValidatorFn {
 		return (group: FormGroup): AbstractControlOptions => {
 			const sDateCtrl = group?.get(startDate);
 			const sDate = sDateCtrl.value;
@@ -134,28 +134,36 @@ export class ValidationService {
 			const eTimeCtrl = group?.get(endTime);
 			const eTime = eTimeCtrl.value;
 			eTimeCtrl.setErrors(null);
-
-			console.log("validate start date: ", sDate);
-			console.log("validate end date: ", eDate);
-			if (!sDate || !eDate || !sTime || !eTime) {
-				if (!sDate) {
-					sDateCtrl.setErrors({
-						"required": true
-					});
-				}
+			
+			if (!sDate) {
+				sDateCtrl.setErrors({
+					"required": true
+				});
+			}
 	
+			if (!eDate) {
+				eDateCtrl.setErrors({
+					"required": true
+				});
+			}
+
+			const startingDate = new Date(sDate.year, sDate.month - 1, sDate.value);
+			const endingDate = new Date(eDate.year, eDate.month - 1, eDate.value);
+			if (startingDate > endingDate) {
+				sDateCtrl.setErrors({
+					"startDateAfterEnd": true
+				});
+			}
+			console.log("validate start date: ", sDate, sDateCtrl);
+			console.log("validate end date: ", eDate, eDateCtrl);
+
+			if (!sTime || !eTime) {
 				if (!sTime) {
 					sTimeCtrl.setErrors({
 						"required": true
 					});
 				}
-	
-				if (!eDate) {
-					eDateCtrl.setErrors({
-						"required": true
-					});
-				}
-	
+		
 				if (!eTime) {
 					eTimeCtrl.setErrors({
 						"required": true
@@ -164,8 +172,6 @@ export class ValidationService {
 				return null;
 			}
 
-			const startingDate = new Date(sDate.year, sDate.month - 1, sDate.value);
-			const endingDate = new Date(eDate.year, eDate.month - 1, eDate.value);
 			const startingTime = TimeUtils.get24HourTime(sTime);
 			const endingTime = TimeUtils.get24HourTime(eTime);
 
@@ -177,11 +183,6 @@ export class ValidationService {
 			const endDay = endingDate.getDate();
 
 			// Allow users to have the start time & end time at the same time (essentially a reminder).
-			if (startingDate > endingDate) {
-				sDateCtrl.setErrors({
-					"startDateAfterEnd": true
-				});
-			}
 			if (startYear === endYear && startMonth === endMonth && startDay === endDay) {
 				if (startingTime.hours > endingTime.hours ||
 					startingTime.hours === endingTime.hours && startingTime.minutes > endingTime.minutes) {

@@ -170,9 +170,18 @@ export class AddMeetingComponent implements OnInit {
 		return this.meetingFormControl.name.value;
 	}
 
+	get startDateCtrl(): AbstractControl {
+		return this.meetingForm.get("startDate.day");
+	}
+
 	get startDate(): CalendarDay {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.meetingForm.get("startDate.day")?.value;
+	}
+
+	get endDateCtrl(): AbstractControl {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+		return this.meetingForm.get("endDate.day");
 	}
 
 	get endDate(): CalendarDay {
