@@ -1,5 +1,15 @@
+import { CountryData } from "../modules/form/address/constants/countries";
 import { CalendarDay } from "./calendar/calendar-response.interface";
 import { AddBirthday } from "./service/service-objects.interface";
+
+export interface Address {
+	street: string;
+	unit?: string;
+	city?: string;
+	state?: string;
+	zip: string;
+	country: CountryData;
+}
 
 export interface Birthday {
 	name: string;
@@ -7,6 +17,10 @@ export interface Birthday {
 	date: CalendarDay;
 	options: BirthdayOptions;
 	profile?: BirthdayProfile;
+	email?: string;
+	phone?: string;
+	address?: Address;
+	budget?: number;
 }
 
 export interface BirthdayList {

@@ -23,6 +23,7 @@ import { NavService } from "../../../../services/nav.service";
 import { ValidationService } from "../../../../services/validation.service";
 
 import {
+	Address,
 	Birthday,
 	BirthdayAction,
 	BirthdayID,
@@ -196,6 +197,22 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		return this.birthdayFormControl.profile.value;
 	}
 
+	get email(): string {
+		return this.birthdayFormControl.email.value;
+	}
+
+	get phone(): string {
+		return this.birthdayFormControl.phone.value;
+	}
+
+	get address(): Address {
+		return this.birthdayFormControl.address.value;
+	}
+
+	get budget(): number {
+		return this.birthdayFormControl.budget.value;
+	}
+
 	onSubmit(): void {
 		this.submitted = true;
 		console.log("birthdayForm: ", this.birthdayForm);
@@ -209,6 +226,10 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				date: this.date,
 				options: this.options,
 				profile: this.profile,
+				email: this.email,
+				phone: this.phone,
+				address: this.address,
+				budget: this.budget,
 			};
 			console.info("🥳 💁🏻‍♀️ AddBirthdayComponent ---> onSubmit, birthday: ", this.birthday);
 

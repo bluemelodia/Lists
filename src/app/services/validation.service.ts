@@ -109,7 +109,7 @@ export class ValidationService {
 				if (!address.value?.zip) {
 					validationMap["missingZip"] = true;
 				}
-				address.setErrors(validationMap);
+				address.setErrors(Object.keys(validationMap).length > 0 ? validationMap : null);
 			}
 		}
 	}
