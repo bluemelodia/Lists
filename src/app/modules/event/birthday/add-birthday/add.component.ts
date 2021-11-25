@@ -29,13 +29,15 @@ import {
 	BirthdayOptions,
 	BirthdayProfile,
 } from "../../../../interfaces/birthday.interface";
+import { MaxBudget } from "../../../../constants/gifts.constants";
+
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
 import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddBirthday } from "../../../../interfaces/service/service-objects.interface";
-import { Channel, VALIDATE_CHANNEL } from "../../../../interfaces/settings.interface";
+import { Channel } from "../../../../interfaces/settings.interface";
 
 import { BirthdayUtils } from "../../../../utils/birthday.utils";
 import { FormUtils } from "../../../../utils/form.utils";
@@ -54,9 +56,9 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 	headerLevel = HeaderLevel;
 
 	public calendarType: CalendarType = CalendarType.Lunar;
+	public maxBudget = MaxBudget;
 	public startingCountry: string;
 	public submitted = false;
-	public validateChannel = VALIDATE_CHANNEL;
 
 	private countries = countries;
 	private ngUnsubscribe$ = new Subject<void>();
@@ -112,7 +114,13 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			profile: this.fb.group({
 				image: [""],
 				fileName: [""]
-			})
+			}),
+			budget: [
+				"",
+				[
+					Validators.max(this.maxBudget)
+				]
+			],
 		},
 			{
 				updateOn: "submit",
@@ -186,10 +194,6 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 	get profile(): BirthdayProfile {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.birthdayFormControl.profile.value;
-	}
-
-	public setChannelValidationStatus(channel: Channel, status: boolean): void {
-		this.validateChannel[channel] = status;
 	}
 
 	onSubmit(): void {

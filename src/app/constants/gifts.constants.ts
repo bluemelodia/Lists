@@ -1,0 +1,1 @@
+export const MaxBudget = 1000000000;

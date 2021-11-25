@@ -7,7 +7,6 @@ export class CountryUtils {
 		if (!CountryUtils.countryList) {
 			CountryUtils.countryList = CountryUtils.sortCountries();
 		}
-		console.log("===> return: ", CountryUtils.countryList);
 		return CountryUtils.countryList;
 	}
 

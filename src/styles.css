@@ -172,10 +172,6 @@ input + .input-error, .input-error.after-picker {
   margin-top: 0;
 }
 
-app-checkbox:last-child {
-	margin-bottom: 8px;
-}
-
 .event-form {
   display: flex;
   flex-direction: column;

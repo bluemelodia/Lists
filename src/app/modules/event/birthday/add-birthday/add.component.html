@@ -52,22 +52,37 @@
 			</div>
 		</fieldset>
 		<fieldset>
-				<app-heading [level]="headerLevel.H3" text="Address">
-					<span class="event-form__optional" post>Optional</span>
-				</app-heading>
-				<span class="form-instructions">Enter the recpient's mailing address.</span>
-				<app-address [form]="birthdayForm.controls.address"></app-address>
-				<div class="input-error" *ngIf="submitted && birthdayFormControl.address.errors">
-					<span *ngIf="birthdayFormControl.address.errors?.missingStreetAddress">
-						Please enter a street address.
-					</span>
-					<span *ngIf="birthdayFormControl.address.errors?.missingCity">
-						Please enter a city.
-					</span>
-					<span *ngIf="birthdayFormControl.address.errors?.missingZip">
-						Please enter a zip code.
-					</span>
-				</div>
+			<app-heading [level]="headerLevel.H3" text="Address">
+				<span class="event-form__optional" post>Optional</span>
+			</app-heading>
+			<span class="form-instructions">Enter the recpient's mailing address.</span>
+			<app-address [form]="birthdayForm.controls.address"></app-address>
+			<div class="input-error" *ngIf="submitted && birthdayFormControl.address.errors">
+				<span *ngIf="birthdayFormControl.address.errors?.missingStreetAddress">
+					Please enter a street address.
+				</span>
+				<span *ngIf="birthdayFormControl.address.errors?.missingCity">
+					Please enter a city.
+				</span>
+				<span *ngIf="birthdayFormControl.address.errors?.missingZip">
+					Please enter a zip code.
+				</span>
+			</div>
+		</fieldset>
+		<fieldset>
+            <app-heading [level]="headerLevel.H3" text="Budget">
+                <span class="event-form__optional" post>Optional</span>
+            </app-heading>
+			<span class="form-instructions">Enter the maximum amount of money to spend on a gift.</span>
+			<input type="number"
+                formControlName="budget"
+				min="1" max="maxBudget"
+                placeholder="Budget"/>
+			<div class="input-error" *ngIf="submitted && birthdayFormControl.budget.errors">
+				<span *ngIf="birthdayFormControl.budget.errors?.max">
+					Budget should not exceed {{ maxBudget }}.
+				</span>
+			</div> 
 		</fieldset>
         <fieldset>
             <app-heading [level]="headerLevel.H3" text="Profile Image">
