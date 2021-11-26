@@ -158,6 +158,19 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		 */
 		this.birthdayForm.patchValue({
 			name: birthday.name,
+			email: birthday.email,
+			phone: birthday.phone,
+			address: {
+				unit: birthday.apartment,
+				city: birthday.city,
+				state: birthday.state,
+				street: birthday.street,
+				zip: birthday.zip,
+				country: {
+					code: birthday.country,
+					name: countries[birthday.country]?.name
+				}
+			},
 			date: {
 				day: BirthdayUtils.createCalendarDate(birthday),
 			},
@@ -169,7 +182,8 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			},
 			profile: {
 				image: birthday.image
-			}
+			},
+			budget: birthday.budget
 		});
 	}
 
