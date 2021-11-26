@@ -19,6 +19,7 @@ export interface Birthday {
 	profile?: BirthdayProfile;
 	email?: string;
 	phone?: number;
+	countryCode?: string;
 	address?: Address;
 	budget?: number;
 }

@@ -100,6 +100,7 @@ export class BirthdayUtils {
 			image: birthday.profile?.image,
 			budget: birthday.budget,
 			email: birthday.email,
+			countrycode: birthday.countryCode,
 			phone: birthday.phone,
 			street: birthday.address?.street,
 			apartment: birthday.address?.unit,
@@ -108,6 +109,7 @@ export class BirthdayUtils {
 			zip: birthday.address?.zip,
 			country: birthday.address?.country.code, // easy to map back
 		};
+		console.log("===> send birthday: ", addBirthday);
 		return addBirthday;
 	}
 

@@ -60,6 +60,7 @@ export interface AddBirthday extends AddDate {
 	budget?: number;
 	email?: string;
 	phone?: number;
+	countrycode?: string;
 	street?: string;
 	apartment?: string;
 	city?: string;

@@ -168,7 +168,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				zip: birthday.zip,
 				country: {
 					code: birthday.country,
-					name: countries[birthday.country]?.name
+					name: countries[birthday.country]?.name || countries["US"]?.name
 				}
 			},
 			date: {
@@ -243,6 +243,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				profile: this.profile,
 				email: this.email,
 				phone: this.phone?.number,
+				countryCode: this.phone?.countryCode,
 				address: this.address,
 				budget: this.budget,
 			};
