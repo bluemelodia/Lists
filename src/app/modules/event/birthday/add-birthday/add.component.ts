@@ -36,6 +36,7 @@ import { CalendarType } from "../../../../interfaces/calendar/calendar.interface
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
 import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
+import { Phone } from "../../../../interfaces/phone.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddBirthday } from "../../../../interfaces/service/service-objects.interface";
 import { Channel } from "../../../../interfaces/settings.interface";
@@ -201,7 +202,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		return this.birthdayFormControl.email.value;
 	}
 
-	get phone(): string {
+	get phone(): Phone {
 		return this.birthdayFormControl.phone.value;
 	}
 
@@ -227,7 +228,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				options: this.options,
 				profile: this.profile,
 				email: this.email,
-				phone: this.phone,
+				phone: this.phone?.number,
 				address: this.address,
 				budget: this.budget,
 			};

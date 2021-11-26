@@ -18,7 +18,7 @@ export interface Birthday {
 	options: BirthdayOptions;
 	profile?: BirthdayProfile;
 	email?: string;
-	phone?: string;
+	phone?: number;
 	address?: Address;
 	budget?: number;
 }

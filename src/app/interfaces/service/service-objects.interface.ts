@@ -57,6 +57,15 @@ export interface AddBirthday extends AddDate {
 	status?: DateStatus;
 	image?: string;
 	filename?: string;
+	budget?: number;
+	email?: string;
+	phone?: number;
+	street?: string;
+	apartment?: string;
+	city?: string;
+	state?: string;
+	zip?: string;
+	country?: string;
 }
 
 /**

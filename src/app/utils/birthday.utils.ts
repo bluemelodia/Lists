@@ -98,8 +98,16 @@ export class BirthdayUtils {
 			lunar: birthday.options.lunar ? 1 : 0,
 			filename: BirthdayUtils.extractFileURL(birthday.profile?.fileName),
 			image: birthday.profile?.image,
+			budget: birthday.budget,
+			email: birthday.email,
+			phone: birthday.phone,
+			street: birthday.address?.street,
+			apartment: birthday.address?.unit,
+			city: birthday.address?.city,
+			state: birthday.address?.state,
+			zip: birthday.address?.zip,
+			country: birthday.address?.country.code, // easy to map back
 		};
-		//console.log("====> send this birthday: ", addBirthday);
 		return addBirthday;
 	}
 
