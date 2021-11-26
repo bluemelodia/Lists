@@ -160,26 +160,11 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			name: birthday.name,
 			email: birthday.email,
 			phone: birthday.phone,
-			address: {
-				unit: birthday.apartment,
-				city: birthday.city,
-				state: birthday.state,
-				street: birthday.street,
-				zip: birthday.zip,
-				country: {
-					code: birthday.country,
-					name: countries[birthday.country]?.name || countries["US"]?.name
-				}
-			},
+			address: birthday.address,
 			date: {
 				day: BirthdayUtils.createCalendarDate(birthday),
 			},
-			options: {
-				lunar: FormUtils.createCheckboxOption(birthday.lunar),
-				[BirthdayID.call]: FormUtils.createCheckboxOption(birthday.call),
-				[BirthdayID.text]: FormUtils.createCheckboxOption(birthday.text),
-				[BirthdayID.gift]: FormUtils.createCheckboxOption(birthday.gift),
-			},
+			options: birthday.options,
 			profile: {
 				image: birthday.image
 			},
@@ -242,8 +227,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				options: this.options,
 				profile: this.profile,
 				email: this.email,
-				phone: this.phone?.number,
-				countryCode: this.phone?.countryCode,
+				phone: this.phone,
 				address: this.address,
 				budget: this.budget,
 			};

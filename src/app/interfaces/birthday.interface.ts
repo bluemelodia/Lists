@@ -1,5 +1,6 @@
 import { CountryData } from "../modules/form/address/constants/countries";
 import { CalendarDay } from "./calendar/calendar-response.interface";
+import { Phone } from "./phone.interface";
 import { AddBirthday } from "./service/service-objects.interface";
 
 export interface Address {
@@ -15,11 +16,11 @@ export interface Birthday {
 	name: string;
 	uuid?: string; /* Birthdays that came from the DB will already have an id. */
 	date: CalendarDay;
+	futureDates: CalendarDay[];
 	options: BirthdayOptions;
 	profile?: BirthdayProfile;
 	email?: string;
-	phone?: number;
-	countryCode?: string;
+	phone?: Phone;
 	address?: Address;
 	budget?: number;
 }

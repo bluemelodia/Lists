@@ -42,15 +42,15 @@ export class BirthdayUtils {
 
 	public static createCalendarDate(birthday: AddBirthday): CalendarDay {
 		const day: CalendarDay = {
-			value: birthday.date,
-			month: birthday.month,
-			year: birthday.year,
+			value: birthday.date.value,
+			month: birthday.date.month,
+			year: birthday.date.year,
 		};
 
-		day.cmonth = birthday.cmonth;
+		day.cmonth = birthday.date.cmonth;
 		day.leap = birthday.leap === 1 ? true : false;
-		day.cdate = birthday.cdate;
-		day.cmonthname = birthday.cmonthname;
+		day.cdate = birthday.date.cdate;
+		day.cmonthname = birthday.date.cmonthname;
 
 		return day;
 	}
@@ -78,36 +78,16 @@ export class BirthdayUtils {
 
 		return dialogType;
 	}
-
+	
 	public static formatBirthday(birthday: Birthday): AddBirthday {
 		const date = birthday.date;
 		const addBirthday: AddBirthday = {
+			...birthday,
 			id: "guest",
-			uuid: birthday.uuid,
-			cmonth: date.cmonth,
-			month: date.month,
-			cdate: date.cdate,
-			date: Number(date.value),
-			year: date.year,
-			name: birthday.name,
-			call: birthday.options.call ? 1 : 0,
-			text: birthday.options.text ? 1 : 0,
-			gift: birthday.options["buy-present"] ? 1 : 0,
 			leap: date.leap ? 1 : 0,
-			cmonthname: date.cmonthname,
 			lunar: birthday.options.lunar ? 1 : 0,
 			filename: BirthdayUtils.extractFileURL(birthday.profile?.fileName),
-			image: birthday.profile?.image,
-			budget: birthday.budget,
-			email: birthday.email,
-			countrycode: birthday.countryCode,
-			phone: birthday.phone,
-			street: birthday.address?.street,
-			apartment: birthday.address?.unit,
-			city: birthday.address?.city,
-			state: birthday.address?.state,
-			zip: birthday.address?.zip,
-			country: birthday.address?.country.code, // easy to map back
+			image: birthday.profile?.image
 		};
 		console.log("===> send birthday: ", addBirthday);
 		return addBirthday;
@@ -172,14 +152,14 @@ export class BirthdayUtils {
 
 	private static getSolarDiff(birthday: AddBirthday): number {
 		const today = new Date();
-		const birthDate = new Date(today.getFullYear(), birthday.month - 1, birthday.date);
+		const birthDate = new Date(today.getFullYear(), birthday.date.month - 1, birthday.date.value);
 
 		return (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
 	}
 
 	private static getLunarDiff(birthday: AddBirthday): number {
 		const today = new Date();
-		const birthDate = new Date(birthday.year, birthday.month - 1, birthday.date);
+		const birthDate = new Date(birthday.date.year, birthday.date.month - 1, birthday.date.value);
 
 		return (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
 	}
@@ -188,11 +168,11 @@ export class BirthdayUtils {
 	 * First sort by the birth date, then differentiate by names.
 	 */
 	private static sortLunarBirthdays(a: AddBirthday, b: AddBirthday): number {
-		return a.year - b.year || BirthdayUtils.sortSolarBirthdays(a, b);
+		return a.date.year - b.date.year || BirthdayUtils.sortSolarBirthdays(a, b);
 	}
 
 	private static sortSolarBirthdays(a: AddBirthday, b: AddBirthday): number {
-		return a.month - b.month || a.date - b.date || BirthdayUtils.sortByName(a.name, b.name);
+		return a.date.month - b.date.month || a.date.value - b.date.value || BirthdayUtils.sortByName(a.name, b.name);
 	}
 
 	private static sortByName(a: string, b: string): number {

@@ -109,9 +109,7 @@ export class BirthdayService {
 	* once per application lifecycle.
 	*/
 	private fetchCalendar(birthdayList?: AddBirthday[]) {
-		if (this.calendar) {
-			this.patchBirthdays(birthdayList);
-		} else {
+		if (!this.calendar) {
 			this.calendarService.getCalendar(CalendarType.Lunar);
 			this.calendarService.onCalendarFetched$
 				.pipe(
@@ -126,87 +124,6 @@ export class BirthdayService {
 					}
 
 					this.calendar = calendar;
-					this.patchBirthdays(birthdayList);
-				});
-		}
-	}
-
-	/**
-	* Check the user"s birthday list, silently adding lunar birthdays
-	* for the next year if not already present. When we get the user"s
-	* list of birthdays, we will group the lunar birthdays together.
-	*
-	* We do this on the client side so that active users will have an
-	* up-to-date birthdays list.
-	*/
-	private patchBirthdays(birthdayList?: AddBirthday[]) {
-		if (birthdayList) {
-			this.updateBirthdays(birthdayList);
-		} else {
-			this.getBirthdays("guest")
-				.pipe(
-					map((birthdays: AddBirthday[]) => birthdays?.filter((birthday) => birthday.lunar)),
-				)
-				.subscribe((birthdays: AddBirthday[]) => {
-					console.info("🍰 ✅ BirthdayService ---> patchBirthdays, get birthday list: ", birthdays);
-					this.updateBirthdays(birthdays);
-				});
-		}
-	}
-
-	private updateBirthdays(birthdays: AddBirthday[]): void {
-		const birthdayBatch = [];
-
-		birthdays?.filter((birthday) => birthday.lunar === 1).forEach((birthday: AddBirthday) => {
-			const matchingDays = this.calendar?.days?.filter((day: CalendarDay) => {
-				return day.cmonthname === birthday.cmonthname && day.cdate === birthday.cdate && day.year !== birthday.year;
-			});
-			console.info("🍰 🏁 BirthdayService ---> updateBirthdays, find matching days: ", birthday, matchingDays);
-			matchingDays.forEach((day: CalendarDay) => {
-				const addBirthday: Birthday = {
-					name: birthday.name,
-					uuid: birthday.uuid,
-					date: day,
-					options: {
-						lunar: !!birthday.lunar,
-						[BirthdayID.call]: !!birthday.call,
-						[BirthdayID.text]: !!birthday.text,
-						[BirthdayID.gift]: !!birthday.gift
-					},
-					profile: {
-						image: birthday.image,
-						fileName: birthday.filename
-					},
-					email: birthday.email,
-					phone: birthday.phone,
-					countryCode: birthday.countrycode,
-					address: {
-						unit: birthday.apartment,
-						city: birthday.city,
-						state: birthday.state,
-						street: birthday.street,
-						zip: birthday.zip,
-						country: {
-							code: birthday.country,
-							name: countries[birthday.country]?.name || countries["US"]?.name
-						}
-					},
-					budget: birthday.budget,
-				};
-				console.info("🍰 🏁 BirthdayService ---> updateBirthdays, push new birthday to batch: ", addBirthday);
-				birthdayBatch.push(
-					this.postBirthday(addBirthday, false, BirthdayAction.Add)
-				);
-			});
-		});
-
-		console.info("🍰 🏁 BirthdayService ---> updateBirthdays, created birthday batch: ", birthdayBatch);
-
-		if (birthdayBatch) {
-			forkJoin(birthdayBatch)
-				.subscribe((responseStatuses: ResponseStatus[]) => {
-					const numChanged = responseStatuses?.filter((status: ResponseStatus) => status === ResponseStatus.SUCCESS).length;
-					this.birthdaysChanged$.next(numChanged);
 				});
 		}
 	}

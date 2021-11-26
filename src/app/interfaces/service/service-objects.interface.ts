@@ -1,3 +1,4 @@
+import { Birthday } from "../birthday.interface";
 import { DateStatus } from "../date.interface";
 
 export interface AddDate {
@@ -43,30 +44,13 @@ export interface AddEndTime {
 	end_minute: number;
 }
 
-/**
-* Format of birthday to send to the service.
-*/
-export interface AddBirthday extends AddDate {
+export interface AddBirthday extends Birthday {
 	id: string;
-	uuid: string;
-	name: string;
-	call: number;
-	text: number;
-	gift: number;
 	lunar: number;
+	leap: number;
 	status?: DateStatus;
 	image?: string;
 	filename?: string;
-	budget?: number;
-	email?: string;
-	phone?: number;
-	countrycode?: string;
-	street?: string;
-	apartment?: string;
-	city?: string;
-	state?: string;
-	zip?: string;
-	country?: string;
 }
 
 /**
