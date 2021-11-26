@@ -28,6 +28,8 @@ How to make image upload easy with Angular
 - Show users a calendar of upcoming events.
 - Text users the meeting reminder.
 
+- Ensure that all fields are propagating edits correctly.
+
 - Make the app more responsive, adding animations.
 - Show a list of upcoming events on the home page (four widgets, so four sections).
 - Add accessibility, don't have two modals open at the same time.

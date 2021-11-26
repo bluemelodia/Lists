@@ -13,6 +13,7 @@ import { CalendarType } from "../interfaces/calendar/calendar.interface";
 import { Dialog } from "../interfaces/dialog.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { AddBirthday } from "../interfaces/service/service-objects.interface";
+import { countries } from "../modules/form/address/constants/countries";
 import { BirthdayUtils } from "../utils/birthday.utils";
 
 // services
@@ -175,7 +176,22 @@ export class BirthdayService {
 					profile: {
 						image: birthday.image,
 						fileName: birthday.filename
-					}
+					},
+					email: birthday.email,
+					phone: birthday.phone,
+					countryCode: birthday.countrycode,
+					address: {
+						unit: birthday.apartment,
+						city: birthday.city,
+						state: birthday.state,
+						street: birthday.street,
+						zip: birthday.zip,
+						country: {
+							code: birthday.country,
+							name: countries[birthday.country]?.name || countries["US"]?.name
+						}
+					},
+					budget: birthday.budget,
 				};
 				console.info("🍰 🏁 BirthdayService ---> updateBirthdays, push new birthday to batch: ", addBirthday);
 				birthdayBatch.push(
