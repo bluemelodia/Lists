@@ -1,4 +1,4 @@
-import { countries, CountryData } from "../constants/countries";
+import { countries, CountryData } from "../../../../constants/countries.constants";
 
 export class CountryUtils {
 	private static countryList;

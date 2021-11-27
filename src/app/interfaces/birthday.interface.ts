@@ -1,4 +1,4 @@
-import { CountryData } from "../modules/form/address/constants/countries";
+import { CountryData } from "../constants/countries.constants";
 import { CalendarDay } from "./calendar/calendar-response.interface";
 import { Phone } from "./phone.interface";
 import { AddBirthday } from "./service/service-objects.interface";

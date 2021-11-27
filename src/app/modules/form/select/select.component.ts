@@ -11,15 +11,15 @@ import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
 import { FocusEvent, Key } from "../../../interfaces/focus.interface";
 
-import { CountryData } from "../address/constants/countries";
+import { CountryData } from "../../../constants/countries.constants";
 import { CountryUtils } from "../address/utils/countries.utils";
 
 @Component({
-	selector: "country-select",
+	selector: "app-select",
 	templateUrl: "./select.component.html",
 	styleUrls: ["./select.component.css"]
 })
-export class CountrySelectComponent implements OnInit, OnDestroy {
+export class SelectComponent implements OnInit, OnDestroy {
 	@Input() placeholder = "";
 	@Input() id: string;
 	@Input() default: string;
@@ -65,8 +65,6 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
 		this.destroyed$.complete();
 	}
 
-	
-
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	onDocumentClick(target: any): void {
 		if (!this.select.nativeElement.contains(target)) {
@@ -84,14 +82,5 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
 		if (event.key === "Enter" || event.key === " ") {
 			this.showHideOptions();
 		}
-	}
-
-	selectOption(option: CountryData): void {
-		console.log("===<. selected: ", option, this.form.get('country')?.value);
-		this.showOptionList = false;
-		this.form.get("country").patchValue({
-			name: option.name,
-			code: option.code,
-		});
 	}
 }
