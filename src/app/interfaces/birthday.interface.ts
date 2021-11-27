@@ -58,7 +58,7 @@ export const BirthdayFormSubmitActions: BirthdayFormSubmitAction = {
 export enum BirthdayID {
 	call = "call",
 	text = "text",
-	gift = "buy-present",
+	gift = "gift",
 }
 
 export interface BirthdayOptions {

@@ -59,7 +59,6 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 
 	public calendarType: CalendarType = CalendarType.Lunar;
 	public maxBudget = MaxBudget;
-	public startingCountry: string;
 	public submitted = false;
 
 	private countries = countries;

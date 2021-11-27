@@ -18,7 +18,8 @@ How to make image upload easy with Angular
 </a>
 
 ## Known Issues
-- updateOn: "submit" does not work consistently with all input forms. dateAndTimeValidator runs in-between submits (ex. user updates the Add Meeting datepicker field, and the error will update in real time, instead of on the next submit). 
+
+- updateOn: "submit" does not work consistently with all input forms. dateAndTimeValidator runs in-between submits (ex. user updates the Add Meeting datepicker field, and the error will update in real time, instead of on the next submit).
 
 ## TODO
 
@@ -27,6 +28,7 @@ How to make image upload easy with Angular
 - Allow users to add reminders (ex. payment reminders)
 - Show users a calendar of upcoming events.
 - Text users the meeting reminder.
+- Show a dialog on successful recipient / meeting submission.
 
 - Ensure that all fields are propagating edits correctly.
 

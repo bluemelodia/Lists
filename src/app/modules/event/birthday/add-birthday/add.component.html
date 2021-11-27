@@ -44,7 +44,7 @@
                     Please enter a valid email address.
                 </span>
             </div>
-			<app-phone [form]="birthdayForm" [startingCountry]="startingCountry"></app-phone>
+			<app-phone [form]="birthdayForm" [startingCountry]="phone?.countryCode"></app-phone>
 			<div class="input-error" *ngIf="submitted && birthdayFormControl.phone.errors">  
 				<span *ngIf="birthdayFormControl.phone.errors?.invalidPhone">
 					Please enter a valid phone number.
