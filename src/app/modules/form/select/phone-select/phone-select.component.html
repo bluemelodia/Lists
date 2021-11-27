@@ -4,7 +4,7 @@
 			<input class="narrow" type="text" readonly
 			[ngClass]="{ 'options-open' : showOptionList }"
 			formControlName="countryCode"
-			placeholder="Dial Code"
+			placeholder="Code"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 			<app-decorator ariaLabel="Dial Code Selector"
@@ -15,6 +15,14 @@
 				formControlName="number"
 				placeholder="Number">
 		</fieldset>
+		<div class="input-error" *ngIf="submitted && form.errors">  
+			<span *ngIf="form.errors?.missingPhone">
+				Please enter a phone number.
+			</span>
+			<span *ngIf="form.errors?.invalidPhone">
+				Please enter a valid phone number.
+			</span>
+		</div>
 		<section *ngIf="showOptionList"
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">

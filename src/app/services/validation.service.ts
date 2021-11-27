@@ -69,7 +69,7 @@ export class ValidationService {
 			const phone = group?.controls[phoneKey];
 			phone.setErrors(null);
 
-			if (isPhoneRequired && !phone.value) {
+			if (isPhoneRequired && !phone.value?.number) {
 				phone.setErrors({ missingPhone: true });
 				return;
 			}

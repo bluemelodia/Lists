@@ -185,8 +185,8 @@ fieldset.multi {
 }
 
 fieldset.multi {
-	display: flex;
-	padding: 0;
+  display: flex;
+  padding: 0;
 }
 
 textarea {

@@ -21,6 +21,7 @@ export class SelectComponent implements OnInit, OnDestroy {
 	@Input() id: string;
 	@Input() default: string;
 	@Input() form: FormGroup;
+	@Input() submitted;
 
 	@ViewChild("select", { read: ElementRef, static: false }) select: ElementRef;
 

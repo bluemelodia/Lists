@@ -44,12 +44,9 @@
                     Please enter a valid email address.
                 </span>
             </div>
-			<app-phone-select [form]="birthdayForm.controls.phone"></app-phone-select>
-			<div class="input-error" *ngIf="submitted && birthdayFormControl.phone.errors">  
-				<span *ngIf="birthdayFormControl.phone.errors?.invalidPhone">
-					Please enter a valid phone number.
-				</span>
-			</div>
+			<app-phone-select [form]="birthdayForm.controls.phone"
+				[submitted]="submitted">
+			</app-phone-select>
 		</fieldset>
 		<fieldset>
 			<app-heading [level]="headerLevel.H3" text="Address">

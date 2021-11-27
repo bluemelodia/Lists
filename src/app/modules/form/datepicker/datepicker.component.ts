@@ -35,7 +35,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 	@Input() controlName: string = "";
 	@Input() calendarType: CalendarType = CalendarType.Lunar;
 	@Input() form: FormGroup;
-	@Input() submitted = false;
+	@Input() submitted;
 
 	@ViewChild("picker", { read: ElementRef, static: false }) picker: ElementRef;
 
