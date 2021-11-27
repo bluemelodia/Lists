@@ -136,9 +136,42 @@ fieldset.inner {
   margin-bottom: 0;
 }
 
+fieldset.condensed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 8px;
+}
+
+fieldset.condensed input {
+  margin: 0;
+}
+
+fieldset.condensed input:not(:last-of-type) {
+  margin-right: 8px;
+}
+
+@media only screen and (max-width: 500px) {
+  fieldset.condensed {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  fieldset.condensed input {
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  fieldset.condensed input:not(:last-of-type) {
+    margin-right: 0;
+  }
+}
+
 input,
 textarea {
-  background-color: #f9eeee;
+  background-color: #f9eeee !important;
   border: 2px solid pink;
   display: inline-block;
   flex: 1;
@@ -157,7 +190,8 @@ textarea {
 
 :focus,
 :focus-visible,
-input:focus-visible textarea:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
   border: 2px solid #dd2e44;
   outline-color: #dd2e44;
 }
@@ -168,7 +202,8 @@ input:focus-visible textarea:focus-visible {
   margin: 8px 0;
 }
 
-input + .input-error, .input-error.after-picker {
+input + .input-error,
+.input-error.after-picker {
   margin-top: 0;
 }
 
@@ -365,114 +400,4 @@ button:disabled .arrow-btn {
 
 input[type="tel"] {
   padding-left: 75px !important;
-}
-
-/**
-* Margin is included in height calculations, so margin has to be 0
-* for the position: absolute elements to be centered.
-*/
-input.phone-input__container,
-input#country-search-box {
-  margin: 0px;
-}
-
-input.phone-input__container::placeholder {
-  position: absolute;
-  left: 75px;
-}
-
-#country-search-box {
-  border-bottom: 1px solid pink !important;
-}
-
-.iti {
-  position: relative;
-}
-
-.iti .iti__flag-container {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
-.iti .iti__arrow {
-  display: flex;
-  align-items: center;
-  margin-left: 5px;
-  min-height: 100%;
-  min-width: 20px;
-}
-
-.iti .iti__arrow:after {
-  content: "";
-  display: block;
-  background: url("assets/images/down-arrow.png") no-repeat;
-  background-size: contain;
-  height: 12px;
-  width: 100%;
-  float: left;
-}
-
-.iti__selected-flag {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.iti__selected-flag.dropdown-toggle {
-  width: auto !important;
-}
-
-.iti__selected-flag .selected-dial-code {
-  margin-left: 10px !important;
-}
-
-.dropdown-menu.country-dropdown {
-  width: 100% !important;
-  overflow: hidden;
-
-  top: 37px !important;
-
-  border: 2px solid pink !important;
-  border-top: 0 !important;
-  border-radius: 0 !important;
-}
-
-.iti__country-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  max-height: 300px;
-  overflow-y: auto;
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-.iti__country-list::-webkit-scrollbar {
-  display: none;
-}
-
-.iti__flag-box {
-  display: none;
-}
-
-.iti__country {
-  display: flex;
-  justify-content: space-between;
-  line-height: 44px;
-  padding: 0 8px;
-}
-
-.iti__country:hover {
-  background-color: pink !important;
-}
-
-.iti__divider {
-  border-bottom: 1px solid pink;
 }

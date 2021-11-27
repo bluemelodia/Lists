@@ -1,0 +1,18 @@
+input,
+textarea {
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+  flex: 1;
+  font-size: inherit;
+  margin: 0;
+  margin-bottom: 8px;
+  padding: 8px;
+
+  width: 100%;
+}
+
+input:focus-visible {
+  border: none;
+  outline-color: transparent;
+}

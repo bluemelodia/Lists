@@ -30,9 +30,9 @@ export class PhoneSelectComponent extends SelectComponent {
 	}
 
 	selectOption(option: CountryISO): void {
-		console.log("===<. selected: ", option, this.form.get('phone')?.value);
+		console.log("===<. selected: ", option, this.form.value);
 		this.showOptionList = false;
-		this.form.get("phone").patchValue({
+		this.form.patchValue({
 			countryCode: option
 		});
 	}
