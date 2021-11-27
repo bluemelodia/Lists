@@ -33,7 +33,7 @@
 				(valueChanged)="setChannelValidationStatus(channel.text, $event)">
             </app-checkbox>
             <fieldset class="phone" *ngIf="isChannelChecked(channel.text)">
-				<app-phone [form]="settingsForm" [startingCountry]="startingCountry"></app-phone>
+				<app-phone-select [form]="settingsForm"></app-phone-select>
                 <div class="input-error"  *ngIf="submitted && validateChannel[channel.text]">
                         <span *ngIf="settingsFormControl.phone.errors?.missingPhone">
                             Please enter a phone number.

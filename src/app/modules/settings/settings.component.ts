@@ -12,7 +12,7 @@ import {
 	Settings,
 	TopicSettings,
 } from "./interfaces/settings.interface";
-import { Channel, ChannelValidation, VALIDATE_CHANNEL } from "../../interfaces/settings.interface";
+import { Channel, VALIDATE_CHANNEL } from "../../interfaces/settings.interface";
 
 import { LoadingService } from "../../services/loading.service";
 import { SettingsService } from "./services/settings.service";
@@ -29,7 +29,6 @@ export class SettingsComponent implements OnInit {
 	public headerLevel = HeaderLevel;
 	public settingsForm: FormGroup;
 	public topic = Topic;
-	public startingCountry: string;
 	public submitted: boolean;
 	public validateChannel = VALIDATE_CHANNEL;
 
@@ -54,9 +53,10 @@ export class SettingsComponent implements OnInit {
 				email: [
 					"",
 				],
-				phone: [
-					"",
-				],
+				phone: this.fb.group({
+					countryCode: [""],
+					number: [""],
+				}),
 				tasks: this.fb.group({
 					[Topic.Birthdays]: this.fb.control(false),
 					[Topic.Meetings]: this.fb.control(false),
@@ -85,7 +85,6 @@ export class SettingsComponent implements OnInit {
 			)
 			.subscribe((settings: Settings) => {
 				console.info("Patch settings: ", settings);
-				this.startingCountry = settings?.country;
 				this.settingsForm.patchValue({
 					channels: {
 						[Channel.email]: !!settings?.email,

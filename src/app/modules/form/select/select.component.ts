@@ -11,9 +11,6 @@ import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
 import { FocusEvent, Key } from "../../../interfaces/focus.interface";
 
-import { CountryData } from "../../../constants/countries.constants";
-import { CountryUtils } from "../address/utils/countries.utils";
-
 @Component({
 	selector: "app-select",
 	templateUrl: "./select.component.html",
@@ -24,8 +21,6 @@ export class SelectComponent implements OnInit, OnDestroy {
 	@Input() id: string;
 	@Input() default: string;
 	@Input() form: FormGroup;
-
-	public countries = CountryUtils.getCountries();
 
 	@ViewChild("select", { read: ElementRef, static: false }) select: ElementRef;
 

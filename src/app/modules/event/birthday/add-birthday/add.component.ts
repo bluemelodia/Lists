@@ -59,7 +59,6 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 
 	public calendarType: CalendarType = CalendarType.Lunar;
 	public maxBudget = MaxBudget;
-	public startingCountry = '';
 	public submitted = false;
 
 	private countries = countries;
@@ -90,9 +89,10 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			email: [
 				"",
 			],
-			phone: [
-				"",
-			],
+			phone: this.fb.group({
+				countryCode: [""],
+				number: [""],
+			}),
 			address: this.fb.group({
 				street: [""],
 				unit: [""],
@@ -159,7 +159,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		this.birthdayForm.patchValue({
 			name: birthday.name,
 			email: birthday.email,
-			phone: birthday.phone?.number,
+			phone: birthday.phone,
 			address: birthday.address,
 			date: {
 				day: BirthdayUtils.createCalendarDate(birthday),
@@ -170,7 +170,6 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			},
 			budget: birthday.budget
 		});
-		this.startingCountry = birthday?.phone.countryCode;
 	}
 
 	/* returns the form controls of the form. */

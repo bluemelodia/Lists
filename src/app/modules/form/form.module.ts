@@ -14,9 +14,10 @@ import { AddressComponent } from "./address/address.component";
 import { CheckboxComponent } from "./checkbox/checkbox.component";
 import { DatepickerComponent } from "./datepicker/datepicker.component";
 import { RadioComponent } from "./radio/radio.component";
-import { PhoneComponent } from "./phone/phone.component";
+
 import { CountrySelectComponent } from "./select/country-select/country-select.component";
 import { SelectComponent } from './select/select.component';
+import { PhoneSelectComponent } from "./select/phone-select/phone-select.component";
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,7 @@ import { SelectComponent } from './select/select.component';
 		CheckboxComponent,
 		CountrySelectComponent,
 		DatepickerComponent,
-		PhoneComponent,
+		PhoneSelectComponent,
 		RadioComponent,
 		SelectComponent,
 	],
@@ -44,7 +45,7 @@ import { SelectComponent } from './select/select.component';
 		CountrySelectComponent,
 		DatepickerComponent,
 		NgxMaterialTimepickerModule,
-		PhoneComponent,
+		PhoneSelectComponent,
 		RadioComponent,
 		SelectComponent,
 	],

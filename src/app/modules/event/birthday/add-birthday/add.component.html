@@ -36,13 +36,13 @@
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
 			<span class="form-instructions">Enter the recpient's contact details.</span>
-		
+			
             <div class="input-error" *ngIf="submitted && birthdayFormControl.email.errors">  
                 <span *ngIf="birthdayFormControl.email.errors?.invalidEmail">
                     Please enter a valid email address.
                 </span>
             </div>
-			<app-phone [form]="birthdayForm" [startingCountry]="startingCountry"></app-phone>
+			<app-phone-select [form]="birthdayForm"></app-phone-select>
 			<div class="input-error" *ngIf="submitted && birthdayFormControl.phone.errors">  
 				<span *ngIf="birthdayFormControl.phone.errors?.invalidPhone">
 					Please enter a valid phone number.
