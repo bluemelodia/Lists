@@ -2,10 +2,13 @@
 	<section class="input-container" #select>
 		<input type="text" readonly
 			[ngClass]="{ 'options-open' : showOptionList }"
-			[placeholder]="placeholder"
-			[value]="this.form.get('phone.countryCode')?.value"
+			formControlName="countryCode"
+			placeholder="Dial Code"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
+		<input type="number"
+			formControlName="number"
+			placeholder="Number">
 		<section *ngIf="showOptionList"
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">
