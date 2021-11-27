@@ -7,6 +7,7 @@ import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { CalendarModule } from "../calendar/calendar.module";
 import { DirectiveModule } from "../../directives/directives.module";
 import { ElementModule } from "../element/element.module";
+import { IconsModule } from "../icons/icons.module";
 import { PipesModule } from "../../pipes/pipes.module";
 import { PickerDateFormatterPipe } from "../../pipes/picker-date-formatter.pipe";
 
@@ -35,6 +36,7 @@ import { PhoneSelectComponent } from "./select/phone-select/phone-select.compone
 		DirectiveModule,
 		ElementModule,
 		FormsModule,
+		IconsModule,
 		NgxMaterialTimepickerModule,
 		PipesModule,
 		ReactiveFormsModule,

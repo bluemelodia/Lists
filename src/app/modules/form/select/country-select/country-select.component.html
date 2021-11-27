@@ -17,7 +17,6 @@
 				[ngClass]="{ 'selected' : this.form.get('country')?.value?.code === country.code, 'focus-origin' : i === 0 }"
 				(click)="selectOption(country)">
 				{{ country.name }}
-				<i class="fa fa-heart sm-spacer" aria-hidden="true"></i>
 			</button>
 			<button class="tab-stop"
 				[tabindex]="showOptionList ? 0 : -1"

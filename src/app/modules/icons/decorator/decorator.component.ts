@@ -12,6 +12,7 @@ import { Icon } from '../../../constants/icons.constants';
 export class DecoratorComponent implements OnInit {
 	@Input() ariaLabel = '';
 	@Input() icon: Icon;
+	@Input() iconClasses = '';
 
 	constructor() { }
 

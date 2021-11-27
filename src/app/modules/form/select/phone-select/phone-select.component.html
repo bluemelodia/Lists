@@ -7,27 +7,30 @@
 			placeholder="Dial Code"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
+			<app-decorator ariaLabel="Dial Code Selector"
+				iconClasses="icon-small"
+				[icon]="icon.Down">
+			</app-decorator>
 			<input type="number"
 				formControlName="number"
 				placeholder="Number">
-			<section *ngIf="showOptionList"
-				class="options"
-				[ngClass]="{ 'show' : showOptionList }">
-				<button *ngFor="let country of countries; let i = index"
-					type="button"
-					class="option focus-option"
-					[tabindex]="showOptionList ? 0 : -1"
-					[attr.aria-hidden]="showOptionList ? false : true"
-					[ngClass]="{ 'selected' : this.form.get('phone.countryCode')?.value === country.code, 'focus-origin' : i === 0 }"
-					(click)="selectOption(country[2])">
-					{{ country[0] }}
-					<i class="fa fa-heart sm-spacer" aria-hidden="true"></i>
-				</button>
-				<button class="tab-stop"
-					[tabindex]="showOptionList ? 0 : -1"
-					[attr.aria-hidden]="showOptionList ? false : true">
-				</button>
-			</section>
 		</fieldset>
+		<section *ngIf="showOptionList"
+			class="options"
+			[ngClass]="{ 'show' : showOptionList }">
+			<button *ngFor="let country of countries; let i = index"
+				type="button"
+				class="option focus-option"
+				[tabindex]="showOptionList ? 0 : -1"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[ngClass]="{ 'selected' : this.form.get('phone.countryCode')?.value === country.code, 'focus-origin' : i === 0 }"
+				(click)="selectOption(country[2])">
+				{{ country[0] }}
+			</button>
+			<button class="tab-stop"
+				[tabindex]="showOptionList ? 0 : -1"
+				[attr.aria-hidden]="showOptionList ? false : true">
+			</button>
+		</section>
 	</section>
 </form>

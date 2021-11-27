@@ -8,7 +8,6 @@ import {
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { ResponseStatus } from 'src/app/interfaces/response.interface';
 
 import { Event } from '../../../../constants/events.contants';
 import { Icon } from '../../../../constants/icons.constants';
@@ -16,6 +15,7 @@ import { Icon } from '../../../../constants/icons.constants';
 import { Dialog, DialogAction } from '../../../../interfaces/dialog.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
 import { NO_ITEMS_CONFIG } from '../../../../interfaces/no-items.interface';
+import { ResponseStatus } from '../../../../interfaces/response.interface';
 import { AddMeeting } from '../../../../interfaces/service/service-objects.interface';
 
 import { DialogService } from '../../../../services/dialog.service';

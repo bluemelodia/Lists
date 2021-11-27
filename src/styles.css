@@ -170,8 +170,9 @@ fieldset.condensed input:not(:last-of-type) {
 }
 
 input,
-textarea {
-  background-color: #f9eeee !important;
+textarea,
+fieldset.multi {
+  background-color: #f9eeee;
   border: 2px solid pink;
   display: inline-block;
   flex: 1;
@@ -183,6 +184,11 @@ textarea {
   width: 100%;
 }
 
+fieldset.multi {
+	display: flex;
+	padding: 0;
+}
+
 textarea {
   resize: none;
   margin-bottom: 8px;
@@ -191,7 +197,8 @@ textarea {
 :focus,
 :focus-visible,
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+fieldset.multi:focus-visible {
   border: 2px solid #dd2e44;
   outline-color: #dd2e44;
 }
