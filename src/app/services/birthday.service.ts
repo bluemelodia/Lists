@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of, Subject } from "rxjs";
+import { Observable, of, } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import {
@@ -10,7 +10,7 @@ import {
 	BirthdayList,
 } from "../interfaces/birthday.interface";
 import { Calendar, CalendarDay } from "../interfaces/calendar/calendar-response.interface";
-import { CalendarType } from "../interfaces/calendar/calendar.interface";
+import { DateStatus } from "../interfaces/date.interface";
 import { Dialog } from "../interfaces/dialog.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { AddBirthday } from "../interfaces/service/service-objects.interface";
@@ -37,13 +37,13 @@ export class BirthdayService {
 
 	private setupSubscriptions() {
 		this.calendarService.onCalendarFetched$
-		.subscribe((calendar: Calendar) => {
-			if (!calendar) {
-				throw new Error('Unable to fetch calendar.');
-			}
+			.subscribe((calendar: Calendar) => {
+				if (!calendar) {
+					throw new Error('Unable to fetch calendar.');
+				}
 
-			this.calendar = calendar;
-		});
+				this.calendar = calendar;
+			});
 	}
 
 	public modifyBirthday(birthday: Birthday, action: BirthdayAction): Observable<ResponseStatus> {
@@ -79,6 +79,17 @@ export class BirthdayService {
 					return of(null);
 				})
 			)
+	}
+
+	private patchBirthday(birthday: AddBirthday) {
+		this.http.post<Response>(
+			BirthdayUtils.birthdayURLForAction(BirthdayAction.Edit),
+			birthday,
+			{
+				headers: this.headers
+			}
+		)
+			.subscribe();
 	}
 
 	public deleteBirthday(uuid: string): Observable<ResponseStatus> {
@@ -128,7 +139,7 @@ export class BirthdayService {
 
 	public addSolarBirthdays(birthdays: BirthdayList): void {
 		birthdays?.lunar?.forEach((birthday: AddBirthday) => {
-			if (!birthday.futureDates) {
+			if (!birthday.futureDates || typeof birthday.futureDates !== 'object') {
 				birthday.futureDates = {};
 			}
 
@@ -138,10 +149,28 @@ export class BirthdayService {
 					&& day.year !== birthday.date.year;
 			});
 			console.info("🍰 🏁 BirthdayService ---> updateBirthdays, find matching days: ", birthday, matchingDays);
+			
+			let changes = true;
 			matchingDays?.forEach((day: CalendarDay) => {
 				if (!birthday.futureDates[day.year]) {
 					birthday.futureDates[day.year] = day;
+					changes = true;
 				}
+			});
+
+			/** Silently propagate changes to the server. */
+			if (changes) {
+				console.log("🍰 🏁 BirthdayService ---> patch birthday: ", birthday);
+				this.patchBirthday(birthday);
+			}
+
+			Object.keys(birthday.futureDates).filter((key: string) => {
+					if (Number(key) === this.calendarService.year && birthday.status !== DateStatus.Passed) {
+						return true;
+					} else if (Number(key) === this.calendarService.year + 1) {
+						return true;
+					}
+					return false;
 			});
 		});
 	}

@@ -51,11 +51,17 @@
 			</ng-container>
 			<ng-container *ngIf="birthday.lunar">
 				<section class="task-list__birthday-status">
-					<p class="task-list__birthday">
+					<p class="task-list__birthday" *ngIf="birthday?.futureDates[currentYear] as cur">
 						<app-decorator ariaLabel="Solar"
 							[icon]="icon.Solar">
 						</app-decorator>
-						{{ birthday.month }}/{{ birthday.date }}/{{ birthday.year }}
+						{{ cur?.month }}/{{ cur?.value }}/{{ cur?.year }} 
+					</p>
+					<p class="task-list__birthday" *ngIf="birthday?.futureDates[currentYear + 1] as next">
+						<app-decorator ariaLabel="Solar"
+							[icon]="icon.Solar">
+						</app-decorator>
+						{{ next?.month }}/{{ next?.value }}/{{ next?.year }} 
 					</p>
 					<p class="task-list__birthday">
 						<app-decorator ariaLabel="Lunar"

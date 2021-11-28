@@ -13,7 +13,6 @@ import { BirthdayService } from "../../../services/birthday.service";
 import { DialogService } from "../../../services/dialog.service";
 import { LoadingService } from "../../../services/loading.service";
 
-import { BirthdayList } from "../../../interfaces/birthday.interface";
 import { Dialog } from "../../../interfaces/dialog.interface";
 import { AddBirthday } from "../../../interfaces/service/service-objects.interface";
 import { ResponseStatus } from "../../../interfaces/response.interface";

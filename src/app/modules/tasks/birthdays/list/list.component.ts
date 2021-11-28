@@ -11,6 +11,7 @@ import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
 
 import { BirthdayService } from "../../../../services/birthday.service";
+import { CalendarService } from "../../../../services/calendar.service";
 import { DialogService } from "../../../../services/dialog.service";
 
 import { Icon } from "../../../../constants/icons.constants";
@@ -42,13 +43,17 @@ export class ListComponent implements OnDestroy {
 
 	public icon = Icon;
 	public readonly base64Prefix = "data:image/jpeg;base64,";
+	public currentYear;
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
 		private birthdayService: BirthdayService,
+		private calendarService: CalendarService,
 		private dialogService: DialogService,
 		private router: Router,
-	) { }
+	) {
+		this.currentYear = this.calendarService.year;
+	}
 
 	public onDeleteClicked(uuid: string): void {
 		this.dialogService.showConfirmDialog(Dialog.DeleteBirthday)
