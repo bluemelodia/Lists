@@ -12,11 +12,15 @@ export interface Address {
 	country: CountryData;
 }
 
+export interface FutureDates {
+	[key: string]: CalendarDay;
+}
+
 export interface Birthday {
 	name: string;
 	uuid?: string; /* Birthdays that came from the DB will already have an id. */
 	date: CalendarDay;
-	futureDates: CalendarDay[];
+	futureDates: FutureDates;
 	options: BirthdayOptions;
 	profile?: BirthdayProfile;
 	email?: string;

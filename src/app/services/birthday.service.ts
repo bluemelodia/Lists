@@ -1,19 +1,19 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { forkJoin, Observable, of, Subject } from "rxjs";
+import { Observable, of, Subject } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import {
 	Birthday,
 	BirthdayAction,
 	BirthdayID,
+	BirthdayList,
 } from "../interfaces/birthday.interface";
 import { Calendar, CalendarDay } from "../interfaces/calendar/calendar-response.interface";
 import { CalendarType } from "../interfaces/calendar/calendar.interface";
 import { Dialog } from "../interfaces/dialog.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { AddBirthday } from "../interfaces/service/service-objects.interface";
-import { countries } from "../constants/countries.constants";
 import { BirthdayUtils } from "../utils/birthday.utils";
 
 // services
@@ -27,20 +27,23 @@ export class BirthdayService {
 	private calendar: Calendar;
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
 
-	public birthdaysChanged$ = new Subject<number>();
-
 	constructor(
 		private calendarService: CalendarService,
 		private dialogService: DialogService,
 		private http: HttpClient
-	) { }
+	) {
+		this.setupSubscriptions();
+	}
 
-	/**
-	 * Notify any consumers of a need to refresh the birthdays list.
-	 * Ex. after patching has succeeded.
-	 */
-	get birthdaysListChanged$(): Observable<number> {
-		return this.birthdaysChanged$.asObservable();
+	private setupSubscriptions() {
+		this.calendarService.onCalendarFetched$
+		.subscribe((calendar: Calendar) => {
+			if (!calendar) {
+				throw new Error('Unable to fetch calendar.');
+			}
+
+			this.calendar = calendar;
+		});
 	}
 
 	public modifyBirthday(birthday: Birthday, action: BirthdayAction): Observable<ResponseStatus> {
@@ -100,34 +103,6 @@ export class BirthdayService {
 			)
 	}
 
-	public syncBirthdays(birthdayList?: AddBirthday[]): void {
-		this.fetchCalendar(birthdayList);
-	}
-
-	/**
-	* Fetch the calendar, or use existing. The service call only needs to be made
-	* once per application lifecycle.
-	*/
-	private fetchCalendar(birthdayList?: AddBirthday[]) {
-		if (!this.calendar) {
-			this.calendarService.getCalendar(CalendarType.Lunar);
-			this.calendarService.onCalendarFetched$
-				.pipe(
-					catchError(() => {
-						this.birthdaysChanged$.next(-1);
-						return of(null);
-					})
-				)
-				.subscribe((calendar: Calendar) => {
-					if (!calendar) {
-						throw new Error('Unable to fetch calendar.');
-					}
-
-					this.calendar = calendar;
-				});
-		}
-	}
-
 	/**
 	 * @param userID 
 	 * @returns A sorted list of birthdays for this user.
@@ -149,5 +124,25 @@ export class BirthdayService {
 					return of(null);
 				})
 			);
+	}
+
+	public addSolarBirthdays(birthdays: BirthdayList): void {
+		birthdays?.lunar?.forEach((birthday: AddBirthday) => {
+			if (!birthday.futureDates) {
+				birthday.futureDates = {};
+			}
+
+			const matchingDays = this.calendar?.days?.filter((day: CalendarDay) => {
+				return day.cmonthname === birthday.date.cmonthname 
+					&& day.cdate === birthday.date.cdate
+					&& day.year !== birthday.date.year;
+			});
+			console.info("🍰 🏁 BirthdayService ---> updateBirthdays, find matching days: ", birthday, matchingDays);
+			matchingDays?.forEach((day: CalendarDay) => {
+				if (!birthday.futureDates[day.year]) {
+					birthday.futureDates[day.year] = day;
+				}
+			});
+		});
 	}
 }

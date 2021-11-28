@@ -13,6 +13,7 @@ import { BirthdayService } from "../../../services/birthday.service";
 import { DialogService } from "../../../services/dialog.service";
 import { LoadingService } from "../../../services/loading.service";
 
+import { BirthdayList } from "../../../interfaces/birthday.interface";
 import { Dialog } from "../../../interfaces/dialog.interface";
 import { AddBirthday } from "../../../interfaces/service/service-objects.interface";
 import { ResponseStatus } from "../../../interfaces/response.interface";
@@ -55,19 +56,6 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 	}
 
 	private addSubscriptions() {
-		this.birthdayService.birthdaysListChanged$
-			.pipe(
-				takeUntil(this.ngUnsubscribe$)
-			)
-			.subscribe((numChanges: number) => {
-				if (numChanges) {
-					console.info("🍰 ✅ BirthdaysComponent ---> addSubscriptions, birthdays list refreshed, retrieve new list.");
-					this.getBirthdays(true);
-				} else {
-					this.loadingService.stopLoading();
-				}
-			});
-
 		this.loadingService.loadingChanged$
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
@@ -82,7 +70,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 	* we"re fetching the birthdays list as a result of a patch - otherwise,
 	* it should be false.
 	*/
-	public getBirthdays(refresh = false): void {
+	public getBirthdays(): void {
 		this.loadingService.startLoading();
 		this.birthdayService.getBirthdays()
 			.pipe(
@@ -101,17 +89,9 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 				console.info("🍰 ✅ BirthdaysComponent ---> getBirthdays, received birthdays: ", birthdays);
 
 				const birthdayList = BirthdayUtils.createBirthdayLists(birthdays);
+				this.birthdayService.addSolarBirthdays(birthdayList);
 				this.solarBirthdays$.next(birthdayList.solar);
 				this.lunarBirthdays$.next(birthdayList.lunar);
-
-				/**
-				* Send the results to the birthday service, which
-				* will update the server with any lunar birthdays
-				* that need to be added.
-				*/
-				if (!refresh) {
-					this.birthdayService.syncBirthdays(birthdays);
-				}
 			});
 	}
 

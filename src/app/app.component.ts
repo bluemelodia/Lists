@@ -2,6 +2,9 @@ import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from "@angula
 import { ActivatedRoute } from "@angular/router";
 import { Subject } from "rxjs";
 
+import { CalendarType } from "./interfaces/calendar/calendar.interface";
+
+import { CalendarService } from './services/calendar.service';
 import { LoadingService } from "./services/loading.service";
 import { NavService } from "./services/nav.service";
 
@@ -13,6 +16,7 @@ import { NavService } from "./services/nav.service";
 })
 export class AppComponent implements OnInit {
 	constructor(
+		private calendarService: CalendarService,
 		private loadingService: LoadingService,
 		private navService: NavService,
 		private route: ActivatedRoute,
@@ -26,6 +30,7 @@ export class AppComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.setupSubscriptions();
+		this.calendarService.getCalendar(CalendarType.Lunar);
 	}
 
 	/**
