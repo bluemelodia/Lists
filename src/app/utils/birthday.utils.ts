@@ -105,11 +105,6 @@ export class BirthdayUtils {
 		return fileName.substring(fileName.lastIndexOf("\\") + 1);
 	}
 
-	public static processBirthdays(birthdays: AddBirthday[]): AddBirthday[] {
-		BirthdayUtils.tagBirthdays(birthdays);
-		return birthdays;
-	}
-
 	public static createBirthdayLists(birthdays: AddBirthday[]): BirthdayList {
 		const solarBirthdays = [];
 		const lunarBirthdays = [];
@@ -124,6 +119,7 @@ export class BirthdayUtils {
 
 		lunarBirthdays.sort(BirthdayUtils.sortLunarBirthdays);
 		solarBirthdays.sort(BirthdayUtils.sortSolarBirthdays);
+		BirthdayUtils.tagBirthdays(solarBirthdays);
 
 		return {
 			list: birthdays,
@@ -132,7 +128,7 @@ export class BirthdayUtils {
 		}
 	}
 
-	private static tagBirthdays(birthdays: AddBirthday[]) {
+	public static tagBirthdays(birthdays: AddBirthday[]) {
 		birthdays.forEach((birthday: AddBirthday) => {
 			const diffInDays = birthday.lunar ? BirthdayUtils.getLunarDiff(birthday) : BirthdayUtils.getSolarDiff(birthday);
 
@@ -157,11 +153,15 @@ export class BirthdayUtils {
 		return (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
 	}
 
+	/** Check only if this year's lunar date has passed. */
 	private static getLunarDiff(birthday: AddBirthday): number {
 		const today = new Date();
-		const birthDate = new Date(birthday.date.year, birthday.date.month - 1, birthday.date.value);
-
-		return (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
+		if (birthday.futureDates) {
+			const date = birthday.futureDates[today.getFullYear()];
+			const birthDate = new Date(date?.year, date?.cmonth, date?.cdate);
+			return (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
+		}
+		return 0;
 	}
 
 	/** 

@@ -129,7 +129,7 @@ export class BirthdayService {
 			.pipe(
 				map((response: Response) => {
 					console.info("🍰 ✅ BirthdayService ---> getBirthdays, received birthdays: ", response);
-					return BirthdayUtils.processBirthdays(response.responseData);
+					return response.responseData;
 				}),
 				catchError(() => {
 					return of(null);
@@ -145,14 +145,16 @@ export class BirthdayService {
 
 			const matchingDays = this.calendar?.days?.filter((day: CalendarDay) => {
 				return day.cmonthname === birthday.date.cmonthname 
-					&& day.cdate === birthday.date.cdate
-					&& day.year !== birthday.date.year;
+					&& day.cdate === birthday.date.cdate;
 			});
 			console.info("🍰 🏁 BirthdayService ---> updateBirthdays, find matching days: ", birthday, matchingDays);
 			
 			let changes = true;
 			matchingDays?.forEach((day: CalendarDay) => {
-				if (!birthday.futureDates[day.year]) {
+				if (day.year < this.calendarService.year) {
+					delete birthday.futureDates[day.year];
+					changes = true;
+				} else if (!birthday.futureDates[day.year]) {
 					birthday.futureDates[day.year] = day;
 					changes = true;
 				}
@@ -163,15 +165,6 @@ export class BirthdayService {
 				console.log("🍰 🏁 BirthdayService ---> patch birthday: ", birthday);
 				this.patchBirthday(birthday);
 			}
-
-			Object.keys(birthday.futureDates).filter((key: string) => {
-					if (Number(key) === this.calendarService.year && birthday.status !== DateStatus.Passed) {
-						return true;
-					} else if (Number(key) === this.calendarService.year + 1) {
-						return true;
-					}
-					return false;
-			});
 		});
 	}
 }
