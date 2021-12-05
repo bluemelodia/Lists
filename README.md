@@ -24,12 +24,11 @@ How to make image upload easy with Angular
 ## TODO
 
 - User logins and session. Modify logic so that users only see their own account information.
-- Daily jobs scanning for upcoming birthdays and events.
+- Daily jobs scanning for upcoming birthdays and events. This should be done on the backend.
 - Allow users to add reminders (ex. payment reminders)
 - Show users a calendar of upcoming events.
-- Text users the meeting reminder.
-- Ensure that all fields are propagating edits correctly.
-- Make sure settings is still working correctly (esp after the refactors)
+- Ensure that all fields are propagating edits correctly (birthdays/settings).
+- Instead of waiting for the user to go to the birthdays list, route them to the list so that the patch is immediate. After creating a meeting, route the user to the meetings list.
 - Make the app more responsive, adding animations.
 - Show a list of upcoming events on the home page (four widgets, so four sections).
 - Add accessibility, don't have two modals open at the same time.
@@ -39,7 +38,6 @@ How to make image upload easy with Angular
   - Then you can see each recipient on the gifts page, and add a list of gifts purchased for them.
 
 - Fix issue with undefined dates sent out in emails.
-- Add to the birthday DB schema - with the contact info.
 
 ## Navigation
 
