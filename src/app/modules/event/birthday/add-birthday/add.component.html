@@ -73,11 +73,14 @@
 			<span class="form-instructions">Enter the maximum amount of money to spend on a gift.</span>
 			<input type="number"
                 formControlName="budget"
-				min="1" max="maxBudget"
+				min="0" max="maxBudget"
                 placeholder="Budget"/>
 			<div class="input-error" *ngIf="submitted && birthdayFormControl.budget.errors">
 				<span *ngIf="birthdayFormControl.budget.errors?.max">
 					Budget should not exceed {{ maxBudget }}.
+				</span>
+				<span *ngIf="birthdayFormControl.budget.errors?.min">
+					Budget cannot be negative.
 				</span>
 			</div> 
 		</fieldset>

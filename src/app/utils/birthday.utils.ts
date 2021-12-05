@@ -78,7 +78,7 @@ export class BirthdayUtils {
 
 		return dialogType;
 	}
-	
+
 	public static formatBirthday(birthday: Birthday): AddBirthday {
 		const date = birthday.date;
 		const addBirthday: AddBirthday = {
@@ -86,16 +86,17 @@ export class BirthdayUtils {
 			id: "guest",
 			leap: date.leap ? 1 : 0,
 			lunar: birthday.options.lunar ? 1 : 0,
+			email: birthday.email.length > 6 ? birthday.email : '',
 			filename: BirthdayUtils.extractFileURL(birthday.profile?.fileName),
-			image: birthday.profile?.image
+			image: birthday.profile?.image || '',
 		};
 		console.log("===> send birthday: ", addBirthday);
 		return addBirthday;
 	}
 
-	private static extractFileURL(fileName: string) {
+	private static extractFileURL(fileName: string): string {
 		if (!fileName) {
-			return null;
+			return '';
 		}
 
 		/**

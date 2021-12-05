@@ -120,6 +120,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			budget: [
 				"",
 				[
+					Validators.min(0),
 					Validators.max(this.maxBudget)
 				]
 			],
@@ -168,6 +169,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			profile: {
 				image: birthday.image
 			},
+			filename: birthday.filename,
 			budget: birthday.budget
 		});
 	}

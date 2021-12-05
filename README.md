@@ -29,18 +29,13 @@ How to make image upload easy with Angular
 - Show users a calendar of upcoming events.
 - Text users the meeting reminder.
 - Ensure that all fields are propagating edits correctly.
-- Make sure settings is still working correctly (esp after the refactors).
-- Refactor the display and patching of lunar birthdays (keep it all in one record! Each time a new birthday is added, find the next two years worth - then update all records on a yearly basis).
-
+- Make sure settings is still working correctly (esp after the refactors)
 - Make the app more responsive, adding animations.
 - Show a list of upcoming events on the home page (four widgets, so four sections).
 - Add accessibility, don't have two modals open at the same time.
 - Add ESLinting
 
 - Let users budget gifts for friends/family and keep track of their addresses. Let users enter a budget/email/address for each recipient (for sending gifts) - the gifts page will sync this same thing and also get gift history.
-
-  - Add this to the Add Recipient form.
-    - Budget.
   - Then you can see each recipient on the gifts page, and add a list of gifts purchased for them.
 
 - Fix issue with undefined dates sent out in emails.
