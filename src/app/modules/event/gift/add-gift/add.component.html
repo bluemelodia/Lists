@@ -41,6 +41,10 @@
             <span class="form-instructions">Upload an image of the gift.</span>
             <app-img-upload [form]="giftForm.controls.gift"></app-img-upload>
         </fieldset>
+		<app-description [form]="giftForm"
+			[submitted]="submitted"
+			controlName="description"
+			formInstructions="Enter a description of the gift."></app-description>
 		<fieldset class="form-actions">
             <button type="button"
                 class="cancel"

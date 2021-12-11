@@ -101,22 +101,11 @@
 				</span>
 			</div> 	
 		</fieldset>
-		<fieldset class="description">
-			<app-heading [level]="headerLevel.H3" text="Additional Details">
-                <span class="event-form__optional" post>Optional</span>
-            </app-heading>
-			<span for="event-description" class="form-instructions">Add additional information about the meeting.</span>
-            <textarea id="event-description"
-				rows="5"
-                formControlName="description"
-                placeholder="Description"></textarea>
-			Max {{ maxChars }} characters.
-			<div class="input-error" *ngIf="submitted && meetingFormControl.description.errors">
-				<span *ngIf="meetingFormControl.description.errors?.maxlength">
-					Description should not exceed {{ maxDescription }} characters.
-				</span>
-			</div> 
-		</fieldset>
+		<app-description [form]="meetingForm"
+			[submitted]="submitted"
+			controlName="description"
+			formInstructions="Enter a description of the meeting.">
+		</app-description>
         <fieldset class="form-actions">
             <button type="button"
                 class="cancel"

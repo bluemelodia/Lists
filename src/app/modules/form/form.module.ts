@@ -17,6 +17,7 @@ import { DatepickerComponent } from "./datepicker/datepicker.component";
 import { RadioComponent } from "./radio/radio.component";
 
 import { CountrySelectComponent } from "./select/country-select/country-select.component";
+import { DescriptionComponent } from "./description/description.component";
 import { SelectComponent } from './select/select.component';
 import { PhoneSelectComponent } from "./select/phone-select/phone-select.component";
 
@@ -26,6 +27,7 @@ import { PhoneSelectComponent } from "./select/phone-select/phone-select.compone
 		CheckboxComponent,
 		CountrySelectComponent,
 		DatepickerComponent,
+		DescriptionComponent,
 		PhoneSelectComponent,
 		RadioComponent,
 		SelectComponent,
@@ -46,6 +48,7 @@ import { PhoneSelectComponent } from "./select/phone-select/phone-select.compone
 		CheckboxComponent,
 		CountrySelectComponent,
 		DatepickerComponent,
+		DescriptionComponent,
 		NgxMaterialTimepickerModule,
 		PhoneSelectComponent,
 		RadioComponent,
