@@ -4,7 +4,7 @@ import {
 	BirthdayAction,
 	BirthdayFormSubmitActions,
 	BirthdayList,
-} from "../interfaces/birthday.interface";
+} from "../interfaces/event/birthday.interface";
 import { Endpoint } from "../constants/urls.constants";
 
 import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";

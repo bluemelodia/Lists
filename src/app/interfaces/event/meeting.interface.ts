@@ -1,4 +1,5 @@
-import { CalendarDay } from "./calendar/calendar-response.interface";
+import { CalendarDay } from "../calendar/calendar-response.interface";
+import { FormSubmitAction } from "./event.interface";
 
 export interface MeetingConfig {
 	action: MeetingAction,
@@ -25,11 +26,7 @@ export enum MeetingAction {
 	Fetch = "Fetch",
 }
 
-interface MeetingFormSubmitAction {
-	readonly [key: string]: string;
-}
-
-export const MeetingFormSubmitActions: MeetingFormSubmitAction = {
+export const MeetingFormSubmitActions: FormSubmitAction = {
 	[MeetingAction.Add]: "Submit",
 	[MeetingAction.Edit]: "Update"
 }

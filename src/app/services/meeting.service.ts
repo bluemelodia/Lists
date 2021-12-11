@@ -4,7 +4,7 @@ import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import { DialogService } from "./dialog.service";
-import { Meeting, MeetingAction } from "../interfaces/meeting.interface";
+import { Meeting, MeetingAction } from "../interfaces/event/meeting.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { Dialog } from "../interfaces/dialog.interface";
 import { AddMeeting } from "../interfaces/service/service-objects.interface";

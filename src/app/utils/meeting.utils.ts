@@ -7,7 +7,7 @@ import {
 	MeetingAction,
 	MeetingConfig,
 	MeetingFormSubmitActions,
-} from "../interfaces/meeting.interface";
+} from "../interfaces/event/meeting.interface";
 import { AddMeeting } from "../interfaces/service/service-objects.interface";
 import { TimeUtils } from "./time.utils";
 

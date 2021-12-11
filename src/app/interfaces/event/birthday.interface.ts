@@ -1,7 +1,8 @@
-import { CountryData } from "../constants/countries.constants";
-import { CalendarDay } from "./calendar/calendar-response.interface";
-import { Phone } from "./phone.interface";
-import { AddBirthday } from "./service/service-objects.interface";
+import { CountryData } from "../../constants/countries.constants";
+import { CalendarDay } from "../calendar/calendar-response.interface";
+import { Phone } from "../phone.interface";
+import { AddBirthday } from "../service/service-objects.interface";
+import { FormSubmitAction } from "./event.interface";
 
 export interface Address {
 	street: string;
@@ -47,11 +48,7 @@ export enum BirthdayAction {
 	Fetch = "Fetch",
 }
 
-interface BirthdayFormSubmitAction {
-	readonly [key: string]: string;
-}
-
-export const BirthdayFormSubmitActions: BirthdayFormSubmitAction = {
+export const BirthdayFormSubmitActions: FormSubmitAction = {
 	[BirthdayAction.Add]: "Submit",
 	[BirthdayAction.Edit]: "Update"
 }

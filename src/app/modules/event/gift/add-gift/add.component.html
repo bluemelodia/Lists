@@ -2,108 +2,54 @@
     <form class="event-form"
         [formGroup]="giftForm"
         (ngSubmit)="onSubmit()">
-		<app-heading [level]="headerLevel.H2" text="Gift"></app-heading>
-        <span class="form-instructions">Select the recipient the gift is for.</span>
-        <fieldset class="recipient">
+		<app-heading [level]="headerLevel.H3" text="Recipient"></app-heading>
+		<span class="form-instructions">Enter recipient and gift details.</span>
+        <fieldset class="recipient condensed">
             <input type="text" 
                 formControlName="recipient"
                 placeholder="Recipient"/>
-            <div class="input-error" *ngIf="submitted && giftFormControl.recipient.errors">
-                <span *ngIf="giftFormControl.recipient.errors?.required">
-                    Recipient is required.
-                </span>
-            </div> 
-        </fieldset>
-		<!--<fieldset>
-			<app-heading [level]="headerLevel.H3" text="Contact Information">
-                <span class="event-form__optional" post>Optional</span>
-            </app-heading>
-			<span class="form-instructions">Enter the recpient's contact details.</span>
 			<input type="text" 
-                formControlName="email"
-                placeholder="Email"/>
-            <div class="input-error" *ngIf="submitted && birthdayFormControl.email.errors">  
-                <span *ngIf="birthdayFormControl.email.errors?.invalidEmail">
-                    Please enter a valid email address.
+                formControlName="occasion"
+                placeholder="Occasion"/>
+        </fieldset>
+		<fieldset class="details condensed">
+            <input type="number" 
+                formControlName="year"
+                placeholder="Year"/>
+            <div class="input-error" *ngIf="submitted && giftFormControl.year.errors">
+                <span *ngIf="giftFormControl.year.errors?.required">
+                    Year is required.
                 </span>
             </div>
-			<app-phone-select [form]="birthdayForm.controls.phone"
-				[submitted]="submitted">
-			</app-phone-select>
-		</fieldset>
-		<fieldset>
-			<app-heading [level]="headerLevel.H3" text="Address">
-				<span class="event-form__optional" post>Optional</span>
-			</app-heading>
-			<span class="form-instructions">Enter the recpient's mailing address.</span>
-			<app-address [form]="birthdayForm.controls.address"></app-address>
-			<div class="input-error" *ngIf="submitted && birthdayFormControl.address.errors">
-				<span *ngIf="birthdayFormControl.address.errors?.missingStreetAddress">
-					Please enter a street address.
-				</span>
-				<span *ngIf="birthdayFormControl.address.errors?.missingCity">
-					Please enter a city.
-				</span>
-				<span *ngIf="birthdayFormControl.address.errors?.missingZip">
-					Please enter a zip code.
-				</span>
-			</div>
-		</fieldset>
-		<fieldset>
-            <app-heading [level]="headerLevel.H3" text="Budget">
-                <span class="event-form__optional" post>Optional</span>
-            </app-heading>
-			<span class="form-instructions">Enter the maximum amount of money to spend on a gift.</span>
 			<input type="number"
-                formControlName="budget"
+				formControlName="price"
 				min="0" max="maxBudget"
-                placeholder="Budget"/>
-			<div class="input-error" *ngIf="submitted && birthdayFormControl.budget.errors">
-				<span *ngIf="birthdayFormControl.budget.errors?.max">
-					Budget should not exceed {{ maxBudget }}.
-				</span>
-				<span *ngIf="birthdayFormControl.budget.errors?.min">
-					Budget cannot be negative.
-				</span>
-			</div> 
-		</fieldset>
-        <fieldset>
-            <app-heading [level]="headerLevel.H3" text="Profile Image">
+				placeholder="Price"/>
+        </fieldset>
+		<div class="input-error" *ngIf="submitted">
+			<span *ngIf="giftFormControl.recipient.errors?.required">
+				Recipient is required.
+			</span>
+			<span *ngIf="giftFormControl.occasion.errors?.required">
+				Occasion is required.
+			</span>
+		</div> 
+		<fieldset>
+            <app-heading [level]="headerLevel.H3" text="Gift Image">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
-            <span class="form-instructions">Choose a profile image to represent the recipient.</span>
-            <app-img-upload [form]="birthdayForm.controls.profile"></app-img-upload>
+            <span class="form-instructions">Upload an image of the gift.</span>
+            <app-img-upload [form]="giftForm.controls.gift"></app-img-upload>
         </fieldset>
-        <fieldset class="event-options">
-            <app-heading [level]="headerLevel.H3" text="Actions">
-                <span class="event-form__optional" post>Optional</span>
-            </app-heading>
-            <span class="form-instructions">Select the actions you would like to perform on or close to the recipient's birthday.</span>
-            <app-checkbox
-                name="Call"
-                [checkboxName]="birthdayID.call"
-                [form]="birthdayForm.controls.options">
-            </app-checkbox>
-            <app-checkbox
-                name="Text"
-                [checkboxName]="birthdayID.text"
-                [form]="birthdayForm.controls.options">
-            </app-checkbox>
-            <app-checkbox
-                name="Buy Present"
-                [checkboxName]="birthdayID.gift"
-                [form]="birthdayForm.controls.options">
-            </app-checkbox>
-        </fieldset>
-        <fieldset class="form-actions">
+		<fieldset class="form-actions">
             <button type="button"
                 class="cancel"
                 (click)="onCancel()">
                 Cancel
             </button>        
             <button type="submit">
-                {{ birthdayConfig.buttonAction }}
+                {{ giftConfig.buttonAction }}
             </button>
-        </fieldset>-->
+        </fieldset>
     </form>
 </section>

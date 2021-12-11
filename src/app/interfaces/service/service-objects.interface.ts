@@ -1,4 +1,4 @@
-import { Birthday } from "../birthday.interface";
+import { Birthday } from "../event/birthday.interface";
 import { DateStatus } from "../date.interface";
 
 export interface AddDate {

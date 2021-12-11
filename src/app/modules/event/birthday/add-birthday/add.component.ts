@@ -29,7 +29,7 @@ import {
 	BirthdayID,
 	BirthdayOptions,
 	BirthdayProfile,
-} from "../../../../interfaces/birthday.interface";
+} from "../../../../interfaces/event/birthday.interface";
 import { MaxBudget } from "../../../../constants/gifts.constants";
 
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";

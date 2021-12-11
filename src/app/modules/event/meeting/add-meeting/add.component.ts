@@ -22,7 +22,7 @@ import { HeaderLevel } from "../../../../interfaces/header.interface";
 import {
 	Meeting,
 	MeetingAction,
-} from "../../../../interfaces/meeting.interface";
+} from "../../../../interfaces/event/meeting.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddMeeting } from "../../../../interfaces/service/service-objects.interface";
 

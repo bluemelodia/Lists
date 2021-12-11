@@ -8,9 +8,8 @@ import {
 	BirthdayAction,
 	BirthdayID,
 	BirthdayList,
-} from "../interfaces/birthday.interface";
+} from "../interfaces/event/birthday.interface";
 import { Calendar, CalendarDay } from "../interfaces/calendar/calendar-response.interface";
-import { DateStatus } from "../interfaces/date.interface";
 import { Dialog } from "../interfaces/dialog.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { AddBirthday } from "../interfaces/service/service-objects.interface";
