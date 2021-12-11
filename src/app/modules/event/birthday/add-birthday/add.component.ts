@@ -281,14 +281,10 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe(() => {
-				this.birthdayForm.reset();
-
 				/**
 				* Once the user successfully edits the form, take them back to the birthday list.
 				*/
-				if (this.birthdayConfig.action === BirthdayAction.Edit) {
-					this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
-				}
+				this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
 			});
 	}
 

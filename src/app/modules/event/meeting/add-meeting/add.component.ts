@@ -290,14 +290,10 @@ export class AddMeetingComponent implements OnInit {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe(() => {
-				this.meetingForm.reset();
-
 				/**
 				* Once the user successfully edits the form, take them back to the meeting list.
 				*/
-				if (this.meetingConfig.action === MeetingAction.Edit) {
-					this.navService.navigateToTopic(Topic.Meetings, { relativeTo: this.route });
-				}
+				this.navService.navigateToTopic(Topic.Meetings, { relativeTo: this.route });
 			});
 	}
 
