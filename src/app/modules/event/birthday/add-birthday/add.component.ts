@@ -42,7 +42,6 @@ import { AddBirthday } from "../../../../interfaces/service/service-objects.inte
 import { Channel } from "../../../../interfaces/settings.interface";
 
 import { BirthdayUtils } from "../../../../utils/birthday.utils";
-import { FormUtils } from "../../../../utils/form.utils";
 
 @Component({
 	selector: "app-add-birthday",
