@@ -9,7 +9,10 @@ import { FocusService } from '../../../../services/focus.service';
 @Component({
   selector: 'app-recipient-select',
   templateUrl: './recipient-select.component.html',
-  styleUrls: ['./recipient-select.component.css']
+  styleUrls: [
+		"../select.component.css",  
+		'recipient-select.component.css'
+	]
 })
 export class RecipientSelectComponent extends SelectComponent {
 	@Input() list: AddRecipient[];
@@ -21,6 +24,11 @@ export class RecipientSelectComponent extends SelectComponent {
 		super(_clickService, _focus);
 	}
 
-	ngOnInit(): void {
+	selectOption(recipient: AddRecipient): void {
+		console.log("===> selected: ", recipient);
+		this.showOptionList = false;
+		this.form.get("recipient").patchValue({
+			recipient
+		});
 	}
 }

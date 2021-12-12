@@ -4,15 +4,9 @@
         (ngSubmit)="onSubmit()">
 		<app-heading [level]="headerLevel.H3" text="Recipient"></app-heading>
 		<span class="form-instructions">Enter recipient and gift details.</span>
-        <fieldset class="recipient condensed">
-            <input type="text" 
-                formControlName="recipient"
-                placeholder="Recipient"/>
-			<app-recipient-select [form]="giftFormControl.controls.recipient"
-				[list]="recipients$ | async"
-				[submitted]="submitted">
-			</app-recipient-select>
-        </fieldset>
+		<app-recipient-select [form]="giftForm.controls.recipients"
+			[list]="recipientList$ | async">
+		</app-recipient-select>
 		<fieldset class="details condensed">
             <input type="number" 
                 formControlName="year"

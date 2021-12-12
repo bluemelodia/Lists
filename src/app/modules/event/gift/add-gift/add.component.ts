@@ -65,10 +65,10 @@ export class AddGiftComponent implements OnInit {
 	ngOnInit(): void {
 		/* Set the controls for the form. */
 		this.giftForm = this.fb.group({
-			recipient: this.fb.group({
+			recipients: this.fb.group({
 				recipient: ["", [ Validators.required ]],
-				occasion: ["", [ Validators.required ]]
 			}),
+			occasion: ["", [ Validators.required ]],
 			year: [
 				"",
 				[]

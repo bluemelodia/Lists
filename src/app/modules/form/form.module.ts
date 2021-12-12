@@ -32,7 +32,7 @@ import { RecipientSelectComponent } from './select/recipient-select/recipient-se
 		PhoneSelectComponent,
 		RadioComponent,
 		SelectComponent,
-  RecipientSelectComponent,
+  		RecipientSelectComponent,
 	],
 	imports: [
 		CalendarModule,
@@ -54,6 +54,7 @@ import { RecipientSelectComponent } from './select/recipient-select/recipient-se
 		NgxMaterialTimepickerModule,
 		PhoneSelectComponent,
 		RadioComponent,
+		RecipientSelectComponent,
 		SelectComponent,
 	],
 	providers: [
