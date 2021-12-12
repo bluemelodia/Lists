@@ -46,7 +46,7 @@ export class DialogUtils {
 	public static messageforStatusDialog(response: ResponseStatus, dialogType: Dialog): string {
 		let message: string;
 		switch (dialogType) {
-			case Dialog.AddBirthday:
+			case Dialog.AddRecipient:
 			case Dialog.EditBirthday:
 			case Dialog.DeleteBirthday:
 			case Dialog.GetBirthday:
@@ -72,14 +72,14 @@ export class DialogUtils {
 		let birthdayMessage = DialogMessage.GENERIC_ERROR;
 		if (response === ResponseStatus.SUCCESS) {
 			switch (dialogType) {
-				case Dialog.AddBirthday:
-					birthdayMessage = "Added birthday.";
+				case Dialog.AddRecipient:
+					birthdayMessage = "Added recipient.";
 					break;
 				case Dialog.EditBirthday:
-					birthdayMessage = "Updated birthday.";
+					birthdayMessage = "Updated recipient.";
 					break;
 				case Dialog.DeleteBirthday:
-					birthdayMessage = "Deleted birthday.";
+					birthdayMessage = "Deleted recipient.";
 					break;
 				default:
 					break;
@@ -113,7 +113,7 @@ export class DialogUtils {
 					break;
 			}
 		} else {
-			switch(dialogType) {
+			switch (dialogType) {
 				case Dialog.GetMeetings:
 					meetingMessage = DialogMessage.FETCH_MEETINGS_ERROR;
 					break;

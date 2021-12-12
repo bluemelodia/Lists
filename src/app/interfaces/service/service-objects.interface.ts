@@ -1,4 +1,4 @@
-import { Birthday } from "../event/birthday.interface";
+import { Recipient } from "../event/recipient.interface";
 import { DateStatus } from "../date.interface";
 
 export interface AddDate {
@@ -20,7 +20,7 @@ export interface AddStartDate {
 	start_year: number;
 	start_leap: number;
 	start_cmonthname: string;
-	start_value?: number;	
+	start_value?: number;
 }
 
 export interface AddEndDate {
@@ -31,7 +31,7 @@ export interface AddEndDate {
 	end_year: number;
 	end_leap: number;
 	end_cmonthname: string;
-	end_value?: number;	
+	end_value?: number;
 }
 
 export interface AddStartTime {
@@ -44,7 +44,7 @@ export interface AddEndTime {
 	end_minute: number;
 }
 
-export interface AddBirthday extends Birthday {
+export interface AddRecipient extends Recipient {
 	id: string;
 	lunar: number;
 	leap: number;

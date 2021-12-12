@@ -8,13 +8,13 @@ import { EventRoutingModule } from "./event-routing.module";
 import { FormElementModule } from "../form/form.module";
 import { ImageModule } from "../image/image.module";
 
-import { AddBirthdayComponent } from "./birthday/add-birthday/add.component";
+import { AddRecipientComponent } from "./recipient/add-recipient/add.component";
 import { AddGiftComponent } from "./gift/add-gift/add.component";
 import { AddMeetingComponent } from "./meeting/add-meeting/add.component";
 
 @NgModule({
 	declarations: [
-		AddBirthdayComponent,
+		AddRecipientComponent,
 		AddGiftComponent,
 		AddMeetingComponent,
 	],
@@ -29,7 +29,7 @@ import { AddMeetingComponent } from "./meeting/add-meeting/add.component";
 		ReactiveFormsModule,
 	],
 	exports: [
-		AddBirthdayComponent,
+		AddRecipientComponent,
 		AddGiftComponent,
 		AddMeetingComponent,
 	]

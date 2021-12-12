@@ -11,11 +11,11 @@ export interface NoItem {
 };
 
 export const NO_ITEMS_CONFIG: NoItemConfig = {
-	[Event.Birthday]: {
+	[Event.Recipient]: {
 		header: 'No Birthdays Found',
-		actionText: 'Add Recipient',
+		actionText: 'Add Birthdays',
 		body: 'You do not currently have any upcoming birthdays.',
-		route: '/events/add-birthday'
+		route: '/events/add-recipient'
 	},
 	[Event.Meeting]: {
 		header: 'No Meetings Found',

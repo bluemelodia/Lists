@@ -20,6 +20,7 @@ import { CountrySelectComponent } from "./select/country-select/country-select.c
 import { DescriptionComponent } from "./description/description.component";
 import { SelectComponent } from './select/select.component';
 import { PhoneSelectComponent } from "./select/phone-select/phone-select.component";
+import { RecipientSelectComponent } from './select/recipient-select/recipient-select.component';
 
 @NgModule({
 	declarations: [
@@ -31,6 +32,7 @@ import { PhoneSelectComponent } from "./select/phone-select/phone-select.compone
 		PhoneSelectComponent,
 		RadioComponent,
 		SelectComponent,
+  RecipientSelectComponent,
 	],
 	imports: [
 		CalendarModule,

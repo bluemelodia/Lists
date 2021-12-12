@@ -27,9 +27,9 @@
 }
 
 .task-list__birthday {
-	display: flex;
-	align-items: center;
-  	margin-right: 8px;
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
 }
 
 .task-action:not(:last-child) {
@@ -53,29 +53,29 @@
 }
 
 .actions {
-	display: flex;
-	flex: 1;
-	margin: 8px 0;
+  display: flex;
+  flex: 1;
+  margin: 8px 0;
 }
 
 .edit-actions {
-	border-right: 4px solid pink;
-  	justify-content: flex-end;
+  border-right: 4px solid pink;
+  justify-content: flex-end;
 }
 
-.birthday-actions {
+.recipient-actions {
   border-left: 4px solid pink;
   justify-content: space-between;
 }
 
 @media only screen and (max-width: 500px) {
-	:host {
-		padding: 4px;
-	}
+  :host {
+    padding: 4px;
+  }
 
-	.task-list__photo-container {
-		display: none;
-	}
+  .task-list__photo-container {
+    display: none;
+  }
 }
 
 span:not(:last-child) {

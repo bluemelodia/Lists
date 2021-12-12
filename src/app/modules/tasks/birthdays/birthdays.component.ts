@@ -7,14 +7,14 @@ import {
 } from "@angular/core";
 import { of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
-import { BirthdayUtils } from "../../../utils/birthday.utils";
 
-import { BirthdayService } from "../../../services/birthday.service";
+import { RecipientService } from "../../../services/recipient.service";
 import { DialogService } from "../../../services/dialog.service";
 import { LoadingService } from "../../../services/loading.service";
 
 import { Dialog } from "../../../interfaces/dialog.interface";
-import { AddBirthday } from "../../../interfaces/service/service-objects.interface";
+import { RecipientList } from "../../../interfaces/event/recipient.interface";
+import { AddRecipient } from "../../../interfaces/service/service-objects.interface";
 import { ResponseStatus } from "../../../interfaces/response.interface";
 
 @Component({
@@ -24,10 +24,10 @@ import { ResponseStatus } from "../../../interfaces/response.interface";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BirthdaysComponent implements OnInit, OnDestroy {
-	private solarBirthdays$ = new Subject<AddBirthday[]>();
-	private lunarBirthdays$ = new Subject<AddBirthday[]>();
-	public solarList$ = this.solarBirthdays$.asObservable();
-	public lunarList$ = this.lunarBirthdays$.asObservable();
+	private solarRecipients$ = new Subject<AddRecipient[]>();
+	private lunarRecipients$ = new Subject<AddRecipient[]>();
+	public solarList$ = this.solarRecipients$.asObservable();
+	public lunarList$ = this.lunarRecipients$.asObservable();
 
 	private isLoading = false;
 
@@ -44,14 +44,14 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 	}
 
 	constructor(
-		private birthdayService: BirthdayService,
+		private recipientService: RecipientService,
 		private dialogService: DialogService,
 		private loadingService: LoadingService,
 	) { }
 
 	public ngOnInit(): void {
 		this.addSubscriptions();
-		this.getBirthdays();
+		this.getRecipients();
 	}
 
 	private addSubscriptions() {
@@ -66,12 +66,12 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 
 	/**
 	* Fetch the latest list of birthdays. Refresh should be set to true if
-	* we"re fetching the birthdays list as a result of a patch - otherwise,
+	* we're fetching the birthdays list as a result of a patch - otherwise,
 	* it should be false.
 	*/
-	public getBirthdays(): void {
+	public getRecipients(): void {
 		this.loadingService.startLoading();
-		this.birthdayService.getBirthdays()
+		this.recipientService.getRecipients()
 			.pipe(
 				catchError(() => {
 					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
@@ -84,13 +84,10 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 				take(1),
 				takeUntil(this.ngUnsubscribe$)
 			)
-			.subscribe((birthdays: AddBirthday[]) => {
-				console.info("🍰 ✅ BirthdaysComponent ---> getBirthdays, received birthdays: ", birthdays);
-
-				const birthdayList = BirthdayUtils.createBirthdayLists(birthdays);
-				this.birthdayService.addSolarBirthdays(birthdayList);
-				this.solarBirthdays$.next(birthdayList.solar);
-				this.lunarBirthdays$.next(birthdayList.lunar);
+			.subscribe((birthdayList: RecipientList) => {
+				console.info("🍰 ✅ BirthdaysComponent ---> getRecipients, received birthdays: ", birthdayList);
+				this.solarRecipients$.next(birthdayList.solar);
+				this.lunarRecipients$.next(birthdayList.lunar);
 			});
 	}
 

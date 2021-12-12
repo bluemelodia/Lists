@@ -17,19 +17,19 @@ import {
 import { Topic } from "../../../../constants/topics.constants";
 import { countries } from "../../../../constants/countries.constants";
 
-import { BirthdayService } from "../../../../services/birthday.service";
+import { RecipientService } from "../../../../services/recipient.service";
 import { DialogService } from "../../../../services/dialog.service";
 import { NavService } from "../../../../services/nav.service";
 import { ValidationService } from "../../../../services/validation.service";
 
 import {
 	Address,
-	Birthday,
-	BirthdayAction,
-	BirthdayID,
-	BirthdayOptions,
-	BirthdayProfile,
-} from "../../../../interfaces/event/birthday.interface";
+	Recipient,
+	RecipientAction,
+	RecipientID,
+	RecipientOptions,
+	RecipientProfile,
+} from "../../../../interfaces/event/recipient.interface";
 import { MaxBudget } from "../../../../constants/gifts.constants";
 
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
@@ -38,22 +38,22 @@ import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { Phone } from "../../../../interfaces/phone.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
-import { AddBirthday } from "../../../../interfaces/service/service-objects.interface";
+import { AddRecipient } from "../../../../interfaces/service/service-objects.interface";
 import { Channel } from "../../../../interfaces/settings.interface";
 
-import { BirthdayUtils } from "../../../../utils/birthday.utils";
+import { RecipientUtils } from "../../../../utils/recipient.utils";
 
 @Component({
-	selector: "app-add-birthday",
+	selector: "app-add-recipient",
 	templateUrl: "./add.component.html",
 	styleUrls: ["./add.component.css"]
 })
-export class AddBirthdayComponent implements OnInit, OnDestroy {
-	birthday: Birthday;
-	birthdayAction = BirthdayAction;
-	birthdayForm: FormGroup;
-	birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayAction.Add);
-	birthdayID = BirthdayID;
+export class AddRecipientComponent implements OnInit, OnDestroy {
+	recipient: Recipient;
+	recipientAction = RecipientAction;
+	recipientForm: FormGroup;
+	recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Add);
+	recipientID = RecipientID;
 	headerLevel = HeaderLevel;
 
 	public calendarType: CalendarType = CalendarType.Lunar;
@@ -69,14 +69,14 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		private fb: FormBuilder,
 		private customValidator: ValidationService,
 		private dialogService: DialogService,
-		private birthdayService: BirthdayService,
+		private recipientService: RecipientService,
 		private navService: NavService,
 		private route: ActivatedRoute,
 	) { }
 
 	ngOnInit(): void {
 		/* Set the controls for the form. */
-		this.birthdayForm = this.fb.group({
+		this.recipientForm = this.fb.group({
 			name: [
 				"",
 				[
@@ -108,9 +108,9 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			}),
 			options: this.fb.group({
 				lunar: this.fb.control(false),
-				[BirthdayID.call]: this.fb.control(false),
-				[BirthdayID.text]: this.fb.control(false),
-				[BirthdayID.gift]: this.fb.control(false),
+				[RecipientID.call]: this.fb.control(false),
+				[RecipientID.text]: this.fb.control(false),
+				[RecipientID.gift]: this.fb.control(false),
 			}),
 			profile: this.fb.group({
 				image: [""],
@@ -136,93 +136,93 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 		this.route.queryParamMap
 			.pipe(
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-				map((params: ParamMap) => JSON.parse(params.get("birthday")))
+				map((params: ParamMap) => JSON.parse(params.get("recipient")))
 			)
-			.subscribe((birthday: AddBirthday) => {
-				/** Existing birthday. */
-				if (birthday?.uuid) {
-					this.birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayAction.Edit);
-					this.birthday = {
-						...this.birthday,
-						uuid: birthday?.uuid
+			.subscribe((recipient: AddRecipient) => {
+				/** Existing recipient. */
+				if (recipient?.uuid) {
+					this.recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Edit);
+					this.recipient = {
+						...this.recipient,
+						uuid: recipient?.uuid
 					};
-					this.populateFormData(birthday);
+					this.populateFormData(recipient);
 				}
 			});
 	}
 
-	private populateFormData(birthday: AddBirthday) {
-		console.info("🥳 💾 AddBirthdayComponent ---> populateFormData, add existing birthday: ", birthday);
+	private populateFormData(recipient: AddRecipient) {
+		console.info("🥳 💾 AddRecipientComponent ---> populateFormData, add existing recipient: ", recipient);
 		/**
 		 * Don't patch the file name, it opens up security risks.
 		 */
-		this.birthdayForm.patchValue({
-			name: birthday.name,
-			email: birthday.email,
-			phone: birthday.phone,
-			address: birthday.address,
+		this.recipientForm.patchValue({
+			name: recipient.name,
+			email: recipient.email,
+			phone: recipient.phone,
+			address: recipient.address,
 			date: {
-				day: BirthdayUtils.createCalendarDate(birthday),
+				day: RecipientUtils.createCalendarDate(recipient),
 			},
-			options: birthday.options,
+			options: recipient.options,
 			profile: {
-				image: birthday.image
+				image: recipient.image
 			},
-			filename: birthday.filename,
-			budget: birthday.budget
+			filename: recipient.filename,
+			budget: recipient.budget
 		});
 	}
 
 	/* returns the form controls of the form. */
-	get birthdayFormControl(): { [key: string]: AbstractControl } {
-		return this.birthdayForm.controls;
+	get recipientFormControl(): { [key: string]: AbstractControl } {
+		return this.recipientForm.controls;
 	}
 
 	get name(): string {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return this.birthdayFormControl.name.value;
+		return this.recipientFormControl.name.value;
 	}
 
 	get date(): CalendarDay {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return this.birthdayForm.get("date.day")?.value;
+		return this.recipientForm.get("date.day")?.value;
 	}
 
-	get options(): BirthdayOptions {
+	get options(): RecipientOptions {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return this.birthdayFormControl.options.value;
+		return this.recipientFormControl.options.value;
 	}
 
-	get profile(): BirthdayProfile {
+	get profile(): RecipientProfile {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return this.birthdayFormControl.profile.value;
+		return this.recipientFormControl.profile.value;
 	}
 
 	get email(): string {
-		return this.birthdayFormControl.email.value;
+		return this.recipientFormControl.email.value;
 	}
 
 	get phone(): Phone {
-		return this.birthdayFormControl.phone.value;
+		return this.recipientFormControl.phone.value;
 	}
 
 	get address(): Address {
-		return this.birthdayFormControl.address.value;
+		return this.recipientFormControl.address.value;
 	}
 
 	get budget(): number {
-		return this.birthdayFormControl.budget.value;
+		return this.recipientFormControl.budget.value;
 	}
 
 	onSubmit(): void {
 		this.submitted = true;
-		console.log("birthdayForm: ", this.birthdayForm);
+		console.log("recipientForm: ", this.recipientForm);
 
-		if (this.birthdayForm.valid) {
+		if (this.recipientForm.valid) {
 			this.submitted = false;
 
-			this.birthday = {
-				...this.birthday,
+			this.recipient = {
+				...this.recipient,
 				name: this.name,
 				date: this.date,
 				options: this.options,
@@ -232,19 +232,19 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 				address: this.address,
 				budget: this.budget,
 			};
-			console.info("🥳 💁🏻‍♀️ AddBirthdayComponent ---> onSubmit, birthday: ", this.birthday);
+			console.info("🥳 💁🏻‍♀️ AddRecipientComponent ---> onSubmit, recipient: ", this.recipient);
 
-			this.birthdayService.modifyBirthday(this.birthday, this.birthdayConfig.action)
+			this.recipientService.modifyRecipient(this.recipient, this.recipientConfig.action)
 				.pipe(
 					take(1),
 					takeUntil(this.ngUnsubscribe$)
 				)
 				.subscribe((response: ResponseStatus) => {
-					switch (this.birthdayConfig.action) {
-						case BirthdayAction.Add:
-							this.dialogService.showResponseStatusDialog(response, Dialog.AddBirthday);
+					switch (this.recipientConfig.action) {
+						case RecipientAction.Add:
+							this.dialogService.showResponseStatusDialog(response, Dialog.AddRecipient);
 							break;
-						case BirthdayAction.Edit:
+						case RecipientAction.Edit:
 							this.dialogService.showResponseStatusDialog(response, Dialog.EditBirthday);
 							break;
 					}
@@ -281,7 +281,7 @@ export class AddBirthdayComponent implements OnInit, OnDestroy {
 			)
 			.subscribe(() => {
 				/**
-				* Once the user successfully edits the form, take them back to the birthday list.
+				* Once the user successfully edits the form, take them back to the recipient list.
 				*/
 				this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
 			});

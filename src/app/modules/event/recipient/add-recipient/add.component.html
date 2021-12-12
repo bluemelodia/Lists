@@ -1,6 +1,6 @@
 <section class="form-container">
     <form class="event-form"
-        [formGroup]="birthdayForm"
+        [formGroup]="recipientForm"
         (ngSubmit)="onSubmit()">
 		<app-heading [level]="headerLevel.H2" text="Recipient"></app-heading>
         <span class="form-instructions">Provide the recipient's name and birthdate.</span>
@@ -8,11 +8,11 @@
             <input type="text" 
                 formControlName="name"
                 placeholder="Name"/>
-            <div class="input-error" *ngIf="submitted && birthdayFormControl.name.errors">
-                <span *ngIf="birthdayFormControl.name.errors?.required">
+            <div class="input-error" *ngIf="submitted && recipientFormControl.name.errors">
+                <span *ngIf="recipientFormControl.name.errors?.required">
                      Name is required.
                 </span>
-                <span *ngIf="birthdayFormControl.name.errors?.minlength || birthdayFormControl.name.errors?.invalidName">
+                <span *ngIf="recipientFormControl.name.errors?.minlength || recipientFormControl.name.errors?.invalidName">
                     Please enter a valid name.
                 </span>
             </div> 
@@ -21,14 +21,14 @@
 				controlName="day"
                 placeholder="Date"
                 [calendarType]="calendarType"
-                [form]="birthdayForm.controls.date"
+                [form]="recipientForm.controls.date"
                 [submitted]="submitted">
             </app-datepicker>
             <app-checkbox 
                 id="action-lunar"
                 name="Lunar"
                 checkboxName="lunar"
-                [form]="birthdayForm.controls.options">
+                [form]="recipientForm.controls.options">
             </app-checkbox>
         </fieldset>
 		<fieldset>
@@ -39,12 +39,12 @@
 			<input type="text" 
                 formControlName="email"
                 placeholder="Email"/>
-            <div class="input-error" *ngIf="submitted && birthdayFormControl.email.errors">  
-                <span *ngIf="birthdayFormControl.email.errors?.invalidEmail">
+            <div class="input-error" *ngIf="submitted && recipientFormControl.email.errors">  
+                <span *ngIf="recipientFormControl.email.errors?.invalidEmail">
                     Please enter a valid email address.
                 </span>
             </div>
-			<app-phone-select [form]="birthdayForm.controls.phone"
+			<app-phone-select [form]="recipientForm.controls.phone"
 				[submitted]="submitted">
 			</app-phone-select>
 		</fieldset>
@@ -53,15 +53,15 @@
 				<span class="event-form__optional" post>Optional</span>
 			</app-heading>
 			<span class="form-instructions">Enter the recpient's mailing address.</span>
-			<app-address [form]="birthdayForm.controls.address"></app-address>
-			<div class="input-error" *ngIf="submitted && birthdayFormControl.address.errors">
-				<span *ngIf="birthdayFormControl.address.errors?.missingStreetAddress">
+			<app-address [form]="recipientForm.controls.address"></app-address>
+			<div class="input-error" *ngIf="submitted && recipientFormControl.address.errors">
+				<span *ngIf="recipientFormControl.address.errors?.missingStreetAddress">
 					Please enter a street address.
 				</span>
-				<span *ngIf="birthdayFormControl.address.errors?.missingCity">
+				<span *ngIf="recipientFormControl.address.errors?.missingCity">
 					Please enter a city.
 				</span>
-				<span *ngIf="birthdayFormControl.address.errors?.missingZip">
+				<span *ngIf="recipientFormControl.address.errors?.missingZip">
 					Please enter a zip code.
 				</span>
 			</div>
@@ -75,11 +75,11 @@
                 formControlName="budget"
 				min="0" max="maxBudget"
                 placeholder="Budget"/>
-			<div class="input-error" *ngIf="submitted && birthdayFormControl.budget.errors">
-				<span *ngIf="birthdayFormControl.budget.errors?.max">
+			<div class="input-error" *ngIf="submitted && recipientFormControl.budget.errors">
+				<span *ngIf="recipientFormControl.budget.errors?.max">
 					Budget should not exceed {{ maxBudget }}.
 				</span>
-				<span *ngIf="birthdayFormControl.budget.errors?.min">
+				<span *ngIf="recipientFormControl.budget.errors?.min">
 					Budget cannot be negative.
 				</span>
 			</div> 
@@ -89,27 +89,27 @@
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
             <span class="form-instructions">Choose a profile image to represent the recipient.</span>
-            <app-img-upload [form]="birthdayForm.controls.profile"></app-img-upload>
+            <app-img-upload [form]="recipientForm.controls.profile"></app-img-upload>
         </fieldset>
         <fieldset class="event-options">
             <app-heading [level]="headerLevel.H3" text="Actions">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
-            <span class="form-instructions">Select the actions you would like to perform on or close to the recipient's birthday.</span>
+            <span class="form-instructions">Select the actions you would like to perform on or close to the recipient's recipient.</span>
             <app-checkbox
                 name="Call"
-                [checkboxName]="birthdayID.call"
-                [form]="birthdayForm.controls.options">
+                [checkboxName]="recipientID.call"
+                [form]="recipientForm.controls.options">
             </app-checkbox>
             <app-checkbox
                 name="Text"
-                [checkboxName]="birthdayID.text"
-                [form]="birthdayForm.controls.options">
+                [checkboxName]="recipientID.text"
+                [form]="recipientForm.controls.options">
             </app-checkbox>
             <app-checkbox
                 name="Buy Present"
-                [checkboxName]="birthdayID.gift"
-                [form]="birthdayForm.controls.options">
+                [checkboxName]="recipientID.gift"
+                [form]="recipientForm.controls.options">
             </app-checkbox>
         </fieldset>
         <fieldset class="form-actions">
@@ -119,7 +119,7 @@
                 Cancel
             </button>        
             <button type="submit">
-                {{ birthdayConfig.buttonAction }}
+                {{ recipientConfig.buttonAction }}
             </button>
         </fieldset>
     </form>

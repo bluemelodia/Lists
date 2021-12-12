@@ -10,17 +10,21 @@ import {
 	Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
 import { MaxBudget } from '../../../../constants/gifts.constants';
 import { Topic } from '../../../../constants/topics.constants';
 
+import { RecipientList } from '../../../../interfaces/event/recipient.interface';
 import { Dialog, DialogAction } from '../../../../interfaces/dialog.interface';
 import { GiftAction } from '../../../../interfaces/event/gift.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
+import { ResponseStatus } from '../../../../interfaces/response.interface';
 
+import { RecipientService } from '../../../../services/recipient.service';
 import { DialogService } from '../../../../services/dialog.service';
+import { LoadingService } from '../../../../services/loading.service';
 import { NavService } from '../../../../services/nav.service';
 import { ValidationService } from '../../../../services/validation.service';
 
@@ -38,14 +42,18 @@ export class AddGiftComponent implements OnInit {
 
 	public submitted = false;
 	public maxBudget = MaxBudget;
+
+	private isLoading = false;
 	private ngUnsubscribe$ = new Subject<void>();
 
 	@HostBinding("class") containerClasses = "section-container";
 
 	constructor(
-		private fb: FormBuilder,
+		private recipientService: RecipientService,
 		private customValidator: ValidationService,
 		private dialogService: DialogService,
+		private fb: FormBuilder,
+		private loadingService: LoadingService,
 		private navService: NavService,
 		private route: ActivatedRoute,
 	) { }
@@ -86,18 +94,51 @@ export class AddGiftComponent implements OnInit {
 		/*this.route.queryParamMap
 			.pipe(
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-				map((params: ParamMap) => JSON.parse(params.get("birthday")))
+				map((params: ParamMap) => JSON.parse(params.get("recipient")))
 			)
-			.subscribe((birthday: AddBirthday) => {
-				if (birthday?.uuid) {
-					this.birthdayConfig = BirthdayUtils.createBirthdayFormConfig(BirthdayAction.Edit);
-					this.birthday = {
-						...this.birthday,
-						uuid: birthday?.uuid
+			.subscribe((recipient: AddRecipient) => {
+				if (recipient?.uuid) {
+					this.recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Edit);
+					this.recipient = {
+						...this.recipient,
+						uuid: recipient?.uuid
 					};
-					this.populateFormData(birthday);
+					this.populateFormData(recipient);
 				}
 			});*/
+
+		this.addSubscriptions();
+		this.getRecipients();
+	}
+
+	private addSubscriptions() {
+		this.loadingService.loadingChanged$
+			.pipe(
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((loading: boolean) => {
+				this.isLoading = loading;
+			});
+	}
+
+	public getRecipients(): void {
+		this.loadingService.startLoading();
+		this.recipientService.getRecipients()
+			.pipe(
+				catchError(() => {
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
+					this.loadingService.stopLoading();
+					return of(null);
+				}),
+				finalize(() => {
+					this.loadingService.stopLoading();
+				}),
+				take(1),
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((birthdayList: RecipientList) => {
+				console.info("🍰 ✅ BirthdaysComponent ---> getRecipients, received birthdays: ", birthdayList);
+			});
 	}
 
 	/* returns the form controls of the form. */

@@ -7,5 +7,5 @@ export enum Icon {
 	Down = 'fas fa-chevron-down',
 	Solar = 'fas fa-sun',
 	Lunar = 'fas fa-moon',
-	Birthday = 'fas fa-birthday-cake',
+	Recipient = 'fas fa-recipient-cake',
 }

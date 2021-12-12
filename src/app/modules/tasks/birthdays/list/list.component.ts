@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
 
-import { BirthdayService } from "../../../../services/birthday.service";
+import { RecipientService } from "../../../../services/recipient.service";
 import { CalendarService } from "../../../../services/calendar.service";
 import { DialogService } from "../../../../services/dialog.service";
 
@@ -21,7 +21,7 @@ import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { NO_ITEMS_CONFIG } from "../../../../interfaces/no-items.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
-import { AddBirthday } from "../../../../interfaces/service/service-objects.interface";
+import { AddRecipient } from "../../../../interfaces/service/service-objects.interface";
 
 @Component({
 	selector: "task-birthdays-list",
@@ -34,12 +34,12 @@ export class ListComponent implements OnDestroy {
 		return hostStyles.join(" ");
 	}
 
-	@Input() list: AddBirthday[];
+	@Input() list: AddRecipient[];
 	@Input() header: string;
 	@Output() deletedBirthday = new EventEmitter();
 
 	headerLevel = HeaderLevel;
-	noItemsConfig = NO_ITEMS_CONFIG[Event.Birthday];
+	noItemsConfig = NO_ITEMS_CONFIG[Event.Recipient];
 
 	public icon = Icon;
 	public readonly base64Prefix = "data:image/jpeg;base64,";
@@ -47,7 +47,7 @@ export class ListComponent implements OnDestroy {
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
-		private birthdayService: BirthdayService,
+		private recipientService: RecipientService,
 		private calendarService: CalendarService,
 		private dialogService: DialogService,
 		private router: Router,
@@ -63,7 +63,7 @@ export class ListComponent implements OnDestroy {
 			.subscribe((action: DialogAction) => {
 				switch (action) {
 					case DialogAction.Continue:
-						this.deleteBirthday(uuid);
+						this.deleteRecipient(uuid);
 						break;
 					default:
 						break;
@@ -71,8 +71,8 @@ export class ListComponent implements OnDestroy {
 			});
 	}
 
-	public deleteBirthday(uuid: string): void {
-		this.birthdayService.deleteBirthday(uuid)
+	public deleteRecipient(uuid: string): void {
+		this.recipientService.deleteRecipient(uuid)
 			.pipe(
 				take(1),
 				takeUntil(this.ngUnsubscribe$)
@@ -84,9 +84,9 @@ export class ListComponent implements OnDestroy {
 			});
 	}
 
-	public editBirthday(birthday: AddBirthday): void {
-		this.router.navigate(["/events/edit-birthday"], {
-			queryParams: { title: 'Edit Recipient', birthday: JSON.stringify(birthday) }
+	public editBirthday(recipient: AddRecipient): void {
+		this.router.navigate(["/events/edit-recipient"], {
+			queryParams: { title: 'Edit Recipient', recipient: JSON.stringify(recipient) }
 		});
 	}
 

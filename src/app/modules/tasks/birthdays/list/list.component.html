@@ -4,9 +4,9 @@
 	class="task-list__scrollable-container hide-scrollbar">
 	<section class="task-list__scrollable-list">
 		<ul class="task-list">
-			<li class="task-list__item" *ngFor="let birthday of list">
+			<li class="task-list__item" *ngFor="let recipient of list">
 				<ng-container [ngTemplateOutlet]="birthdayList" 
-					[ngTemplateOutletContext]="{ 'birthday': birthday }">
+					[ngTemplateOutletContext]="{ 'recipient': recipient }">
 				</ng-container>   
 			</li>
 		</ul>
@@ -18,46 +18,46 @@
     <app-no-items [config]="noItemsConfig"></app-no-items>
 </section>
 
-<ng-template #birthdayList let-birthday="birthday">
+<ng-template #birthdayList let-recipient="recipient">
 	<section class="task-list__photo-container">
-		<img *ngIf="birthday.image" class="task-list__item-photo" src="{{ base64Prefix }}{{ birthday.image }}"/>
-		<img *ngIf="!birthday.image" class="task-list__item-photo" src="./assets/images/cake.png"/>
+		<img *ngIf="recipient.image" class="task-list__item-photo" src="{{ base64Prefix }}{{ recipient.image }}"/>
+		<img *ngIf="!recipient.image" class="task-list__item-photo" src="./assets/images/cake.png"/>
 	</section>
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
-		<app-heading [level]="headerLevel.H2" [text]="birthday.name">
+		<app-heading [level]="headerLevel.H2" [text]="recipient.name">
 			<section class="actions edit-actions" post>
 				<app-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
-					(actionSelected)="editBirthday(birthday)">
+					(actionSelected)="editBirthday(recipient)">
 				</app-action>
 				<app-action ariaLabel="Delete"
 					[enabled]="true"
 					[icon]="icon.Delete"
-					(actionSelected)="onDeleteClicked(birthday.uuid)">
+					(actionSelected)="onDeleteClicked(recipient.uuid)">
 				</app-action>
 			</section>
 		</app-heading>
 		<section class="task-list__birthday-container">
-			<ng-container *ngIf="!birthday.lunar">
+			<ng-container *ngIf="!recipient.lunar">
 				<section class="task-list__birthday-status">
 					<p class="task-list__birthday">
-						<app-decorator ariaLabel="Birthday"
-							[icon]="icon.Birthday">
+						<app-decorator ariaLabel="Recipient"
+							[icon]="icon.Recipient">
 						</app-decorator>
-						{{ birthday?.date?.month }}/{{ birthday?.date?.value }}
+						{{ recipient?.date?.month }}/{{ recipient?.date?.value }}
 					</p>
 				</section>
 			</ng-container>
-			<ng-container *ngIf="birthday.lunar">
+			<ng-container *ngIf="recipient.lunar">
 				<section class="task-list__birthday-status">
-					<p class="task-list__birthday" *ngIf="birthday?.futureDates[currentYear] as cur">
+					<p class="task-list__birthday" *ngIf="recipient?.futureDates[currentYear] as cur">
 						<app-decorator ariaLabel="Solar"
 							[icon]="icon.Solar">
 						</app-decorator>
 						{{ cur?.month }}/{{ cur?.value }}/{{ cur?.year }} 
 					</p>
-					<p class="task-list__birthday" *ngIf="birthday?.futureDates[currentYear + 1] as next">
+					<p class="task-list__birthday" *ngIf="recipient?.futureDates[currentYear + 1] as next">
 						<app-decorator ariaLabel="Solar"
 							[icon]="icon.Solar">
 						</app-decorator>
@@ -67,27 +67,27 @@
 						<app-decorator ariaLabel="Lunar"
 							[icon]="icon.Lunar">
 						</app-decorator>
-						{{ birthday?.date?.cmonth }}/{{ birthday?.date?.cdate }} 
+						{{ recipient?.date?.cmonth }}/{{ recipient?.date?.cdate }} 
 					</p>
 				</section>
 			</ng-container>
 		</section>
-		<section class="actions birthday-actions">
+		<section class="actions recipient-actions">
 			<section>
 				<app-action ariaLabel="Call"
-					[enabled]="birthday.options.call"
+					[enabled]="recipient.options.call"
 					[icon]="icon.Call">
 				</app-action>
 				<app-action ariaLabel="Text"
-					[enabled]="birthday.options.text"
+					[enabled]="recipient.options.text"
 					[icon]="icon.Text">
 				</app-action>
 				<app-action ariaLabel="Gift"
-					[enabled]="birthday.options.gift"
+					[enabled]="recipient.options.gift"
 					[icon]="icon.Gift">
 				</app-action>
 			</section>
-			<app-date-indicator post [status]="birthday.status"></app-date-indicator>
+			<app-date-indicator post [status]="recipient.status"></app-date-indicator>
 		</section>
 	</section>
 </ng-template>
