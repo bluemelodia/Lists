@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { FormLimit } from 'src/app/constants/gifts.constants';
 
 import { HeaderLevel } from '../../../interfaces/header.interface';
 
@@ -13,7 +14,7 @@ export class DescriptionComponent implements OnInit {
 	@Input() form: FormGroup;
 	@Input() controlName: string = "";
 	@Input() formInstructions: string;
-	@Input() maxChars = 1000;
+	@Input() maxChars = FormLimit.Description.max;
 
 	public headerLevel = HeaderLevel;
 
