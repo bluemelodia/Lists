@@ -21,6 +21,7 @@ import { Dialog, DialogAction } from '../../../../interfaces/dialog.interface';
 import { GiftAction } from '../../../../interfaces/event/gift.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
 import { ResponseStatus } from '../../../../interfaces/response.interface';
+import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
 
 import { RecipientService } from '../../../../services/recipient.service';
 import { DialogService } from '../../../../services/dialog.service';
@@ -42,6 +43,9 @@ export class AddGiftComponent implements OnInit {
 
 	public submitted = false;
 	public maxBudget = MaxBudget;
+	
+	private recipients$ = new Subject<AddRecipient[]>();
+	public recipientList$ = this.recipients$.asObservable();
 
 	private isLoading = false;
 	private ngUnsubscribe$ = new Subject<void>();
@@ -61,18 +65,10 @@ export class AddGiftComponent implements OnInit {
 	ngOnInit(): void {
 		/* Set the controls for the form. */
 		this.giftForm = this.fb.group({
-			recipient: [
-				"",
-				[
-					Validators.required
-				],
-			],
-			occasion: [
-				"",
-				[
-					Validators.required
-				]
-			],
+			recipient: this.fb.group({
+				recipient: ["", [ Validators.required ]],
+				occasion: ["", [ Validators.required ]]
+			}),
 			year: [
 				"",
 				[]
@@ -136,8 +132,9 @@ export class AddGiftComponent implements OnInit {
 				take(1),
 				takeUntil(this.ngUnsubscribe$)
 			)
-			.subscribe((birthdayList: RecipientList) => {
-				console.info("🍰 ✅ BirthdaysComponent ---> getRecipients, received birthdays: ", birthdayList);
+			.subscribe((recipientList: RecipientList) => {
+				console.info("🍰 ✅ BirthdaysComponent ---> getRecipients, received birthdays: ", recipientList);
+				this.recipients$.next(recipientList.list);
 			});
 	}
 

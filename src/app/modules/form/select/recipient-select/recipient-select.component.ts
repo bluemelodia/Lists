@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
+import { SelectComponent } from '../select.component';
 
 import { ClickService } from '../../../../services/click.service';
 import { FocusService } from '../../../../services/focus.service';
-
-import { SelectComponent } from '../select.component';
 
 @Component({
   selector: 'app-recipient-select',
@@ -11,6 +12,7 @@ import { SelectComponent } from '../select.component';
   styleUrls: ['./recipient-select.component.css']
 })
 export class RecipientSelectComponent extends SelectComponent {
+	@Input() list: AddRecipient[];
 
 	constructor(
 		_clickService: ClickService,

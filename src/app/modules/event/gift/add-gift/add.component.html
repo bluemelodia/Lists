@@ -8,9 +8,10 @@
             <input type="text" 
                 formControlName="recipient"
                 placeholder="Recipient"/>
-			<input type="text" 
-                formControlName="occasion"
-                placeholder="Occasion"/>
+			<app-recipient-select [form]="giftFormControl.controls.recipient"
+				[list]="recipients$ | async"
+				[submitted]="submitted">
+			</app-recipient-select>
         </fieldset>
 		<fieldset class="details condensed">
             <input type="number" 
