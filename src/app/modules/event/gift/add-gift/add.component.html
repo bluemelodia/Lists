@@ -8,6 +8,9 @@
 			[list]="recipientList$ | async"
 			[submitted]="submitted">
 		</app-recipient-select>
+		<app-occasion-select [form]="giftForm.controls.occasions"
+			[submitted]="submitted">
+		</app-occasion-select>
 		<fieldset class="details condensed">
             <input type="number" 
                 formControlName="year"
@@ -22,11 +25,6 @@
 				min="0" max="maxBudget"
 				placeholder="Price"/>
         </fieldset>
-		<div class="input-error" *ngIf="submitted">
-			<span *ngIf="giftFormControl.occasion.errors?.required">
-				Occasion is required.
-			</span>
-		</div> 
 		<fieldset>
             <app-heading [level]="headerLevel.H3" text="Gift Image">
                 <span class="event-form__optional" post>Optional</span>

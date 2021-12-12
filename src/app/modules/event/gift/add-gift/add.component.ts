@@ -30,6 +30,7 @@ import { NavService } from '../../../../services/nav.service';
 import { ValidationService } from '../../../../services/validation.service';
 
 import { GiftUtils } from '../../../../utils/gift.utils';
+import { Occasion } from 'src/app/constants/occasions.constants';
 
 @Component({
 	selector: 'app-add-gift',
@@ -68,7 +69,9 @@ export class AddGiftComponent implements OnInit {
 			recipients: this.fb.group({
 				recipient: ["", [ Validators.required ]],
 			}),
-			occasion: ["", [ Validators.required ]],
+			occasions: this.fb.group({
+				occasion: ["", [ Validators.required ]],
+			}),
 			year: [
 				"",
 				[]

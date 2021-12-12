@@ -3,7 +3,7 @@
 		<input type="text" readonly
 			[ngClass]="{ 'options-open' : showOptionList }"
 			placeholder="Select Recipient"
-			[value]="form.get('recipient')?.value?.recipient?.name"
+			[value]="recipientForm?.value?.recipient?.name"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
@@ -14,7 +14,7 @@
 				class="option focus-option"
 				[tabindex]="showOptionList ? 0 : -1"
 				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : form.get('recipient')?.value?.recipient?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
+				[ngClass]="{ 'selected' : recipientForm?.value?.recipient?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
 				(click)="selectOption(recipient)">
 				{{ recipient.name }}
 			</button>
@@ -23,8 +23,8 @@
 				[attr.aria-hidden]="showOptionList ? false : true">
 			</button>
 		</section>
-		<div class="input-error" *ngIf="submitted && form.get('recipient')?.errors">
-			<span *ngIf="form.get('recipient')?.errors?.required">
+		<div class="input-error" *ngIf="submitted && recipientForm?.errors">
+			<span *ngIf="recipientForm?.errors?.required">
 				Recipient is required.
 			</span>
 		</div> 

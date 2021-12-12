@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { SelectComponent } from '../select.component';
+
+import { Occasion } from '../../../../constants/occasions.constants';
 import { ClickService } from '../../../../services/click.service';
 import { FocusService } from '../../../../services/focus.service';
 
@@ -13,6 +15,8 @@ import { FocusService } from '../../../../services/focus.service';
 	]
 })
 export class OccasionSelectComponent extends SelectComponent {
+	public occasions = Object.keys(Occasion);
+	
 	constructor(
 		_clickService: ClickService,
 		_focus: FocusService
@@ -20,11 +24,14 @@ export class OccasionSelectComponent extends SelectComponent {
 		super(_clickService, _focus);
 	}
 
-	/*selectOption(recipient: AddRecipient): void {
-		console.log("===> selected: ", recipient);
+	public get occasionForm() {
+		return this.form.get('occasion');
+	}
+
+	public selectOption(occasion: Occasion): void {
 		this.showOptionList = false;
-		this.form.get("recipient").patchValue({
-			recipient
+		this.occasionForm.patchValue({
+			occasion
 		});
-	}*/
+	}
 }

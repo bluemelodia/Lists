@@ -24,10 +24,14 @@ export class RecipientSelectComponent extends SelectComponent {
 		super(_clickService, _focus);
 	}
 
-	selectOption(recipient: AddRecipient): void {
+	public get recipientForm() {
+		return this.form.get('recipient');
+	}
+
+	public selectOption(recipient: AddRecipient): void {
 		console.log("===> selected: ", recipient);
 		this.showOptionList = false;
-		this.form.get("recipient").patchValue({
+		this.recipientForm.patchValue({
 			recipient
 		});
 	}
