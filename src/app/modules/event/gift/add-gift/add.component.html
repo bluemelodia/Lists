@@ -5,7 +5,8 @@
 		<app-heading [level]="headerLevel.H3" text="Recipient"></app-heading>
 		<span class="form-instructions">Enter recipient and gift details.</span>
 		<app-recipient-select [form]="giftForm.controls.recipients"
-			[list]="recipientList$ | async">
+			[list]="recipientList$ | async"
+			[submitted]="submitted">
 		</app-recipient-select>
 		<fieldset class="details condensed">
             <input type="number" 
@@ -22,9 +23,6 @@
 				placeholder="Price"/>
         </fieldset>
 		<div class="input-error" *ngIf="submitted">
-			<span *ngIf="giftFormControl.recipient.errors?.required">
-				Recipient is required.
-			</span>
 			<span *ngIf="giftFormControl.occasion.errors?.required">
 				Occasion is required.
 			</span>

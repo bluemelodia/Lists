@@ -19,6 +19,7 @@ import { RadioComponent } from "./radio/radio.component";
 import { CountrySelectComponent } from "./select/country-select/country-select.component";
 import { DescriptionComponent } from "./description/description.component";
 import { SelectComponent } from './select/select.component';
+import { OccasionSelectComponent } from './select/occasion-select/occasion-select.component';
 import { PhoneSelectComponent } from "./select/phone-select/phone-select.component";
 import { RecipientSelectComponent } from './select/recipient-select/recipient-select.component';
 
@@ -29,6 +30,7 @@ import { RecipientSelectComponent } from './select/recipient-select/recipient-se
 		CountrySelectComponent,
 		DatepickerComponent,
 		DescriptionComponent,
+		OccasionSelectComponent,
 		PhoneSelectComponent,
 		RadioComponent,
 		SelectComponent,
@@ -52,6 +54,7 @@ import { RecipientSelectComponent } from './select/recipient-select/recipient-se
 		DatepickerComponent,
 		DescriptionComponent,
 		NgxMaterialTimepickerModule,
+		OccasionSelectComponent,
 		PhoneSelectComponent,
 		RadioComponent,
 		RecipientSelectComponent,
