@@ -16,7 +16,7 @@
                         Please enter a longer name.
                     </span>
 					<span *ngIf="meetingFormControl.name.errors?.maxlength">
-						Name should not exceed {{ maxChars }} characters.
+						Name should not exceed {{ limit.Name.max }} characters.
 					</span>
             </div> 
 			<input type="text" 
@@ -27,7 +27,7 @@
 					Location is required.
 				</span>
 				<span *ngIf="meetingFormControl.location.errors?.maxlength">
-					Location should not exceed {{ maxChars }} characters.
+					Location should not exceed {{ limit.Name.max }} characters.
 				</span>
 			</div> 
 			<app-checkbox 

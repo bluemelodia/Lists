@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
-import { MaxBudget } from '../../../../constants/gifts.constants';
+import { FormLimit } from '../../../../constants/gifts.constants';
 import { Topic } from '../../../../constants/topics.constants';
 
 import { RecipientList } from '../../../../interfaces/event/recipient.interface';
@@ -30,7 +30,6 @@ import { NavService } from '../../../../services/nav.service';
 import { ValidationService } from '../../../../services/validation.service';
 
 import { GiftUtils } from '../../../../utils/gift.utils';
-import { Occasion } from 'src/app/constants/occasions.constants';
 
 @Component({
 	selector: 'app-add-gift',
@@ -38,12 +37,11 @@ import { Occasion } from 'src/app/constants/occasions.constants';
 	styleUrls: ['./add.component.css']
 })
 export class AddGiftComponent implements OnInit {
-	giftForm: FormGroup;
-	giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Add);
-	headerLevel = HeaderLevel;
-
+	public giftForm: FormGroup;
+	public giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Add);
+	public headerLevel = HeaderLevel;
+	public limit = FormLimit;
 	public submitted = false;
-	public maxBudget = MaxBudget;
 	
 	private recipients$ = new Subject<AddRecipient[]>();
 	public recipientList$ = this.recipients$.asObservable();
@@ -74,7 +72,11 @@ export class AddGiftComponent implements OnInit {
 			}),
 			year: [
 				"",
-				[]
+				[ 
+					Validators.required,
+					Validators.min(this.limit.Year.min),
+					Validators.max(this.limit.Year.max), 
+				]
 			],
 			gift: this.fb.group({
 				image: [""],
@@ -82,13 +84,22 @@ export class AddGiftComponent implements OnInit {
 			}),
 			description: [
 				"",
-				[]
+				[
+					Validators.maxLength(this.limit.Description.max)
+				]
 			],
 			price: [
 				"",
-				[]
+				[
+					Validators.min(this.limit.Budget.min),
+					Validators.max(this.limit.Budget.max)
+				]
 			]
-		});
+		},
+		{
+			updateOn: "submit",
+			validators: []
+		});;
 
 		/*this.route.queryParamMap
 			.pipe(

@@ -15,6 +15,9 @@
                 <span *ngIf="recipientFormControl.name.errors?.minlength || recipientFormControl.name.errors?.invalidName">
                     Please enter a valid name.
                 </span>
+				<span *ngIf="recipientFormControl.name.errors?.maxlength">
+                    Name cannot exceed {{ limit.Name.max }} characters.
+                </span>
             </div> 
             <app-datepicker appFocus 
                 class="datepicker-container"
@@ -77,7 +80,7 @@
                 placeholder="Budget"/>
 			<div class="input-error" *ngIf="submitted && recipientFormControl.budget.errors">
 				<span *ngIf="recipientFormControl.budget.errors?.max">
-					Budget should not exceed {{ maxBudget }}.
+					Budget should not exceed {{ limit.Budget.max | currency }}.
 				</span>
 				<span *ngIf="recipientFormControl.budget.errors?.min">
 					Budget cannot be negative.

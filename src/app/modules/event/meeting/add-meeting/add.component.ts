@@ -14,6 +14,7 @@ import {
 	takeUntil,
 } from "rxjs/operators";
 
+import { FormLimit } from "../../../../constants/gifts.constants";
 import { Topic } from "../../../../constants/topics.constants";
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
@@ -39,14 +40,11 @@ import { MeetingUtils } from "../../../../utils/meeting.utils";
 	styleUrls: ["./add.component.css"]
 })
 export class AddMeetingComponent implements OnInit {
-	maxChars = 255;
-	maxDescription = 1000;
-	minChars = 1;
-
-	meeting: Meeting;
-	meetingAction = MeetingAction;
-	meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Add);
-	meetingForm: FormGroup;
+	public limit = FormLimit;
+	public meeting: Meeting;
+	public meetingAction = MeetingAction;
+	public meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Add);
+	public meetingForm: FormGroup;
 
 	public calendarType: CalendarType = CalendarType.Solar;
 	public headerLevel = HeaderLevel;
@@ -73,8 +71,8 @@ export class AddMeetingComponent implements OnInit {
 				"",
 				[
 					Validators.required,
-					Validators.minLength(this.minChars),
-					Validators.maxLength(this.maxChars),
+					Validators.minLength(this.limit.Name.min),
+					Validators.maxLength(this.limit.Name.max),
 				],
 			],
 			startDate: this.fb.group({
@@ -92,15 +90,15 @@ export class AddMeetingComponent implements OnInit {
 			description: [
 				"",
 				[
-					Validators.maxLength(this.maxDescription),
+					Validators.maxLength(this.limit.Description.max),
 				]
 			],
 			location: [
 				"",
 				[
 					Validators.required,
-					Validators.minLength(1),
-					Validators.maxLength(255),
+					Validators.minLength(this.limit.Location.min),
+					Validators.maxLength(this.limit.Location.max),
 				]
 			],
 			options: this.fb.group({

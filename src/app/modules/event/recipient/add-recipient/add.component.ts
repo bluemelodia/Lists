@@ -1,4 +1,10 @@
-import { Component, HostBinding, OnDestroy, OnInit } from "@angular/core";
+import { 
+	Component, 
+	HostBinding,
+	Inject,
+	OnDestroy,
+	OnInit,
+} from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
@@ -16,6 +22,7 @@ import {
 
 import { Topic } from "../../../../constants/topics.constants";
 import { countries } from "../../../../constants/countries.constants";
+import { FormLimit } from "../../../../constants/gifts.constants";
 
 import { RecipientService } from "../../../../services/recipient.service";
 import { DialogService } from "../../../../services/dialog.service";
@@ -30,8 +37,6 @@ import {
 	RecipientOptions,
 	RecipientProfile,
 } from "../../../../interfaces/event/recipient.interface";
-import { MaxBudget } from "../../../../constants/gifts.constants";
-
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
 import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
@@ -49,15 +54,15 @@ import { RecipientUtils } from "../../../../utils/recipient.utils";
 	styleUrls: ["./add.component.css"]
 })
 export class AddRecipientComponent implements OnInit, OnDestroy {
-	recipient: Recipient;
-	recipientAction = RecipientAction;
-	recipientForm: FormGroup;
-	recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Add);
-	recipientID = RecipientID;
-	headerLevel = HeaderLevel;
+	public recipient: Recipient;
+	public recipientAction = RecipientAction;
+	public recipientForm: FormGroup;
+	public recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Add);
+	public recipientID = RecipientID;
+	public headerLevel = HeaderLevel;
 
 	public calendarType: CalendarType = CalendarType.Lunar;
-	public maxBudget = MaxBudget;
+	public limit = FormLimit;
 	public submitted = false;
 
 	private countries = countries;
@@ -69,8 +74,8 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 		private fb: FormBuilder,
 		private customValidator: ValidationService,
 		private dialogService: DialogService,
-		private recipientService: RecipientService,
 		private navService: NavService,
+		private recipientService: RecipientService,
 		private route: ActivatedRoute,
 	) { }
 
@@ -81,7 +86,8 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				"",
 				[
 					Validators.required,
-					Validators.minLength(1),
+					Validators.minLength(this.limit.Name.min),
+					Validators.maxLength(this.limit.Name.max),
 					this.customValidator.nameValidator()
 				],
 			],
@@ -119,8 +125,8 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 			budget: [
 				"",
 				[
-					Validators.min(0),
-					Validators.max(this.maxBudget)
+					Validators.min(this.limit.Budget.min),
+					Validators.max(this.limit.Budget.max)
 				]
 			],
 		},

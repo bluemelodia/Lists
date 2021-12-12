@@ -11,7 +11,7 @@
 		<app-occasion-select [form]="giftForm.controls.occasions"
 			[submitted]="submitted">
 		</app-occasion-select>
-		<fieldset class="details condensed">
+		<fieldset class="details">
             <input type="number" 
                 formControlName="year"
                 placeholder="Year"/>
@@ -19,11 +19,25 @@
                 <span *ngIf="giftFormControl.year.errors?.required">
                     Year is required.
                 </span>
+				<span *ngIf="giftFormControl.year.errors?.min">
+                    Year must be {{ limit.Year.min }} or later.
+                </span>
+				<span *ngIf="giftFormControl.year.errors?.max">
+                    Year is too large.
+                </span>
             </div>
 			<input type="number"
 				formControlName="price"
-				min="0" max="maxBudget"
+				[min]="limit.Budget.min" [max]="limit.Budget.max"
 				placeholder="Price"/>
+			<div class="input-error" *ngIf="submitted && giftFormControl.price.errors">
+				<span *ngIf="giftFormControl.price.errors?.max">
+					Price should not exceed {{ limit.Budget.max | currency }}.
+				</span>
+				<span *ngIf="giftFormControl.price.errors?.min">
+					Price cannot be negative.
+				</span>
+			</div>
         </fieldset>
 		<fieldset>
             <app-heading [level]="headerLevel.H3" text="Gift Image">
