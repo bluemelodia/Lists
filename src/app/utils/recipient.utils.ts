@@ -14,10 +14,10 @@ import { AddRecipient } from "../interfaces/service/service-objects.interface";
 
 export class RecipientUtils {
 	private static baseURL = Endpoint.BIRTHDAY;
-	private static addRecipientURL = `${RecipientUtils.baseURL}/addRecipient`;
-	private static deleteRecipientURL = `${RecipientUtils.baseURL}/deleteRecipient`;
+	private static addRecipientURL = `${RecipientUtils.baseURL}/addBirthday`;
+	private static deleteRecipientURL = `${RecipientUtils.baseURL}/deleteBirthday`;
 	private static editRecipientURL = `${RecipientUtils.baseURL}/editBirthday`;
-	private static getRecipientURL = `${RecipientUtils.baseURL}/getRecipients`;
+	private static getRecipientURL = `${RecipientUtils.baseURL}/getBirthdays`;
 
 	public static recipientURLForAction(action: RecipientAction): string {
 		let url: string;
@@ -69,7 +69,7 @@ export class RecipientUtils {
 
 		switch (action) {
 			case RecipientAction.Add:
-				dialogType = Dialog.AddRecipient;
+				dialogType = Dialog.AddBirthday;
 				break;
 			case RecipientAction.Edit:
 				dialogType = Dialog.EditBirthday;

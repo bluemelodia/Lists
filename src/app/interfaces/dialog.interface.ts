@@ -1,5 +1,5 @@
 export enum Dialog {
-	AddRecipient,
+	AddBirthday,
 	AddMeeting,
 	CancelEdit,
 	DeleteBirthday,

@@ -242,7 +242,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				.subscribe((response: ResponseStatus) => {
 					switch (this.recipientConfig.action) {
 						case RecipientAction.Add:
-							this.dialogService.showResponseStatusDialog(response, Dialog.AddRecipient);
+							this.dialogService.showResponseStatusDialog(response, Dialog.AddBirthday);
 							break;
 						case RecipientAction.Edit:
 							this.dialogService.showResponseStatusDialog(response, Dialog.EditBirthday);
