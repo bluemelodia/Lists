@@ -9,6 +9,7 @@ const BASE_URL = "/todo";
 export const Endpoint: URL = {
 	BIRTHDAY: BASE_URL + "/birthdays",
 	CALENDAR: BASE_URL + "/ccal",
+	GIFT: BASE_URL + "/gifts",
 	MEETING: BASE_URL + "/meetings",
 	SETTINGS: BASE_URL + "/settings",
 }

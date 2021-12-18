@@ -7,6 +7,8 @@ import {
 } from "../interfaces/event/recipient.interface";
 import { Endpoint } from "../constants/urls.constants";
 
+import { EventUtils } from "./event.utils";
+
 import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
 import { DateStatus } from "../interfaces/date.interface";
 import { Dialog } from "../interfaces/dialog.interface";
@@ -87,23 +89,11 @@ export class RecipientUtils {
 			leap: date.leap ? 1 : 0,
 			lunar: recipient.options.lunar ? 1 : 0,
 			email: recipient.email.length > 6 ? recipient.email : '',
-			filename: RecipientUtils.extractFileURL(recipient.profile?.fileName),
+			filename: EventUtils.extractFileURL(recipient.profile?.fileName),
 			image: recipient.profile?.image || '',
 		};
 		console.log("===> send recipient: ", addRecipient);
 		return addRecipient;
-	}
-
-	private static extractFileURL(fileName: string): string {
-		if (!fileName) {
-			return '';
-		}
-
-		/**
-		 * The string is prefixed with C:\fakepath\, to prevent malicious software 
-		 * from guessing the user"s file structure.
-		 */
-		return fileName.substring(fileName.lastIndexOf("\\") + 1);
 	}
 
 	public static createRecipientLists(birthdays: AddRecipient[]): RecipientList {

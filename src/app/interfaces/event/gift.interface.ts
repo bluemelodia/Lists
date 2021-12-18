@@ -12,6 +12,12 @@ export interface Gift {
 	price: number;
 }
 
+export interface AddGift extends Gift {
+	id: string;
+	image?: string;
+	filename?: string;
+}
+
 export interface GiftConfig {
 	action: GiftAction,
 	buttonAction: string,
