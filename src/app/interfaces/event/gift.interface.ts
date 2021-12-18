@@ -1,4 +1,16 @@
-import { FormSubmitAction } from "./event.interface";
+import { EventImage, FormSubmitAction } from "./event.interface";
+import { Recipient } from "./recipient.interface";
+
+import { Occasion } from "../../constants/occasions.constants";
+
+export interface Gift {
+	recipient: Recipient;
+	occasion: Occasion;
+	year: number;
+	giftImage?: EventImage;
+	description: string;
+	price: number;
+}
 
 export interface GiftConfig {
 	action: GiftAction,

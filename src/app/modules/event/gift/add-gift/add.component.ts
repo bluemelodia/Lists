@@ -18,7 +18,7 @@ import { Topic } from '../../../../constants/topics.constants';
 
 import { RecipientList } from '../../../../interfaces/event/recipient.interface';
 import { Dialog, DialogAction } from '../../../../interfaces/dialog.interface';
-import { GiftAction } from '../../../../interfaces/event/gift.interface';
+import { Gift, GiftAction } from '../../../../interfaces/event/gift.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
 import { ResponseStatus } from '../../../../interfaces/response.interface';
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
@@ -37,6 +37,7 @@ import { GiftUtils } from '../../../../utils/gift.utils';
 	styleUrls: ['./add.component.css']
 })
 export class AddGiftComponent implements OnInit {
+	private gift: Gift;
 	public giftForm: FormGroup;
 	public giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Add);
 	public headerLevel = HeaderLevel;
@@ -157,8 +158,49 @@ export class AddGiftComponent implements OnInit {
 		return this.giftForm.controls;
 	}
 
+	get recipient() {
+		return this.giftFormControl.recipients.value;
+	}
+
+	get occasion() {
+		return this.giftFormControl.occasions.value;
+	}
+
+	get year() {
+		return this.giftFormControl.year.value;
+	}
+
+	get giftImage() {
+		return this.giftFormControl.gift.value;
+	}
+
+	get description() {
+		return this.giftFormControl.description.value;
+	}
+
+	get price() {
+		return this.giftFormControl.price.value;
+	}
+
 	onSubmit(): void {
 		this.submitted = true;
+
+		if (this.giftForm.valid) {
+			this.submitted = false;
+
+			this.gift = {
+				...this.gift,
+				recipient: this.recipient,
+				occasion: this.occasion,
+				year: this.year,
+				giftImage: this.giftImage,
+				description: this.description,
+				price: this.price,
+			}
+			console.info("🥳 💁🏻‍♀️ AddGiftComponent ---> onSubmit, gift: ", this.gift);
+
+			
+		}
 	}
 
 	onCancel(): void {

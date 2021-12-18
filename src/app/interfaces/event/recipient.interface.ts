@@ -1,6 +1,6 @@
 import { CountryData } from "../../constants/countries.constants";
 import { CalendarDay } from "../calendar/calendar-response.interface";
-import { FormSubmitAction } from "./event.interface";
+import { EventImage, FormSubmitAction } from "./event.interface";
 import { Phone } from "../phone.interface";
 import { AddRecipient } from "../service/service-objects.interface";
 
@@ -23,7 +23,7 @@ export interface Recipient {
 	date: CalendarDay;
 	futureDates: FutureDates;
 	options: RecipientOptions;
-	profile?: RecipientProfile;
+	profile?: EventImage;
 	email?: string;
 	phone?: Phone;
 	address?: Address;
@@ -67,12 +67,4 @@ export interface RecipientOptions {
 	[RecipientID.call]: boolean;
 	[RecipientID.text]: boolean;
 	[RecipientID.gift]: boolean;
-}
-
-/**
-* Personalizable image for each recipient. 
-*/
-export interface RecipientProfile {
-	fileName: string;
-	image: string;
 }

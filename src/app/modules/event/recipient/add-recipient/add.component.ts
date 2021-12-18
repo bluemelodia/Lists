@@ -29,14 +29,15 @@ import { DialogService } from "../../../../services/dialog.service";
 import { NavService } from "../../../../services/nav.service";
 import { ValidationService } from "../../../../services/validation.service";
 
+import { EventImage } from "../../../../interfaces/event/event.interface";
 import {
 	Address,
 	Recipient,
 	RecipientAction,
 	RecipientID,
 	RecipientOptions,
-	RecipientProfile,
 } from "../../../../interfaces/event/recipient.interface";
+
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
 import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
@@ -199,7 +200,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 		return this.recipientFormControl.options.value;
 	}
 
-	get profile(): RecipientProfile {
+	get profile(): EventImage {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.recipientFormControl.profile.value;
 	}
