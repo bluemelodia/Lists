@@ -37,6 +37,7 @@ How to make image upload easy with Angular
 
   - Then you can see each recipient on the gifts page, and add a list of gifts purchased for them.
   - Each time user adds a gift, register it in the gifts table under the recipient's gift ID. Then on the gifts page, let the user toggle by recipient.
+  - When you delete a recipient, all their gifts have to be deleted as well.
 
 - Fix issue with undefined dates sent out in emails.
 

@@ -19,6 +19,15 @@ export class GiftService {
 		private http: HttpClient,
 	) {}
 
+	public modifyGift(gift: Gift, action: GiftAction): Observable<ResponseStatus> {
+		switch (action) {
+			case GiftAction.Add:
+				return this.postGift(gift);
+			case GiftAction.Edit:
+				return this.postGift(gift, true, GiftAction.Edit);
+		}
+	}
+
 	public postGift(gift: Gift, showDialog = true, action = GiftAction.Add): Observable<ResponseStatus> {
 		console.info("🎁 🏁 GiftService ---> postGift, gift: ", gift);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return

@@ -4,7 +4,8 @@ import { Recipient } from "./recipient.interface";
 import { Occasion } from "../../constants/occasions.constants";
 
 export interface Gift {
-	recipient: Recipient;
+	recipientId: string;
+	uuid: string;
 	occasion: Occasion;
 	year: number;
 	giftImage?: EventImage;

@@ -11,22 +11,25 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { of, Subject } from 'rxjs';
-import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
+import { catchError, filter, finalize, take, takeUntil } from 'rxjs/operators';
 
 import { FormLimit } from '../../../../constants/gifts.constants';
+import { Occasion } from '../../../../constants/occasions.constants';
 import { Topic } from '../../../../constants/topics.constants';
 
-import { RecipientList } from '../../../../interfaces/event/recipient.interface';
+import { Recipient, RecipientList } from '../../../../interfaces/event/recipient.interface';
 import { Dialog, DialogAction } from '../../../../interfaces/dialog.interface';
+import { EventImage } from '../../../../interfaces/event/event.interface';
 import { Gift, GiftAction } from '../../../../interfaces/event/gift.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
 import { ResponseStatus } from '../../../../interfaces/response.interface';
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
 
-import { RecipientService } from '../../../../services/recipient.service';
 import { DialogService } from '../../../../services/dialog.service';
+import { GiftService } from '../../../../services/gift.service';
 import { LoadingService } from '../../../../services/loading.service';
 import { NavService } from '../../../../services/nav.service';
+import { RecipientService } from '../../../../services/recipient.service';
 import { ValidationService } from '../../../../services/validation.service';
 
 import { GiftUtils } from '../../../../utils/gift.utils';
@@ -53,12 +56,13 @@ export class AddGiftComponent implements OnInit {
 	@HostBinding("class") containerClasses = "section-container";
 
 	constructor(
-		private recipientService: RecipientService,
 		private customValidator: ValidationService,
 		private dialogService: DialogService,
 		private fb: FormBuilder,
+		private giftService: GiftService,
 		private loadingService: LoadingService,
 		private navService: NavService,
+		private recipientService: RecipientService,
 		private route: ActivatedRoute,
 	) { }
 
@@ -158,27 +162,27 @@ export class AddGiftComponent implements OnInit {
 		return this.giftForm.controls;
 	}
 
-	get recipient() {
+	get recipient(): AddRecipient {
 		return this.giftFormControl.recipients.value;
 	}
 
-	get occasion() {
+	get occasion(): Occasion {
 		return this.giftFormControl.occasions.value;
 	}
 
-	get year() {
+	get year(): number {
 		return this.giftFormControl.year.value;
 	}
 
-	get giftImage() {
+	get giftImage(): EventImage {
 		return this.giftFormControl.gift.value;
 	}
 
-	get description() {
+	get description(): string {
 		return this.giftFormControl.description.value;
 	}
 
-	get price() {
+	get price(): number {
 		return this.giftFormControl.price.value;
 	}
 
@@ -190,7 +194,7 @@ export class AddGiftComponent implements OnInit {
 
 			this.gift = {
 				...this.gift,
-				recipient: this.recipient,
+				recipientId: this.recipient.uuid,
 				occasion: this.occasion,
 				year: this.year,
 				giftImage: this.giftImage,
@@ -199,7 +203,25 @@ export class AddGiftComponent implements OnInit {
 			}
 			console.info("🥳 💁🏻‍♀️ AddGiftComponent ---> onSubmit, gift: ", this.gift);
 
+			this.giftService.modifyGift(this.gift, this.giftConfig.action)
+				.pipe(
+					take(1),
+					takeUntil(this.ngUnsubscribe$)
+				)
+				.subscribe((response: ResponseStatus) => {
+					switch (this.giftConfig.action) {
+						case GiftAction.Add:
+							this.dialogService.showResponseStatusDialog(response, Dialog.AddGift);
+							break;
+						case GiftAction.Edit:
+							this.dialogService.showResponseStatusDialog(response, Dialog.EditGift);
+							break;
+					}
 
+					if (response === ResponseStatus.SUCCESS) {
+						this.subscribeToDialogClose();
+					}
+				});
 		}
 	}
 
@@ -216,6 +238,21 @@ export class AddGiftComponent implements OnInit {
 					default:
 						break;
 				}
+			});
+	}
+
+	subscribeToDialogClose(): void {
+		this.dialogService.onDialogAction$
+			.pipe(
+				filter((action: DialogAction) => action === DialogAction.Close),
+				take(1),
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe(() => {
+				/**
+				* Once the user successfully edits the form, take them back to the meeting list.
+				*/
+				this.navService.navigateToTopic(Topic.Gifts, { relativeTo: this.route });
 			});
 	}
 }

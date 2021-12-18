@@ -8,6 +8,7 @@ export const DialogMessage: Message = {
 	DELETE_MEETING_CONFIRM: "Are you sure you want to delete this meeting?",
 	GENERIC_ERROR: "An error occurred. Please try again later.",
 	FETCH_BIRTHDAYS_ERROR: "Unable to fetch list of birthdays at this time. Please try again later.",
+	FETCH_GIFTS_ERROR: "Unable to fetch list of gifts at this time. Please try again later.",
 	FETCH_MEETINGS_ERROR: "Unable to fetch list of meetings at this time. Please try again later.",
 	LOAD_SETTINGS_ERROR: "Unable to laod settings at this time. Please try again later.",
 	UPDATE_SETTINGS_ERROR: "Unable to save settings at this time. Please try again later.",

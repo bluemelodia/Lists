@@ -52,6 +52,12 @@ export class DialogUtils {
 			case Dialog.GetRecipients:
 				message = this.birthdayMessage(response, dialogType);
 				break;
+			case Dialog.AddGift:
+			case Dialog.EditGift:
+			case Dialog.DeleteGift:
+			case Dialog.GetGifts:
+				message = this.giftMessage(response, dialogType);
+				break;
 			case Dialog.AddMeeting:
 			case Dialog.EditMeeting:
 			case Dialog.DeleteMeeting:
@@ -94,6 +100,34 @@ export class DialogUtils {
 		}
 
 		return birthdayMessage;
+	}
+
+	private static giftMessage(response: ResponseStatus, dialogType: Dialog): string {
+		let giftMessage = DialogMessage.GENERIC_ERROR;
+		if (response === ResponseStatus.SUCCESS) {
+			switch (dialogType) {
+				case Dialog.AddGift:
+					giftMessage = "Added gift.";
+					break;
+				case Dialog.EditGift:
+					giftMessage = "Updated gift.";
+					break;
+				case Dialog.DeleteGift:
+					giftMessage = "Deleted gift.";
+					break;
+				default:
+					break;
+			}
+		} else {
+			switch (dialogType) {
+				case Dialog.GetGifts:
+					giftMessage = DialogMessage.FETCH_GIFTS_ERROR;
+					break;
+			}
+
+		}
+
+		return giftMessage;
 	}
 
 	private static meetingMessage(response: ResponseStatus, dialogType: Dialog): string {
