@@ -1,5 +1,5 @@
-import { 
-	Component, 
+import {
+	Component,
 	HostBinding,
 	Inject,
 	OnDestroy,
@@ -249,10 +249,10 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				.subscribe((response: ResponseStatus) => {
 					switch (this.recipientConfig.action) {
 						case RecipientAction.Add:
-							this.dialogService.showResponseStatusDialog(response, Dialog.AddBirthday);
+							this.dialogService.showResponseStatusDialog(response, Dialog.AddRecipient);
 							break;
 						case RecipientAction.Edit:
-							this.dialogService.showResponseStatusDialog(response, Dialog.EditBirthday);
+							this.dialogService.showResponseStatusDialog(response, Dialog.EditRecipient);
 							break;
 					}
 

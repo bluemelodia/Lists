@@ -71,10 +71,10 @@ export class RecipientUtils {
 
 		switch (action) {
 			case RecipientAction.Add:
-				dialogType = Dialog.AddBirthday;
+				dialogType = Dialog.AddRecipient;
 				break;
 			case RecipientAction.Edit:
-				dialogType = Dialog.EditBirthday;
+				dialogType = Dialog.EditRecipient;
 				break;
 		}
 

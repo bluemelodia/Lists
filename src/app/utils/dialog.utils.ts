@@ -18,7 +18,7 @@ export class DialogUtils {
 			case Dialog.CancelEdit:
 				message = DialogMessage.CANCEL_EDIT;
 				break;
-			case Dialog.DeleteBirthday:
+			case Dialog.DeleteRecipient:
 				message = DialogMessage.DELETE_BIRTHDAY_CONFIRM;
 				break;
 			case Dialog.DeleteMeeting:
@@ -46,10 +46,10 @@ export class DialogUtils {
 	public static messageforStatusDialog(response: ResponseStatus, dialogType: Dialog): string {
 		let message: string;
 		switch (dialogType) {
-			case Dialog.AddBirthday:
-			case Dialog.EditBirthday:
-			case Dialog.DeleteBirthday:
-			case Dialog.GetBirthday:
+			case Dialog.AddRecipient:
+			case Dialog.EditRecipient:
+			case Dialog.DeleteRecipient:
+			case Dialog.GetRecipients:
 				message = this.birthdayMessage(response, dialogType);
 				break;
 			case Dialog.AddMeeting:
@@ -72,13 +72,13 @@ export class DialogUtils {
 		let birthdayMessage = DialogMessage.GENERIC_ERROR;
 		if (response === ResponseStatus.SUCCESS) {
 			switch (dialogType) {
-				case Dialog.AddBirthday:
+				case Dialog.AddRecipient:
 					birthdayMessage = "Added birthday.";
 					break;
-				case Dialog.EditBirthday:
+				case Dialog.EditRecipient:
 					birthdayMessage = "Updated birthday.";
 					break;
-				case Dialog.DeleteBirthday:
+				case Dialog.DeleteRecipient:
 					birthdayMessage = "Deleted birthday.";
 					break;
 				default:
@@ -86,7 +86,7 @@ export class DialogUtils {
 			}
 		} else {
 			switch (dialogType) {
-				case Dialog.GetBirthday:
+				case Dialog.GetRecipients:
 					birthdayMessage = DialogMessage.FETCH_BIRTHDAYS_ERROR;
 					break;
 			}

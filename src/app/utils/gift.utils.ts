@@ -1,5 +1,6 @@
 import { Endpoint } from "../constants/urls.constants";
 import { EventUtils } from "./event.utils";
+import { Dialog } from "../interfaces/dialog.interface";
 import {
 	AddGift,
 	Gift,
@@ -43,6 +44,21 @@ export class GiftUtils {
 		};
 
 		return config;
+	}
+
+	public static giftDialogForAction(action: GiftAction): Dialog {
+		let dialogType: Dialog;
+
+		switch (action) {
+			case GiftAction.Add:
+				dialogType = Dialog.AddGift;
+				break;
+			case GiftAction.Edit:
+				dialogType = Dialog.EditGift;
+				break;
+		}
+
+		return dialogType;
 	}
 
 	public static formatGift(gift: Gift): AddGift {

@@ -74,7 +74,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 		this.recipientService.getRecipients()
 			.pipe(
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetRecipients);
 					this.loadingService.stopLoading();
 					return of(null);
 				}),

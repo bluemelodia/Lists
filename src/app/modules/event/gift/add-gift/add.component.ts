@@ -43,7 +43,7 @@ export class AddGiftComponent implements OnInit {
 	public headerLevel = HeaderLevel;
 	public limit = FormLimit;
 	public submitted = false;
-	
+
 	private recipients$ = new Subject<AddRecipient[]>();
 	public recipientList$ = this.recipients$.asObservable();
 
@@ -66,17 +66,17 @@ export class AddGiftComponent implements OnInit {
 		/* Set the controls for the form. */
 		this.giftForm = this.fb.group({
 			recipients: this.fb.group({
-				recipient: ["", [ Validators.required ]],
+				recipient: ["", [Validators.required]],
 			}),
 			occasions: this.fb.group({
-				occasion: ["", [ Validators.required ]],
+				occasion: ["", [Validators.required]],
 			}),
 			year: [
 				"",
-				[ 
+				[
 					Validators.required,
 					Validators.min(this.limit.Year.min),
-					Validators.max(this.limit.Year.max), 
+					Validators.max(this.limit.Year.max),
 				]
 			],
 			gift: this.fb.group({
@@ -97,10 +97,10 @@ export class AddGiftComponent implements OnInit {
 				]
 			]
 		},
-		{
-			updateOn: "submit",
-			validators: []
-		});;
+			{
+				updateOn: "submit",
+				validators: []
+			});;
 
 		/*this.route.queryParamMap
 			.pipe(
@@ -137,7 +137,7 @@ export class AddGiftComponent implements OnInit {
 		this.recipientService.getRecipients()
 			.pipe(
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetBirthday);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetRecipients);
 					this.loadingService.stopLoading();
 					return of(null);
 				}),
@@ -199,7 +199,7 @@ export class AddGiftComponent implements OnInit {
 			}
 			console.info("🥳 💁🏻‍♀️ AddGiftComponent ---> onSubmit, gift: ", this.gift);
 
-			
+
 		}
 	}
 

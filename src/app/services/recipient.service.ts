@@ -104,11 +104,11 @@ export class RecipientService {
 			.pipe(
 				map(() => {
 					console.info("🍰 ✅ RecipientService ---> deleteRecipient success.");
-					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteBirthday);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteRecipient);
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.DeleteBirthday);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.DeleteRecipient);
 					return of(null);
 				})
 			)
