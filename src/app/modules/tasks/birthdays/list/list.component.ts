@@ -17,7 +17,7 @@ import { DialogService } from "../../../../services/dialog.service";
 import { Icon } from "../../../../constants/icons.constants";
 import { Event } from "../../../../constants/events.contants";
 
-import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
+import { ConfirmDialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { NO_ITEMS_CONFIG } from "../../../../interfaces/no-items.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
@@ -56,13 +56,13 @@ export class ListComponent implements OnDestroy {
 	}
 
 	public onDeleteClicked(uuid: string): void {
-		this.dialogService.showConfirmDialog(Dialog.DeleteRecipient)
+		this.dialogService.showConfirmDialog(ConfirmDialogAction.Delete, DialogPage.Recipient)
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
 			)
-			.subscribe((action: DialogAction) => {
+			.subscribe((action: ConfirmDialogAction) => {
 				switch (action) {
-					case DialogAction.Continue:
+					case ConfirmDialogAction.Continue:
 						this.deleteRecipient(uuid);
 						break;
 					default:

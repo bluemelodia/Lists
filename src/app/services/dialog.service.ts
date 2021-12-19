@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
-import { Dialog, DialogAction, DialogConfig, DialogType } from "../interfaces/dialog.interface";
+import { ConfirmDialogAction, Dialog, DialogAction, DialogConfig, DialogPage, DialogType } from "../interfaces/dialog.interface";
 import { ResponseStatus } from "../interfaces/response.interface";
 import { DialogUtils } from "../utils/dialog.utils";
 
@@ -10,33 +10,32 @@ import { DialogUtils } from "../utils/dialog.utils";
 })
 export class DialogService {
 	private show$ = new Subject<DialogConfig>();
-	private onAction$ = new Subject<DialogAction>();
+	private onConfirmAction$ = new Subject<ConfirmDialogAction>();
 
 	get showDialog$(): Observable<DialogConfig> {
 		return this.show$.asObservable();
 	}
 
-	get onDialogAction$(): Observable<DialogAction> {
-		return this.onAction$.asObservable();
+	get onConfirmDialogAction$(): Observable<ConfirmDialogAction> {
+		return this.onConfirmAction$.asObservable();
 	}
 
-	showResponseStatusDialog(status: ResponseStatus, dialogType: Dialog): void {
-		console.log("show: ", status, DialogUtils.titleForDialog(status), DialogUtils.messageforStatusDialog(status, dialogType));
+	showResponseStatusDialog(status: ResponseStatus, action: DialogAction, page: DialogPage): void {
 		this.show$.next({
 			title: DialogUtils.titleForDialog(status),
-			message: DialogUtils.messageforStatusDialog(status, dialogType),
+			message: DialogUtils.messageforStatusDialog(status, action, page),
 			dialogType: DialogType.Info
 		});
 	}
 
-	showConfirmDialog(dialogType: Dialog): Observable<DialogAction> {
+	showConfirmDialog(action: ConfirmDialogAction, page: DialogPage): Observable<ConfirmDialogAction> {
 		this.show$.next({
 			title: "Confirm",
-			message: DialogUtils.messageforConfirmDialog(dialogType),
+			message: DialogUtils.messageforConfirmDialog(action, page),
 			dialogType: DialogType.Confirm
 		});
 
-		return this.onDialogAction$;
+		return this.onConfirmDialogAction$;
 	}
 
 	showErrorDialog(dialogType: Dialog): void {
@@ -49,16 +48,16 @@ export class DialogService {
 
 	hideDialog(): void {
 		this.show$.next(null);
-		this.onAction$.next(DialogAction.Close);
+		this.onConfirmAction$.next(ConfirmDialogAction.Close);
 	}
 
 	onCancel(): void {
 		this.show$.next(null);
-		this.onAction$.next(DialogAction.Cancel);
+		this.onConfirmAction$.next(ConfirmDialogAction.Cancel);
 	}
 
 	onContinue(): void {
 		this.show$.next(null);
-		this.onAction$.next(DialogAction.Continue);
+		this.onConfirmAction$.next(ConfirmDialogAction.Continue);
 	}
 }

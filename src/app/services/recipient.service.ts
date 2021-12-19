@@ -9,7 +9,7 @@ import {
 	RecipientList,
 } from "../interfaces/event/recipient.interface";
 import { Calendar, CalendarDay } from "../interfaces/calendar/calendar-response.interface";
-import { Dialog } from "../interfaces/dialog.interface";
+import { Dialog, DialogAction, DialogPage } from "../interfaces/dialog.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { AddRecipient } from "../interfaces/service/service-objects.interface";
 import { RecipientUtils } from "../utils/recipient.utils";
@@ -74,7 +74,14 @@ export class RecipientService {
 				}),
 				catchError(() => {
 					if (showDialog) {
-						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, RecipientUtils.recipientDialogForAction(action));
+						switch (action) {
+							case RecipientAction.Add:
+								this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Add, DialogPage.Recipient);
+								break;
+							case RecipientAction.Edit:
+								this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Edit, DialogPage.Recipient);
+								break;
+						}
 					}
 					return of(null);
 				})
@@ -104,11 +111,11 @@ export class RecipientService {
 			.pipe(
 				map(() => {
 					console.info("🍰 ✅ RecipientService ---> deleteRecipient success.");
-					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteRecipient);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, DialogAction.Delete, DialogPage.Recipient);
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.DeleteRecipient);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Delete, DialogPage.Recipient);
 					return of(null);
 				})
 			)

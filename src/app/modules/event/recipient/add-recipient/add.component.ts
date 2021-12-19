@@ -40,7 +40,7 @@ import {
 
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
-import { Dialog, DialogAction } from "../../../../interfaces/dialog.interface";
+import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { Phone } from "../../../../interfaces/phone.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
@@ -249,10 +249,10 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				.subscribe((response: ResponseStatus) => {
 					switch (this.recipientConfig.action) {
 						case RecipientAction.Add:
-							this.dialogService.showResponseStatusDialog(response, Dialog.AddRecipient);
+							this.dialogService.showResponseStatusDialog(response, DialogAction.Add, DialogPage.Recipient);
 							break;
 						case RecipientAction.Edit:
-							this.dialogService.showResponseStatusDialog(response, Dialog.EditRecipient);
+							this.dialogService.showResponseStatusDialog(response, DialogAction.Edit, DialogPage.Recipient);
 							break;
 					}
 
@@ -264,13 +264,13 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 	}
 
 	onCancel(): void {
-		this.dialogService.showConfirmDialog(Dialog.CancelEdit)
+		this.dialogService.showConfirmDialog(ConfirmDialogAction.Cancel, DialogPage.Recipient)
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
 			)
-			.subscribe((action: DialogAction) => {
+			.subscribe((action: ConfirmDialogAction) => {
 				switch (action) {
-					case DialogAction.Continue:
+					case ConfirmDialogAction.Continue:
 						this.navService.navigateToTopic(Topic.Birthdays, { relativeTo: this.route });
 						break;
 					default:
@@ -280,9 +280,9 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 	}
 
 	subscribeToDialogClose(): void {
-		this.dialogService.onDialogAction$
+		this.dialogService.onConfirmDialogAction$
 			.pipe(
-				filter((action: DialogAction) => action === DialogAction.Close),
+				filter((action: ConfirmDialogAction) => action === ConfirmDialogAction.Close),
 				take(1),
 				takeUntil(this.ngUnsubscribe$)
 			)

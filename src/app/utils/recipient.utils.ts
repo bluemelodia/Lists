@@ -66,21 +66,6 @@ export class RecipientUtils {
 		return config;
 	}
 
-	public static recipientDialogForAction(action: RecipientAction): Dialog {
-		let dialogType: Dialog;
-
-		switch (action) {
-			case RecipientAction.Add:
-				dialogType = Dialog.AddRecipient;
-				break;
-			case RecipientAction.Edit:
-				dialogType = Dialog.EditRecipient;
-				break;
-		}
-
-		return dialogType;
-	}
-
 	public static formatRecipient(recipient: Recipient): AddRecipient {
 		const date = recipient.date;
 		const addRecipient: AddRecipient = {

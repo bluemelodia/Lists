@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
-import { Dialog } from '../../../interfaces/dialog.interface';
+import { Dialog, DialogAction, DialogPage } from '../../../interfaces/dialog.interface';
 import { AddMeeting } from '../../../interfaces/service/service-objects.interface';
 import { HeaderLevel } from '../../../interfaces/header.interface';
 import { ResponseStatus } from '../../../interfaces/response.interface';
@@ -41,7 +41,7 @@ export class MeetingsComponent implements OnInit {
 		this.meetingService.getMeetings()
 			.pipe(
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetMeetings);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Meeting);
 					this.loadingService.stopLoading();
 					return of(null);
 				}),

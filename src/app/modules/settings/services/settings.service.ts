@@ -4,7 +4,7 @@ import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import { Endpoint } from "../../../constants/urls.constants";
-import { Dialog } from "../../../interfaces/dialog.interface";
+import { Dialog, DialogAction, DialogPage } from "../../../interfaces/dialog.interface";
 import { Response, ResponseStatus } from "../../../interfaces/response.interface";
 import { Settings } from "../interfaces/settings.interface";
 
@@ -56,11 +56,11 @@ export class SettingsService {
 		)
 			.pipe(
 				map((response: Response) => {
-					this.dialogService.showResponseStatusDialog(response.statusCode, Dialog.SaveSettings);
+					this.dialogService.showResponseStatusDialog(response.statusCode, DialogAction.Save, DialogPage.Settings);
 					return of(null);
 				}),
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.SaveSettings);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Save, DialogPage.Settings);
 					return of(null);
 				})
 			);

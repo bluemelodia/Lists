@@ -39,21 +39,6 @@ export class MeetingUtils {
 		return url;
 	}
 
-	public static meetingDialogForAction(action: MeetingAction): Dialog {
-		let dialogType: Dialog;
-
-		switch (action) {
-			case MeetingAction.Add:
-				dialogType = Dialog.AddMeeting;
-				break;
-			case MeetingAction.Edit:
-				dialogType = Dialog.EditMeeting;
-				break;
-		}
-
-		return dialogType;
-	}
-
 	public static createMeetingFormConfig(action: MeetingAction): MeetingConfig {
 		const config: MeetingConfig = {
 			action: action,

@@ -1,32 +1,38 @@
+export enum DialogType {
+	Confirm,
+	Error,
+	Info,
+}
+
+export enum DialogAction {
+	Add,
+	Cancel,
+	Continue,
+	Delete,
+	Edit,
+	Get,
+	Save,
+}
+
+export enum ConfirmDialogAction {
+	Cancel,
+	Close,
+	Continue,
+	Delete
+}
+
 export enum Dialog {
-	AddMeeting,
-	AddGift,
-	AddRecipient,
 	CancelEdit,
-	DeleteGift,
-	DeleteMeeting,
-	DeleteRecipient,
-	EditGift,
-	EditMeeting,
-	EditRecipient,
-	GetMeetings,
-	GetGifts,
-	GetRecipients,
 	LoadSettings,
 	SaveSettings,
 	UploadFailed,
 }
 
-export enum DialogAction {
-	Cancel,
-	Close,
-	Continue,
-}
-
-export enum DialogType {
-	Confirm,
-	Error,
-	Info
+export enum DialogPage {
+	Meeting = 'meeting',
+	Gift = 'gift',
+	Recipient = 'recipient',
+	Settings = 'settings',
 }
 
 export interface DialogConfig {

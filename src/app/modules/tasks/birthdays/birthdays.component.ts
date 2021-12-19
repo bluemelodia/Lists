@@ -12,7 +12,7 @@ import { RecipientService } from "../../../services/recipient.service";
 import { DialogService } from "../../../services/dialog.service";
 import { LoadingService } from "../../../services/loading.service";
 
-import { Dialog } from "../../../interfaces/dialog.interface";
+import { Dialog, DialogAction, DialogPage } from "../../../interfaces/dialog.interface";
 import { RecipientList } from "../../../interfaces/event/recipient.interface";
 import { AddRecipient } from "../../../interfaces/service/service-objects.interface";
 import { ResponseStatus } from "../../../interfaces/response.interface";
@@ -74,7 +74,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 		this.recipientService.getRecipients()
 			.pipe(
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.GetRecipients);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Recipient);
 					this.loadingService.stopLoading();
 					return of(null);
 				}),

@@ -7,6 +7,7 @@ import { DialogService } from "./dialog.service";
 import { Gift, GiftAction } from "../interfaces/event/gift.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { GiftUtils } from "../utils/gift.utils";
+import { DialogAction, DialogPage } from "../interfaces/dialog.interface";
 
 @Injectable({
 	providedIn: "root"
@@ -44,7 +45,14 @@ export class GiftService {
 				}),
 				catchError(() => {
 					if (showDialog) {
-						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, GiftUtils.giftDialogForAction(action));
+						switch(action) {
+							case GiftAction.Add:
+								this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Add, DialogPage.Gift);
+								break;
+							case GiftAction.Edit:
+								this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Edit, DialogPage.Gift);
+								break;
+						}
 					}
 					return of(null);
 				})

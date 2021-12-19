@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormLimit } from 'src/app/constants/gifts.constants';
 
+import { FormLimit } from '../../../constants/gifts.constants';
 import { HeaderLevel } from '../../../interfaces/header.interface';
 
 @Component({

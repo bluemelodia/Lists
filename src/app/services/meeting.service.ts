@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ModuleWithComponentFactories } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
@@ -6,7 +6,7 @@ import { catchError, map } from "rxjs/operators";
 import { DialogService } from "./dialog.service";
 import { Meeting, MeetingAction } from "../interfaces/event/meeting.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
-import { Dialog } from "../interfaces/dialog.interface";
+import { Dialog, DialogAction, DialogPage } from "../interfaces/dialog.interface";
 import { AddMeeting } from "../interfaces/service/service-objects.interface";
 import { MeetingUtils } from "../utils/meeting.utils";
 
@@ -40,7 +40,14 @@ export class MeetingService {
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, MeetingUtils.meetingDialogForAction(action));
+					switch(action) {
+						case MeetingAction.Add:
+							this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Add, DialogPage.Meeting);
+							break;
+						case MeetingAction.Edit:
+							this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Edit, DialogPage.Meeting);
+							break;
+					}
 					return of(null);
 				})
 			);
@@ -82,11 +89,11 @@ export class MeetingService {
 			.pipe(
 				map(() => {
 					console.info("🧳 🏁 MeetingService ---> deleteMeeting success");
-					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, Dialog.DeleteMeeting);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, DialogAction.Delete, DialogPage.Meeting);
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, Dialog.DeleteMeeting);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Delete, DialogPage.Meeting);
 					return of(null);
 				})
 			)
