@@ -21,6 +21,7 @@ export class DialogService {
 	}
 
 	showResponseStatusDialog(status: ResponseStatus, action: DialogAction, page: DialogPage): void {
+		console.info('[Dialog Service] show status dialog: ', DialogUtils.titleForDialog(status), DialogUtils.messageforStatusDialog(status, action, page), page);
 		this.show$.next({
 			title: DialogUtils.titleForDialog(status),
 			message: DialogUtils.messageforStatusDialog(status, action, page),
@@ -29,6 +30,7 @@ export class DialogService {
 	}
 
 	showConfirmDialog(action: ConfirmDialogAction, page: DialogPage): Observable<ConfirmDialogAction> {
+		console.info('[Dialog Service] show confirm dialog: ', action, page);
 		this.show$.next({
 			title: "Confirm",
 			message: DialogUtils.messageforConfirmDialog(action, page),
@@ -39,6 +41,7 @@ export class DialogService {
 	}
 
 	showErrorDialog(dialogType: Dialog): void {
+		console.info('[Dialog Service] show error dialog: ', dialogType);
 		this.show$.next({
 			title: "Error",
 			message: DialogUtils.messageForErrorDialog(dialogType),

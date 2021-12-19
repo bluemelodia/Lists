@@ -25,11 +25,11 @@ export class GiftService {
 			case GiftAction.Add:
 				return this.postGift(gift);
 			case GiftAction.Edit:
-				return this.postGift(gift, true, GiftAction.Edit);
+				return this.postGift(gift, GiftAction.Edit);
 		}
 	}
 
-	public postGift(gift: Gift, showDialog = true, action = GiftAction.Add): Observable<ResponseStatus> {
+	public postGift(gift: Gift, action = GiftAction.Add): Observable<ResponseStatus> {
 		console.info("🎁 🏁 GiftService ---> postGift, gift: ", gift);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.post<Response>(
@@ -44,17 +44,7 @@ export class GiftService {
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
 				catchError(() => {
-					if (showDialog) {
-						switch(action) {
-							case GiftAction.Add:
-								this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Add, DialogPage.Gift);
-								break;
-							case GiftAction.Edit:
-								this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Edit, DialogPage.Gift);
-								break;
-						}
-					}
-					return of(null);
+					return of(ResponseStatus.ERROR);
 				})
 			)
 	}

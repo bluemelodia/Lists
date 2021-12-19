@@ -141,7 +141,7 @@ export class AddGiftComponent implements OnInit {
 		this.recipientService.getRecipients()
 			.pipe(
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Recipient);
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift);
 					this.loadingService.stopLoading();
 					return of(null);
 				}),
@@ -163,7 +163,7 @@ export class AddGiftComponent implements OnInit {
 	}
 
 	get recipient(): AddRecipient {
-		return this.giftFormControl.recipients.value;
+		return this.giftForm.get('recipients.recipient').value.recipient; 
 	}
 
 	get occasion(): Occasion {
@@ -211,10 +211,10 @@ export class AddGiftComponent implements OnInit {
 				.subscribe((response: ResponseStatus) => {
 					switch (this.giftConfig.action) {
 						case GiftAction.Add:
-							this.dialogService.showResponseStatusDialog(response, DialogAction.Add, DialogPage.Recipient);
+							this.dialogService.showResponseStatusDialog(response, DialogAction.Add, DialogPage.Gift);
 							break;
 						case GiftAction.Edit:
-							this.dialogService.showResponseStatusDialog(response, DialogAction.Edit, DialogPage.Recipient);
+							this.dialogService.showResponseStatusDialog(response, DialogAction.Edit, DialogPage.Gift);
 							break;
 					}
 

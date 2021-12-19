@@ -15,7 +15,8 @@ import { FocusService } from '../../../../services/focus.service';
 	]
 })
 export class OccasionSelectComponent extends SelectComponent {
-	public occasions = Object.keys(Occasion);
+	public occasions = Occasion;
+	public occasionKeys = Object.keys(Occasion);
 	
 	constructor(
 		_clickService: ClickService,
