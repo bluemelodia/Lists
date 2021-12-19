@@ -32,7 +32,7 @@ export class DialogUtils {
 			case DialogAction.Get:
 				return `Fetched user ${page}s.`;
 			case DialogAction.Save:
-				return `Saved ${page}s.`;
+				return `Saved ${page}.`;
 			default:
 				return `Successfully made changes.`;
 		}
@@ -90,23 +90,5 @@ export class DialogUtils {
 		}
 
 		return message;
-	}
-
-	private static settingsMessage(response: ResponseStatus, dialogType: Dialog): string {
-		if (response === ResponseStatus.SUCCESS) {
-			let settingsMessage = "";
-
-			switch (dialogType) {
-				case Dialog.SaveSettings:
-					settingsMessage = "Saved settings.";
-					break;
-				default:
-					break;
-			}
-
-			return settingsMessage;
-		}
-
-		return DialogMessage.UPDATE_SETTINGS_ERROR;
 	}
 }

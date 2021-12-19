@@ -45,7 +45,7 @@ export class SettingsService {
 			);
 	}
 
-	public saveSettings(settings: Settings): Observable<void> {
+	public saveSettings(settings: Settings): Observable<ResponseStatus> {
 		console.info("🛠 ✅ SettingsService ---> fsaveSettings: ", settings);
 		return this.http.post<Response>(
 			this.saveSettingsURL,
@@ -56,12 +56,10 @@ export class SettingsService {
 		)
 			.pipe(
 				map((response: Response) => {
-					this.dialogService.showResponseStatusDialog(response.statusCode, DialogAction.Save, DialogPage.Settings);
-					return of(null);
+					return ResponseStatus.SUCCESS;
 				}),
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Save, DialogPage.Settings);
-					return of(null);
+					return of(ResponseStatus.ERROR);
 				})
 			);
 	}

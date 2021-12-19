@@ -17,7 +17,7 @@ import { DialogService } from "../../../../services/dialog.service";
 import { Icon } from "../../../../constants/icons.constants";
 import { Event } from "../../../../constants/events.contants";
 
-import { ConfirmDialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
+import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { NO_ITEMS_CONFIG } from "../../../../interfaces/no-items.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
@@ -78,6 +78,8 @@ export class ListComponent implements OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((response: ResponseStatus) => {
+				this.dialogService.showResponseStatusDialog(response, DialogAction.Delete, DialogPage.Recipient);
+
 				if (response === ResponseStatus.SUCCESS) {
 					this.deletedBirthday.emit(null);
 				}

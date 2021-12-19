@@ -40,15 +40,7 @@ export class MeetingService {
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
 				catchError(() => {
-					switch(action) {
-						case MeetingAction.Add:
-							this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Add, DialogPage.Meeting);
-							break;
-						case MeetingAction.Edit:
-							this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Edit, DialogPage.Meeting);
-							break;
-					}
-					return of(null);
+					return of(ResponseStatus.ERROR);
 				})
 			);
 	}
@@ -89,12 +81,10 @@ export class MeetingService {
 			.pipe(
 				map(() => {
 					console.info("🧳 🏁 MeetingService ---> deleteMeeting success");
-					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, DialogAction.Delete, DialogPage.Meeting);
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Delete, DialogPage.Meeting);
-					return of(null);
+					return of(ResponseStatus.ERROR);
 				})
 			)
 	}

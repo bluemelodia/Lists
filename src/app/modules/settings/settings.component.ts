@@ -6,18 +6,20 @@ import { finalize, take, takeUntil } from "rxjs/operators";
 
 import { Topic } from "../../constants/topics.constants";
 
+import { DialogAction, DialogPage } from "../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../interfaces/header.interface";
 import { Phone } from "../../interfaces/phone.interface";
+import { ResponseStatus } from "../../interfaces/response.interface";
 import {
 	Settings,
 	TopicSettings,
 } from "./interfaces/settings.interface";
 import { Channel, VALIDATE_CHANNEL } from "../../interfaces/settings.interface";
 
+import { DialogService } from "../../services/dialog.service";
 import { LoadingService } from "../../services/loading.service";
 import { SettingsService } from "./services/settings.service";
 import { ValidationService } from "../../services/validation.service";
-
 
 @Component({
 	selector: "app-settings",
@@ -37,6 +39,7 @@ export class SettingsComponent implements OnInit {
 	constructor(
 		private cdRef: ChangeDetectorRef,
 		private customValidator: ValidationService,
+		private dialogService: DialogService,
 		private fb: FormBuilder,
 		private loadingService: LoadingService,
 		private settingsService: SettingsService,
@@ -154,7 +157,16 @@ export class SettingsComponent implements OnInit {
 						this.loadingService.stopLoading();
 					})
 				)
-				.subscribe(() => {
+				.subscribe((responseStatus: ResponseStatus) => {
+					switch (responseStatus) {
+						case ResponseStatus.SUCCESS:
+							this.dialogService.showResponseStatusDialog(responseStatus, DialogAction.Save, DialogPage.Settings);
+							break;
+						case ResponseStatus.ERROR:
+							this.dialogService.showResponseStatusDialog(responseStatus, DialogAction.Save, DialogPage.Settings);
+							break;
+					}
+
 					this.loadSettings();
 				});
 		}

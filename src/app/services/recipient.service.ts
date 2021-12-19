@@ -51,14 +51,14 @@ export class RecipientService {
 			case RecipientAction.Add:
 				return this.postRecipient(recipient);
 			case RecipientAction.Edit:
-				return this.postRecipient(recipient, true, RecipientAction.Edit);
+				return this.postRecipient(recipient, RecipientAction.Edit);
 		}
 	}
 
 	/*
 	* TODO: add user ID
 	*/
-	public postRecipient(recipient: Recipient, showDialog = true, action = RecipientAction.Add): Observable<ResponseStatus> {
+	public postRecipient(recipient: Recipient, action = RecipientAction.Add): Observable<ResponseStatus> {
 		console.info("🍰 🏁 RecipientService ---> postRecipient, recipient: ", recipient);
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.post<Response>(
@@ -73,17 +73,7 @@ export class RecipientService {
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
 				catchError(() => {
-					if (showDialog) {
-						switch (action) {
-							case RecipientAction.Add:
-								this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Add, DialogPage.Recipient);
-								break;
-							case RecipientAction.Edit:
-								this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Edit, DialogPage.Recipient);
-								break;
-						}
-					}
-					return of(null);
+					return of(ResponseStatus.ERROR);
 				})
 			)
 	}
@@ -111,12 +101,10 @@ export class RecipientService {
 			.pipe(
 				map(() => {
 					console.info("🍰 ✅ RecipientService ---> deleteRecipient success.");
-					this.dialogService.showResponseStatusDialog(ResponseStatus.SUCCESS, DialogAction.Delete, DialogPage.Recipient);
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Delete, DialogPage.Recipient);
-					return of(null);
+					return of(ResponseStatus.ERROR);
 				})
 			)
 	}
