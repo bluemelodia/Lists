@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Injectable } from "@angular/core"
-import { Observable, Subject } from "rxjs"
+import { Observable, Subject, timer } from "rxjs"
 import convert from "image-file-resize";
+import { take, takeUntil } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root"
@@ -13,6 +14,7 @@ export class CompressImageService {
 	private readonly QUALITY = 0.5;
 
 	private onImageCompressed$ = new Subject<File>();
+	private onImageLoadTimeout$ = new Subject<void>();
 
 	public get imageCompressed$(): Observable<File> {
 		return this.onImageCompressed$.asObservable();
@@ -27,7 +29,7 @@ export class CompressImageService {
 		const reader = new FileReader();
 		reader.readAsBinaryString(file);
 		reader.onload = (event) => {
-			// console.info("📷 ✅ CompressImageService ---> convertFileToBase64, converted to base64 string.");
+			console.info("[Compress Image Service] Converted image to base64 string.");
 			result.next(btoa(event.target.result.toString()))
 		};
 		return result;
@@ -35,6 +37,16 @@ export class CompressImageService {
 
 	public compress(file: File): void {
 		const reader = new FileReader;
+
+		timer(10000)
+			.pipe(
+				take(1),
+				takeUntil(this.onImageLoadTimeout$)
+			)
+			.subscribe(() => {
+				console.info("[Compress Image Service] Compress operation timed out. Image was not loaded in time.");
+				this.onImageCompressed$.next(null);
+			})
 
 		reader.onload = () => { // file is loaded
 			const img = new Image;
@@ -49,7 +61,9 @@ export class CompressImageService {
 
 				const finalWidth = width * ratio;
 				const finalHeight = height * ratio;
-				// console.info(`📷 ✅ CompressImageService ---> compress, width -> ${finalWidth}, height -> ${finalHeight}.`);
+				
+				console.info(`[Compress Image Service] Converting image. Width -> ${finalWidth}, Height -> ${finalHeight}.`);
+				this.onImageLoadTimeout$.next();
 				this.convertImage(file, finalWidth, finalHeight);
 			};
 
@@ -72,7 +86,7 @@ export class CompressImageService {
 			}
 		}
 
-		// console.info("📷 ✅ CompressImageService ---> calculateRatio, computed compression ratio: ", ratio);
+		console.info("[Compress Image Service] Calculating compression ratio: ", ratio);
 		return ratio;
 	}
 
@@ -84,11 +98,10 @@ export class CompressImageService {
 			type: "jpeg"
 		}).then(resp => {
 			// Response contains the compressed and resized file
-			// console.info("📷 ✅ CompressImageService ---> convertImage, successfully compressed image: ", resp);
 			this.onImageCompressed$.next(resp);
-		}).catch(() => {
+		}).catch((error) => {
 			// Error
-			// console.info("📷 ✅ CompressImageService ---> convertImage, failed to compress image.");
+			console.info("[Compress Image Service] Unable to compress image. Error: ", error);
 			this.onImageCompressed$.next(null);
 		})
 	}

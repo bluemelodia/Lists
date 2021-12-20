@@ -47,7 +47,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 		this.addSubscriptions();
 		this.uploadForm.get("image")?.valueChanges.subscribe((val: string) => {
 			if (!val) {
-				console.info("📂 🗑 UploadComponent ---> ngOnChanges, image form field changed, clear the image");
+				console.info(`[Image Upload] Image form field changed, clear the image.`);
 				this.clearImage();
 			}
 		});
@@ -59,7 +59,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 		 * Get the first file.
 		 */
 		const file: File = input.files[0];
-		// console.info(`📂 ✅ UploadComponent ---> processFile, image size before compression: ${file.size} bytes.`);
+		console.info(`[Image Upload] Image size before compression: ${file?.size} bytes.`);
 
 		this.compressImageService.compress(file);
 	}
@@ -85,17 +85,18 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 		this.compressImageService.imageCompressed$
 			.pipe(
 				switchMap((file: File) => {
-					console.info(`📂 ✅ UploadComponent ---> addSubscriptions, image size after compression: ${file?.size} bytes.`);
+					console.info(`[Image Upload] Image size after compression: ${file?.size} bytes.`);
 					return this.compressImageService.convertFileToBase64(file);
 				}),
-				catchError(() => {
+				catchError((error) => {
+					console.info(`[Image Upload] Unable to upload image: ${error}.`);
 					this.dialogService.showErrorDialog(Dialog.UploadFailed);
 					return of(null);
 				}),
 				takeUntil(this.ngUnsubscribe$),
 			)
 			.subscribe((stringRep: string) => {
-				console.info(`📂 ✅ UploadComponent ---> addSubscriptions, successfully converted to base64.`);
+				console.info(`[Image Upload] Upload and image compression succeeded.`);
 				this.selectedImageUrl$.next(`${this.base64Prefix}${stringRep}`);
 				this.uploadForm.patchValue({
 					image: stringRep
