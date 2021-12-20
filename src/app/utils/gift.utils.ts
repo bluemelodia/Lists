@@ -10,7 +10,7 @@ import {
 } from "../interfaces/event/gift.interface";
 
 export class GiftUtils {
-	private static baseURL = Endpoint.Gift;
+	private static baseURL = Endpoint.GIFT;
 	private static addGiftURL = `${GiftUtils.baseURL}/addGift`;
 	private static deleteGiftURL = `${GiftUtils.baseURL}/deleteGift`;
 	private static editGiftURL = `${GiftUtils.baseURL}/editGift`;

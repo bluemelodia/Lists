@@ -8,8 +8,8 @@ import convert from "image-file-resize";
 	providedIn: "root"
 })
 export class CompressImageService {
-	private readonly MAX_WIDTH = 300;
-	private readonly MAX_HEIGHT = 180;
+	private readonly MAX_WIDTH = 167;
+	private readonly MAX_HEIGHT = 100;
 	private readonly QUALITY = 0.5;
 
 	private onImageCompressed$ = new Subject<File>();

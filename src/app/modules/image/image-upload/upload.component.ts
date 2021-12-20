@@ -85,7 +85,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 		this.compressImageService.imageCompressed$
 			.pipe(
 				switchMap((file: File) => {
-					// console.info(`📂 ✅ UploadComponent ---> addSubscriptions, image size after compression: ${file?.size} bytes.`);
+					console.info(`📂 ✅ UploadComponent ---> addSubscriptions, image size after compression: ${file?.size} bytes.`);
 					return this.compressImageService.convertFileToBase64(file);
 				}),
 				catchError(() => {
@@ -95,7 +95,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 				takeUntil(this.ngUnsubscribe$),
 			)
 			.subscribe((stringRep: string) => {
-				// console.info(`📂 ✅ UploadComponent ---> addSubscriptions, successfully converted to base64.`);
+				console.info(`📂 ✅ UploadComponent ---> addSubscriptions, successfully converted to base64.`);
 				this.selectedImageUrl$.next(`${this.base64Prefix}${stringRep}`);
 				this.uploadForm.patchValue({
 					image: stringRep
@@ -106,7 +106,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 	private patchImage(): void {
 		const uploadedImage = this.uploadForm?.get("image")?.value;
 		if (uploadedImage) {
-			// console.info(`📂 💾 UploadComponent --> patchImage, patch user-uploaded image: ${uploadedImage}.`);
+			console.info(`📂 💾 UploadComponent --> patchImage, patch user-uploaded image: ${uploadedImage}.`);
 			// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 			this.selectedImageUrl$.next(`${this.base64Prefix}${this.uploadForm.get("image").value}`);
 		}

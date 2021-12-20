@@ -163,11 +163,11 @@ export class AddGiftComponent implements OnInit {
 	}
 
 	get recipient(): AddRecipient {
-		return this.giftForm.get('recipients.recipient').value.recipient; 
+		return this.giftForm.get('recipients.recipient').value?.recipient; 
 	}
 
 	get occasion(): Occasion {
-		return this.giftFormControl.occasions.value;
+		return this.giftForm.get('occasions.occasion').value?.occasion;
 	}
 
 	get year(): number {
