@@ -12,12 +12,12 @@ export class LoadingService {
 	}
 
 	public startLoading(): void {
-		console.info("⭕️ 🏁 LoadingService ---> startLoading");
+		console.info("[Loading Service] Start loading...");
 		this.loadingStateChanged$.next(true);
 	}
 
 	public stopLoading(): void {
-		console.info("⭕️ 🛑 LoadingService ---> stopLoading");
+		console.info("[Loading Service] Stop loading...");
 		this.loadingStateChanged$.next(false);
 	}
 }

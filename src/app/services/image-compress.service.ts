@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core"
 import { Observable, Subject, timer } from "rxjs"
 import convert from "image-file-resize";
 import { take, takeUntil } from "rxjs/operators";
+import { LoadingService } from "./loading.service";
 
 @Injectable({
 	providedIn: "root"
@@ -19,6 +20,10 @@ export class CompressImageService {
 	public get imageCompressed$(): Observable<File> {
 		return this.onImageCompressed$.asObservable();
 	}
+
+	constructor(
+		private loadingService: LoadingService
+	) {}
 
 	/**
 	* Converts the file to its base64 representation.
@@ -37,6 +42,7 @@ export class CompressImageService {
 
 	public compress(file: File): void {
 		const reader = new FileReader;
+		this.loadingService.startLoading();
 
 		timer(10000)
 			.pipe(
@@ -45,6 +51,7 @@ export class CompressImageService {
 			)
 			.subscribe(() => {
 				console.info("[Compress Image Service] Compress operation timed out. Image was not loaded in time.");
+				this.loadingService.stopLoading();
 				this.onImageCompressed$.next(null);
 			})
 
@@ -98,10 +105,12 @@ export class CompressImageService {
 			type: "jpeg"
 		}).then(resp => {
 			// Response contains the compressed and resized file
+			this.loadingService.stopLoading();
 			this.onImageCompressed$.next(resp);
 		}).catch((error) => {
 			// Error
 			console.info("[Compress Image Service] Unable to compress image. Error: ", error);
+			this.loadingService.stopLoading();
 			this.onImageCompressed$.next(null);
 		})
 	}
