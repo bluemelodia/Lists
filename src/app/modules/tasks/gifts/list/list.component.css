@@ -1,0 +1,87 @@
+:host {
+	background: white;
+	padding: 16px;
+
+	height: 100%;
+	overflow: hidden;
+
+	display: grid;
+	grid-template-rows: 44px 1fr;
+}
+
+.task-list__birthday-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+
+	border-left: 4px solid pink;
+}
+
+.task-list__birthday-status {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.task-list__birthday {
+	display: flex;
+	align-items: center;
+	margin-right: 8px;
+}
+
+.task-action:not(:last-child) {
+  	margin-right: 8px;
+}
+
+.task-list__header-info {
+  	display: flex;
+}
+
+.task-list__photo-container {
+  	display: flex;
+  	justify-content: center;
+  	margin-right: 16px;
+  	width: 25%;
+}
+
+.task-list__item-photo {
+ 	 max-height: 100px;
+  	max-width: 100%;
+}
+
+.actions {
+  	display: flex;
+  	flex: 1;
+  	margin: 8px 0;
+}
+
+.edit-actions {
+  	border-right: 4px solid pink;
+  	justify-content: flex-end;
+}
+
+.recipient-actions {
+  	border-left: 4px solid pink;
+  	justify-content: space-between;
+}
+
+@media only screen and (max-width: 500px) {
+	:host {
+		padding: 4px;
+	}
+
+	.task-list__photo-container {
+		display: none;
+	}
+}
+
+span:not(:last-child) {
+	margin-right: 8px;
+}
+
+button:not(:last-child) {
+	margin-right: 16px;
+}

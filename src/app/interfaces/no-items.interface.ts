@@ -22,5 +22,11 @@ export const NO_ITEMS_CONFIG: NoItemConfig = {
 		actionText: 'Add Meeting',
 		body: 'You do not currently have any upcoming meetings.',
 		route: '/events/add-meeting'
+	},
+	[Event.Gift]: {
+		header: 'No Gifts Found',
+		actionText: 'Add Gift',
+		body: 'You have not logged any gifts.',
+		route: '/events/add-gift'
 	}
 }

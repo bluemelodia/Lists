@@ -5,6 +5,9 @@ import { GiftsComponent } from './gifts.component';
 import { GiftTasksRoutingModule } from './gift-routing.module';
 import { ListComponent } from './list/list.component';
 
+import { ElementModule } from '../../element/element.module';
+import { IconsModule } from '../../icons/icons.module';
+
 @NgModule({
   declarations: [
     GiftsComponent,
@@ -12,6 +15,8 @@ import { ListComponent } from './list/list.component';
   ],
   imports: [
     CommonModule,
+	ElementModule,
+	IconsModule,
 	GiftTasksRoutingModule,
   ]
 })
