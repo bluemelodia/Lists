@@ -19,6 +19,10 @@ export interface AddGift extends Gift {
 	filename?: string;
 }
 
+export interface GiftDetails extends Gift {
+	recipient: Recipient
+}
+
 export interface GiftConfig {
 	action: GiftAction,
 	buttonAction: string,

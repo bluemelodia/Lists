@@ -1,1 +1,4 @@
-<p>gifts works!</p>
+<task-gifts-list [list]="giftList$ | async"
+	header="Gifts"
+    (deletedGift)="getRecipients()">
+</task-gifts-list>

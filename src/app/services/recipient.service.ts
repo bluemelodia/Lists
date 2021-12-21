@@ -9,14 +9,12 @@ import {
 	RecipientList,
 } from "../interfaces/event/recipient.interface";
 import { Calendar, CalendarDay } from "../interfaces/calendar/calendar-response.interface";
-import { Dialog, DialogAction, DialogPage } from "../interfaces/dialog.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { AddRecipient } from "../interfaces/service/service-objects.interface";
 import { RecipientUtils } from "../utils/recipient.utils";
 
 // services
 import { CalendarService } from "./calendar.service";
-import { DialogService } from "./dialog.service";
 
 @Injectable({
 	providedIn: "root"
@@ -29,7 +27,6 @@ export class RecipientService {
 
 	constructor(
 		private calendarService: CalendarService,
-		private dialogService: DialogService,
 		private http: HttpClient
 	) {
 		this.setupSubscriptions();
@@ -59,7 +56,7 @@ export class RecipientService {
 	* TODO: add user ID
 	*/
 	public postRecipient(recipient: Recipient, action = RecipientAction.Add): Observable<ResponseStatus> {
-		console.info("🍰 🏁 RecipientService ---> postRecipient, recipient: ", recipient);
+		console.info("[Recipient Service] Post or edit recipient: ", recipient);
 
 		return this.http.post<Response>(
 			RecipientUtils.recipientURLForAction(action),
@@ -90,8 +87,8 @@ export class RecipientService {
 	}
 
 	public deleteRecipient(uuid: string): Observable<ResponseStatus> {
-		console.info("🍰 🏁 RecipientService ---> deleteRecipient, delete recipient: ", uuid);
-
+		console.info("[Recipient Service] Delete recipient with uuid: ", uuid);
+		
 		return this.http.delete<Response>(
 			`${RecipientUtils.recipientURLForAction(RecipientAction.Delete)}/guest/${uuid}`,
 			{
@@ -100,7 +97,6 @@ export class RecipientService {
 		)
 			.pipe(
 				map(() => {
-					console.info("🍰 ✅ RecipientService ---> deleteRecipient success.");
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError(() => {
@@ -114,7 +110,7 @@ export class RecipientService {
 	 * @returns A sorted list of birthdays for this user.
 	 */
 	public getRecipients(userID = "guest"): Observable<AddRecipient[]> {
-		console.info("🍰 🏁 RecipientService ---> getRecipients, for id: ", userID);
+		console.info("[Recipient Service] Get recipients for id: ", userID);
 
 		const getBirthday = `${RecipientUtils.recipientURLForAction(RecipientAction.Fetch)}/${userID}`;
 
@@ -123,7 +119,7 @@ export class RecipientService {
 		)
 			.pipe(
 				map((response: Response) => {
-					console.info("🍰 ✅ RecipientService ---> getRecipients, received birthdays: ", response);
+					console.info("[Recipient Service] Received birthdays: ", response);
 					this.birthdays = RecipientUtils.createRecipientLists(response.responseData);
 					this.addSolarBirthdays(this.birthdays);
 					return this.birthdays;
@@ -144,7 +140,6 @@ export class RecipientService {
 				return day.cmonthname === recipient.date.cmonthname
 					&& day.cdate === recipient.date.cdate;
 			});
-			console.info("🍰 🏁 RecipientService ---> updateBirthdays, find matching days: ", recipient, matchingDays);
 
 			let changes = true;
 			matchingDays?.forEach((day: CalendarDay) => {
@@ -159,7 +154,7 @@ export class RecipientService {
 
 			/** Silently propagate changes to the server. */
 			if (changes) {
-				console.log("🍰 🏁 RecipientService ---> patch recipient: ", recipient);
+				console.log("[Recipient Service] Send changes to server: ", recipient);
 				this.patchRecipient(recipient);
 			}
 		});

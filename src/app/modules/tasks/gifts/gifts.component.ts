@@ -3,8 +3,10 @@ import { forkJoin, of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
 import { DialogAction, DialogPage } from '../../../interfaces/dialog.interface';
+import { AddGift, GiftDetails } from '../../../interfaces/event/gift.interface';
 import { RecipientList } from '../../../interfaces/event/recipient.interface';
 import { ResponseStatus } from '../../../interfaces/response.interface';
+import { AddRecipient } from '../../../interfaces/service/service-objects.interface';
 
 import { DialogService } from '../../../services/dialog.service';
 import { GiftService } from '../../../services/gift.service';
@@ -17,8 +19,10 @@ import { RecipientService } from '../../../services/recipient.service';
   styleUrls: ['./gifts.component.css']
 })
 export class GiftsComponent implements OnInit {
-	private isLoading = false;
+	private giftDetailsList$ = new Subject<GiftDetails[]>();
+	public giftList$ = this.giftDetailsList$.asObservable();
 
+	private isLoading = false;
 	private ngUnsubscribe$ = new Subject<void>();
 
 	@HostBinding("class") public get hostClasses(): string {
@@ -77,9 +81,28 @@ export class GiftsComponent implements OnInit {
 			take(1),
 			takeUntil(this.ngUnsubscribe$)
 		)
-		.subscribe((lists: [RecipientList[], any]) => {
+		.subscribe((lists: [RecipientList, AddGift[]]) => {
 			console.info("🍰 ✅ GiftComponent ---> getGifts, received gifts: ", lists);
+			if (lists[0]?.list?.length > 0 && lists[1]?.length > 0) {
+				this.mapGiftsToRecipients(lists[0].list, lists[1]);
+			} else {
+				this.giftDetailsList$.next([]);
+			}
 		});
+	}
+
+	private mapGiftsToRecipients(recipients: AddRecipient[], gifts: AddGift[]) {
+		const giftDetails: GiftDetails[] = [];
+		gifts.forEach((gift: AddGift) => {
+			recipients.forEach((recipient: AddRecipient) => {
+				if (recipient.uuid === gift.recipientId) {
+					const giftDetail = { ...gift, recipient: recipient };
+					giftDetails.push(giftDetail);
+				}
+			});
+		});
+		console.log("[Gifts Component] Display gift list: ", giftDetails);
+		this.giftDetailsList$.next(giftDetails);
 	}
 
 	public ngOnDestroy(): void {

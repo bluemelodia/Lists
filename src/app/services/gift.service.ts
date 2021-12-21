@@ -27,7 +27,8 @@ export class GiftService {
 	}
 
 	public postGift(gift: Gift, action = GiftAction.Add): Observable<ResponseStatus> {
-		console.info("🎁 🏁 GiftService ---> postGift, gift: ", gift);
+		console.info("[Gift Service] Post or edit recipient: ", gift);
+
 		return this.http.post<Response>(
 			GiftUtils.giftURLForAction(action),
 			GiftUtils.formatGift(gift),
@@ -45,23 +46,40 @@ export class GiftService {
 			)
 	}
 
+	public deleteGift(uuid: string): Observable<ResponseStatus> {
+		console.info("[Gift Service] Delete gift with uuid: ", uuid);
+
+		return this.http.delete<Response>(
+			`${GiftUtils.giftURLForAction(GiftAction.Delete)}/guest/${uuid}`,
+			{
+				headers: this.headers
+			}
+		)
+			.pipe(
+				map(() => {
+					return ResponseStatus.SUCCESS;
+				}),
+				catchError(() => {
+					return of(ResponseStatus.ERROR);
+				})
+			)
+	}
+
 	/**
 	* @param userID 
 	* @returns A sorted list of birthdays for this user.
 	*/
 	public getGifts(userID = "guest"): Observable<AddGift[]> {
-		console.info("🍰 🏁 RecipientService ---> getRecipients, for id: ", userID);
-	
+		console.info("[Gift Service] Get gifts for id: ", userID);
+
 		const getGift = `${GiftUtils.giftURLForAction(GiftAction.Fetch)}/${userID}`;
 		return this.http.get<Response>(
 			getGift
 		)
 			.pipe(
 				map((response: Response) => {
-					console.info("🍰 ✅ GiftServce ---> getGifts, received gifts: ", response);
-					//this.birthdays = RecipientUtils.createRecipientLists(response.responseData);
-					//this.addSolarBirthdays(this.birthdays);
-					//return this.birthdays;
+					console.info("[Recipient Service] Received gifts: ", response);
+					return response.responseData;
 				}),
 				catchError(() => {
 					return of(null);

@@ -13,6 +13,8 @@ const PROXY_CONFIG = [
 			"/todo/birthdays/deleteBirthday",
             "/todo/birthdays/addBirthday",
             "/todo/birthdays/editBirthday",
+			"/todo/gifts/getGifts",
+			"/todo/gifts/deleteGift",
 			"/todo/gifts/addGift",
             "/todo/gifts/editGift",
 			"/todo/meetings/addMeeting",
