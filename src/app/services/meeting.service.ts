@@ -3,10 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
-import { DialogService } from "./dialog.service";
 import { Meeting, MeetingAction } from "../interfaces/event/meeting.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
-import { Dialog, DialogAction, DialogPage } from "../interfaces/dialog.interface";
 import { AddMeeting } from "../interfaces/service/service-objects.interface";
 import { MeetingUtils } from "../utils/meeting.utils";
 
@@ -17,7 +15,6 @@ export class MeetingService {
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
 
 	constructor(
-		private dialogService: DialogService,
 		private http: HttpClient,
 	) {}
 
@@ -53,7 +50,6 @@ export class MeetingService {
 		console.info("🧳 🏁 MeetingService ---> getMeetings, for id: ", userID);
 	
 		const getMeeting = `${MeetingUtils.meetingURLForAction(MeetingAction.Fetch)}/${userID}`;
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.get<Response>(
 			getMeeting
 		)
@@ -71,7 +67,6 @@ export class MeetingService {
 	public deleteMeeting(uuid: string): Observable<ResponseStatus> {
 		console.info("🧳 🏁 MeetingService ---> delete meeting: ", uuid);
 
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.delete<Response>(
 			`${MeetingUtils.meetingURLForAction(MeetingAction.Delete)}/guest/${uuid}`,
 			{

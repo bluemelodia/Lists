@@ -21,6 +21,10 @@ const routes: Routes = [
 		loadChildren: () => import("./modules/tasks/birthdays/birthdays.module").then(m => m.BirthdaysTaskModule)
 	},
 	{
+		path: "gifts",
+		loadChildren: () => import("./modules/tasks/gifts/gifts.module").then(m => m.GiftsTaskModule)
+	},
+	{
 		path: "meetings",
 		loadChildren: () => import("./modules/tasks/meetings/meetings.module").then(m => m.MeetingsTaskModule)
 	},

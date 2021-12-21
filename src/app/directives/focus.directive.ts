@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 import { FocusService } from "../services/focus.service";
 import { Key } from "../interfaces/focus.interface";
@@ -48,7 +46,6 @@ export class FocusDirective {
 		buttons = Array.from(buttons).filter((el: HTMLElement) => {
 			return el.classList.contains("focus-origin") || el.getAttribute("aria-hidden") === "false";
 		});
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return buttons.length > 1 ? buttons[0] : null;
 	}
 

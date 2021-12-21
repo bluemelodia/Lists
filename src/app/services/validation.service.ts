@@ -10,16 +10,13 @@ import { TimeUtils } from "../utils/time.utils";
 })
 export class ValidationService {
 	private static nameRegex = new RegExp("^[A-Z][A-Za-z.\"-]+([ ][A-Z][A-Za-z.\"-]+){0,3}$");
-	// eslint-disable-next-line no-useless-escape
 	private static emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-	// eslint-disable-next-line no-useless-escape
 	private static phoneRegex = new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im);
 
 	/**
 	 * Individual field validators.
 	 */
 	nameValidator(): ValidatorFn {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		return (control: AbstractControl): { [key: string]: any } => {
 			if (!control.value) {
 				return null;

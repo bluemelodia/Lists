@@ -3,11 +3,9 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
-import { DialogService } from "./dialog.service";
-import { Gift, GiftAction } from "../interfaces/event/gift.interface";
+import { AddGift, Gift, GiftAction } from "../interfaces/event/gift.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { GiftUtils } from "../utils/gift.utils";
-import { DialogAction, DialogPage } from "../interfaces/dialog.interface";
 
 @Injectable({
 	providedIn: "root"
@@ -16,7 +14,6 @@ export class GiftService {
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
 
 	constructor(
-		private dialogService: DialogService,
 		private http: HttpClient,
 	) {}
 
@@ -31,7 +28,6 @@ export class GiftService {
 
 	public postGift(gift: Gift, action = GiftAction.Add): Observable<ResponseStatus> {
 		console.info("🎁 🏁 GiftService ---> postGift, gift: ", gift);
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.post<Response>(
 			GiftUtils.giftURLForAction(action),
 			GiftUtils.formatGift(gift),
@@ -48,4 +44,28 @@ export class GiftService {
 				})
 			)
 	}
+
+	/**
+	* @param userID 
+	* @returns A sorted list of birthdays for this user.
+	*/
+	public getGifts(userID = "guest"): Observable<AddGift[]> {
+		console.info("🍰 🏁 RecipientService ---> getRecipients, for id: ", userID);
+	
+		const getGift = `${GiftUtils.giftURLForAction(GiftAction.Fetch)}/${userID}`;
+		return this.http.get<Response>(
+			getGift
+		)
+			.pipe(
+				map((response: Response) => {
+					console.info("🍰 ✅ GiftServce ---> getGifts, received gifts: ", response);
+					//this.birthdays = RecipientUtils.createRecipientLists(response.responseData);
+					//this.addSolarBirthdays(this.birthdays);
+					//return this.birthdays;
+				}),
+				catchError(() => {
+					return of(null);
+				})
+			);
+		}
 }

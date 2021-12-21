@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
 	Component,
 	ElementRef,
@@ -53,7 +51,6 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 		});
 	}
 
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public processFile(input: any): void {
 		/**
 		 * Get the first file.
@@ -77,7 +74,6 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 
 	public clearImage(): void {
 		this.selectedImageUrl$.next(null);
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		this.filePicker.nativeElement.value = "";
 	}
 
@@ -108,7 +104,6 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 		const uploadedImage = this.uploadForm?.get("image")?.value;
 		if (uploadedImage) {
 			console.info(`📂 💾 UploadComponent --> patchImage, patch user-uploaded image: ${uploadedImage}.`);
-			// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 			this.selectedImageUrl$.next(`${this.base64Prefix}${this.uploadForm.get("image").value}`);
 		}
 	}

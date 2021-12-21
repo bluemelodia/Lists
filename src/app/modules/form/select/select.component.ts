@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
@@ -61,7 +58,6 @@ export class SelectComponent implements OnInit, OnDestroy {
 		this.destroyed$.complete();
 	}
 
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	onDocumentClick(target: any): void {
 		if (!this.select.nativeElement.contains(target)) {
 			if (this.showOptionList) {

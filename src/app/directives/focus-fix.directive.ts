@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 import { timer } from "rxjs";
 

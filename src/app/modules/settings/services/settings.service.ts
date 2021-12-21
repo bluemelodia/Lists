@@ -4,11 +4,8 @@ import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import { Endpoint } from "../../../constants/urls.constants";
-import { Dialog, DialogAction, DialogPage } from "../../../interfaces/dialog.interface";
 import { Response, ResponseStatus } from "../../../interfaces/response.interface";
 import { Settings } from "../interfaces/settings.interface";
-
-import { DialogService } from "../../../services/dialog.service";
 
 @Injectable({
 	providedIn: "root"
@@ -21,7 +18,6 @@ export class SettingsService {
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
 
 	constructor(
-		private dialogService: DialogService,
 		private http: HttpClient,
 	) { }
 

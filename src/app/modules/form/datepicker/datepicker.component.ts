@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { AbstractControl, FormGroup } from "@angular/forms";
 
@@ -126,7 +124,6 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 		return this.form?.controls;
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	private onDocumentClick(target: any): void {
 		if (!this.picker.nativeElement.contains(target)) {
 			if (this.calendarData.showCal) {

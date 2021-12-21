@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Injectable } from "@angular/core"
 import { Observable, Subject, timer } from "rxjs"
 import convert from "image-file-resize";

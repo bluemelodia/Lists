@@ -114,7 +114,6 @@ export class AddMeetingComponent implements OnInit {
 
 		this.route.queryParamMap
 			.pipe(
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 				map((params: ParamMap) => JSON.parse(params.get("meeting")))
 			)
 			.subscribe((meeting: AddMeeting) => {
@@ -164,7 +163,6 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	get name(): string {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.meetingFormControl.name.value;
 	}
 
@@ -173,17 +171,14 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	get startDate(): CalendarDay {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.meetingForm.get("startDate.day")?.value;
 	}
 
 	get endDateCtrl(): AbstractControl {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.meetingForm.get("endDate.day");
 	}
 
 	get endDate(): CalendarDay {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.meetingForm.get("endDate.day")?.value;
 	}
 
@@ -196,12 +191,10 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	get location(): string {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.meetingFormControl.location.value;
 	}
 
 	get description(): string {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.meetingFormControl.description.value;
 	}
 

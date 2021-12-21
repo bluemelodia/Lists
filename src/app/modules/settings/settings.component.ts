@@ -129,7 +129,6 @@ export class SettingsComponent implements OnInit {
 	}
 
 	public isChannelChecked(channel: Channel): boolean {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.getChannel(channel)?.value;
 	}
 

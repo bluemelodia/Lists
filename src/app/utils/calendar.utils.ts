@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { CalendarMonth, CalendarWeek, CalendarDay, CalendarYear, CalendarKey } from "../interfaces/calendar/calendar-response.interface";
 
 export class CalendarUtils {
@@ -27,7 +24,6 @@ export class CalendarUtils {
 		return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 	}
 
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	public static getParsedCalendar(calendar: any): CalendarYear {
 		try {
 			/* Already parsed. */
@@ -44,7 +40,6 @@ export class CalendarUtils {
 				year: Number(calYear),
 				months: months
 			};
-			// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 			console.info(`📅 ✅ CalendarUtils ---> getParsedCalendar, created calendar for ${year}: `, cal);
 			CalendarUtils.cacheCalendar(calYear, cal);
 			return cal;

@@ -108,7 +108,6 @@ export class AddGiftComponent implements OnInit {
 
 		/*this.route.queryParamMap
 			.pipe(
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 				map((params: ParamMap) => JSON.parse(params.get("recipient")))
 			)
 			.subscribe((recipient: AddRecipient) => {

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { forkJoin, Observable, of, ReplaySubject, } from "rxjs";
@@ -29,17 +27,14 @@ export class CalendarService {
 	}
 
 	get year(): number {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.currentYear;
 	}
 
 	get month(): number {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.currentMonth;
 	}
 
 	get day(): number {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.currentDay;
 	}
 

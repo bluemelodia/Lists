@@ -60,7 +60,7 @@ export class RecipientService {
 	*/
 	public postRecipient(recipient: Recipient, action = RecipientAction.Add): Observable<ResponseStatus> {
 		console.info("🍰 🏁 RecipientService ---> postRecipient, recipient: ", recipient);
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
 		return this.http.post<Response>(
 			RecipientUtils.recipientURLForAction(action),
 			RecipientUtils.formatRecipient(recipient),
@@ -91,7 +91,7 @@ export class RecipientService {
 
 	public deleteRecipient(uuid: string): Observable<ResponseStatus> {
 		console.info("🍰 🏁 RecipientService ---> deleteRecipient, delete recipient: ", uuid);
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
 		return this.http.delete<Response>(
 			`${RecipientUtils.recipientURLForAction(RecipientAction.Delete)}/guest/${uuid}`,
 			{
@@ -117,7 +117,7 @@ export class RecipientService {
 		console.info("🍰 🏁 RecipientService ---> getRecipients, for id: ", userID);
 
 		const getBirthday = `${RecipientUtils.recipientURLForAction(RecipientAction.Fetch)}/${userID}`;
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
 		return this.http.get<Response>(
 			getBirthday
 		)

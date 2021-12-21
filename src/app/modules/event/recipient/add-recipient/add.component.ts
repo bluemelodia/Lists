@@ -142,7 +142,6 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 
 		this.route.queryParamMap
 			.pipe(
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 				map((params: ParamMap) => JSON.parse(params.get("recipient")))
 			)
 			.subscribe((recipient: AddRecipient) => {
@@ -186,22 +185,18 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 	}
 
 	get name(): string {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.recipientFormControl.name.value;
 	}
 
 	get date(): CalendarDay {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.recipientForm.get("date.day")?.value;
 	}
 
 	get options(): RecipientOptions {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.recipientFormControl.options.value;
 	}
 
 	get profile(): EventImage {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.recipientFormControl.profile.value;
 	}
 

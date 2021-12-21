@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, Output, } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
@@ -15,14 +14,11 @@ export class CheckboxComponent {
 	@Output() valueChanged = new EventEmitter<boolean>();
 
 	get checkboxValue(): void {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.form.controls[this.checkboxName].value;
 	}
 
-	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	toggleChecked(event: any): void {
 		this.form.get(this.checkboxName).patchValue(
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			event.target.checked
 		);
 		this.valueChanged.emit(event.target.checked);
