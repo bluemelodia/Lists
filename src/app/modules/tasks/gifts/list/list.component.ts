@@ -15,8 +15,9 @@ import { Event } from '../../../../constants/events.contants';
 import { Icon } from '../../../../constants/icons.constants';
 
 import { DialogAction, DialogPage } from '../../../../interfaces/dialog.interface';
+import { SortOption } from '../../../../interfaces/event/event.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
-import { GiftDetails, GiftSortOptions } from '../../../../interfaces/event/gift.interface';
+import { GiftDetails, GiftField, GiftSortOptions } from '../../../../interfaces/event/gift.interface';
 import { NO_ITEMS_CONFIG } from '../../../../interfaces/no-items.interface';
 import { ResponseStatus } from '../../../../interfaces/response.interface';
 
@@ -53,6 +54,35 @@ export class ListComponent implements OnInit, OnDestroy {
 	) { }
 
 	public ngOnInit(): void {
+	}
+
+	public onSortSelected(option: SortOption) {
+		console.log("===> sort by: ", option);
+		switch (option.fieldName) {
+			case GiftField.Occasion:
+				this.list.sort(this.sortByOccasion);
+				break;
+			case GiftField.RecipientName:
+				this.list.sort(this.sortByName);
+				break;
+			case GiftField.Year:
+				this.list.sort(this.sortByYear);
+				break;
+			default:
+				break;
+		}
+	}
+
+	private sortByName(a: GiftDetails, b: GiftDetails): number {
+		return a.recipient?.name.localeCompare(b.recipient?.name);
+	}
+
+	private sortByOccasion(a: GiftDetails, b: GiftDetails): number {
+		return a.occasion.localeCompare(b.occasion);
+	}
+
+	private sortByYear(a: GiftDetails, b: GiftDetails): number {
+		return a.year - b.year;
 	}
 
 	public onDeleteClicked(uuid: string): void {

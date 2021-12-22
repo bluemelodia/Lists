@@ -23,18 +23,24 @@ export interface GiftDetails extends Gift {
 	recipient: Recipient
 }
 
+export enum GiftField {
+	Occasion = 'occasion',
+	RecipientName = 'recipient.name',
+	Year = 'year',
+}
+
 export const GiftSortOptions: SortOption[] = [
 	{
 		displayName: 'Recipient Name',
-		fieldName: 'recipient.name'
+		fieldName: GiftField.RecipientName,
 	},
 	{
 		displayName: 'Year Gifted',
-		fieldName: 'year'
+		fieldName: GiftField.Year,
 	},
 	{
 		displayName: 'Occasion',
-		fieldName: 'occasion'
+		fieldName: GiftField.Occasion,
 	}
 ];
 

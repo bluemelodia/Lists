@@ -1,5 +1,7 @@
 <app-heading [level]="headerLevel.H1" [text]="header"></app-heading>
-<app-sort-select [list]="giftSortOptions"></app-sort-select>
+<app-sort-select [list]="giftSortOptions"
+	(onSortSelected)="onSortSelected($event)">
+</app-sort-select>
 
 <section *ngIf="list && list.length > 0"
 	class="task-list__scrollable-container hide-scrollbar">
