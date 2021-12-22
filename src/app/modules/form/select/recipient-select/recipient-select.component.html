@@ -2,7 +2,7 @@
 	<section class="input-container" #select>
 		<input type="text" readonly
 			[ngClass]="{ 'options-open' : showOptionList }"
-			placeholder="Select Recipient"
+			[placeholder]="!useFilter ? 'Select Recipient' : 'Filter by Recipient'"
 			[value]="recipientForm?.value?.recipient?.name"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>

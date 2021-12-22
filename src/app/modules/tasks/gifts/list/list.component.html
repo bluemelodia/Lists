@@ -2,6 +2,11 @@
 <app-sort-select [list]="giftSortOptions"
 	(onSortSelected)="onSortSelected($event)">
 </app-sort-select>
+<app-recipient-select [form]="giftForm.controls.recipients"
+	[list]="recipients"
+	useFilter="true"
+	submitted="false">
+</app-recipient-select>
 
 <section *ngIf="list && list.length > 0"
 	class="task-list__scrollable-container hide-scrollbar">

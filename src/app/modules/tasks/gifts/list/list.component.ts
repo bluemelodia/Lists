@@ -7,6 +7,7 @@ import {
 	OnInit, 
 	Output,
 } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -20,6 +21,7 @@ import { HeaderLevel } from '../../../../interfaces/header.interface';
 import { GiftDetails, GiftField, GiftSortOptions } from '../../../../interfaces/event/gift.interface';
 import { NO_ITEMS_CONFIG } from '../../../../interfaces/no-items.interface';
 import { ResponseStatus } from '../../../../interfaces/response.interface';
+import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
 
 import { DialogService } from '../../../../services/dialog.service';
 import { GiftService } from '../../../../services/gift.service';
@@ -36,6 +38,7 @@ export class ListComponent implements OnInit, OnDestroy {
 	}
 
 	@Input() list: GiftDetails[];
+	@Input() recipients: AddRecipient[];
 	@Input() header: string;
 	@Output() deletedGift = new EventEmitter();
 
@@ -43,21 +46,27 @@ export class ListComponent implements OnInit, OnDestroy {
 	noItemsConfig = NO_ITEMS_CONFIG[Event.Gift];
 
 	public icon = Icon;
+	public giftForm: FormGroup;
 	public giftSortOptions = GiftSortOptions;
 	public readonly base64Prefix = "data:image/jpeg;base64,";
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
 		private dialogService: DialogService,
+		private fb: FormBuilder,
 		private giftService: GiftService,
 		private router: Router,
 	) { }
 
 	public ngOnInit(): void {
+		this.giftForm = this.fb.group({
+			recipients: this.fb.group({
+				recipient: [""],
+			})
+		});
 	}
 
 	public onSortSelected(option: SortOption) {
-		console.log("===> sort by: ", option);
 		switch (option.fieldName) {
 			case GiftField.Occasion:
 				this.list.sort(this.sortByOccasion);

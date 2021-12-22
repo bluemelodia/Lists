@@ -33,13 +33,12 @@ How to make image upload easy with Angular
 - Add accessibility, don't have two modals open at the same time.
 - Add ESLinting
 
-- Let users budget gifts for friends/family and keep track of their addresses. Let users enter a budget/email/address for each recipient (for sending gifts) - the gifts page will sync this same thing and also get gift history.
-
-  - Then you can see each recipient on the gifts page, and add a list of gifts purchased for them.
-  - Each time user adds a gift, register it in the gifts table under the recipient's gift ID. Then on the gifts page, let the user toggle by recipient.
+  - Each time user adds a gift, register it in the gifts table under the recipient's gift ID. Then on the gifts page, let the user filter by recipient.
   - When you delete a recipient, all their gifts have to be deleted as well.
+	- Add an option to remove the sort (recipient filter)
 
 - Fix issue with undefined dates sent out in emails.
+
 
 ## Navigation
 

@@ -22,6 +22,9 @@ export class GiftsComponent implements OnInit {
 	private giftDetailsList$ = new Subject<GiftDetails[]>();
 	public giftList$ = this.giftDetailsList$.asObservable();
 
+	private recipientsList$ = new Subject<AddRecipient[]>();
+	public recipients$ = this.recipientsList$.asObservable();
+
 	private isLoading = false;
 	private ngUnsubscribe$ = new Subject<void>();
 
@@ -88,6 +91,7 @@ export class GiftsComponent implements OnInit {
 			} else {
 				this.giftDetailsList$.next([]);
 			}
+			this.recipientsList$.next(lists[0]?.list);
 		});
 	}
 
