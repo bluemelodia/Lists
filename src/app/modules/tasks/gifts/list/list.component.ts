@@ -74,7 +74,7 @@ export class ListComponent implements OnInit, OnDestroy {
 	public ngOnInit(): void {
 	}
 
-	public deleteGift(uuid: string): void {
+	public onDeleteClicked(uuid: string): void {
 		this.giftService.deleteGift(uuid)
 			.pipe(
 				take(1),

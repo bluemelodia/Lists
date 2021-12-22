@@ -8,29 +8,27 @@
 	display: grid;
 	grid-template-rows: 44px 1fr;
 }
-
-.task-list__birthday-container {
+  
+.task-details__wrapper {
 	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
-
-	border-left: 4px solid pink;
-}
-
-.task-list__birthday-status {
-	display: flex;
-	flex-direction: column;
 	justify-content: space-between;
-	align-items: flex-start;
-	width: 100%;
 }
-
-.task-list__birthday {
-	display: flex;
-	align-items: center;
+  
+@media only screen and (max-width: 500px) {
+	.task-details__wrapper {
+		flex-direction: column;
+		margin-bottom: 8px;
+	}
+}
+  
+.task-details__label {
+	font-weight: bold;
 	margin-right: 8px;
 }
+  
+.task-details__description {
+	word-wrap: break-word;
+}  
 
 .task-action:not(:last-child) {
   	margin-right: 8px;
@@ -61,11 +59,6 @@
 .edit-actions {
   	border-right: 4px solid pink;
   	justify-content: flex-end;
-}
-
-.recipient-actions {
-  	border-left: 4px solid pink;
-  	justify-content: space-between;
 }
 
 @media only screen and (max-width: 500px) {
