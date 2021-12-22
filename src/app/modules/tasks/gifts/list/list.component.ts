@@ -9,19 +9,19 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 
 import { Event } from '../../../../constants/events.contants';
 import { Icon } from '../../../../constants/icons.constants';
 
 import { DialogAction, DialogPage } from '../../../../interfaces/dialog.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
-import { GiftDetails } from '../../../../interfaces/event/gift.interface';
+import { GiftDetails, GiftSortOptions } from '../../../../interfaces/event/gift.interface';
 import { NO_ITEMS_CONFIG } from '../../../../interfaces/no-items.interface';
 import { ResponseStatus } from '../../../../interfaces/response.interface';
 
 import { DialogService } from '../../../../services/dialog.service';
 import { GiftService } from '../../../../services/gift.service';
-import { take, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'task-gifts-list',
@@ -34,26 +34,6 @@ export class ListComponent implements OnInit, OnDestroy {
 		return hostStyles.join(" ");
 	}
 
-	/*export interface Gift {
-		recipientId: string;
-		uuid: string;
-		occasion: Occasion;
-		year: number;
-		giftImage?: EventImage;
-		description: string;
-		price: number;
-	}
-	
-	export interface AddGift extends Gift {
-		id: string;
-		image?: string;
-		filename?: string;
-	}
-	
-	export interface GiftDetails extends Gift {
-		recipient: Recipient
-	}*/
-
 	@Input() list: GiftDetails[];
 	@Input() header: string;
 	@Output() deletedGift = new EventEmitter();
@@ -62,6 +42,7 @@ export class ListComponent implements OnInit, OnDestroy {
 	noItemsConfig = NO_ITEMS_CONFIG[Event.Gift];
 
 	public icon = Icon;
+	public giftSortOptions = GiftSortOptions;
 	public readonly base64Prefix = "data:image/jpeg;base64,";
 	private ngUnsubscribe$ = new Subject<void>();
 

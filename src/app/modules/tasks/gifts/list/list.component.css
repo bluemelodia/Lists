@@ -5,8 +5,8 @@
 	height: 100%;
 	overflow: hidden;
 
-	display: grid;
-	grid-template-rows: 44px 1fr;
+	display: flex;
+	flex-direction: column;
 }
   
 .task-details__wrapper {
@@ -41,7 +41,7 @@
 .task-list__photo-container {
   	display: flex;
   	justify-content: center;
-  	margin-right: 16px;
+  	margin-left: 16px;
   	width: 25%;
 }
 

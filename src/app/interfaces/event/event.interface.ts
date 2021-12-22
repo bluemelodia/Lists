@@ -9,3 +9,8 @@ export interface EventImage {
 	fileName: string;
 	image: string;
 }
+
+export interface SortOption {
+	displayName: string;
+	fieldName: string;
+}

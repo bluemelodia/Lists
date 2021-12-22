@@ -1,4 +1,5 @@
 <app-heading [level]="headerLevel.H1" [text]="header"></app-heading>
+<app-sort-select [list]="giftSortOptions"></app-sort-select>
 
 <section *ngIf="list && list.length > 0"
 	class="task-list__scrollable-container hide-scrollbar">
@@ -19,10 +20,6 @@
 </section>
 
 <ng-template #giftList let-gift="gift">
-	<section class="task-list__photo-container">
-		<img *ngIf="gift.image" class="task-list__item-photo" src="{{ base64Prefix }}{{ gift.image }}"/>
-		<img *ngIf="!gift.image" class="task-list__item-photo" src="./assets/images/gift.png"/>
-	</section>
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
 		<app-heading [level]="headerLevel.H2" [text]="gift.recipient?.name">
 			<section class="actions edit-actions" post>
@@ -39,16 +36,15 @@
 			</section>
 		</app-heading>
 		<p class="task-details__wrapper">
-			<span class="task-details__label">Occasion</span>
-			<span class="task-details__description">{{ gift.occasion }} - {{ gift.year }}</span>
-		</p>
-		<p class="task-details__wrapper">
-			<span class="task-details__label">Price</span>
-			<span class="task-details__description">{{ gift.price || '$0' }}</span>
+			<span class="task-details__label">{{ gift.occasion }} - {{ gift.year }}</span>
+			<span class="task-details__description">${{ gift.price || 0 }}</span>
 		</p>
 		<p *ngIf="gift.description" class="task-details__wrapper">
-			<span class="task-details__label">Description</span>
 			<span class="task-details__description">{{ gift.description }}</span>
 		</p>
+	</section>
+	<section class="task-list__photo-container">
+		<img *ngIf="gift.image" class="task-list__item-photo" src="{{ base64Prefix }}{{ gift.image }}"/>
+		<img *ngIf="!gift.image" class="task-list__item-photo" src="./assets/images/gift.png"/>
 	</section>
 </ng-template>

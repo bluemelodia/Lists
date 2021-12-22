@@ -1,4 +1,4 @@
-import { EventImage, FormSubmitAction } from "./event.interface";
+import { EventImage, FormSubmitAction, SortOption } from "./event.interface";
 import { Recipient } from "./recipient.interface";
 
 import { Occasion } from "../../constants/occasions.constants";
@@ -22,6 +22,21 @@ export interface AddGift extends Gift {
 export interface GiftDetails extends Gift {
 	recipient: Recipient
 }
+
+export const GiftSortOptions: SortOption[] = [
+	{
+		displayName: 'Recipient Name',
+		fieldName: 'recipient.name'
+	},
+	{
+		displayName: 'Year Gifted',
+		fieldName: 'year'
+	},
+	{
+		displayName: 'Occasion',
+		fieldName: 'occasion'
+	}
+];
 
 export interface GiftConfig {
 	action: GiftAction,

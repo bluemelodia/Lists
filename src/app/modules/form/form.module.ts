@@ -22,6 +22,7 @@ import { SelectComponent } from './select/select.component';
 import { OccasionSelectComponent } from './select/occasion-select/occasion-select.component';
 import { PhoneSelectComponent } from "./select/phone-select/phone-select.component";
 import { RecipientSelectComponent } from './select/recipient-select/recipient-select.component';
+import { SortSelectComponent } from "./select/sort-select/sort-select.component";
 
 @NgModule({
 	declarations: [
@@ -35,6 +36,7 @@ import { RecipientSelectComponent } from './select/recipient-select/recipient-se
 		RadioComponent,
 		SelectComponent,
   		RecipientSelectComponent,
+		SortSelectComponent,
 	],
 	imports: [
 		CalendarModule,
@@ -59,6 +61,7 @@ import { RecipientSelectComponent } from './select/recipient-select/recipient-se
 		RadioComponent,
 		RecipientSelectComponent,
 		SelectComponent,
+		SortSelectComponent,
 	],
 	providers: [
 		PickerDateFormatterPipe,
