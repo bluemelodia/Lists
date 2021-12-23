@@ -8,6 +8,21 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.task-list__selectors {
+	display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.task-list__selectors > * {
+	width: 100%;
+}
+
+.task-list__selectors > *:first-child {
+	margin-right: 8px;
+}
   
 .task-details__wrapper {
 	display: flex;
@@ -18,6 +33,14 @@
 	.task-details__wrapper {
 		flex-direction: column;
 		margin-bottom: 8px;
+	}
+
+	.task-list__selectors {
+		flex-direction: column;
+	}
+
+	.task-list__selectors > *:first-child {
+		margin-right: 0;
 	}
 }
   

@@ -1,12 +1,13 @@
 <app-heading [level]="headerLevel.H1" [text]="header"></app-heading>
-<app-sort-select [list]="giftSortOptions"
-	(onSortSelected)="onSortSelected($event)">
-</app-sort-select>
-
-<app-recipient-filter [list]="recipients"
-	(onRecipientSelect)="filterByRecipient($event)"
-	(onFilterReset)="resetRecipientFilter()">
-</app-recipient-filter>
+<section class="task-list__selectors">
+	<app-sort-select [list]="giftSortOptions"
+		(onSortSelected)="onSortSelected($event)">
+	</app-sort-select>
+	<app-recipient-filter [list]="recipients"
+		(onRecipientSelect)="filterByRecipient($event)"
+		(onFilterReset)="resetRecipientFilter()">
+	</app-recipient-filter>
+</section>
 
 <section *ngIf="list$ | async as list">
 	<section *ngIf="list && list.length > 0"
