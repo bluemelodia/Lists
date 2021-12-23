@@ -36,7 +36,10 @@ export class ListComponent implements OnInit, OnDestroy {
 		return hostStyles.join(" ");
 	}
 
-	@Input() list: GiftDetails[];
+	@Input() set list(list: GiftDetails[]) {
+		this.fullList = list;
+		this.giftList$.next(list);
+	}
 	@Input() recipients: AddRecipient[];
 	@Input() header: string;
 	@Output() deletedGift = new EventEmitter();
@@ -47,9 +50,11 @@ export class ListComponent implements OnInit, OnDestroy {
 	public icon = Icon;
 	public giftSortOptions = GiftSortOptions;
 	public readonly base64Prefix = "data:image/jpeg;base64,";
-	private ngUnsubscribe$ = new Subject<void>();
 
 	private fullList: GiftDetails[];
+	private giftList$ = new Subject<GiftDetails[]>();
+	public list$ = this.giftList$.asObservable();
+	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
 		private dialogService: DialogService,
@@ -62,13 +67,13 @@ export class ListComponent implements OnInit, OnDestroy {
 	public onSortSelected(option: SortOption) {
 		switch (option.fieldName) {
 			case GiftField.Occasion:
-				this.list.sort(this.sortByOccasion);
+				this.fullList.sort(this.sortByOccasion);
 				break;
 			case GiftField.RecipientName:
-				this.list.sort(this.sortByName);
+				this.fullList.sort(this.sortByName);
 				break;
 			case GiftField.Year:
-				this.list.sort(this.sortByYear);
+				this.fullList.sort(this.sortByYear);
 				break;
 			default:
 				break;
@@ -88,14 +93,14 @@ export class ListComponent implements OnInit, OnDestroy {
 	}
 
 	public filterByRecipient(recipient: AddRecipient) {
-		this.fullList = this.list;
-		this.list = this.list.filter((giftDetails: GiftDetails) => {
+		const filteredList = this.fullList.filter((giftDetails: GiftDetails) => {
 			return giftDetails.recipientId === recipient.uuid;
 		});
+		this.giftList$.next(filteredList);
 	}
 
 	public resetRecipientFilter() {
-		this.list = this.fullList;
+		this.giftList$.next(this.fullList);
 	}
 
 	public onDeleteClicked(uuid: string): void {

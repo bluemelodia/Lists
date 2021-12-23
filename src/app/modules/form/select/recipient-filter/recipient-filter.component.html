@@ -22,7 +22,7 @@
 			class="option focus-option"
 			[tabindex]="showOptionList ? 0 : -1"
 			[attr.aria-hidden]="showOptionList ? false : true"
-			[ngClass]="{ 'selected' : selectedRecipient.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
+			[ngClass]="{ 'selected' : selectedRecipient?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
 			(click)="selectOption(recipient)">
 			{{ recipient.name }}
 		</button>

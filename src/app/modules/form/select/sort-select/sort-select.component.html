@@ -2,7 +2,6 @@
 		<input type="text" readonly
 			[ngClass]="{ 'options-open' : showOptionList }"
 			placeholder="Sort By"
-			formControlName="sort"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"

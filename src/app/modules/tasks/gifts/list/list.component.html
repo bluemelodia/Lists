@@ -8,22 +8,23 @@
 	(onFilterReset)="resetRecipientFilter()">
 </app-recipient-filter>
 
-<section *ngIf="list && list.length > 0"
-	class="task-list__scrollable-container hide-scrollbar">
-	<section class="task-list__scrollable-list">
-		<ul class="task-list">
-			<li class="task-list__item" *ngFor="let gift of list">
-				<ng-container [ngTemplateOutlet]="giftList" 
-					[ngTemplateOutletContext]="{ 'gift': gift }">
-				</ng-container>   
-			</li>
-		</ul>
-	</section>	
-</section>
-
-<section class="no-results flex-centered__column"
-    *ngIf="list && list.length === 0">
+<section *ngIf="list$ | async as list">
+	<section *ngIf="list && list.length > 0"
+		class="task-list__scrollable-container hide-scrollbar">
+		<section class="task-list__scrollable-list">
+			<ul class="task-list">
+				<li class="task-list__item" *ngFor="let gift of list">
+					<ng-container [ngTemplateOutlet]="giftList" 
+						[ngTemplateOutletContext]="{ 'gift': gift }">
+					</ng-container>   
+				</li>
+			</ul>
+		</section>	
+	</section>
+	<section class="no-results flex-centered__column"
+    	*ngIf="list && list.length === 0">
     <app-no-items [config]="noItemsConfig"></app-no-items>
+</section>
 </section>
 
 <ng-template #giftList let-gift="gift">
