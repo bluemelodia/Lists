@@ -7,7 +7,6 @@ import {
 	OnInit, 
 	Output,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -46,25 +45,19 @@ export class ListComponent implements OnInit, OnDestroy {
 	noItemsConfig = NO_ITEMS_CONFIG[Event.Gift];
 
 	public icon = Icon;
-	public giftForm: FormGroup;
 	public giftSortOptions = GiftSortOptions;
 	public readonly base64Prefix = "data:image/jpeg;base64,";
 	private ngUnsubscribe$ = new Subject<void>();
 
+	private fullList: GiftDetails[];
+
 	constructor(
 		private dialogService: DialogService,
-		private fb: FormBuilder,
 		private giftService: GiftService,
 		private router: Router,
 	) { }
 
-	public ngOnInit(): void {
-		this.giftForm = this.fb.group({
-			recipients: this.fb.group({
-				recipient: [""],
-			})
-		});
-	}
+	public ngOnInit(): void {}
 
 	public onSortSelected(option: SortOption) {
 		switch (option.fieldName) {
@@ -92,6 +85,17 @@ export class ListComponent implements OnInit, OnDestroy {
 
 	private sortByYear(a: GiftDetails, b: GiftDetails): number {
 		return a.year - b.year;
+	}
+
+	public filterByRecipient(recipient: AddRecipient) {
+		this.fullList = this.list;
+		this.list = this.list.filter((giftDetails: GiftDetails) => {
+			return giftDetails.recipientId === recipient.uuid;
+		});
+	}
+
+	public resetRecipientFilter() {
+		this.list = this.fullList;
 	}
 
 	public onDeleteClicked(uuid: string): void {

@@ -1,33 +1,16 @@
-<form [formGroup]="form">
+<section *ngIf="!useForm">
 	<section class="input-container" #select>
-		<input #recipient type="text" readonly
-			[ngClass]="{ 'options-open' : showOptionList }"
-			[placeholder]="!useFilter ? 'Select Recipient' : 'Filter by Recipient'"
-			[value]="recipientForm?.value?.recipient?.name"
-			(click)="showHideOptions()"
-			(keydown)="onKeydownEvent($event)"/>
-		<button *ngIf="useFilter && recipientForm?.value?.recipient?.name" type="button" 
+		<button *ngIf="selectedRecipient" type="button" 
 			class="clear-filter-btn"
 			(click)="clearFilter()">
 			<i class="fas fa-times"></i>
 		</button>
-		<section *ngIf="showOptionList"
-			class="options"
-			[ngClass]="{ 'show' : showOptionList }">
-			<button *ngFor="let recipient of list; let i = index"
-				type="button"
-				class="option focus-option"
-				[tabindex]="showOptionList ? 0 : -1"
-				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : recipientForm?.value?.recipient?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
-				(click)="selectOption(recipient)">
-				{{ recipient.name }}
-			</button>
-			<button class="tab-stop"
-				[tabindex]="showOptionList ? 0 : -1"
-				[attr.aria-hidden]="showOptionList ? false : true">
-			</button>
-		</section>
+		<ng-container [ngTemplateOutlet]="recipientSelect"></ng-container>
+	</section>
+</section>
+<form *ngIf="useForm" [formGroup]="form">
+	<section class="input-container" #select>
+		<ng-container [ngTemplateOutlet]="recipientSelect"></ng-container>   
 		<div class="input-error" *ngIf="submitted && recipientForm?.errors">
 			<span *ngIf="recipientForm?.errors?.required">
 				Recipient is required.
@@ -35,3 +18,29 @@
 		</div> 
 	</section>
 </form>
+
+<ng-template #recipientSelect>
+	<input type="text" readonly
+		[ngClass]="{ 'options-open' : showOptionList }"
+		[placeholder]="useForm ? 'Select Recipient' : 'Filter by Recipient'"
+		[value]="useForm ? recipientForm?.value?.recipient?.name : selectedRecipient"
+		(click)="showHideOptions()"
+		(keydown)="onKeydownEvent($event)"/>
+	<section *ngIf="showOptionList"
+	class="options"
+	[ngClass]="{ 'show' : showOptionList }">
+		<button *ngFor="let recipient of list; let i = index"
+			type="button"
+			class="option focus-option"
+			[tabindex]="showOptionList ? 0 : -1"
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[ngClass]="{ 'selected' : useForm ? recipientForm?.value?.recipient?.uuid === recipient.uuid : selectedRecipient.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
+			(click)="selectOption(recipient)">
+			{{ recipient.name }}
+		</button>
+		<button class="tab-stop"
+			[tabindex]="showOptionList ? 0 : -1"
+			[attr.aria-hidden]="showOptionList ? false : true">
+		</button>
+	</section>
+</ng-template>

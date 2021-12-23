@@ -2,9 +2,11 @@
 <app-sort-select [list]="giftSortOptions"
 	(onSortSelected)="onSortSelected($event)">
 </app-sort-select>
-<app-recipient-select [form]="giftForm.controls.recipients"
-	[list]="recipients"
-	useFilter="true"
+
+<app-recipient-select [list]="recipients"
+	(onRecipientSelect)="filterByRecipient($event)"
+	(onFilterReset)="resetRecipientFilter()"
+	useForm="true"
 	submitted="false">
 </app-recipient-select>
 
