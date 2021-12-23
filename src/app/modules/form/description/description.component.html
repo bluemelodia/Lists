@@ -1,15 +1,20 @@
 <form [formGroup]="form">
 	<fieldset class="description">
-		<app-heading [level]="headerLevel.H3" text="Additional Details">
-			<span class="event-form__optional" post>Optional</span>
+		<app-heading text="Additional Details"
+			[level]="headerLevel.H3">
+			<span post class="event-form__optional">Optional</span>
 		</app-heading>
-		<span for="event-description" class="form-instructions">{{ formInstructions }}</span>
+		<span class="form-instructions"
+			for="event-description">
+			{{ formInstructions }}
+		</span>
 		<textarea id="event-description"
-			rows="5"
 			formControlName="description"
-			placeholder="Description"></textarea>
+			placeholder="Description"
+			rows="5"></textarea>
 		Max {{ maxChars }} characters.
-		<div class="input-error" *ngIf="submitted && form.controls[controlName]?.errors">
+		<div *ngIf="submitted && form.controls[controlName]?.errors"
+			class="input-error">
 			<span *ngIf="form.controls[controlName]?.errors?.maxlength">
 				Description should not exceed {{ maxChars }} characters.
 			</span>

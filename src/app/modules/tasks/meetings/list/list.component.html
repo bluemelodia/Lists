@@ -2,7 +2,8 @@
 	class="task-list__scrollable-container hide-scrollbar">
 	<section class="task-list__scrollable-list">
 		<ul class="task-list">
-			<li class="task-list__item" *ngFor="let meeting of list">
+			<li *ngFor="let meeting of list"
+				class="task-list__item">
 				<ng-container [ngTemplateOutlet]="meetingList" 
 					[ngTemplateOutletContext]="{ 'meeting': meeting }">
 				</ng-container>   
@@ -11,8 +12,8 @@
 	</section>	
 </section>
 
-<section class="no-results flex-centered__column"
-    *ngIf="list && list.length === 0">
+<section *ngIf="list && list.length === 0"
+	class="no-results flex-centered__column">
     <app-no-items [config]="noItemsConfig"></app-no-items>
 </section>
 
@@ -20,10 +21,13 @@
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
 		<span class="task-list__badges">
 			<app-meeting-indicator [isVirtual]="meeting.virtual"></app-meeting-indicator>
-			<app-date-indicator *ngIf="meeting.status" [status]="meeting.status"></app-date-indicator>
+			<app-date-indicator *ngIf="meeting.status"
+				[status]="meeting.status">
+			</app-date-indicator>
 		</span>
-		<app-heading [level]="headerLevel.H2" [text]="meeting.name">
-			<section class="actions edit-actions" post>
+		<app-heading [level]="headerLevel.H2"
+			[text]="meeting.name">
+			<section post class="actions edit-actions">
 				<app-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"

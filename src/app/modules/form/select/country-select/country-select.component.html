@@ -1,6 +1,7 @@
 <form [formGroup]="form">
-	<section class="input-container" #select>
-		<input type="text" readonly
+	<section #select class="input-container">
+		<input readonly
+			type="text" 
 			[ngClass]="{ 'options-open' : showOptionList }"
 			[placeholder]="placeholder"
 			[value]="this.form.get('country')?.value?.name"
@@ -10,17 +11,17 @@
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<button *ngFor="let country of countries; let i = index"
-				type="button"
 				class="option focus-option"
-				[tabindex]="showOptionList ? 0 : -1"
+				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : this.form.get('country')?.value?.code === country.code, 'focus-origin' : i === 0 }"
+				[tabindex]="showOptionList ? 0 : -1"
 				(click)="selectOption(country)">
 				{{ country.name }}
 			</button>
 			<button class="tab-stop"
-				[tabindex]="showOptionList ? 0 : -1"
-				[attr.aria-hidden]="showOptionList ? false : true">
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[tabindex]="showOptionList ? 0 : -1">
 			</button>
 		</section>
 	</section>

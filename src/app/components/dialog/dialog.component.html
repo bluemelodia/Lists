@@ -1,19 +1,20 @@
-<section class="dialog-overlay"
-   *ngIf="showDialog$ | async as dialog" >
+<section *ngIf="showDialog$ | async as dialog"
+	class="dialog-overlay">
     <div class="dialog">
         <header class="header">
             <span></span>
             {{ dialog.title }}
-            <button type="button" 
-                class="cancel-btn description"
+            <button class="cancel-btn description"
+				type="button" 
                 (click)="hideDialog()">
                 <i class="fas fa-times"></i>
             </button>
         </header>
         <p class="description message">{{ dialog.message }}</p>
-        <fieldset class="form-actions" *ngIf="dialog.dialogType === dialogType.Confirm">
-            <button type="button"
-                class="cancel"
+        <fieldset *ngIf="dialog.dialogType === dialogType.Confirm"
+			class="form-actions">
+            <button class="cancel"
+				type="button"
                 (click)="onCancel()">
                 Cancel
             </button>        

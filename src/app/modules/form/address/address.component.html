@@ -1,28 +1,29 @@
-<form #picker [formGroup]="form"
-    class="input-container focus-origin">
+<form #picker 
+	class="input-container focus-origin"
+	[formGroup]="form">
 	<fieldset class="inner">
-		<input type="text" 
-			formControlName="street"
-			placeholder="Street Address"/>
+		<input formControlName="street"
+			placeholder="Street Address"
+			type="text"/>
 		<fieldset class="condensed">
-			<input type="text" 
-				formControlName="unit"
-				placeholder="Apartment Number"/>
-			<input type="text" 
-				formControlName="city"
-				placeholder="City"/>
+			<input formControlName="unit"
+				placeholder="Apartment Number"
+				type="text"/>
+			<input formControlName="city"
+				placeholder="City"
+				type="text"/>
 		</fieldset>
 		<!-- Some countries use alphanumeric zip codes. -->
 		<fieldset class="condensed">
-			<input type="text"
-			formControlName="state"
-			placeholder="State / Province / Region"/>
-			<input type="text"
-				formControlName="zip"
-				placeholder="Zip Code"/>
+			<input formControlName="state"
+				placeholder="State / Province / Region"
+				type="text"/>
+			<input formControlName="zip"
+				placeholder="Zip Code"
+				type="text"/>
 		</fieldset>
-		<app-country-select [form]="form"
-			placeholder="Country">
+		<app-country-select placeholder="Country"
+			[form]="form">
 		</app-country-select>
 	</fieldset>
 </form>

@@ -1,10 +1,10 @@
-<task-birthdays-list [list]="solarList$ | async"
-	header="Solar Birthdays"
+<task-birthdays-list header="Solar Birthdays"
+	[list]="solarList$ | async"
     (deletedBirthday)="getRecipients()">
 </task-birthdays-list>
 
-<task-birthdays-list [list]="lunarList$ | async"
-	header="Lunar Birthdays"
+<task-birthdays-list header="Lunar Birthdays"
+	[list]="lunarList$ | async"
     (deletedBirthday)="getRecipients()">
 </task-birthdays-list>
 

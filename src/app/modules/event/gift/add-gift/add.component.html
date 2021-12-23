@@ -2,8 +2,12 @@
     <form class="event-form"
         [formGroup]="giftForm"
         (ngSubmit)="onSubmit()">
-		<app-heading [level]="headerLevel.H3" text="Recipient"></app-heading>
-		<span class="form-instructions">Enter recipient and gift details.</span>
+		<app-heading text="Recipient"
+			[level]="headerLevel.H3">
+		</app-heading>
+		<span class="form-instructions">
+			Enter recipient and gift details.
+		</span>
 		<app-recipient-select [form]="giftForm.controls.recipients"
 			[list]="recipientList$ | async"
 			[submitted]="submitted">
@@ -12,10 +16,11 @@
 			[submitted]="submitted">
 		</app-occasion-select>
 		<fieldset class="details">
-            <input type="number" 
-                formControlName="year"
-                placeholder="Year"/>
-            <div class="input-error" *ngIf="submitted && giftFormControl.year.errors">
+            <input formControlName="year"
+				placeholder="Year"
+				type="number"/>
+            <div *ngIf="submitted && giftFormControl.year.errors"
+				class="input-error">
                 <span *ngIf="giftFormControl.year.errors?.required">
                     Year is required.
                 </span>
@@ -26,11 +31,13 @@
                     Year is too large.
                 </span>
             </div>
-			<input type="number"
-				formControlName="price"
-				[min]="limit.Budget.min" [max]="limit.Budget.max"
-				placeholder="Price"/>
-			<div class="input-error" *ngIf="submitted && giftFormControl.price.errors">
+			<input formControlName="price"
+				type="number"
+				placeholder="Price"
+				[max]="limit.Budget.max"
+				[min]="limit.Budget.min"/>
+			<div *ngIf="submitted && giftFormControl.price.errors"
+				class="input-error">
 				<span *ngIf="giftFormControl.price.errors?.max">
 					Price should not exceed {{ limit.Budget.max | currency }}.
 				</span>
@@ -40,19 +47,21 @@
 			</div>
         </fieldset>
 		<fieldset>
-            <app-heading [level]="headerLevel.H3" text="Gift Image">
-                <span class="event-form__optional" post>Optional</span>
+            <app-heading text="Gift Image"
+				[level]="headerLevel.H3">
+                <span post class="event-form__optional">Optional</span>
             </app-heading>
             <span class="form-instructions">Upload an image of the gift.</span>
             <app-img-upload [form]="giftForm.controls.gift"></app-img-upload>
         </fieldset>
-		<app-description [form]="giftForm"
-			[submitted]="submitted"
-			controlName="description"
-			formInstructions="Enter a description of the gift."></app-description>
+		<app-description controlName="description"
+			formInstructions="Enter a description of the gift."
+			[form]="giftForm"
+			[submitted]="submitted">
+		</app-description>
 		<fieldset class="form-actions">
-            <button type="button"
-                class="cancel"
+            <button class="cancel"
+				type="button"
                 (click)="onCancel()">
                 Cancel
             </button>        

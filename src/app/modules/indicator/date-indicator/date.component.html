@@ -1,9 +1,16 @@
 <ng-container [ngSwitch]="status">
-    <span class="badge expired" *ngSwitchCase="dateStatus.Passed">Passed</span>
-	<span class="badge expired" *ngSwitchCase="dateStatus.Ended">Ended</span>
-	<span class="badge started" *ngSwitchCase="dateStatus.Started">Started</span>
-    <span class="badge info" *ngSwitchCase="dateStatus.ComingUp">< 2 weeks</span>
-    <span class="badge warning" *ngSwitchCase="dateStatus.ThisWeek">< 1 week</span>
-    <span class="badge priority" *ngSwitchCase="dateStatus.Tomorrow">Tomorrow</span>
-    <span class="badge urgent" *ngSwitchCase="dateStatus.Today">Today</span>
+    <span *ngSwitchCase="dateStatus.Passed" 
+		class="badge expired">Passed</span>
+	<span *ngSwitchCase="dateStatus.Ended"
+		class="badge expired">Ended</span>
+	<span *ngSwitchCase="dateStatus.Started"
+		class="badge started">Started</span>
+    <span *ngSwitchCase="dateStatus.ComingUp"
+		class="badge info">< 2 weeks</span>
+    <span *ngSwitchCase="dateStatus.ThisWeek"
+		class="badge warning">< 1 week</span>
+    <span *ngSwitchCase="dateStatus.Tomorrow"
+		class="badge priority">Tomorrow</span>
+    <span *ngSwitchCase="dateStatus.Today"
+		class="badge urgent">Today</span>
 </ng-container>

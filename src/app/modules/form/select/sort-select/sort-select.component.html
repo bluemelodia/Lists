@@ -1,24 +1,26 @@
-	<section class="input-container" #select>
+	<section #select 
+		class="input-container">
 		<input type="text" readonly
-			[ngClass]="{ 'options-open' : showOptionList }"
 			placeholder="Sort By"
+			[ngClass]="{ 'options-open' : showOptionList }"
+			[value]="selectedSort?.displayName"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<button *ngFor="let sort of list; let i = index"
-				type="button"
 				class="option focus-option"
-				[tabindex]="showOptionList ? 0 : -1"
+				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : sort.fieldName === selectedSort?.fieldName, 'focus-origin' : i === 0 }"
+				[tabindex]="showOptionList ? 0 : -1"
 				(click)="selectOption(sort)">
 				{{ sort.displayName }}
 			</button>
 			<button class="tab-stop"
-				[tabindex]="showOptionList ? 0 : -1"
-				[attr.aria-hidden]="showOptionList ? false : true">
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[tabindex]="showOptionList ? 0 : -1">
 			</button>
 		</section>
 	</section>

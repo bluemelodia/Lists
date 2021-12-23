@@ -1,10 +1,13 @@
-<app-heading [level]="headerLevel.H1" [text]="header"></app-heading>
+<app-heading [level]="headerLevel.H1"
+	[text]="header">
+</app-heading>
 
 <section *ngIf="list && list.length > 0"
 	class="task-list__scrollable-container hide-scrollbar">
 	<section class="task-list__scrollable-list">
 		<ul class="task-list">
-			<li class="task-list__item" *ngFor="let recipient of list">
+			<li *ngFor="let recipient of list"
+				class="task-list__item">
 				<ng-container [ngTemplateOutlet]="birthdayList" 
 					[ngTemplateOutletContext]="{ 'recipient': recipient }">
 				</ng-container>   
@@ -13,19 +16,24 @@
 	</section>	
 </section>
 
-<section class="no-results flex-centered__column"
-    *ngIf="list && list.length === 0">
+<section *ngIf="list && list.length === 0"
+	class="no-results flex-centered__column">
     <app-no-items [config]="noItemsConfig"></app-no-items>
 </section>
 
 <ng-template #birthdayList let-recipient="recipient">
 	<section class="task-list__photo-container">
-		<img *ngIf="recipient.image" class="task-list__item-photo" src="{{ base64Prefix }}{{ recipient.image }}"/>
-		<img *ngIf="!recipient.image" class="task-list__item-photo" src="./assets/images/cake.png"/>
+		<img *ngIf="recipient.image" 
+			class="task-list__item-photo" 
+			src="{{ base64Prefix }}{{ recipient.image }}"/>
+		<img *ngIf="!recipient.image" 
+			class="task-list__item-photo"
+			src="./assets/images/cake.png"/>
 	</section>
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
-		<app-heading [level]="headerLevel.H2" [text]="recipient.name">
-			<section class="actions edit-actions" post>
+		<app-heading [level]="headerLevel.H2" 
+			[text]="recipient.name">
+			<section post class="actions edit-actions">
 				<app-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
@@ -51,13 +59,15 @@
 			</ng-container>
 			<ng-container *ngIf="recipient.lunar">
 				<section class="task-list__birthday-status">
-					<p class="task-list__birthday" *ngIf="recipient?.futureDates[currentYear] as cur">
+					<p *ngIf="recipient?.futureDates[currentYear] as cur"
+						class="task-list__birthday">
 						<app-decorator ariaLabel="Solar"
 							[icon]="icon.Solar">
 						</app-decorator>
 						{{ cur?.month }}/{{ cur?.value }}/{{ cur?.year }} 
 					</p>
-					<p class="task-list__birthday" *ngIf="recipient?.futureDates[currentYear + 1] as next">
+					<p *ngIf="recipient?.futureDates[currentYear + 1] as next"
+						class="task-list__birthday">
 						<app-decorator ariaLabel="Solar"
 							[icon]="icon.Solar">
 						</app-decorator>
@@ -87,7 +97,8 @@
 					[icon]="icon.Gift">
 				</app-action>
 			</section>
-			<app-date-indicator post [status]="recipient.status"></app-date-indicator>
+			<app-date-indicator post [status]="recipient.status">
+			</app-date-indicator>
 		</section>
 	</section>
 </ng-template>

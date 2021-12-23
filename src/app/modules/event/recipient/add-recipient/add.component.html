@@ -2,13 +2,16 @@
     <form class="event-form"
         [formGroup]="recipientForm"
         (ngSubmit)="onSubmit()">
-		<app-heading [level]="headerLevel.H2" text="Recipient"></app-heading>
+		<app-heading text="Recipient"
+			[level]="headerLevel.H2">
+		</app-heading>
         <span class="form-instructions">Provide the recipient's name and birthdate.</span>
         <fieldset class="name">
-            <input type="text" 
-                formControlName="name"
-                placeholder="Name"/>
-            <div class="input-error" *ngIf="submitted && recipientFormControl.name.errors">
+            <input formControlName="name"
+                placeholder="Name"
+				type="text"/>
+            <div *ngIf="submitted && recipientFormControl.name.errors"
+				class="input-error">
                 <span *ngIf="recipientFormControl.name.errors?.required">
                      Name is required.
                 </span>
@@ -27,22 +30,23 @@
                 [form]="recipientForm.controls.date"
                 [submitted]="submitted">
             </app-datepicker>
-            <app-checkbox 
+            <app-checkbox checkboxName="lunar"
                 id="action-lunar"
                 name="Lunar"
-                checkboxName="lunar"
                 [form]="recipientForm.controls.options">
             </app-checkbox>
         </fieldset>
 		<fieldset>
-			<app-heading [level]="headerLevel.H3" text="Contact Information">
+			<app-heading text="Contact Information"
+				[level]="headerLevel.H3">
                 <span class="event-form__optional" post>Optional</span>
             </app-heading>
 			<span class="form-instructions">Enter the recpient's contact details.</span>
-			<input type="text" 
-                formControlName="email"
-                placeholder="Email"/>
-            <div class="input-error" *ngIf="submitted && recipientFormControl.email.errors">  
+			<input formControlName="email"
+                placeholder="Email"
+				type="text"/>
+            <div *ngIf="submitted && recipientFormControl.email.errors"
+				class="input-error">  
                 <span *ngIf="recipientFormControl.email.errors?.invalidEmail">
                     Please enter a valid email address.
                 </span>
@@ -52,12 +56,14 @@
 			</app-phone-select>
 		</fieldset>
 		<fieldset>
-			<app-heading [level]="headerLevel.H3" text="Address">
-				<span class="event-form__optional" post>Optional</span>
+			<app-heading text="Address"
+				[level]="headerLevel.H3">
+				<span post class="event-form__optional">Optional</span>
 			</app-heading>
 			<span class="form-instructions">Enter the recpient's mailing address.</span>
 			<app-address [form]="recipientForm.controls.address"></app-address>
-			<div class="input-error" *ngIf="submitted && recipientFormControl.address.errors">
+			<div *ngIf="submitted && recipientFormControl.address.errors"
+				class="input-error">
 				<span *ngIf="recipientFormControl.address.errors?.missingStreetAddress">
 					Please enter a street address.
 				</span>
@@ -70,15 +76,18 @@
 			</div>
 		</fieldset>
 		<fieldset>
-            <app-heading [level]="headerLevel.H3" text="Budget">
-                <span class="event-form__optional" post>Optional</span>
+            <app-heading text="Budget"
+				[level]="headerLevel.H3" >
+                <span post class="event-form__optional">Optional</span>
             </app-heading>
 			<span class="form-instructions">Enter the maximum amount of money to spend on a gift.</span>
-			<input type="number"
-                formControlName="budget"
-				min="0" max="maxBudget"
-                placeholder="Budget"/>
-			<div class="input-error" *ngIf="submitted && recipientFormControl.budget.errors">
+			<input formControlName="budget"
+				min="0"
+				max="maxBudget"
+                placeholder="Budget"
+				type="number"/>
+			<div *ngIf="submitted && recipientFormControl.budget.errors"
+				class="input-error">
 				<span *ngIf="recipientFormControl.budget.errors?.max">
 					Budget should not exceed {{ limit.Budget.max | currency }}.
 				</span>
@@ -88,15 +97,17 @@
 			</div> 
 		</fieldset>
         <fieldset>
-            <app-heading [level]="headerLevel.H3" text="Profile Image">
-                <span class="event-form__optional" post>Optional</span>
+            <app-heading text="Profile Image"
+				[level]="headerLevel.H3">
+                <span post class="event-form__optional">Optional</span>
             </app-heading>
             <span class="form-instructions">Choose a profile image to represent the recipient.</span>
             <app-img-upload [form]="recipientForm.controls.profile"></app-img-upload>
         </fieldset>
         <fieldset class="event-options">
-            <app-heading [level]="headerLevel.H3" text="Actions">
-                <span class="event-form__optional" post>Optional</span>
+            <app-heading text="Actions"
+				[level]="headerLevel.H3">
+                <span post class="event-form__optional">Optional</span>
             </app-heading>
             <span class="form-instructions">Select the actions you would like to perform on or close to the recipient's birthday.</span>
             <app-checkbox
@@ -116,8 +127,8 @@
             </app-checkbox>
         </fieldset>
         <fieldset class="form-actions">
-            <button type="button"
-                class="cancel"
+            <button class="cancel"
+				type="button"
                 (click)="onCancel()">
                 Cancel
             </button>        

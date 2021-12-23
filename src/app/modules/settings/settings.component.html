@@ -1,10 +1,13 @@
 <section class="form-container">
-    <app-heading [level]="headerLevel.H1" text="User Settings"></app-heading>
+    <app-heading text="User Settings"
+		[level]="headerLevel.H1" >
+	</app-heading>
     <form [formGroup]="settingsForm"
         (ngSubmit)="onSubmit()">
         <fieldset class="notification-channels">
-            <app-heading [level]="headerLevel.H3" text="Channels">
-                <span class="event-form__optional" post>Optional</span>
+            <app-heading text="Channels"
+				[level]="headerLevel.H3">
+                <span post class="event-form__optional">Optional</span>
             </app-heading>
             <span class="form-instructions">Select the channels where you would like to receive upcoming reminders.</span>
             <app-checkbox
@@ -13,11 +16,13 @@
                 [form]="settingsForm.controls.channels"
 				(valueChanged)="setChannelValidationStatus(channel.email, $event)">
             </app-checkbox>
-            <fieldset class="email" *ngIf="isChannelChecked(channel.email)">
-                <input type="email" 
-                    formControlName="email"
-                    placeholder="Email"/>
-                <div class="input-error" *ngIf="submitted && validateChannel[channel.email]">
+            <fieldset *ngIf="isChannelChecked(channel.email)"
+				class="email">
+                <input formControlName="email"
+                    placeholder="Email"
+					type="email"/>
+                <div *ngIf="submitted && validateChannel[channel.email]"
+					class="input-error">
                         <span *ngIf="settingsFormControl.email.errors?.missingEmail">
                             Please enter an email address.
                         </span>    
@@ -32,14 +37,16 @@
                 [form]="settingsForm.controls.channels"
 				(valueChanged)="setChannelValidationStatus(channel.text, $event)">
             </app-checkbox>
-            <fieldset class="phone" *ngIf="isChannelChecked(channel.text)">
+            <fieldset *ngIf="isChannelChecked(channel.text)"
+				class="phone">
 				<app-phone-select [form]="settingsForm.controls.phone"
 					[submitted]="submitted"></app-phone-select>
             </fieldset>
         </fieldset>
 		<fieldset class="notification-options">
-            <app-heading [level]="headerLevel.H3" text="Reminders">
-                <span class="event-form__optional" post>Optional</span>
+            <app-heading text="Reminders"
+				[level]="headerLevel.H3">
+                <span post class="event-form__optional">Optional</span>
             </app-heading>
             <span class="form-instructions">Select the events and tasks you would like to receive reminders for.</span>
 			<app-checkbox

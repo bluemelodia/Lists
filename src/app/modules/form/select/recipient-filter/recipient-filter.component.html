@@ -1,6 +1,7 @@
-<section class="input-container" #select>
-	<button *ngIf="selectedRecipient" type="button" 
+<section #select class="input-container">
+	<button *ngIf="selectedRecipient" 
 		class="clear-filter-btn"
+		type="button" 
 		(click)="clearFilter()">
 		<i class="fas fa-times"></i>
 	</button>
@@ -8,27 +9,28 @@
 </section>
 
 <ng-template #recipientSelect>
-	<input type="text" readonly
-		[ngClass]="{ 'options-open' : showOptionList }"
+	<input readonly
 		placeholder="Filter by Recipient"
+		type="text"
+		[ngClass]="{ 'options-open' : showOptionList }"
 		[value]="selectedRecipient?.name"
 		(click)="showHideOptions()"
 		(keydown)="onKeydownEvent($event)"/>
 	<section *ngIf="showOptionList"
-	class="options"
-	[ngClass]="{ 'show' : showOptionList }">
+		class="options"
+		[ngClass]="{ 'show' : showOptionList }">
 		<button *ngFor="let recipient of list; let i = index"
-			type="button"
 			class="option focus-option"
-			[tabindex]="showOptionList ? 0 : -1"
+			type="button"
 			[attr.aria-hidden]="showOptionList ? false : true"
 			[ngClass]="{ 'selected' : selectedRecipient?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
+			[tabindex]="showOptionList ? 0 : -1"
 			(click)="selectOption(recipient)">
 			{{ recipient.name }}
 		</button>
 		<button class="tab-stop"
-			[tabindex]="showOptionList ? 0 : -1"
-			[attr.aria-hidden]="showOptionList ? false : true">
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[tabindex]="showOptionList ? 0 : -1">
 		</button>
 	</section>
 </ng-template>

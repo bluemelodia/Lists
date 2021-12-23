@@ -6,8 +6,8 @@
 </nav>
 <ul class="menu-list"
     [class.top-nav]="lvl === 0">
-    <li class="menu-list_item" 
-        *ngFor="let item of menu">
+    <li *ngFor="let item of menu"
+		class="menu-list_item">
         <span class="menu-list_link"
             [style.paddingLeft.px]="padding"
             (click)="onMenuClick(item)">

@@ -1,7 +1,8 @@
 <form [formGroup]="form">
-	<section class="input-container" #select>
+	<section #select class="input-container">
 		<ng-container [ngTemplateOutlet]="recipientSelect"></ng-container>   
-		<div class="input-error" *ngIf="submitted && recipientForm?.errors">
+		<div *ngIf="submitted && recipientForm?.errors"
+			class="input-error">
 			<span *ngIf="recipientForm?.errors?.required">
 				Recipient is required.
 			</span>
@@ -10,27 +11,28 @@
 </form>
 
 <ng-template #recipientSelect>
-	<input type="text" readonly
-		[ngClass]="{ 'options-open' : showOptionList }"
+	<input readonly
+		type="text" 
 		placeholder="Select Recipient"
+		[ngClass]="{ 'options-open' : showOptionList }"
 		[value]="recipientForm?.value?.recipient?.name"
 		(click)="showHideOptions()"
 		(keydown)="onKeydownEvent($event)"/>
 	<section *ngIf="showOptionList"
-	class="options"
-	[ngClass]="{ 'show' : showOptionList }">
+		class="options"
+		[ngClass]="{ 'show' : showOptionList }">
 		<button *ngFor="let recipient of list; let i = index"
-			type="button"
 			class="option focus-option"
-			[tabindex]="showOptionList ? 0 : -1"
+			type="button"
 			[attr.aria-hidden]="showOptionList ? false : true"
 			[ngClass]="{ 'selected' : recipientForm?.value?.recipient?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
+			[tabindex]="showOptionList ? 0 : -1"
 			(click)="selectOption(recipient)">
 			{{ recipient.name }}
 		</button>
 		<button class="tab-stop"
-			[tabindex]="showOptionList ? 0 : -1"
-			[attr.aria-hidden]="showOptionList ? false : true">
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[tabindex]="showOptionList ? 0 : -1">
 		</button>
 	</section>
 </ng-template>

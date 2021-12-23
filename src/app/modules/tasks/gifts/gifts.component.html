@@ -1,5 +1,5 @@
-<task-gifts-list [list]="giftList$ | async"
+<task-gifts-list header="Gifts"
+	[list]="giftList$ | async"
 	[recipients]="recipients$ | async"
-	header="Gifts"
     (deletedGift)="getRecipients()">
 </task-gifts-list>
