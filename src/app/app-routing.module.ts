@@ -9,10 +9,6 @@ import { ElementModule } from "./modules/element/element.module";
  */
 const routes: Routes = [
 	{
-		path: "family",
-		loadChildren: () => import("./modules/family/family.module").then(m => m.FamilyModule)
-	},
-	{
 		path: "events",
 		loadChildren: () => import("./modules/event/event.module").then(m => m.AddEventModule)
 	},
