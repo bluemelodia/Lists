@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
 import { SelectComponent } from '../select.component';
@@ -19,6 +19,8 @@ export class RecipientSelectComponent extends SelectComponent {
 	@Input() useFilter: false;
 	@Output() onRecipientSelect = new EventEmitter<AddRecipient>();
 
+	@ViewChild('recipient') recipient: ElementRef;
+
 	constructor(
 		_clickService: ClickService,
 		_focus: FocusService
@@ -28,6 +30,10 @@ export class RecipientSelectComponent extends SelectComponent {
 
 	public get recipientForm() {
 		return this.form.get('recipient');
+	}
+
+	public clearFilter(): void {
+		this.recipient.nativeElement.value = '';
 	}
 
 	public selectOption(recipient: AddRecipient): void {
