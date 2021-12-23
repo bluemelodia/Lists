@@ -1,19 +1,17 @@
-<form [formGroup]="form">
-	<section class="input-container" #select>
-		<ng-container [ngTemplateOutlet]="recipientSelect"></ng-container>   
-		<div class="input-error" *ngIf="submitted && recipientForm?.errors">
-			<span *ngIf="recipientForm?.errors?.required">
-				Recipient is required.
-			</span>
-		</div> 
-	</section>
-</form>
+<section class="input-container" #select>
+	<button *ngIf="selectedRecipient" type="button" 
+		class="clear-filter-btn"
+		(click)="clearFilter()">
+		<i class="fas fa-times"></i>
+	</button>
+	<ng-container [ngTemplateOutlet]="recipientSelect"></ng-container>
+</section>
 
 <ng-template #recipientSelect>
 	<input type="text" readonly
 		[ngClass]="{ 'options-open' : showOptionList }"
-		placeholder="Select Recipient"
-		[value]="recipientForm?.value?.recipient?.name"
+		placeholder="Filter by Recipient"
+		[value]="selectedRecipient?.name"
 		(click)="showHideOptions()"
 		(keydown)="onKeydownEvent($event)"/>
 	<section *ngIf="showOptionList"
@@ -24,7 +22,7 @@
 			class="option focus-option"
 			[tabindex]="showOptionList ? 0 : -1"
 			[attr.aria-hidden]="showOptionList ? false : true"
-			[ngClass]="{ 'selected' : recipientForm?.value?.recipient?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
+			[ngClass]="{ 'selected' : selectedRecipient.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
 			(click)="selectOption(recipient)">
 			{{ recipient.name }}
 		</button>

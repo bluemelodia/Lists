@@ -3,12 +3,10 @@
 	(onSortSelected)="onSortSelected($event)">
 </app-sort-select>
 
-<app-recipient-select [list]="recipients"
+<app-recipient-filter [list]="recipients"
 	(onRecipientSelect)="filterByRecipient($event)"
-	(onFilterReset)="resetRecipientFilter()"
-	useForm="true"
-	submitted="false">
-</app-recipient-select>
+	(onFilterReset)="resetRecipientFilter()">
+</app-recipient-filter>
 
 <section *ngIf="list && list.length > 0"
 	class="task-list__scrollable-container hide-scrollbar">

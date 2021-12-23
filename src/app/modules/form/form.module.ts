@@ -21,6 +21,7 @@ import { DescriptionComponent } from "./description/description.component";
 import { SelectComponent } from './select/select.component';
 import { OccasionSelectComponent } from './select/occasion-select/occasion-select.component';
 import { PhoneSelectComponent } from "./select/phone-select/phone-select.component";
+import { RecipientFilterComponent } from "./select/recipient-filter/recipient-filter.component";
 import { RecipientSelectComponent } from './select/recipient-select/recipient-select.component';
 import { SortSelectComponent } from "./select/sort-select/sort-select.component";
 
@@ -35,6 +36,7 @@ import { SortSelectComponent } from "./select/sort-select/sort-select.component"
 		PhoneSelectComponent,
 		RadioComponent,
 		SelectComponent,
+		RecipientFilterComponent,
   		RecipientSelectComponent,
 		SortSelectComponent,
 	],
@@ -59,6 +61,7 @@ import { SortSelectComponent } from "./select/sort-select/sort-select.component"
 		OccasionSelectComponent,
 		PhoneSelectComponent,
 		RadioComponent,
+		RecipientFilterComponent,
 		RecipientSelectComponent,
 		SelectComponent,
 		SortSelectComponent,
