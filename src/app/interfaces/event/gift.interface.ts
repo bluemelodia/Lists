@@ -24,6 +24,7 @@ export interface GiftDetails extends Gift {
 }
 
 export enum GiftField {
+	Budget = 'price',
 	Occasion = 'occasion',
 	RecipientName = 'recipient.name',
 	Year = 'year',
@@ -35,13 +36,17 @@ export const GiftSortOptions: SortOption[] = [
 		fieldName: GiftField.RecipientName,
 	},
 	{
+		displayName: 'Occasion',
+		fieldName: GiftField.Occasion,
+	},
+	{
+		displayName: 'Price',
+		fieldName: GiftField.Budget,
+	},
+	{
 		displayName: 'Year Gifted',
 		fieldName: GiftField.Year,
 	},
-	{
-		displayName: 'Occasion',
-		fieldName: GiftField.Occasion,
-	}
 ];
 
 export interface GiftConfig {

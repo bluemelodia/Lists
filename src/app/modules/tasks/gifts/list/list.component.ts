@@ -66,6 +66,9 @@ export class ListComponent implements OnInit, OnDestroy {
 
 	public onSortSelected(option: SortOption) {
 		switch (option.fieldName) {
+			case GiftField.Budget:
+				this.fullList.sort(this.sortByPrice);
+				break;
 			case GiftField.Occasion:
 				this.fullList.sort(this.sortByOccasion);
 				break;
@@ -86,6 +89,10 @@ export class ListComponent implements OnInit, OnDestroy {
 
 	private sortByOccasion(a: GiftDetails, b: GiftDetails): number {
 		return a.occasion.localeCompare(b.occasion);
+	}
+
+	private sortByPrice(a: GiftDetails, b: GiftDetails): number {
+		return a.price - b.price;
 	}
 
 	private sortByYear(a: GiftDetails, b: GiftDetails): number {
