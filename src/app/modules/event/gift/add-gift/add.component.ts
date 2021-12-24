@@ -158,7 +158,9 @@ export class AddGiftComponent implements OnInit {
 		*/
 		this.giftForm.patchValue({
 			occasions: {
-				occasion: gift.occasion
+				occasion: {
+					occasion: gift.occasion
+				}
 			},
 			year: gift.year,
 			gift: {
@@ -203,7 +205,9 @@ export class AddGiftComponent implements OnInit {
 				console.log("==> patch: ", this.gift);
 				this.giftForm.patchValue({
 					recipients: {
-						recipient
+						recipient: {
+							recipient: recipient
+						}
 					}
 				});
 			}
