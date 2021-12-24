@@ -24,8 +24,6 @@ export class MeetingsComponent implements OnInit {
 
 	private ngUnsubscribe$ = new Subject<void>();
 
-	@HostBinding("class") containerClasses = "section-container";
-
 	constructor(
 		private dialogService: DialogService,
 		private loadingService: LoadingService,

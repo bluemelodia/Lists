@@ -28,12 +28,6 @@ export class RecipientSelectComponent extends SelectComponent {
 		return this.form?.get('recipient');
 	}
 
-	public clearFilter(): void {
-		this.recipientForm.patchValue({
-			recipient: null
-		});
-	}
-
 	public selectOption(recipient: AddRecipient): void {
 		console.log("===> selected: ", recipient);
 		this.showOptionList = false;

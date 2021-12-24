@@ -9,18 +9,25 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { of, Subject } from 'rxjs';
-import { catchError, filter, finalize, take, takeUntil } from 'rxjs/operators';
+import { 
+	catchError,
+	filter,
+	finalize,
+	map,
+	take,
+	takeUntil,
+} from 'rxjs/operators';
 
 import { FormLimit } from '../../../../constants/gifts.constants';
 import { Occasion } from '../../../../constants/occasions.constants';
 import { Topic } from '../../../../constants/topics.constants';
 
-import { Recipient, RecipientList } from '../../../../interfaces/event/recipient.interface';
+import { RecipientList } from '../../../../interfaces/event/recipient.interface';
 import { ConfirmDialogAction, DialogAction, DialogPage } from '../../../../interfaces/dialog.interface';
 import { EventImage } from '../../../../interfaces/event/event.interface';
-import { Gift, GiftAction } from '../../../../interfaces/event/gift.interface';
+import { AddGift, GiftAction } from '../../../../interfaces/event/gift.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
 import { ResponseStatus } from '../../../../interfaces/response.interface';
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
@@ -30,7 +37,6 @@ import { GiftService } from '../../../../services/gift.service';
 import { LoadingService } from '../../../../services/loading.service';
 import { NavService } from '../../../../services/nav.service';
 import { RecipientService } from '../../../../services/recipient.service';
-import { ValidationService } from '../../../../services/validation.service';
 
 import { GiftUtils } from '../../../../utils/gift.utils';
 
@@ -40,13 +46,14 @@ import { GiftUtils } from '../../../../utils/gift.utils';
 	styleUrls: ['./add.component.css']
 })
 export class AddGiftComponent implements OnInit {
-	private gift: Gift;
+	private gift: AddGift;
 	public giftForm: FormGroup;
 	public giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Add);
 	public headerLevel = HeaderLevel;
 	public limit = FormLimit;
 	public submitted = false;
 
+	private recipientList: AddRecipient[];
 	private recipients$ = new Subject<AddRecipient[]>();
 	public recipientList$ = this.recipients$.asObservable();
 
@@ -56,7 +63,6 @@ export class AddGiftComponent implements OnInit {
 	@HostBinding("class") containerClasses = "section-container";
 
 	constructor(
-		private customValidator: ValidationService,
 		private dialogService: DialogService,
 		private fb: FormBuilder,
 		private giftService: GiftService,
@@ -106,26 +112,27 @@ export class AddGiftComponent implements OnInit {
 				validators: []
 			});;
 
-		/*this.route.queryParamMap
+		this.route.queryParamMap
 			.pipe(
-				map((params: ParamMap) => JSON.parse(params.get("recipient")))
+				map((params: ParamMap) => JSON.parse(params.get("gift")))
 			)
-			.subscribe((recipient: AddRecipient) => {
-				if (recipient?.uuid) {
-					this.recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Edit);
-					this.recipient = {
-						...this.recipient,
-						uuid: recipient?.uuid
+			.subscribe((gift: AddGift) => {
+				console.log("===> received a gift: ", gift);
+				if (gift?.uuid) {
+					this.giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Edit);
+					this.gift = {
+						...gift,
+						uuid: gift?.uuid
 					};
-					this.populateFormData(recipient);
+					this.populateFormData(gift);
 				}
-			});*/
+			});
 
 		this.addSubscriptions();
 		this.getRecipients();
 	}
 
-	private addSubscriptions() {
+	private addSubscriptions(): void {
 		this.loadingService.loadingChanged$
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
@@ -133,6 +140,27 @@ export class AddGiftComponent implements OnInit {
 			.subscribe((loading: boolean) => {
 				this.isLoading = loading;
 			});
+	}
+
+	private populateFormData(gift: AddGift) {
+		/**
+		* Don't patch the file name, it opens up security risks.
+		*/
+		this.giftForm.patchValue({
+			occasions: {
+				occasion: gift.occasion
+			},
+			year: gift.year,
+			gift: {
+				image: gift.image
+			},
+			description: gift.description,
+			price: gift.price
+		});
+
+		if (!this.recipientList) {
+			this.getRecipients();
+		} 
 	}
 
 	public getRecipients(): void {
@@ -153,7 +181,23 @@ export class AddGiftComponent implements OnInit {
 			.subscribe((recipientList: RecipientList) => {
 				console.info("🍰 ✅ BirthdaysComponent ---> getRecipients, received birthdays: ", recipientList);
 				this.recipients$.next(recipientList.list);
+				this.recipientList = recipientList.list;
+				this.patchRecipient();
 			});
+	}
+
+	private patchRecipient(): void {
+		this.recipientList.filter((recipient: AddRecipient) => {
+			console.log("===> patch recipient: ", recipient, this.gift);
+			if (recipient.uuid === this.gift.recipientId) {
+				console.log("==> patch: ", this.gift);
+				this.giftForm.patchValue({
+					recipients: {
+						recipient
+					}
+				});
+			}
+		});
 	}
 
 	/* returns the form controls of the form. */

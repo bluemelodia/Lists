@@ -1,4 +1,10 @@
 :host {
+	background: white;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	padding: 16px;
 	width: 100%;
 }
 

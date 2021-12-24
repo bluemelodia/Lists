@@ -11,9 +11,8 @@
 	</app-recipient-filter>
 </section>
 
-<section *ngIf="list$ | async as list">
-	<section *ngIf="list && list.length > 0"
-		class="task-list__scrollable-container hide-scrollbar">
+<section *ngIf="list$ | async as list" class="task-list__scrollable-container hide-scrollbar">
+	<section *ngIf="list && list.length > 0">
 		<section class="task-list__scrollable-list">
 			<ul class="task-list">
 				<li *ngFor="let gift of list"
@@ -39,7 +38,7 @@
 				<app-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
-					(actionSelected)="editGift(recipient)">
+					(actionSelected)="editGift(gift)">
 				</app-action>
 				<app-action ariaLabel="Delete"
 					[enabled]="true"
