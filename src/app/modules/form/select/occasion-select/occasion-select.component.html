@@ -4,7 +4,7 @@
 			type="text" 
 			placeholder="Select Occasion"
 			[ngClass]="{ 'options-open' : showOptionList }"
-			[value]="occasions[occasionForm?.value?.occasion] || ''"
+			[value]="occasions[occasionForm?.value] || ''"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
@@ -14,7 +14,7 @@
 				class="option focus-option"	
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : occasionForm?.value?.occasion === occasion, 'focus-origin' : i === 0 }"
+				[ngClass]="{ 'selected' : occasionForm?.value === occasion, 'focus-origin' : i === 0 }"
 				[tabindex]="showOptionList ? 0 : -1"
 				(click)="selectOption(occasion)">
 				{{ occasions[occasion] }}

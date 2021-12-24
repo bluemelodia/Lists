@@ -86,10 +86,10 @@ export class AddGiftComponent implements OnInit {
 		/* Set the controls for the form. */
 		this.giftForm = this.fb.group({
 			recipients: this.fb.group({
-				recipient: ["", [Validators.required]],
+				giftRecipient: ["", [Validators.required]],
 			}),
 			occasions: this.fb.group({
-				occasion: ["", [Validators.required]],
+				giftOccasion: ["", [Validators.required]],
 			}),
 			year: [
 				"",
@@ -158,9 +158,7 @@ export class AddGiftComponent implements OnInit {
 		*/
 		this.giftForm.patchValue({
 			occasions: {
-				occasion: {
-					occasion: gift.occasion
-				}
+				giftOccasion: gift.occasion
 			},
 			year: gift.year,
 			gift: {
@@ -205,9 +203,7 @@ export class AddGiftComponent implements OnInit {
 				console.log("==> patch: ", this.gift);
 				this.giftForm.patchValue({
 					recipients: {
-						recipient: {
-							recipient: recipient
-						}
+						giftRecipient: recipient
 					}
 				});
 			}
@@ -220,11 +216,11 @@ export class AddGiftComponent implements OnInit {
 	}
 
 	get recipient(): AddRecipient {
-		return this.giftForm.get('recipients.recipient').value?.recipient; 
+		return this.giftForm.get('recipients.giftRecipient').value; 
 	}
 
 	get occasion(): Occasion {
-		return this.giftForm.get('occasions.occasion').value?.occasion;
+		return this.giftForm.get('occasions.giftOccasion').value;
 	}
 
 	get year(): number {

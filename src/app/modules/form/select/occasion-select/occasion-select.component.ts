@@ -26,14 +26,11 @@ export class OccasionSelectComponent extends SelectComponent {
 	}
 
 	public get occasionForm() {
-		console.log("===> occasion: ", this.form.get('occasion'));
-		return this.form.get('occasion');
+		return this.form.controls.giftOccasion;
 	}
 
 	public selectOption(occasion: Occasion): void {
 		this.showOptionList = false;
-		this.occasionForm.patchValue({
-			occasion
-		});
+		this.occasionForm.patchValue(occasion);
 	}
 }

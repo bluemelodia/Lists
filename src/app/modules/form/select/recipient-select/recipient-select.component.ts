@@ -25,14 +25,11 @@ export class RecipientSelectComponent extends SelectComponent {
 	}
 
 	public get recipientForm() {
-		return this.form?.get('recipient');
+		return this.form.controls.giftRecipient;
 	}
 
 	public selectOption(recipient: AddRecipient): void {
-		console.log("===> selected: ", recipient);
 		this.showOptionList = false;
-		this.recipientForm?.patchValue({
-			recipient
-		});
+		this.recipientForm?.patchValue(recipient);
 	}
 }
