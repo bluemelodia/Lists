@@ -60,7 +60,17 @@ export class AddGiftComponent implements OnInit {
 	private isLoading = false;
 	private ngUnsubscribe$ = new Subject<void>();
 
-	@HostBinding("class") containerClasses = "section-container";
+	@HostBinding("class") public get hostClasses(): string {
+		const hostStyles = [
+			"section-container"
+		];
+
+		if (this.isLoading) {
+			hostStyles.push("hide-container");
+		}
+
+		return hostStyles.join(" ");
+	}
 
 	constructor(
 		private dialogService: DialogService,

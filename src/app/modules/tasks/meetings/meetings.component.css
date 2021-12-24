@@ -4,3 +4,7 @@
     max-width: 950px;
     overflow: hidden;
 }
+
+.task-list__container {
+	height: 100%;
+}

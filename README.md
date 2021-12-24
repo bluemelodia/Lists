@@ -33,7 +33,9 @@ How to make image upload easy with Angular
 - Add accessibility, don't have two modals open at the same time.
 - Add ESLinting
   - When you delete a recipient, all their gifts have to be deleted as well.
+  - Allow users to edit gifts.
 - Fix issue with undefined dates sent out in emails.
+- Better network error handling.
 
 
 ## Navigation
