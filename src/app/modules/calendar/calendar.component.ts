@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-import { CalendarService } from "../../services/calendar.service";
-import { Calendar, CalendarDay, CalendarMonth } from "../../interfaces/calendar/calendar-response.interface";
 import { CalendarType, shortMonths } from "../../interfaces/calendar/calendar.interface";
+import { Calendar, CalendarDay, CalendarMonth } from "../../interfaces/calendar/calendar-response.interface";
+
+import { CalendarService } from "../../services/calendar.service";
 
 @Component({
 	selector: "app-calendar",
@@ -35,16 +36,18 @@ export class CalendarComponent {
 
 	@Output() dateSelected = new EventEmitter<CalendarDay>();
 
-	private cal: Calendar;
-	calendarMonths: CalendarMonth[] = [];
+	public calendarMonths: CalendarMonth[] = [];
+	public month: CalendarMonth;
+	public monthIdx: number;
 
 	/* Used to show the short name of the month. */
-	months = shortMonths;
+	public months = shortMonths;
 
-	month: CalendarMonth;
-	monthIdx: number;
+	private cal: Calendar;
 
-	constructor(private calendarService: CalendarService) { }
+	constructor(
+		private calendarService: CalendarService
+	) { }
 
 	previousMonth(): void {
 		/* Check if we are at the first month. */

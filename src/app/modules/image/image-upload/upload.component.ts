@@ -10,9 +10,10 @@ import { FormGroup } from "@angular/forms";
 import { of, ReplaySubject, Subject } from "rxjs";
 import { catchError, switchMap, takeUntil } from "rxjs/operators";
 
-import { CompressImageService } from "../../../services/image-compress.service";
-import { DialogService } from "../../../services/dialog.service";
 import { Dialog } from "../../../interfaces/dialog.interface";
+
+import { DialogService } from "../../../services/dialog.service";
+import { CompressImageService } from "../../../services/image-compress.service";
 
 @Component({
 	selector: "app-img-upload",
@@ -103,7 +104,6 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 	private patchImage(): void {
 		const uploadedImage = this.uploadForm?.get("image")?.value;
 		if (uploadedImage) {
-			console.info(`📂 💾 UploadComponent --> patchImage, patch user-uploaded image: ${uploadedImage}.`);
 			this.selectedImageUrl$.next(`${this.base64Prefix}${this.uploadForm.get("image").value}`);
 		}
 	}

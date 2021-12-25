@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+
 import { NavService } from "../../services/nav.service";
 
 @Component({
@@ -9,8 +10,9 @@ import { NavService } from "../../services/nav.service";
 	styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-	private ngUnsubscribe$ = new Subject<void>();
 	public title$ = new Subject<string>();
+
+	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(private navService: NavService) { }
 

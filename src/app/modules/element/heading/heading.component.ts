@@ -1,4 +1,5 @@
 import { Component, Input, } from "@angular/core";
+
 import { HeaderLevel } from "../../../interfaces/header.interface";
 
 @Component({
@@ -9,5 +10,6 @@ import { HeaderLevel } from "../../../interfaces/header.interface";
 export class HeadingComponent {
 	@Input() level: HeaderLevel = HeaderLevel.H2;
 	@Input() text: string;
-	HeaderLevel = HeaderLevel;
+	
+	public HeaderLevel = HeaderLevel;
 }

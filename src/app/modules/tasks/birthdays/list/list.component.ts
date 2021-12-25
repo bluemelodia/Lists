@@ -10,10 +10,6 @@ import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
 
-import { RecipientService } from "../../../../services/recipient.service";
-import { CalendarService } from "../../../../services/calendar.service";
-import { DialogService } from "../../../../services/dialog.service";
-
 import { Icon } from "../../../../constants/icons.constants";
 import { Event } from "../../../../constants/events.contants";
 
@@ -22,6 +18,11 @@ import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { NO_ITEMS_CONFIG } from "../../../../interfaces/no-items.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddRecipient } from "../../../../interfaces/service/service-objects.interface";
+
+import { EditService } from "../../../../services/edit.service";
+import { CalendarService } from "../../../../services/calendar.service";
+import { DialogService } from "../../../../services/dialog.service";
+import { RecipientService } from "../../../../services/recipient.service";
 
 @Component({
 	selector: "task-birthdays-list",
@@ -36,20 +37,22 @@ export class ListComponent implements OnDestroy {
 
 	@Input() list: AddRecipient[];
 	@Input() header: string;
+
 	@Output() deletedBirthday = new EventEmitter();
 
-	headerLevel = HeaderLevel;
-	noItemsConfig = NO_ITEMS_CONFIG[Event.Recipient];
-
-	public icon = Icon;
 	public readonly base64Prefix = "data:image/jpeg;base64,";
 	public currentYear;
+	public headerLevel = HeaderLevel;
+	public icon = Icon;
+	public noItemsConfig = NO_ITEMS_CONFIG[Event.Recipient];
+
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
-		private recipientService: RecipientService,
 		private calendarService: CalendarService,
 		private dialogService: DialogService,
+		private editService: EditService,
+		private recipientService: RecipientService,
 		private router: Router,
 	) {
 		this.currentYear = this.calendarService.year;
@@ -87,8 +90,9 @@ export class ListComponent implements OnDestroy {
 	}
 
 	public editBirthday(recipient: AddRecipient): void {
+		this.editService.editRecipient(recipient);
 		this.router.navigate(["/events/edit-recipient"], {
-			queryParams: { title: 'Edit Recipient', recipient: JSON.stringify(recipient) }
+			queryParams: { title: 'Edit Recipient' }
 		});
 	}
 

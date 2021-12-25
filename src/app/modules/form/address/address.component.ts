@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,11 +6,6 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.css']
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent {
 	@Input() form: FormGroup;
-
-	constructor() { }
-
-	ngOnInit(): void {
-	}
 }

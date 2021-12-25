@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+
 import { DateStatus } from "../../../interfaces/date.interface";
 
 @Component({
@@ -8,5 +9,6 @@ import { DateStatus } from "../../../interfaces/date.interface";
 })
 export class DateIndicatorComponent {
 	@Input() status: DateStatus;
+
 	public dateStatus = DateStatus;
 }

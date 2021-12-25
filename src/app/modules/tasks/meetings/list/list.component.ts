@@ -2,7 +2,6 @@ import {
 	Component,
 	EventEmitter,
 	Input,
-	OnInit,
 	Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -19,6 +18,7 @@ import { ResponseStatus } from '../../../../interfaces/response.interface';
 import { AddMeeting } from '../../../../interfaces/service/service-objects.interface';
 
 import { DialogService } from '../../../../services/dialog.service';
+import { EditService } from '../../../../services/edit.service';
 import { MeetingService } from '../../../../services/meeting.service';
 
 @Component({
@@ -26,24 +26,23 @@ import { MeetingService } from '../../../../services/meeting.service';
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
 	@Input() list: AddMeeting[] = [];
+
 	@Output() deletedMeeting = new EventEmitter();
 
-	headerLevel = HeaderLevel;
-	noItemsConfig = NO_ITEMS_CONFIG[Event.Meeting];
+	public headerLevel = HeaderLevel;
 	public icon = Icon;
+	public noItemsConfig = NO_ITEMS_CONFIG[Event.Meeting];
 
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
 		private dialogService: DialogService,
+		private editService: EditService,
 		private meetingService: MeetingService,
 		private router: Router,
 	) { }
-
-	ngOnInit(): void {
-	}
 
 	public onDeleteClicked(uuid: string): void {
 		this.dialogService.showConfirmDialog(ConfirmDialogAction.Delete, DialogPage.Meeting)
@@ -61,7 +60,7 @@ export class ListComponent implements OnInit {
 			});
 	}
 
-	public deleteMeeting(uuid: string) {
+	public deleteMeeting(uuid: string): void {
 		this.meetingService.deleteMeeting(uuid)
 			.pipe(
 				take(1),
@@ -76,7 +75,8 @@ export class ListComponent implements OnInit {
 			});
 	}
 
-	public editMeeting(meeting: AddMeeting) {
+	public editMeeting(meeting: AddMeeting): void {
+		this.editService.editMeeting(meeting);
 		this.router.navigate(["/events/edit-meeting"], {
 			queryParams: { title: 'Edit Meeting', meeting: JSON.stringify(meeting) }
 		});

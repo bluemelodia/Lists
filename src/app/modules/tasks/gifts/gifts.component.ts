@@ -19,15 +19,6 @@ import { RecipientService } from '../../../services/recipient.service';
 	styleUrls: ['./gifts.component.css']
 })
 export class GiftsComponent implements OnInit {
-	private giftDetailsList$ = new Subject<GiftDetails[]>();
-	public giftList$ = this.giftDetailsList$.asObservable();
-
-	private recipientsList$ = new Subject<AddRecipient[]>();
-	public recipients$ = this.recipientsList$.asObservable();
-
-	private isLoading = false;
-	private ngUnsubscribe$ = new Subject<void>();
-
 	@HostBinding("class") public get hostClasses(): string {
 		const hostStyles = [];
 
@@ -38,20 +29,28 @@ export class GiftsComponent implements OnInit {
 		return hostStyles.join(" ");
 	}
 
+	private giftDetailsList$ = new Subject<GiftDetails[]>();
+	public giftList$ = this.giftDetailsList$.asObservable();
+
+	private recipientsList$ = new Subject<AddRecipient[]>();
+	public recipients$ = this.recipientsList$.asObservable();
+
+	private isLoading = false;
+	private ngUnsubscribe$ = new Subject<void>();
+
 	constructor(
-		private giftService: GiftService,
 		private dialogService: DialogService,
+		private giftService: GiftService,
 		private loadingService: LoadingService,
 		private recipientService: RecipientService,
 	) { }
-
 
 	public ngOnInit(): void {
 		this.addSubscriptions();
 		this.getRecipients();
 	}
 
-	private addSubscriptions() {
+	private addSubscriptions(): void {
 		this.loadingService.loadingChanged$
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
@@ -95,7 +94,7 @@ export class GiftsComponent implements OnInit {
 			});
 	}
 
-	private mapGiftsToRecipients(recipients: AddRecipient[], gifts: AddGift[]) {
+	private mapGiftsToRecipients(recipients: AddRecipient[], gifts: AddGift[]): void {
 		const giftDetails: GiftDetails[] = [];
 		gifts.forEach((gift: AddGift) => {
 			recipients.forEach((recipient: AddRecipient) => {

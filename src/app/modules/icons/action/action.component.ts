@@ -1,4 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { 
+	Component,
+	EventEmitter,
+	Input,
+	Output,
+} from '@angular/core';
 
 import { Icon } from '../../../constants/icons.constants';
 
@@ -7,17 +12,12 @@ import { Icon } from '../../../constants/icons.constants';
 	templateUrl: './action.component.html',
 	styleUrls: ['./action.component.css']
 })
-export class ActionComponent implements OnInit {
+export class ActionComponent {
 	@Input() ariaLabel = '';
 	@Input() enabled = false;
 	@Input() icon: Icon;
 
 	@Output() actionSelected = new EventEmitter<void>();
-
-	constructor() { }
-
-	ngOnInit(): void {
-	}
 
 	onActionClick() {
 		this.actionSelected.emit();

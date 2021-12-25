@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
 import { Icon } from '../../../constants/icons.constants';
 
 /** 
@@ -9,13 +10,8 @@ import { Icon } from '../../../constants/icons.constants';
 	templateUrl: './decorator.component.html',
 	styleUrls: ['./decorator.component.css']
 })
-export class DecoratorComponent implements OnInit {
+export class DecoratorComponent {
 	@Input() ariaLabel = '';
 	@Input() icon: Icon;
 	@Input() iconClasses = '';
-
-	constructor() { }
-
-	ngOnInit(): void {
-	}
 }

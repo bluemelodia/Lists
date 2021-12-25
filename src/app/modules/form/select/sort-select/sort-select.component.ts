@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { SortOption } from "../../../../interfaces/event/event.interface";
 
+import { SelectComponent } from "../select.component";
+
 import { ClickService } from "../../../../services/click.service";
 import { FocusService } from "../../../../services/focus.service";
-
-import { SelectComponent } from "../select.component";
 
 @Component({
 	selector: "app-sort-select",
@@ -17,6 +17,7 @@ import { SelectComponent } from "../select.component";
 })
 export class SortSelectComponent extends SelectComponent {
 	@Input() list: SortOption[];
+	
 	@Output() onSortSelected = new EventEmitter<SortOption>();
 
 	public selectedSort: SortOption;

@@ -3,22 +3,34 @@ import { Injectable } from "@angular/core";
 import { Topic } from '../constants/topics.constants';
 
 import { GiftDetails } from "../interfaces/event/gift.interface";
+import { AddMeeting, AddRecipient } from "../interfaces/service/service-objects.interface";
+
+type Item = GiftDetails | AddMeeting | AddRecipient;
 
 @Injectable({
 	providedIn: "root"
 })
 export class EditService {
+
 	public editGift(gift: GiftDetails): void {
 		this.saveItem(Topic.Gifts, gift);
 	}
 
-	public getItem(topic: Topic): GiftDetails {
+	public editMeeting(meeting: AddMeeting): void {
+		this.saveItem(Topic.Meetings, meeting);
+	}
+
+	public editRecipient(recipient: AddRecipient): void {
+		this.saveItem(Topic.Birthdays, recipient);
+	}
+
+	public getItem(topic: Topic): Item {
 		const item = JSON.parse(sessionStorage.getItem(topic));
 		console.info("[Edit Service] Fetched item from session storage: ", item);
 		return item;
 	}
 
-	private saveItem(topic: Topic, value: GiftDetails): void {
+	private saveItem(topic: Topic, value: Item): void {
 		sessionStorage.setItem(topic, JSON.stringify(value));
 	}
 }

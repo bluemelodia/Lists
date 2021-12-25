@@ -1,11 +1,13 @@
 import { Component } from "@angular/core";
 
-import { ClickService } from "../../../../services/click.service";
-import { FocusService } from "../../../../services/focus.service";
+import { CountryUtils } from "../../address/utils/countries.utils";
 
 import { CountryData } from "../../../../constants/countries.constants";
-import { CountryUtils } from "../../address/utils/countries.utils";
+
 import { SelectComponent } from "../select.component";
+
+import { ClickService } from "../../../../services/click.service";
+import { FocusService } from "../../../../services/focus.service";
 
 @Component({
 	selector: "app-country-select",
@@ -30,7 +32,6 @@ export class CountrySelectComponent extends SelectComponent {
 	}
 
 	selectOption(option: CountryData): void {
-		console.info("===> selected: ", option, this.form.get('country')?.value);
 		this.showOptionList = false;
 		this.form.get("country").patchValue({
 			name: option.name,

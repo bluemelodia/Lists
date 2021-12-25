@@ -6,6 +6,7 @@ import {
 	Validators,
 } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
+
 import { Subject } from "rxjs";
 import {
 	filter,
@@ -16,18 +17,24 @@ import {
 
 import { FormLimit } from "../../../../constants/gifts.constants";
 import { Topic } from "../../../../constants/topics.constants";
+
+import { appTheme } from "../../../form/timepicker/time-picker.constants";
+
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
-import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
-import { HeaderLevel } from "../../../../interfaces/header.interface";
+import { 
+	ConfirmDialogAction, 
+	DialogAction, 
+	DialogPage,
+} from "../../../../interfaces/dialog.interface";
 import {
 	Meeting,
 	MeetingAction,
 } from "../../../../interfaces/event/meeting.interface";
+import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddMeeting } from "../../../../interfaces/service/service-objects.interface";
 
-import { appTheme } from "../../../form/timepicker/time-picker.constants";
 import { DialogService } from "../../../../services/dialog.service";
 import { MeetingService } from "../../../../services/meeting.service";
 import { NavService } from "../../../../services/nav.service";
@@ -40,14 +47,13 @@ import { MeetingUtils } from "../../../../utils/meeting.utils";
 	styleUrls: ["./add.component.css"]
 })
 export class AddMeetingComponent implements OnInit {
+	public calendarType: CalendarType = CalendarType.Solar;
+	public headerLevel = HeaderLevel;
 	public limit = FormLimit;
 	public meeting: Meeting;
 	public meetingAction = MeetingAction;
 	public meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Add);
 	public meetingForm: FormGroup;
-
-	public calendarType: CalendarType = CalendarType.Solar;
-	public headerLevel = HeaderLevel;
 	public submitted = false;
 	public timePickerTheme = appTheme;
 
@@ -134,7 +140,7 @@ export class AddMeetingComponent implements OnInit {
 			});
 	}
 
-	private populateFormData(meeting: Meeting) {
+	private populateFormData(meeting: Meeting): void {
 		console.info("🧳 💾 AddMeetingComponent ---> populateFormData, add existing meeting: ", meeting);
 		/**
 		 * Don"t patch the file name, it opens up security risks.
@@ -182,11 +188,11 @@ export class AddMeetingComponent implements OnInit {
 		return this.meetingForm.get("endDate.day")?.value;
 	}
 
-	get startTime() {
+	get startTime(): unknown {
 		return this.meetingFormControl.startTime.value;
 	}
 
-	get endTime() {
+	get endTime(): unknown {
 		return this.meetingFormControl.endTime.value;
 	}
 
@@ -203,14 +209,12 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	onStartTimeChanged($event): void {
-		console.info("START CHNAGED: ", $event);
 		this.meetingForm.patchValue({
 			startTime: $event,
 		});
 	}
 
 	onEndTimeChanged($event): void {
-		console.info("END CHANGED: ", $event);
 		this.meetingForm.patchValue({
 			endTime: $event,
 		});
@@ -218,7 +222,6 @@ export class AddMeetingComponent implements OnInit {
 
 	onSubmit(): void {
 		this.submitted = true;
-		console.info("===> start: ", this.meetingFormControl);
 
 		if (this.meetingForm.valid) {
 			this.submitted = false;
@@ -234,7 +237,7 @@ export class AddMeetingComponent implements OnInit {
 				endTime: this.endTime,
 			};
 
-			console.info("🧳 💁🏻‍♀️ AddMeetingComponent ---> onSubmit, meeting: ", this.meeting);
+			console.info("[Add Meeting] Add meeting: ", this.meeting);
 			this.meetingService.modifyMeeting(this.meeting, this.meetingConfig.action)
 				.pipe(
 					take(1),

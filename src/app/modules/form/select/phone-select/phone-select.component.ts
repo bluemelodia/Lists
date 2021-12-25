@@ -3,10 +3,11 @@ import { Component } from "@angular/core";
 import { allCountries } from "../../../../constants/countries.constants";
 import { CountryISO } from "../../../../constants/country-iso.constants";
 import { Icon } from "../../../../constants/icons.constants";
-import { ClickService } from "../../../../services/click.service";
-import { FocusService } from "../../../../services/focus.service";
 
 import { SelectComponent } from "../select.component";
+
+import { ClickService } from "../../../../services/click.service";
+import { FocusService } from "../../../../services/focus.service";
 
 @Component({
 	selector: "app-phone-select",

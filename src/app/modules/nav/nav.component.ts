@@ -1,6 +1,7 @@
 import { Component, HostBinding, OnDestroy } from "@angular/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+
 import { NavService } from "../../services/nav.service";
 
 @Component({
@@ -9,12 +10,12 @@ import { NavService } from "../../services/nav.service";
 	styleUrls: ["./nav.component.css"]
 })
 export class NavComponent implements OnDestroy {
+	@HostBinding("class.open") public open = false;
+
 	public showMenu = false;
 
 	private ngUnsubscribe$ = new Subject<void>();
 	private onMenuChange$ = this.navService.onMenuChange$;
-
-	@HostBinding("class.open") public open = false;
 
 	constructor(private navService: NavService) {
 		this.onMenuChange$

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { HeaderLevel } from '../../../interfaces/header.interface';
 import { NoItemConfig } from '../../../interfaces/no-items.interface';
@@ -8,14 +8,8 @@ import { NoItemConfig } from '../../../interfaces/no-items.interface';
 	templateUrl: './no-items.component.html',
 	styleUrls: ['./no-items.component.css']
 })
-export class NoItemsComponent implements OnInit {
+export class NoItemsComponent {
 	@Input() config: NoItemConfig;
 
-	headerLevel = HeaderLevel;
-
-	constructor() { }
-
-	ngOnInit(): void {
-	}
-
+	public headerLevel = HeaderLevel;
 }

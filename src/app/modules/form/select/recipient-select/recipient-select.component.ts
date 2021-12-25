@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
+
 import { SelectComponent } from '../select.component';
 
 import { ClickService } from '../../../../services/click.service';
@@ -24,7 +26,7 @@ export class RecipientSelectComponent extends SelectComponent {
 		super(_clickService, _focus);
 	}
 
-	public get recipientForm() {
+	public get recipientForm(): AbstractControl {
 		return this.form.controls.giftRecipient;
 	}
 

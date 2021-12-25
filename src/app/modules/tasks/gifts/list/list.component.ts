@@ -16,8 +16,8 @@ import { Icon } from '../../../../constants/icons.constants';
 
 import { DialogAction, DialogPage } from '../../../../interfaces/dialog.interface';
 import { SortOption } from '../../../../interfaces/event/event.interface';
-import { HeaderLevel } from '../../../../interfaces/header.interface';
 import { GiftDetails, GiftField, GiftSortOptions } from '../../../../interfaces/event/gift.interface';
+import { HeaderLevel } from '../../../../interfaces/header.interface';
 import { NO_ITEMS_CONFIG } from '../../../../interfaces/no-items.interface';
 import { ResponseStatus } from '../../../../interfaces/response.interface';
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
@@ -31,7 +31,7 @@ import { GiftService } from '../../../../services/gift.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListComponent implements OnDestroy {
 	@HostBinding("class") public get hostClasses(): string {
 		let hostStyles = [];
 		return hostStyles.join(" ");
@@ -43,18 +43,19 @@ export class ListComponent implements OnInit, OnDestroy {
 	}
 	@Input() recipients: AddRecipient[];
 	@Input() header: string;
+
 	@Output() deletedGift = new EventEmitter();
 
-	headerLevel = HeaderLevel;
-	noItemsConfig = NO_ITEMS_CONFIG[Event.Gift];
-
-	public icon = Icon;
-	public giftSortOptions = GiftSortOptions;
 	public readonly base64Prefix = "data:image/jpeg;base64,";
+	public headerLevel = HeaderLevel;
+	public giftSortOptions = GiftSortOptions;
+	public icon = Icon;
+	public noItemsConfig = NO_ITEMS_CONFIG[Event.Gift];
 
-	private fullList: GiftDetails[];
 	private giftList$ = new Subject<GiftDetails[]>();
 	public list$ = this.giftList$.asObservable();
+
+	private fullList: GiftDetails[];
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
@@ -64,9 +65,7 @@ export class ListComponent implements OnInit, OnDestroy {
 		private router: Router,
 	) { }
 
-	public ngOnInit(): void {}
-
-	public onSortSelected(option: SortOption) {
+	public onSortSelected(option: SortOption): void {
 		switch (option.fieldName) {
 			case GiftField.Budget:
 				this.fullList.sort(this.sortByPrice);
@@ -101,14 +100,14 @@ export class ListComponent implements OnInit, OnDestroy {
 		return a.year - b.year;
 	}
 
-	public filterByRecipient(recipient: AddRecipient) {
+	public filterByRecipient(recipient: AddRecipient): void {
 		const filteredList = this.fullList.filter((giftDetails: GiftDetails) => {
 			return giftDetails.recipientId === recipient.uuid;
 		});
 		this.giftList$.next(filteredList);
 	}
 
-	public resetRecipientFilter() {
+	public resetRecipientFilter(): void {
 		this.giftList$.next(this.fullList);
 	}
 

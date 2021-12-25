@@ -1,20 +1,19 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { AbstractControl, FormGroup } from "@angular/forms";
-
 import { of, ReplaySubject } from "rxjs";
 import { catchError, filter, map, takeUntil } from "rxjs/operators";
 import { UUID } from "angular2-uuid";
+
+import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
+import { Calendar, CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
+import { FocusEvent, Key } from "../../../interfaces/focus.interface";
+import { noCalMessage } from "../../../interfaces/message.interface";
 
 import { PickerDateFormatterPipe } from "../../../pipes/picker-date-formatter.pipe";
 
 import { CalendarService } from "../../../services/calendar.service";
 import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
-
-import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
-import { Calendar, CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
-import { FocusEvent, Key } from "../../../interfaces/focus.interface";
-import { noCalMessage } from "../../../interfaces/message.interface";
 
 interface CalendarData {
 	calendar: Calendar;
@@ -28,18 +27,18 @@ interface CalendarData {
 	styleUrls: ["./datepicker.component.css"]
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
-	@Input() placeholder = "";
-	@Input() fieldName = "Date";
-	@Input() controlName: string = "";
 	@Input() calendarType: CalendarType = CalendarType.Lunar;
+	@Input() controlName: string = "";
+	@Input() fieldName = "Date";
 	@Input() form: FormGroup;
+	@Input() placeholder = "";
 	@Input() submitted;
 
 	@ViewChild("picker", { read: ElementRef, static: false }) picker: ElementRef;
 
 	public noCalMessage = noCalMessage;
-
 	public cal: Calendar;
+
 	private uuid = UUID.UUID();
 	public calendarId = `app-calendar-${this.uuid}`;
 
@@ -70,7 +69,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 		this.destroyed$.complete();
 	}
 
-	private setupSubscriptions() {
+	private setupSubscriptions(): void {
 		this.clickService.clicked
 			.pipe(takeUntil(this.destroyed$))
 			.subscribe(target => {
@@ -81,7 +80,6 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 			.pipe(
 				takeUntil(this.destroyed$),
 				map((calendar: Calendar) => {
-					console.info("===> calendar: ", calendar);
 					if (!calendar) {
 						throw new Error('Unable to fetch calendar.');
 					}

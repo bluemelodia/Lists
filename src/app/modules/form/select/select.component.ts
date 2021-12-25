@@ -4,9 +4,10 @@ import { FormGroup } from "@angular/forms";
 import { ReplaySubject } from "rxjs";
 import { filter, takeUntil } from "rxjs/operators";
 
+import { FocusEvent, Key } from "../../../interfaces/focus.interface";
+
 import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
-import { FocusEvent, Key } from "../../../interfaces/focus.interface";
 
 @Component({
 	selector: "app-select",
@@ -14,15 +15,16 @@ import { FocusEvent, Key } from "../../../interfaces/focus.interface";
 	styleUrls: ["./select.component.css"]
 })
 export class SelectComponent implements OnInit, OnDestroy {
-	@Input() placeholder = "";
 	@Input() id: string;
 	@Input() default: string;
 	@Input() form: FormGroup;
+	@Input() placeholder = "";
 	@Input() submitted;
 
 	@ViewChild("select", { read: ElementRef, static: false }) select: ElementRef;
 
 	public showOptionList = false;
+	
 	private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
 	constructor(

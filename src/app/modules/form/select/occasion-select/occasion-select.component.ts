@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
+
+import { Occasion } from '../../../../constants/occasions.constants';
 
 import { SelectComponent } from '../select.component';
 
-import { Occasion } from '../../../../constants/occasions.constants';
 import { ClickService } from '../../../../services/click.service';
 import { FocusService } from '../../../../services/focus.service';
 
@@ -25,7 +27,7 @@ export class OccasionSelectComponent extends SelectComponent {
 		super(_clickService, _focus);
 	}
 
-	public get occasionForm() {
+	public get occasionForm(): AbstractControl {
 		return this.form.controls.giftOccasion;
 	}
 

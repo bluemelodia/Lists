@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, } from "@angular/forms";
-
 import { Subject } from "rxjs";
 import { finalize, take, takeUntil } from "rxjs/operators";
 
@@ -30,8 +29,8 @@ export class SettingsComponent implements OnInit {
 	public channel = Channel;
 	public headerLevel = HeaderLevel;
 	public settingsForm: FormGroup;
-	public topic = Topic;
 	public submitted: boolean;
+	public topic = Topic;
 	public validateChannel = VALIDATE_CHANNEL;
 
 	private ngUnsubscribe$ = new Subject<void>();
@@ -76,7 +75,7 @@ export class SettingsComponent implements OnInit {
 		this.loadSettings();
 	}
 
-	private loadSettings() {
+	private loadSettings(): void {
 		this.loadingService.startLoading();
 		this.settingsService.loadSettings()
 			.pipe(

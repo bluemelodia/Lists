@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-import { CalendarService } from "../../../services/calendar.service";
 import { CalendarType, Month } from "../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
 
@@ -9,7 +8,7 @@ import { CalendarDay } from "../../../interfaces/calendar/calendar-response.inte
 	templateUrl: "./calendar-month.component.html",
 	styleUrls: ["./calendar-month.component.css"]
 })
-export class CalendarMonthComponent implements OnInit {
+export class CalendarMonthComponent {
 	@Input() month: Month;
 	@Input() type: CalendarType = CalendarType.Lunar;
 	@Input() selectedDate: CalendarDay;
@@ -17,18 +16,6 @@ export class CalendarMonthComponent implements OnInit {
 	@Output() dateSelect = new EventEmitter<CalendarDay>();
 
 	public calendarType = CalendarType;
-
-	currentDay: number;
-	currentMonth: number;
-	currentYear: number;
-
-	constructor(private calendarService: CalendarService) { }
-
-	ngOnInit(): void {
-		this.currentYear = this.calendarService.year;
-		this.currentMonth = this.calendarService.month;
-		this.currentDay = this.calendarService.day;
-	}
 
 	isSelectableDate(day: CalendarDay): boolean {
 		return day.value > 0;

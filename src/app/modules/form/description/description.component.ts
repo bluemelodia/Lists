@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormLimit } from '../../../constants/gifts.constants';
+
 import { HeaderLevel } from '../../../interfaces/header.interface';
 
 @Component({
@@ -9,7 +10,7 @@ import { HeaderLevel } from '../../../interfaces/header.interface';
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.css']
 })
-export class DescriptionComponent implements OnInit {
+export class DescriptionComponent {
 	@Input() submitted;
 	@Input() form: FormGroup;
 	@Input() controlName: string = "";
@@ -17,9 +18,4 @@ export class DescriptionComponent implements OnInit {
 	@Input() maxChars = FormLimit.Description.max;
 
 	public headerLevel = HeaderLevel;
-
-	constructor() { }
-
-	ngOnInit(): void {
-	}
 }

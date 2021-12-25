@@ -5,7 +5,9 @@ import {
 	MenuItem,
 	MENU_LIST,
 } from "../constants/nav.constants";
+
 import { NavService } from "../../../services/nav.service";
+
 import { NavUtils } from "../utils/nav.utils";
 
 @Component({
@@ -20,6 +22,7 @@ export class MenuComponent {
 		this.lvl = lvl;
 		this.padding = 16 * (this.lvl + 1);
 	}
+	
 	@Output() menuChanged = new EventEmitter<void>();
 
 	public lvl = 0;

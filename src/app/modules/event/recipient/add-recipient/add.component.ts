@@ -1,7 +1,6 @@
 import {
 	Component,
 	HostBinding,
-	Inject,
 	OnDestroy,
 	OnInit,
 } from "@angular/core";
@@ -20,15 +19,13 @@ import {
 	takeUntil,
 } from "rxjs/operators";
 
-import { Topic } from "../../../../constants/topics.constants";
 import { countries } from "../../../../constants/countries.constants";
 import { FormLimit } from "../../../../constants/gifts.constants";
+import { Topic } from "../../../../constants/topics.constants";
 
-import { RecipientService } from "../../../../services/recipient.service";
-import { DialogService } from "../../../../services/dialog.service";
-import { NavService } from "../../../../services/nav.service";
-import { ValidationService } from "../../../../services/validation.service";
-
+import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
+import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
+import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
 import { EventImage } from "../../../../interfaces/event/event.interface";
 import {
 	Address,
@@ -37,15 +34,15 @@ import {
 	RecipientID,
 	RecipientOptions,
 } from "../../../../interfaces/event/recipient.interface";
-
-import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
-import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
-import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { Phone } from "../../../../interfaces/phone.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddRecipient } from "../../../../interfaces/service/service-objects.interface";
 import { Channel } from "../../../../interfaces/settings.interface";
+import { DialogService } from "../../../../services/dialog.service";
+import { NavService } from "../../../../services/nav.service";
+import { RecipientService } from "../../../../services/recipient.service";
+import { ValidationService } from "../../../../services/validation.service";
 
 import { RecipientUtils } from "../../../../utils/recipient.utils";
 
@@ -55,21 +52,20 @@ import { RecipientUtils } from "../../../../utils/recipient.utils";
 	styleUrls: ["./add.component.css"]
 })
 export class AddRecipientComponent implements OnInit, OnDestroy {
-	public recipient: Recipient;
-	public recipientAction = RecipientAction;
-	public recipientForm: FormGroup;
-	public recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Add);
-	public recipientID = RecipientID;
-	public headerLevel = HeaderLevel;
+	@HostBinding("class") containerClasses = "section-container";
 
 	public calendarType: CalendarType = CalendarType.Lunar;
+	public headerLevel = HeaderLevel;
 	public limit = FormLimit;
+	public recipient: Recipient;
+	public recipientAction = RecipientAction;
+	public recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Add);
+	public recipientForm: FormGroup;
+	public recipientID = RecipientID;
 	public submitted = false;
 
 	private countries = countries;
 	private ngUnsubscribe$ = new Subject<void>();
-
-	@HostBinding("class") containerClasses = "section-container";
 
 	constructor(
 		private fb: FormBuilder,
@@ -157,7 +153,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	private populateFormData(recipient: AddRecipient) {
+	private populateFormData(recipient: AddRecipient): void {
 		console.info("🥳 💾 AddRecipientComponent ---> populateFormData, add existing recipient: ", recipient);
 		/**
 		 * Don't patch the file name, it opens up security risks.

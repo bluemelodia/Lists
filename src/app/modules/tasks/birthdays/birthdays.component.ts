@@ -8,14 +8,14 @@ import {
 import { of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
-import { RecipientService } from "../../../services/recipient.service";
 import { DialogService } from "../../../services/dialog.service";
 import { LoadingService } from "../../../services/loading.service";
+import { RecipientService } from "../../../services/recipient.service";
 
-import { Dialog, DialogAction, DialogPage } from "../../../interfaces/dialog.interface";
+import { DialogAction, DialogPage } from "../../../interfaces/dialog.interface";
 import { RecipientList } from "../../../interfaces/event/recipient.interface";
-import { AddRecipient } from "../../../interfaces/service/service-objects.interface";
 import { ResponseStatus } from "../../../interfaces/response.interface";
+import { AddRecipient } from "../../../interfaces/service/service-objects.interface";
 
 @Component({
 	selector: "task-birthdays",
@@ -24,15 +24,6 @@ import { ResponseStatus } from "../../../interfaces/response.interface";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BirthdaysComponent implements OnInit, OnDestroy {
-	private solarRecipients$ = new Subject<AddRecipient[]>();
-	private lunarRecipients$ = new Subject<AddRecipient[]>();
-	public solarList$ = this.solarRecipients$.asObservable();
-	public lunarList$ = this.lunarRecipients$.asObservable();
-
-	private isLoading = false;
-
-	private ngUnsubscribe$ = new Subject<void>();
-
 	@HostBinding("class") public get hostClasses(): string {
 		const hostStyles = [];
 
@@ -43,10 +34,19 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 		return hostStyles.join(" ");
 	}
 
+	private solarRecipients$ = new Subject<AddRecipient[]>();
+	public solarList$ = this.solarRecipients$.asObservable();
+
+	private lunarRecipients$ = new Subject<AddRecipient[]>();
+	public lunarList$ = this.lunarRecipients$.asObservable();
+
+	private isLoading = false;
+	private ngUnsubscribe$ = new Subject<void>();
+
 	constructor(
-		private recipientService: RecipientService,
 		private dialogService: DialogService,
 		private loadingService: LoadingService,
+		private recipientService: RecipientService,
 	) { }
 
 	public ngOnInit(): void {
@@ -54,7 +54,7 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 		this.getRecipients();
 	}
 
-	private addSubscriptions() {
+	private addSubscriptions(): void {
 		this.loadingService.loadingChanged$
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)

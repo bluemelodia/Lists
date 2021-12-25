@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { DialogService } from "../../services/dialog.service";
 import { DialogConfig, DialogType } from "../../interfaces/dialog.interface";
+
+import { DialogService } from "../../services/dialog.service";
 
 @Component({
 	selector: "app-dialog",
@@ -13,7 +14,9 @@ export class DialogComponent {
 	public dialogType = DialogType;
 	public showDialog$: Observable<DialogConfig> = this.dialogService.showDialog$;
 
-	constructor(private dialogService: DialogService) { }
+	constructor(
+		private dialogService: DialogService,
+	) { }
 
 	onCancel(): void {
 		this.dialogService.onCancel();

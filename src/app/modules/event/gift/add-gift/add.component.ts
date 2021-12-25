@@ -24,8 +24,8 @@ import { FormLimit } from '../../../../constants/gifts.constants';
 import { Occasion } from '../../../../constants/occasions.constants';
 import { Topic } from '../../../../constants/topics.constants';
 
-import { RecipientList } from '../../../../interfaces/event/recipient.interface';
 import { ConfirmDialogAction, DialogAction, DialogPage } from '../../../../interfaces/dialog.interface';
+import { RecipientList } from '../../../../interfaces/event/recipient.interface';
 import { EventImage } from '../../../../interfaces/event/event.interface';
 import { AddGift, GiftAction } from '../../../../interfaces/event/gift.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
@@ -47,18 +47,18 @@ import { GiftUtils } from '../../../../utils/gift.utils';
 	styleUrls: ['./add.component.css']
 })
 export class AddGiftComponent implements OnInit {
-	private gift: AddGift;
 	public giftForm: FormGroup;
 	public giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Add);
 	public headerLevel = HeaderLevel;
 	public limit = FormLimit;
 	public submitted = false;
 
-	private recipientList: AddRecipient[];
 	private recipients$ = new Subject<AddRecipient[]>();
 	public recipientList$ = this.recipients$.asObservable();
 
+	private gift: AddGift;
 	private isLoading = false;
+	private recipientList: AddRecipient[];
 	private ngUnsubscribe$ = new Subject<void>();
 
 	@HostBinding("class") public get hostClasses(): string {
@@ -124,7 +124,7 @@ export class AddGiftComponent implements OnInit {
 				validators: []
 			});;
 
-		const gift = this.editService.getItem(Topic.Gifts);
+		const gift = this.editService.getItem(Topic.Gifts) as AddGift;
 		if (gift) {
 			if (gift?.uuid) {
 				this.giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Edit);
@@ -150,7 +150,7 @@ export class AddGiftComponent implements OnInit {
 			});
 	}
 
-	private populateFormData(gift: AddGift) {
+	private populateFormData(gift: AddGift): void {
 		/**
 		* Don't patch the file name, it opens up security risks.
 		*/
