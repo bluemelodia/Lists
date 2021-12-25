@@ -23,6 +23,7 @@ import { ResponseStatus } from '../../../../interfaces/response.interface';
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
 
 import { DialogService } from '../../../../services/dialog.service';
+import { EditService } from '../../../../services/edit.service';
 import { GiftService } from '../../../../services/gift.service';
 
 @Component({
@@ -58,6 +59,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private dialogService: DialogService,
+		private editService: EditService,
 		private giftService: GiftService,
 		private router: Router,
 	) { }
@@ -126,8 +128,9 @@ export class ListComponent implements OnInit, OnDestroy {
 	}
 
 	public editGift(gift: GiftDetails): void {
+		this.editService.editGift(gift);
 		this.router.navigate(["/events/edit-gift"], {
-			queryParams: { title: 'Edit Gift', gift: JSON.stringify(gift) }
+			queryParams: { title: 'Edit Gift' }
 		});
 	}
 

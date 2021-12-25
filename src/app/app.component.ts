@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, NavigationStart, Router } from "@angular/router";
 import { Subject } from "rxjs";
+
+import { Topic } from "./constants/topics.constants";
 
 import { CalendarType } from "./interfaces/calendar/calendar.interface";
 
@@ -20,6 +22,7 @@ export class AppComponent implements OnInit {
 		private loadingService: LoadingService,
 		private navService: NavService,
 		private route: ActivatedRoute,
+		private router: Router,
 	) { }
 
 	@HostBinding("class") containerClasses = "flex-centered__column full-viewport";

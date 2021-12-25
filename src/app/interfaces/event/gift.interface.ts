@@ -19,7 +19,7 @@ export interface AddGift extends Gift {
 	filename?: string;
 }
 
-export interface GiftDetails extends Gift {
+export interface GiftDetails extends AddGift {
 	recipient: Recipient
 }
 

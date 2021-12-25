@@ -9,13 +9,13 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 import { of, Subject } from 'rxjs';
 import { 
 	catchError,
 	filter,
 	finalize,
-	map,
 	take,
 	takeUntil,
 } from 'rxjs/operators';
@@ -33,6 +33,7 @@ import { ResponseStatus } from '../../../../interfaces/response.interface';
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
 
 import { DialogService } from '../../../../services/dialog.service';
+import { EditService } from '../../../../services/edit.service';
 import { GiftService } from '../../../../services/gift.service';
 import { LoadingService } from '../../../../services/loading.service';
 import { NavService } from '../../../../services/nav.service';
@@ -74,6 +75,7 @@ export class AddGiftComponent implements OnInit {
 
 	constructor(
 		private dialogService: DialogService,
+		private editService: EditService,
 		private fb: FormBuilder,
 		private giftService: GiftService,
 		private loadingService: LoadingService,
@@ -83,6 +85,8 @@ export class AddGiftComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+		console.log("===> re-init add gifts");
+
 		/* Set the controls for the form. */
 		this.giftForm = this.fb.group({
 			recipients: this.fb.group({
@@ -122,21 +126,18 @@ export class AddGiftComponent implements OnInit {
 				validators: []
 			});;
 
-		this.route.queryParamMap
-			.pipe(
-				map((params: ParamMap) => JSON.parse(params.get("gift")))
-			)
-			.subscribe((gift: AddGift) => {
-				console.log("===> received a gift: ", gift);
-				if (gift?.uuid) {
-					this.giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Edit);
-					this.gift = {
-						...gift,
-						uuid: gift?.uuid
-					};
-					this.populateFormData(gift);
-				}
-			});
+		const gift = this.editService.getItem(Topic.Gifts);
+		if (gift) {
+			console.log("===> received a gift: ", gift);
+			if (gift?.uuid) {
+				this.giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Edit);
+				this.gift = {
+					...gift,
+					uuid: gift?.uuid
+				};
+				this.populateFormData(gift);
+			}
+		}
 
 		this.addSubscriptions();
 		this.getRecipients();
@@ -153,6 +154,7 @@ export class AddGiftComponent implements OnInit {
 	}
 
 	private populateFormData(gift: AddGift) {
+		console.log("===> populate form data: ", gift);
 		/**
 		* Don't patch the file name, it opens up security risks.
 		*/
@@ -192,15 +194,24 @@ export class AddGiftComponent implements OnInit {
 				console.info("🍰 ✅ BirthdaysComponent ---> getRecipients, received birthdays: ", recipientList);
 				this.recipients$.next(recipientList.list);
 				this.recipientList = recipientList.list;
-				this.patchRecipient();
+
+				if (this.giftConfig.action === GiftAction.Edit) {
+					this.patchRecipient();
+				}
 			});
 	}
 
 	private patchRecipient(): void {
+		console.log("==> patch: ", this.gift);
+		/** 
+		* User reloaded the edit page.
+		*/
+		if (!this.gift) {
+			this.navService.navigateToTopic(Topic.Gifts, { relativeTo: this.route });
+		}
+
 		this.recipientList.filter((recipient: AddRecipient) => {
-			console.log("===> patch recipient: ", recipient, this.gift);
 			if (recipient.uuid === this.gift.recipientId) {
-				console.log("==> patch: ", this.gift);
 				this.giftForm.patchValue({
 					recipients: {
 						giftRecipient: recipient
