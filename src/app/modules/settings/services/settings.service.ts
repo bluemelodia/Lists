@@ -22,13 +22,12 @@ export class SettingsService {
 	) { }
 
 	public loadSettings(userID = "guest"): Observable<Settings> {
-		console.info("🛠 ✅ SettingsService ---> loadSettings: ");
 		return this.http.get<Response>(
 			`${this.loadSettingsURL}/${userID}`
 		)
 			.pipe(
 				map((response: Response) => {
-					console.info("🛠 ✅ SettingsService ---> fetchSettings, received settings: ", response);
+					console.info("[Settings Service] Fetch settings: ", response);
 					const settings = response.responseData?.length > 0 ? response.responseData[0] : null;
 					if (settings?.preferences) {
 						settings.tasks = JSON.parse(settings.preferences);
@@ -42,7 +41,7 @@ export class SettingsService {
 	}
 
 	public saveSettings(settings: Settings): Observable<ResponseStatus> {
-		console.info("🛠 ✅ SettingsService ---> fsaveSettings: ", settings);
+		console.info("[Settings Service] Save settings: ", settings);
 		return this.http.post<Response>(
 			this.saveSettingsURL,
 			this.formatSettings(settings),

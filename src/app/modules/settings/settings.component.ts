@@ -86,7 +86,7 @@ export class SettingsComponent implements OnInit {
 				})
 			)
 			.subscribe((settings: Settings) => {
-				console.info("Patch settings: ", settings);
+				console.info("[Settings] Populate form data: ", settings);
 				this.settingsForm.patchValue({
 					channels: {
 						[Channel.email]: !!settings?.email,

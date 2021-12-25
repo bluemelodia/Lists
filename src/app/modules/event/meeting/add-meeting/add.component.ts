@@ -141,7 +141,7 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	private populateFormData(meeting: Meeting): void {
-		console.info("🧳 💾 AddMeetingComponent ---> populateFormData, add existing meeting: ", meeting);
+		console.info("[Add Meeting] Populate form data: ", meeting);
 		/**
 		 * Don"t patch the file name, it opens up security risks.
 		 */

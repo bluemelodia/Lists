@@ -35,7 +35,7 @@ export class NavService {
 	* Convenience method for navigating the user from page to page.
 	*/
 	public navigate(route: string, title: string, additionalParams?: Params): void {
-		console.info(`🚀 ✅ NavService ---> navigate, route to ${route} with title ${title}.`);
+		console.info(`[Nav Service] Route to ${route} with title ${title}.`);
 		void this.router.navigate([route], { queryParams: { title: title, ...additionalParams } });
 	}
 

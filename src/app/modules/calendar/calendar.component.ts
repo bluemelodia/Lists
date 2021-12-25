@@ -13,7 +13,6 @@ import { CalendarService } from "../../services/calendar.service";
 export class CalendarComponent {
 	@Input() type: CalendarType;
 	@Input() set selectedDay(selected: CalendarDay) {
-		console.info("📆 💁🏻‍♀️ CalendarComponent ---> set selectedDay: ", selected);
 		/* If user selected a date, open the calendar to the selected month. */
 		if (selected) {
 			this.monthIdx = this.cal.months.findIndex((month) =>

@@ -84,7 +84,7 @@ export class GiftsComponent implements OnInit {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((lists: [RecipientList, AddGift[]]) => {
-				console.info("🍰 ✅ GiftComponent ---> getGifts, received gifts: ", lists);
+				console.info("[Gift List] Received gift list: ", lists);
 				if (lists[0]?.list?.length > 0 && lists[1]?.length > 0) {
 					this.mapGiftsToRecipients(lists[0].list, lists[1]);
 				} else {
@@ -104,7 +104,7 @@ export class GiftsComponent implements OnInit {
 				}
 			});
 		});
-		console.info("[Gifts Component] Display gift list: ", giftDetails);
+		console.info("[Gift List] Display gift list: ", giftDetails);
 		this.giftDetailsList$.next(giftDetails);
 	}
 

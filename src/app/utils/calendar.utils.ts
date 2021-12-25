@@ -40,11 +40,11 @@ export class CalendarUtils {
 				year: Number(calYear),
 				months: months
 			};
-			console.info(`📅 ✅ CalendarUtils ---> getParsedCalendar, created calendar for ${year}: `, cal);
+			console.info(`[Calendar Utils] Created calendar for ${year}: `, cal);
 			CalendarUtils.cacheCalendar(calYear, cal);
 			return cal;
 		} catch (error) {
-			console.info(`📅 🚨 CalendarUtils ---> getParsedCalendar, unable to generate calendar: `, error);
+			console.info(`[Calendar Utils] Unable to generate calendar: `, error);
 			return null;
 		}
 	}

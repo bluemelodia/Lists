@@ -77,7 +77,6 @@ export class RecipientUtils {
 			filename: EventUtils.extractFileURL(recipient.profile?.fileName),
 			image: recipient.profile?.image || '',
 		};
-		console.info("===> send recipient: ", addRecipient);
 		return addRecipient;
 	}
 

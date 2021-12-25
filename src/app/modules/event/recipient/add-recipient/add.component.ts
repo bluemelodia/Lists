@@ -39,7 +39,9 @@ import { Phone } from "../../../../interfaces/phone.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddRecipient } from "../../../../interfaces/service/service-objects.interface";
 import { Channel } from "../../../../interfaces/settings.interface";
+
 import { DialogService } from "../../../../services/dialog.service";
+import { EditService } from "../../../../services/edit.service";
 import { NavService } from "../../../../services/nav.service";
 import { RecipientService } from "../../../../services/recipient.service";
 import { ValidationService } from "../../../../services/validation.service";
@@ -71,6 +73,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 		private fb: FormBuilder,
 		private customValidator: ValidationService,
 		private dialogService: DialogService,
+		private editService: EditService,
 		private navService: NavService,
 		private recipientService: RecipientService,
 		private route: ActivatedRoute,
@@ -136,25 +139,21 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				]
 			});
 
-		this.route.queryParamMap
-			.pipe(
-				map((params: ParamMap) => JSON.parse(params.get("recipient")))
-			)
-			.subscribe((recipient: AddRecipient) => {
-				/** Existing recipient. */
-				if (recipient?.uuid) {
-					this.recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Edit);
-					this.recipient = {
-						...this.recipient,
-						uuid: recipient?.uuid
-					};
-					this.populateFormData(recipient);
-				}
-			});
+		const recipient = this.editService.getItem(Topic.Birthdays) as AddRecipient;
+		
+		/** Existing recipient. */
+		if (recipient?.uuid) {
+			this.recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Edit);
+			this.recipient = {
+				...this.recipient,
+				uuid: recipient?.uuid
+			};
+			this.populateFormData(recipient);
+		};
 	}
 
 	private populateFormData(recipient: AddRecipient): void {
-		console.info("🥳 💾 AddRecipientComponent ---> populateFormData, add existing recipient: ", recipient);
+		console.info("[Add Recipient] Populate form data: ", recipient);
 		/**
 		 * Don't patch the file name, it opens up security risks.
 		 */
@@ -214,7 +213,6 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 
 	onSubmit(): void {
 		this.submitted = true;
-		console.info("recipientForm: ", this.recipientForm);
 
 		if (this.recipientForm.valid) {
 			this.submitted = false;
@@ -230,7 +228,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				address: this.address,
 				budget: this.budget,
 			};
-			console.info("🥳 💁🏻‍♀️ AddRecipientComponent ---> onSubmit, recipient: ", this.recipient);
+			console.info("[Add Recipient] Submit recipient: ", this.recipientForm);
 
 			this.recipientService.modifyRecipient(this.recipient, this.recipientConfig.action)
 				.pipe(

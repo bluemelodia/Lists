@@ -23,8 +23,6 @@ export class MeetingService {
 	}
 
 	private postMeeting(meeting: Meeting, action: MeetingAction): Observable<ResponseStatus> {
-		console.info("🧳 🏁 MeetingService ---> postMeeting, meeting: ", meeting);
-
 		return this.http.post<Response>(
 			MeetingUtils.meetingURLForAction(action),
 			MeetingUtils.createAddMeeting(meeting),
@@ -46,16 +44,13 @@ export class MeetingService {
 	* @param userID 
 	* @returns A sorted list of meetings for this user.
 	*/
-	public getMeetings(userID = "guest"): Observable<AddMeeting[]> {
-		console.info("🧳 🏁 MeetingService ---> getMeetings, for id: ", userID);
-	
+	public getMeetings(userID = "guest"): Observable<AddMeeting[]> {	
 		const getMeeting = `${MeetingUtils.meetingURLForAction(MeetingAction.Fetch)}/${userID}`;
 		return this.http.get<Response>(
 			getMeeting
 		)
 			.pipe(
 				map((response: Response) => {
-					console.info("🧳 ✅ MeetingService ---> getMeetings, received birthdays: ", response);
 					return MeetingUtils.processMeetings(response.responseData);
 				}),
 				catchError(() => {
@@ -65,8 +60,6 @@ export class MeetingService {
 	}
 
 	public deleteMeeting(uuid: string): Observable<ResponseStatus> {
-		console.info("🧳 🏁 MeetingService ---> delete meeting: ", uuid);
-
 		return this.http.delete<Response>(
 			`${MeetingUtils.meetingURLForAction(MeetingAction.Delete)}/guest/${uuid}`,
 			{
@@ -75,7 +68,6 @@ export class MeetingService {
 		)
 			.pipe(
 				map(() => {
-					console.info("🧳 🏁 MeetingService ---> deleteMeeting success");
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError(() => {
