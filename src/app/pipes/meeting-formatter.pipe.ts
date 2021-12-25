@@ -7,7 +7,7 @@ import { TimeUtils } from '../utils/time.utils';
 	name: "meetingFormatter"
 })
 export class MeetingFormatterPipe implements PipeTransform {
-	public transform(value: AddMeeting, isStart: boolean): unknown {
+	public transform(value: AddMeeting, isStart: boolean): string {
 		if (value) {
 			if (isStart) {
 				const startDate = new Date(value.start_year, value.start_month - 1, value.start_date, value.start_hour, value.start_minute);

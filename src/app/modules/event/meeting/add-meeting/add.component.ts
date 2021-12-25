@@ -188,11 +188,11 @@ export class AddMeetingComponent implements OnInit {
 		return this.meetingForm.get("endDate.day")?.value;
 	}
 
-	get startTime(): unknown {
+	get startTime(): string {
 		return this.meetingFormControl.startTime.value;
 	}
 
-	get endTime(): unknown {
+	get endTime(): string {
 		return this.meetingFormControl.endTime.value;
 	}
 
