@@ -81,7 +81,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 			.pipe(
 				takeUntil(this.destroyed$),
 				map((calendar: Calendar) => {
-					console.log("===> calendar: ", calendar);
+					console.info("===> calendar: ", calendar);
 					if (!calendar) {
 						throw new Error('Unable to fetch calendar.');
 					}
@@ -110,7 +110,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 			.subscribe((event: FocusEvent) => {
 				switch (event.key) {
 					case Key.Escape:
-						// console.log("Event: ", event, this.showCal);
+						// console.info("Event: ", event, this.showCal);
 						if (this.calendarData.showCal) {
 							this.showHideCal();
 						}

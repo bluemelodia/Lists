@@ -203,14 +203,14 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	onStartTimeChanged($event): void {
-		console.log("START CHNAGED: ", $event);
+		console.info("START CHNAGED: ", $event);
 		this.meetingForm.patchValue({
 			startTime: $event,
 		});
 	}
 
 	onEndTimeChanged($event): void {
-		console.log("END CHANGED: ", $event);
+		console.info("END CHANGED: ", $event);
 		this.meetingForm.patchValue({
 			endTime: $event,
 		});
@@ -218,7 +218,7 @@ export class AddMeetingComponent implements OnInit {
 
 	onSubmit(): void {
 		this.submitted = true;
-		console.log("===> start: ", this.meetingFormControl);
+		console.info("===> start: ", this.meetingFormControl);
 
 		if (this.meetingForm.valid) {
 			this.submitted = false;

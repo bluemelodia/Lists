@@ -30,7 +30,7 @@ export class CountrySelectComponent extends SelectComponent {
 	}
 
 	selectOption(option: CountryData): void {
-		console.log("===> selected: ", option, this.form.get('country')?.value);
+		console.info("===> selected: ", option, this.form.get('country')?.value);
 		this.showOptionList = false;
 		this.form.get("country").patchValue({
 			name: option.name,

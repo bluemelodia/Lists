@@ -36,6 +36,7 @@ How to make image upload easy with Angular
   - Allow users to edit gifts.
 - Fix issue with undefined dates sent out in emails.
 - Better network error handling.
+- Clear session storage on tab close and logout.
 
 
 ## Navigation

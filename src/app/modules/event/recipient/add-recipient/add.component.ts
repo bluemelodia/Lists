@@ -218,7 +218,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 
 	onSubmit(): void {
 		this.submitted = true;
-		console.log("recipientForm: ", this.recipientForm);
+		console.info("recipientForm: ", this.recipientForm);
 
 		if (this.recipientForm.valid) {
 			this.submitted = false;

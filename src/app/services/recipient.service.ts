@@ -88,7 +88,7 @@ export class RecipientService {
 
 	public deleteRecipient(uuid: string): Observable<ResponseStatus> {
 		console.info("[Recipient Service] Delete recipient with uuid: ", uuid);
-		
+
 		return this.http.delete<Response>(
 			`${RecipientUtils.recipientURLForAction(RecipientAction.Delete)}/guest/${uuid}`,
 			{
@@ -154,7 +154,7 @@ export class RecipientService {
 
 			/** Silently propagate changes to the server. */
 			if (changes) {
-				console.log("[Recipient Service] Send changes to server: ", recipient);
+				console.info("[Recipient Service] Send changes to server: ", recipient);
 				this.patchRecipient(recipient);
 			}
 		});

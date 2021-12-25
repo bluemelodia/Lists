@@ -19,7 +19,7 @@ import { SelectComponent } from "../select.component";
 export class PhoneSelectComponent extends SelectComponent {
 	public countries = allCountries;
 	public icon = Icon;
-	
+
 	/** 
 	 * Inherit the services from the base class,
 	 * instead of declaring our own (by adding private).
@@ -32,7 +32,7 @@ export class PhoneSelectComponent extends SelectComponent {
 	}
 
 	selectOption(option: CountryISO): void {
-		console.log("===> selected: ", option, this.form.value);
+		console.info("===> selected: ", option, this.form.value);
 		this.showOptionList = false;
 		this.form.patchValue({
 			countryCode: `+ ${option}`

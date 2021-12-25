@@ -14,9 +14,9 @@ import { LoadingService } from '../../../services/loading.service';
 import { RecipientService } from '../../../services/recipient.service';
 
 @Component({
-  selector: 'app-gifts',
-  templateUrl: './gifts.component.html',
-  styleUrls: ['./gifts.component.css']
+	selector: 'app-gifts',
+	templateUrl: './gifts.component.html',
+	styleUrls: ['./gifts.component.css']
 })
 export class GiftsComponent implements OnInit {
 	private giftDetailsList$ = new Subject<GiftDetails[]>();
@@ -72,27 +72,27 @@ export class GiftsComponent implements OnInit {
 			this.recipientService.getRecipients(),
 			this.giftService.getGifts()
 		])
-		.pipe(
-			catchError(() => {
-				this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift);
-				this.loadingService.stopLoading();
-				return of(null);
-			}),
-			finalize(() => {
-				this.loadingService.stopLoading();
-			}),
-			take(1),
-			takeUntil(this.ngUnsubscribe$)
-		)
-		.subscribe((lists: [RecipientList, AddGift[]]) => {
-			console.info("🍰 ✅ GiftComponent ---> getGifts, received gifts: ", lists);
-			if (lists[0]?.list?.length > 0 && lists[1]?.length > 0) {
-				this.mapGiftsToRecipients(lists[0].list, lists[1]);
-			} else {
-				this.giftDetailsList$.next([]);
-			}
-			this.recipientsList$.next(lists[0]?.list);
-		});
+			.pipe(
+				catchError(() => {
+					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift);
+					this.loadingService.stopLoading();
+					return of(null);
+				}),
+				finalize(() => {
+					this.loadingService.stopLoading();
+				}),
+				take(1),
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((lists: [RecipientList, AddGift[]]) => {
+				console.info("🍰 ✅ GiftComponent ---> getGifts, received gifts: ", lists);
+				if (lists[0]?.list?.length > 0 && lists[1]?.length > 0) {
+					this.mapGiftsToRecipients(lists[0].list, lists[1]);
+				} else {
+					this.giftDetailsList$.next([]);
+				}
+				this.recipientsList$.next(lists[0]?.list);
+			});
 	}
 
 	private mapGiftsToRecipients(recipients: AddRecipient[], gifts: AddGift[]) {
@@ -105,7 +105,7 @@ export class GiftsComponent implements OnInit {
 				}
 			});
 		});
-		console.log("[Gifts Component] Display gift list: ", giftDetails);
+		console.info("[Gifts Component] Display gift list: ", giftDetails);
 		this.giftDetailsList$.next(giftDetails);
 	}
 

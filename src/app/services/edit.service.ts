@@ -13,7 +13,9 @@ export class EditService {
 	}
 
 	public getItem(topic: Topic): GiftDetails {
-		return JSON.parse(sessionStorage.getItem(topic));
+		const item = JSON.parse(sessionStorage.getItem(topic));
+		console.info("[Edit Service] Fetched item from session storage: ", item);
+		return item;
 	}
 
 	private saveItem(topic: Topic, value: GiftDetails): void {

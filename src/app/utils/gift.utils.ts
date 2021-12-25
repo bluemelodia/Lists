@@ -53,7 +53,7 @@ export class GiftUtils {
 			filename: EventUtils.extractFileURL(gift.giftImage?.fileName),
 			image: gift.giftImage?.image || '',
 		};
-		console.log("===> send gift: ", addGift);
+		console.info("===> send gift: ", addGift);
 		return addGift;
 	}
 }

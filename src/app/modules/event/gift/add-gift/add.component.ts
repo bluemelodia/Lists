@@ -12,7 +12,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 
 import { of, Subject } from 'rxjs';
-import { 
+import {
 	catchError,
 	filter,
 	finalize,
@@ -85,8 +85,6 @@ export class AddGiftComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		console.log("===> re-init add gifts");
-
 		/* Set the controls for the form. */
 		this.giftForm = this.fb.group({
 			recipients: this.fb.group({
@@ -128,7 +126,6 @@ export class AddGiftComponent implements OnInit {
 
 		const gift = this.editService.getItem(Topic.Gifts);
 		if (gift) {
-			console.log("===> received a gift: ", gift);
 			if (gift?.uuid) {
 				this.giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Edit);
 				this.gift = {
@@ -154,10 +151,10 @@ export class AddGiftComponent implements OnInit {
 	}
 
 	private populateFormData(gift: AddGift) {
-		console.log("===> populate form data: ", gift);
 		/**
 		* Don't patch the file name, it opens up security risks.
 		*/
+		console.info("[Add Gifts] Populate form data: ", gift);
 		this.giftForm.patchValue({
 			occasions: {
 				giftOccasion: gift.occasion
@@ -172,7 +169,7 @@ export class AddGiftComponent implements OnInit {
 
 		if (!this.recipientList) {
 			this.getRecipients();
-		} 
+		}
 	}
 
 	public getRecipients(): void {
@@ -191,7 +188,7 @@ export class AddGiftComponent implements OnInit {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((recipientList: RecipientList) => {
-				console.info("🍰 ✅ BirthdaysComponent ---> getRecipients, received birthdays: ", recipientList);
+				console.info("[Add Gifts] Received recipients: ", recipientList);
 				this.recipients$.next(recipientList.list);
 				this.recipientList = recipientList.list;
 
@@ -202,14 +199,6 @@ export class AddGiftComponent implements OnInit {
 	}
 
 	private patchRecipient(): void {
-		console.log("==> patch: ", this.gift);
-		/** 
-		* User reloaded the edit page.
-		*/
-		if (!this.gift) {
-			this.navService.navigateToTopic(Topic.Gifts, { relativeTo: this.route });
-		}
-
 		this.recipientList.filter((recipient: AddRecipient) => {
 			if (recipient.uuid === this.gift.recipientId) {
 				this.giftForm.patchValue({
@@ -227,7 +216,7 @@ export class AddGiftComponent implements OnInit {
 	}
 
 	get recipient(): AddRecipient {
-		return this.giftForm.get('recipients.giftRecipient').value; 
+		return this.giftForm.get('recipients.giftRecipient').value;
 	}
 
 	get occasion(): Occasion {
@@ -265,7 +254,7 @@ export class AddGiftComponent implements OnInit {
 				description: this.description,
 				price: this.price,
 			}
-			console.info("🥳 💁🏻‍♀️ AddGiftComponent ---> onSubmit, gift: ", this.gift);
+			console.info("[Add Gifts] Submit gift: ", this.gift);
 
 			this.giftService.modifyGift(this.gift, this.giftConfig.action)
 				.pipe(

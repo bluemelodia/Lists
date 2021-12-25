@@ -34,7 +34,7 @@ export class RecipientFilterComponent extends SelectComponent {
 	}
 
 	public selectOption(recipient: AddRecipient): void {
-		console.log("===> selected: ", recipient);
+		console.info("===> selected: ", recipient);
 		this.showOptionList = false;
 		this.selectedRecipient = recipient;
 		this.onRecipientSelect.emit(recipient);
