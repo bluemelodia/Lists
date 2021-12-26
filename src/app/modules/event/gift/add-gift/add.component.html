@@ -2,11 +2,11 @@
     <form class="event-form"
         [formGroup]="giftForm"
         (ngSubmit)="onSubmit()">
-		<app-heading text="Recipient"
+		<app-heading text="Gift Details"
 			[level]="headerLevel.H3">
 		</app-heading>
 		<span class="form-instructions">
-			Enter recipient and gift details.
+			Provide recipient and gift details.
 		</span>
 		<app-recipient-select [form]="giftForm.controls.recipients"
 			[list]="recipientList$ | async"

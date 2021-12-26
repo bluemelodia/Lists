@@ -10,11 +10,14 @@ import {
 	FormGroup,
 	Validators,
 } from "@angular/forms";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { 
+	ActivatedRoute,
+	NavigationStart,
+	Router,
+} from '@angular/router';
 import { Subject } from "rxjs";
 import {
 	filter,
-	map,
 	take,
 	takeUntil,
 } from "rxjs/operators";
@@ -77,6 +80,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 		private navService: NavService,
 		private recipientService: RecipientService,
 		private route: ActivatedRoute,
+		private router: Router,
 	) { }
 
 	ngOnInit(): void {
@@ -137,6 +141,18 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 					this.customValidator.phoneValidator("phone", `channels.${Channel.text}`),
 					this.customValidator.addressValidator("address"),
 				]
+			});
+
+		this.router.events
+			.pipe(
+				filter(event => event instanceof NavigationStart)
+			)
+			.subscribe((event: NavigationStart) => {
+				console.log("[Add Recipient] Routed to: ", event.url);
+
+				if (event.url.includes('/events/add-recipient')) {
+					this.editService.clearItem(Topic.Birthdays);
+				}
 			});
 
 		const recipient = this.editService.getItem(Topic.Birthdays) as AddRecipient;

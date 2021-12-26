@@ -11,7 +11,6 @@ import {
 } from '@angular/forms';
 import { 
 	ActivatedRoute,
-	Event as NavigationEvent,
 	NavigationStart,
 	Router,
 } from '@angular/router';

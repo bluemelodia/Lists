@@ -5,12 +5,11 @@ import {
 	FormGroup,
 	Validators,
 } from "@angular/forms";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import { Subject } from "rxjs";
 import {
 	filter,
-	map,
 	take,
 	takeUntil,
 } from "rxjs/operators";
