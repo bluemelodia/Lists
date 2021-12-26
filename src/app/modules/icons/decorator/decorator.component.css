@@ -1,11 +1,11 @@
 .decorator {
-  background: none;
-  border: none;
+	background: none;
+	border: none;
 }
 
 .decorator-icon {
-  color: black;
-  font-size: 1.2rem;
+	color: black;
+	font-size: 1.2rem;
 }
 
 .icon-small {

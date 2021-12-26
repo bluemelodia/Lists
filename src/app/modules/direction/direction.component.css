@@ -1,11 +1,11 @@
 :host {
-  /**
-    * Needed for the parent selector's height to match the
-    * image's height.
-    */
-  display: flex;
+	/**
+		* Needed for the parent selector's height to match the
+		* image's height.
+		*/
+	display: flex;
 }
 
 img {
-  height: 15px;
+  	height: 15px;
 }

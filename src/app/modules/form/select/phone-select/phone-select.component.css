@@ -5,28 +5,27 @@ app-decorator {
 
 input,
 textarea {
-  background-color: transparent;
-  border: none;
-  display: inline-block;
-  flex: 1;
-  font-size: inherit;
-  margin: 0;
-  margin-bottom: 8px;
-  padding: 8px;
-
-  width: 100%;
+	background-color: transparent;
+	border: none;
+	display: inline-block;
+	flex: 1;
+	font-size: inherit;
+	margin: 0;
+	margin-bottom: 8px;
+	padding: 8px;
+	width: 100%;
 }
 
 :focus,
 :focus-visible,
 input:focus-visible {
-  border: none;
-  outline-color: none;
+  	border: none;
+  	outline-color: none;
 }
 
 .narrow {
+	margin-left: 24px;
 	max-width: 15%;
-    margin-left: 24px;
 }
 
 @media only screen and (max-width: 500px) {

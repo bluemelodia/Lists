@@ -12,17 +12,16 @@
 </section>
 
 <section *ngIf="list$ | async as list" class="task-list__scrollable-container hide-scrollbar">
-	<section *ngIf="list && list.length > 0">
-		<section class="task-list__scrollable-list">
-			<ul class="task-list">
-				<li *ngFor="let gift of list"
-					class="task-list__item">
-					<ng-container [ngTemplateOutlet]="giftList" 
-						[ngTemplateOutletContext]="{ 'gift': gift }">
-					</ng-container>   
-				</li>
-			</ul>
-		</section>	
+	<section *ngIf="list && list.length > 0" 
+		class="task-list__scrollable-list">
+		<ul class="task-list">
+			<li *ngFor="let gift of list"
+				class="task-list__item">
+				<ng-container [ngTemplateOutlet]="giftList" 
+					[ngTemplateOutletContext]="{ 'gift': gift }">
+				</ng-container>   
+			</li>
+		</ul>
 	</section>
 	<section *ngIf="list && list.length === 0"
 		class="no-results flex-centered__column">

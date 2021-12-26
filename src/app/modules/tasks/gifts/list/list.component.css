@@ -1,19 +1,18 @@
 :host {
 	background: white;
-	padding: 16px;
-
-	height: 100%;
-	overflow: hidden;
-
 	display: flex;
 	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	padding: 16px;
+	width: 100%;
 }
 
 .task-list__selectors {
+	align-items: center;
 	display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
 }
 
 .task-list__selectors > * {
@@ -69,7 +68,7 @@
 }
 
 .task-list__item-photo {
- 	 max-height: 100px;
+ 	max-height: 100px;
   	max-width: 100%;
 }
 

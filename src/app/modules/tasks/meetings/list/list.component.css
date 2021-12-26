@@ -9,22 +9,21 @@
 }
 
 .task-list__badges {
-  display: flex;
-  align-items: center;
-
-  flex-grow: 1;
-  flex-shrink: 0;
-  justify-content: flex-end;
-  margin: 8px 0;
+	align-items: center;
+  	display: flex;
+	flex-grow: 1;
+	flex-shrink: 0;
+	justify-content: flex-end;
+	margin: 8px 0;
 }
 
 .task-list__badges *:not(:last-child) {
-  margin-right: 8px;
+  	margin-right: 8px;
 }
 
 .task-details__wrapper {
-  display: flex;
-  justify-content: space-between;
+  	display: flex;
+  	justify-content: space-between;
 }
 
 @media only screen and (max-width: 500px) {
@@ -35,8 +34,8 @@
 }
 
 .task-details__label {
-  font-weight: bold;
-  margin-right: 8px;
+  	font-weight: bold;
+  	margin-right: 8px;
 }
 
 .task-details__description {
@@ -44,9 +43,8 @@
 }
 
 .edit-actions {
-    display: flex;
-	justify-content: flex-end;
-	flex: 1;
-	
 	border-right: 4px solid pink;
+    display: flex;
+	flex: 1;
+	justify-content: flex-end;
 }
