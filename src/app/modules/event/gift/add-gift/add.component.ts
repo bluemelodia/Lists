@@ -9,7 +9,7 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { 
+import {
 	ActivatedRoute,
 	NavigationStart,
 	Router,
@@ -134,7 +134,7 @@ export class AddGiftComponent implements OnInit {
 				filter(event => event instanceof NavigationStart)
 			)
 			.subscribe((event: NavigationStart) => {
-				console.log("[Add Gift] Routed to: ", event.url);
+				console.info("[Add Gift] Routed to: ", event.url);
 
 				if (event.url.includes('/events/add-gift')) {
 					this.editService.clearItem(Topic.Gifts);

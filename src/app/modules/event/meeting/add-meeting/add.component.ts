@@ -5,7 +5,11 @@ import {
 	FormGroup,
 	Validators,
 } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import {
+	ActivatedRoute,
+	NavigationStart,
+	Router,
+} from '@angular/router';
 
 import { Subject } from "rxjs";
 import {
@@ -69,6 +73,7 @@ export class AddMeetingComponent implements OnInit {
 		private meetingService: MeetingService,
 		private navService: NavService,
 		private route: ActivatedRoute,
+		private router: Router,
 	) { }
 
 	ngOnInit(): void {
@@ -119,6 +124,18 @@ export class AddMeetingComponent implements OnInit {
 				]
 			});
 
+		this.router.events
+			.pipe(
+				filter(event => event instanceof NavigationStart)
+			)
+			.subscribe((event: NavigationStart) => {
+				console.info("[Add Meeting] Routed to: ", event.url);
+
+				if (event.url.includes('/events/add-meeting')) {
+					this.editService.clearItem(Topic.Meetings);
+				}
+			});
+
 		const meeting = this.editService.getItem(Topic.Meetings) as AddMeeting;
 		if (meeting) {
 			const mtg = MeetingUtils.createMeeting(meeting);
@@ -137,8 +154,8 @@ export class AddMeetingComponent implements OnInit {
 	private populateFormData(meeting: Meeting): void {
 		console.info("[Add Meeting] Populate form data: ", meeting);
 		/**
-		 * Don"t patch the file name, it opens up security risks.
-		 */
+		* Don"t patch the file name, it opens up security risks.
+		*/
 		this.meetingForm.patchValue({
 			name: meeting.name,
 			startDate: {

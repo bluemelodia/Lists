@@ -10,7 +10,7 @@ import {
 	FormGroup,
 	Validators,
 } from "@angular/forms";
-import { 
+import {
 	ActivatedRoute,
 	NavigationStart,
 	Router,
@@ -148,7 +148,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				filter(event => event instanceof NavigationStart)
 			)
 			.subscribe((event: NavigationStart) => {
-				console.log("[Add Recipient] Routed to: ", event.url);
+				console.info("[Add Recipient] Routed to: ", event.url);
 
 				if (event.url.includes('/events/add-recipient')) {
 					this.editService.clearItem(Topic.Birthdays);
@@ -156,7 +156,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 			});
 
 		const recipient = this.editService.getItem(Topic.Birthdays) as AddRecipient;
-		
+
 		/** Existing recipient. */
 		if (recipient?.uuid) {
 			this.recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Edit);
