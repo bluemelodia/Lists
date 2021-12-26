@@ -1,7 +1,13 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { HeaderLevel } from '../../../interfaces/header.interface';
-import { NoItemConfig } from '../../../interfaces/no-items.interface';
+import { GiftAction } from '../../../interfaces/event/gift.interface';
+import { MeetingAction } from '../../../interfaces/event/meeting.interface';
+import { RecipientAction } from '../../../interfaces/event/recipient.interface';
+import { NoItem } from '../../../interfaces/no-items.interface';
+
+import { EditService } from '../../../services/edit.service';
 
 @Component({
 	selector: 'app-no-items',
@@ -9,7 +15,30 @@ import { NoItemConfig } from '../../../interfaces/no-items.interface';
 	styleUrls: ['./no-items.component.css']
 })
 export class NoItemsComponent {
-	@Input() config: NoItemConfig;
+	@Input() config: NoItem;
 
 	public headerLevel = HeaderLevel;
+
+	constructor(
+		private editService: EditService,
+		private router: Router,
+	) {}
+
+	/** 
+	* If the user is performing an add operation, clear
+	* the previously-stored item from session storage.
+	*/
+	public onActionItemClick() {
+		switch(this.config.action) {
+			case GiftAction.Add:
+			case MeetingAction.Add:
+			case RecipientAction.Add:
+				this.editService.clearItem(this.config.topic);
+				break;
+		}
+
+		this.router.navigate([this.config.route], {
+			queryParams: { title: this.config.actionText }
+		});
+	}
 }

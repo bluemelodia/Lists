@@ -9,7 +9,12 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { 
+	ActivatedRoute,
+	Event as NavigationEvent,
+	NavigationStart,
+	Router,
+} from '@angular/router';
 
 import { of, Subject } from 'rxjs';
 import {
@@ -82,6 +87,7 @@ export class AddGiftComponent implements OnInit {
 		private navService: NavService,
 		private recipientService: RecipientService,
 		private route: ActivatedRoute,
+		private router: Router,
 	) { }
 
 	ngOnInit(): void {
@@ -123,6 +129,18 @@ export class AddGiftComponent implements OnInit {
 				updateOn: "submit",
 				validators: []
 			});;
+
+		this.router.events
+			.pipe(
+				filter(event => event instanceof NavigationStart)
+			)
+			.subscribe((event: NavigationStart) => {
+				console.log("[Add Gift] Routed to: ", event.url);
+
+				if (event.url === '/events/add-gift') {
+					this.editService.clearItem(Topic.Gifts);
+				}
+			});
 
 		const gift = this.editService.getItem(Topic.Gifts) as AddGift;
 		if (gift) {

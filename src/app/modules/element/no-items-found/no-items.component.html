@@ -1,10 +1,10 @@
 <app-heading [level]="headerLevel.H1" 
-	[text]="config.notFoundText">
+	[text]="config.header">
 </app-heading>
 <section class="form-container flex-centered__column">
     <p>{{ config.body }}</p>
     <button type="submit" 
-		[routerLink]="[ config.route ]">
+		(click)="onActionItemClick()">
 		{{ config.actionText }}
 	</button>
 </section>

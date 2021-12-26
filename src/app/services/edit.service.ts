@@ -33,4 +33,8 @@ export class EditService {
 	private saveItem(topic: Topic, value: Item): void {
 		sessionStorage.setItem(topic, JSON.stringify(value));
 	}
+
+	public clearItem(topic: Topic) {
+		sessionStorage.removeItem(topic);
+	}
 }

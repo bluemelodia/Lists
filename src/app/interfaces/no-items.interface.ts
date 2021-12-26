@@ -1,32 +1,46 @@
 import { Event } from "../constants/events.contants";
+import { Topic } from "../constants/topics.constants";
+
+import { GiftAction } from "./event/gift.interface";
+import { MeetingAction } from "./event/meeting.interface";
+import { RecipientAction } from "./event/recipient.interface";
 
 export interface NoItemConfig {
 	readonly [key: string]: NoItem;
 }
+
 export interface NoItem {
-	header: string,
+	action: GiftAction | MeetingAction | RecipientAction,
 	actionText: string,
 	body: string,
-	route: string
+	header: string,
+	route: string,
+	topic: Topic,
 };
 
 export const NO_ITEMS_CONFIG: NoItemConfig = {
 	[Event.Recipient]: {
-		header: 'No Birthdays Found',
+		action: RecipientAction.Add,
 		actionText: 'Add Birthdays',
 		body: 'You do not currently have any upcoming birthdays.',
-		route: '/events/add-recipient'
+		header: 'No Birthdays Found',
+		route: '/events/add-recipient',
+		topic: Topic.Birthdays,
 	},
 	[Event.Meeting]: {
-		header: 'No Meetings Found',
+		action: MeetingAction.Add,
 		actionText: 'Add Meeting',
 		body: 'You do not currently have any upcoming meetings.',
-		route: '/events/add-meeting'
+		header: 'No Meetings Found',
+		route: '/events/add-meeting',
+		topic: Topic.Meetings,
 	},
 	[Event.Gift]: {
-		header: 'No Gifts Found',
+		action: GiftAction.Add,
 		actionText: 'Add Gift',
 		body: 'You have not logged any gifts.',
-		route: '/events/add-gift'
+		header: 'No Gifts Found',
+		route: '/events/add-gift',
+		topic: Topic.Gifts,
 	}
 }
