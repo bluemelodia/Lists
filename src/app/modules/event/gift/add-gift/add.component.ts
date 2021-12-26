@@ -137,7 +137,7 @@ export class AddGiftComponent implements OnInit {
 			.subscribe((event: NavigationStart) => {
 				console.log("[Add Gift] Routed to: ", event.url);
 
-				if (event.url === '/events/add-gift') {
+				if (event.url.includes('/events/add-gift')) {
 					this.editService.clearItem(Topic.Gifts);
 				}
 			});
