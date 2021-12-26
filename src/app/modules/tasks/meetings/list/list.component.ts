@@ -78,7 +78,7 @@ export class ListComponent {
 	public editMeeting(meeting: AddMeeting): void {
 		this.editService.editMeeting(meeting);
 		this.router.navigate(["/events/edit-meeting"], {
-			queryParams: { title: 'Edit Meeting', meeting: JSON.stringify(meeting) }
+			queryParams: { title: 'Edit Meeting' }
 		});
 	}
 

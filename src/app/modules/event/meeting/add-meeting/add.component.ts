@@ -36,6 +36,7 @@ import { ResponseStatus } from "../../../../interfaces/response.interface";
 import { AddMeeting } from "../../../../interfaces/service/service-objects.interface";
 
 import { DialogService } from "../../../../services/dialog.service";
+import { EditService } from "../../../../services/edit.service";
 import { MeetingService } from "../../../../services/meeting.service";
 import { NavService } from "../../../../services/nav.service";
 import { ValidationService } from "../../../../services/validation.service";
@@ -64,6 +65,7 @@ export class AddMeetingComponent implements OnInit {
 	constructor(
 		private customValidators: ValidationService,
 		private dialogService: DialogService,
+		private editService: EditService,
 		private fb: FormBuilder,
 		private meetingService: MeetingService,
 		private navService: NavService,
@@ -118,26 +120,19 @@ export class AddMeetingComponent implements OnInit {
 				]
 			});
 
-		this.route.queryParamMap
-			.pipe(
-				map((params: ParamMap) => JSON.parse(params.get("meeting")))
-			)
-			.subscribe((meeting: AddMeeting) => {
-				if (!meeting) {
-					return;
-				}
-				const mtg = MeetingUtils.createMeeting(meeting);
-
-				/** Existing meeting. */
-				if (mtg?.uuid) {
-					this.meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Edit);
-					this.meeting = {
-						...this.meeting,
-						uuid: mtg?.uuid
-					};
-					this.populateFormData(mtg);
-				}
-			});
+		const meeting = this.editService.getItem(Topic.Meetings) as AddMeeting;
+		if (meeting) {
+			const mtg = MeetingUtils.createMeeting(meeting);
+			/** Existing meeting. */
+			if (mtg?.uuid) {
+				this.meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Edit);
+				this.meeting = {
+					...this.meeting,
+					uuid: mtg?.uuid
+				};
+				this.populateFormData(mtg);
+			}
+		}
 	}
 
 	private populateFormData(meeting: Meeting): void {
