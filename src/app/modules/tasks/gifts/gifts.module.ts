@@ -5,6 +5,7 @@ import { GiftsComponent } from './gifts.component';
 import { GiftTasksRoutingModule } from './gift-routing.module';
 import { ListComponent } from './list/list.component';
 
+import { DirectiveModule } from '../../../directives/directives.module';
 import { ElementModule } from '../../element/element.module';
 import { FormElementModule } from '../../form/form.module';
 import { IconsModule } from '../../icons/icons.module';
@@ -16,6 +17,7 @@ import { IconsModule } from '../../icons/icons.module';
   ],
   imports: [
     CommonModule,
+	DirectiveModule,
 	ElementModule,
 	FormElementModule,
 	IconsModule,

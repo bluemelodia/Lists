@@ -2,10 +2,12 @@
 	[text]="header">
 </app-heading>
 <section class="task-list__selectors">
-	<app-sort-select [list]="giftSortOptions"
+	<app-sort-select appFocus
+		[list]="giftSortOptions"
 		(onSortSelected)="onSortSelected($event)">
 	</app-sort-select>
-	<app-recipient-filter [list]="recipients"
+	<app-recipient-filter appFocus
+		[list]="recipients"
 		(onFilterReset)="resetRecipientFilter()"
 		(onRecipientSelect)="filterByRecipient($event)">
 	</app-recipient-filter>

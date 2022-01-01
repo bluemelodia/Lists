@@ -8,11 +8,13 @@
 		<span class="form-instructions">
 			Provide recipient and gift details.
 		</span>
-		<app-recipient-select [form]="giftForm.controls.recipients"
+		<app-recipient-select appFocus 
+			[form]="giftForm.controls.recipients"
 			[list]="recipientList$ | async"
 			[submitted]="submitted">
 		</app-recipient-select>
-		<app-occasion-select [form]="giftForm.controls.occasions"
+		<app-occasion-select appFocus
+			[form]="giftForm.controls.occasions"
 			[submitted]="submitted">
 		</app-occasion-select>
 		<fieldset class="details">

@@ -6,9 +6,10 @@ import { ListComponent } from './list/list.component';
 import { MeetingsComponent } from './meetings.component';
 import { MeetingTasksRoutingModule } from './meetings-routing.module';
 
+import { DirectiveModule } from '../../../directives/directives.module';
+import { IconsModule } from '../../icons/icons.module';
 import { IndicatorModule } from '../../indicator/indicator.module';
 import { PipesModule } from '../../../pipes/pipes.module';
-import { IconsModule } from '../../icons/icons.module';
 
 @NgModule({
 	declarations: [
@@ -17,6 +18,7 @@ import { IconsModule } from '../../icons/icons.module';
 	],
 	imports: [
 		CommonModule,
+		DirectiveModule,
 		ElementModule,
 		IconsModule,
 		IndicatorModule,

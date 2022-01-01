@@ -39,8 +39,10 @@
             </app-checkbox>
             <fieldset *ngIf="isChannelChecked(channel.text)"
 				class="phone">
-				<app-phone-select [form]="settingsForm.controls.phone"
-					[submitted]="submitted"></app-phone-select>
+				<app-phone-select appFocus
+					[form]="settingsForm.controls.phone"
+					[submitted]="submitted">
+				</app-phone-select>
             </fieldset>
         </fieldset>
 		<fieldset class="notification-options">
