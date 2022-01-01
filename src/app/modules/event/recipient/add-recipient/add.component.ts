@@ -59,7 +59,7 @@ import { RecipientUtils } from "../../../../utils/recipient.utils";
 export class AddRecipientComponent implements OnInit, OnDestroy {
 	@HostBinding("class") containerClasses = "section-container";
 
-	public calendarType: CalendarType = CalendarType.Lunar;
+	public calendarType = CalendarType;
 	public headerLevel = HeaderLevel;
 	public limit = FormLimit;
 	public recipient: Recipient;

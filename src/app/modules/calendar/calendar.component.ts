@@ -16,7 +16,7 @@ export class CalendarComponent {
 		/* If user selected a date, open the calendar to the selected month. */
 		if (selected) {
 			this.monthIdx = this.cal.months.findIndex((month) =>
-				month.value === selected.month && month.year === selected.year);
+				month.value === selected.month);
 			this.month = this.cal.months[this.monthIdx];
 			this.selectedDate = selected;
 		}
