@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
+import { Topic } from "../../../constants/topics.constants";
 import { CalendarType, Month } from "../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
 
@@ -12,6 +13,7 @@ export class CalendarMonthComponent {
 	@Input() month: Month;
 	@Input() type: CalendarType = CalendarType.Lunar;
 	@Input() selectedDate: CalendarDay;
+	@Input() topic: Topic;
 
 	@Output() dateSelect = new EventEmitter<CalendarDay>();
 
@@ -22,12 +24,19 @@ export class CalendarMonthComponent {
 	}
 
 	isSelectedDate(day: CalendarDay): boolean {
-		console.log("selected: ", this.selectedDate, day);
 		switch(this.type) {
 			case CalendarType.Solar:
-				return this.selectedDate
-            		&& day.month === this.selectedDate.month 
-            		&& day.value === this.selectedDate.value;
+				if (this.topic === Topic.Birthdays) {
+					return this.selectedDate
+            			&& day.month === this.selectedDate.month 
+            			&& day.value === this.selectedDate.value;
+				} else {
+					return this.selectedDate
+						&& day.month === this.selectedDate.month 
+						&& day.value === this.selectedDate.value
+						&& day.year === this.selectedDate.year;
+				}
+
 			case CalendarType.Lunar:
 				return this.selectedDate
 					&& day.cmonth === this.selectedDate.cmonth

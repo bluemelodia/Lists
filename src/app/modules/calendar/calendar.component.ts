@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
+import { Topic } from "../../constants/topics.constants";
+
 import { CalendarType, shortMonths } from "../../interfaces/calendar/calendar.interface";
 import { Calendar, CalendarDay, CalendarMonth } from "../../interfaces/calendar/calendar-response.interface";
 
@@ -12,6 +14,7 @@ import { CalendarService } from "../../services/calendar.service";
 })
 export class CalendarComponent {
 	@Input() type: CalendarType;
+	@Input() topic: Topic;
 	@Input() set selectedDay(selected: CalendarDay) {
 		/* If user selected a date, open the calendar to the selected month. */
 		if (selected) {

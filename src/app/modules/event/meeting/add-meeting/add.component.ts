@@ -60,6 +60,7 @@ export class AddMeetingComponent implements OnInit {
 	public meetingForm: FormGroup;
 	public submitted = false;
 	public timePickerTheme = appTheme;
+	public topic = Topic.Meetings;
 
 	private ngUnsubscribe$ = new Subject<void>();
 

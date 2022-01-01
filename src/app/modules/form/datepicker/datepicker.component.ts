@@ -12,6 +12,8 @@ import { of, ReplaySubject } from "rxjs";
 import { catchError, filter, map, takeUntil } from "rxjs/operators";
 import { UUID } from "angular2-uuid";
 
+import { Topic } from "../../../constants/topics.constants";
+
 import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
 import { Calendar, CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
 import { FocusEvent, Key } from "../../../interfaces/focus.interface";
@@ -49,6 +51,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 	@Input() form: FormGroup;
 	@Input() placeholder = "";
 	@Input() submitted;
+	@Input() topic: Topic;
 
 	@ViewChild("picker", { read: ElementRef, static: false }) picker: ElementRef;
 

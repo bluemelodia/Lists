@@ -28,7 +28,8 @@
                 placeholder="Date"
                 [calendarType]="recipientForm.controls.options?.value?.lunar ? calendarType.Lunar : calendarType.Solar"
                 [form]="recipientForm.controls.date"
-                [submitted]="submitted">
+                [submitted]="submitted"
+				[topic]="topic">
             </app-datepicker>
             <app-checkbox checkboxName="lunar"
                 id="action-lunar"

@@ -68,6 +68,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 	public recipientForm: FormGroup;
 	public recipientID = RecipientID;
 	public submitted = false;
+	public topic = Topic.Birthdays;
 
 	private countries = countries;
 	private ngUnsubscribe$ = new Subject<void>();

@@ -38,9 +38,11 @@
             <span>S</span>
         </div>
         <app-calendar-month [month]="month" 
-            [type]="type"
             [selectedDate]="selectedDate"
-            (dateSelect)="selectDate($event)"></app-calendar-month>
+			[type]="type"
+			[topic]="topic"
+            (dateSelect)="selectDate($event)">
+		</app-calendar-month>
         <button class="tab-stop"
             tabindex="0"
             [attr.aria-hidden]="false">

@@ -53,7 +53,8 @@
 				placeholder="Start Date"
 				[calendarType]="calendarType"
 				[form]="meetingForm.controls.startDate"
-				[submitted]="submitted">
+				[submitted]="submitted"
+				[topic]="topic">
 			</app-datepicker>
 			<div *ngIf="submitted && startDateCtrl.errors"
 				class="input-error after-picker">
@@ -93,7 +94,8 @@
 				placeholder="End Date"
 				[calendarType]="calendarType"
 				[form]="meetingForm.controls.endDate"
-				[submitted]="submitted">
+				[submitted]="submitted"
+				[topic]="topic">
 			</app-datepicker>
 			<input readonly 
 				aria-label="End Time"
