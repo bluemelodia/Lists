@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef } from "@angular/core";
 
 import { allCountries } from "../../../../constants/countries.constants";
 import { CountryISO } from "../../../../constants/country-iso.constants";
@@ -6,7 +6,6 @@ import { Icon } from "../../../../constants/icons.constants";
 
 import { SelectComponent } from "../select.component";
 
-import { ClickService } from "../../../../services/click.service";
 import { FocusService } from "../../../../services/focus.service";
 
 @Component({
@@ -26,10 +25,10 @@ export class PhoneSelectComponent extends SelectComponent {
 	 * instead of declaring our own (by adding private).
 	 */
 	constructor(
-		_clickService: ClickService,
+		_element: ElementRef,
 		_focus: FocusService
 	) {
-		super(_clickService, _focus);
+		super(_element, _focus);
 	}
 
 	selectOption(option: CountryISO): void {

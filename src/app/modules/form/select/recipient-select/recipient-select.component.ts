@@ -1,11 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
 
 import { SelectComponent } from '../select.component';
 
-import { ClickService } from '../../../../services/click.service';
 import { FocusService } from '../../../../services/focus.service';
 
 @Component({
@@ -20,10 +19,10 @@ export class RecipientSelectComponent extends SelectComponent {
 	@Input() list: AddRecipient[];
 
 	constructor(
-		_clickService: ClickService,
+		_element: ElementRef,
 		_focus: FocusService
 	) {
-		super(_clickService, _focus);
+		super(_element, _focus);
 	}
 
 	public get recipientForm(): AbstractControl {

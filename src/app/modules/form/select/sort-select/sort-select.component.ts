@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Input, Output } from "@angular/core";
 
 import { SortOption } from "../../../../interfaces/event/event.interface";
 
 import { SelectComponent } from "../select.component";
 
-import { ClickService } from "../../../../services/click.service";
 import { FocusService } from "../../../../services/focus.service";
 
 @Component({
@@ -27,10 +26,10 @@ export class SortSelectComponent extends SelectComponent {
 	 * instead of declaring our own (by adding private).
 	 */
 	constructor(
-		_clickService: ClickService,
+		_element: ElementRef,
 		_focus: FocusService
 	) {
-		super(_clickService, _focus);
+		super(_element, _focus);
 	}
 
 	selectOption(option: SortOption): void {

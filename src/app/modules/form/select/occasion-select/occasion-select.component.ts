@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 import { Occasion } from '../../../../constants/occasions.constants';
 
 import { SelectComponent } from '../select.component';
 
-import { ClickService } from '../../../../services/click.service';
 import { FocusService } from '../../../../services/focus.service';
 
 @Component({
@@ -21,10 +20,10 @@ export class OccasionSelectComponent extends SelectComponent {
 	public occasionKeys = Object.keys(Occasion);
 	
 	constructor(
-		_clickService: ClickService,
+		_element: ElementRef,
 		_focus: FocusService
 	) {
-		super(_clickService, _focus);
+		super(_element, _focus);
 	}
 
 	public get occasionForm(): AbstractControl {

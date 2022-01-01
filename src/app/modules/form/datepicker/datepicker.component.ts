@@ -1,4 +1,12 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { 
+	Component,
+	ElementRef,
+	HostListener,
+	Input,
+	OnDestroy,
+	OnInit,
+	ViewChild,
+} from "@angular/core";
 import { AbstractControl, FormGroup } from "@angular/forms";
 import { of, ReplaySubject } from "rxjs";
 import { catchError, filter, map, takeUntil } from "rxjs/operators";
@@ -12,7 +20,6 @@ import { noCalMessage } from "../../../interfaces/message.interface";
 import { PickerDateFormatterPipe } from "../../../pipes/picker-date-formatter.pipe";
 
 import { CalendarService } from "../../../services/calendar.service";
-import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
 
 interface CalendarData {
@@ -27,6 +34,15 @@ interface CalendarData {
 	styleUrls: ["./datepicker.component.css"]
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
+	@HostListener('document:click', ['$event'])
+	click(event) {
+		if (!this.elementRef.nativeElement.contains(event.target)) {
+			if (this.calendarData.showCal) {
+				this.showHideCal();
+			}
+		}
+	}
+
 	@Input() calendarType: CalendarType = CalendarType.Lunar;
 	@Input() controlName: string = "";
 	@Input() fieldName = "Date";
@@ -54,8 +70,8 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private readonly calendar: CalendarService,
-		private readonly clickService: ClickService,
 		private readonly dateFormatterPipe: PickerDateFormatterPipe,
+		private readonly elementRef: ElementRef,
 		private readonly focus: FocusService,
 	) { }
 
@@ -70,12 +86,6 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 	}
 
 	private setupSubscriptions(): void {
-		this.clickService.clicked
-			.pipe(takeUntil(this.destroyed$))
-			.subscribe(target => {
-				this.onDocumentClick(target);
-			});
-
 		this.calendar.onCalendarFetched$
 			.pipe(
 				takeUntil(this.destroyed$),
@@ -120,14 +130,6 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 	/* returns the form controls of the form. */
 	public get dateFormControl(): { [key: string]: AbstractControl } {
 		return this.form?.controls;
-	}
-
-	private onDocumentClick(target: any): void {
-		if (!this.picker.nativeElement.contains(target)) {
-			if (this.calendarData.showCal) {
-				this.showHideCal();
-			}
-		}
 	}
 
 	public onKeydownEvent(event: KeyboardEvent): void {

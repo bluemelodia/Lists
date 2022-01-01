@@ -1,4 +1,12 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { 
+	Component, 
+	ElementRef, 
+	HostListener,
+	Input,
+	OnDestroy,
+	OnInit,
+	ViewChild,
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
 import { ReplaySubject } from "rxjs";
@@ -6,7 +14,6 @@ import { filter, takeUntil } from "rxjs/operators";
 
 import { FocusEvent, Key } from "../../../interfaces/focus.interface";
 
-import { ClickService } from "../../../services/click.service";
 import { FocusService } from "../../../services/focus.service";
 
 @Component({
@@ -15,6 +22,15 @@ import { FocusService } from "../../../services/focus.service";
 	styleUrls: ["./select.component.css"]
 })
 export class SelectComponent implements OnInit, OnDestroy {
+	@HostListener('document:click', ['$event'])
+	click(event) {
+		if (!this.elementRef.nativeElement.contains(event.target)) {
+			if (this.showOptionList) {
+				this.showHideOptions();
+			}
+		}
+	}
+
 	@Input() id: string;
 	@Input() default: string;
 	@Input() form: FormGroup;
@@ -28,17 +44,11 @@ export class SelectComponent implements OnInit, OnDestroy {
 	private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
 	constructor(
-		private clickService: ClickService,
+		private elementRef: ElementRef,
 		private focus: FocusService
 	) { }
 
 	ngOnInit(): void {
-		this.clickService.clicked
-			.pipe(takeUntil(this.destroyed$))
-			.subscribe(target => {
-				this.onDocumentClick(target);
-			});
-
 		this.focus.keyPressed$()
 			.pipe(
 				filter((event: FocusEvent) => event.elementID === this.id),
@@ -58,14 +68,6 @@ export class SelectComponent implements OnInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.destroyed$.next(true);
 		this.destroyed$.complete();
-	}
-
-	onDocumentClick(target: any): void {
-		if (!this.select.nativeElement.contains(target)) {
-			if (this.showOptionList) {
-				this.showHideOptions();
-			}
-		}
 	}
 
 	showHideOptions(): void {

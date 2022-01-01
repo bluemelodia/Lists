@@ -1,10 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { 
+	Component,
+	ElementRef,
+	EventEmitter,
+	Input,
+	Output,
+} from '@angular/core';
 
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
 
 import { SelectComponent } from '../select.component';
 
-import { ClickService } from '../../../../services/click.service';
 import { FocusService } from '../../../../services/focus.service';
 
 @Component({
@@ -24,10 +29,10 @@ export class RecipientFilterComponent extends SelectComponent {
 	public selectedRecipient: AddRecipient;
 
 	constructor(
-		_clickService: ClickService,
+		_element: ElementRef,
 		_focus: FocusService
 	) {
-		super(_clickService, _focus);
+		super(_element, _focus);
 	}
 
 	public clearFilter(): void {
