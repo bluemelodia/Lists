@@ -22,10 +22,17 @@ export class CalendarMonthComponent {
 	}
 
 	isSelectedDate(day: CalendarDay): boolean {
-		return this.selectedDate
-			&& day.year === this.selectedDate.year 
-            && day.month === this.selectedDate.month 
-            && day.value === this.selectedDate.value;
+		console.log("selected: ", this.selectedDate, day);
+		switch(this.type) {
+			case CalendarType.Solar:
+				return this.selectedDate
+            		&& day.month === this.selectedDate.month 
+            		&& day.value === this.selectedDate.value;
+			case CalendarType.Lunar:
+				return this.selectedDate
+					&& day.cmonth === this.selectedDate.cmonth
+					&& day.cdate === this.selectedDate.cdate;
+		}
 	}
 
 	selectDate(date: CalendarDay): void {
