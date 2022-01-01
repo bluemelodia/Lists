@@ -30,7 +30,7 @@ export class SettingsService {
 					console.info("[Settings Service] Fetch settings: ", response);
 					const settings = response.responseData?.length > 0 ? response.responseData[0] : null;
 					if (settings?.preferences) {
-						settings.tasks = JSON.parse(settings.preferences);
+						settings.tasks = settings.preferences;
 					}
 					return settings;
 				}),

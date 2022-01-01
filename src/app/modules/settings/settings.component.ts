@@ -93,7 +93,10 @@ export class SettingsComponent implements OnInit {
 						[Channel.text]: !!settings?.phone,
 					},
 					email: settings?.email,
-					phone: settings?.phone,
+					phone: {
+						countryCode: settings?.country,
+						number: settings?.phone
+					},
 					tasks: {
 						...settings?.tasks
 					}

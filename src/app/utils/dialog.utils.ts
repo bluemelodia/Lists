@@ -70,7 +70,11 @@ export class DialogUtils {
 				message = DialogMessage.CANCEL_EDIT;
 				break;
 			case ConfirmDialogAction.Delete:
-				message = `Are you sure you want to delete this ${ page }?`;
+				message = `Are you sure you want to delete this ${page}?`;
+
+				if (page === DialogPage.Recipient) {
+					message += `This will also delete this ${page}'s gifts.`;
+				}
 				break;
 			default:
 				break;
