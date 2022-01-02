@@ -19,6 +19,8 @@ import { Recurrence, Task, TaskAction } from "../../../../interfaces/event/task.
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 
+import { appTheme } from "../../../../modules/form/timepicker/time-picker.constants";
+
 import { DialogService } from "../../../../services/dialog.service";
 import { EditService } from "../../../../services/edit.service";
 import { NavService } from "../../../../services/nav.service";
@@ -41,6 +43,7 @@ export class AddTaskComponent implements OnInit {
 	public task: Task;
 	public taskConfig = TaskUtils.createTaskFormConfig(TaskAction.Add);
 	public taskForm: FormGroup;
+	public timePickerTheme = appTheme;
 	public topic = Topic.Meetings;
 
 	private ngUnsubscribe$ = new Subject<void>();
@@ -58,7 +61,7 @@ export class AddTaskComponent implements OnInit {
 	ngOnInit(): void {
 		/* Set the controls for the form. */
 		this.taskForm = this.fb.group({
-			task: [
+			name: [
 				"",
 				[
 					Validators.required,
@@ -128,7 +131,7 @@ export class AddTaskComponent implements OnInit {
 		return this.taskForm.controls;
 	}
 
-	get taskName(): string {
+	get name(): string {
 		return this.taskFormControl.task.value;
 	}
 
@@ -165,7 +168,7 @@ export class AddTaskComponent implements OnInit {
 			this.submitted = false;
 			this.task = {
 				...this.task,
-				task: this.taskName,
+				task: this.name,
 				description: this.description,
 				recurrence: this.recurrence,
 				dueDate: this.dueDate,

@@ -10,116 +10,50 @@
             <input formControlName="name"
                 placeholder="Task"
 				type="text"/>
-            <div *ngIf="submitted && meetingFormControl.name.errors"
+            <div *ngIf="submitted && taskFormControl.name.errors"
 				class="input-error">
-                    <span *ngIf="meetingFormControl.name.errors?.required">
-                        Name is required.
+                    <span *ngIf="taskFormControl.name.errors?.required">
+                        Task name is required.
                     </span>
-                    <span *ngIf="meetingFormControl.name.errors?.minlength">
-                        Please enter a longer name.
+                    <span *ngIf="taskFormControl.name.errors?.minlength">
+                        Please enter a longer task name.
                     </span>
-					<span *ngIf="meetingFormControl.name.errors?.maxlength">
-						Name should not exceed {{ limit.Name.max }} characters.
+					<span *ngIf="taskFormControl.name.errors?.maxlength">
+						Task name should not exceed {{ limit.Task.max }} characters.
 					</span>
             </div> 
-			<input formControlName="location"
-                placeholder="Location"
-				type="text"/>
-			<div *ngIf="submitted && meetingFormControl.location.errors"
-				class="input-error">
-				<span *ngIf="meetingFormControl.location.errors?.required">
-					Location is required.
-				</span>
-				<span *ngIf="meetingFormControl.location.errors?.maxlength">
-					Location should not exceed {{ limit.Name.max }} characters.
-				</span>
-			</div> 
-			<app-checkbox checkboxName="virtual"
-				id="action-virtual"
-				name="Virtual"
-				[form]="meetingForm.controls.options">
-			</app-checkbox>
         </fieldset>
-		<fieldset class="start-date">
-			<app-heading text="Start Date"
+		<fieldset class="due-date">
+			<app-heading text="Due Date"
 				[level]="headerLevel.H3">
+				<span class="event-form__optional" post>Optional</span>
             </app-heading>
 			<span class="form-instructions"
-				for="event-description">Choose start date and time.</span>
+				for="event-description">Choose due date and time.</span>
 			<app-datepicker appFocus 
 				class="datepicker-container"
 				controlName="day"
-				fieldName="Start date"
-				placeholder="Start Date"
+				fieldName="Due date"
+				placeholder="Due Date"
 				[calendarType]="calendarType"
-				[form]="meetingForm.controls.startDate"
+				[form]="taskForm.controls.dueDate"
 				[submitted]="submitted"
 				[topic]="topic">
-			</app-datepicker>
-			<div *ngIf="submitted && startDateCtrl.errors"
-				class="input-error after-picker">
-				<span *ngIf="startDateCtrl.errors?.startDateAfterEnd">
-					Start date must be before end date.
-				</span>
-            </div> 	
+			</app-datepicker>	
 			<input readonly
-				aria-label="Start Time"
-				formControlName="startTime" 
-				placeholder="Start Time"
+				aria-label="Due Time"
+				formControlName="dueTime" 
+				placeholder="Due Time"
                 [ngxTimepicker]="startDial"/>
             <ngx-material-timepicker #startDial
 				[appendToInput]="true"
 				[theme]="timePickerTheme"
-				(timeChanged)="onStartTimeChanged($event)">
+				(timeChanged)="onDueTimeChanged($event)">
 			</ngx-material-timepicker>
-			<div *ngIf="submitted && meetingFormControl.startTime.errors"
-				class="input-error after-picker">
-                <span *ngIf="meetingFormControl.startTime.errors?.required">
-                    Start time is required.
-                </span>
-            </div> 	
-		</fieldset>
-		<fieldset class="end-date">
-			<app-heading text="End Date"
-				[level]="headerLevel.H3">
-            </app-heading>
-			<span class="form-instructions"
-				for="event-description">
-				Choose end date and time.
-			</span>
-			<app-datepicker appFocus 
-				class="datepicker-container"
-				controlName="day"
-				fieldName="End date"
-				placeholder="End Date"
-				[calendarType]="calendarType"
-				[form]="meetingForm.controls.endDate"
-				[submitted]="submitted"
-				[topic]="topic">
-			</app-datepicker>
-			<input readonly 
-				aria-label="End Time"
-				formControlName="endTime"
-				placeholder="End Time"
-                [ngxTimepicker]="endDial">
-            <ngx-material-timepicker #endDial
-				[appendToInput]="true"
-				[theme]="timePickerTheme"
-				(timeChanged)="onEndTimeChanged($event)">
-			</ngx-material-timepicker>
-			<div *ngIf="submitted && meetingFormControl.endTime.errors"
-				class="input-error after-picker">
-				<span *ngIf="meetingFormControl.endTime.errors?.required">
-					End time is required.
-				</span>
-				<span *ngIf="meetingFormControl.endTime.errors?.startTimeAfterEnd">
-					End time must be after start time.
-				</span>
-			</div> 	
 		</fieldset>
 		<app-description controlName="description"
-			formInstructions="Enter a description of the meeting."
-			[form]="meetingForm"
+			formInstructions="Enter a description of the task."
+			[form]="taskForm"
 			[submitted]="submitted">
 		</app-description>
         <fieldset class="form-actions">
@@ -129,7 +63,7 @@
                 Cancel
             </button>        
             <button type="submit">
-                {{ meetingConfig.buttonAction }}
+                {{ taskConfig.buttonAction }}
             </button>
         </fieldset>
     </form>

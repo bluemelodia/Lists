@@ -1,18 +1,19 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { AddRecipientComponent } from "./recipient/add-recipient/add.component";
 import { AddGiftComponent } from "./gift/add-gift/add.component";
 import { AddMeetingComponent } from "./meeting/add-meeting/add.component";
+import { AddRecipientComponent } from "./recipient/add-recipient/add.component";
+import { AddTaskComponent } from "./task/add-task/add.component";
 
 const routes: Routes = [
 	{
-		path: "add-recipient",
-		component: AddRecipientComponent,
+		path: "add-gift",
+		component: AddGiftComponent,
 	},
 	{
-		path: "edit-recipient",
-		component: AddRecipientComponent,
+		path: 'edit-gift',
+		component: AddGiftComponent,
 	},
 	{
 		path: "add-meeting",
@@ -23,13 +24,21 @@ const routes: Routes = [
 		component: AddMeetingComponent,
 	},
 	{
-		path: "add-gift",
-		component: AddGiftComponent,
+		path: "add-recipient",
+		component: AddRecipientComponent,
 	},
 	{
-		path: 'edit-gift',
-		component: AddGiftComponent,
-	}
+		path: "edit-recipient",
+		component: AddRecipientComponent,
+	},
+	{
+		path: "add-task",
+		component: AddTaskComponent,
+	},
+	{
+		path: "edit-task",
+		component: AddTaskComponent,
+	},
 ];
 
 @NgModule({
