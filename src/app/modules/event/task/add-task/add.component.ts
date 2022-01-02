@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from "@angular/core";
-import { 
+import {
 	AbstractControl,
 	FormBuilder,
 	FormGroup,
@@ -15,7 +15,11 @@ import { Topic } from "../../../../constants/topics.constants";
 
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
-import { ConfirmDialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
+import {
+	ConfirmDialogAction,
+	DialogAction,
+	DialogPage,
+} from "../../../../interfaces/dialog.interface";
 import { Task, TaskAction } from "../../../../interfaces/event/task.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
@@ -25,6 +29,7 @@ import { appTheme } from "../../../../modules/form/timepicker/time-picker.consta
 import { DialogService } from "../../../../services/dialog.service";
 import { EditService } from "../../../../services/edit.service";
 import { NavService } from "../../../../services/nav.service";
+import { TaskService } from "../../../../services/task.service";
 import { ValidationService } from "../../../../services/validation.service";
 
 import { TaskUtils } from "../../../../utils/task.utils";
@@ -34,7 +39,7 @@ import { TaskUtils } from "../../../../utils/task.utils";
 	templateUrl: "./add.component.html",
 	styleUrls: ["./add.component.css"]
 })
-export class AddTaskComponent implements OnInit {	
+export class AddTaskComponent implements OnInit {
 	@HostBinding("class") containerClasses = "section-container";
 
 	public calendarType: CalendarType = CalendarType.Solar;
@@ -57,6 +62,7 @@ export class AddTaskComponent implements OnInit {
 		private navService: NavService,
 		private route: ActivatedRoute,
 		private router: Router,
+		private taskService: TaskService,
 	) { }
 
 	ngOnInit(): void {
@@ -130,7 +136,7 @@ export class AddTaskComponent implements OnInit {
 	}
 
 	get name(): string {
-		return this.taskFormControl.task.value;
+		return this.taskFormControl.name.value;
 	}
 
 	get dueDateCtrl(): AbstractControl {
@@ -150,7 +156,7 @@ export class AddTaskComponent implements OnInit {
 	}
 
 	get recurrence(): Recurrence {
-		return this.taskFormControl.recurrence.value;
+		return this.taskForm.get("recurrence.taskRecurrence")?.value;
 	}
 
 	onDueTimeChanged($event): void {
@@ -166,7 +172,7 @@ export class AddTaskComponent implements OnInit {
 			this.submitted = false;
 			this.task = {
 				...this.task,
-				task: this.name,
+				name: this.name,
 				description: this.description,
 				recurrence: this.recurrence,
 				dueDate: this.dueDate,
@@ -174,7 +180,7 @@ export class AddTaskComponent implements OnInit {
 			};
 
 			console.info("[Add Task] Add task: ", this.task);
-			/*this.taskService.modifyTask(this.task, this.taskConfig.action)
+			this.taskService.modifyTask(this.task, this.taskConfig.action)
 				.pipe(
 					take(1),
 					takeUntil(this.ngUnsubscribe$)
@@ -182,17 +188,17 @@ export class AddTaskComponent implements OnInit {
 				.subscribe((response: ResponseStatus) => {
 					switch (this.taskConfig.action) {
 						case TaskAction.Add:
-							this.dialogService.showResponseStatusDialog(response, DialogAction.Add, DialogPage.Meeting);
+							this.dialogService.showResponseStatusDialog(response, DialogAction.Add, DialogPage.Tasks);
 							break;
 						case TaskAction.Edit:
-							this.dialogService.showResponseStatusDialog(response, DialogAction.Edit, DialogPage.Meeting);
+							this.dialogService.showResponseStatusDialog(response, DialogAction.Edit, DialogPage.Tasks);
 							break;
 					}
 
 					if (response === ResponseStatus.SUCCESS) {
 						this.subscribeToDialogClose();
 					}
-				});*/
+				});
 		}
 	}
 

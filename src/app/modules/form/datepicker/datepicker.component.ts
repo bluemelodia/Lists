@@ -121,7 +121,6 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 			.subscribe((event: FocusEvent) => {
 				switch (event.key) {
 					case Key.Escape:
-						// console.info("Event: ", event, this.showCal);
 						if (this.calendarData.showCal) {
 							this.showHideCal();
 						}

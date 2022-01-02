@@ -13,7 +13,7 @@ export interface Task {
 	description?: string;
 	dueDate?: CalendarDay;
 	dueTime?: string;
-	task: string;
+	name: string;
 	recurrence?: Recurrence;
 }
 

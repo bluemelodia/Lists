@@ -33,7 +33,7 @@ export enum DialogPage {
 	Gift = 'gift',
 	Recipient = 'recipient',
 	Settings = 'settings',
-	Tasks = 'tasks',
+	Tasks = 'task',
 }
 
 export interface DialogConfig {

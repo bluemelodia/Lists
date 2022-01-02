@@ -3,35 +3,36 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
-import { AddGift, Gift, GiftAction } from "../interfaces/event/gift.interface";
+import { Task, TaskAction } from "../interfaces/event/task.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
-import { GiftUtils } from "../utils/gift.utils";
+
+import { TaskUtils } from "../utils/task.utils";
 
 @Injectable({
 	providedIn: "root"
 })
-export class GiftService {
+export class TaskService {
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
 
 	constructor(
 		private http: HttpClient,
 	) {}
 
-	public modifyGift(gift: Gift, action: GiftAction): Observable<ResponseStatus> {
+	public modifyTask(task: Task, action: TaskAction): Observable<ResponseStatus> {
 		switch (action) {
-			case GiftAction.Add:
-				return this.postGift(gift);
-			case GiftAction.Edit:
-				return this.postGift(gift, GiftAction.Edit);
+			case TaskAction.Add:
+				return this.postTask(task);
+			case TaskAction.Edit:
+				return this.postTask(task, TaskAction.Edit);
 		}
 	}
 
-	public postGift(gift: Gift, action = GiftAction.Add): Observable<ResponseStatus> {
-		console.info("[Gift Service] Post or edit recipient: ", gift);
+	public postTask(task: Task, action = TaskAction.Add): Observable<ResponseStatus> {
+		console.info("[Task Service] Post or edit task: ", task);
 
 		return this.http.post<Response>(
-			GiftUtils.giftURLForAction(action),
-			GiftUtils.formatGift(gift),
+			TaskUtils.taskURLForAction(action),
+			task,
 			{
 				headers: this.headers
 			}
@@ -46,11 +47,11 @@ export class GiftService {
 			)
 	}
 
-	public deleteGift(uuid: string): Observable<ResponseStatus> {
-		console.info("[Gift Service] Delete gift with uuid: ", uuid);
+	public deleteTask(uuid: string): Observable<ResponseStatus> {
+		console.info("[Task Service] Delete task with uuid: ", uuid);
 
 		return this.http.delete<Response>(
-			`${GiftUtils.giftURLForAction(GiftAction.Delete)}/guest/${uuid}`,
+			`${TaskUtils.taskURLForAction(TaskAction.Delete)}/guest/${uuid}`,
 			{
 				headers: this.headers
 			}
@@ -69,16 +70,16 @@ export class GiftService {
 	* @param userID 
 	* @returns A sorted list of birthdays for this user.
 	*/
-	public getGifts(userID = "guest"): Observable<AddGift[]> {
-		console.info("[Gift Service] Get gifts for id: ", userID);
+	public getTasks(userID = "guest"): Observable<Task[]> {
+		console.info("[Task Service] Get tasks for id: ", userID);
 
-		const getGift = `${GiftUtils.giftURLForAction(GiftAction.Fetch)}/${userID}`;
+		const getTask = `${TaskUtils.taskURLForAction(TaskAction.Fetch)}/${userID}`;
 		return this.http.get<Response>(
-			getGift
+			getTask
 		)
 			.pipe(
 				map((response: Response) => {
-					console.info("[Gift Service] Received gifts: ", response);
+					console.info("[Task Service] Received tasks: ", response);
 					return response.responseData;
 				}),
 				catchError(() => {

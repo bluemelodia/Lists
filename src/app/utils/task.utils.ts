@@ -2,11 +2,11 @@ import { Endpoint } from "../constants/urls.constants";
 import { TaskAction, TaskConfig, TaskFormSubmitActions } from "../interfaces/event/task.interface";
 
 export class TaskUtils {
-	private static baseURL = Endpoint.Task;
+	private static baseURL = Endpoint.TASKS;
 	private static addTaskURL = `${TaskUtils.baseURL}/addTask`;
 	private static deleteTaskURL = `${TaskUtils.baseURL}/deleteTask`;
 	private static editTaskURL = `${TaskUtils.baseURL}/editTask`;
-	private static getTaskURL = `${TaskUtils.baseURL}/getTask`;
+	private static getTaskURL = `${TaskUtils.baseURL}/getTasks`;
 
 	public static taskURLForAction(action: TaskAction): string {
 		let url: string;
