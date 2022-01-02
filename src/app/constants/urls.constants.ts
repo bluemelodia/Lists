@@ -12,4 +12,5 @@ export const Endpoint: URL = {
 	GIFT: BASE_URL + "/gifts",
 	MEETING: BASE_URL + "/meetings",
 	SETTINGS: BASE_URL + "/settings",
+	TASKS: BASE_URL + "/tasks",
 }

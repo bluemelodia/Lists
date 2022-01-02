@@ -3,9 +3,10 @@ import { Injectable } from "@angular/core";
 import { Topic } from '../constants/topics.constants';
 
 import { GiftDetails } from "../interfaces/event/gift.interface";
+import { Task } from "../interfaces/event/task.interface";
 import { AddMeeting, AddRecipient } from "../interfaces/service/service-objects.interface";
 
-type Item = GiftDetails | AddMeeting | AddRecipient;
+type Item = GiftDetails | AddMeeting | AddRecipient | Task;
 
 @Injectable({
 	providedIn: "root"
@@ -22,6 +23,10 @@ export class EditService {
 
 	public editRecipient(recipient: AddRecipient): void {
 		this.saveItem(Topic.Birthdays, recipient);
+	}
+
+	public editTask(task: Task): void {
+		this.saveItem(Topic.Tasks, task);
 	}
 
 	public getItem(topic: Topic): Item {

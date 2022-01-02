@@ -19,6 +19,10 @@ export const FormLimit = {
 		min: 1,
 		max: 256
 	},
+	Task: {
+		min: 3,
+		max: 256
+	},
 	Year: {
 		min: 1985,
 		max: 10000000000

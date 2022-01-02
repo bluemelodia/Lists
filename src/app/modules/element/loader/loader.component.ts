@@ -6,8 +6,6 @@ import { Component, HostBinding, Input, } from "@angular/core";
 	styleUrls: ["./loader.component.css"]
 })
 export class LoaderComponent {
-	@Input() fullScreen = false;
-
 	@HostBinding("class") public get hostClasses(): string {
 		const hostStyles = [];
 
@@ -17,4 +15,6 @@ export class LoaderComponent {
 
 		return hostStyles.join(" ");
 	}
+	
+	@Input() fullScreen = false;
 }

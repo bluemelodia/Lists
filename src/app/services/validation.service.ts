@@ -175,4 +175,10 @@ export class ValidationService {
 			return null;
 		}
 	}
+
+	dueDateAndTimeValidator(dueDate: string, dueTime: string): ValidatorFn {
+		return (group: FormGroup): AbstractControlOptions => {
+			return null;
+		};
+	}
 }

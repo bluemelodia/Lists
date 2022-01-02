@@ -48,9 +48,9 @@ export const TOPICS: IMenu = {
 		route: "/gifts",
 		title: "Gifts"
 	},
-	[Topic.Projects]: {
-		route: "/projects",
-		title: "Projects"
+	[Topic.Tasks]: {
+		route: "/tasks",
+		title: "Tasks"
 	},
 };
 
@@ -58,7 +58,7 @@ const TOPIC_LIST: Topic[] = [
 	Topic.Birthdays,
 	Topic.Gifts,
 	Topic.Meetings,
-	Topic.Projects,
+	Topic.Tasks,
 ];
 
 const EVENTS: IMenu = {

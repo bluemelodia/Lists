@@ -11,12 +11,14 @@ import { ImageModule } from "../image/image.module";
 import { AddRecipientComponent } from "./recipient/add-recipient/add.component";
 import { AddGiftComponent } from "./gift/add-gift/add.component";
 import { AddMeetingComponent } from "./meeting/add-meeting/add.component";
+import { AddTaskComponent } from "./task/add-task/add.component";
 
 @NgModule({
 	declarations: [
 		AddRecipientComponent,
 		AddGiftComponent,
 		AddMeetingComponent,
+		AddTaskComponent,
 	],
 	imports: [
 		CommonModule,
@@ -32,6 +34,7 @@ import { AddMeetingComponent } from "./meeting/add-meeting/add.component";
 		AddRecipientComponent,
 		AddGiftComponent,
 		AddMeetingComponent,
+		AddTaskComponent,
 	]
 })
 export class AddEventModule { }

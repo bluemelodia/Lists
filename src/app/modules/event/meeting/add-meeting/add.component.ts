@@ -51,6 +51,8 @@ import { MeetingUtils } from "../../../../utils/meeting.utils";
 	styleUrls: ["./add.component.css"]
 })
 export class AddMeetingComponent implements OnInit {
+	@HostBinding("class") containerClasses = "section-container";
+
 	public calendarType: CalendarType = CalendarType.Solar;
 	public headerLevel = HeaderLevel;
 	public limit = FormLimit;
@@ -63,8 +65,6 @@ export class AddMeetingComponent implements OnInit {
 	public topic = Topic.Meetings;
 
 	private ngUnsubscribe$ = new Subject<void>();
-
-	@HostBinding("class") containerClasses = "section-container";
 
 	constructor(
 		private customValidators: ValidationService,

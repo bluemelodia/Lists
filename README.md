@@ -30,12 +30,16 @@ How to make image upload easy with Angular
 - Ensure that all fields are propagating edits correctly (birthdays/settings).
 - Make the app more responsive, adding animations.
 - Show a list of upcoming events on the home page (four widgets, so four sections).
-- Add accessibility, don't have two modals open at the same time.
 - Add ESLinting
-  - When you delete a recipient, all their gifts have to be deleted as well.
 - Fix issue with undefined dates sent out in emails.
 - Better network error handling.
 - Clear session storage on tab close and logout.
+- Test in all browsers.
+
+- TODO list: 
+	- Status: Not started, in progress, complete
+	- Reminder: Every month, every day, every day of week
+	- Due date and time (today, tomorrow, etc.)
 
 ## Navigation
 

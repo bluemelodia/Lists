@@ -20,16 +20,16 @@ import { NavService } from "./services/nav.service";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
+	@HostBinding("class") containerClasses = "flex-centered__column full-viewport";
+	
+	public loadingState$ = new Subject<boolean>();
+
 	constructor(
 		private calendarService: CalendarService,
 		private loadingService: LoadingService,
 		private navService: NavService,
 		private route: ActivatedRoute,
 	) { }
-
-	@HostBinding("class") containerClasses = "flex-centered__column full-viewport";
-
-	public loadingState$ = new Subject<boolean>();
 
 	ngOnInit(): void {
 		this.setupSubscriptions();

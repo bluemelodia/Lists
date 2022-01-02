@@ -11,7 +11,6 @@ import { EventUtils } from "./event.utils";
 
 import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
 import { DateStatus } from "../interfaces/date.interface";
-import { Dialog } from "../interfaces/dialog.interface";
 import { AddRecipient } from "../interfaces/service/service-objects.interface";
 
 export class RecipientUtils {
