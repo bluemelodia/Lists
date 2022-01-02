@@ -10,12 +10,13 @@ import { Subject } from "rxjs";
 import { filter, take, takeUntil } from "rxjs/operators";
 
 import { FormLimit } from "../../../../constants/gifts.constants";
+import { Recurrence } from "../../../../constants/tasks.constants";
 import { Topic } from "../../../../constants/topics.constants";
 
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
 import { ConfirmDialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
-import { Recurrence, Task, TaskAction } from "../../../../interfaces/event/task.interface";
+import { Task, TaskAction } from "../../../../interfaces/event/task.interface";
 import { HeaderLevel } from "../../../../interfaces/header.interface";
 import { ResponseStatus } from "../../../../interfaces/response.interface";
 
@@ -81,12 +82,9 @@ export class AddTaskComponent implements OnInit {
 					Validators.maxLength(this.limit.Description.max),
 				]
 			],
-			recurrence: [
-				"",
-				[
-					Validators.required
-				]
-			],
+			recurrence: this.fb.group({
+				taskRecurrence: ["", [Validators.required]],
+			}),
 		},
 			{
 				updateOn: "submit",

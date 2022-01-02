@@ -23,6 +23,10 @@
 					</span>
             </div> 
         </fieldset>
+		<app-recurrence-select appFocus
+			[form]="taskForm.controls.recurrence"
+			[submitted]="submitted">
+		</app-recurrence-select>
 		<fieldset class="due-date">
 			<app-heading text="Due Date"
 				[level]="headerLevel.H3">

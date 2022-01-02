@@ -1,0 +1,34 @@
+<form [formGroup]="form">
+	<section #select class="input-container">
+		<input readonly
+			type="text" 
+			placeholder="Select Recurrence"
+			[ngClass]="{ 'options-open' : showOptionList }"
+			[value]="recurrence[recurrenceForm?.value] || ''"
+			(click)="showHideOptions()"
+			(keydown)="onKeydownEvent($event)"/>
+		<section *ngIf="showOptionList"
+			class="options"
+			[ngClass]="{ 'show' : showOptionList }">
+			<button *ngFor="let key of recurrenceKeys; let i = index"
+				class="option focus-option"	
+				type="button"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[ngClass]="{ 'selected' : recurrenceForm?.value === key, 'focus-origin' : i === 0 }"
+				[tabindex]="showOptionList ? 0 : -1"
+				(click)="selectOption(key)">
+				{{ recurrence[key] }}
+			</button>
+			<button class="tab-stop"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[tabindex]="showOptionList ? 0 : -1">
+			</button>
+		</section>
+		<div *ngIf="submitted && recurrenceForm?.errors"
+			class="input-error">
+			<span *ngIf="recurrenceForm?.errors?.required">
+				Recurrence is required.
+			</span>
+		</div> 
+	</section>
+</form>
