@@ -8,22 +8,25 @@ import { TimeUtils } from '../utils/time.utils';
 })
 export class TaskFormatterPipe implements PipeTransform {
 	public transform(value: Task): string {
-		if (value) {
-			let startDateFormatted;
+		const hasDueDate = Object.keys(value?.dueDate)?.length > 0;
+		const hasDueTime = !!value?.dueTime;
 
-			if (value.dueDate) {
+		if (hasDueDate || hasDueTime) {
+			let startDateFormatted = '';
+
+			if (hasDueDate) {
 				const dueDate = value.dueDate;
 				const date = new Date(dueDate.year, dueDate.month - 1, dueDate.value);
 
-				startDateFormatted = `${TimeUtils.getDayOfWeek(date.getDay())} - ${TimeUtils.getMonth(date.getMonth())} ${TimeUtils.getDateOfMonth(date.getDate())}`;
+				startDateFormatted += `${TimeUtils.getDayOfWeek(date.getDay())} - ${TimeUtils.getMonth(date.getMonth())} ${TimeUtils.getDateOfMonth(date.getDate())}`;
 				startDateFormatted += `, ${date.getFullYear()}`;
 			}
 
-			if (value.dueDate && value.dueTime) {
+			if (hasDueDate && hasDueTime) {
 				startDateFormatted += ' - ';
 			}
 
-			if (value.dueTime) {
+			if (hasDueTime) {
 				startDateFormatted += value.dueTime;
 			}
 

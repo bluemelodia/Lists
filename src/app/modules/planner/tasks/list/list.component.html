@@ -19,7 +19,7 @@
 
 <ng-template #taskList let-task="task">
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
-		<p *ngIf="task.dueDate || task.dueTime" class="task-details__wrapper">
+		<p class="task-details__wrapper">
 			<span class="task-details__label">Due</span>
 			<span class="task-details__description">{{ task | taskFormatter: true }}</span>
 		</p>
