@@ -41,6 +41,10 @@ How to make image upload easy with Angular
 	- Reminder: Every month, every day, every day of week
 	- Due date and time (today, tomorrow, etc.)
 
+
+
+- Ensure that only necessary fields are serialized - and all fields are coming back with the right values.
+
 ## Navigation
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.

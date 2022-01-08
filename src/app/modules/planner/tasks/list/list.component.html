@@ -1,0 +1,77 @@
+<section *ngIf="list && list.length > 0"
+	class="task-list__scrollable-container hide-scrollbar">
+	<section class="task-list__scrollable-list">
+		<ul class="task-list">
+			<li *ngFor="let task of list"
+				class="task-list__item">
+				<ng-container [ngTemplateOutlet]="taskList" 
+					[ngTemplateOutletContext]="{ 'task': task }">
+				</ng-container>   
+			</li>
+		</ul>
+	</section>	
+</section>
+
+<section *ngIf="list && list.length === 0"
+	class="no-results flex-centered__column">
+    <app-no-items [config]="noItemsConfig"></app-no-items>
+</section>
+
+<ng-template #taskList let-task="task">
+	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
+		<p *ngIf="task.dueDate || task.dueTime" class="task-details__wrapper">
+			<span class="task-details__label">Due</span>
+			<span class="task-details__description">{{ task | taskFormatter: true }}</span>
+		</p>
+		<!--<span class="task-list__badges">
+			<app-meeting-indicator [isVirtual]="meeting.virtual"></app-meeting-indicator>
+			<app-date-indicator *ngIf="meeting.status"
+				[status]="meeting.status">
+			</app-date-indicator>
+		</span>
+
+export interface Task {
+	id?: string;
+	uuid?: string;
+	description?: string;
+	dueDate?: CalendarDay;
+	dueTime?: string;
+	name: string;
+	recurrence?: Recurrence;
+}
+
+
+
+		<app-heading [level]="headerLevel.H2"
+			[text]="meeting.name">
+			<section post class="actions edit-actions">
+				<app-action ariaLabel="Edit"
+					[enabled]="true"
+					[icon]="icon.Edit"
+					(actionSelected)="editMeeting(meeting)">
+				</app-action>
+				<app-action ariaLabel="Delete"
+					[enabled]="true"
+					[icon]="icon.Delete"
+					(actionSelected)="onDeleteClicked(meeting.uuid)">
+				</app-action>
+			</section>
+		</app-heading>
+		<p class="task-details__wrapper">
+			<span class="task-details__label">Start</span>
+			<span class="task-details__description">{{ meeting | meetingFormatter: true }}</span>
+		</p>
+		<p class="task-details__wrapper">
+			<span class="task-details__label">End</span>
+			<span class="task-details__description">{{ meeting | meetingFormatter: false }}</span>
+		</p>
+		<p class="task-details__wrapper">
+			<span class="task-details__label">Location</span>
+			<span class="task-details__description">{{ meeting.location }}</span>
+		</p>
+		<p *ngIf="meeting.description">
+			<span class="task-details__label">Details</span>
+			<span class="task-details__description">{{ meeting.description }}</span>
+		</p>-->
+	</section>
+</ng-template>

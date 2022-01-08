@@ -11,19 +11,19 @@ export class MeetingFormatterPipe implements PipeTransform {
 		if (value) {
 			if (isStart) {
 				const startDate = new Date(value.start_year, value.start_month - 1, value.start_date, value.start_hour, value.start_minute);
-				let startDateFormatted = `${MeetingUtils.getMeetingDay(startDate.getDay())} - ${MeetingUtils.getMeetingMonth(startDate.getMonth())} ${MeetingUtils.getMeetingDate(startDate.getDate())}`;				
+				let startDateFormatted = `${TimeUtils.getDayOfWeek(startDate.getDay())} - ${TimeUtils.getMonth(startDate.getMonth())} ${TimeUtils.getDateOfMonth(startDate.getDate())}`;
 				startDateFormatted += `, ${startDate.getFullYear()}`;
 
 				const startTime = TimeUtils.get12HourTime(value.start_hour, value.start_minute);
 				return `${startDateFormatted} ${startTime}`;
 			} else {
 				const endDate = new Date(value.end_year, value.end_month - 1, value.end_date, value.end_hour, value.end_minute);
-				let endDateFormatted = `${MeetingUtils.getMeetingDay(endDate.getDay())} - ${MeetingUtils.getMeetingMonth(endDate.getMonth())} ${MeetingUtils.getMeetingDate(endDate.getDate())}`;
+				let endDateFormatted = `${TimeUtils.getDayOfWeek(endDate.getDay())} - ${TimeUtils.getMonth(endDate.getMonth())} ${TimeUtils.getDateOfMonth(endDate.getDate())}`;
 				endDateFormatted += `, ${endDate.getFullYear()}`;
 
 				const endTime = TimeUtils.get12HourTime(value.end_hour, value.end_minute);
 				return `${endDateFormatted} ${endTime}`;
-			}			
+			}
 		}
 		return null;
 	}

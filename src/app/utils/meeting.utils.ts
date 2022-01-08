@@ -153,11 +153,11 @@ export class MeetingUtils {
 	}
 
 	private static sortMeetings(a: AddMeeting, b: AddMeeting): number {
-		return a.start_year - b.start_year 
-			|| a.start_month - b.start_month 
-			|| a.start_date - b.start_date 
-			|| a.start_hour - b.start_hour 
-			|| a.start_minute - b.start_minute 
+		return a.start_year - b.start_year
+			|| a.start_month - b.start_month
+			|| a.start_date - b.start_date
+			|| a.start_hour - b.start_hour
+			|| a.start_minute - b.start_minute
 			|| MeetingUtils.sortByName(a.name, b.name);
 	}
 
@@ -185,73 +185,10 @@ export class MeetingUtils {
 		});
 	}
 
-	public static getMeetingDay(meetingDay: number): string {
-		switch (meetingDay) {
-			case 0:
-				return "Sun";
-			case 1:
-				return "Mon";
-			case 2:
-				return "Tues";
-			case 3:
-				return "Wed";
-			case 4:
-				return "Thu";
-			case 5:
-				return "Fri";
-			case 6:
-				return "Sat";
-		}
-	}
-
-	public static getMeetingMonth(month: number): string {
-		switch (month) {
-			case 0:
-				return "Jan";
-			case 1:
-				return "Feb";
-			case 2:
-				return "Mar";
-			case 3:
-				return "Apr";
-			case 4:
-				return "May";
-			case 5:
-				return "Jun";
-			case 6:
-				return "Jul";
-			case 7:
-				return "Aug";
-			case 8:
-				return "Sep";
-			case 9:
-				return "Oct";
-			case 10:
-				return "Nov";
-			case 11:
-				return "Dec";
-		}
-	}
-
-	public static getMeetingDate(date: number): string {
-		const remainder = date % 10;
-		let suffix = 'th';
-
-		if (remainder === 1 && date !== 11) { // 1st, 21st, 31st
-			suffix = 'st';
-		} else if (remainder === 2 && date !== 12) { // 2nd, 22nd
-			suffix = 'nd';
-		} else if (remainder === 3 && date !== 13) { // 3rd, 23rd
-			suffix = 'rd';
-		}
-
-		return `${date}${suffix}`;
-	}
-
 	private static getMeetingDiff(meeting: AddMeeting): number {
 		const today = new Date();
 		const meetingDate = new Date(meeting.start_year, meeting.start_month - 1, meeting.start_date, meeting.start_hour, meeting.start_minute);
-		return(meetingDate.getTime() - today.getTime());
+		return (meetingDate.getTime() - today.getTime());
 	}
 
 	private static isEnded(meeting: AddMeeting): boolean {
