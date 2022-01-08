@@ -25,7 +25,7 @@ import { DialogService } from "../../../../services/dialog.service";
 import { RecipientService } from "../../../../services/recipient.service";
 
 @Component({
-	selector: "task-birthdays-list",
+	selector: "planner-birthdays-list",
 	templateUrl: "./list.component.html",
 	styleUrls: ["./list.component.css"]
 })

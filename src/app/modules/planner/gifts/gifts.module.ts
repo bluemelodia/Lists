@@ -11,17 +11,17 @@ import { FormElementModule } from '../../form/form.module';
 import { IconsModule } from '../../icons/icons.module';
 
 @NgModule({
-  declarations: [
-    GiftsComponent,
-    ListComponent
-  ],
-  imports: [
-    CommonModule,
-	DirectiveModule,
-	ElementModule,
-	FormElementModule,
-	IconsModule,
-	GiftTasksRoutingModule,
-  ]
+	declarations: [
+		GiftsComponent,
+		ListComponent
+	],
+	imports: [
+		CommonModule,
+		DirectiveModule,
+		ElementModule,
+		FormElementModule,
+		IconsModule,
+		GiftTasksRoutingModule,
+	]
 })
-export class GiftsTaskModule { }
+export class GiftModule { }

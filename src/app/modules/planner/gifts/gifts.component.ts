@@ -14,7 +14,7 @@ import { LoadingService } from '../../../services/loading.service';
 import { RecipientService } from '../../../services/recipient.service';
 
 @Component({
-	selector: 'app-gifts',
+	selector: 'planner-gifts',
 	templateUrl: './gifts.component.html',
 	styleUrls: ['./gifts.component.css']
 })

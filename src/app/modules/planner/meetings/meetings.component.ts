@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
-import { Dialog, DialogAction, DialogPage } from '../../../interfaces/dialog.interface';
+import { DialogAction, DialogPage } from '../../../interfaces/dialog.interface';
 import { HeaderLevel } from '../../../interfaces/header.interface';
 import { ResponseStatus } from '../../../interfaces/response.interface';
 import { AddMeeting } from '../../../interfaces/service/service-objects.interface';
@@ -12,7 +12,7 @@ import { LoadingService } from '../../../services/loading.service';
 import { MeetingService } from '../../../services/meeting.service';
 
 @Component({
-	selector: 'task-meetings',
+	selector: 'planner-meetings',
 	templateUrl: './meetings.component.html',
 	styleUrls: ['./meetings.component.css']
 })

@@ -29,4 +29,4 @@ import { PipesModule } from '../../../pipes/pipes.module';
 		MeetingsComponent,
 	]
 })
-export class MeetingsTaskModule { }
+export class MeetingModule { }

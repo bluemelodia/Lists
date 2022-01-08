@@ -22,7 +22,7 @@ import { EditService } from '../../../../services/edit.service';
 import { MeetingService } from '../../../../services/meeting.service';
 
 @Component({
-	selector: 'task-meetings-list',
+	selector: 'planner-meetings-list',
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.css']
 })

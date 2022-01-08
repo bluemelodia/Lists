@@ -1,10 +1,10 @@
-import { 
-	Component, 
-	EventEmitter, 
-	HostBinding, 
-	Input, 
-	OnDestroy, 
-	OnInit, 
+import {
+	Component,
+	EventEmitter,
+	HostBinding,
+	Input,
+	OnDestroy,
+	OnInit,
 	Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -27,9 +27,9 @@ import { EditService } from '../../../../services/edit.service';
 import { GiftService } from '../../../../services/gift.service';
 
 @Component({
-  selector: 'task-gifts-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+	selector: 'planner-gifts-list',
+	templateUrl: './list.component.html',
+	styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnDestroy {
 	@HostBinding("class") public get hostClasses(): string {

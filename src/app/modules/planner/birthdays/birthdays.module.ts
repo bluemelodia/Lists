@@ -27,4 +27,4 @@ import { IndicatorModule } from "../../indicator/indicator.module";
 		BirthdaysComponent,
 	]
 })
-export class BirthdaysTaskModule { }
+export class BirthdayModule { }

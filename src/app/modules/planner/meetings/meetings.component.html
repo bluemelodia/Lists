@@ -1,0 +1,4 @@
+<section class="task-list__container form-container">
+	<planner-meetings-list [list]="meetingList$ | async"
+		(deletedMeeting)="getMeetings()"></planner-meetings-list>
+</section>

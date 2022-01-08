@@ -18,7 +18,7 @@ import { ResponseStatus } from "../../../interfaces/response.interface";
 import { AddRecipient } from "../../../interfaces/service/service-objects.interface";
 
 @Component({
-	selector: "task-birthdays",
+	selector: "planner-birthdays",
 	templateUrl: "./birthdays.component.html",
 	styleUrls: ["./birthdays.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
