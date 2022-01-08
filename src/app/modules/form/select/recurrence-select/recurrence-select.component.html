@@ -14,7 +14,7 @@
 				class="option focus-option"	
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : recurrenceForm?.value === key, 'focus-origin' : i === 0 }"
+				[ngClass]="{ 'selected' : selected[key], 'focus-origin' : i === 0 }"
 				[tabindex]="showOptionList ? 0 : -1"
 				(click)="selectOption(key)">
 				{{ recurrence[key] }}

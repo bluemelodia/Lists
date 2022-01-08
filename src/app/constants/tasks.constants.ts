@@ -1,7 +1,6 @@
 export enum Recurrence {
 	Once = 'Once',
 	Daily = 'Daily',
-	Weekly = 'Weekly',
 	Monthly = 'Monthly',
 	Sunday = 'Sunday',
 	Monday = 'Monday',

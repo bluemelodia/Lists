@@ -31,6 +31,7 @@ export class RecipientSelectComponent extends SelectComponent {
 
 	public selectOption(recipient: AddRecipient): void {
 		this.showOptionList = false;
+
 		this.recipientForm?.patchValue(recipient);
 	}
 }

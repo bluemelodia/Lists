@@ -89,7 +89,7 @@ export class AddTaskComponent implements OnInit {
 				]
 			],
 			recurrence: this.fb.group({
-				taskRecurrence: ["", [Validators.required]],
+				taskRecurrence: [[], [Validators.required]],
 			}),
 		},
 			{
