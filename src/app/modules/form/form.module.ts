@@ -20,13 +20,16 @@ import { RadioComponent } from "./radio/radio.component";
 import { CountrySelectComponent } from "./select/country-select/country-select.component";
 import { OccasionSelectComponent } from './select/occasion-select/occasion-select.component';
 import { PhoneSelectComponent } from "./select/phone-select/phone-select.component";
+
 import { RecipientFilterComponent } from "./select/recipient-filter/recipient-filter.component";
 import { RecipientSelectComponent } from './select/recipient-select/recipient-select.component';
 import { RecurrenceFilterComponent } from "./select/recurrence-filter/recurrence-filter.component";
 import { RecurrenceSelectComponent } from "./select/recurrence-select/recurrence-select.component";
+
 import { SelectComponent } from './select/select.component';
-import { StatusSelectComponent } from "./select/status-select/status-select.component";
 import { SortSelectComponent } from "./select/sort-select/sort-select.component";
+import { SelectFilterComponent } from "./select/status-filter/status-filter.component";
+import { StatusSelectComponent } from "./select/status-select/status-select.component";
 
 @NgModule({
 	declarations: [
@@ -38,11 +41,12 @@ import { SortSelectComponent } from "./select/sort-select/sort-select.component"
 		OccasionSelectComponent,
 		PhoneSelectComponent,
 		RadioComponent,
-		SelectComponent,
 		RecipientFilterComponent,
   		RecipientSelectComponent,
 		RecurrenceFilterComponent,
 		RecurrenceSelectComponent,
+		SelectComponent,
+		SelectFilterComponent,
 		SortSelectComponent,
 		StatusSelectComponent,
 	],
@@ -72,6 +76,7 @@ import { SortSelectComponent } from "./select/sort-select/sort-select.component"
 		RecurrenceFilterComponent,
 		RecurrenceSelectComponent,
 		SelectComponent,
+		SelectFilterComponent,
 		SortSelectComponent,
 		StatusSelectComponent,
 	],

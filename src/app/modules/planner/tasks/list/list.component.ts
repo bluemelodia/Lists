@@ -5,7 +5,7 @@ import { take, takeUntil } from "rxjs/operators";
 
 import { Event } from "../../../../constants/events.contants";
 import { Icon } from "../../../../constants/icons.constants";
-import { Recurrence } from "../../../../constants/tasks.constants";
+import { Recurrence, Status } from "../../../../constants/tasks.constants";
 
 import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
 import { Task } from "../../../../interfaces/event/task.interface";
@@ -33,10 +33,10 @@ export class ListComponent {
 	public headerLevel = HeaderLevel;
 	public icon = Icon;
 	public noItemsConfig = NO_ITEMS_CONFIG[Event.Task];
-	
+
 	private tasksList$ = new Subject<Task[]>();
 	public list$ = this.tasksList$.asObservable();
-	
+
 	private fullList: Task[];
 	private ngUnsubscribe$ = new Subject<void>();
 
@@ -63,7 +63,11 @@ export class ListComponent {
 		this.tasksList$.next(filteredList);
 	}
 
-	public resetRecurrenceFilter(): void {
+	public filterByStatus(status: Status): void {
+		
+	}
+
+	public resetTasksFilters(): void {
 		this.tasksList$.next(this.fullList);
 	}
 

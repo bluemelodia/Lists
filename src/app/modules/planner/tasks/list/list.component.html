@@ -1,7 +1,10 @@
 <section class="task-list__selectors">
-	<app-recurrence-filter (onFilterReset)="resetRecurrenceFilter()"
+	<app-recurrence-filter (onFilterReset)="resetTasksFilters()"
 		(onRecurrenceSelect)="filterByRecurrence($event)">
 	</app-recurrence-filter>
+	<app-status-filter (onFilterReset)="resetTasksFilters()"
+		(onStatusSelect)="filterByStatus($event)">
+	</app-status-filter>
 </section>
 
 <section *ngIf="list$ | async as list" class="task-list__scrollable-container hide-scrollbar">

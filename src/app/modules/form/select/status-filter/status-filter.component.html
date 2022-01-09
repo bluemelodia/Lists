@@ -1,0 +1,37 @@
+<section #select class="input-container">
+	<button *ngIf="selected" 
+		class="clear-filter-btn"
+		type="button" 
+		(click)="clearFilter()">
+		<i class="fas fa-times"></i>
+	</button>
+	<ng-container [ngTemplateOutlet]="statusSelect"></ng-container>
+</section>
+
+<ng-template #statusSelect>
+	<input readonly
+		class="truncate"
+		placeholder="Filter by Status"
+		type="text"
+		[ngClass]="{ 'options-open' : showOptionList }"
+		[value]="status[selected] || ''"
+		(click)="showHideOptions()"
+		(keydown)="onKeydownEvent($event)"/>
+	<section *ngIf="showOptionList"
+		class="options"
+		[ngClass]="{ 'show' : showOptionList }">
+		<button *ngFor="let key of statusKeys; let i = index"
+			class="option focus-option"
+			type="button"
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[ngClass]="{ 'selected' : key === selected, 'focus-origin' : i === 0 }"
+			[tabindex]="showOptionList ? 0 : -1"
+			(click)="selectOption(key)">
+			{{ status[key] }}
+		</button>
+		<button class="tab-stop"
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[tabindex]="showOptionList ? 0 : -1">
+		</button>
+	</section>
+</ng-template>
