@@ -284,7 +284,8 @@ button:disabled .arrow-btn {
   	background-color: silver;
 }
 
-.badge.info {
+.badge.info, 
+.badge.recurrence {
   	background-color: pink;
 }
 
@@ -293,8 +294,7 @@ button:disabled .arrow-btn {
 }
 
 .badge.priority,
-.badge.started,
-.badge.recurrence {
+.badge.started {
   	background-color: #ea818e;
 }
 

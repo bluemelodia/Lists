@@ -25,7 +25,6 @@ How to make image upload easy with Angular
 
 - User logins and session. Modify logic so that users only see their own account information.
 - Daily jobs scanning for upcoming birthdays and events. This should be done on the backend.
-- Allow users to add reminders (ex. payment reminders/tasks).
 - Show users a calendar of upcoming events.
 - Ensure that all fields are propagating edits correctly (birthdays/settings).
 - Make the app more responsive, adding animations.
@@ -35,6 +34,7 @@ How to make image upload easy with Angular
 - Better network error handling.
 - Clear session storage on tab close and logout.
 - Test in all browsers.
+- Loader doesn't seem to be showing anymore.
 
 - TODO list:
 
@@ -42,6 +42,7 @@ How to make image upload easy with Angular
   - Reminder: Every month, every day, every day of week
   - Due date and time (today, tomorrow, etc.)
   - Recurrence should be a multi-select. Ensure it is properly sent/received from the server and repopulated.
+  - Users should be reminded of tasks. 
 
 - Ensure that only necessary fields are serialized - and all fields are coming back with the right values.
 

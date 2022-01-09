@@ -19,6 +19,9 @@
 
 <ng-template #taskList let-task="task">
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
+		<p class="task-details__wrapper multi-line">
+			<app-recurrence-indicator [recurrences]="task.recurrence"></app-recurrence-indicator>
+		</p>
 		<app-heading [level]="headerLevel.H2"
 			[text]="task.name">
 			<section post class="actions edit-actions">
@@ -37,10 +40,6 @@
 		<p class="task-details__wrapper">
 			<span class="task-details__label">Due</span>
 			<span class="task-details__description">{{ task | taskFormatter: true }}</span>
-		</p>
-		<p class="task-details__wrapper multi-line">
-			<span class="task-details__label">Recurrence</span>
-			<app-recurrence-indicator [recurrences]="task.recurrence"></app-recurrence-indicator>
 		</p>
 		<p *ngIf="task.description" class="task-details__wrapper description">
 			<span class="task-details__label">Details</span>
