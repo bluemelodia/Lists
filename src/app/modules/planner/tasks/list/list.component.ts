@@ -5,6 +5,7 @@ import { take, takeUntil } from "rxjs/operators";
 
 import { Event } from "../../../../constants/events.contants";
 import { Icon } from "../../../../constants/icons.constants";
+import { Recurrence } from "../../../../constants/tasks.constants";
 
 import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
 import { Task } from "../../../../interfaces/event/task.interface";
@@ -22,14 +23,21 @@ import { TaskService } from "../../../../services/task.service";
 	styleUrls: ['./list.component.css']
 })
 export class ListComponent {
-	@Input() list: Task[] = [];
+	@Input() set list(list: Task[]) {
+		this.fullList = list;
+		this.tasksList$.next(list);
+	}
 
 	@Output() deletedTask = new EventEmitter();
 
 	public headerLevel = HeaderLevel;
 	public icon = Icon;
 	public noItemsConfig = NO_ITEMS_CONFIG[Event.Task];
-
+	
+	private tasksList$ = new Subject<Task[]>();
+	public list$ = this.tasksList$.asObservable();
+	
+	private fullList: Task[];
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
@@ -38,6 +46,23 @@ export class ListComponent {
 		private taskService: TaskService,
 		private router: Router,
 	) { }
+
+	public filterByRecurrence(recurrences: Recurrence[]): void {
+		const filteredList = this.fullList.filter((task: Task) => {
+			let matchesFilter = false;
+			recurrences.forEach((recurrence: Recurrence) => {
+				if (task.recurrence[recurrence]) {
+					matchesFilter = true;
+				}
+			});
+			return matchesFilter;
+		});
+		this.tasksList$.next(filteredList);
+	}
+
+	public resetRecurrenceFilter(): void {
+		this.tasksList$.next(this.fullList);
+	}
 
 	public onDeleteClicked(uuid: string): void {
 		this.dialogService.showConfirmDialog(ConfirmDialogAction.Delete, DialogPage.Tasks)

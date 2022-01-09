@@ -1,6 +1,12 @@
-<section *ngIf="list && list.length > 0"
-	class="task-list__scrollable-container hide-scrollbar">
-	<section class="task-list__scrollable-list">
+<section class="task-list__selectors">
+	<app-recurrence-filter (onFilterReset)="resetRecurrenceFilter()"
+		(onRecurrenceSelect)="filterByRecurrence($event)">
+	</app-recurrence-filter>
+</section>
+
+<section *ngIf="list$ | async as list" class="task-list__scrollable-container hide-scrollbar">
+	<section *ngIf="list && list.length > 0"
+		class="task-list__scrollable-list">
 		<ul class="task-list">
 			<li *ngFor="let task of list"
 				class="task-list__item">
@@ -9,12 +15,11 @@
 				</ng-container>   
 			</li>
 		</ul>
-	</section>	
-</section>
-
-<section *ngIf="list && list.length === 0"
-	class="no-results flex-centered__column">
-    <app-no-items [config]="noItemsConfig"></app-no-items>
+	</section>
+	<section *ngIf="list && list.length === 0"
+		class="no-results flex-centered__column">
+		<app-no-items [config]="noItemsConfig"></app-no-items>
+	</section>
 </section>
 
 <ng-template #taskList let-task="task">

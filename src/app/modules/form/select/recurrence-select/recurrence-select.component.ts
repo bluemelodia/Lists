@@ -30,9 +30,13 @@ export class RecurrenceSelectComponent extends SelectComponent {
 	}
 
 	private constructSelectionMap() {
-		Object.keys(this.recurrence).forEach((key: string) => {
-			this.selected[key] = false;
-		});
+		if (!this.recurrenceForm.value) {
+			Object.keys(this.recurrence).forEach((key: string) => {
+				this.selected[key] = false;
+			});
+		} else {
+			this.selected = this.recurrenceForm.value;
+		}
 	}
 
 	public get recurrenceForm(): AbstractControl {

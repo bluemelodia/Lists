@@ -1,0 +1,37 @@
+<section #select class="input-container">
+	<button *ngIf="hasSelectedOptions()" 
+		class="clear-filter-btn"
+		type="button" 
+		(click)="clearFilter()">
+		<i class="fas fa-times"></i>
+	</button>
+	<ng-container [ngTemplateOutlet]="recurrenceSelect"></ng-container>
+</section>
+
+<ng-template #recurrenceSelect>
+	<input readonly
+		class="truncate"
+		placeholder="Filter by Recurrence(s)"
+		type="text"
+		[ngClass]="{ 'options-open' : showOptionList }"
+		[value]="getSelectedOptions()"
+		(click)="showHideOptions()"
+		(keydown)="onKeydownEvent($event)"/>
+	<section *ngIf="showOptionList"
+		class="options"
+		[ngClass]="{ 'show' : showOptionList }">
+		<button *ngFor="let key of recurrenceKeys; let i = index"
+			class="option focus-option"
+			type="button"
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[ngClass]="{ 'selected' : selected[key], 'focus-origin' : i === 0 }"
+			[tabindex]="showOptionList ? 0 : -1"
+			(click)="selectOption(key)">
+			{{ recurrence[key] }}
+		</button>
+		<button class="tab-stop"
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[tabindex]="showOptionList ? 0 : -1">
+		</button>
+	</section>
+</ng-template>
