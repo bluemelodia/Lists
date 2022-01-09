@@ -375,6 +375,11 @@ button:disabled .arrow-btn {
 	white-space: nowrap;
 }
 
+.description {
+	display: flex;
+	flex-direction: column;
+}
+
 /**
 * Animations
 */

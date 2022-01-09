@@ -54,7 +54,9 @@
 		</p>
 		<p *ngIf="gift.description" 
 			class="task-details__wrapper">
-			<span class="task-details__description">{{ gift.description }}</span>
+			<span class="task-details__description description"
+				[innerText]="gift.description">
+			</span>
 		</p>
 	</section>
 	<section class="task-list__photo-container">

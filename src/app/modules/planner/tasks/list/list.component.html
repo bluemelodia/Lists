@@ -42,9 +42,11 @@
 			<span class="task-details__label">Recurrence</span>
 			<app-recurrence-indicator [recurrences]="task.recurrence"></app-recurrence-indicator>
 		</p>
-		<p *ngIf="task.description">
+		<p *ngIf="task.description" class="task-details__wrapper description">
 			<span class="task-details__label">Details</span>
-			<span class="task-details__description">{{ task.description }}</span>
+			<span class="task-details__description" 
+				[innerText]="task.description">
+			</span>
 		</p>
 	</section>
 </ng-template>
