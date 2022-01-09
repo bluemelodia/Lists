@@ -27,6 +27,10 @@
 			[form]="taskForm.controls.recurrence"
 			[submitted]="submitted">
 		</app-recurrence-select>
+		<app-status-select appFocus
+			[form]="taskForm.controls.status"
+			[submitted]="submitted">
+		</app-status-select>
 		<fieldset class="due-date">
 			<app-heading text="Due Date"
 				[level]="headerLevel.H3">

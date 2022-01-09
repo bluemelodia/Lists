@@ -10,7 +10,7 @@ import { Subject } from "rxjs";
 import { filter, take, takeUntil } from "rxjs/operators";
 
 import { FormLimit } from "../../../../constants/gifts.constants";
-import { RecurrenceMap } from "../../../../constants/tasks.constants";
+import { RecurrenceMap, Status } from "../../../../constants/tasks.constants";
 import { Topic } from "../../../../constants/topics.constants";
 
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
@@ -91,6 +91,9 @@ export class AddTaskComponent implements OnInit {
 			recurrence: this.fb.group({
 				taskRecurrence: [{}, [Validators.required]],
 			}),
+			status: this.fb.group({
+				taskStatus: [ Status.NotStarted ],
+			})
 		},
 			{
 				updateOn: "submit",
@@ -159,6 +162,10 @@ export class AddTaskComponent implements OnInit {
 		return this.taskForm.get("recurrence.taskRecurrence")?.value;
 	}
 
+	get status(): Status {
+		return this.taskForm.get("status.taskStatus")?.value;
+	}
+
 	onDueTimeChanged($event): void {
 		this.taskForm.patchValue({
 			dueTime: $event,
@@ -174,9 +181,10 @@ export class AddTaskComponent implements OnInit {
 				...this.task,
 				name: this.name,
 				description: this.description,
-				recurrence: this.recurrence,
 				dueDate: this.dueDate,
 				dueTime: this.dueTime,
+				recurrence: this.recurrence,
+				status: this.status,
 			};
 
 			console.info("[Add Task] Add task: ", this.task);

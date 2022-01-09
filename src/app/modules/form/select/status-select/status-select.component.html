@@ -1,0 +1,35 @@
+<form [formGroup]="form">
+	<section #select class="input-container">
+		<input readonly
+			class="selected-status"
+			type="text" 
+			placeholder="Select Status"
+			[ngClass]="{ 'options-open' : showOptionList }"
+			[value]="getSelectedOptions()"
+			(click)="showHideOptions()"
+			(keydown)="onKeydownEvent($event)"/>
+		<section *ngIf="showOptionList"
+			class="options"
+			[ngClass]="{ 'show' : showOptionList }">
+			<button *ngFor="let key of statusKeys; let i = index"
+				class="option focus-option"	
+				type="button"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[ngClass]="{ 'selected' : key === selected, 'focus-origin' : i === 0 }"
+				[tabindex]="showOptionList ? 0 : -1"
+				(click)="selectOption(key)">
+				{{ status[key] }}
+			</button>
+			<button class="tab-stop"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[tabindex]="showOptionList ? 0 : -1">
+			</button>
+		</section>
+		<div *ngIf="submitted && statusForm?.errors"
+			class="input-error">
+			<span *ngIf="statusForm?.errors?.required">
+				Status is required.
+			</span>
+		</div> 
+	</section>
+</form>

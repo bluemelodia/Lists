@@ -14,18 +14,19 @@ import { PickerDateFormatterPipe } from "../../pipes/picker-date-formatter.pipe"
 import { AddressComponent } from "./address/address.component";
 import { CheckboxComponent } from "./checkbox/checkbox.component";
 import { DatepickerComponent } from "./datepicker/datepicker.component";
+import { DescriptionComponent } from "./description/description.component";
 import { RadioComponent } from "./radio/radio.component";
 
 import { CountrySelectComponent } from "./select/country-select/country-select.component";
-import { DescriptionComponent } from "./description/description.component";
-import { SelectComponent } from './select/select.component';
 import { OccasionSelectComponent } from './select/occasion-select/occasion-select.component';
 import { PhoneSelectComponent } from "./select/phone-select/phone-select.component";
-import { SortSelectComponent } from "./select/sort-select/sort-select.component";
 import { RecipientFilterComponent } from "./select/recipient-filter/recipient-filter.component";
 import { RecipientSelectComponent } from './select/recipient-select/recipient-select.component';
 import { RecurrenceFilterComponent } from "./select/recurrence-filter/recurrence-filter.component";
 import { RecurrenceSelectComponent } from "./select/recurrence-select/recurrence-select.component";
+import { SelectComponent } from './select/select.component';
+import { StatusSelectComponent } from "./select/status-select/status-select.component";
+import { SortSelectComponent } from "./select/sort-select/sort-select.component";
 
 @NgModule({
 	declarations: [
@@ -43,6 +44,7 @@ import { RecurrenceSelectComponent } from "./select/recurrence-select/recurrence
 		RecurrenceFilterComponent,
 		RecurrenceSelectComponent,
 		SortSelectComponent,
+		StatusSelectComponent,
 	],
 	imports: [
 		CalendarModule,
@@ -71,6 +73,7 @@ import { RecurrenceSelectComponent } from "./select/recurrence-select/recurrence
 		RecurrenceSelectComponent,
 		SelectComponent,
 		SortSelectComponent,
+		StatusSelectComponent,
 	],
 	providers: [
 		PickerDateFormatterPipe,

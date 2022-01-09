@@ -1,5 +1,5 @@
 import { CalendarDay } from "../calendar/calendar-response.interface";
-import { RecurrenceMap } from "../../constants/tasks.constants";
+import { RecurrenceMap, Status } from "../../constants/tasks.constants";
 import { FormSubmitAction } from "./event.interface";
 
 export interface TaskConfig {
@@ -10,11 +10,12 @@ export interface TaskConfig {
 export interface Task {
 	id?: string;
 	uuid?: string;
+	name: string;
 	description?: string;
 	dueDate?: CalendarDay;
 	dueTime?: string;
-	name: string;
 	recurrence?: RecurrenceMap;
+	status: Status;
 }
 
 export enum TaskAction {

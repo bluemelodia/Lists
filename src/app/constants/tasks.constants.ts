@@ -23,3 +23,10 @@ export interface RecurrenceMap {
 	[Recurrence.Friday]?: boolean;
 	[Recurrence.Saturday]?: boolean;
 }
+
+export enum Status {
+	Completed = "Completed",
+	InProgress = "In Progress",
+	OnHold = "On Hold",
+	NotStarted = "Not Started",
+}
