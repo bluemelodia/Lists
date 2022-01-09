@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 import { Status } from '../../../../constants/tasks.constants';
@@ -15,8 +15,8 @@ import { FocusService } from '../../../../services/focus.service';
 		'./status-select.component.css'
 	]
 })
-export class StatusSelectComponent extends SelectComponent {
-	public selected: Status;
+export class StatusSelectComponent extends SelectComponent implements AfterViewInit {
+	public selected: Status = Status.NotStarted;
 	public status = Status;
 	public statusKeys = Object.keys(this.status);
 	
@@ -27,9 +27,14 @@ export class StatusSelectComponent extends SelectComponent {
 		super(_element, _focus);
 	}
 
+	public ngAfterViewInit(): void {
+		if (this.statusForm) {
+			this.selected = this.statusForm?.value;
+		}
+	}
 
 	public get statusForm(): AbstractControl {
-		return this.form.controls.taskSelect;
+		return this.form.controls.taskStatus;
 	}
 
 	public selectOption(status: Status): void {

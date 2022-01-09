@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 import { Recurrence, RecurrenceMap } from '../../../../constants/tasks.constants';
@@ -15,7 +15,7 @@ import { FocusService } from '../../../../services/focus.service';
 		'./recurrence-select.component.css'
 	]
 })
-export class RecurrenceSelectComponent extends SelectComponent {
+export class RecurrenceSelectComponent extends SelectComponent implements AfterViewInit {
 	public recurrence = Recurrence;
 	public recurrenceKeys = Object.keys(this.recurrence);
 	public selected: RecurrenceMap = {};
@@ -26,16 +26,20 @@ export class RecurrenceSelectComponent extends SelectComponent {
 	) {
 		super(_element, _focus);
 
+		
+	}
+
+	public ngAfterViewInit(): void {
 		this.constructSelectionMap();
 	}
 
 	private constructSelectionMap() {
-		if (!this.recurrenceForm.value) {
+		if (!this.recurrenceForm?.value) {
 			Object.keys(this.recurrence).forEach((key: string) => {
 				this.selected[key] = false;
 			});
 		} else {
-			this.selected = this.recurrenceForm.value;
+			this.selected = this.recurrenceForm?.value;
 		}
 	}
 

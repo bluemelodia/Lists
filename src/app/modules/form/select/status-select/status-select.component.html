@@ -5,7 +5,7 @@
 			type="text" 
 			placeholder="Select Status"
 			[ngClass]="{ 'options-open' : showOptionList }"
-			[value]="getSelectedOptions()"
+			[value]="selected"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
