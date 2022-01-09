@@ -38,11 +38,10 @@ How to make image upload easy with Angular
 
 - TODO list:
 
-  - Status: Not started, in progress, complete
-  - Reminder: Every month, every day, every day of week
+  - Status: Not started, in progress, complete. Users should be able to filter by status.
   - Due date and time (today, tomorrow, etc.)
   - Recurrence should be a multi-select. Ensure it is properly sent/received from the server and repopulated.
-  - Users should be reminded of tasks. 
+  - Users should be reminded of tasks (both recurring and one-time with due date). 
 
 - Ensure that only necessary fields are serialized - and all fields are coming back with the right values.
 

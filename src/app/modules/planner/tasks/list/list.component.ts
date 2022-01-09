@@ -48,9 +48,12 @@ export class ListComponent {
 	) { }
 
 	public filterByRecurrence(recurrences: Recurrence[]): void {
+		const recsToCheck = Object.keys(recurrences).filter((recurrence: Recurrence) => recurrences[recurrence]);
+
 		const filteredList = this.fullList.filter((task: Task) => {
 			let matchesFilter = false;
-			recurrences.forEach((recurrence: Recurrence) => {
+			console.log("Task: ", task, recsToCheck);
+			recsToCheck.forEach((recurrence: Recurrence) => {
 				if (task.recurrence[recurrence]) {
 					matchesFilter = true;
 				}
