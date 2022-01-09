@@ -37,6 +37,10 @@ export class ListComponent {
 	private tasksList$ = new Subject<Task[]>();
 	public list$ = this.tasksList$.asObservable();
 
+	private filters = {
+		recurrence: null,
+		status: null
+	}
 	private fullList: Task[];
 	private ngUnsubscribe$ = new Subject<void>();
 
@@ -47,27 +51,44 @@ export class ListComponent {
 		private router: Router,
 	) { }
 
-	public filterByRecurrence(recurrences: Recurrence[]): void {
-		const recsToCheck = Object.keys(recurrences).filter((recurrence: Recurrence) => recurrences[recurrence]);
+	public filterList(recurrence: Recurrence[], status: Status): void {
+		if (recurrence) {
+			this.filters.recurrence = recurrence;
+		}
+		if (status) {
+			this.filters.status = status;
+		}
 
-		const filteredList = this.fullList.filter((task: Task) => {
-			let matchesFilter = false;
-			console.log("Task: ", task, recsToCheck);
-			recsToCheck.forEach((recurrence: Recurrence) => {
-				if (task.recurrence[recurrence]) {
-					matchesFilter = true;
-				}
+		let filteredList = this.fullList;
+		if (this.filters.recurrence) {
+			this.filters.recurrence = recurrence;
+
+			const recsToCheck = Object.keys(recurrence).filter(
+				(recurrence: Recurrence) => recurrence[recurrence]
+			);
+
+			filteredList = filteredList.filter((task: Task) => {
+				let matchesFilter = false;
+				console.log("Task: ", task, recsToCheck);
+				recsToCheck.forEach((recurrence: Recurrence) => {
+					if (task.recurrence[recurrence]) {
+						matchesFilter = true;
+					}
+				});
+				return matchesFilter;
 			});
-			return matchesFilter;
-		});
+		}
+
+		if (this.filters.status) {
+			// TODO: add the status filter
+		}
+
 		this.tasksList$.next(filteredList);
 	}
 
-	public filterByStatus(status: Status): void {
-		
-	}
-
 	public resetTasksFilters(): void {
+		this.filters.recurrence = null;
+		this.filters.status = null;
 		this.tasksList$.next(this.fullList);
 	}
 
