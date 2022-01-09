@@ -31,6 +31,7 @@ export class StatusSelectComponent extends SelectComponent implements AfterViewI
 		if (this.statusForm) {
 			this.selected = this.statusForm?.value;
 		}
+		console.log(this.selected, this.status);
 	}
 
 	public get statusForm(): AbstractControl {

@@ -27,10 +27,17 @@
 			[form]="taskForm.controls.recurrence"
 			[submitted]="submitted">
 		</app-recurrence-select>
-		<app-status-select appFocus
-			[form]="taskForm.controls.status"
-			[submitted]="submitted">
-		</app-status-select>
+		<fieldset *ngIf="isOneTimeTask()" class="status">
+			<app-heading text="Task Status"
+				[level]="headerLevel.H3">
+            </app-heading>
+			<span class="form-instructions"
+				for="event-description">Select the current status of the task.</span>
+			<app-status-select appFocus
+				[form]="taskForm.controls.status"
+				[submitted]="submitted">
+			</app-status-select>
+		</fieldset>
 		<fieldset class="due-date">
 			<app-heading text="Due Date"
 				[level]="headerLevel.H3">

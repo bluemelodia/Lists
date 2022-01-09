@@ -15,9 +15,9 @@
 				class="option focus-option"	
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : key === selected, 'focus-origin' : i === 0 }"
+				[ngClass]="{ 'selected' : status[key] === selected, 'focus-origin' : i === 0 }"
 				[tabindex]="showOptionList ? 0 : -1"
-				(click)="selectOption(key)">
+				(click)="selectOption(status[key])">
 				{{ status[key] }}
 			</button>
 			<button class="tab-stop"

@@ -10,7 +10,7 @@ import { Subject } from "rxjs";
 import { filter, take, takeUntil } from "rxjs/operators";
 
 import { FormLimit } from "../../../../constants/gifts.constants";
-import { RecurrenceMap, Status } from "../../../../constants/tasks.constants";
+import { Recurrence, RecurrenceMap, Status } from "../../../../constants/tasks.constants";
 import { Topic } from "../../../../constants/topics.constants";
 
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
@@ -160,6 +160,10 @@ export class AddTaskComponent implements OnInit {
 
 	get recurrence(): RecurrenceMap {
 		return this.taskForm.get("recurrence.taskRecurrence")?.value;
+	}
+
+	isOneTimeTask(): boolean {
+		return this.recurrence[Recurrence.Once];
 	}
 
 	get status(): Status {
