@@ -10,3 +10,16 @@ export enum Recurrence {
 	Friday = 'Friday',
 	Saturday = 'Saturday',
 }
+
+export interface RecurrenceMap {
+	[Recurrence.Once]?: boolean;
+	[Recurrence.Daily]?: boolean;
+	[Recurrence.Monthly]?: boolean;
+	[Recurrence.Sunday]?: boolean;
+	[Recurrence.Monday]?: boolean;
+	[Recurrence.Tuesday]?: boolean;
+	[Recurrence.Wednesday]?: boolean;
+	[Recurrence.Thursday]?: boolean;
+	[Recurrence.Friday]?: boolean;
+	[Recurrence.Saturday]?: boolean;
+}

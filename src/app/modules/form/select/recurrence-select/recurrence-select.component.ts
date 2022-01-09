@@ -1,7 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
-import { Recurrence } from '../../../../constants/tasks.constants';
+import { Recurrence, RecurrenceMap } from '../../../../constants/tasks.constants';
 
 import { SelectComponent } from '../select.component';
 
@@ -18,7 +18,7 @@ import { FocusService } from '../../../../services/focus.service';
 export class RecurrenceSelectComponent extends SelectComponent {
 	public recurrence = Recurrence;
 	public recurrenceKeys = Object.keys(this.recurrence);
-	public selected = {};
+	public selected: RecurrenceMap = {};
 	
 	constructor(
 		_element: ElementRef,
@@ -40,7 +40,7 @@ export class RecurrenceSelectComponent extends SelectComponent {
 	}
 
 	private selectOne(selectedRecurrence: Recurrence): void {
-		for(let recurrence in this.selected) {
+		for(let recurrence of Object.keys(this.selected)) {
 			if (recurrence !== selectedRecurrence) {
 				this.selected[recurrence] = false;
 			}
@@ -48,7 +48,7 @@ export class RecurrenceSelectComponent extends SelectComponent {
 	}
 
 	private selectDaily(): void {
-		for(let recurrence in this.selected) {
+		for(let recurrence of Object.keys(this.selected)) {
 			if (recurrence === Recurrence.Once 
 				|| recurrence === Recurrence.Daily 
 				|| recurrence === Recurrence.Monthly) {
@@ -79,5 +79,16 @@ export class RecurrenceSelectComponent extends SelectComponent {
 		}
 
 		this.recurrenceForm.patchValue(this.selected);
+	}
+
+	public getSelectedOptions(): string {
+		let selected = [];
+		for(let recurrence of Object.keys(this.selected)) {
+			if (this.selected[recurrence]) {
+				selected.push(recurrence);
+			}
+		}
+
+		return selected.join(", ");
 	}
 }

@@ -36,11 +36,12 @@ How to make image upload easy with Angular
 - Clear session storage on tab close and logout.
 - Test in all browsers.
 
-- TODO list: 
-	- Status: Not started, in progress, complete
-	- Reminder: Every month, every day, every day of week
-	- Due date and time (today, tomorrow, etc.)
-	- Recurrence should be a multi-select.
+- TODO list:
+
+  - Status: Not started, in progress, complete
+  - Reminder: Every month, every day, every day of week
+  - Due date and time (today, tomorrow, etc.)
+  - Recurrence should be a multi-select. Ensure it is properly sent/received from the server and repopulated.
 
 - Ensure that only necessary fields are serialized - and all fields are coming back with the right values.
 

@@ -10,7 +10,7 @@ import { Subject } from "rxjs";
 import { filter, take, takeUntil } from "rxjs/operators";
 
 import { FormLimit } from "../../../../constants/gifts.constants";
-import { Recurrence } from "../../../../constants/tasks.constants";
+import { RecurrenceMap } from "../../../../constants/tasks.constants";
 import { Topic } from "../../../../constants/topics.constants";
 
 import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
@@ -89,7 +89,7 @@ export class AddTaskComponent implements OnInit {
 				]
 			],
 			recurrence: this.fb.group({
-				taskRecurrence: [[], [Validators.required]],
+				taskRecurrence: [{}, [Validators.required]],
 			}),
 		},
 			{
@@ -155,7 +155,7 @@ export class AddTaskComponent implements OnInit {
 		return this.taskFormControl.description.value;
 	}
 
-	get recurrence(): Recurrence {
+	get recurrence(): RecurrenceMap {
 		return this.taskForm.get("recurrence.taskRecurrence")?.value;
 	}
 

@@ -1,0 +1,4 @@
+.selected-recurrences {
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}

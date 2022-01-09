@@ -1,10 +1,11 @@
 <form [formGroup]="form">
 	<section #select class="input-container">
 		<input readonly
+			class="selected-recurrences"
 			type="text" 
-			placeholder="Select Recurrence"
+			placeholder="Select Recurrence(s)"
 			[ngClass]="{ 'options-open' : showOptionList }"
-			[value]="recurrence[recurrenceForm?.value] || ''"
+			[value]="getSelectedOptions()"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
