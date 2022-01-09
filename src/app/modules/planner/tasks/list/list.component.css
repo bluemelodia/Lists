@@ -26,10 +26,18 @@
   	justify-content: space-between;
 }
 
+.task-details__wrapper.multi-line {
+	align-items: center;
+}
+
 @media only screen and (max-width: 500px) {
 	.task-details__wrapper {
 		flex-direction: column;
 		margin-bottom: 8px;
+	}
+
+	.task-details__wrapper.multi-line {
+		align-items: flex-start;
 	}
 }
 

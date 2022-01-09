@@ -277,6 +277,7 @@ button:disabled .arrow-btn {
 .badge {
   	border-radius: 16px;
   	padding: 4px 8px;
+	text-align: center;
 }
 
 .badge.expired {
@@ -292,7 +293,8 @@ button:disabled .arrow-btn {
 }
 
 .badge.priority,
-.badge.started {
+.badge.started,
+.badge.recurrence {
   	background-color: #ea818e;
 }
 

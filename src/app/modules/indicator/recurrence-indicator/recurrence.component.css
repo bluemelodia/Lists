@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 4px 0;
+}
+
+.badge {
+	margin-bottom: 4px;
+}
+
+.badge:not(:last-of-type) {
+	margin-right: 4px;
+}

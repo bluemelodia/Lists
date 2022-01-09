@@ -1,25 +1,3 @@
-<ng-container *ngFor="let recurrence of recurrences">
-	<ng-container [ngSwitch]="recurrence">
-		<span *ngSwitchCase="recurrenceStatus.Once" 
-			class="badge expired">One Time</span>
-		<span *ngSwitchCase="recurrenceStatus.Daily"
-			class="badge expired">Daily</span>
-		<span *ngSwitchCase="recurrenceStatus.Monthly"
-			class="badge info">Monthly</span>
-	</ng-container>
-
-	<span *ngIf="recurrence === recurrenceStatus.Sunday"
-		class="badge expired">Sunday</span>
-	<span *ngIf="recurrence === recurrenceStatus.Monday"
-		class="badge expired">Monday</span>
-	<span *ngIf="recurrence === recurrenceStatus.Tuesday"
-		class="badge expired">Tuesday</span>
-	<span *ngIf="recurrence === recurrenceStatus.Wednesday"
-		class="badge expired">Wednesday</span>
-	<span *ngIf="recurrence === recurrenceStatus.Thursday"
-		class="badge expired">Thursday</span>
-	<span *ngIf="recurrence === recurrenceStatus.Friday"
-		class="badge expired">Friday</span>
-	<span *ngIf="recurrence === recurrenceStatus.Saturday"
-		class="badge expired">Saturday</span>
+<ng-container *ngFor="let recurrence of recurrenceList">
+	<span class="badge recurrence">{{recurrence}}</span>
 </ng-container>
