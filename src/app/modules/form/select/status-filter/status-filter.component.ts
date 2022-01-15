@@ -42,6 +42,6 @@ export class SelectFilterComponent extends SelectComponent {
 	public selectOption(status: Status): void {
 		this.showOptionList = false;
 		this.selected = status;
-		this.onStatusSelect.emit(this.selected);
+		this.onStatusSelect.emit(status);
 	}
 }

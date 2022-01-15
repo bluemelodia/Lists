@@ -1,9 +1,9 @@
 <section class="task-list__selectors">
 	<app-recurrence-filter (onFilterReset)="resetTasksFilters()"
-		(onRecurrenceSelect)="filterList($event, null)">
+		(onRecurrenceSelect)="filterByRecurrence($event)">
 	</app-recurrence-filter>
 	<app-status-filter (onFilterReset)="resetTasksFilters()"
-		(onStatusSelect)="filterList(null, $event)">
+		(onStatusSelect)="filterByStatus($event)">
 	</app-status-filter>
 </section>
 

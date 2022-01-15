@@ -51,25 +51,27 @@ export class ListComponent {
 		private router: Router,
 	) { }
 
-	public filterList(recurrence: Recurrence[], status: Status): void {
-		if (recurrence) {
-			this.filters.recurrence = recurrence;
-		}
-		if (status) {
-			this.filters.status = status;
-		}
+	public filterByRecurrence(recurrence: Recurrence[]) {
+		this.filters.recurrence = recurrence;
+		this.filterList();
+	}
 
+	public filterByStatus(status: Status) {
+		this.filters.status = status;
+		this.filterList();
+	}
+
+	private filterList(): void {
 		let filteredList = this.fullList;
 		if (this.filters.recurrence) {
-			this.filters.recurrence = recurrence;
+			const recurrence = this.filters.recurrence;
 
 			const recsToCheck = Object.keys(recurrence).filter(
-				(recurrence: Recurrence) => recurrence[recurrence]
+				(rec: Recurrence) => recurrence[rec]
 			);
 
 			filteredList = filteredList.filter((task: Task) => {
 				let matchesFilter = false;
-				console.log("Task: ", task, recsToCheck);
 				recsToCheck.forEach((recurrence: Recurrence) => {
 					if (task.recurrence[recurrence]) {
 						matchesFilter = true;
@@ -80,7 +82,10 @@ export class ListComponent {
 		}
 
 		if (this.filters.status) {
-			// TODO: add the status filter
+			const status = Status[this.filters.status];
+			filteredList = filteredList.filter((task: Task) => {
+				return task.status === status;
+			});
 		}
 
 		this.tasksList$.next(filteredList);
