@@ -1,3 +1,10 @@
-<span class="badge expired">
-	{{ status }}
-</span>
+<ng-container [ngSwitch]="status">
+    <span *ngSwitchCase="taskStatus.Completed" 
+		class="badge expired">{{ taskStatus.Completed }}</span>
+	<span *ngSwitchCase="taskStatus.InProgress"
+		class="badge inprogress">{{ taskStatus.InProgress }}</span>
+	<span *ngSwitchCase="taskStatus.OnHold"
+		class="badge started">{{ taskStatus.OnHold }}</span>
+    <span *ngSwitchCase="taskStatus.NotStarted"
+		class="badge notstarted">{{ taskStatus.NotStarted }}</span>
+</ng-container>

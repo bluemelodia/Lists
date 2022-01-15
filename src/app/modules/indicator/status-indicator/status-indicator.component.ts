@@ -9,4 +9,6 @@ import { Status } from "../../../constants/tasks.constants";
 })
 export class StatusIndicatorComponent {
 	@Input() status: Status;
+
+	public taskStatus = Status;
 }

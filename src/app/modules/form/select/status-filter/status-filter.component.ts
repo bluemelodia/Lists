@@ -36,6 +36,7 @@ export class SelectFilterComponent extends SelectComponent {
 
 
 	public clearFilter(): void {
+		this.selected = null;
 		this.onFilterReset.emit();
 	}
 

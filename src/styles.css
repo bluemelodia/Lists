@@ -285,6 +285,7 @@ button:disabled .arrow-btn {
 }
 
 .badge.info, 
+.badge.inprogress,
 .badge.recurrence {
   	background-color: pink;
 }
@@ -298,6 +299,7 @@ button:disabled .arrow-btn {
   	background-color: #ea818e;
 }
 
+.badge.notstarted,
 .badge.urgent {
   	background-color: #dd2e44;
 }
