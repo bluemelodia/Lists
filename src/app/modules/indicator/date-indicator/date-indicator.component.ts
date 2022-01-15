@@ -4,8 +4,8 @@ import { DateStatus } from "../../../interfaces/date.interface";
 
 @Component({
 	selector: "app-date-indicator",
-	templateUrl: "./date.component.html",
-	styleUrls: ["./date.component.css"]
+	templateUrl: "./date-indicator.component.html",
+	styleUrls: ["./date-indicator.component.css"]
 })
 export class DateIndicatorComponent {
 	@Input() status: DateStatus;

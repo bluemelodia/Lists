@@ -4,8 +4,8 @@ import { Recurrence, RecurrenceMap } from "../../../constants/tasks.constants";
 
 @Component({
 	selector: "app-recurrence-indicator",
-	templateUrl: "./recurrence.component.html",
-	styleUrls: ["./recurrence.component.css"]
+	templateUrl: "./recurrence-indicator.component.html",
+	styleUrls: ["./recurrence-indicator.component.css"]
 })
 export class RecurrenceIndicatorComponent {
 	@Input() set recurrences(recurrences : RecurrenceMap) {

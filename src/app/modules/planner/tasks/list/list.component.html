@@ -29,6 +29,7 @@
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
 		<p class="task-details__wrapper multi-line">
 			<app-recurrence-indicator [recurrences]="task.recurrence"></app-recurrence-indicator>
+			<app-status-indicator [status]="task.status"></app-status-indicator>
 		</p>
 		<app-heading [level]="headerLevel.H2"
 			[text]="task.name">

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MeetingIndicatorComponent } from './meeting.component';
+import { MeetingIndicatorComponent } from './meeting-indicator.component';
 
 describe('MeetingIndicatorComponent', () => {
   let component: MeetingIndicatorComponent;

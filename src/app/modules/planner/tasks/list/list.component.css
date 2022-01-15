@@ -27,7 +27,7 @@
 }
 
 .task-details__wrapper.multi-line {
-	align-items: center;
+	display: grid;
 }
 
 @media only screen and (max-width: 500px) {
