@@ -35,14 +35,7 @@ How to make image upload easy with Angular
 - Clear session storage on tab close and logout.
 - Test in all browsers.
 - Loader doesn't seem to be showing anymore.
-
-- TODO list:
-
-  - Status: Not started, in progress, complete. Users should be able to filter by status.
-  - Due date and time (today, tomorrow, etc.)
-  - Recurrence should be a multi-select. Ensure it is properly sent/received from the server and repopulated.
-  - Users should be reminded of tasks (both recurring and one-time with due date). 
-
+- Users should be reminded of tasks (both recurring and one-time with due date). 
 - Ensure that only necessary fields are serialized - and all fields are coming back with the right values.
 
 ## Navigation

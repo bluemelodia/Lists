@@ -1,7 +1,6 @@
 import { Endpoint } from "../constants/urls.constants";
 import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
 import { DateStatus } from "../interfaces/date.interface";
-import { Dialog } from "../interfaces/dialog.interface";
 import {
 	Meeting,
 	MeetingAction,

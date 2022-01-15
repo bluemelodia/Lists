@@ -1,6 +1,5 @@
 import { Endpoint } from "../constants/urls.constants";
 import { EventUtils } from "./event.utils";
-import { Dialog } from "../interfaces/dialog.interface";
 import {
 	AddGift,
 	Gift,

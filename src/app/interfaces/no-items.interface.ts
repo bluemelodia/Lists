@@ -17,7 +17,7 @@ export interface NoItem {
 	header: string,
 	route: string,
 	topic: Topic,
-};
+}
 
 export const NO_ITEMS_CONFIG: NoItemConfig = {
 	[Event.Recipient]: {

@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from "@angular/core";
+import { Component, HostBinding, OnDestroy, OnInit } from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
@@ -50,7 +50,7 @@ import { MeetingUtils } from "../../../utils/meeting.utils";
 	templateUrl: "./add-meeting.component.html",
 	styleUrls: ["./add-meeting.component.css"]
 })
-export class AddMeetingComponent implements OnInit {
+export class AddMeetingComponent implements OnInit, OnDestroy {
 	@HostBinding("class") containerClasses = "section-container";
 
 	public calendarType: CalendarType = CalendarType.Solar;
@@ -118,12 +118,12 @@ export class AddMeetingComponent implements OnInit {
 				virtual: this.fb.control(false),
 			}),
 		},
-			{
-				updateOn: "submit",
-				validators: [
-					this.customValidators.dateAndTimeValidator("startDate.day", "endDate.day", "startTime", "endTime")
-				]
-			});
+		{
+			updateOn: "submit",
+			validators: [
+				this.customValidators.dateAndTimeValidator("startDate.day", "endDate.day", "startTime", "endTime")
+			]
+		});
 
 		this.router.events
 			.pipe(
@@ -181,7 +181,7 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	get name(): string {
-		return this.meetingFormControl.name.value;
+		return this.meetingFormControl.name.value as string;
 	}
 
 	get startDateCtrl(): AbstractControl {
@@ -189,7 +189,7 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	get startDate(): CalendarDay {
-		return this.meetingForm.get("startDate.day")?.value;
+		return this.meetingForm.get("startDate.day")?.value as CalendarDay;
 	}
 
 	get endDateCtrl(): AbstractControl {
@@ -197,27 +197,27 @@ export class AddMeetingComponent implements OnInit {
 	}
 
 	get endDate(): CalendarDay {
-		return this.meetingForm.get("endDate.day")?.value;
+		return this.meetingForm.get("endDate.day")?.value as CalendarDay;
 	}
 
 	get startTime(): string {
-		return this.meetingFormControl.startTime.value;
+		return this.meetingFormControl.startTime.value as string;
 	}
 
 	get endTime(): string {
-		return this.meetingFormControl.endTime.value;
+		return this.meetingFormControl.endTime.value as string;
 	}
 
 	get location(): string {
-		return this.meetingFormControl.location.value;
+		return this.meetingFormControl.location.value as string;
 	}
 
 	get description(): string {
-		return this.meetingFormControl.description.value;
+		return this.meetingFormControl.description.value as string;
 	}
 
 	get isVirtual(): boolean {
-		return this.meetingForm.get("options.virtual")?.value;
+		return this.meetingForm.get("options.virtual")?.value as boolean;
 	}
 
 	onStartTimeChanged($event): void {

@@ -124,10 +124,10 @@ export class AddGiftComponent implements OnInit {
 				]
 			]
 		},
-			{
-				updateOn: "submit",
-				validators: []
-			});;
+		{
+			updateOn: "submit",
+			validators: []
+		});
 
 		this.router.events
 			.pipe(
@@ -233,27 +233,27 @@ export class AddGiftComponent implements OnInit {
 	}
 
 	get recipient(): AddRecipient {
-		return this.giftForm.get('recipients.giftRecipient').value;
+		return this.giftForm.get('recipients.giftRecipient').value as AddRecipient;
 	}
 
 	get occasion(): Occasion {
-		return this.giftForm.get('occasions.giftOccasion').value;
+		return this.giftForm.get('occasions.giftOccasion').value as Occasion;
 	}
 
 	get year(): number {
-		return this.giftFormControl.year.value;
+		return this.giftFormControl.year.value as number;
 	}
 
 	get giftImage(): EventImage {
-		return this.giftFormControl.gift.value;
+		return this.giftFormControl.gift.value as EventImage;
 	}
 
 	get description(): string {
-		return this.giftFormControl.description.value;
+		return this.giftFormControl.description.value as string;
 	}
 
 	get price(): number {
-		return this.giftFormControl.price.value;
+		return this.giftFormControl.price.value as number;
 	}
 
 	onSubmit(): void {

@@ -1,5 +1,9 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, AbstractControlOptions, FormGroup, ValidatorFn } from "@angular/forms";
+
+import { CalendarDay } from "../interfaces/calendar/calendar-response.interface";
+import { Address } from "../interfaces/event/recipient.interface";
+import { Phone } from "../interfaces/phone.interface";
 import { TimeUtils } from "../utils/time.utils";
 
 /*
@@ -10,8 +14,8 @@ import { TimeUtils } from "../utils/time.utils";
 })
 export class ValidationService {
 	private static nameRegex = new RegExp("^[A-Z][A-Za-z.\"-]+([ ][A-Z][A-Za-z.\"-]+){0,3}$");
-	private static emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-	private static phoneRegex = new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im);
+	private static emailRegex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+	private static phoneRegex = new RegExp(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im);
 
 	/**
 	 * Individual field validators.
@@ -49,7 +53,7 @@ export class ValidationService {
 			if (!isEmailRequired && !email?.value) {
 				return;
 			}
-			
+
 			const valid = ValidationService.emailRegex.test(email.value);
 			if (!valid) {
 				email.setErrors({ invalidEmail: true });
@@ -63,50 +67,54 @@ export class ValidationService {
 			* Check if user is required to enter the email. Clear all errors first.
 			*/
 			const isPhoneRequired = group.get(phoneRequiredKey)?.value;
-			const phone = group?.controls[phoneKey];
-			phone.setErrors(null);
+			const phoneField = group?.controls[phoneKey];
+			phoneField.setErrors(null);
 
-			if (isPhoneRequired && !phone.value?.number) {
-				phone.setErrors({ missingPhone: true });
+			const phone: Phone = phoneField?.value;
+
+			if (isPhoneRequired && !phone?.number) {
+				phoneField.setErrors({ missingPhone: true });
 				return;
 			}
-			
+
 			/**
 			* If the phone number is optional, empty string is fine.
 			*/
-			if (!isPhoneRequired && !phone?.value?.number) {
+			if (!isPhoneRequired && !phone?.number) {
 				return;
 			}
 
-			const valid = ValidationService.phoneRegex.test(phone?.value?.number);
+			const valid = ValidationService.phoneRegex.test(`${phone?.number}`);
 			if (!valid) {
-				phone.setErrors({ invalidPhone: true });
+				phoneField.setErrors({ invalidPhone: true });
 			}
 		};
 	}
 
 	addressValidator(addressKey: string): ValidatorFn {
 		return (group: FormGroup): AbstractControlOptions => {
-			const address = group?.controls[addressKey];
-			address.setErrors(null);
+			const addressField = group?.controls[addressKey];
+			addressField.setErrors(null);
+
+			const address: Address = addressField?.value;
 
 			/* User didn't enter basic address fields. */
-			if (!address.value?.street && !address.value?.city && !address.value?.zip) {
+			if (!address?.street && !address?.city && !address?.zip) {
 				return null;
 			} else {
-				let validationMap = {};
-				if (!address.value?.street) {
+				const validationMap = {};
+				if (!address?.street) {
 					validationMap["missingStreetAddress"] = true;
 				}
 
-				if (!address.value?.city) {
+				if (!address?.city) {
 					validationMap["missingCity"] = true;
 				}
 
-				if (!address.value?.zip) {
+				if (!address?.zip) {
 					validationMap["missingZip"] = true;
 				}
-				address.setErrors(Object.keys(validationMap).length > 0 ? validationMap : null);
+				addressField.setErrors(Object.keys(validationMap).length > 0 ? validationMap : null);
 			}
 		}
 	}
@@ -117,10 +125,10 @@ export class ValidationService {
 	dateAndTimeValidator(startDate: string, endDate: string, startTime: string, endTime: string): ValidatorFn {
 		return (group: FormGroup): AbstractControlOptions => {
 			const sDateCtrl = group?.get(startDate);
-			const sDate = sDateCtrl.value;
+			const sDate: CalendarDay = sDateCtrl.value;
 
 			const eDateCtrl = group?.get(endDate);
-			const eDate = eDateCtrl.value;
+			const eDate: CalendarDay = eDateCtrl.value;
 
 			const sTimeCtrl = group?.get(startTime);
 			const sTime = sTimeCtrl.value;
@@ -144,7 +152,7 @@ export class ValidationService {
 						"required": true
 					});
 				}
-		
+
 				if (!eTime) {
 					eTimeCtrl.setErrors({
 						"required": true
@@ -174,11 +182,5 @@ export class ValidationService {
 			}
 			return null;
 		}
-	}
-
-	dueDateAndTimeValidator(dueDate: string, dueTime: string): ValidatorFn {
-		return (group: FormGroup): AbstractControlOptions => {
-			return null;
-		};
 	}
 }

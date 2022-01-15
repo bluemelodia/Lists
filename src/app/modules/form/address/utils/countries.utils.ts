@@ -1,9 +1,9 @@
 import { countries, CountryData } from "../../../../constants/countries.constants";
 
 export class CountryUtils {
-	private static countryList;
+	private static countryList: CountryData[];
 
-	public static getCountries() {
+	public static getCountries(): CountryData[] {
 		if (!CountryUtils.countryList) {
 			CountryUtils.countryList = CountryUtils.sortCountries();
 		}
@@ -11,7 +11,7 @@ export class CountryUtils {
 	}
 
 	private static sortCountries(): CountryData[] {
-		const sortedCountries = [];
+		const sortedCountries: CountryData[] = [];
 		Object.keys(countries).forEach((key: string) => {
 			sortedCountries.push(countries[key]);
 		});

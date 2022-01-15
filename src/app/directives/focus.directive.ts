@@ -42,11 +42,12 @@ export class FocusDirective {
 	 * This will be true when the container is closed (ex. nav menu is closed).
 	 */
 	private getFirstFocusableElement(): HTMLElement {
-		let buttons = this.el.nativeElement.getElementsByClassName("focus-option");
-		buttons = Array.from(buttons).filter((el: HTMLElement) => {
+		const elem: ElementRef = this.el;
+		const buttons: HTMLCollectionOf<Element> = (elem.nativeElement as HTMLElement).getElementsByClassName("focus-option");
+		const focusableElements: HTMLElement[] = Array.from(buttons).filter((el: HTMLElement) => {
 			return el.classList.contains("focus-origin") || el.getAttribute("aria-hidden") === "false";
-		});
-		return buttons.length > 1 ? buttons[0] : null;
+		}) as HTMLElement[];
+		return focusableElements.length > 1 ? focusableElements[0] : null;
 	}
 
 	@HostListener("document:keyup", ["$event"]) onKeyDownHandler(event: KeyboardEvent): void {

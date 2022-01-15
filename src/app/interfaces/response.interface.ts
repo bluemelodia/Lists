@@ -1,6 +1,6 @@
 export interface Response {
     statusCode: number;
-    responseData: any;
+    responseData;
 }
 
 export enum ResponseStatus {

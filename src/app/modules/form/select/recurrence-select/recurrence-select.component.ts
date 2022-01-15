@@ -48,7 +48,7 @@ export class RecurrenceSelectComponent extends SelectComponent implements AfterV
 	}
 
 	private selectOne(selectedRecurrence: Recurrence): void {
-		for(let recurrence of Object.keys(this.selected)) {
+		for(const recurrence of Object.keys(this.selected)) {
 			if (recurrence !== selectedRecurrence) {
 				this.selected[recurrence] = false;
 			}
@@ -56,7 +56,7 @@ export class RecurrenceSelectComponent extends SelectComponent implements AfterV
 	}
 
 	private selectDaily(): void {
-		for(let recurrence of Object.keys(this.selected)) {
+		for(const recurrence of Object.keys(this.selected)) {
 			if (recurrence === Recurrence.Once 
 				|| recurrence === Recurrence.Daily 
 				|| recurrence === Recurrence.Monthly) {

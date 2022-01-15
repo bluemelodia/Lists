@@ -102,7 +102,7 @@ export class RecipientUtils {
 		}
 	}
 
-	public static tagRecipients(recipients: AddRecipient[]) {
+	public static tagRecipients(recipients: AddRecipient[]): void {
 		recipients.forEach((recipient: AddRecipient) => {
 			const diffInDays = recipient.lunar ? RecipientUtils.getLunarDiff(recipient) : RecipientUtils.getSolarDiff(recipient);
 

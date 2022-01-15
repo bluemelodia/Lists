@@ -19,7 +19,7 @@ export class ActionComponent {
 
 	@Output() actionSelected = new EventEmitter<void>();
 
-	onActionClick() {
+	onActionClick(): void {
 		this.actionSelected.emit();
 	}
 }

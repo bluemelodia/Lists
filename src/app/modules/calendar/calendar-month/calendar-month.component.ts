@@ -28,8 +28,8 @@ export class CalendarMonthComponent {
 			case CalendarType.Solar:
 				if (this.topic === Topic.Birthdays) {
 					return this.selectedDate
-            			&& day.month === this.selectedDate.month 
-            			&& day.value === this.selectedDate.value;
+						&& day.month === this.selectedDate.month 
+						&& day.value === this.selectedDate.value;
 				} else {
 					return this.selectedDate
 						&& day.month === this.selectedDate.month 

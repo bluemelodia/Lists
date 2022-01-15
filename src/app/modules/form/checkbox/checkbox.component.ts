@@ -13,11 +13,12 @@ export class CheckboxComponent {
 
 	@Output() valueChanged = new EventEmitter<boolean>();
 
-	get checkboxValue(): void {
-		return this.form.controls[this.checkboxName].value;
+	get checkboxValue(): boolean {
+		return this.form.controls[this.checkboxName].value as boolean;
 	}
 
-	toggleChecked(event: any): void {
+	toggleChecked(event): void {
+		console.log("===> CHECKE: ", event);
 		this.form.get(this.checkboxName).patchValue(
 			event.target.checked
 		);

@@ -4,11 +4,11 @@
 <section class="task-list__selectors">
 	<app-sort-select appFocus
 		[list]="giftSortOptions"
-		(onSortSelected)="onSortSelected($event)">
+		(sortSelected)="sortSelected($event)">
 	</app-sort-select>
 	<app-recipient-filter appFocus
 		[list]="recipients"
-		(onFilterReset)="resetRecipientFilter()"
+		(filterReset)="resetRecipientFilter()"
 		(onRecipientSelect)="filterByRecipient($event)">
 	</app-recipient-filter>
 </section>

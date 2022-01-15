@@ -1,4 +1,4 @@
-import { 
+import {
 	Component,
 	ElementRef,
 	EventEmitter,
@@ -24,7 +24,7 @@ export class RecipientFilterComponent extends SelectComponent {
 	@Input() list: AddRecipient[];
 
 	@Output() onRecipientSelect = new EventEmitter<AddRecipient>();
-	@Output() onFilterReset = new EventEmitter<void>();
+	@Output() filterReset = new EventEmitter<void>();
 
 	public selectedRecipient: AddRecipient;
 
@@ -37,7 +37,7 @@ export class RecipientFilterComponent extends SelectComponent {
 
 	public clearFilter(): void {
 		this.selectedRecipient = null;
-		this.onFilterReset.emit();
+		this.filterReset.emit();
 	}
 
 	public selectOption(recipient: AddRecipient): void {

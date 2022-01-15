@@ -1,4 +1,4 @@
-import { 
+import {
 	Component,
 	ElementRef,
 	EventEmitter,
@@ -20,8 +20,8 @@ import { FocusService } from '../../../../services/focus.service';
 	]
 })
 export class SelectFilterComponent extends SelectComponent {
-	@Output() onStatusSelect = new EventEmitter<Status>();
-	@Output() onFilterReset = new EventEmitter<void>();
+	@Output() statusSelect = new EventEmitter<Status>();
+	@Output() filterReset = new EventEmitter<void>();
 
 	public selected: Status;
 	public status = Status;
@@ -37,12 +37,12 @@ export class SelectFilterComponent extends SelectComponent {
 
 	public clearFilter(): void {
 		this.selected = null;
-		this.onFilterReset.emit();
+		this.filterReset.emit();
 	}
 
 	public selectOption(status: Status): void {
 		this.showOptionList = false;
 		this.selected = status;
-		this.onStatusSelect.emit(status);
+		this.statusSelect.emit(status);
 	}
 }

@@ -135,14 +135,14 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				]
 			],
 		},
-			{
-				updateOn: "submit",
-				validators: [
-					this.customValidator.emailValidator("email", `channels.${Channel.email}`),
-					this.customValidator.phoneValidator("phone", `channels.${Channel.text}`),
-					this.customValidator.addressValidator("address"),
-				]
-			});
+		{
+			updateOn: "submit",
+			validators: [
+				this.customValidator.emailValidator("email", `channels.${Channel.email}`),
+				this.customValidator.phoneValidator("phone", `channels.${Channel.text}`),
+				this.customValidator.addressValidator("address"),
+			]
+		});
 
 		this.router.events
 			.pipe(
@@ -166,7 +166,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				uuid: recipient?.uuid
 			};
 			this.populateFormData(recipient);
-		};
+		}
 	}
 
 	private populateFormData(recipient: AddRecipient): void {
@@ -197,35 +197,35 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 	}
 
 	get name(): string {
-		return this.recipientFormControl.name.value;
+		return this.recipientFormControl.name.value as string;
 	}
 
 	get date(): CalendarDay {
-		return this.recipientForm.get("date.day")?.value;
+		return this.recipientForm.get("date.day")?.value as CalendarDay;
 	}
 
 	get options(): RecipientOptions {
-		return this.recipientFormControl.options.value;
+		return this.recipientFormControl.options.value as RecipientOptions;
 	}
 
 	get profile(): EventImage {
-		return this.recipientFormControl.profile.value;
+		return this.recipientFormControl.profile.value as EventImage;
 	}
 
 	get email(): string {
-		return this.recipientFormControl.email.value;
+		return this.recipientFormControl.email.value as string;
 	}
 
 	get phone(): Phone {
-		return this.recipientFormControl.phone.value;
+		return this.recipientFormControl.phone.value as Phone;
 	}
 
 	get address(): Address {
-		return this.recipientFormControl.address.value;
+		return this.recipientFormControl.address.value as Address;
 	}
 
 	get budget(): number {
-		return this.recipientFormControl.budget.value;
+		return this.recipientFormControl.budget.value as number;
 	}
 
 	onSubmit(): void {

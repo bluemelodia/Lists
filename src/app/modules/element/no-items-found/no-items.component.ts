@@ -28,7 +28,7 @@ export class NoItemsComponent {
 	* If the user is performing an add operation, clear
 	* the previously-stored item from session storage.
 	*/
-	public onActionItemClick() {
+	public onActionItemClick(): void {
 		switch(this.config.action) {
 			case GiftAction.Add:
 			case MeetingAction.Add:
@@ -37,7 +37,10 @@ export class NoItemsComponent {
 				break;
 		}
 
-		this.router.navigate([this.config.route], {
+		/**
+		* Marked as non-awaited.
+		*/
+		void this.router.navigate([this.config.route], {
 			queryParams: { title: this.config.actionText }
 		});
 	}

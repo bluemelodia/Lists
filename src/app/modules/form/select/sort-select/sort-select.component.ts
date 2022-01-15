@@ -16,8 +16,8 @@ import { FocusService } from "../../../../services/focus.service";
 })
 export class SortSelectComponent extends SelectComponent {
 	@Input() list: SortOption[];
-	
-	@Output() onSortSelected = new EventEmitter<SortOption>();
+
+	@Output() sortSelected = new EventEmitter<SortOption>();
 
 	public selectedSort: SortOption;
 
@@ -35,6 +35,6 @@ export class SortSelectComponent extends SelectComponent {
 	selectOption(option: SortOption): void {
 		this.showOptionList = false;
 		this.selectedSort = option;
-		this.onSortSelected.emit(option);
+		this.sortSelected.emit(option);
 	}
 }

@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from "@angular/core";
+import { Component, HostBinding, OnDestroy, OnInit } from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
@@ -39,7 +39,7 @@ import { TaskUtils } from "../../../utils/task.utils";
 	templateUrl: "./add-task.component.html",
 	styleUrls: ["./add-task.component.css"]
 })
-export class AddTaskComponent implements OnInit {
+export class AddTaskComponent implements OnInit, OnDestroy {
 	@HostBinding("class") containerClasses = "section-container";
 
 	public calendarType: CalendarType = CalendarType.Solar;
@@ -95,12 +95,10 @@ export class AddTaskComponent implements OnInit {
 				taskStatus: [ Status.NotStarted ],
 			})
 		},
-			{
-				updateOn: "submit",
-				validators: [
-					this.customValidators.dueDateAndTimeValidator("dueDate.day", "dueTime")
-				]
-			});
+		{
+			updateOn: "submit",
+			validators: []
+		});
 
 		this.router.events
 			.pipe(
@@ -152,7 +150,7 @@ export class AddTaskComponent implements OnInit {
 	}
 
 	get name(): string {
-		return this.taskFormControl.name.value;
+		return this.taskFormControl.name.value as string;
 	}
 
 	get dueDateCtrl(): AbstractControl {
@@ -160,19 +158,19 @@ export class AddTaskComponent implements OnInit {
 	}
 
 	get dueDate(): CalendarDay {
-		return this.taskForm.get("dueDate.day")?.value;
+		return this.taskForm.get("dueDate.day")?.value as CalendarDay;
 	}
 
 	get dueTime(): string {
-		return this.taskFormControl.dueTime.value;
+		return this.taskFormControl.dueTime.value as string;
 	}
 
 	get description(): string {
-		return this.taskFormControl.description.value;
+		return this.taskFormControl.description.value as string;
 	}
 
 	get recurrence(): RecurrenceMap {
-		return this.taskForm.get("recurrence.taskRecurrence")?.value;
+		return this.taskForm.get("recurrence.taskRecurrence")?.value as RecurrenceMap;
 	}
 
 	isOneTimeTask(): boolean {
@@ -180,7 +178,7 @@ export class AddTaskComponent implements OnInit {
 	}
 
 	get status(): Status {
-		return this.taskForm.get("status.taskStatus")?.value;
+		return this.taskForm.get("status.taskStatus")?.value as Status;
 	}
 
 	onDueTimeChanged($event): void {

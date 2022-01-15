@@ -65,7 +65,7 @@ export class ListComponent implements OnDestroy {
 		private router: Router,
 	) { }
 
-	public onSortSelected(option: SortOption): void {
+	public sortSelected(option: SortOption): void {
 		switch (option.fieldName) {
 			case GiftField.Budget:
 				this.fullList.sort(this.sortByPrice);

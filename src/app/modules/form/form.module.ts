@@ -42,7 +42,7 @@ import { StatusSelectComponent } from "./select/status-select/status-select.comp
 		PhoneSelectComponent,
 		RadioComponent,
 		RecipientFilterComponent,
-  		RecipientSelectComponent,
+		RecipientSelectComponent,
 		RecurrenceFilterComponent,
 		RecurrenceSelectComponent,
 		SelectComponent,
