@@ -9,35 +9,35 @@ import { ActivatedRoute, NavigationStart, Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { filter, take, takeUntil } from "rxjs/operators";
 
-import { FormLimit } from "../../../../constants/gifts.constants";
-import { Recurrence, RecurrenceMap, Status } from "../../../../constants/tasks.constants";
-import { Topic } from "../../../../constants/topics.constants";
+import { FormLimit } from "../../../constants/gifts.constants";
+import { Recurrence, RecurrenceMap, Status } from "../../../constants/tasks.constants";
+import { Topic } from "../../../constants/topics.constants";
 
-import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
-import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
+import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
+import { CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
 import {
 	ConfirmDialogAction,
 	DialogAction,
 	DialogPage,
-} from "../../../../interfaces/dialog.interface";
-import { Task, TaskAction } from "../../../../interfaces/event/task.interface";
-import { HeaderLevel } from "../../../../interfaces/header.interface";
-import { ResponseStatus } from "../../../../interfaces/response.interface";
+} from "../../../interfaces/dialog.interface";
+import { Task, TaskAction } from "../../../interfaces/event/task.interface";
+import { HeaderLevel } from "../../../interfaces/header.interface";
+import { ResponseStatus } from "../../../interfaces/response.interface";
 
-import { appTheme } from "../../../../modules/form/timepicker/time-picker.constants";
+import { appTheme } from "../../form/timepicker/time-picker.constants";
 
-import { DialogService } from "../../../../services/dialog.service";
-import { EditService } from "../../../../services/edit.service";
-import { NavService } from "../../../../services/nav.service";
-import { TaskService } from "../../../../services/task.service";
-import { ValidationService } from "../../../../services/validation.service";
+import { DialogService } from "../../../services/dialog.service";
+import { EditService } from "../../../services/edit.service";
+import { NavService } from "../../../services/nav.service";
+import { TaskService } from "../../../services/task.service";
+import { ValidationService } from "../../../services/validation.service";
 
-import { TaskUtils } from "../../../../utils/task.utils";
+import { TaskUtils } from "../../../utils/task.utils";
 
 @Component({
 	selector: "app-add-task",
-	templateUrl: "./add.component.html",
-	styleUrls: ["./add.component.css"]
+	templateUrl: "./add-task.component.html",
+	styleUrls: ["./add-task.component.css"]
 })
 export class AddTaskComponent implements OnInit {
 	@HostBinding("class") containerClasses = "section-container";

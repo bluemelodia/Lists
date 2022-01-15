@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { AddGiftComponent } from "./gift/add-gift/add.component";
-import { AddMeetingComponent } from "./meeting/add-meeting/add.component";
-import { AddRecipientComponent } from "./recipient/add-recipient/add.component";
-import { AddTaskComponent } from "./task/add-task/add.component";
+import { AddGiftComponent } from "./add-gift/add-gift.component";
+import { AddMeetingComponent } from "./add-meeting/add-meeting.component";
+import { AddRecipientComponent } from "./add-recipient/add-recipient.component";
+import { AddTaskComponent } from "./add-task/add-task.component";
 
 const routes: Routes = [
 	{

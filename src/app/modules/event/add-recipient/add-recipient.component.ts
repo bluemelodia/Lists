@@ -22,39 +22,39 @@ import {
 	takeUntil,
 } from "rxjs/operators";
 
-import { countries } from "../../../../constants/countries.constants";
-import { FormLimit } from "../../../../constants/gifts.constants";
-import { Topic } from "../../../../constants/topics.constants";
+import { countries } from "../../../constants/countries.constants";
+import { FormLimit } from "../../../constants/gifts.constants";
+import { Topic } from "../../../constants/topics.constants";
 
-import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
-import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
-import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
-import { EventImage } from "../../../../interfaces/event/event.interface";
+import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
+import { CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
+import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../interfaces/dialog.interface";
+import { EventImage } from "../../../interfaces/event/event.interface";
 import {
 	Address,
 	Recipient,
 	RecipientAction,
 	RecipientID,
 	RecipientOptions,
-} from "../../../../interfaces/event/recipient.interface";
-import { HeaderLevel } from "../../../../interfaces/header.interface";
-import { Phone } from "../../../../interfaces/phone.interface";
-import { ResponseStatus } from "../../../../interfaces/response.interface";
-import { AddRecipient } from "../../../../interfaces/service/service-objects.interface";
-import { Channel } from "../../../../interfaces/settings.interface";
+} from "../../../interfaces/event/recipient.interface";
+import { HeaderLevel } from "../../../interfaces/header.interface";
+import { Phone } from "../../../interfaces/phone.interface";
+import { ResponseStatus } from "../../../interfaces/response.interface";
+import { AddRecipient } from "../../../interfaces/service/service-objects.interface";
+import { Channel } from "../../../interfaces/settings.interface";
 
-import { DialogService } from "../../../../services/dialog.service";
-import { EditService } from "../../../../services/edit.service";
-import { NavService } from "../../../../services/nav.service";
-import { RecipientService } from "../../../../services/recipient.service";
-import { ValidationService } from "../../../../services/validation.service";
+import { DialogService } from "../../../services/dialog.service";
+import { EditService } from "../../../services/edit.service";
+import { NavService } from "../../../services/nav.service";
+import { RecipientService } from "../../../services/recipient.service";
+import { ValidationService } from "../../../services/validation.service";
 
-import { RecipientUtils } from "../../../../utils/recipient.utils";
+import { RecipientUtils } from "../../../utils/recipient.utils";
 
 @Component({
 	selector: "app-add-recipient",
-	templateUrl: "./add.component.html",
-	styleUrls: ["./add.component.css"]
+	templateUrl: "./add-recipient.component.html",
+	styleUrls: ["./add-recipient.component.css"]
 })
 export class AddRecipientComponent implements OnInit, OnDestroy {
 	@HostBinding("class") containerClasses = "section-container";

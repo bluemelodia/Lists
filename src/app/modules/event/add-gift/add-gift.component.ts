@@ -24,31 +24,31 @@ import {
 	takeUntil,
 } from 'rxjs/operators';
 
-import { FormLimit } from '../../../../constants/gifts.constants';
-import { Occasion } from '../../../../constants/occasions.constants';
-import { Topic } from '../../../../constants/topics.constants';
+import { FormLimit } from '../../../constants/gifts.constants';
+import { Occasion } from '../../../constants/occasions.constants';
+import { Topic } from '../../../constants/topics.constants';
 
-import { ConfirmDialogAction, DialogAction, DialogPage } from '../../../../interfaces/dialog.interface';
-import { RecipientList } from '../../../../interfaces/event/recipient.interface';
-import { EventImage } from '../../../../interfaces/event/event.interface';
-import { AddGift, GiftAction } from '../../../../interfaces/event/gift.interface';
-import { HeaderLevel } from '../../../../interfaces/header.interface';
-import { ResponseStatus } from '../../../../interfaces/response.interface';
-import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
+import { ConfirmDialogAction, DialogAction, DialogPage } from '../../../interfaces/dialog.interface';
+import { RecipientList } from '../../../interfaces/event/recipient.interface';
+import { EventImage } from '../../../interfaces/event/event.interface';
+import { AddGift, GiftAction } from '../../../interfaces/event/gift.interface';
+import { HeaderLevel } from '../../../interfaces/header.interface';
+import { ResponseStatus } from '../../../interfaces/response.interface';
+import { AddRecipient } from '../../../interfaces/service/service-objects.interface';
 
-import { DialogService } from '../../../../services/dialog.service';
-import { EditService } from '../../../../services/edit.service';
-import { GiftService } from '../../../../services/gift.service';
-import { LoadingService } from '../../../../services/loading.service';
-import { NavService } from '../../../../services/nav.service';
-import { RecipientService } from '../../../../services/recipient.service';
+import { DialogService } from '../../../services/dialog.service';
+import { EditService } from '../../../services/edit.service';
+import { GiftService } from '../../../services/gift.service';
+import { LoadingService } from '../../../services/loading.service';
+import { NavService } from '../../../services/nav.service';
+import { RecipientService } from '../../../services/recipient.service';
 
-import { GiftUtils } from '../../../../utils/gift.utils';
+import { GiftUtils } from '../../../utils/gift.utils';
 
 @Component({
 	selector: 'app-add-gift',
-	templateUrl: './add.component.html',
-	styleUrls: ['./add.component.css']
+	templateUrl: './add-gift.component.html',
+	styleUrls: ['./add-gift.component.css']
 })
 export class AddGiftComponent implements OnInit {
 	public giftForm: FormGroup;

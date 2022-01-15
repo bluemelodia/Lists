@@ -8,10 +8,10 @@ import { EventRoutingModule } from "./event-routing.module";
 import { FormElementModule } from "../form/form.module";
 import { ImageModule } from "../image/image.module";
 
-import { AddRecipientComponent } from "./recipient/add-recipient/add.component";
-import { AddGiftComponent } from "./gift/add-gift/add.component";
-import { AddMeetingComponent } from "./meeting/add-meeting/add.component";
-import { AddTaskComponent } from "./task/add-task/add.component";
+import { AddRecipientComponent } from "./add-recipient/add-recipient.component";
+import { AddGiftComponent } from "./add-gift/add-gift.component";
+import { AddMeetingComponent } from "./add-meeting/add-meeting.component";
+import { AddTaskComponent } from "./add-task/add-task.component";
 
 @NgModule({
 	declarations: [

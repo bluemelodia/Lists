@@ -18,37 +18,37 @@ import {
 	takeUntil,
 } from "rxjs/operators";
 
-import { FormLimit } from "../../../../constants/gifts.constants";
-import { Topic } from "../../../../constants/topics.constants";
+import { FormLimit } from "../../../constants/gifts.constants";
+import { Topic } from "../../../constants/topics.constants";
 
-import { appTheme } from "../../../form/timepicker/time-picker.constants";
+import { appTheme } from "../../form/timepicker/time-picker.constants";
 
-import { CalendarType } from "../../../../interfaces/calendar/calendar.interface";
-import { CalendarDay } from "../../../../interfaces/calendar/calendar-response.interface";
+import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
+import { CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
 import { 
 	ConfirmDialogAction, 
 	DialogAction, 
 	DialogPage,
-} from "../../../../interfaces/dialog.interface";
+} from "../../../interfaces/dialog.interface";
 import {
 	Meeting,
 	MeetingAction,
-} from "../../../../interfaces/event/meeting.interface";
-import { HeaderLevel } from "../../../../interfaces/header.interface";
-import { ResponseStatus } from "../../../../interfaces/response.interface";
-import { AddMeeting } from "../../../../interfaces/service/service-objects.interface";
+} from "../../../interfaces/event/meeting.interface";
+import { HeaderLevel } from "../../../interfaces/header.interface";
+import { ResponseStatus } from "../../../interfaces/response.interface";
+import { AddMeeting } from "../../../interfaces/service/service-objects.interface";
 
-import { DialogService } from "../../../../services/dialog.service";
-import { EditService } from "../../../../services/edit.service";
-import { MeetingService } from "../../../../services/meeting.service";
-import { NavService } from "../../../../services/nav.service";
-import { ValidationService } from "../../../../services/validation.service";
-import { MeetingUtils } from "../../../../utils/meeting.utils";
+import { DialogService } from "../../../services/dialog.service";
+import { EditService } from "../../../services/edit.service";
+import { MeetingService } from "../../../services/meeting.service";
+import { NavService } from "../../../services/nav.service";
+import { ValidationService } from "../../../services/validation.service";
+import { MeetingUtils } from "../../../utils/meeting.utils";
 
 @Component({
 	selector: "app-add-meeting",
-	templateUrl: "./add.component.html",
-	styleUrls: ["./add.component.css"]
+	templateUrl: "./add-meeting.component.html",
+	styleUrls: ["./add-meeting.component.css"]
 })
 export class AddMeetingComponent implements OnInit {
 	@HostBinding("class") containerClasses = "section-container";
