@@ -38,6 +38,8 @@ export class StatusSelectComponent extends SelectComponent implements AfterViewI
 	}
 
 	public selectOption(status: Status): void {
+		this.showOptionList = false;
+
 		this.selected = status;
 		this.statusForm.patchValue(status);
 	}

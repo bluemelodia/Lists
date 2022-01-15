@@ -130,7 +130,20 @@ export class AddTaskComponent implements OnInit {
 
 	private populateFormData(task: Task): void {
 		console.info("[Add Task] Populate form data: ", task);
-
+		this.taskForm.patchValue({
+			name: task.name, 
+			dueDate: { 
+				day: Object.keys(task.dueDate).length > 0 ? task.dueDate : null,
+			},
+			dueTime: task.dueTime, 
+			description: task.description,
+			recurrence: {
+				taskRecurrence: task.recurrence,
+			},
+			status: {
+				taskStatus: task.status,
+			}
+		});
 	}
 
 	/* returns the form controls of the form. */
