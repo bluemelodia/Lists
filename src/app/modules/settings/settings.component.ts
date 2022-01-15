@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, } from "@angular/forms";
 import { Subject } from "rxjs";
 import { finalize, take, takeUntil } from "rxjs/operators";
@@ -25,7 +25,7 @@ import { ValidationService } from "../../services/validation.service";
 	templateUrl: "./settings.component.html",
 	styleUrls: ["./settings.component.css"]
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, OnDestroy {
 	public channel = Channel;
 	public headerLevel = HeaderLevel;
 	public settingsForm: FormGroup;
@@ -115,15 +115,15 @@ export class SettingsComponent implements OnInit {
 	}
 
 	private get phone(): Phone {
-		return this.settingsFormControl.phone.value;
+		return this.settingsFormControl.phone.value as Phone;
 	}
 
 	private get email(): string {
-		return this.settingsFormControl.email.value;
+		return this.settingsFormControl.email.value as string;
 	}
 
 	private get tasks(): TopicSettings {
-		return this.settingsFormControl.tasks.value;
+		return this.settingsFormControl.tasks.value as TopicSettings;
 	}
 
 	private getChannel(channel: Channel): AbstractControl {
@@ -131,7 +131,7 @@ export class SettingsComponent implements OnInit {
 	}
 
 	public isChannelChecked(channel: Channel): boolean {
-		return this.getChannel(channel)?.value;
+		return this.getChannel(channel)?.value as boolean;
 	}
 
 	public setChannelValidationStatus(channel: Channel, status: boolean): void {

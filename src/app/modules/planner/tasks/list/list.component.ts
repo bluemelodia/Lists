@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
 
 import { Event } from "../../../../constants/events.contants";
 import { Icon } from "../../../../constants/icons.constants";
-import { Recurrence, Status } from "../../../../constants/tasks.constants";
+import { Recurrence, RecurrenceMap, Status } from "../../../../constants/tasks.constants";
 
 import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../../interfaces/dialog.interface";
 import { Task } from "../../../../interfaces/event/task.interface";
@@ -22,7 +22,7 @@ import { TaskService } from "../../../../services/task.service";
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.css']
 })
-export class ListComponent {
+export class ListComponent implements OnDestroy {
 	@Input() set list(list: Task[]) {
 		this.fullList = list;
 		this.tasksList$.next(list);
@@ -51,12 +51,12 @@ export class ListComponent {
 		private router: Router,
 	) { }
 
-	public filterByRecurrence(recurrence: Recurrence[]) {
+	public filterByRecurrence(recurrence: Recurrence[]): void {
 		this.filters.recurrence = recurrence;
 		this.filterList();
 	}
 
-	public filterByStatus(status: Status) {
+	public filterByStatus(status: Status): void {
 		this.filters.status = status;
 		this.filterList();
 	}
@@ -64,7 +64,7 @@ export class ListComponent {
 	private filterList(): void {
 		let filteredList = this.fullList;
 		if (this.filters.recurrence) {
-			const recurrence = this.filters.recurrence;
+			const recurrence: RecurrenceMap = this.filters.recurrence;
 
 			const recsToCheck = Object.keys(recurrence).filter(
 				(rec: Recurrence) => recurrence[rec]
@@ -82,7 +82,7 @@ export class ListComponent {
 		}
 
 		if (this.filters.status) {
-			const status = Status[this.filters.status];
+			const status = Status[this.filters.status as string];
 			filteredList = filteredList.filter((task: Task) => {
 				return task.status === status;
 			});
@@ -130,7 +130,8 @@ export class ListComponent {
 
 	public editTask(task: Task): void {
 		this.editService.editTask(task);
-		this.router.navigate(["/events/edit-task"], {
+		
+		void this.router.navigate(["/events/edit-task"], {
 			queryParams: { title: 'Edit Task' }
 		});
 	}

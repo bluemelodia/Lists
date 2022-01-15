@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Injectable } from "@angular/core"
 import { Observable, Subject, timer } from "rxjs"
 import convert from "image-file-resize";
@@ -96,6 +97,7 @@ export class CompressImageService {
 	}
 
 	private convertImage(file, width: number, height: number) {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		convert({
 			file: file,
 			width: width,

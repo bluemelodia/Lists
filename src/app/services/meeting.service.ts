@@ -1,4 +1,4 @@
-import { Injectable, ModuleWithComponentFactories } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
@@ -46,6 +46,8 @@ export class MeetingService {
 	*/
 	public getMeetings(userID = "guest"): Observable<AddMeeting[]> {	
 		const getMeeting = `${MeetingUtils.meetingURLForAction(MeetingAction.Fetch)}/${userID}`;
+		
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.get<Response>(
 			getMeeting
 		)

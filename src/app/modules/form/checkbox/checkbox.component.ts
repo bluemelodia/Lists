@@ -18,10 +18,11 @@ export class CheckboxComponent {
 	}
 
 	toggleChecked(event): void {
-		console.log("===> CHECKE: ", event);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+		const checked = event.target.checked as boolean;
 		this.form.get(this.checkboxName).patchValue(
-			event.target.checked
+			checked
 		);
-		this.valueChanged.emit(event.target.checked);
+		this.valueChanged.emit(checked);
 	}
 }

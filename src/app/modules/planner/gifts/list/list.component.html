@@ -9,7 +9,7 @@
 	<app-recipient-filter appFocus
 		[list]="recipients"
 		(filterReset)="resetRecipientFilter()"
-		(onRecipientSelect)="filterByRecipient($event)">
+		(recipientSelected)="filterByRecipient($event)">
 	</app-recipient-filter>
 </section>
 

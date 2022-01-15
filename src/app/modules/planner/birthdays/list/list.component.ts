@@ -31,7 +31,7 @@ import { RecipientService } from "../../../../services/recipient.service";
 })
 export class ListComponent implements OnDestroy {
 	@HostBinding("class") public get hostClasses(): string {
-		let hostStyles = [];
+		const hostStyles = [];
 		return hostStyles.join(" ");
 	}
 
@@ -91,7 +91,8 @@ export class ListComponent implements OnDestroy {
 
 	public editBirthday(recipient: AddRecipient): void {
 		this.editService.editRecipient(recipient);
-		this.router.navigate(["/events/edit-recipient"], {
+		
+		void this.router.navigate(["/events/edit-recipient"], {
 			queryParams: { title: 'Edit Recipient' }
 		});
 	}

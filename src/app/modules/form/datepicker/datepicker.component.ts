@@ -37,8 +37,9 @@ interface CalendarData {
 })
 export class DatepickerComponent implements OnInit, OnDestroy {
 	@HostListener('document:click', ['$event'])
-	click(event) {
-		if (!this.elementRef.nativeElement.contains(event.target)) {
+	click(event: MouseEvent): void {
+		const elem: HTMLElement = this.elementRef.nativeElement;
+		if (!elem.contains(event.target as HTMLElement)) {
 			if (this.calendarData.showCal) {
 				this.showHideCal();
 			}
@@ -46,7 +47,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 	}
 
 	@Input() calendarType: CalendarType = CalendarType.Lunar;
-	@Input() controlName: string = "";
+	@Input() controlName = "";
 	@Input() fieldName = "Date";
 	@Input() form: FormGroup;
 	@Input() placeholder = "";

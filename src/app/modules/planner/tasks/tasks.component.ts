@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
@@ -16,7 +16,7 @@ import { TaskService } from "../../../services/task.service";
 	templateUrl: './tasks.component.html',
 	styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit, OnDestroy {
 	public headerLevel = HeaderLevel;
 
 	private tasks$ = new Subject<Task[]>();

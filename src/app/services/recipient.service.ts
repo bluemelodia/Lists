@@ -114,6 +114,7 @@ export class RecipientService {
 
 		const getBirthday = `${RecipientUtils.recipientURLForAction(RecipientAction.Fetch)}/${userID}`;
 
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.get<Response>(
 			getBirthday
 		)

@@ -22,15 +22,18 @@ export class SettingsService {
 	) { }
 
 	public loadSettings(userID = "guest"): Observable<Settings> {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.get<Response>(
 			`${this.loadSettingsURL}/${userID}`
 		)
 			.pipe(
 				map((response: Response) => {
 					console.info("[Settings Service] Fetch settings: ", response);
-					const settings = response.responseData?.length > 0 ? response.responseData[0] : null;
-					if (settings?.preferences) {
-						settings.tasks = settings.preferences;
+
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+					const settings: Settings = response.responseData?.length > 0 ? response.responseData[0] : null;
+					if (settings && settings["preferences"]) {
+						settings.tasks = settings["preferences"];
 					}
 					return settings;
 				}),
@@ -50,7 +53,7 @@ export class SettingsService {
 			}
 		)
 			.pipe(
-				map((response: Response) => {
+				map(() => {
 					return ResponseStatus.SUCCESS;
 				}),
 				catchError(() => {

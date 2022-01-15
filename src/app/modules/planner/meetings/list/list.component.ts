@@ -2,6 +2,7 @@ import {
 	Component,
 	EventEmitter,
 	Input,
+	OnDestroy,
 	Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -26,7 +27,7 @@ import { MeetingService } from '../../../../services/meeting.service';
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.css']
 })
-export class ListComponent {
+export class ListComponent implements OnDestroy {
 	@Input() list: AddMeeting[] = [];
 
 	@Output() deletedMeeting = new EventEmitter();
@@ -77,7 +78,8 @@ export class ListComponent {
 
 	public editMeeting(meeting: AddMeeting): void {
 		this.editService.editMeeting(meeting);
-		this.router.navigate(["/events/edit-meeting"], {
+		
+		void this.router.navigate(["/events/edit-meeting"], {
 			queryParams: { title: 'Edit Meeting' }
 		});
 	}

@@ -52,10 +52,12 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 		});
 	}
 
-	public processFile(input: any): void {
+	public processFile(input): void {
 		/**
 		 * Get the first file.
 		 */
+
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		const file: File = input.files[0];
 		console.info(`[Image Upload] Image size before compression: ${file?.size} bytes.`);
 
@@ -75,6 +77,8 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 
 	public clearImage(): void {
 		this.selectedImageUrl$.next(null);
+
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		this.filePicker.nativeElement.value = "";
 	}
 
@@ -85,7 +89,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 					console.info(`[Image Upload] Image size after compression: ${file?.size} bytes.`);
 					return this.compressImageService.convertFileToBase64(file);
 				}),
-				catchError((error) => {
+				catchError((error: string) => {
 					console.info(`[Image Upload] Unable to upload image: ${error}.`);
 					this.dialogService.showErrorDialog(Dialog.UploadFailed);
 					return of(null);
@@ -102,9 +106,9 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 	}
 
 	private patchImage(): void {
-		const uploadedImage = this.uploadForm?.get("image")?.value;
+		const uploadedImage: string = this.uploadForm?.get("image")?.value;
 		if (uploadedImage) {
-			this.selectedImageUrl$.next(`${this.base64Prefix}${this.uploadForm.get("image").value}`);
+			this.selectedImageUrl$.next(`${this.base64Prefix}${uploadedImage}`);
 		}
 	}
 

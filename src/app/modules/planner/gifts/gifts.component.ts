@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { forkJoin, of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
@@ -18,7 +18,7 @@ import { RecipientService } from '../../../services/recipient.service';
 	templateUrl: './gifts.component.html',
 	styleUrls: ['./gifts.component.css']
 })
-export class GiftsComponent implements OnInit {
+export class GiftsComponent implements OnInit, OnDestroy {
 	@HostBinding("class") public get hostClasses(): string {
 		const hostStyles = [];
 

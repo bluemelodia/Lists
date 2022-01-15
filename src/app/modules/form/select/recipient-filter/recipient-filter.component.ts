@@ -23,7 +23,7 @@ import { FocusService } from '../../../../services/focus.service';
 export class RecipientFilterComponent extends SelectComponent {
 	@Input() list: AddRecipient[];
 
-	@Output() onRecipientSelect = new EventEmitter<AddRecipient>();
+	@Output() recipientSelected = new EventEmitter<AddRecipient>();
 	@Output() filterReset = new EventEmitter<void>();
 
 	public selectedRecipient: AddRecipient;
@@ -43,6 +43,6 @@ export class RecipientFilterComponent extends SelectComponent {
 	public selectOption(recipient: AddRecipient): void {
 		this.showOptionList = false;
 		this.selectedRecipient = recipient;
-		this.onRecipientSelect.emit(recipient);
+		this.recipientSelected.emit(recipient);
 	}
 }

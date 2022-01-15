@@ -20,7 +20,7 @@ import { FocusService } from '../../../../services/focus.service';
 	]
 })
 export class RecurrenceFilterComponent extends SelectComponent {
-	@Output() onRecurrenceSelect = new EventEmitter<RecurrenceMap>();
+	@Output() recurrenceSelected = new EventEmitter<RecurrenceMap>();
 	@Output() filterReset = new EventEmitter<void>();
 
 	public recurrence = Recurrence;
@@ -54,12 +54,12 @@ export class RecurrenceFilterComponent extends SelectComponent {
 	public selectOption(recurrence: Recurrence): void {
 		this.showOptionList = false;
 		this.selected[recurrence] = !this.selected[recurrence];
-		this.onRecurrenceSelect.emit(this.selected);
+		this.recurrenceSelected.emit(this.selected);
 	}
 
 	public getSelectedOptions(): string {
-		let selected = [];
-		for (let recurrence of Object.keys(this.selected)) {
+		const selected = [];
+		for (const recurrence of Object.keys(this.selected)) {
 			if (this.selected[recurrence]) {
 				selected.push(recurrence);
 			}

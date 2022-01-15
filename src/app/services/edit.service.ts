@@ -30,7 +30,7 @@ export class EditService {
 	}
 
 	public getItem(topic: Topic): Item {
-		const item = JSON.parse(sessionStorage.getItem(topic));
+		const item = JSON.parse(sessionStorage.getItem(topic)) as Item;
 		console.info("[Edit Service] Fetched item from session storage: ", item);
 		return item;
 	}
@@ -39,7 +39,7 @@ export class EditService {
 		sessionStorage.setItem(topic, JSON.stringify(value));
 	}
 
-	public clearItem(topic: Topic) {
+	public clearItem(topic: Topic): void {
 		sessionStorage.removeItem(topic);
 	}
 }

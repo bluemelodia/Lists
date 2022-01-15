@@ -21,6 +21,7 @@ export class ValidationService {
 	 * Individual field validators.
 	 */
 	nameValidator(): ValidatorFn {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		return (control: AbstractControl): { [key: string]: any } => {
 			if (!control.value) {
 				return null;

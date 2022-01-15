@@ -15,9 +15,9 @@ export class CalendarService {
 	private baseURL = Endpoint.CALENDAR;
 	private calendar$ = new ReplaySubject<Calendar>();
 
-	private currentYear;
-	private currentMonth;
-	private currentDay;
+	private currentYear: number;
+	private currentMonth: number;
+	private currentDay: number;
 
 	constructor(private http: HttpClient) {
 		const today = new Date();
@@ -62,7 +62,7 @@ export class CalendarService {
 				const calendarMonths: CalendarMonth[] = [];
 
 				/* Separate out the calendars into their respective years. */
-				const curCal = response[this.currentYear];
+				const curCal = response[this.currentYear] as Response;
 				if (curCal && curCal.statusCode === 0) {
 					const calendar = cal[this.currentYear] = CalendarUtils.getParsedCalendar(curCal.responseData);
 
@@ -70,7 +70,7 @@ export class CalendarService {
 					calendarMonths.push(...calendar.months);
 				}
 
-				const nextCal = response[this.currentYear + 1];
+				const nextCal = response[this.currentYear + 1] as Response;
 				if (nextCal && nextCal.statusCode === 0) {
 					const calendar = cal[this.currentYear + 1] = CalendarUtils.getParsedCalendar(nextCal.responseData);
 					calendarYears.push(calendar);

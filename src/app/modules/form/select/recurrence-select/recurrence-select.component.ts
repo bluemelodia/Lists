@@ -90,8 +90,8 @@ export class RecurrenceSelectComponent extends SelectComponent implements AfterV
 	}
 
 	public getSelectedOptions(): string {
-		let selected = [];
-		for(let recurrence of Object.keys(this.selected)) {
+		const selected = [];
+		for(const recurrence of Object.keys(this.selected)) {
 			if (this.selected[recurrence]) {
 				selected.push(recurrence);
 			}

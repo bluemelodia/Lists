@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { AddMeeting } from "../interfaces/service/service-objects.interface";
-import { MeetingUtils } from "../utils/meeting.utils";
 import { TimeUtils } from '../utils/time.utils';
 
 @Pipe({

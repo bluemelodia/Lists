@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { CalendarMonth, CalendarWeek, CalendarDay, CalendarYear, CalendarKey } from "../interfaces/calendar/calendar-response.interface";
 
 export class CalendarUtils {
@@ -13,7 +14,7 @@ export class CalendarUtils {
 	}
 
 	public static getCachedCalendar(year: number): CalendarYear {
-		return CalendarUtils.cache[year];
+		return CalendarUtils.cache[year] as CalendarYear;
 	}
 
 	public static getCalendarDays(): CalendarDay[] {
@@ -28,7 +29,7 @@ export class CalendarUtils {
 		try {
 			/* Already parsed. */
 			if (calendar.year && calendar.months) {
-				return calendar;
+				return calendar as CalendarYear;
 			}
 
 			const calJSON = JSON.parse(calendar);
@@ -40,7 +41,7 @@ export class CalendarUtils {
 				year: Number(calYear),
 				months: months
 			};
-			console.info(`[Calendar Utils] Created calendar for ${year}: `, cal);
+			
 			CalendarUtils.cacheCalendar(calYear, cal);
 			return cal;
 		} catch (error) {
@@ -65,7 +66,7 @@ export class CalendarUtils {
 				year: Number(year)
 			});
 		}
-		return months;
+		return months as CalendarMonth[];
 	}
 
 	private static parseWeek(weekJSON: any, month: number, year: number): CalendarWeek[] {
@@ -76,7 +77,7 @@ export class CalendarUtils {
 				days: days
 			});
 		}
-		return week;
+		return week as CalendarWeek[];
 	}
 
 	private static parseDays(daysJSON: any, month: number, year: number): CalendarDay[] {
@@ -101,6 +102,6 @@ export class CalendarUtils {
 				});
 			}
 		}
-		return days;
+		return days as CalendarDay[];
 	}
 }

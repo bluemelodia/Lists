@@ -128,7 +128,7 @@ export class AddGiftComponent implements OnInit {
 			updateOn: "submit",
 			validators: []
 		});
-
+		
 		this.router.events
 			.pipe(
 				filter(event => event instanceof NavigationStart)

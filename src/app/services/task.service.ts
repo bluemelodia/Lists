@@ -74,17 +74,19 @@ export class TaskService {
 		console.info("[Task Service] Get tasks for id: ", userID);
 
 		const getTask = `${TaskUtils.taskURLForAction(TaskAction.Fetch)}/${userID}`;
+		
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.get<Response>(
 			getTask
 		)
 			.pipe(
 				map((response: Response) => {
 					console.info("[Task Service] Received tasks: ", response);
-					return response.responseData;
+					return response.responseData as Task[];
 				}),
 				catchError(() => {
 					return of(null);
 				})
 			);
-		}
+	}
 }

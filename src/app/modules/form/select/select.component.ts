@@ -23,8 +23,9 @@ import { FocusService } from "../../../services/focus.service";
 })
 export class SelectComponent implements OnInit, OnDestroy {
 	@HostListener('document:click', ['$event'])
-	click(event) {
-		if (!this.elementRef.nativeElement.contains(event.target)) {
+	click(event: MouseEvent): void {
+		const elem: HTMLElement = this.elementRef.nativeElement;
+		if (!elem.contains(event.target as HTMLElement)) {
 			if (this.showOptionList) {
 				this.showHideOptions();
 			}

@@ -4,7 +4,6 @@ import {
 	HostBinding,
 	Input,
 	OnDestroy,
-	OnInit,
 	Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -33,7 +32,7 @@ import { GiftService } from '../../../../services/gift.service';
 })
 export class ListComponent implements OnDestroy {
 	@HostBinding("class") public get hostClasses(): string {
-		let hostStyles = [];
+		const hostStyles = [];
 		return hostStyles.join(" ");
 	}
 
@@ -128,7 +127,8 @@ export class ListComponent implements OnDestroy {
 
 	public editGift(gift: GiftDetails): void {
 		this.editService.editGift(gift);
-		this.router.navigate(["/events/edit-gift"], {
+
+		void this.router.navigate(["/events/edit-gift"], {
 			queryParams: { title: 'Edit Gift' }
 		});
 	}

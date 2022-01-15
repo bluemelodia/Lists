@@ -73,17 +73,19 @@ export class GiftService {
 		console.info("[Gift Service] Get gifts for id: ", userID);
 
 		const getGift = `${GiftUtils.giftURLForAction(GiftAction.Fetch)}/${userID}`;
+		
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.get<Response>(
 			getGift
 		)
 			.pipe(
 				map((response: Response) => {
 					console.info("[Gift Service] Received gifts: ", response);
-					return response.responseData;
+					return response.responseData as AddGift;
 				}),
 				catchError(() => {
 					return of(null);
 				})
 			);
-		}
+	}
 }

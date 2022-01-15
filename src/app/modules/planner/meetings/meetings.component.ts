@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
@@ -16,7 +16,7 @@ import { MeetingService } from '../../../services/meeting.service';
 	templateUrl: './meetings.component.html',
 	styleUrls: ['./meetings.component.css']
 })
-export class MeetingsComponent implements OnInit {
+export class MeetingsComponent implements OnInit, OnDestroy {
 	public headerLevel = HeaderLevel;
 
 	private meetings$ = new Subject<AddMeeting[]>();
