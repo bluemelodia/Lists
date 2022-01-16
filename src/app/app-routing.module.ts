@@ -10,10 +10,6 @@ import { ElementModule } from "./modules/element/element.module";
  */
 const routes: Routes = [
 	{
-		path: '',
-		component: LoginComponent,
-	},
-	{
 		path: 'login',
 		component: LoginComponent,
 	},

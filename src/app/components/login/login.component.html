@@ -1,0 +1,43 @@
+<section class="form-container">
+    <form class="event-form"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()">
+		<app-heading text="Login"
+			[level]="headerLevel.H1">
+		</app-heading>
+        <span class="form-instructions">Provide details about the task.</span>
+		<fieldset class="username">
+            <input formControlName="username"
+                placeholder="Username"
+				type="text"/>
+            <div *ngIf="submitted && loginFormControl.username.errors"
+				class="input-error">
+                    <span *ngIf="loginFormControl.username.errors?.required">
+                        Username is required.
+                    </span>
+                    <span *ngIf="loginFormControl.username.errors?.minlength || loginFormControl.username.errors?.maxlength">
+                        Please enter {{ limit.Username.min }} to {{ limit.Username.max }} characters.
+                    </span>
+            </div> 
+        </fieldset>
+		<fieldset class="password">
+            <input formControlName="password"
+                placeholder="Password"
+				type="text"/>
+            <div *ngIf="submitted && loginFormControl.password.errors"
+				class="input-error">
+                    <span *ngIf="loginFormControl.password.errors?.required">
+                        Task name is required.
+                    </span>
+                    <span *ngIf="loginFormControl.password.errors?.minlength || loginFormControl.password.errors?.maxlength">
+                        Please enter {{ limit.Password.min }} to {{ limit.Password.max }} characters.
+                    </span>
+            </div> 
+        </fieldset>
+        <fieldset class="form-actions"> 
+            <button type="submit">
+                Login
+            </button>
+        </fieldset>
+    </form>
+</section>

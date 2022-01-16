@@ -30,7 +30,6 @@ import { DialogService } from "../../../services/dialog.service";
 import { EditService } from "../../../services/edit.service";
 import { NavService } from "../../../services/nav.service";
 import { TaskService } from "../../../services/task.service";
-import { ValidationService } from "../../../services/validation.service";
 
 import { TaskUtils } from "../../../utils/task.utils";
 
@@ -55,7 +54,6 @@ export class AddTaskComponent implements OnInit, OnDestroy {
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
-		private customValidators: ValidationService,
 		private dialogService: DialogService,
 		private editService: EditService,
 		private fb: FormBuilder,
