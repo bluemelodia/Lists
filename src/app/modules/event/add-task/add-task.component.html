@@ -12,15 +12,18 @@
 				type="text"/>
             <div *ngIf="submitted && taskFormControl.name.errors"
 				class="input-error">
-                    <span *ngIf="taskFormControl.name.errors?.required">
+                    <p *ngIf="taskFormControl.name.errors?.required"
+						class="input-error_msg">
                         Task name is required.
-                    </span>
-                    <span *ngIf="taskFormControl.name.errors?.minlength">
+					</p>
+                    <p *ngIf="taskFormControl.name.errors?.minlength"
+						class="input-error_msg">
                         Please enter a longer task name.
-                    </span>
-					<span *ngIf="taskFormControl.name.errors?.maxlength">
+					</p>
+					<p *ngIf="taskFormControl.name.errors?.maxlength"
+						class="input-error_msg">
 						Task name should not exceed {{ limit.Task.max }} characters.
-					</span>
+					</p>
             </div> 
         </fieldset>
 		<app-recurrence-select appFocus

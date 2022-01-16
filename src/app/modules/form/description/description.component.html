@@ -15,9 +15,9 @@
 		Max {{ maxChars }} characters.
 		<div *ngIf="submitted && form.controls[controlName]?.errors"
 			class="input-error">
-			<span *ngIf="form.controls[controlName]?.errors?.maxlength">
+			<p *ngIf="form.controls[controlName]?.errors?.maxlength">
 				Description should not exceed {{ maxChars }} characters.
-			</span>
+			</p>
 		</div> 
 	</fieldset>
 </form>

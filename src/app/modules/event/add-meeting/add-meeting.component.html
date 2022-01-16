@@ -12,27 +12,27 @@
 				type="text"/>
             <div *ngIf="submitted && meetingFormControl.name.errors"
 				class="input-error">
-                    <span *ngIf="meetingFormControl.name.errors?.required">
+                    <p *ngIf="meetingFormControl.name.errors?.required">
                         Name is required.
-                    </span>
-                    <span *ngIf="meetingFormControl.name.errors?.minlength">
+					</p>
+                    <p *ngIf="meetingFormControl.name.errors?.minlength">
                         Please enter a longer name.
-                    </span>
-					<span *ngIf="meetingFormControl.name.errors?.maxlength">
+					</p>
+					<p *ngIf="meetingFormControl.name.errors?.maxlength">
 						Name should not exceed {{ limit.Name.max }} characters.
-					</span>
+					</p>
             </div> 
 			<input formControlName="location"
                 placeholder="Location"
 				type="text"/>
 			<div *ngIf="submitted && meetingFormControl.location.errors"
 				class="input-error">
-				<span *ngIf="meetingFormControl.location.errors?.required">
+				<p *ngIf="meetingFormControl.location.errors?.required">
 					Location is required.
-				</span>
-				<span *ngIf="meetingFormControl.location.errors?.maxlength">
+				</p>
+				<p *ngIf="meetingFormControl.location.errors?.maxlength">
 					Location should not exceed {{ limit.Name.max }} characters.
-				</span>
+				</p>
 			</div> 
 			<app-checkbox checkboxName="virtual"
 				id="action-virtual"
@@ -58,9 +58,9 @@
 			</app-datepicker>
 			<div *ngIf="submitted && startDateCtrl.errors"
 				class="input-error after-picker">
-				<span *ngIf="startDateCtrl.errors?.startDateAfterEnd">
+				<p *ngIf="startDateCtrl.errors?.startDateAfterEnd">
 					Start date must be before end date.
-				</span>
+				</p>
             </div> 	
 			<input readonly
 				aria-label="Start Time"
@@ -74,9 +74,9 @@
 			</ngx-material-timepicker>
 			<div *ngIf="submitted && meetingFormControl.startTime.errors"
 				class="input-error after-picker">
-                <span *ngIf="meetingFormControl.startTime.errors?.required">
+                <p *ngIf="meetingFormControl.startTime.errors?.required">
                     Start time is required.
-                </span>
+				</p>
             </div> 	
 		</fieldset>
 		<fieldset class="end-date">
@@ -109,12 +109,12 @@
 			</ngx-material-timepicker>
 			<div *ngIf="submitted && meetingFormControl.endTime.errors"
 				class="input-error after-picker">
-				<span *ngIf="meetingFormControl.endTime.errors?.required">
+				<p *ngIf="meetingFormControl.endTime.errors?.required">
 					End time is required.
-				</span>
-				<span *ngIf="meetingFormControl.endTime.errors?.startTimeAfterEnd">
+				</p>
+				<p *ngIf="meetingFormControl.endTime.errors?.startTimeAfterEnd">
 					End time must be after start time.
-				</span>
+				</p>
 			</div> 	
 		</fieldset>
 		<app-description controlName="description"

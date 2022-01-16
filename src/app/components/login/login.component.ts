@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 
 import { FormLimit } from '../../constants/gifts.constants';
 import { HeaderLevel } from '../../interfaces/header.interface';
+import { ValidationService } from '../../services/validation.service';
 
 @Component({
 	selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
 	public submitted = false;
 
 	constructor(
+		private customValidator: ValidationService,
 		private fb: FormBuilder,
 	) { }
 
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
 					Validators.required,
 					Validators.minLength(this.limit.Username.min),
 					Validators.maxLength(this.limit.Username.max),
+					this.customValidator.usernameValidator(),
 				]
 			],
 			password: [
@@ -35,6 +38,7 @@ export class LoginComponent implements OnInit {
 					Validators.required,
 					Validators.minLength(this.limit.Password.min),
 					Validators.maxLength(this.limit.Password.max),
+					this.customValidator.passwordValidator(),
 				]
 			]
 		});

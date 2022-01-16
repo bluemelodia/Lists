@@ -3,9 +3,9 @@
 		<ng-container [ngTemplateOutlet]="recipientSelect"></ng-container>   
 		<div *ngIf="submitted && recipientForm?.errors"
 			class="input-error">
-			<span *ngIf="recipientForm?.errors?.required">
+			<p *ngIf="recipientForm?.errors?.required">
 				Recipient is required.
-			</span>
+			</p>
 		</div> 
 	</section>
 </form>

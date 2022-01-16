@@ -23,15 +23,15 @@
 				type="number"/>
             <div *ngIf="submitted && giftFormControl.year.errors"
 				class="input-error">
-                <span *ngIf="giftFormControl.year.errors?.required">
+                <p *ngIf="giftFormControl.year.errors?.required">
                     Year is required.
-                </span>
-				<span *ngIf="giftFormControl.year.errors?.min">
+				</p>
+				<p *ngIf="giftFormControl.year.errors?.min">
                     Year must be {{ limit.Year.min }} or later.
-                </span>
-				<span *ngIf="giftFormControl.year.errors?.max">
+                </p>
+				<p *ngIf="giftFormControl.year.errors?.max">
                     Year is too large.
-                </span>
+                </p>
             </div>
 			<input formControlName="price"
 				type="number"
@@ -40,12 +40,12 @@
 				[min]="limit.Budget.min"/>
 			<div *ngIf="submitted && giftFormControl.price.errors"
 				class="input-error">
-				<span *ngIf="giftFormControl.price.errors?.max">
+				<p *ngIf="giftFormControl.price.errors?.max">
 					Price should not exceed {{ limit.Budget.max | currency }}.
-				</span>
-				<span *ngIf="giftFormControl.price.errors?.min">
+				</p>
+				<p *ngIf="giftFormControl.price.errors?.min">
 					Price cannot be negative.
-				</span>
+				</p>
 			</div>
         </fieldset>
 		<fieldset>

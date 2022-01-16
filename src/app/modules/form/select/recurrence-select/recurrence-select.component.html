@@ -27,9 +27,9 @@
 		</section>
 		<div *ngIf="submitted && recurrenceForm?.errors"
 			class="input-error">
-			<span *ngIf="recurrenceForm?.errors?.required">
+			<p *ngIf="recurrenceForm?.errors?.required">
 				Recurrence is required.
-			</span>
+			</p>
 		</div> 
 	</section>
 </form>

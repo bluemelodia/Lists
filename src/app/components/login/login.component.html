@@ -12,26 +12,38 @@
 				type="text"/>
             <div *ngIf="submitted && loginFormControl.username.errors"
 				class="input-error">
-                    <span *ngIf="loginFormControl.username.errors?.required">
+                    <p *ngIf="loginFormControl.username.errors?.required"
+						class="input-error_msg">
                         Username is required.
-                    </span>
-                    <span *ngIf="loginFormControl.username.errors?.minlength || loginFormControl.username.errors?.maxlength">
+					</p>
+                    <p *ngIf="loginFormControl.username.errors?.minlength || loginFormControl.username.errors?.maxlength"
+						class="input-error_msg">
                         Please enter {{ limit.Username.min }} to {{ limit.Username.max }} characters.
-                    </span>
+					</p>
+					<p *ngIf="loginFormControl.username.errors?.invalidUsername"
+						class="input-error_msg">
+                        Username contains invalid characters. Please only enter letters and numbers.
+                    </p>
             </div> 
         </fieldset>
 		<fieldset class="password">
             <input formControlName="password"
                 placeholder="Password"
-				type="text"/>
+				type="password"/>
             <div *ngIf="submitted && loginFormControl.password.errors"
 				class="input-error">
-                    <span *ngIf="loginFormControl.password.errors?.required">
-                        Task name is required.
-                    </span>
-                    <span *ngIf="loginFormControl.password.errors?.minlength || loginFormControl.password.errors?.maxlength">
+                    <p *ngIf="loginFormControl.password.errors?.required"
+						class="input-error_msg">
+                        Password is required.
+					</p>
+                    <p *ngIf="loginFormControl.password.errors?.minlength || loginFormControl.password.errors?.maxlength"
+						class="input-error_msg">
                         Please enter {{ limit.Password.min }} to {{ limit.Password.max }} characters.
-                    </span>
+					</p>
+					<p *ngIf="loginFormControl.password.errors?.invalidPassword"
+						class="input-error_msg">
+                        Password contains invalid characters. Please enter letters, numbers, and/or the following characters: !, @, #, $, %, &, *, _.
+                    </p>
             </div> 
         </fieldset>
         <fieldset class="form-actions"> 

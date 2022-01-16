@@ -23,12 +23,12 @@
 					type="email"/>
                 <div *ngIf="submitted && validateChannel[channel.email]"
 					class="input-error">
-                        <span *ngIf="settingsFormControl.email.errors?.missingEmail">
+                        <p *ngIf="settingsFormControl.email.errors?.missingEmail">
                             Please enter an email address.
-                        </span>    
-                        <span *ngIf="settingsFormControl.email.errors?.invalidEmail">
+                        </p>    
+                        <p *ngIf="settingsFormControl.email.errors?.invalidEmail">
                             Please enter a valid email address.
-                        </span>
+						</p>
                 </div>
             </fieldset>
             <app-checkbox

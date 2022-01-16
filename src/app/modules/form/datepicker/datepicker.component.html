@@ -11,9 +11,9 @@
             (keydown)="onKeydownEvent($event)"/>
         <div *ngIf="submitted && dateFormControl.day.errors?.required"
 			class="input-error">
-            <span>
+            <p>
 				{{fieldName}} is required.
-            </span>
+			</p>
         </div> 
 		<section *ngIf="cal.showCal"
 			class="cal-container">

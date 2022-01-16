@@ -19,12 +19,12 @@
 		</fieldset>
 		<div *ngIf="submitted && form.errors"
 			class="input-error">  
-			<span *ngIf="form.errors?.missingPhone">
+			<p *ngIf="form.errors?.missingPhone">
 				Please enter a phone number.
-			</span>
-			<span *ngIf="form.errors?.invalidPhone">
+			</p>
+			<p *ngIf="form.errors?.invalidPhone">
 				Please enter a valid phone number.
-			</span>
+			</p>
 		</div>
 		<section *ngIf="showOptionList"
 			class="options"

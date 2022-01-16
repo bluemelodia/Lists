@@ -12,15 +12,18 @@
 				type="text"/>
             <div *ngIf="submitted && recipientFormControl.name.errors"
 				class="input-error">
-                <span *ngIf="recipientFormControl.name.errors?.required">
-                     Name is required.
-                </span>
-                <span *ngIf="recipientFormControl.name.errors?.minlength || recipientFormControl.name.errors?.invalidName">
+                <p *ngIf="recipientFormControl.name.errors?.required"
+					class="input-error_msg">
+                    Name is required.
+                </p>
+                <p *ngIf="recipientFormControl.name.errors?.minlength || recipientFormControl.name.errors?.invalidName"
+					class="input-error_msg">
                     Please enter a valid name.
-                </span>
-				<span *ngIf="recipientFormControl.name.errors?.maxlength">
+				</p>
+				<p *ngIf="recipientFormControl.name.errors?.maxlength"
+					class="input-error_msg">
                     Name cannot exceed {{ limit.Name.max }} characters.
-                </span>
+                </p>
             </div> 
             <app-datepicker appFocus 
                 class="datepicker-container"
@@ -48,9 +51,9 @@
 				type="text"/>
             <div *ngIf="submitted && recipientFormControl.email.errors"
 				class="input-error">  
-                <span *ngIf="recipientFormControl.email.errors?.invalidEmail">
+                <p *ngIf="recipientFormControl.email.errors?.invalidEmail">
                     Please enter a valid email address.
-                </span>
+				</p>
             </div>
 			<app-phone-select appFocus
 				[form]="recipientForm.controls.phone"
@@ -66,15 +69,18 @@
 			<app-address [form]="recipientForm.controls.address"></app-address>
 			<div *ngIf="submitted && recipientFormControl.address.errors"
 				class="input-error">
-				<span *ngIf="recipientFormControl.address.errors?.missingStreetAddress">
+				<p *ngIf="recipientFormControl.address.errors?.missingStreetAddress"
+					class="input-error_msg">
 					Please enter a street address.
-				</span>
-				<span *ngIf="recipientFormControl.address.errors?.missingCity">
+				</p>
+				<p *ngIf="recipientFormControl.address.errors?.missingCity"
+					class="input-error_msg">
 					Please enter a city.
-				</span>
-				<span *ngIf="recipientFormControl.address.errors?.missingZip">
+				</p>
+				<p *ngIf="recipientFormControl.address.errors?.missingZip"
+					class="input-error_msg">
 					Please enter a zip code.
-				</span>
+				</p>
 			</div>
 		</fieldset>
 		<fieldset>
@@ -90,12 +96,12 @@
 				type="number"/>
 			<div *ngIf="submitted && recipientFormControl.budget.errors"
 				class="input-error">
-				<span *ngIf="recipientFormControl.budget.errors?.max">
+				<p *ngIf="recipientFormControl.budget.errors?.max">
 					Budget should not exceed {{ limit.Budget.max | currency }}.
-				</span>
-				<span *ngIf="recipientFormControl.budget.errors?.min">
+				</p>
+				<p *ngIf="recipientFormControl.budget.errors?.min">
 					Budget cannot be negative.
-				</span>
+				</p>
 			</div> 
 		</fieldset>
         <fieldset>

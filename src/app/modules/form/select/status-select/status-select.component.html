@@ -27,9 +27,9 @@
 		</section>
 		<div *ngIf="submitted && statusForm?.errors"
 			class="input-error">
-			<span *ngIf="statusForm?.errors?.required">
+			<p *ngIf="statusForm?.errors?.required">
 				Status is required.
-			</span>
+			</p>
 		</div> 
 	</section>
 </form>

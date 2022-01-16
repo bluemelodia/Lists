@@ -17,17 +17,39 @@ export class ValidationService {
 	private static emailRegex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 	private static phoneRegex = new RegExp(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im);
 
+	private static usernameRegex = new RegExp("^[a-zA-Z0-9]*$");
+	private static passwordRegex = new RegExp("^[a-zA-Z0-9!@#$%&*_]*$");
+
 	/**
 	 * Individual field validators.
 	 */
 	nameValidator(): ValidatorFn {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		return (control: AbstractControl): { [key: string]: any } => {
 			if (!control.value) {
 				return null;
 			}
 			const valid = ValidationService.nameRegex.test(control.value);
 			return valid ? null : { invalidName: true };
+		}
+	}
+
+	usernameValidator(): ValidatorFn {
+		return (control: AbstractControl): { [key: string]: any } => {
+			if (!control.value) {
+				return null;
+			}
+			const valid = ValidationService.usernameRegex.test(control.value);
+			return valid ? null : { invalidUsername: true };
+		}
+	}
+
+	passwordValidator(): ValidatorFn {
+		return (control: AbstractControl): { [key: string]: any } => {
+			if (!control.value) {
+				return null;
+			}
+			const valid = ValidationService.passwordRegex.test(control.value);
+			return valid ? null : { invalidPassword: true };
 		}
 	}
 

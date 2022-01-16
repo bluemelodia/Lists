@@ -26,9 +26,9 @@
 		</section>
 		<div *ngIf="submitted && occasionForm?.errors"
 			class="input-error">
-			<span *ngIf="occasionForm?.errors?.required">
+			<p *ngIf="occasionForm?.errors?.required">
 				Occasion is required.
-			</span>
+			</p>
 		</div> 
 	</section>
 </form>
