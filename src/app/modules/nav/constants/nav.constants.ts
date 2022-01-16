@@ -6,7 +6,8 @@ export enum MenuItem {
 	AddEvent = "Create",
 	Calendar = "Calendar",
 	Tasks = "Lists",
-	Settings = "Settings"
+	Settings = "Settings",
+	Logout = "Logout",
 }
 
 /**
@@ -18,6 +19,7 @@ export const MENU_LIST: MenuItem[] = [
 	MenuItem.AddEvent,
 	MenuItem.Tasks,
 	MenuItem.Settings,
+	MenuItem.Logout
 ];
 
 export interface IMenuDetails {
@@ -111,5 +113,9 @@ export const MENU: IMenu = {
 	[MenuItem.Settings]: {
 		route: "/settings",
 		title: "Settings"
-	}
+	},
+	[MenuItem.Logout]: {
+		route: "/login",
+		title: "Logout"
+	},
 };

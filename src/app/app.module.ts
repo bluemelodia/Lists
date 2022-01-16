@@ -10,6 +10,7 @@ import { AppComponent } from "./app.component";
 import { NavModule } from "./modules/nav/nav.module";
 
 import { DialogComponent } from "./components/dialog/dialog.component";
+import { LoginComponent } from "./components/login/login.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { ElementModule } from "./modules/element/element.module";
@@ -20,6 +21,7 @@ import { ElementModule } from "./modules/element/element.module";
 		DialogComponent,
 		FooterComponent,
 		HeaderComponent,
+		LoginComponent,
 	],
 	imports: [
 		BrowserAnimationsModule,

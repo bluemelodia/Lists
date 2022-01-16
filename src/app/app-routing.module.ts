@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
+import { LoginComponent } from "./components/login/login.component";
 import { ElementModule } from "./modules/element/element.module";
 
 /**
@@ -8,6 +9,14 @@ import { ElementModule } from "./modules/element/element.module";
  * any given session.
  */
 const routes: Routes = [
+	{
+		path: '',
+		component: LoginComponent,
+	},
+	{
+		path: 'login',
+		component: LoginComponent,
+	},
 	{
 		path: "events",
 		loadChildren: () => import("./modules/event/event.module").then(m => m.AddEventModule)
@@ -31,6 +40,10 @@ const routes: Routes = [
 	{
 		path: "tasks",
 		loadChildren: () => import("./modules/planner/tasks/tasks.module").then(m => m.TaskModule)
+	},
+	{
+		path: '**',
+		component: LoginComponent
 	}
 ];
 
