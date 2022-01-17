@@ -13,4 +13,5 @@ export const Endpoint: URL = {
 	MEETING: BASE_URL + "/meetings",
 	SETTINGS: BASE_URL + "/settings",
 	TASKS: BASE_URL + "/tasks",
+	USERS: BASE_URL + "/users",
 }
