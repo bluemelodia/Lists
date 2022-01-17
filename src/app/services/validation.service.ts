@@ -38,7 +38,7 @@ export class ValidationService {
 			if (!control.value) {
 				return null;
 			}
-			const valid = ValidationService.usernameRegex.test(control.value);
+			const valid = ValidationService.emailRegex.test(control.value);
 			return valid ? null : { invalidUsername: true };
 		}
 	}

@@ -322,6 +322,12 @@ button:disabled .arrow-btn {
   height: 100%;
 }
 
+.quick-link {
+	color: #ea818e;
+	font-weight: bold;
+	text-decoration: none;
+}
+
 /* Scrollable list. */
 .task-list {
   list-style: none;

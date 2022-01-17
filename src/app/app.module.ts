@@ -14,6 +14,8 @@ import { DialogComponent } from "./components/dialog/dialog.component";
 import { LoginComponent } from "./components/login/login.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { RegisterComponent } from "./components/register/register.component";
+
 import { ElementModule } from "./modules/element/element.module";
 
 @NgModule({
@@ -23,6 +25,7 @@ import { ElementModule } from "./modules/element/element.module";
 		FooterComponent,
 		HeaderComponent,
 		LoginComponent,
+		RegisterComponent,
 	],
 	imports: [
 		BrowserAnimationsModule,

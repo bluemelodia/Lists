@@ -1,26 +1,26 @@
 <section class="form-container">
     <form class="event-form"
-        [formGroup]="loginForm"
+        [formGroup]="registerForm"
         (ngSubmit)="onSubmit()">
-		<app-heading text="Login"
+		<app-heading text="Sign Up"
 			[level]="headerLevel.H1">
 		</app-heading>
-		<span class="form-instructions">Enter your email and password.</span>
+		<span class="form-instructions">Enter your email address and create a password.</span>
 		<fieldset class="username">
             <input formControlName="username"
                 placeholder="Email"
 				type="text"/>
-            <div *ngIf="submitted && loginFormControl.username.errors"
+            <div *ngIf="submitted && registerFormControl.username.errors"
 				class="input-error">
-                    <p *ngIf="loginFormControl.username.errors?.required"
+                    <p *ngIf="registerFormControl.username.errors?.required"
 						class="input-error_msg">
                         Email is required.
 					</p>
-                    <p *ngIf="loginFormControl.username.errors?.minlength || loginFormControl.username.errors?.maxlength"
+                    <p *ngIf="registerFormControl.username.errors?.minlength || registerFormControl.username.errors?.maxlength"
 						class="input-error_msg">
                         Please enter {{ limit.Username.min }} to {{ limit.Username.max }} characters.
 					</p>
-					<p *ngIf="loginFormControl.username.errors?.invalidUsername"
+					<p *ngIf="registerFormControl.username.errors?.invalidUsername"
 						class="input-error_msg">
                         Please enter a valid email.
                     </p>
@@ -30,17 +30,17 @@
             <input formControlName="password"
                 placeholder="Password"
 				type="password"/>
-            <div *ngIf="submitted && loginFormControl.password.errors"
+            <div *ngIf="submitted && registerFormControl.password.errors"
 				class="input-error">
-                    <p *ngIf="loginFormControl.password.errors?.required"
+                    <p *ngIf="registerFormControl.password.errors?.required"
 						class="input-error_msg">
                         Password is required.
 					</p>
-                    <p *ngIf="loginFormControl.password.errors?.minlength || loginFormControl.password.errors?.maxlength"
+                    <p *ngIf="registerFormControl.password.errors?.minlength || registerFormControl.password.errors?.maxlength"
 						class="input-error_msg">
                         Please enter {{ limit.Password.min }} to {{ limit.Password.max }} characters.
 					</p>
-					<p *ngIf="loginFormControl.password.errors?.invalidPassword"
+					<p *ngIf="registerFormControl.password.errors?.invalidPassword"
 						class="input-error_msg">
                         Password contains invalid characters. Please enter letters, numbers, and/or the following characters: !, @, #, $, %, &, *, _.
                     </p>
@@ -52,5 +52,5 @@
             </button>
         </fieldset>
     </form>
-	<span class="form-instructions">Don't have a username? <a class="quick-link" routerLink="/signup">Sign up!</a></span>
+	<span class="form-instructions">Already have an account? <a class="quick-link" routerLink="/login">Sign in!</a></span>
 </section>
