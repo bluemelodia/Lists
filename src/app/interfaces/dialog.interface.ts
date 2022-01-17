@@ -11,6 +11,8 @@ export enum DialogAction {
 	Delete,
 	Edit,
 	Get,
+	Login,
+	Register,
 	Save,
 }
 
@@ -29,9 +31,11 @@ export enum Dialog {
 }
 
 export enum DialogPage {
+	Login = 'login',
 	Meeting = 'meeting',
 	Gift = 'gift',
 	Recipient = 'recipient',
+	Register = 'register',
 	Settings = 'settings',
 	Tasks = 'task',
 }

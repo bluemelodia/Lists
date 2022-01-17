@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FormLimit } from '../../constants/gifts.constants';
+
+import { DialogAction, DialogPage } from '../../interfaces/dialog.interface';
 import { HeaderLevel } from '../../interfaces/header.interface';
+import { ResponseStatus } from '../../interfaces/response.interface';
+import { User } from '../../interfaces/user.interface';
+
+import { DialogService } from '../../services/dialog.service';
+import { UserService } from '../../services/user.service';
 import { ValidationService } from '../../services/validation.service';
 
 @Component({
@@ -15,10 +22,13 @@ export class RegisterComponent implements OnInit {
 	public registerForm: FormGroup;
 	public limit = FormLimit;
 	public submitted = false;
+	private user: User;
 
 	constructor(
 		private customValidator: ValidationService,
+		private dialogService: DialogService,
 		private fb: FormBuilder,
+		private userService: UserService,
 	) { }
 
 	ngOnInit(): void {
@@ -62,6 +72,17 @@ export class RegisterComponent implements OnInit {
 
 		if (this.registerForm.valid) {
 			this.submitted = false;
+			this.user = {
+				username: this.username,
+				password: this.password
+			}
+
+			this.userService.createUser(this.user)
+				.subscribe((response: ResponseStatus) => {
+					console.log("[Create User] Response: ", response);
+
+					this.dialogService.showResponseStatusDialog(response, DialogAction.Register, DialogPage.Register);
+				});
 		}
 	}
 }

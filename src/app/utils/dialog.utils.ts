@@ -31,6 +31,8 @@ export class DialogUtils {
 				return `Saved ${page} changes.`;
 			case DialogAction.Get:
 				return `Fetched user ${page}s.`;
+			case DialogAction.Register:
+				return `User created.`;
 			case DialogAction.Save:
 				return `Saved ${page}.`;
 			default:
@@ -53,6 +55,8 @@ export class DialogUtils {
 			case DialogAction.Get:
 				message = `Unable to fetch user ${page}s.`;
 				break;
+			case DialogAction.Register:
+				return `Unable to create user.`;
 			case DialogAction.Save:
 				message = `Unable to save ${page}s.`;
 				break;

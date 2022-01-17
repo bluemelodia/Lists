@@ -3,7 +3,7 @@ import { Endpoint } from "../constants/urls.constants";
 import { UserAction } from "../interfaces/user.interface";
 
 export class UserUtils {
-	private static baseURL = Endpoint.USER;
+	private static baseURL = Endpoint.USERS;
 	private static loginURL = `${UserUtils.baseURL}/login`;
 	private static signupURL = `${UserUtils.baseURL}/register`;
 

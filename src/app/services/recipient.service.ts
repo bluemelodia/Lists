@@ -72,7 +72,7 @@ export class RecipientService {
 				catchError(() => {
 					return of(ResponseStatus.ERROR);
 				})
-			)
+			);
 	}
 
 	private patchRecipient(recipient: AddRecipient) {
