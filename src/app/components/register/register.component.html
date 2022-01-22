@@ -29,7 +29,13 @@
 		<fieldset class="password">
             <input formControlName="password"
                 placeholder="Password"
-				type="password"/>
+				[type]="showPassword ?  'text' : 'password'"/>
+			<app-action ariaLabel="Show Password"
+				class="show-password"
+				[enabled]="true"
+				[icon]="icon.View"
+				(actionSelected)="toggleShowPassword()">
+			</app-action>
             <div *ngIf="submitted && registerFormControl.password.errors"
 				class="input-error">
                     <p *ngIf="registerFormControl.password.errors?.required"

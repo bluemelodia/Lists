@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FormLimit } from '../../constants/gifts.constants';
+import { Icon } from '../../constants/icons.constants';
 
 import { DialogAction, DialogPage } from '../../interfaces/dialog.interface';
 import { HeaderLevel } from '../../interfaces/header.interface';
@@ -19,8 +20,10 @@ import { ValidationService } from '../../services/validation.service';
 })
 export class RegisterComponent implements OnInit {
 	public headerLevel = HeaderLevel;
-	public registerForm: FormGroup;
+	public icon = Icon;
 	public limit = FormLimit;
+	public registerForm: FormGroup;
+	public showPassword = false;
 	public submitted = false;
 	private user: User;
 
@@ -84,5 +87,9 @@ export class RegisterComponent implements OnInit {
 					this.dialogService.showResponseStatusDialog(response, DialogAction.Register, DialogPage.Register);
 				});
 		}
+	}
+
+	public toggleShowPassword(): void {
+		this.showPassword = !this.showPassword;
 	}
 }
