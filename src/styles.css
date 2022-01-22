@@ -175,6 +175,7 @@ fieldset.multi {
   font-size: inherit;
   margin: 0;
   margin-bottom: 8px;
+  min-height: 44px;
   padding: 8px;
   width: 100%;
 }

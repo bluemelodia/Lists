@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Icon } from 'src/app/constants/icons.constants';
 
 import { FormLimit } from '../../constants/gifts.constants';
 import { HeaderLevel } from '../../interfaces/header.interface';
@@ -12,8 +13,10 @@ import { ValidationService } from '../../services/validation.service';
 })
 export class LoginComponent implements OnInit {
 	public headerLevel = HeaderLevel;
+	public icon = Icon;
 	public loginForm: FormGroup;
 	public limit = FormLimit;
+	public showPassword = false;
 	public submitted = false;
 
 	constructor(
@@ -63,5 +66,9 @@ export class LoginComponent implements OnInit {
 		if (this.loginForm.valid) {
 			this.submitted = false;
 		}
+	}
+
+	public toggleShowPassword(): void {
+		this.showPassword = !this.showPassword;
 	}
 }

@@ -8,4 +8,5 @@ export enum Icon {
 	Solar = 'fas fa-sun',
 	Lunar = 'fas fa-moon',
 	Recipient = 'fas fa-recipient-cake',
+	View = 'fas fa-eye',
 }

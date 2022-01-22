@@ -17,6 +17,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { RegisterComponent } from "./components/register/register.component";
 
 import { ElementModule } from "./modules/element/element.module";
+import { IconsModule } from "./modules/icons/icons.module";
 
 @NgModule({
 	declarations: [
@@ -34,6 +35,7 @@ import { ElementModule } from "./modules/element/element.module";
 		AppRoutingModule,
 		HttpClientModule,
 		ElementModule,
+		IconsModule,
 		NavModule,
 		ReactiveFormsModule,
 	],
