@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Icon } from 'src/app/constants/icons.constants';
 
+import { Icon } from '../../constants/icons.constants';
 import { FormLimit } from '../../constants/gifts.constants';
+
 import { HeaderLevel } from '../../interfaces/header.interface';
+import { ResponseStatus } from '../../interfaces/response.interface';
+import { User } from '../../interfaces/user.interface';
+
+import { DialogService } from '../../services/dialog.service';
+import { UserService } from '../../services/user.service';
 import { ValidationService } from '../../services/validation.service';
+import { DialogAction, DialogPage } from 'src/app/interfaces/dialog.interface';
 
 @Component({
 	selector: 'app-login',
@@ -18,10 +25,13 @@ export class LoginComponent implements OnInit {
 	public limit = FormLimit;
 	public showPassword = false;
 	public submitted = false;
+	private user: User;
 
 	constructor(
 		private customValidator: ValidationService,
+		private dialogService: DialogService,
 		private fb: FormBuilder,
+		private userService: UserService,
 	) { }
 
 	ngOnInit(): void {
@@ -65,6 +75,18 @@ export class LoginComponent implements OnInit {
 
 		if (this.loginForm.valid) {
 			this.submitted = false;
+
+			this.user = {
+				username: this.username,
+				password: this.password
+			}
+	
+			this.userService.login(this.user)
+				.subscribe((response: ResponseStatus) => {
+					if (response === ResponseStatus.ERROR) {
+						this.dialogService.showResponseStatusDialog(response, DialogAction.Login, DialogPage.Login);
+					}
+				});
 		}
 	}
 

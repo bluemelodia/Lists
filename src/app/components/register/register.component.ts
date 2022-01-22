@@ -82,8 +82,6 @@ export class RegisterComponent implements OnInit {
 
 			this.userService.createUser(this.user)
 				.subscribe((response: ResponseStatus) => {
-					console.log("[Create User] Response: ", response);
-
 					this.dialogService.showResponseStatusDialog(response, DialogAction.Register, DialogPage.Register);
 				});
 		}

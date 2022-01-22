@@ -38,6 +38,7 @@ How to make image upload easy with Angular
 - Ensure that only necessary fields are serialized - and all fields are coming back with the right values.
 
 - Fix issue where add page will show previous values.
+- Encrypt usernames/passwords? Expire the session after 15 minutes.
 
 ## Navigation
 

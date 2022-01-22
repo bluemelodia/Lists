@@ -55,8 +55,12 @@ export class DialogUtils {
 			case DialogAction.Get:
 				message = `Unable to fetch user ${page}s.`;
 				break;
+			case DialogAction.Login:
+				message = `Unable to login with this username and password.`;
+				break;
 			case DialogAction.Register:
-				return `Unable to create user.`;
+				message = `Unable to create user.`;
+				break;
 			case DialogAction.Save:
 				message = `Unable to save ${page}s.`;
 				break;

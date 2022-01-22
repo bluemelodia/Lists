@@ -18,8 +18,6 @@ export class UserService {
 	) { }
 
 	public createUser(user: User): Observable<ResponseStatus> {
-		console.info("[User Service] Create user: ", user);
-
 		return this.http.post<Response>(
 			UserUtils.userURLForAction(UserAction.Register),
 			user,
@@ -29,11 +27,27 @@ export class UserService {
 		)
 			.pipe(
 				map((response: Response) => {
-					console.log("===> [User Service] response: ", response);
 					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 				}),
-				catchError((error) => {
-					console.log("===> [User Service] error: ", error);
+				catchError(() => {
+					return of(ResponseStatus.ERROR);
+				})
+			);
+	}
+
+	public login(user: User): Observable<ResponseStatus> {
+		return this.http.post<Response>(
+			UserUtils.userURLForAction(UserAction.Login),
+			user,
+			{
+				headers: this.headers
+			}
+		)
+			.pipe(
+				map((response: Response) => {
+					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
+				}),
+				catchError(() => {
 					return of(ResponseStatus.ERROR);
 				})
 			);
