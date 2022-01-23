@@ -87,12 +87,12 @@ export class GiftsComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((lists: [RecipientList, AddGift[]]) => {
 				console.info("[Gift List] Received gift list: ", lists);
-				if (lists[0]?.list?.length > 0 && lists[1]?.length > 0) {
+				if (lists && lists[0]?.list?.length > 0 && lists[1]?.length > 0) {
 					this.mapGiftsToRecipients(lists[0].list, lists[1]);
 				} else {
 					this.giftDetailsList$.next([]);
 				}
-				this.recipientsList$.next(lists[0]?.list);
+				this.recipientsList$.next(lists ? lists[0]?.list : []);
 			});
 	}
 
