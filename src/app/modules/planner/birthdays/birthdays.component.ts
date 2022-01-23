@@ -88,8 +88,8 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((birthdayList: RecipientList) => {
 				console.info("[Birthday List] Received birthday list: ", birthdayList);
-				this.solarRecipients$.next(birthdayList.solar);
-				this.lunarRecipients$.next(birthdayList.lunar);
+				this.solarRecipients$.next(birthdayList?.solar);
+				this.lunarRecipients$.next(birthdayList?.lunar);
 			});
 	}
 
