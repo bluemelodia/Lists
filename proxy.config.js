@@ -29,6 +29,7 @@ const PROXY_CONFIG = [
 			"/todo/settings/saveSettings",
 			"/todo/login",
 			"/todo/register",
+			"/todo/logout",
         ],
         target: "http://localhost:9002",
         secure: false

@@ -52,4 +52,14 @@ export class UserService {
 				})
 			);
 	}
+
+	public logout() {
+		this.http.post<Response>(
+			UserUtils.userURLForAction(UserAction.Logout),
+			{
+				headers: this.headers
+			}
+		)
+			.subscribe();
+	}
 }

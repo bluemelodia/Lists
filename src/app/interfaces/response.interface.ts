@@ -6,4 +6,5 @@ export interface Response {
 export enum ResponseStatus {
     SUCCESS,
     ERROR,
+	LOGOUT
 }

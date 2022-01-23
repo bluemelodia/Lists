@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of, } from "rxjs";
+import { Observable, of, throwError, } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import {
@@ -109,7 +109,7 @@ export class RecipientService {
 	 * @param userID 
 	 * @returns A sorted list of birthdays for this user.
 	 */
-	public getRecipients(userID = "guest"): Observable<AddRecipient[]> {
+	public getRecipients(userID = "guest"): Observable<RecipientList> {
 		console.info("[Recipient Service] Get recipients for id: ", userID);
 
 		const getBirthday = `${RecipientUtils.recipientURLForAction(RecipientAction.Fetch)}/${userID}`;
@@ -124,9 +124,6 @@ export class RecipientService {
 					this.birthdays = RecipientUtils.createRecipientLists(response.responseData);
 					this.addSolarBirthdays(this.birthdays);
 					return this.birthdays;
-				}),
-				catchError(() => {
-					return of(null);
 				})
 			);
 	}

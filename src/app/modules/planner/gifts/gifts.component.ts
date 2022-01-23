@@ -72,8 +72,10 @@ export class GiftsComponent implements OnInit, OnDestroy {
 			this.giftService.getGifts()
 		])
 			.pipe(
-				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift);
+				catchError((error: ResponseStatus) => {
+					if (error === ResponseStatus.ERROR) {
+						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift);
+					}
 					this.loadingService.stopLoading();
 					return of(null);
 				}),

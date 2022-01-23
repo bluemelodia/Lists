@@ -193,8 +193,10 @@ export class AddGiftComponent implements OnInit {
 		this.loadingService.startLoading();
 		this.recipientService.getRecipients()
 			.pipe(
-				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift);
+				catchError((error: ResponseStatus) => {
+					if (error === ResponseStatus.ERROR) {
+						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift);
+					}
 					this.loadingService.stopLoading();
 					return of(null);
 				}),

@@ -73,8 +73,10 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 		this.loadingService.startLoading();
 		this.recipientService.getRecipients()
 			.pipe(
-				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Recipient);
+				catchError((error: ResponseStatus) => {
+					if (error === ResponseStatus.ERROR) {
+						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Recipient);
+					}
 					this.loadingService.stopLoading();
 					return of(null);
 				}),

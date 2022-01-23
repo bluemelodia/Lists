@@ -18,6 +18,7 @@ import { RegisterComponent } from "./components/register/register.component";
 
 import { ElementModule } from "./modules/element/element.module";
 import { IconsModule } from "./modules/icons/icons.module";
+import { httpInterceptorProviders } from "./http-interceptors";
 
 @NgModule({
 	declarations: [
@@ -39,7 +40,9 @@ import { IconsModule } from "./modules/icons/icons.module";
 		NavModule,
 		ReactiveFormsModule,
 	],
-	providers: [],
+	providers: [
+		httpInterceptorProviders,
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

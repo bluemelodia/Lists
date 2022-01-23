@@ -5,6 +5,7 @@ import { UserAction } from "../interfaces/user.interface";
 export class UserUtils {
 	private static baseURL = Endpoint.USERS;
 	private static loginURL = `${UserUtils.baseURL}/login`;
+	private static logoutURL = `${UserUtils.baseURL}/logout`;
 	private static signupURL = `${UserUtils.baseURL}/register`;
 
 	public static userURLForAction(action: UserAction): string {
@@ -16,6 +17,9 @@ export class UserUtils {
 				break;
 			case UserAction.Login:
 				url = UserUtils.loginURL;
+				break;
+			case UserAction.Logout:
+				url = UserUtils.logoutURL;
 				break;
 		}
 
