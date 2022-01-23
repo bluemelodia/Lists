@@ -25,9 +25,11 @@ export class MeetingService {
 	}
 
 	private postMeeting(meeting: Meeting, action: MeetingAction): Observable<ResponseStatus> {
+		const userID = this.userService.getUser();
+
 		return this.http.post<Response>(
 			MeetingUtils.meetingURLForAction(action),
-			MeetingUtils.createAddMeeting(meeting),
+			MeetingUtils.createAddMeeting(meeting, userID),
 			{
 				headers: this.headers
 			}

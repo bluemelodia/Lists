@@ -59,10 +59,11 @@ export class RecipientService {
 	*/
 	public postRecipient(recipient: Recipient, action = RecipientAction.Add): Observable<ResponseStatus> {
 		console.info("[Recipient Service] Post or edit recipient: ", recipient);
+		const userID = this.userService.getUser();
 
 		return this.http.post<Response>(
 			RecipientUtils.recipientURLForAction(action),
-			RecipientUtils.formatRecipient(recipient),
+			RecipientUtils.formatRecipient(recipient, userID),
 			{
 				headers: this.headers
 			}

@@ -45,10 +45,10 @@ export class GiftUtils {
 		return config;
 	}
 
-	public static formatGift(gift: Gift): AddGift {
+	public static formatGift(gift: Gift, userID: string): AddGift {
 		const addGift: AddGift = {
 			...gift,
-			id: "guest",
+			id: userID,
 			filename: EventUtils.extractFileURL(gift.giftImage?.fileName),
 			image: gift.giftImage?.image || '',
 		};

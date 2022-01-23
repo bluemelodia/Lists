@@ -47,7 +47,7 @@ export class MeetingUtils {
 		return config;
 	}
 
-	public static createAddMeeting(meeting: Meeting): AddMeeting {
+	public static createAddMeeting(meeting: Meeting, userID: string): AddMeeting {
 		const startDate = meeting.startDate;
 		const endDate = meeting.endDate;
 
@@ -55,7 +55,7 @@ export class MeetingUtils {
 		const endTime = TimeUtils.get24HourTime(meeting.endTime);
 
 		const addMeeting: AddMeeting = {
-			id: "guest",
+			id: userID,
 			uuid: meeting.uuid,
 			description: meeting.description,
 			location: meeting.location,

@@ -30,10 +30,11 @@ export class GiftService {
 
 	public postGift(gift: Gift, action = GiftAction.Add): Observable<ResponseStatus> {
 		console.info("[Gift Service] Post or edit recipient: ", gift);
+		const userID = this.userService.getUser();
 
 		return this.http.post<Response>(
 			GiftUtils.giftURLForAction(action),
-			GiftUtils.formatGift(gift),
+			GiftUtils.formatGift(gift, userID),
 			{
 				headers: this.headers
 			}

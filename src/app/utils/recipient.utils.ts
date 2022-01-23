@@ -65,11 +65,11 @@ export class RecipientUtils {
 		return config;
 	}
 
-	public static formatRecipient(recipient: Recipient): AddRecipient {
+	public static formatRecipient(recipient: Recipient, userID: string): AddRecipient {
 		const date = recipient.date;
 		const addRecipient: AddRecipient = {
 			...recipient,
-			id: "guest",
+			id: userID,
 			leap: date.leap ? 1 : 0,
 			lunar: recipient.options.lunar ? 1 : 0,
 			email: recipient.email.length > 6 ? recipient.email : '',
