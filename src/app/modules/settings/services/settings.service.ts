@@ -6,6 +6,7 @@ import { catchError, map } from "rxjs/operators";
 import { Endpoint } from "../../../constants/urls.constants";
 import { Response, ResponseStatus } from "../../../interfaces/response.interface";
 import { Settings } from "../interfaces/settings.interface";
+import { UserService } from "../../../services/user.service";
 
 @Injectable({
 	providedIn: "root"
@@ -19,9 +20,13 @@ export class SettingsService {
 
 	constructor(
 		private http: HttpClient,
+		private userService: UserService,
 	) { }
 
-	public loadSettings(userID = "guest"): Observable<Settings> {
+	public loadSettings(): Observable<Settings> {
+		const userID = this.userService.getUser();
+		console.info("[Settings Service] Fetch settings for user: ", userID);
+
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.get<Response>(
 			`${this.loadSettingsURL}/${userID}`
@@ -63,8 +68,10 @@ export class SettingsService {
 	}
 
 	private formatSettings(settings: Settings): Settings {
+		const userID = this.userService.getUser();
+
 		return {
-			id: "guest",
+			id: userID,
 			...settings,
 		}
 	}

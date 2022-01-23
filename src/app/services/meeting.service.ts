@@ -6,6 +6,7 @@ import { catchError, map } from "rxjs/operators";
 import { Meeting, MeetingAction } from "../interfaces/event/meeting.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { AddMeeting } from "../interfaces/service/service-objects.interface";
+import { UserService } from "./user.service";
 import { MeetingUtils } from "../utils/meeting.utils";
 
 @Injectable({
@@ -16,6 +17,7 @@ export class MeetingService {
 
 	constructor(
 		private http: HttpClient,
+		private userService: UserService,
 	) {}
 
 	public modifyMeeting(meeting: Meeting, action: MeetingAction): Observable<ResponseStatus> {
@@ -44,7 +46,8 @@ export class MeetingService {
 	* @param userID 
 	* @returns A sorted list of meetings for this user.
 	*/
-	public getMeetings(userID = "guest"): Observable<AddMeeting[]> {	
+	public getMeetings(): Observable<AddMeeting[]> {	
+		const userID = this.userService.getUser();
 		const getMeeting = `${MeetingUtils.meetingURLForAction(MeetingAction.Fetch)}/${userID}`;
 		
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -62,8 +65,10 @@ export class MeetingService {
 	}
 
 	public deleteMeeting(uuid: string): Observable<ResponseStatus> {
+		const userID = this.userService.getUser();
+
 		return this.http.delete<Response>(
-			`${MeetingUtils.meetingURLForAction(MeetingAction.Delete)}/guest/${uuid}`,
+			`${MeetingUtils.meetingURLForAction(MeetingAction.Delete)}/${userID}/${uuid}`,
 			{
 				headers: this.headers
 			}

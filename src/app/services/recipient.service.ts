@@ -15,6 +15,7 @@ import { RecipientUtils } from "../utils/recipient.utils";
 
 // services
 import { CalendarService } from "./calendar.service";
+import { UserService } from "./user.service";
 
 @Injectable({
 	providedIn: "root"
@@ -27,7 +28,8 @@ export class RecipientService {
 
 	constructor(
 		private calendarService: CalendarService,
-		private http: HttpClient
+		private http: HttpClient,
+		private userService: UserService,
 	) {
 		this.setupSubscriptions();
 	}
@@ -87,10 +89,11 @@ export class RecipientService {
 	}
 
 	public deleteRecipient(uuid: string): Observable<ResponseStatus> {
+		const userID = this.userService.getUser();
 		console.info("[Recipient Service] Delete recipient with uuid: ", uuid);
 
 		return this.http.delete<Response>(
-			`${RecipientUtils.recipientURLForAction(RecipientAction.Delete)}/guest/${uuid}`,
+			`${RecipientUtils.recipientURLForAction(RecipientAction.Delete)}/${userID}/${uuid}`,
 			{
 				headers: this.headers
 			}
@@ -109,7 +112,8 @@ export class RecipientService {
 	 * @param userID 
 	 * @returns A sorted list of birthdays for this user.
 	 */
-	public getRecipients(userID = "guest"): Observable<RecipientList> {
+	public getRecipients(): Observable<RecipientList> {
+		const userID = this.userService.getUser();
 		console.info("[Recipient Service] Get recipients for id: ", userID);
 
 		const getBirthday = `${RecipientUtils.recipientURLForAction(RecipientAction.Fetch)}/${userID}`;

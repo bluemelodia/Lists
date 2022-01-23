@@ -12,6 +12,7 @@ import { UserUtils } from "../utils/user.utils";
 })
 export class UserService {
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
+	private userKey = "user";
 
 	constructor(
 		private http: HttpClient,
@@ -45,7 +46,12 @@ export class UserService {
 		)
 			.pipe(
 				map((response: Response) => {
-					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
+					const responseCode = !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
+					if (responseCode === ResponseStatus.SUCCESS) {
+						this.saveUser(user.username);
+					}
+
+					return responseCode;
 				}),
 				catchError(() => {
 					return of(ResponseStatus.ERROR);
@@ -53,7 +59,20 @@ export class UserService {
 			);
 	}
 
-	public logout() {
+	public getUser(): string {
+		return sessionStorage.getItem(this.userKey);
+	}
+	
+	private saveUser(username: string): void {
+		sessionStorage.setItem(this.userKey, username);
+	}
+
+	private clearUser(): void {
+		sessionStorage.removeItem(this.userKey);
+	}
+
+	public logout(): void {
+		this.clearUser();
 		this.http.post<Response>(
 			UserUtils.userURLForAction(UserAction.Logout),
 			{

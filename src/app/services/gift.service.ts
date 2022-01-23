@@ -5,6 +5,7 @@ import { catchError, map } from "rxjs/operators";
 
 import { AddGift, Gift, GiftAction } from "../interfaces/event/gift.interface";
 import { Response, ResponseStatus } from "../interfaces/response.interface";
+import { UserService } from "./user.service";
 import { GiftUtils } from "../utils/gift.utils";
 
 @Injectable({
@@ -15,6 +16,7 @@ export class GiftService {
 
 	constructor(
 		private http: HttpClient,
+		private userService: UserService,
 	) {}
 
 	public modifyGift(gift: Gift, action: GiftAction): Observable<ResponseStatus> {
@@ -48,9 +50,10 @@ export class GiftService {
 
 	public deleteGift(uuid: string): Observable<ResponseStatus> {
 		console.info("[Gift Service] Delete gift with uuid: ", uuid);
+		const userID = this.userService.getUser();
 
 		return this.http.delete<Response>(
-			`${GiftUtils.giftURLForAction(GiftAction.Delete)}/guest/${uuid}`,
+			`${GiftUtils.giftURLForAction(GiftAction.Delete)}/${userID}/${uuid}`,
 			{
 				headers: this.headers
 			}
@@ -69,7 +72,8 @@ export class GiftService {
 	* @param userID 
 	* @returns A sorted list of birthdays for this user.
 	*/
-	public getGifts(userID = "guest"): Observable<AddGift[]> {
+	public getGifts(): Observable<AddGift[]> {
+		const userID = this.userService.getUser();
 		console.info("[Gift Service] Get gifts for id: ", userID);
 
 		const getGift = `${GiftUtils.giftURLForAction(GiftAction.Fetch)}/${userID}`;
