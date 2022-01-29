@@ -43,6 +43,8 @@ export class AppComponent implements OnInit {
 	 * Set the header title according to the route.
 	 */
 	setupSubscriptions(): void {
+		console.log("[App Component] Start subs.");
+
 		this.route.queryParams.subscribe((params) => {
 			this.navService.setTitle(params?.title);
 		});
@@ -54,6 +56,7 @@ export class AppComponent implements OnInit {
 
 		this.userService.user$
 			.subscribe((loginState: boolean) => {
+				console.log("[App Component] User is logged in: ", loginState);
 				this.loginState$.next(loginState);
 			});
 	}

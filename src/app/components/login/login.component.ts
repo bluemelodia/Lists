@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Icon } from '../../constants/icons.constants';
 import { FormLimit } from '../../constants/gifts.constants';
 
+import { DialogAction, DialogPage } from '../../interfaces/dialog.interface';
 import { HeaderLevel } from '../../interfaces/header.interface';
 import { ResponseStatus } from '../../interfaces/response.interface';
 import { User } from '../../interfaces/user.interface';
@@ -11,7 +13,6 @@ import { User } from '../../interfaces/user.interface';
 import { DialogService } from '../../services/dialog.service';
 import { UserService } from '../../services/user.service';
 import { ValidationService } from '../../services/validation.service';
-import { DialogAction, DialogPage } from 'src/app/interfaces/dialog.interface';
 
 @Component({
 	selector: 'app-login',
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
 		private customValidator: ValidationService,
 		private dialogService: DialogService,
 		private fb: FormBuilder,
+		private router: Router,
 		private userService: UserService,
 	) { }
 
@@ -85,6 +87,8 @@ export class LoginComponent implements OnInit {
 				.subscribe((response: ResponseStatus) => {
 					if (response === ResponseStatus.ERROR) {
 						this.dialogService.showResponseStatusDialog(response, DialogAction.Login, DialogPage.Login);
+					} else {
+						void this.router.navigate(['/home']);
 					}
 				});
 		}

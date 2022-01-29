@@ -7,6 +7,7 @@ import {
 } from "../constants/nav.constants";
 
 import { NavService } from "../../../services/nav.service";
+import { UserService } from "../../../services/user.service";
 
 import { NavUtils } from "../utils/nav.utils";
 
@@ -30,10 +31,13 @@ export class MenuComponent {
 
 	constructor(
 		private navService: NavService,
+		private userService: UserService,
 	) { }
 
 	public onMenuClick(item: MenuItem): void {
-		if (NavUtils.getSubMenu(item)) {
+		if (item === MenuItem.Logout) {
+			this.userService.logout();
+		} else if (NavUtils.getSubMenu(item)) {
 			this.menuItems[item].expanded = !this.menuItems[item].expanded;
 		} else {
 			this.navService.navigate(this.menuItems[item].route, this.menuItems[item].title);

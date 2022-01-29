@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of, Subject } from "rxjs";
+import { Router } from "@angular/router";
+import { Observable, of, ReplaySubject } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import { Response, ResponseStatus } from "../interfaces/response.interface";
@@ -14,11 +15,12 @@ export class UserService {
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
 	private userKey = "user";
 
-	private _user$ = new Subject<boolean>();
+	private _user$ = new ReplaySubject<boolean>();
 	public user$ = this._user$.asObservable();
 
 	constructor(
 		private http: HttpClient,
+		private router: Router,
 	) { }
 
 	public createUser(user: User): Observable<ResponseStatus> {
@@ -77,7 +79,8 @@ export class UserService {
 	}
 
 	public logout(): void {
-		this.clearUser();
+		this.clearUser();		
+
 		this.http.post<Response>(
 			UserUtils.userURLForAction(UserAction.Logout),
 			{
@@ -85,5 +88,7 @@ export class UserService {
 			}
 		)
 			.subscribe();
+		
+		void this.router.navigate(['/login']);
 	}
 }

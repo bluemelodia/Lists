@@ -39,7 +39,6 @@ export class ResponseInterceptor implements HttpInterceptor {
 					if (error.status === 401) {
 						console.log("oops, logout");
 						this.userService.logout();
-						void this.router.navigate(['/login']);
 
 						return throwError(ResponseStatus.LOGOUT);
 					}

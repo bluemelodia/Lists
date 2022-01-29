@@ -20,6 +20,11 @@ const routes: Routes = [
 		component: RegisterComponent,
 	},
 	{
+		path: "home",
+		canActivate: [AuthGuard],
+		loadChildren: () => import("./modules/home/home.module").then(m => m.HomeModule)
+	},
+	{
 		path: "events",
 		canActivate: [AuthGuard],
 		loadChildren: () => import("./modules/event/event.module").then(m => m.AddEventModule)
