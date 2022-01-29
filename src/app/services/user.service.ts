@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable, of, Subject } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import { Response, ResponseStatus } from "../interfaces/response.interface";
@@ -13,6 +13,9 @@ import { UserUtils } from "../utils/user.utils";
 export class UserService {
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
 	private userKey = "user";
+
+	private _user$ = new Subject<boolean>();
+	public user$ = this._user$.asObservable();
 
 	constructor(
 		private http: HttpClient,
@@ -65,10 +68,12 @@ export class UserService {
 	
 	private saveUser(username: string): void {
 		sessionStorage.setItem(this.userKey, username);
+		this._user$.next(true);
 	}
 
 	private clearUser(): void {
 		sessionStorage.removeItem(this.userKey);
+		this._user$.next(false);
 	}
 
 	public logout(): void {

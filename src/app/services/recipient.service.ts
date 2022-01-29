@@ -54,9 +54,6 @@ export class RecipientService {
 		}
 	}
 
-	/*
-	* TODO: add user ID
-	*/
 	public postRecipient(recipient: Recipient, action = RecipientAction.Add): Observable<ResponseStatus> {
 		console.info("[Recipient Service] Post or edit recipient: ", recipient);
 		const userID = this.userService.getUser();

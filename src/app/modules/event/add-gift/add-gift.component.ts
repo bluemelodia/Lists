@@ -207,12 +207,15 @@ export class AddGiftComponent implements OnInit {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((recipientList: RecipientList) => {
-				console.info("[Add Gifts] Received recipients: ", recipientList);
-				this.recipients$.next(recipientList.list);
-				this.recipientList = recipientList.list;
+				if (recipientList) {
+					console.info("[Add Gifts] Received recipients: ", recipientList);
 
-				if (this.giftConfig.action === GiftAction.Edit) {
-					this.patchRecipient();
+					this.recipients$.next(recipientList.list);
+					this.recipientList = recipientList.list;
+
+					if (this.giftConfig.action === GiftAction.Edit) {
+						this.patchRecipient();
+					}
 				}
 			});
 	}
