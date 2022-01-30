@@ -79,6 +79,7 @@ export class UserService {
 	}
 
 	public logout(): void {
+		console.log("===> [User Service] Logout");
 		this.clearUser();		
 
 		this.http.post<Response>(

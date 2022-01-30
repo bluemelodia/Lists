@@ -25,6 +25,11 @@ const routes: Routes = [
 		loadChildren: () => import("./modules/home/home.module").then(m => m.HomeModule)
 	},
 	{
+		path: "calendar",
+		canActivate: [AuthGuard],
+		loadChildren: () => import("./modules/schedule/schedule.module").then(m => m.ScheduleModule)
+	},
+	{
 		path: "events",
 		canActivate: [AuthGuard],
 		loadChildren: () => import("./modules/event/event.module").then(m => m.AddEventModule)
