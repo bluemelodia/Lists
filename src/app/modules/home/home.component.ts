@@ -21,9 +21,14 @@ import { TaskService } from "../../services/task.service";
 export class HomeComponent implements OnInit, OnDestroy {
 	private ngUnsubscribe$ = new Subject<void>();
 
-	public birthdays: RecipientList;
-	public meetings: AddMeeting[];
-	public tasks: Task[];
+	private _birthdays$ = new Subject<RecipientList>();
+	public birthday$ = this._birthdays$.asObservable();
+
+	private _meetings$ = new Subject<AddMeeting[]>();
+	public meetings$ = this._meetings$.asObservable();
+
+	private _tasks$ = new Subject<Task[]>();
+	public tasks$ = this._tasks$.asObservable(); 
 
 	constructor(
 		private loadingService: LoadingService,
@@ -33,7 +38,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 	) {}
 
 	public ngOnInit(): void {
-		console.info("[Home] Init");
 		this.getData();
 	}
 
@@ -61,11 +65,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 			)
 			.subscribe(([ birthdays, meetings, tasks]) => {
 				console.info("[Home] Received lists: ", birthdays, meetings, tasks);
+				this._birthdays$.next(birthdays);
+				this._meetings$.next(meetings);
+				this._tasks$.next(tasks);
 			});
 	}
 
 	public ngOnDestroy(): void {
-		console.log("===> destroy home");
 		this.ngUnsubscribe$.next();
 		this.ngUnsubscribe$.complete();
 	}

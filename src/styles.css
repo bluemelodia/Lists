@@ -324,9 +324,9 @@ button:disabled .arrow-btn {
 }
 
 .quick-link {
-	color: #ea818e;
-	font-weight: bold;
-	text-decoration: none;
+  color: #ea818e;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 /* Scrollable list. */
