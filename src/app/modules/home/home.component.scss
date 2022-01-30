@@ -1,5 +1,14 @@
 :host {
-	display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    height: 100%;
+    max-width: 950px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.home-container {
+	display: grid;
+    grid-column-gap: 8px;
+	grid-row-gap: 8px;
+	grid-template-columns: 1fr 1fr;
+	max-width: 100%;
 }

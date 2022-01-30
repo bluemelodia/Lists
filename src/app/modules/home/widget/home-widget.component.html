@@ -1,22 +1,31 @@
-<ul *ngFor="let item of list">
-	<ng-container [ngSwitch]="type">
-		<app-heading *ngSwitchCase="listType.SolarBirthdays"
-			text="Solar Birthdays"></app-heading>
-		<app-heading *ngSwitchCase="listType.LunarBirthdays"
-			text="Lunar Birthdays"></app-heading>
-		<app-heading *ngSwitchCase="listType.Meetings"
-			text="Meetings"></app-heading>
-		<app-heading *ngSwitchCase="listType.Tasks"
-			text="Tasks"></app-heading>
+<ng-container [ngSwitch]="type">
+	<ng-container *ngSwitchCase="listType.SolarBirthdays"
+		[ngTemplateOutlet]="solar" 
+		[ngTemplateOutletContext]="{ 'solar': item }">
+	</ng-container>   
+	<ng-container *ngSwitchCase="listType.LunarBirthdays"
+		[ngTemplateOutlet]="lunar" 
+		[ngTemplateOutletContext]="{ 'lunar': item }">
 	</ng-container>
-</ul>
+	<ng-container *ngSwitchCase="listType.Meetings"
+		[ngTemplateOutlet]="meetings" 
+		[ngTemplateOutletContext]="{ 'meeting': item }">
+	</ng-container>   
+	<ng-container *ngSwitchCase="listType.Tasks"
+		[ngTemplateOutlet]="tasks" 
+		[ngTemplateOutletContext]="{ 'task': item }">
+	</ng-container>	
+</ng-container>
 
-<ng-template #birthdays>
-	Birthday!
+<ng-template #solar let-solar="solar">
+	<app-heading text="Solar Birthdays"></app-heading>
 </ng-template>
-<ng-template #meetings>
-	Meeting!
+<ng-template #lunar let-lunar="lunar">
+	<app-heading text="Lunar Birthdays"></app-heading>
 </ng-template>
-<ng-template #tasks>
-	Task!
+<ng-template #meetings let-meeting="meeting">
+	<app-heading text="Meetings"></app-heading>
+</ng-template>
+<ng-template #tasks let-task="task">
+	<app-heading text="Tasks"></app-heading>
 </ng-template>
