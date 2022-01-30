@@ -1,3 +1,12 @@
-<app-home-widget [list]=""></app-home-widget>
-<app-home-widget [list]=""></app-home-widget>
-<app-home-widget [list]=""></app-home-widget>
+<app-home-widget [list]="solar$ | async"
+	[type]="type.SolarBirthdays">
+</app-home-widget>
+<app-home-widget [list]="lunar$ | async"
+	[type]="type.LunarBirthdays">
+</app-home-widget>
+<app-home-widget [list]="meetings$ | async"
+	[type]="type.Meetings">
+</app-home-widget>
+<app-home-widget [list]="tasks$ | async"
+	[type]="type.Tasks">
+</app-home-widget>

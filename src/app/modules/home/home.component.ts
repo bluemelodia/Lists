@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/
 import { forkJoin, of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
+import { ListType } from "../../constants/list.constants";
+
 import { RecipientList } from "../../interfaces/event/recipient.interface";
 import { Task } from "../../interfaces/event/task.interface";
 import { ResponseStatus } from "../../interfaces/response.interface";
@@ -19,16 +21,21 @@ import { TaskService } from "../../services/task.service";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
-	private ngUnsubscribe$ = new Subject<void>();
+	public type = ListType;
 
-	private _birthdays$ = new Subject<RecipientList>();
-	public birthday$ = this._birthdays$.asObservable();
+	private _solar$ = new Subject<RecipientList>();
+	public solar$ = this._solar$.asObservable();
+
+	private _lunar$ = new Subject<RecipientList>();
+	public lunar$ = this._lunar$.asObservable();
 
 	private _meetings$ = new Subject<AddMeeting[]>();
 	public meetings$ = this._meetings$.asObservable();
 
 	private _tasks$ = new Subject<Task[]>();
 	public tasks$ = this._tasks$.asObservable(); 
+	
+	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
 		private loadingService: LoadingService,
@@ -65,7 +72,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 			)
 			.subscribe(([ birthdays, meetings, tasks]) => {
 				console.info("[Home] Received lists: ", birthdays, meetings, tasks);
-				this._birthdays$.next(birthdays);
+				this._solar$.next(birthdays?.solar);
+				this._lunar$.next(birthdays?.lunar);
 				this._meetings$.next(meetings);
 				this._tasks$.next(tasks);
 			});

@@ -1,0 +1,19 @@
+<li *ngFor="let item of list">
+	<ng-container [ngSwitch]="type">
+		<h2 *ngSwitchCase="listType.SolarBirthdays">Solar Birthday</h2>
+		<h2 *ngSwitchCase="listType.LunarBirthdays">Lunar Birthday</h2>
+		<h2 *ngSwitchCase="listType.Gifts">Gifts</h2>
+		<h2 *ngSwitchCase="listType.Meetings">Meetings</h2>
+		<h2 *ngSwitchCase="listType.Tasks">Tasks</h2>
+	</ng-container>
+</li>
+
+<ng-template #birthdays>
+	Birthday!
+</ng-template>
+<ng-template #meetings>
+	Meeting!
+</ng-template>
+<ng-template #tasks>
+	Task!
+</ng-template>

@@ -103,7 +103,7 @@ export class RecipientService {
 				catchError(() => {
 					return of(ResponseStatus.ERROR);
 				})
-			)
+			);
 	}
 
 	/**

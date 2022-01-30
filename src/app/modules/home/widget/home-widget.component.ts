@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { AddMeeting } from "../../../interfaces/service/service-objects.interface";
 import { RecipientList } from "../../../interfaces/event/recipient.interface";
 import { Task } from "../../../interfaces/event/task.interface";
+import { ListType } from "../../../constants/list.constants";
 
 @Component({
 	selector: "app-home-widget",
@@ -12,4 +13,7 @@ import { Task } from "../../../interfaces/event/task.interface";
 })
 export class HomeWidgetComponent {
 	@Input() list: RecipientList | AddMeeting[] | Task[];
+	@Input() type: ListType; 
+
+	public listType = ListType;
 }
