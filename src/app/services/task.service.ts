@@ -18,7 +18,7 @@ export class TaskService {
 	constructor(
 		private http: HttpClient,
 		private userService: UserService,
-	) {}
+	) { }
 
 	public modifyTask(task: Task, action: TaskAction): Observable<ResponseStatus> {
 		switch (action) {
@@ -31,10 +31,15 @@ export class TaskService {
 
 	public postTask(task: Task, action = TaskAction.Add): Observable<ResponseStatus> {
 		console.info("[Task Service] Post or edit task: ", task);
+		const userID = this.userService.getUser();
+		const userTask = {
+			...task,
+			id: userID
+		};
 
 		return this.http.post<Response>(
 			TaskUtils.taskURLForAction(action),
-			task,
+			userTask,
 			{
 				headers: this.headers
 			}
@@ -78,7 +83,7 @@ export class TaskService {
 		console.info("[Task Service] Get tasks for id: ", userID);
 
 		const getTask = `${TaskUtils.taskURLForAction(TaskAction.Fetch)}/${userID}`;
-		
+
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		return this.http.get<Response>(
 			getTask
