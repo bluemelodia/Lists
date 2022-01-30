@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { HeaderLevel } from '../../../interfaces/header.interface';
@@ -12,7 +12,8 @@ import { EditService } from '../../../services/edit.service';
 @Component({
 	selector: 'app-no-items',
 	templateUrl: './no-items.component.html',
-	styleUrls: ['./no-items.component.css']
+	styleUrls: ['./no-items.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoItemsComponent {
 	@Input() config: NoItem;

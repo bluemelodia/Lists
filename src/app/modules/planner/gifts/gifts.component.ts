@@ -1,4 +1,10 @@
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { 
+	ChangeDetectionStrategy, 
+	Component, 
+	HostBinding, 
+	OnDestroy, 
+	OnInit,
+} from '@angular/core';
 import { forkJoin, of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
@@ -16,7 +22,8 @@ import { RecipientService } from '../../../services/recipient.service';
 @Component({
 	selector: 'planner-gifts',
 	templateUrl: './gifts.component.html',
-	styleUrls: ['./gifts.component.css']
+	styleUrls: ['./gifts.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GiftsComponent implements OnInit, OnDestroy {
 	@HostBinding("class") public get hostClasses(): string {

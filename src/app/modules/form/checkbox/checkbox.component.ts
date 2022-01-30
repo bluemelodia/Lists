@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output, } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
 @Component({
 	selector: "app-checkbox",
 	templateUrl: "./checkbox.component.html",
-	styleUrls: ["./checkbox.component.css"]
+	styleUrls: ["./checkbox.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent {
 	@Input() checkboxName: string;

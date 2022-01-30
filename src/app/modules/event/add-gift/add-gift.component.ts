@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	HostBinding,
 	OnInit,
@@ -48,7 +49,8 @@ import { GiftUtils } from '../../../utils/gift.utils';
 @Component({
 	selector: 'app-add-gift',
 	templateUrl: './add-gift.component.html',
-	styleUrls: ['./add-gift.component.css']
+	styleUrls: ['./add-gift.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddGiftComponent implements OnInit {
 	public giftForm: FormGroup;

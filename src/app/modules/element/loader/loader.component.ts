@@ -1,9 +1,10 @@
-import { Component, HostBinding, Input, } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, } from "@angular/core";
 
 @Component({
 	selector: "app-loader",
 	templateUrl: "./loader.component.html",
-	styleUrls: ["./loader.component.css"]
+	styleUrls: ["./loader.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoaderComponent {
 	@HostBinding("class") public get hostClasses(): string {

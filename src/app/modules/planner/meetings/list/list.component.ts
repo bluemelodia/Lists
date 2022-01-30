@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	EventEmitter,
 	Input,
@@ -25,7 +26,8 @@ import { MeetingService } from '../../../../services/meeting.service';
 @Component({
 	selector: 'planner-meetings-list',
 	templateUrl: './list.component.html',
-	styleUrls: ['./list.component.css']
+	styleUrls: ['./list.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent implements OnDestroy {
 	@Input() list: AddMeeting[] = [];

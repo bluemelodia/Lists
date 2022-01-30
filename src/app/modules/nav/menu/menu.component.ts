@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { 
+	ChangeDetectionStrategy, 
+	Component, 
+	EventEmitter, 
+	Input, 
+	Output,
+} from "@angular/core";
 
 import {
 	MENU,
@@ -15,6 +21,7 @@ import { NavUtils } from "../utils/nav.utils";
 	selector: "app-menu",
 	templateUrl: "./menu.component.html",
 	styleUrls: ["./menu.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent {
 	@Input() menu = MENU_LIST;

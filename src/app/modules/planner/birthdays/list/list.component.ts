@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	EventEmitter,
 	HostBinding,
@@ -27,7 +28,8 @@ import { RecipientService } from "../../../../services/recipient.service";
 @Component({
 	selector: "planner-birthdays-list",
 	templateUrl: "./list.component.html",
-	styleUrls: ["./list.component.css"]
+	styleUrls: ["./list.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent implements OnDestroy {
 	@HostBinding("class") public get hostClasses(): string {

@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	HostBinding,
 	OnDestroy,
@@ -54,7 +55,8 @@ import { RecipientUtils } from "../../../utils/recipient.utils";
 @Component({
 	selector: "app-add-recipient",
 	templateUrl: "./add-recipient.component.html",
-	styleUrls: ["./add-recipient.component.css"]
+	styleUrls: ["./add-recipient.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddRecipientComponent implements OnInit, OnDestroy {
 	@HostBinding("class") containerClasses = "section-container";

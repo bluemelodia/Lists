@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
+import { 
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	OnDestroy,
+	OnInit,
+} from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, } from "@angular/forms";
 import { Subject } from "rxjs";
 import { finalize, take, takeUntil } from "rxjs/operators";
@@ -23,7 +29,8 @@ import { ValidationService } from "../../services/validation.service";
 @Component({
 	selector: "app-settings",
 	templateUrl: "./settings.component.html",
-	styleUrls: ["./settings.component.css"]
+	styleUrls: ["./settings.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent implements OnInit, OnDestroy {
 	public channel = Channel;

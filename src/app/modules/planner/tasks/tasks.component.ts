@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
 import { of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
@@ -14,7 +14,8 @@ import { TaskService } from "../../../services/task.service";
 @Component({
 	selector: 'planner-tasks',
 	templateUrl: './tasks.component.html',
-	styleUrls: ['./tasks.component.css']
+	styleUrls: ['./tasks.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksComponent implements OnInit, OnDestroy {
 	public headerLevel = HeaderLevel;

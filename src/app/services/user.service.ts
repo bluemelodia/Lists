@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable, of, ReplaySubject } from "rxjs";
+import { Observable, of, } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import { Response, ResponseStatus } from "../interfaces/response.interface";

@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
@@ -48,7 +48,8 @@ import { MeetingUtils } from "../../../utils/meeting.utils";
 @Component({
 	selector: "app-add-meeting",
 	templateUrl: "./add-meeting.component.html",
-	styleUrls: ["./add-meeting.component.css"]
+	styleUrls: ["./add-meeting.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddMeetingComponent implements OnInit, OnDestroy {
 	@HostBinding("class") containerClasses = "section-container";

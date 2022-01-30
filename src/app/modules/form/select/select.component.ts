@@ -1,4 +1,5 @@
 import { 
+	ChangeDetectionStrategy,
 	Component, 
 	ElementRef, 
 	HostListener,
@@ -19,7 +20,8 @@ import { FocusService } from "../../../services/focus.service";
 @Component({
 	selector: "app-select",
 	templateUrl: "./select.component.html",
-	styleUrls: ["./select.component.css"]
+	styleUrls: ["./select.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent implements OnInit, OnDestroy {
 	@HostListener('document:click', ['$event'])

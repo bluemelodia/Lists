@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
+import { 
+	ChangeDetectionStrategy,
+	Component,
+	EventEmitter,
+	Input,
+	OnDestroy,
+	Output,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { take, takeUntil } from "rxjs/operators";
@@ -20,7 +27,8 @@ import { TaskService } from "../../../../services/task.service";
 @Component({
 	selector: 'planner-tasks-list',
 	templateUrl: './list.component.html',
-	styleUrls: ['./list.component.css']
+	styleUrls: ['./list.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent implements OnDestroy {
 	@Input() set list(list: Task[]) {

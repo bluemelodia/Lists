@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { Topic } from "../../constants/topics.constants";
 
@@ -10,7 +10,8 @@ import { CalendarService } from "../../services/calendar.service";
 @Component({
 	selector: "app-calendar",
 	templateUrl: "./calendar.component.html",
-	styleUrls: ["./calendar.component.css"]
+	styleUrls: ["./calendar.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarComponent {
 	@Input() type: CalendarType;

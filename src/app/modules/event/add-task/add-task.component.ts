@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, OnInit } from "@angular/core";
 import {
 	AbstractControl,
 	FormBuilder,
@@ -36,7 +36,8 @@ import { TaskUtils } from "../../../utils/task.utils";
 @Component({
 	selector: "app-add-task",
 	templateUrl: "./add-task.component.html",
-	styleUrls: ["./add-task.component.css"]
+	styleUrls: ["./add-task.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddTaskComponent implements OnInit, OnDestroy {
 	@HostBinding("class") containerClasses = "section-container";

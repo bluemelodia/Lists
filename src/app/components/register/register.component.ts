@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FormLimit } from '../../constants/gifts.constants';
@@ -16,7 +16,8 @@ import { ValidationService } from '../../services/validation.service';
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
-	styleUrls: ['./register.component.css']
+	styleUrls: ['./register.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent implements OnInit {
 	public headerLevel = HeaderLevel;

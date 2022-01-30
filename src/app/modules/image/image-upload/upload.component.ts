@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
 	Input,
@@ -18,7 +19,8 @@ import { CompressImageService } from "../../../services/image-compress.service";
 @Component({
 	selector: "app-img-upload",
 	templateUrl: "./upload.component.html",
-	styleUrls: ["./upload.component.css"]
+	styleUrls: ["./upload.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageUploadComponent implements OnChanges, OnDestroy {
 	@Input() set form(form: FormGroup) {

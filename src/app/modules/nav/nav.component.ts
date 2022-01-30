@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnDestroy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy } from "@angular/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
@@ -7,7 +7,8 @@ import { NavService } from "../../services/nav.service";
 @Component({
 	selector: "app-nav",
 	templateUrl: "./nav.component.html",
-	styleUrls: ["./nav.component.css"]
+	styleUrls: ["./nav.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavComponent implements OnDestroy {
 	@HostBinding("class.open") public open = false;

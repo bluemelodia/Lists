@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Icon } from '../../../constants/icons.constants';
 
@@ -8,7 +8,8 @@ import { Icon } from '../../../constants/icons.constants';
 @Component({
 	selector: 'app-decorator',
 	templateUrl: './decorator.component.html',
-	styleUrls: ['./decorator.component.css']
+	styleUrls: ['./decorator.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DecoratorComponent {
 	@Input() ariaLabel = '';

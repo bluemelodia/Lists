@@ -1,4 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { 
+	ChangeDetectionStrategy,
+	Component,
+	OnDestroy,
+	OnInit,
+} from '@angular/core';
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
@@ -14,7 +19,8 @@ import { MeetingService } from '../../../services/meeting.service';
 @Component({
 	selector: 'planner-meetings',
 	templateUrl: './meetings.component.html',
-	styleUrls: ['./meetings.component.css']
+	styleUrls: ['./meetings.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MeetingsComponent implements OnInit, OnDestroy {
 	public headerLevel = HeaderLevel;

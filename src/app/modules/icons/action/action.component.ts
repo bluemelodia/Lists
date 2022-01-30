@@ -1,4 +1,5 @@
 import { 
+	ChangeDetectionStrategy,
 	Component,
 	EventEmitter,
 	Input,
@@ -10,7 +11,8 @@ import { Icon } from '../../../constants/icons.constants';
 @Component({
 	selector: 'app-action',
 	templateUrl: './action.component.html',
-	styleUrls: ['./action.component.css']
+	styleUrls: ['./action.component.css'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionComponent {
 	@Input() ariaLabel = '';

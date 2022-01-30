@@ -1,11 +1,12 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 import { Recurrence, RecurrenceMap } from "../../../constants/tasks.constants";
 
 @Component({
 	selector: "app-recurrence-indicator",
 	templateUrl: "./recurrence-indicator.component.html",
-	styleUrls: ["./recurrence-indicator.component.css"]
+	styleUrls: ["./recurrence-indicator.component.css"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecurrenceIndicatorComponent {
 	@Input() set recurrences(recurrences : RecurrenceMap) {
