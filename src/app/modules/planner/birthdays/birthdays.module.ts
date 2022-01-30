@@ -24,7 +24,6 @@ import { IndicatorModule } from "../../indicator/indicator.module";
 		IndicatorModule,
 	],
 	exports: [
-		BirthdaysComponent,
 	]
 })
 export class BirthdayModule { }

@@ -26,7 +26,6 @@ import { PipesModule } from '../../../pipes/pipes.module';
 		PipesModule,
 	],
 	exports: [
-		MeetingsComponent,
 	]
 })
 export class MeetingModule { }

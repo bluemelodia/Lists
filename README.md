@@ -31,14 +31,12 @@ How to make image upload easy with Angular
 - Show a list of upcoming events on the home page (four widgets, so four sections).
 - Fix issue with undefined dates sent out in emails.
 - Better network error handling.
-- Clear session storage on tab close and logout.
 - Test in all browsers.
 - Users should be reminded of tasks (both recurring and one-time with due date).
 - Ensure that only necessary fields are serialized - and all fields are coming back with the right values.
 
 - Fix issue where add page will show previous values.
 - Encrypt usernames/passwords? Expire the session after 15 minutes.
-- Test that all services still work & onpush change detection hasn't broken anything.
 
 ## Navigation
 

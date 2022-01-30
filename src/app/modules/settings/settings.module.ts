@@ -23,7 +23,6 @@ import { FormElementModule } from "../form/form.module";
 		SettingsRoutingModule,
 	],
 	exports: [
-		SettingsComponent,
 	]
 })
 export class SettingsModule { }
