@@ -1,11 +1,11 @@
 import { 
-	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	HostBinding,
 	OnInit,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Subject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 import { CalendarType } from "./interfaces/calendar/calendar.interface";
 
@@ -22,13 +22,14 @@ import { UserService } from "./services/user.service";
 export class AppComponent implements OnInit {
 	@HostBinding("class") containerClasses = "flex-centered__column full-viewport";
 	
-	public loadingState$ = new Subject<boolean>();
-	public loginState$ = new Subject<boolean>();
+	public loadingState$ = new BehaviorSubject<boolean>(false);
+	public loginState$ = new BehaviorSubject<boolean>(false)
 
 	constructor(
 		private calendarService: CalendarService,
 		private loadingService: LoadingService,
 		private navService: NavService,
+		private ref: ChangeDetectorRef,
 		private route: ActivatedRoute,
 		private userService: UserService,
 	) { }
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit {
 		this.loadingService.loadingChanged$
 			.subscribe((loadingState: boolean) => {
 				this.loadingState$.next(loadingState);
+				this.ref.detectChanges();
 			});
 	}
 
