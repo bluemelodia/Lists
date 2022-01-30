@@ -18,7 +18,6 @@ import { UserService } from "./services/user.service";
 	selector: "app-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.css"],
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
 	@HostBinding("class") containerClasses = "flex-centered__column full-viewport";
@@ -53,12 +52,10 @@ export class AppComponent implements OnInit {
 			.subscribe((loadingState: boolean) => {
 				this.loadingState$.next(loadingState);
 			});
+	}
 
-		this.userService.user$
-			.subscribe((loginState: boolean) => {
-				console.log("[App Component] User is logged in: ", loginState);
-				this.loginState$.next(loginState);
-			});
+	isLoggedIn(): boolean {
+		return !!this.userService.getUser();
 	}
 
 	closeMenu(): void {

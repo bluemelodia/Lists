@@ -1,4 +1,4 @@
-<app-nav *ngIf="loginState$ | async"></app-nav>
+<app-nav *ngIf="isLoggedIn()"></app-nav>
 <app-header></app-header>
 <section class="app-container"
     (click)="closeMenu()">

@@ -15,13 +15,10 @@ export class UserService {
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
 	private userKey = "user";
 
-	private _user$ = new ReplaySubject<boolean>();
-	public user$ = this._user$.asObservable();
-
 	constructor(
 		private http: HttpClient,
 		private router: Router,
-	) { }
+	) {}
 
 	public createUser(user: User): Observable<ResponseStatus> {
 		return this.http.post<Response>(
@@ -70,16 +67,13 @@ export class UserService {
 	
 	private saveUser(username: string): void {
 		sessionStorage.setItem(this.userKey, username);
-		this._user$.next(true);
 	}
 
 	private clearUser(): void {
 		sessionStorage.removeItem(this.userKey);
-		this._user$.next(false);
 	}
 
 	public logout(): void {
-		console.log("===> [User Service] Logout");
 		this.clearUser();		
 
 		this.http.post<Response>(
