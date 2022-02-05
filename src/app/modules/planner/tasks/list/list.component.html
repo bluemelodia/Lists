@@ -48,7 +48,7 @@
 		</app-heading>
 		<p class="task-details__wrapper">
 			<span class="task-details__label">Due</span>
-			<span class="task-details__description">{{ task | taskFormatter: true }}</span>
+			<span class="task-details__description">{{ task | taskFormatter }}</span>
 		</p>
 		<p *ngIf="task.description" class="task-details__wrapper description">
 			<span class="task-details__label">Details</span>

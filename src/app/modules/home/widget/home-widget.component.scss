@@ -8,8 +8,16 @@
 	width: 100%;
 }
 
+.widget-container {
+	padding: 0;
+	margin: 0
+}
+
 .widget-list__item {
 	align-items: center;
+	border-left: 4px solid pink;
 	display: flex;
     justify-content: space-between;
+	padding-left: 4px;
+	margin-bottom: 4px;
 }

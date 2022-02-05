@@ -12,7 +12,6 @@ import {
 } from '@angular/forms';
 import {
 	ActivatedRoute,
-	NavigationStart,
 	Router,
 } from '@angular/router';
 
@@ -126,10 +125,10 @@ export class AddGiftComponent implements OnInit {
 				]
 			]
 		},
-			{
-				updateOn: "submit",
-				validators: []
-			});
+		{
+			updateOn: "submit",
+			validators: []
+		});
 
 		console.info("[Add Gift] Routed to: ", this.router.url);
 		if (this.router.url.includes('events/add-gift')) {
