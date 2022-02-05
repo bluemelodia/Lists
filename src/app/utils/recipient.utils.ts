@@ -94,6 +94,7 @@ export class RecipientUtils {
 		lunarList.sort(RecipientUtils.sortLunar);
 		solarList.sort(RecipientUtils.sortSolar);
 		RecipientUtils.tagRecipients(solarList);
+		RecipientUtils.tagRecipients(lunarList);
 
 		return {
 			list: birthdays,
@@ -133,12 +134,12 @@ export class RecipientUtils {
 		return (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
 	}
 
-	/** Check only if this year's lunar date has passed. */
+	/** Check only if this year's solar date has passed. */
 	private static getLunarDiff(recipient: AddRecipient): number {
 		const today = new Date();
 		if (recipient.futureDates) {
 			const date = recipient.futureDates[today.getFullYear()];
-			const birthDate = new Date(date?.year, date?.cmonth, date?.cdate);
+			const birthDate = new Date(date?.year, date?.month - 1, date?.value);
 			return (birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
 		}
 		return 0;
