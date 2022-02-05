@@ -126,32 +126,25 @@ export class AddGiftComponent implements OnInit {
 				]
 			]
 		},
-		{
-			updateOn: "submit",
-			validators: []
-		});
-		
-		this.router.events
-			.pipe(
-				filter(event => event instanceof NavigationStart)
-			)
-			.subscribe((event: NavigationStart) => {
-				console.info("[Add Gift] Routed to: ", event.url);
-
-				if (event.url.includes('/events/add-gift')) {
-					this.editService.clearItem(Topic.Gifts);
-				}
+			{
+				updateOn: "submit",
+				validators: []
 			});
 
-		const gift = this.editService.getItem(Topic.Gifts) as AddGift;
-		if (gift) {
-			if (gift?.uuid) {
-				this.giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Edit);
-				this.gift = {
-					...gift,
-					uuid: gift?.uuid
-				};
-				this.populateFormData(gift);
+		console.info("[Add Gift] Routed to: ", this.router.url);
+		if (this.router.url.includes('events/add-gift')) {
+			this.editService.clearItem(Topic.Gifts);
+		} else {
+			const gift = this.editService.getItem(Topic.Gifts) as AddGift;
+			if (gift) {
+				if (gift?.uuid) {
+					this.giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Edit);
+					this.gift = {
+						...gift,
+						uuid: gift?.uuid
+					};
+					this.populateFormData(gift);
+				}
 			}
 		}
 

@@ -99,28 +99,20 @@ export class AddTaskComponent implements OnInit, OnDestroy {
 			validators: []
 		});
 
-		this.router.events
-			.pipe(
-				filter(event => event instanceof NavigationStart)
-			)
-			.subscribe((event: NavigationStart) => {
-				console.info("[Add Task] Routed to: ", event.url);
-
-				if (event.url.includes('/events/add-task')) {
-					this.editService.clearItem(Topic.Tasks);
+		if (this.router.url.includes('events/add-task')) {
+			this.editService.clearItem(Topic.Tasks);
+		} else {
+			const task = this.editService.getItem(Topic.Tasks) as Task;
+			if (task) {
+				/** Existing task. */
+				if (task?.uuid) {
+					this.taskConfig = TaskUtils.createTaskFormConfig(TaskAction.Edit);
+					this.task = {
+						...this.task,
+						uuid: task?.uuid
+					};
+					this.populateFormData(task);
 				}
-			});
-
-		const task = this.editService.getItem(Topic.Tasks) as Task;
-		if (task) {
-			/** Existing task. */
-			if (task?.uuid) {
-				this.taskConfig = TaskUtils.createTaskFormConfig(TaskAction.Edit);
-				this.task = {
-					...this.task,
-					uuid: task?.uuid
-				};
-				this.populateFormData(task);
 			}
 		}
 	}

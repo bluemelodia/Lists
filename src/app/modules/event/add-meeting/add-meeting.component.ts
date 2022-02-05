@@ -126,29 +126,22 @@ export class AddMeetingComponent implements OnInit, OnDestroy {
 			]
 		});
 
-		this.router.events
-			.pipe(
-				filter(event => event instanceof NavigationStart)
-			)
-			.subscribe((event: NavigationStart) => {
-				console.info("[Add Meeting] Routed to: ", event.url);
-
-				if (event.url.includes('/events/add-meeting')) {
-					this.editService.clearItem(Topic.Meetings);
+		console.info("[Add Meeting] Routed to: ", this.router.url);
+		if (this.router.url.includes('events/add-meeting')) {
+			this.editService.clearItem(Topic.Meetings);
+		} else {
+			const meeting = this.editService.getItem(Topic.Meetings) as AddMeeting;
+			if (meeting) {
+				const mtg = MeetingUtils.createMeeting(meeting);
+				/** Existing meeting. */
+				if (mtg?.uuid) {
+					this.meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Edit);
+					this.meeting = {
+						...this.meeting,
+						uuid: mtg?.uuid
+					};
+					this.populateFormData(mtg);
 				}
-			});
-
-		const meeting = this.editService.getItem(Topic.Meetings) as AddMeeting;
-		if (meeting) {
-			const mtg = MeetingUtils.createMeeting(meeting);
-			/** Existing meeting. */
-			if (mtg?.uuid) {
-				this.meetingConfig = MeetingUtils.createMeetingFormConfig(MeetingAction.Edit);
-				this.meeting = {
-					...this.meeting,
-					uuid: mtg?.uuid
-				};
-				this.populateFormData(mtg);
 			}
 		}
 	}
