@@ -120,6 +120,12 @@ export class RecipientUtils {
 		});
 	}
 
+	public static getSummary(recipients: AddRecipient[]): AddRecipient[] {
+		return recipients.filter((recipient: AddRecipient) => {
+			return recipient.status !== DateStatus.Passed;
+		}).slice(0, 10);
+	}
+
 	private static getSolarDiff(recipient: AddRecipient): number {
 		const today = new Date();
 		const birthDate = new Date(today.getFullYear(), recipient.date.month - 1, recipient.date.value);

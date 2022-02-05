@@ -4,15 +4,16 @@ import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
 import { ListType } from "../../constants/list.constants";
 
-import { RecipientList } from "../../interfaces/event/recipient.interface";
 import { Task } from "../../interfaces/event/task.interface";
 import { ResponseStatus } from "../../interfaces/response.interface";
-import { AddMeeting } from "../../interfaces/service/service-objects.interface";
+import { AddMeeting, AddRecipient } from "../../interfaces/service/service-objects.interface";
 
 import { LoadingService } from "../../services/loading.service";
 import { MeetingService } from "../../services/meeting.service";
 import { RecipientService } from "../../services/recipient.service";
 import { TaskService } from "../../services/task.service";
+
+import { RecipientUtils } from "../../utils/recipient.utils";
 
 @Component({
 	selector: "app-home",
@@ -23,10 +24,10 @@ import { TaskService } from "../../services/task.service";
 export class HomeComponent implements OnInit, OnDestroy {
 	public type = ListType;
 
-	private _solar$ = new Subject<RecipientList>();
+	private _solar$ = new Subject<AddRecipient[]>();
 	public solar$ = this._solar$.asObservable();
 
-	private _lunar$ = new Subject<RecipientList>();
+	private _lunar$ = new Subject<AddRecipient[]>();
 	public lunar$ = this._lunar$.asObservable();
 
 	private _meetings$ = new Subject<AddMeeting[]>();
@@ -71,9 +72,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe(([ birthdays, meetings, tasks]) => {
-				console.info("[Home] Received lists: ", meetings, tasks);
+				console.info("[Home] Received lists: ",birthdays, meetings, tasks);
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-				this._solar$.next(birthdays?.solar);
+				this._solar$.next(RecipientUtils.getSummary(birthdays?.solar));
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 				this._lunar$.next(birthdays?.lunar);
 				this._meetings$.next(meetings);
