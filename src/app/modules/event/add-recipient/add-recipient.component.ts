@@ -13,7 +13,6 @@ import {
 } from "@angular/forms";
 import {
 	ActivatedRoute,
-	NavigationStart,
 	Router,
 } from '@angular/router';
 import { Subject } from "rxjs";
@@ -33,7 +32,6 @@ import { ConfirmDialogAction, DialogAction, DialogPage } from "../../../interfac
 import { EventImage } from "../../../interfaces/event/event.interface";
 import {
 	Address,
-	Recipient,
 	RecipientAction,
 	RecipientID,
 	RecipientOptions,
@@ -64,7 +62,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 	public calendarType = CalendarType;
 	public headerLevel = HeaderLevel;
 	public limit = FormLimit;
-	public recipient: Recipient;
+	public recipient: AddRecipient;
 	public recipientAction = RecipientAction;
 	public recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Add);
 	public recipientForm: FormGroup;
@@ -76,10 +74,10 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
-		private fb: FormBuilder,
 		private customValidator: ValidationService,
 		private dialogService: DialogService,
 		private editService: EditService,
+		private fb: FormBuilder,
 		private navService: NavService,
 		private recipientService: RecipientService,
 		private route: ActivatedRoute,
@@ -146,28 +144,18 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 			]
 		});
 
-		this.router.events
-			.pipe(
-				filter(event => event instanceof NavigationStart)
-			)
-			.subscribe((event: NavigationStart) => {
-				console.info("[Add Recipient] Routed to: ", event.url);
-
-				if (event.url.includes('/events/add-recipient')) {
-					this.editService.clearItem(Topic.Birthdays);
-				}
-			});
-
-		const recipient = this.editService.getItem(Topic.Birthdays) as AddRecipient;
-
-		/** Existing recipient. */
-		if (recipient?.uuid) {
-			this.recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Edit);
-			this.recipient = {
-				...this.recipient,
-				uuid: recipient?.uuid
-			};
-			this.populateFormData(recipient);
+		console.info("[Add Recipient] Routed to: ", this.router.url);
+		if (this.router.url.includes('events/add-recipient')) {
+			this.editService.clearItem(Topic.Birthdays);
+		} else {
+			/** Existing recipient. */
+			const recipient = this.editService.getItem(Topic.Birthdays) as AddRecipient;
+			if (recipient?.uuid) {
+				console.info("[Add Recipient] Repopulate form data: ", this.recipient);
+				this.recipientConfig = RecipientUtils.createRecipientFormConfig(RecipientAction.Edit);
+				this.recipient = recipient;
+				this.populateFormData(recipient);
+			}
 		}
 	}
 

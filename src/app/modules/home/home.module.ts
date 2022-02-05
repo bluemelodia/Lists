@@ -5,6 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { DirectiveModule } from "../../directives/directives.module";
 import { ElementModule } from "../element/element.module";
 import { FormElementModule } from "../form/form.module";
+import { IndicatorModule } from "../indicator/indicator.module";
 import { HomeComponent } from "./home.component";
 import { HomeRoutingModule } from "./home-routing.module";
 import { HomeWidgetComponent } from "./widget/home-widget.component";
@@ -21,6 +22,7 @@ import { HomeWidgetComponent } from "./widget/home-widget.component";
 		HomeRoutingModule,
 		FormElementModule,
 		FormsModule,
+		IndicatorModule,
 	],
 	exports: [
 	]

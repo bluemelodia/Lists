@@ -7,3 +7,9 @@
 	padding: 16px;
 	width: 100%;
 }
+
+.widget-list__item {
+	align-items: center;
+	display: flex;
+    justify-content: space-between;
+}

@@ -1,26 +1,41 @@
 <ng-container [ngSwitch]="type">
 	<ng-container *ngSwitchCase="listType.SolarBirthdays"
 		[ngTemplateOutlet]="solar" 
-		[ngTemplateOutletContext]="{ 'solar': item }">
+		[ngTemplateOutletContext]="{ 'recipients': list }">
 	</ng-container>   
 	<ng-container *ngSwitchCase="listType.LunarBirthdays"
 		[ngTemplateOutlet]="lunar" 
-		[ngTemplateOutletContext]="{ 'lunar': item }">
+		[ngTemplateOutletContext]="{ 'recipients': list }">
 	</ng-container>
 	<ng-container *ngSwitchCase="listType.Meetings"
 		[ngTemplateOutlet]="meetings" 
-		[ngTemplateOutletContext]="{ 'meeting': item }">
+		[ngTemplateOutletContext]="{ 'meetings': list }">
 	</ng-container>   
 	<ng-container *ngSwitchCase="listType.Tasks"
 		[ngTemplateOutlet]="tasks" 
-		[ngTemplateOutletContext]="{ 'task': item }">
+		[ngTemplateOutletContext]="{ 'tasks': list }">
 	</ng-container>	
 </ng-container>
 
-<ng-template #solar let-solar="solar">
+<ng-template #solar let-recipients="recipients">
 	<app-heading text="Solar Birthdays"></app-heading>
+	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
+		<ul class="task-list">
+			<li *ngFor="let recipient of recipients"
+				class="widget-list__item">
+				<app-heading [level]="headerLevel.H2" 
+					[text]="recipient.name">
+				</app-heading>
+				<p class="task-list__birthday">
+					{{ recipient?.date?.month }}/{{ recipient?.date?.value }}
+				</p>
+				<app-date-indicator post [status]="recipient.status">
+				</app-date-indicator>
+			</li>
+		</ul>
+	</section>
 </ng-template>
-<ng-template #lunar let-lunar="lunar">
+<ng-template #lunar let-recipient="recipient">
 	<app-heading text="Lunar Birthdays"></app-heading>
 </ng-template>
 <ng-template #meetings let-meeting="meeting">
