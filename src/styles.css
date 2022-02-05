@@ -422,3 +422,11 @@ button:disabled .arrow-btn {
 input[type="tel"] {
   padding-left: 75px !important;
 }
+
+.fa-rotate-335 {
+  -webkit-transform: rotate(335deg);
+  -moz-transform: rotate(335deg);
+  -ms-transform: rotate(335deg);
+  -o-transform: rotate(335deg);
+  transform: rotate(335deg);
+}

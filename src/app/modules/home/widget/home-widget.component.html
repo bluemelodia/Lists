@@ -1,4 +1,13 @@
-<ng-container [ngSwitch]="type">
+<ng-container [ngSwitch]="displayList">
+	<app-heading [text]="title">
+		<section post class="actions">
+			<app-action ariaLabel="ariaLabel"
+				[enabled]="true"
+				[icon]="icon.Nav"
+				(actionSelected)="navigateToPage(displayList)">
+			</app-action>
+		</section>
+	</app-heading>
 	<ng-container *ngSwitchCase="listType.SolarBirthdays"
 		[ngTemplateOutlet]="solar" 
 		[ngTemplateOutletContext]="{ 'recipients': list }">
@@ -18,7 +27,6 @@
 </ng-container>
 
 <ng-template #solar let-recipients="recipients">
-	<app-heading text="Upcoming Solar Birthdays"></app-heading>
 	<section class="widget-container form-container flex-centered__column flex-stretch">
 		<ul class="task-list">
 			<li *ngFor="let recipient of recipients"
@@ -36,7 +44,6 @@
 	</section>
 </ng-template>
 <ng-template #lunar let-recipients="recipients">
-	<app-heading text="Upcoming Lunar Birthdays"></app-heading>
 	<section class="widget-container form-container flex-centered__column flex-stretch">
 		<ul class="task-list">
 			<li *ngFor="let recipient of recipients"
@@ -64,11 +71,9 @@
 	</section>
 </ng-template>
 <ng-template #meetings let-meeting="meeting">
-	<app-heading text="Upcoming Meetings"></app-heading>
-	
+
 </ng-template>
 <ng-template #tasks let-tasks="tasks">
-	<app-heading text="Upcoming Tasks"></app-heading>
 	<section class="widget-container form-container flex-centered__column flex-stretch">
 		<ul class="task-list">
 			<li *ngFor="let task of tasks"
