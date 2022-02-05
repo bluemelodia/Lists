@@ -38,7 +38,8 @@ How to make image upload easy with Angular
 - Encrypt usernames/passwords? Expire the session after 15 minutes.
 - Confirm that user sessions are lasting the expect amount of time.
 - Make it easier to find the phone area code.
-- Sort tasks by due date.
+- Sort tasks by due date. Only show the upcoming ones (not all - limit to 10), filter out past ones.
+- Handle responsive mode.
 
 ## Navigation
 

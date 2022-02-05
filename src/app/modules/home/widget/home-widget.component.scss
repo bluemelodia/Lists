@@ -8,6 +8,10 @@
 	width: 100%;
 }
 
+.widget-list__item app-heading {
+	width: 50%;
+}
+
 .widget-container {
 	padding: 0;
 	margin: 0
@@ -20,4 +24,14 @@
     justify-content: space-between;
 	padding-left: 4px;
 	margin-bottom: 4px;
+}
+
+.widget__birthday-status {
+	display: flex;
+    flex-direction: row;
+	flex: 1;
+}
+
+.widget__birthday {
+	width: 100%;
 }
