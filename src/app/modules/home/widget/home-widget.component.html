@@ -1,4 +1,4 @@
-<ng-container [ngSwitch]="displayList">
+<ng-container *ngIf="list" [ngSwitch]="displayList">
 	<app-heading [text]="title" [level]="headerLevel.H2">
 		<section post class="actions">
 			<app-action ariaLabel="ariaLabel"
