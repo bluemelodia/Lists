@@ -34,6 +34,18 @@
   margin-bottom: 4px;
 }
 
+.widget-list_multi-line {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+}
+
+.widget-list_multi-line .widget-details {
+	display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .widget__birthday-status {
   display: flex;
   flex-direction: row;

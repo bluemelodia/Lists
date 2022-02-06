@@ -1,5 +1,5 @@
 <ng-container [ngSwitch]="displayList">
-	<app-heading [text]="title">
+	<app-heading [text]="title" [level]="headerLevel.H2">
 		<section post class="actions">
 			<app-action ariaLabel="ariaLabel"
 				[enabled]="true"
@@ -35,7 +35,7 @@
 		<ul class="widget-list">
 			<li *ngFor="let recipient of recipients"
 				class="widget-list__item">
-				<app-heading [level]="headerLevel.H2" 
+				<app-heading [level]="headerLevel.H3" 
 					[text]="recipient.name">
 				</app-heading>
 				<p class="widget-list__birthday">
@@ -52,7 +52,7 @@
 		<ul class="widget-list">
 			<li *ngFor="let recipient of recipients"
 				class="widget-list__item">
-				<app-heading [level]="headerLevel.H2" 
+				<app-heading [level]="headerLevel.H3" 
 					[text]="recipient.name">
 				</app-heading>
 				<section class="widget__birthday-status">
@@ -79,10 +79,10 @@
 		<ul class="widget-list">
 			<li *ngFor="let meeting of meetings"
 				class="widget-list__item">
-				<app-heading [level]="headerLevel.H2"
+				<app-heading [level]="headerLevel.H3"
 					[text]="meeting.name">
 				</app-heading>
-				<p class="task-details__wrapper">
+				<p class="widget-details">
 					<span class="task-details__description">{{ meeting | meetingFormatter: true: 'shorthand' }}</span>
 				</p>
 			</li>
@@ -93,12 +93,12 @@
 	<section class="widget-container form-container flex-centered__column flex-stretch">
 		<ul class="widget-list">
 			<li *ngFor="let task of tasks"
-				class="widget-list__item">
-				<app-heading [level]="headerLevel.H2"
+				class="widget-list__item widget-list_multi-line">
+				<app-heading [level]="headerLevel.H3"
 					[text]="task.name">
 				</app-heading>
-				<span>{{ task | taskFormatter:'shorthand' }}</span>
-				<p class="task-details__wrapper multi-line">
+				<p class="widget-details multi-line">
+					<span>{{ task | taskFormatter:'shorthand' }}</span>
 					<app-status-indicator [status]="task.status"></app-status-indicator>
 				</p>
 			</li>
