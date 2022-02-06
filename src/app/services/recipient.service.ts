@@ -154,7 +154,6 @@ export class RecipientService {
 
 			/** Silently propagate changes to the server. */
 			if (changes) {
-				console.info("[Recipient Service] Send changes to server: ", recipient);
 				this.patchRecipient(recipient);
 			}
 		});

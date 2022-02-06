@@ -21,11 +21,11 @@ export class TimeUtils {
 	}
 
 	public static get24HourTime(timeStr: string): Time {
-		const time = timeStr.split(":");
+		const time = timeStr?.split(":");
 		let hour = 0;
 		let min = 0;
 		if (time?.length > 0) {
-			const minsAndZone = time[1].split(" ");
+			const minsAndZone = time[1]?.split(" ");
 			hour = Number(time[0]);
 			if (minsAndZone?.length > 0) {
 				min = Number(minsAndZone[0]);

@@ -14,6 +14,7 @@ import { RecipientService } from "../../services/recipient.service";
 import { TaskService } from "../../services/task.service";
 
 import { RecipientUtils } from "../../utils/recipient.utils";
+import { TaskUtils } from "../../utils/task.utils";
 
 @Component({
 	selector: "app-home",
@@ -78,7 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 				this._lunar$.next(RecipientUtils.getSummary(birthdays?.lunar));
 				this._meetings$.next(meetings);
-				this._tasks$.next(tasks);
+				this._tasks$.next(TaskUtils.sortTasks(tasks));
 			});
 	}
 

@@ -26,10 +26,6 @@ export class ResponseInterceptor implements HttpInterceptor {
 		return next.handle(req)
 			.pipe(
 				map((event: HttpEvent<any>) => {
-					if (event instanceof HttpResponse) {
-						console.log("Received response: ", event);
-					}
-
 					return event;
 				}),
 				catchError((error: HttpErrorResponse) => {
@@ -37,7 +33,7 @@ export class ResponseInterceptor implements HttpInterceptor {
 					 * Session is invalid.
 					 */
 					if (error.status === 401) {
-						console.log("oops, logout");
+						console.log("[Response Interceptor] Invalid session, logout.");
 						this.userService.logout();
 
 						return throwError(ResponseStatus.LOGOUT);

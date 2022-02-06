@@ -1,5 +1,6 @@
 import { Endpoint } from "../constants/urls.constants";
-import { TaskAction, TaskConfig, TaskFormSubmitActions } from "../interfaces/event/task.interface";
+import { Task, TaskAction, TaskConfig, TaskFormSubmitActions } from "../interfaces/event/task.interface";
+import { TimeUtils } from "./time.utils";
 
 export class TaskUtils {
 	private static baseURL = Endpoint.TASKS;
@@ -36,5 +37,25 @@ export class TaskUtils {
 		};
 
 		return config;
+	}
+
+	public static sortTasks(tasks: Task[]): Task[] {
+		return tasks.sort(TaskUtils.sortByDate);
+	}
+
+	private static sortByDate(a: Task, b: Task): number {
+		const aTime = TimeUtils.get24HourTime(a.dueTime);
+		const bTime = TimeUtils.get24HourTime(b.dueTime);
+
+		return a.dueDate.year - b.dueDate.year
+			|| a.dueDate.month - b.dueDate.month
+			|| a.dueDate.value - b.dueDate.value
+			|| aTime.hours - bTime.hours
+			|| aTime.minutes - bTime.minutes 
+			|| TaskUtils.sortByName(a.name, b.name);
+	}
+
+	private static sortByName(a: string, b: string): number {
+		return a < b ? -1 : (a > b) ? 1 : 0;
 	}
 }

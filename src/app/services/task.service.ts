@@ -90,7 +90,6 @@ export class TaskService {
 		)
 			.pipe(
 				map((response: Response) => {
-					console.info("[Task Service] Received tasks: ", response);
 					return response.responseData as Task[];
 				}),
 				catchError(() => {
