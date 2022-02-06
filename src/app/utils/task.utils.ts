@@ -1,3 +1,4 @@
+import { Status } from "../constants/tasks.constants";
 import { Endpoint } from "../constants/urls.constants";
 import { Task, TaskAction, TaskConfig, TaskFormSubmitActions } from "../interfaces/event/task.interface";
 import { TimeUtils } from "./time.utils";
@@ -37,6 +38,12 @@ export class TaskUtils {
 		};
 
 		return config;
+	}
+
+	public static getSummary(tasks: Task[]): Task[] {
+		return tasks.filter((task: Task) => {
+			return task.status !== Status.Completed;
+		}).slice(0, 10);
 	}
 
 	public static sortTasks(tasks: Task[]): Task[] {

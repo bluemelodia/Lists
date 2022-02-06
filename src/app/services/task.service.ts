@@ -90,7 +90,7 @@ export class TaskService {
 		)
 			.pipe(
 				map((response: Response) => {
-					return response.responseData as Task[];
+					return TaskUtils.sortTasks(response.responseData as Task[]);
 				}),
 				catchError(() => {
 					return of(null);

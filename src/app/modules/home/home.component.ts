@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 				this._lunar$.next(RecipientUtils.getSummary(birthdays?.lunar));
 				this._meetings$.next(meetings);
-				this._tasks$.next(TaskUtils.sortTasks(tasks));
+				this._tasks$.next(TaskUtils.getSummary(tasks));
 			});
 	}
 

@@ -38,11 +38,14 @@
 				<app-heading [level]="headerLevel.H3" 
 					[text]="recipient.name">
 				</app-heading>
-				<p class="widget-list__birthday">
-					{{ recipient?.date?.month }}/{{ recipient?.date?.value }}
-				</p>
-				<app-date-indicator post [status]="recipient.status">
-				</app-date-indicator>
+				<section class="widget__birthday-status">
+					<p class="widget-list__birthday">
+						{{ recipient?.date?.month }}/{{ recipient?.date?.value }}
+					</p>
+					<app-date-indicator post [status]="recipient.status">
+					</app-date-indicator>
+					<span *ngIf="!recipient.status"></span>
+				</section>
 			</li>
 		</ul>
 	</section>
