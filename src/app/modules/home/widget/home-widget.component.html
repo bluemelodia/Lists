@@ -24,6 +24,10 @@
 		[ngTemplateOutlet]="tasks" 
 		[ngTemplateOutletContext]="{ 'tasks': list }">
 	</ng-container>	
+	<section *ngIf="list && list.length < 1">
+		<app-no-results [message]="noResultsMsg">
+		</app-no-results>
+	</section>
 </ng-container>
 
 <ng-template #solar let-recipients="recipients">
@@ -70,8 +74,20 @@
 		</ul>
 	</section>
 </ng-template>
-<ng-template #meetings let-meeting="meeting">
-
+<ng-template #meetings let-meetings="meetings">
+	<section class="widget-container form-container flex-centered__column flex-stretch">
+		<ul class="task-list">
+			<li *ngFor="let meeting of meetings"
+				class="widget-list__item">
+				<app-heading [level]="headerLevel.H2"
+					[text]="meeting.name">
+				</app-heading>
+				<p class="task-details__wrapper">
+					<span class="task-details__description">{{ meeting | meetingFormatter: true: 'shorthand' }}</span>
+				</p>
+			</li>
+		</ul>
+	</section>
 </ng-template>
 <ng-template #tasks let-tasks="tasks">
 	<section class="widget-container form-container flex-centered__column flex-stretch">
@@ -89,3 +105,4 @@
 		</ul>
 	</section>
 </ng-template>
+
