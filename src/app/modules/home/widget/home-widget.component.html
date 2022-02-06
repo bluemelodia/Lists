@@ -32,13 +32,13 @@
 
 <ng-template #solar let-recipients="recipients">
 	<section class="widget-container form-container flex-centered__column flex-stretch">
-		<ul class="task-list">
+		<ul class="widget-list">
 			<li *ngFor="let recipient of recipients"
 				class="widget-list__item">
 				<app-heading [level]="headerLevel.H2" 
 					[text]="recipient.name">
 				</app-heading>
-				<p class="task-list__birthday">
+				<p class="widget-list__birthday">
 					{{ recipient?.date?.month }}/{{ recipient?.date?.value }}
 				</p>
 				<app-date-indicator post [status]="recipient.status">
@@ -49,7 +49,7 @@
 </ng-template>
 <ng-template #lunar let-recipients="recipients">
 	<section class="widget-container form-container flex-centered__column flex-stretch">
-		<ul class="task-list">
+		<ul class="widget-list">
 			<li *ngFor="let recipient of recipients"
 				class="widget-list__item">
 				<app-heading [level]="headerLevel.H2" 
@@ -76,7 +76,7 @@
 </ng-template>
 <ng-template #meetings let-meetings="meetings">
 	<section class="widget-container form-container flex-centered__column flex-stretch">
-		<ul class="task-list">
+		<ul class="widget-list">
 			<li *ngFor="let meeting of meetings"
 				class="widget-list__item">
 				<app-heading [level]="headerLevel.H2"
@@ -91,7 +91,7 @@
 </ng-template>
 <ng-template #tasks let-tasks="tasks">
 	<section class="widget-container form-container flex-centered__column flex-stretch">
-		<ul class="task-list">
+		<ul class="widget-list">
 			<li *ngFor="let task of tasks"
 				class="widget-list__item">
 				<app-heading [level]="headerLevel.H2"
