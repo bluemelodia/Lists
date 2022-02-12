@@ -1,8 +1,12 @@
 <section class="search-container">
-	<input class="search-input" type="text" placeholder="Search">
+	<input class="search-input" 
+		type="text" 
+		placeholder="Search"
+		(keyup)="onSearch()"
+		[(ngModel)]="query">
 	<app-decorator ariaLabel="Search"
 		class="search-indicator"
 		iconClasses="icon-medium"
 		[icon]="icon.Search">
-	</app-decorator>
+	</app-decorator >
 </section>
