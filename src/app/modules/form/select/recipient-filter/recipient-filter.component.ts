@@ -6,6 +6,8 @@ import {
 	Output,
 } from '@angular/core';
 
+import { Icon } from '../../../../constants/icons.constants';
+
 import { AddRecipient } from '../../../../interfaces/service/service-objects.interface';
 
 import { SelectComponent } from '../select.component';
@@ -26,6 +28,7 @@ export class RecipientFilterComponent extends SelectComponent {
 	@Output() recipientSelected = new EventEmitter<AddRecipient>();
 	@Output() filterReset = new EventEmitter<void>();
 
+	public icon = Icon;
 	public selectedRecipient: AddRecipient;
 
 	constructor(

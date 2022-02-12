@@ -5,6 +5,7 @@ import {
 	Output,
 } from '@angular/core';
 
+import { Icon } from '../../../../constants/icons.constants';
 import { Recurrence, RecurrenceMap } from '../../../../constants/tasks.constants';
 
 import { SelectComponent } from '../select.component';
@@ -23,6 +24,7 @@ export class RecurrenceFilterComponent extends SelectComponent {
 	@Output() recurrenceSelected = new EventEmitter<RecurrenceMap>();
 	@Output() filterReset = new EventEmitter<void>();
 
+	public icon = Icon;
 	public recurrence = Recurrence;
 	public recurrenceKeys = Object.keys(this.recurrence);
 	public selected: RecurrenceMap = {};
