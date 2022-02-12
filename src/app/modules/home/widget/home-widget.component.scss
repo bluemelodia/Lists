@@ -31,22 +31,24 @@
 }
 
 .widget-list__item app-heading {
-	width: 50%;
+  width: 50%;
 }
 
 .widget-list_multi-line {
-	align-items: flex-start;
-	display: flex;
-	flex-direction: column;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
 }
 
 .widget-list_multi-line .widget-details {
-	display: flex;
-    justify-content: space-between;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .widget__birthday-status {
+  align-items: center;
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -54,23 +56,23 @@
 }
 
 .widget__birthday {
-	width: 100%;
-}  
+  width: 100%;
+}
 
 @media only screen and (max-width: 850px) {
-	.widget__birthday-status {
-		align-items: flex-start;
-    	width: 100%;
-	}
+  .widget__birthday-status {
+    align-items: flex-start;
+    width: 100%;
+  }
 
-	.widget-list__item {
-		align-items: flex-start;
-		flex-direction: column;
-	}
+  .widget-list__item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
 @media only screen and (min-width: 600px) {
-	:host {
-		overflow: hidden;
-	}
+  :host {
+    overflow: hidden;
+  }
 }
