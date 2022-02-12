@@ -1,6 +1,8 @@
 .decorator {
 	background: none;
 	border: none;
+	height: 44px;
+	width: 44px;
 }
 
 .decorator-icon {

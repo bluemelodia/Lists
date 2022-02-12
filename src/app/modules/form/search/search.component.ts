@@ -10,7 +10,7 @@ export class SearchComponent {
 	@Output() search = new EventEmitter<string>();
 
 	public icon = Icon;
-	public query: string;
+	public query = '';
 
 	public onSearch(): void {
 		this.search.emit(this.query);

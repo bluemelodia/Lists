@@ -10,6 +10,7 @@
 	min-height: 35px;
 }
 
+.clear-search,
 .search-indicator {
 	position: absolute;
 	right: 16px;

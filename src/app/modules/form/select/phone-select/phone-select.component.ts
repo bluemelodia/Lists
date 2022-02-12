@@ -31,7 +31,11 @@ export class PhoneSelectComponent extends SelectComponent {
 		super(_element, _focus);
 	}
 
-	selectOption(option: CountryISO): void {
+	public filterCountries(query: string): void {
+		console.log("==> filter: ", query);
+	}
+
+	public selectOption(option: CountryISO): void {
 		this.showOptionList = false;
 		this.form.patchValue({
 			countryCode: `+ ${option}`

@@ -1,5 +1,6 @@
 export enum Icon {
 	Call = 'fas fa-mobile-alt',
+	Close = 'fas fa-times',
 	Text = 'fas fa-comment-dots',
 	Gift = 'fas fa-gift',
 	Edit = 'fas fa-edit',
