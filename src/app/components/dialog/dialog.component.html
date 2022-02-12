@@ -4,11 +4,12 @@
         <header class="header">
             <span></span>
             {{ dialog.title }}
-            <button class="cancel-btn description"
-				type="button" 
-                (click)="hideDialog()">
-                <i class="fas fa-times"></i>
-            </button>
+			<app-action ariaLabel="Close Dialog"
+				class="cancel-btn description"
+				[enabled]="true"
+				[icon]="icon.Close"
+				(actionSelected)="hideDialog()">
+			</app-action>
         </header>
         <p class="description message">{{ dialog.message }}</p>
         <fieldset *ngIf="dialog.dialogType === dialogType.Confirm"

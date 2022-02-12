@@ -56,7 +56,9 @@
 }
 
 .widget__birthday {
-  width: 100%;
+	align-items: center;
+	display: flex;
+  	width: 100%;
 }
 
 @media only screen and (max-width: 850px) {
