@@ -26,6 +26,7 @@ import { RecipientSelectComponent } from './select/recipient-select/recipient-se
 import { RecurrenceFilterComponent } from "./select/recurrence-filter/recurrence-filter.component";
 import { RecurrenceSelectComponent } from "./select/recurrence-select/recurrence-select.component";
 
+import { SearchComponent } from "./search/search.component";
 import { SelectComponent } from './select/select.component';
 import { SortSelectComponent } from "./select/sort-select/sort-select.component";
 import { SelectFilterComponent } from "./select/status-filter/status-filter.component";
@@ -45,6 +46,7 @@ import { StatusSelectComponent } from "./select/status-select/status-select.comp
 		RecipientSelectComponent,
 		RecurrenceFilterComponent,
 		RecurrenceSelectComponent,
+		SearchComponent,
 		SelectComponent,
 		SelectFilterComponent,
 		SortSelectComponent,
@@ -75,6 +77,7 @@ import { StatusSelectComponent } from "./select/status-select/status-select.comp
 		RecipientSelectComponent,
 		RecurrenceFilterComponent,
 		RecurrenceSelectComponent,
+		SearchComponent,
 		SelectComponent,
 		SelectFilterComponent,
 		SortSelectComponent,

@@ -30,7 +30,7 @@
             <input formControlName="password"
                 placeholder="Password"
 				[type]="showPassword ?  'text' : 'password'"/>
-			<app-action ariaLabel="Show Password"
+			<app-action [ariaLabel]="showPassword ? 'Hide Password' : 'Show Password'"
 				class="show-password"
 				[enabled]="true"
 				[icon]="icon.View"

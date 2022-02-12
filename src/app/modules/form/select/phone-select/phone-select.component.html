@@ -29,6 +29,7 @@
 		<section *ngIf="showOptionList"
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">
+			<app-search></app-search>
 			<button *ngFor="let country of countries; let i = index"
 				class="option focus-option"
 				type="button"
