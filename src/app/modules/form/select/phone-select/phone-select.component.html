@@ -31,7 +31,7 @@
 			[ngClass]="{ 'show' : showOptionList }">
 			<ml-search (search)="filterCountries($event)"></ml-search>
 			<button *ngFor="let country of countries; let i = index"
-				class="option focus-option"
+				class="option ml-focus-option"
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : this.form.get('phone.countryCode')?.value === country.code, 'focus-origin' : i === 0 }"

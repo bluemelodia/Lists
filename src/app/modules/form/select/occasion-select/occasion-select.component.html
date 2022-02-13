@@ -11,7 +11,7 @@
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<button *ngFor="let occasion of occasionKeys; let i = index"
-				class="option focus-option"	
+				class="option ml-focus-option"	
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : occasionForm?.value === occasion, 'focus-origin' : i === 0 }"

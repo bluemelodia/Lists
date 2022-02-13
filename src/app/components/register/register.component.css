@@ -1,16 +1,16 @@
 :host {
-	width: 100%;
+  width: 100%;
 }
 
-.password {
-	position: relative;
+.ml-password {
+  position: relative;
 }
 
-.password input {
-	margin: 0;
+.ml-password input {
+  margin: 0;
 }
 
-.show-password {
-	position: absolute;
-	right: 8px;
+.ml-password--show {
+  position: absolute;
+  right: 8px;
 }

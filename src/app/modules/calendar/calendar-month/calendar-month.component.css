@@ -1,20 +1,20 @@
 :host,
-.month,
-.week {
+.ml-calendar__month,
+.ml-calendar__week {
 	display: flex;
 	flex: 1;
 }
 
-.month {
+.ml-calendar__month {
 	flex-direction: column;
 	justify-content: space-between;
 }
 
-.week {
+.ml-calendar__week {
   	justify-content: space-between;
 }
 
-.week .day {
+.ml-calendar__week .ml-calendar__day {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
@@ -24,35 +24,35 @@
 	width: 15%;
 }
 
-.day:focus {
+.ml-calendar__day:focus {
   	outline: none;
 }
 
-.day:not(.disabled):focus,
-.selected {
+.ml-calendar__day:not(.ml-calendar--disabled):focus,
+.ml-calendar--selected {
   	border: 2px solid #dd2e44;
 }
 
-.day:not(.disabled):hover,
-.selected {
+.ml-calendar__day:not(.ml-calendar--disabled):hover,
+.ml-calendar--selected {
   	background-color: pink;
 }
 
-.day:not(.disabled):active {
+.ml-calendar__day:not(.ml-calendar--disabled):active {
   	background-color: #ffd8e5;
 }
 
-.solar-date {
+.ml-calendar__solar-date {
   	font-size: 14px;
 }
 
-.day.disabled,
-.disabled .lunar-date {
+.ml-calendar__day.ml-calendar--disabled,
+.ml-calendar--disabled .ml-calendar__lunar-date {
   	color: #9e9e9e;
 }
 
 /* Override the standard color so the lunar dates stand out. */
-.lunar-date {
+.ml-calendar__lunar-date {
   	font-size: 9px;
   	color: #e91e63;
 }

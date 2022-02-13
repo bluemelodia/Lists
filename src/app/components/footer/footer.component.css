@@ -1,15 +1,15 @@
 :host {
-    background-color: white;
-    bottom: 0;
-    width: 100%;
+  background-color: white;
+  bottom: 0;
+  width: 100%;
 }
 
-.footer-text {
-    margin: 1em;
+.ml-footer__text {
+  margin: 1em;
 }
 
 @media only screen and (max-width: 500px) {
-	.footer-text {
-		margin: 10px;
-	}
+  .ml-footer__text {
+    margin: 10px;
+  }
 }

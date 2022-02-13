@@ -12,7 +12,7 @@
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<button *ngFor="let key of statusKeys; let i = index"
-				class="option focus-option"	
+				class="option ml-focus-option"	
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : status[key] === selected, 'focus-origin' : i === 0 }"

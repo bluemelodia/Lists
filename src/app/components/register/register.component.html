@@ -26,12 +26,12 @@
                     </p>
             </div> 
         </fieldset>
-		<fieldset class="password">
+		<fieldset class="ml-password">
             <input formControlName="password"
                 placeholder="Password"
 				[type]="showPassword ?  'text' : 'password'"/>
 			<ml-action ariaLabel="Show Password"
-				class="show-password"
+				class="ml-password--show"
 				[enabled]="true"
 				[icon]="icon.View"
 				(actionSelected)="toggleShowPassword()">

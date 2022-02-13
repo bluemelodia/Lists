@@ -18,7 +18,7 @@ import { Key } from "../interfaces/focus.interface";
  * 
  * The element to loop focus back to should have the "focus-origin" CSS class.
  * 
- * All elements that the screenreader should loop through should have the "focus-option" CSS class.
+ * All elements that the screenreader should loop through should have the "ml-focus-option" CSS class.
  * 
  * The tab stop should have the "tab-stop" CSS class.
  */
@@ -43,7 +43,7 @@ export class FocusDirective {
 	 */
 	private getFirstFocusableElement(): HTMLElement {
 		const elem: ElementRef = this.el;
-		const buttons: HTMLCollectionOf<Element> = (elem.nativeElement as HTMLElement).getElementsByClassName("focus-option");
+		const buttons: HTMLCollectionOf<Element> = (elem.nativeElement as HTMLElement).getElementsByClassName("ml-focus-option");
 		const focusableElements: HTMLElement[] = Array.from(buttons).filter((el: HTMLElement) => {
 			return el.classList.contains("focus-origin") || el.getAttribute("aria-hidden") === "false";
 		}) as HTMLElement[];

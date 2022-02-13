@@ -22,7 +22,7 @@
 		class="options"
 		[ngClass]="{ 'show' : showOptionList }">
 		<button *ngFor="let recipient of list; let i = index"
-			class="option focus-option"
+			class="option ml-focus-option"
 			type="button"
 			[attr.aria-hidden]="showOptionList ? false : true"
 			[ngClass]="{ 'selected' : recipientForm?.value?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"

@@ -11,7 +11,7 @@
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<button *ngFor="let country of countries; let i = index"
-				class="option focus-option"
+				class="option ml-focus-option"
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : this.form.get('country')?.value?.code === country.code, 'focus-origin' : i === 0 }"

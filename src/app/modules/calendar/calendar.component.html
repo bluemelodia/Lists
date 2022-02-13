@@ -1,16 +1,16 @@
 <div *ngIf="calendarMonths[monthIdx]"
-	class="calendar">
-    <section class="header-container">
+	class="ml-calendar">
+    <section class="ml-calendar__header">
         <div>
             <h4>{{ months[calendarMonths[monthIdx].value-1] }} {{ calendarMonths[monthIdx].year }}</h4>
         </div>
-        <div class="arrow-buttons">
+        <div class="ml-calendar__nav">
             <button aria-label="Previous Month"
 				id="previous-month"
 				type="button"
 				[attr.aria-hidden]="monthIdx === 0 ? true : false"
 				[disabled]="monthIdx === 0"
-				[ngClass]="{ 'focus-option' : monthIdx !== 0 }" 
+				[ngClass]="{ 'ml-focus-option' : monthIdx !== 0 }" 
                 [tabindex]="monthIdx === 0 ? -1 : 0"
                 (click)="previousMonth()">
                 <i class="arrow-btn fas fa-chevron-left"></i>
@@ -20,15 +20,15 @@
 				type="button"
 				[attr.aria-hidden]="monthIdx === calendarMonths.length-1 ? true : false"
 				[disabled]="monthIdx === calendarMonths.length-1"
-				[ngClass]="{ 'focus-option' : monthIdx !== calendarMonths.length-1 }" 
+				[ngClass]="{ 'ml-focus-option' : monthIdx !== calendarMonths.length-1 }" 
                 [tabindex]="monthIdx === calendarMonths.length-1 ? -1 : 0"
                 (click)="nextMonth()">
                 <i class="arrow-btn fas fa-chevron-right"></i>
             </button>
         </div>  
     </section>
-    <section class="body-container">
-        <div class="month-header">
+    <section class="ml-calendar__container">
+        <div class="ml-calendar__days">
             <span>S</span>
             <span>M</span>
             <span>T</span>
