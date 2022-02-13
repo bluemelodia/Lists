@@ -1,7 +1,7 @@
-<section #select class="input-container">
+<section #select class="ml-select">
 	<ml-action *ngIf="selected" 
 		ariaLabel="Clear Status Filter"
-		class="clear-filter-btn"
+		class="ml-filter__clear"
 		[enabled]="true"
 		[icon]="icon.Close"
 		(actionSelected)="clearFilter()">
@@ -14,15 +14,15 @@
 		class="ml--truncate"
 		placeholder="Filter by Status"
 		type="text"
-		[ngClass]="{ 'options-open' : showOptionList }"
+		[ngClass]="{ 'ml-select__options--open' : showOptionList }"
 		[value]="status[selected] || ''"
 		(click)="showHideOptions()"
 		(keydown)="onKeydownEvent($event)"/>
 	<section *ngIf="showOptionList"
-		class="options"
+		class="ml-select__options"
 		[ngClass]="{ 'show' : showOptionList }">
 		<button *ngFor="let key of statusKeys; let i = index"
-			class="option ml-focus-option"
+			class="ml-select__option ml--focus"
 			type="button"
 			[attr.aria-hidden]="showOptionList ? false : true"
 			[ngClass]="{ 'selected' : key === selected, 'focus-origin' : i === 0 }"

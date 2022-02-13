@@ -1,18 +1,18 @@
 <form [formGroup]="form">
-	<section #select class="input-container">
+	<section #select class="ml-select">
 		<input readonly
 			class="selected-status"
 			type="text" 
 			placeholder="Select Status"
-			[ngClass]="{ 'options-open' : showOptionList }"
+			[ngClass]="{ 'ml-select__options--open' : showOptionList }"
 			[value]="selected"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
-			class="options"
+			class="ml-select__options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<button *ngFor="let key of statusKeys; let i = index"
-				class="option ml-focus-option"	
+				class="ml-select__option ml--focus"	
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : status[key] === selected, 'focus-origin' : i === 0 }"

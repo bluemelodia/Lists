@@ -9,19 +9,19 @@
   width: 100%;
 }
 
-.widget-container {
+.ml-home-widget__container {
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-.widget-list {
+.ml-home-widget__list {
   margin: 0;
   padding: 0;
   overflow: scroll;
 }
 
-.widget-list__item {
+.ml-home-widget__list-item {
   align-items: center;
   border-left: 4px solid pink;
   display: flex;
@@ -30,24 +30,24 @@
   margin-bottom: 4px;
 }
 
-.widget-list__item ml-heading {
+.ml-home-widget__list-item ml-heading {
   width: 50%;
 }
 
-.widget-list_multi-line {
+.ml-home-widget__list-item--multi-line {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
 
-.widget-list_multi-line .widget-details {
+.ml-home-widget__list-item--multi-line .ml-home-widget__details {
   align-items: center;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-.widget__birthday-status {
+.ml-home-widget__birthdates {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -55,35 +55,35 @@
   justify-content: space-between;
 }
 
-.widget__birthday {
+.ml-home-widget__birthday {
   align-items: center;
   display: flex;
   width: 100%;
 }
 
-.widget__meeting-date {
+.ml-home-widget__meeting-date {
   align-items: center;
   display: flex;
 }
 
 @media only screen and (max-width: 850px) {
-  .widget__birthday-status {
+  .ml-home-widget__birthdates {
     align-items: flex-start;
     width: 100%;
   }
 
-  .widget-list__item {
+  .ml-home-widget__list-item {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .widget__meeting-dates {
+  .ml-home-widget__meeting-dates {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .widget__meeting-date {
+  .ml-home-widget__meeting-date {
     width: 100%;
   }
 }
@@ -100,13 +100,13 @@
 	* dates will each take its own row,
 	* and the cell will look sparse.
 	*/
-  .widget__meeting-dates {
+  .ml-home-widget__meeting-dates {
     flex-direction: row;
   }
 }
 
 @media only screen and (max-width: 450px) {
-  .widget__meeting-dates {
+  .ml-home-widget__meeting-dates {
     flex-direction: column;
   }
 }

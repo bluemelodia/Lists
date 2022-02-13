@@ -1,16 +1,16 @@
 	<section #select 
-		class="input-container">
+		class="ml-select">
 		<input type="text" readonly
 			placeholder="Sort By"
-			[ngClass]="{ 'options-open' : showOptionList }"
+			[ngClass]="{ 'ml-select__options--open' : showOptionList }"
 			[value]="selectedSort?.displayName"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
-			class="options"
+			class="ml-select__options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<button *ngFor="let sort of list; let i = index"
-				class="option ml-focus-option"
+				class="ml-select__option ml--focus"
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : sort.fieldName === selectedSort?.fieldName, 'focus-origin' : i === 0 }"

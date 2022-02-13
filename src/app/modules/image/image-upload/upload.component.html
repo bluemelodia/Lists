@@ -3,16 +3,16 @@
 <ng-container [formGroup]="uploadForm">
     <input #imageInput
 		accept="image/*"
-        class="image-upload__picker"
+        class="ml-image-upload__picker"
 		formControlName="fileName"
         type="file"
         (change)="processFile(imageInput)">
     <section *ngIf="selectedImageUrl$ | async as imgUrl"
-		class="image-upload__preview">
-        <img class="image-upload__preview-src" 
+		class="ml-image-upload__preview">
+        <img class="ml-image-upload__preview-src" 
 			[src]="imgUrl"/>
 		<ml-action ariaLabel="Delete Image"
-			class="delete-btn description"
+			class="ml-image-upload__delete description"
 			[enabled]="true"
 			[icon]="icon.Close"
 			(actionSelected)="deleteImage()">

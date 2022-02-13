@@ -1,17 +1,17 @@
 <form [formGroup]="form">
-	<section #select class="input-container">
+	<section #select class="ml-select">
 		<input readonly
 			type="text" 
 			placeholder="Select Occasion"
-			[ngClass]="{ 'options-open' : showOptionList }"
+			[ngClass]="{ 'ml-select__options--open' : showOptionList }"
 			[value]="occasions[occasionForm?.value] || ''"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
-			class="options"
+			class="ml-select__options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<button *ngFor="let occasion of occasionKeys; let i = index"
-				class="option ml-focus-option"	
+				class="ml-select__option ml--focus"	
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : occasionForm?.value === occasion, 'focus-origin' : i === 0 }"

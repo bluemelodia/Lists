@@ -3,10 +3,10 @@
 	flex-wrap: wrap;
 }
 
-.badge {
+.ml-recurrence_badge {
 	margin-bottom: 4px;
 }
 
-.badge:not(:last-of-type) {
+.ml-recurrence_badge:not(:last-of-type) {
 	margin-right: 4px;
 }

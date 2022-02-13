@@ -1,18 +1,18 @@
 <form [formGroup]="form">
-	<section #select class="input-container">
+	<section #select class="ml-select">
 		<input readonly
-			class="selected-recurrences"
+			class="ml-recurrence__select"
 			type="text" 
 			placeholder="Select Recurrence(s)"
-			[ngClass]="{ 'options-open' : showOptionList }"
+			[ngClass]="{ 'ml-select__options--open' : showOptionList }"
 			[value]="getSelectedOptions()"
 			(click)="showHideOptions()"
 			(keydown)="onKeydownEvent($event)"/>
 		<section *ngIf="showOptionList"
-			class="options"
+			class="ml-select__options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<button *ngFor="let key of recurrenceKeys; let i = index"
-				class="option ml-focus-option"	
+				class="ml-select__option ml--focus"	
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : selected[key], 'focus-origin' : i === 0 }"

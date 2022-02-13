@@ -1,11 +1,11 @@
 <table *ngIf="month" class="ml-calendar__month">
     <tr *ngFor="let week of month.weeks" class="ml-calendar__week">
-        <td class="ml-calendar__day ml-focus-option"
+        <td class="ml-calendar__day ml--focus"
 			id="{{month.year}}-{{month.value}}-{{day.value}}"
             *ngFor="let day of week.days"
             [attr.aria-hidden]="isSelectableDate(day) ? false : true"
             [class.ml-calendar--disabled] = "!isSelectableDate(day)"
-            [class.ml-focus-option] = "isSelectableDate(day)"
+            [class.ml--focus] = "isSelectableDate(day)"
             [class.ml-calendar--selected] = "isSelectedDate(day)"
 			[tabindex]="isSelectableDate(day) ? 0 : -1"
             (click)="isSelectableDate(day) ? selectDate(day) : null"

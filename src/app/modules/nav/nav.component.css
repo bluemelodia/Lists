@@ -31,11 +31,11 @@
 	transition: 0.25s;
 }
 
-nav {
+.ml-nav {
 	display: flex;
 	height: 44px;
 }
 
-:host.open nav {
+:host.open .ml-nav {
   	display: none;
 }

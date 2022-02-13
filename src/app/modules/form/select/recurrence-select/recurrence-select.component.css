@@ -1,4 +1,4 @@
-.selected-recurrences {
-	text-overflow: ellipsis;
-    white-space: nowrap;
+.ml-recurrence__select {
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

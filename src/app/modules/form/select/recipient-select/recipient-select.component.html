@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-	<section #select class="input-container">
+	<section #select class="ml-select">
 		<ng-container [ngTemplateOutlet]="recipientSelect"></ng-container>   
 		<div *ngIf="submitted && recipientForm?.errors"
 			class="input-error">
@@ -14,15 +14,15 @@
 	<input readonly
 		type="text" 
 		placeholder="Select Recipient"
-		[ngClass]="{ 'options-open' : showOptionList }"
+		[ngClass]="{ 'ml-select__options--open' : showOptionList }"
 		[value]="recipientForm?.value?.name || ''"
 		(click)="showHideOptions()"
 		(keydown)="onKeydownEvent($event)"/>
 	<section *ngIf="showOptionList"
-		class="options"
+		class="ml-select__options"
 		[ngClass]="{ 'show' : showOptionList }">
 		<button *ngFor="let recipient of list; let i = index"
-			class="option ml-focus-option"
+			class="ml-select__option ml--focus"
 			type="button"
 			[attr.aria-hidden]="showOptionList ? false : true"
 			[ngClass]="{ 'selected' : recipientForm?.value?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"

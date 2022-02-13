@@ -279,37 +279,37 @@ button:disabled .arrow-btn {
   color: #9e9e9e;
 }
 
-.badge {
+.ml-recurrence_badge {
   border-radius: 16px;
   padding: 4px 8px;
   text-align: center;
 }
 
-.badge.expired {
+.ml-recurrence_badge.expired {
   background-color: silver;
 }
 
-.badge.info,
-.badge.inprogress,
-.badge.recurrence {
+.ml-recurrence_badge.info,
+.ml-recurrence_badge.inprogress,
+.ml-recurrence_badge.recurrence {
   background-color: pink;
 }
 
-.badge.warning {
+.ml-recurrence_badge.warning {
   background-color: #ffc0cb;
 }
 
-.badge.priority,
-.badge.started {
+.ml-recurrence_badge.priority,
+.ml-recurrence_badge.started {
   background-color: #ea818e;
 }
 
-.badge.notstarted,
-.badge.urgent {
+.ml-recurrence_badge.notstarted,
+.ml-recurrence_badge.urgent {
   background-color: #dd2e44;
 }
 
-.badge.virtual {
+.ml-recurrence_badge.virtual {
   background-color: pink;
 }
 

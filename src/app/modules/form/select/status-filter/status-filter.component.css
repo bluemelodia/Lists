@@ -1,6 +1,6 @@
-.clear-filter-btn {
-	color: #dd2e44;
-	height: calc(100% - 8px);
-	position: absolute;
-    right: 8px;
+.ml-filter__clear {
+  color: #dd2e44;
+  height: calc(100% - 8px);
+  position: absolute;
+  right: 8px;
 }

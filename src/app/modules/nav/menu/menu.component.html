@@ -1,14 +1,14 @@
-<nav *ngIf="lvl === 0">
+<nav *ngIf="lvl === 0" class="ml-menu__nav">
     <button class="menu-button app-btn"
         (click)="toggleMenu()">
         <img src="./assets/images/nav.svg">
     </button>
 </nav>
-<ul class="menu-list"
+<ul class="ml-menu__list"
     [class.top-nav]="lvl === 0">
     <li *ngFor="let item of menu"
-		class="menu-list_item">
-        <span class="menu-list_link"
+		class="ml-menu__list-item">
+        <span class="ml-menu__list-link"
             [style.paddingLeft.px]="padding"
             (click)="onMenuClick(item)">
             <a>{{ item }}</a>

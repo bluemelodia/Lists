@@ -1,12 +1,12 @@
 <form [formGroup]="form">
-	<section #select class="input-container">
+	<section #select class="ml-select">
 		<fieldset class="ml-phone-select__input condensed multi">
 			<input readonly
 				class="ml-phone-select__input--narrow" 
 				formControlName="countryCode"
 				placeholder="Code"
 				type="text" 
-				[ngClass]="{ 'options-open' : showOptionList }"
+				[ngClass]="{ 'ml-select__options--open' : showOptionList }"
 				(click)="showHideOptions()"
 				(keydown)="onKeydownEvent($event)"/>
 			<ml-decorator ariaLabel="Dial Code Selector"
@@ -27,11 +27,11 @@
 			</p>
 		</div>
 		<section *ngIf="showOptionList"
-			class="options"
+			class="ml-select__options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<ml-search (search)="filterCountries($event)"></ml-search>
 			<button *ngFor="let country of countries; let i = index"
-				class="option ml-focus-option"
+				class="ml-select__option ml--focus"
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[ngClass]="{ 'selected' : this.form.get('phone.countryCode')?.value === country.code, 'focus-origin' : i === 0 }"

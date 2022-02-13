@@ -1,17 +1,17 @@
-.action {
-	background: none;
-	border: none;
+.ml-action {
+  background: none;
+  border: none;
 
-	/* Min allowed touch area. */
-	height: 44px;
-	width: 44px;
+  /* Min allowed touch area. */
+  height: 44px;
+  width: 44px;
 }
 
-.action-icon {
-	color: pink;
-	font-size: 1.5rem;
+.ml-action__icon {
+  color: pink;
+  font-size: 1.5rem;
 }
 
-.action-icon.enabled {
-  	color: #dd2e44;
+.ml-action__icon.enabled {
+  color: #dd2e44;
 }

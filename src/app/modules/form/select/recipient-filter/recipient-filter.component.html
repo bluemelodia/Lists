@@ -1,7 +1,7 @@
-<section #select class="input-container">
+<section #select class="ml-select">
 	<ml-action *ngIf="selectedRecipient" 
 		ariaLabel="Clear Recipient Filter"
-		class="clear-filter-btn"
+		class="ml-filter__clear"
 		[enabled]="true"
 		[icon]="icon.Close"
 		(actionSelected)="clearFilter()">
@@ -13,15 +13,15 @@
 	<input readonly
 		placeholder="Filter by Recipient"
 		type="text"
-		[ngClass]="{ 'options-open' : showOptionList }"
+		[ngClass]="{ 'ml-select__options--open' : showOptionList }"
 		[value]="selectedRecipient?.name"
 		(click)="showHideOptions()"
 		(keydown)="onKeydownEvent($event)"/>
 	<section *ngIf="showOptionList"
-		class="options"
+		class="ml-select__options"
 		[ngClass]="{ 'show' : showOptionList }">
 		<button *ngFor="let recipient of list; let i = index"
-			class="option ml-focus-option"
+			class="ml-select__option ml--focus"
 			type="button"
 			[attr.aria-hidden]="showOptionList ? false : true"
 			[ngClass]="{ 'selected' : selectedRecipient?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"

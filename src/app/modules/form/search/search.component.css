@@ -10,7 +10,7 @@
   min-height: 35px;
 }
 
-.ml-search__close,
+.ml-search__clear,
 .ml-search__indicator {
   position: absolute;
   right: 16px;
