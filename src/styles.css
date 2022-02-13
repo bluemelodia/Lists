@@ -368,6 +368,7 @@ button:disabled .ml-arrow-btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 8px;
 }
 
 .ml-ml-task-list__item:not(:last-child) {

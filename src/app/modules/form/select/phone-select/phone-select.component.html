@@ -29,7 +29,9 @@
 		<section *ngIf="showOptionList"
 			class="ml-select__options"
 			[ngClass]="{ 'show' : showOptionList }">
-			<ml-search (search)="filterCountries($event)"></ml-search>
+			<ml-search (clear)="resetFilter()"
+				(search)="filterCountries($event)">
+			</ml-search>
 			<button *ngFor="let country of countries; let i = index"
 				class="ml-select__option ml--focus"
 				type="button"

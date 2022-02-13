@@ -13,7 +13,7 @@ input.ml-select__options--open {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  max-height: 150px;
+  max-height: 200px;
   overflow: auto;
   position: absolute;
   top: 48px;

@@ -32,11 +32,19 @@ export class PhoneSelectComponent extends SelectComponent {
 	}
 
 	public filterCountries(query: string): void {
-		console.log("==> filter: ", query);
+		const searchStr = query.toLocaleLowerCase();
+		this.countries = allCountries.filter((country: string[]) => {
+			return country[0].toLocaleLowerCase().includes(searchStr);
+		});
+	}
+
+	public resetFilter(): void {
+		this.countries = allCountries;
 	}
 
 	public selectOption(option: CountryISO): void {
 		this.showOptionList = false;
+		this.resetFilter();
 		this.form.patchValue({
 			countryCode: `+ ${option}`
 		});
