@@ -39,7 +39,7 @@
             </ml-checkbox>
             <fieldset *ngIf="isChannelChecked(channel.text)"
 				class="phone">
-				<ml-phone-select mlFocus
+				<ml-phone-select
 					[form]="settingsForm.controls.phone"
 					[submitted]="submitted">
 				</ml-phone-select>

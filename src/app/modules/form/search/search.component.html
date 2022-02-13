@@ -2,8 +2,8 @@
 	<input class="ml-search__input" 
 		type="text" 
 		placeholder="Search"
-		(keyup)="onSearch()"
-		[(ngModel)]="query">
+		[(ngModel)]="query"
+		(keyup)="onSearch()">
 	<ml-decorator *ngIf="query.length === 0"
 		ariaLabel="Search"
 		class="ml-search__indicator"

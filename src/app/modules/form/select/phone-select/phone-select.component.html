@@ -26,10 +26,12 @@
 				Please enter a valid phone number.
 			</p>
 		</div>
-		<section *ngIf="showOptionList"
+		<section mlFocus
+			*ngIf="showOptionList"
 			class="ml-select__options"
 			[ngClass]="{ 'show' : showOptionList }">
 			<ml-search class="ml--focus ml-focus-origin"
+				[tabIndex]="showOptionList ? 0 : -1"
 				(clear)="resetFilter()"
 				(search)="filterCountries($event)">
 			</ml-search>
@@ -38,7 +40,7 @@
 					class="ml-select__option ml--focus"
 					type="button"
 					[attr.aria-hidden]="showOptionList ? false : true"
-					[tabindex]="showOptionList ? 0 : -1"
+					
 					(click)="selectOption(country[2])">
 					{{ country[0] }}
 				</button>
