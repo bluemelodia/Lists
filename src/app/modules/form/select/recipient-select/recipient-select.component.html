@@ -25,7 +25,7 @@
 			class="ml-select__option ml--focus"
 			type="button"
 			[attr.aria-hidden]="showOptionList ? false : true"
-			[ngClass]="{ 'selected' : recipientForm?.value?.uuid === recipient.uuid, 'focus-origin' : i === 0 }"
+			[ngClass]="{ 'ml-select__option--selected' : recipientForm?.value?.uuid === recipient.uuid, 'ml-focus-origin' : i === 0 }"
 			[tabindex]="showOptionList ? 0 : -1"
 			(click)="selectOption(recipient)">
 			{{ recipient.name }}

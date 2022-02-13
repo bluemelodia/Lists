@@ -25,7 +25,7 @@
 			class="ml-select__option ml--focus"
 			type="button"
 			[attr.aria-hidden]="showOptionList ? false : true"
-			[ngClass]="{ 'selected' : key === selected, 'focus-origin' : i === 0 }"
+			[ngClass]="{ 'ml-select__option--selected' : key === selected, 'ml-focus-origin' : i === 0 }"
 			[tabindex]="showOptionList ? 0 : -1"
 			(click)="selectOption(key)">
 			{{ status[key] }}

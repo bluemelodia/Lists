@@ -1,8 +1,10 @@
 <section>
-	<ml-recurrence-filter (filterReset)="resetTasksFilters()"
+	<ml-recurrence-filter mlFocus
+		(filterReset)="resetTasksFilters()"
 		(recurrenceSelected)="filterByRecurrence($event)">
 	</ml-recurrence-filter>
-	<ml-status-filter (filterReset)="resetTasksFilters()"
+	<ml-status-filter mlFocus
+		(filterReset)="resetTasksFilters()"
 		(statusSelect)="filterByStatus($event)">
 	</ml-status-filter>
 </section>

@@ -15,6 +15,14 @@ input {
   width: 100%;
 }
 
+.ml-select__options {
+	overflow: hidden;
+}
+
+.ml-select__options-list {
+	overflow: scroll;
+}
+
 :focus,
 :focus-visible,
 .ml-phone-select__input:focus-visible {

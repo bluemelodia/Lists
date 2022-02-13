@@ -36,7 +36,7 @@ input.ml-select__options--open {
 }
 
 .ml-select__option:hover,
-.ml-select__option.selected {
+.ml-select__option--selected {
   background-color: pink;
 }
 

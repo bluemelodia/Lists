@@ -16,7 +16,7 @@ import { Key } from "../interfaces/focus.interface";
  * Having the consumer manage the tab stop ensures its state is consistent with the
  * state of the items to focus on.
  * 
- * The element to loop focus back to should have the "focus-origin" CSS class.
+ * The element to loop focus back to should have the "ml-focus-origin" CSS class.
  * 
  * All elements that the screenreader should loop through should have the "ml--focus" CSS class.
  * 
@@ -45,7 +45,7 @@ export class FocusDirective {
 		const elem: ElementRef = this.el;
 		const buttons: HTMLCollectionOf<Element> = (elem.nativeElement as HTMLElement).getElementsByClassName("ml--focus");
 		const focusableElements: HTMLElement[] = Array.from(buttons).filter((el: HTMLElement) => {
-			return el.classList.contains("focus-origin") || el.getAttribute("aria-hidden") === "false";
+			return el.classList.contains("ml-focus-origin") || el.getAttribute("aria-hidden") === "false";
 		}) as HTMLElement[];
 		return focusableElements.length > 1 ? focusableElements[0] : null;
 	}

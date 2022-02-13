@@ -15,7 +15,7 @@
 				class="ml-select__option ml--focus"	
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : selected[key], 'focus-origin' : i === 0 }"
+				[ngClass]="{ 'ml-select__option--selected' : selected[key], 'ml-focus-origin' : i === 0 }"
 				[tabindex]="showOptionList ? 0 : -1"
 				(click)="selectOption(key)">
 				{{ recurrence[key] }}

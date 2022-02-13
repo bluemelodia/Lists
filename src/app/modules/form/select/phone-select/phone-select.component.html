@@ -29,18 +29,20 @@
 		<section *ngIf="showOptionList"
 			class="ml-select__options"
 			[ngClass]="{ 'show' : showOptionList }">
-			<ml-search (clear)="resetFilter()"
+			<ml-search class="ml--focus ml-focus-origin"
+				(clear)="resetFilter()"
 				(search)="filterCountries($event)">
 			</ml-search>
-			<button *ngFor="let country of countries; let i = index"
-				class="ml-select__option ml--focus"
-				type="button"
-				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : this.form.get('phone.countryCode')?.value === country.code, 'focus-origin' : i === 0 }"
-				[tabindex]="showOptionList ? 0 : -1"
-				(click)="selectOption(country[2])">
-				{{ country[0] }}
-			</button>
+			<section class="ml-select__options-list">
+				<button *ngFor="let country of countries; let i = index"
+					class="ml-select__option ml--focus"
+					type="button"
+					[attr.aria-hidden]="showOptionList ? false : true"
+					[tabindex]="showOptionList ? 0 : -1"
+					(click)="selectOption(country[2])">
+					{{ country[0] }}
+				</button>
+			</section>
 			<button class="tab-stop"
 				[attr.aria-hidden]="showOptionList ? false : true"
 				[tabindex]="showOptionList ? 0 : -1">

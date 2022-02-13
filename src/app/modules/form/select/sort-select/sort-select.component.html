@@ -13,7 +13,7 @@
 				class="ml-select__option ml--focus"
 				type="button"
 				[attr.aria-hidden]="showOptionList ? false : true"
-				[ngClass]="{ 'selected' : sort.fieldName === selectedSort?.fieldName, 'focus-origin' : i === 0 }"
+				[ngClass]="{ 'ml-select__option--selected' : sort.fieldName === selectedSort?.fieldName, 'ml-focus-origin' : i === 0 }"
 				[tabindex]="showOptionList ? 0 : -1"
 				(click)="selectOption(sort)">
 				{{ sort.displayName }}
