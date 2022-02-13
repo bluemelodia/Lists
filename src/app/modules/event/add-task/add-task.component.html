@@ -11,17 +11,17 @@
                 placeholder="Task"
 				type="text"/>
             <div *ngIf="submitted && taskFormControl.name.errors"
-				class="input-error">
+				class="ml-input__error">
                     <p *ngIf="taskFormControl.name.errors?.required"
-						class="input-error_msg">
+						class="ml-input__error-msg">
                         Task name is required.
 					</p>
                     <p *ngIf="taskFormControl.name.errors?.minlength"
-						class="input-error_msg">
+						class="ml-input__error-msg">
                         Please enter a longer task name.
 					</p>
 					<p *ngIf="taskFormControl.name.errors?.maxlength"
-						class="input-error_msg">
+						class="ml-input__error-msg">
 						Task name should not exceed {{ limit.Task.max }} characters.
 					</p>
             </div> 
@@ -74,7 +74,7 @@
 			[form]="taskForm"
 			[submitted]="submitted">
 		</ml-description>
-        <fieldset class="form-actions">
+        <fieldset class="ml-form-actions">
             <button class="cancel"
 				type="button"
                 (click)="onCancel()">

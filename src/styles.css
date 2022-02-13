@@ -81,7 +81,7 @@ button.cancel:hover {
 /**
 * Section-relevant styles.
 */
-.section-container {
+.ml-section-container {
   align-items: center;
   background: white;
   display: flex;
@@ -105,11 +105,11 @@ button.cancel:hover {
   width: 100%;
 }
 
-.form-actions button {
+.ml-form-actions button {
   width: 100%;
 }
 
-.form-actions button:not(:last-child) {
+.ml-form-actions button:not(:last-child) {
   margin-right: 10px;
 }
 
@@ -125,7 +125,7 @@ fieldset {
   padding: 0;
 }
 
-fieldset.form-actions {
+fieldset.ml-form-actions {
   flex-direction: row;
 }
 
@@ -180,7 +180,7 @@ fieldset.multi {
   width: 100%;
 }
 
-.input-error_msg:not(:last-of-type) {
+.ml-input__error-msg:not(:last-of-type) {
   margin-bottom: 4px;
 }
 
@@ -203,14 +203,14 @@ fieldset.multi:focus-visible {
   outline-color: #dd2e44;
 }
 
-.input-error {
+.ml-input__error {
   color: #dd2e44;
   font-size: 0.9rem;
   margin: 8px 0;
 }
 
-input + .input-error,
-.input-error.after-picker {
+input + .ml-input__error,
+.ml-input__error.after-picker {
   margin-top: 0;
 }
 
@@ -228,12 +228,12 @@ input + .input-error,
 /**
 * General container styles.
 */
-.full-viewport {
+.ml-container--full-viewport {
   height: 100vh;
   width: 100vw;
 }
 
-.full-screen {
+.ml-container--full-screen {
   height: 100%;
   width: 100%;
 }
@@ -245,7 +245,7 @@ input + .input-error,
   justify-content: center;
 }
 
-.flex-stretch {
+.ml-flex-stretch {
   align-items: stretch;
 }
 
@@ -260,22 +260,22 @@ input + .input-error,
 *
 * Source: https://medium.com/@stephenbunch/how-to-make-a-scrollable-container-with-dynamic-height-using-flexbox-5914a26ae336
 */
-.flex-container--dynamic-scroll {
+.ml-flex-container--dynamic-scroll {
   flex-grow: 1;
   min-height: 0;
 }
 
 /* Other common UI elements. */
-.app-btn {
+.ml-app-btn {
   background-color: transparent;
   border: none;
 }
 
-.arrow-btn {
+.ml-arrow-btn {
   color: #dd2e44;
 }
 
-button:disabled .arrow-btn {
+button:disabled .ml-arrow-btn {
   color: #9e9e9e;
 }
 
@@ -314,48 +314,48 @@ button:disabled .arrow-btn {
 }
 
 /* Hamburger menu. */
-.menu-button {
+.ml-menu-button {
   height: 100%;
   padding: 8px;
 }
 
-.menu-button img {
+.ml-menu-button img {
   height: 100%;
 }
 
-.quick-link {
+.ml-quick-link {
   color: #ea818e;
   font-weight: bold;
   text-decoration: none;
 }
 
 /* Scrollable list. */
-.task-list {
+.ml-task-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.task-container--scrollable {
+.ml-task-container--scrollable {
   overflow-y: auto;
   width: 100%;
 }
 
-.task-container--scrollable.hide-scrollbar {
+.ml-task-container--scrollable.hide-scrollbar {
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
 
-.task-container--scrollable::-webkit-scrollbar {
+.ml-task-container--scrollable::-webkit-scrollbar {
   display: none;
 }
 
-.task-list--scrollable::-webkit-scrollbar {
+.ml-ml-task-list--scrollable::-webkit-scrollbar {
   display: none;
 }
 
-.task-list--scrollable {
+.ml-ml-task-list--scrollable {
   overflow-y: scroll;
 
   /* Hide scrollbar for IE, Edge and Firefox */
@@ -363,18 +363,18 @@ button:disabled .arrow-btn {
   scrollbar-width: none; /* Firefox */
 }
 
-.task-list__item {
+.ml-ml-task-list__item {
   align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.task-list__item:not(:last-child) {
+.ml-ml-task-list__item:not(:last-child) {
   border-bottom: 1px solid pink;
 }
 
-.task-list__info {
+.ml-ml-task-list__info {
   margin: 4px;
   width: 100%;
 }

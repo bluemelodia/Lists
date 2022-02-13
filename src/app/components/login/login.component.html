@@ -11,17 +11,17 @@
                 placeholder="Email"
 				type="text"/>
             <div *ngIf="submitted && loginFormControl.username.errors"
-				class="input-error">
+				class="ml-input__error">
                     <p *ngIf="loginFormControl.username.errors?.required"
-						class="input-error_msg">
+						class="ml-input__error-msg">
                         Email is required.
 					</p>
                     <p *ngIf="loginFormControl.username.errors?.minlength || loginFormControl.username.errors?.maxlength"
-						class="input-error_msg">
+						class="ml-input__error-msg">
                         Please enter {{ limit.Username.min }} to {{ limit.Username.max }} characters.
 					</p>
 					<p *ngIf="loginFormControl.username.errors?.invalidUsername"
-						class="input-error_msg">
+						class="ml-input__error-msg">
                         Please enter a valid email.
                     </p>
             </div> 
@@ -37,26 +37,26 @@
 				(actionSelected)="toggleShowPassword()">
 			</ml-action>
             <div *ngIf="submitted && loginFormControl.password.errors"
-				class="input-error">
+				class="ml-input__error">
                     <p *ngIf="loginFormControl.password.errors?.required"
-						class="input-error_msg">
+						class="ml-input__error-msg">
                         Password is required.
 					</p>
                     <p *ngIf="loginFormControl.password.errors?.minlength || loginFormControl.password.errors?.maxlength"
-						class="input-error_msg">
+						class="ml-input__error-msg">
                         Please enter {{ limit.Password.min }} to {{ limit.Password.max }} characters.
 					</p>
 					<p *ngIf="loginFormControl.password.errors?.invalidPassword"
-						class="input-error_msg">
+						class="ml-input__error-msg">
                         Password contains invalid characters. Please enter letters, numbers, and/or the following characters: !, @, #, $, %, &, *, _.
                     </p>
             </div> 
         </fieldset>
-        <fieldset class="form-actions"> 
+        <fieldset class="ml-form-actions"> 
             <button type="submit">
                 Login
             </button>
         </fieldset>
     </form>
-	<span class="ml-form-instructions">Don't have a username? <a class="quick-link" routerLink="/signup">Sign up!</a></span>
+	<span class="ml-form-instructions">Don't have a username? <a class="ml-quick-link" routerLink="/signup">Sign up!</a></span>
 </section>

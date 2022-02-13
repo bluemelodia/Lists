@@ -22,7 +22,7 @@
                     placeholder="Email"
 					type="email"/>
                 <div *ngIf="submitted && validateChannel[channel.email]"
-					class="input-error">
+					class="ml-input__error">
                         <p *ngIf="settingsFormControl.email.errors?.missingEmail">
                             Please enter an email address.
                         </p>    
@@ -62,7 +62,7 @@
                 [form]="settingsForm.controls.tasks">
             </ml-checkbox>
         </fieldset>
-        <fieldset class="form-actions">  
+        <fieldset class="ml-form-actions">  
             <button type="submit">
                 Update
             </button>

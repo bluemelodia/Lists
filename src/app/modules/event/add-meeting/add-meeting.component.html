@@ -11,7 +11,7 @@
                 placeholder="Event Name"
 				type="text"/>
             <div *ngIf="submitted && meetingFormControl.name.errors"
-				class="input-error">
+				class="ml-input__error">
                     <p *ngIf="meetingFormControl.name.errors?.required">
                         Name is required.
 					</p>
@@ -26,7 +26,7 @@
                 placeholder="Location"
 				type="text"/>
 			<div *ngIf="submitted && meetingFormControl.location.errors"
-				class="input-error">
+				class="ml-input__error">
 				<p *ngIf="meetingFormControl.location.errors?.required">
 					Location is required.
 				</p>
@@ -57,7 +57,7 @@
 				[topic]="topic">
 			</ml-datepicker>
 			<div *ngIf="submitted && startDateCtrl.errors"
-				class="input-error after-picker">
+				class="ml-input__error after-picker">
 				<p *ngIf="startDateCtrl.errors?.startDateAfterEnd">
 					Start date must be before end date.
 				</p>
@@ -73,7 +73,7 @@
 				(timeChanged)="onStartTimeChanged($event)">
 			</ngx-material-timepicker>
 			<div *ngIf="submitted && meetingFormControl.startTime.errors"
-				class="input-error after-picker">
+				class="ml-input__error after-picker">
                 <p *ngIf="meetingFormControl.startTime.errors?.required">
                     Start time is required.
 				</p>
@@ -108,7 +108,7 @@
 				(timeChanged)="onEndTimeChanged($event)">
 			</ngx-material-timepicker>
 			<div *ngIf="submitted && meetingFormControl.endTime.errors"
-				class="input-error after-picker">
+				class="ml-input__error after-picker">
 				<p *ngIf="meetingFormControl.endTime.errors?.required">
 					End time is required.
 				</p>
@@ -122,7 +122,7 @@
 			[form]="meetingForm"
 			[submitted]="submitted">
 		</ml-description>
-        <fieldset class="form-actions">
+        <fieldset class="ml-form-actions">
             <button class="cancel"
 				type="button"
                 (click)="onCancel()">

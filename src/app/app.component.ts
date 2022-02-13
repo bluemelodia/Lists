@@ -20,7 +20,7 @@ import { UserService } from "./services/user.service";
 	styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-	@HostBinding("class") containerClasses = "ml-flex-column--centered full-viewport";
+	@HostBinding("class") containerClasses = "ml-flex-column--centered ml-container--full-viewport";
 
 	public loadingState$ = new BehaviorSubject<boolean>(false);
 	public loginState$ = new BehaviorSubject<boolean>(false)

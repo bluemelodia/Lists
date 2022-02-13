@@ -10,7 +10,7 @@
             (click)="showHideCal()"
             (keydown)="onKeydownEvent($event)"/>
         <div *ngIf="submitted && dateFormControl.day.errors?.required"
-			class="input-error">
+			class="ml-input__error">
             <p>
 				{{fieldName}} is required.
 			</p>

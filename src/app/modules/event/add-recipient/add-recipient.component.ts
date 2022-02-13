@@ -57,7 +57,7 @@ import { RecipientUtils } from "../../../utils/recipient.utils";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddRecipientComponent implements OnInit, OnDestroy {
-	@HostBinding("class") containerClasses = "section-container";
+	@HostBinding("class") containerClasses = "ml-section-container ";
 
 	public calendarType = CalendarType;
 	public headerLevel = HeaderLevel;

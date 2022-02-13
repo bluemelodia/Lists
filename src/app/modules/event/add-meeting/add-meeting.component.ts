@@ -52,7 +52,7 @@ import { MeetingUtils } from "../../../utils/meeting.utils";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddMeetingComponent implements OnInit, OnDestroy {
-	@HostBinding("class") containerClasses = "section-container";
+	@HostBinding("class") containerClasses = "ml-section-container ";
 
 	public calendarType: CalendarType = CalendarType.Solar;
 	public headerLevel = HeaderLevel;

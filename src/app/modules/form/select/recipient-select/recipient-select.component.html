@@ -2,7 +2,7 @@
 	<section #select class="ml-select">
 		<ng-container [ngTemplateOutlet]="recipientSelect"></ng-container>   
 		<div *ngIf="submitted && recipientForm?.errors"
-			class="input-error">
+			class="ml-input__error">
 			<p *ngIf="recipientForm?.errors?.required">
 				Recipient is required.
 			</p>

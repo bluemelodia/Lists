@@ -11,7 +11,7 @@ export class LoaderComponent {
 		const hostStyles = [];
 
 		if (this.fullScreen) {
-			hostStyles.push("full-screen");
+			hostStyles.push("ml-container--full-screen");
 		}
 
 		return hostStyles.join(" ");

@@ -14,7 +14,7 @@
 				[ngClass]="{ 'ml--focus' : monthIdx !== 0 }" 
                 [tabindex]="monthIdx === 0 ? -1 : 0"
                 (click)="previousMonth()">
-                <i class="arrow-btn fas fa-chevron-left"></i>
+                <i class="ml-arrow-btn fas fa-chevron-left"></i>
             </button>
             <button aria-label="Next Month"
 				class="ml-calendar__nav-btn"
@@ -25,7 +25,7 @@
 				[ngClass]="{ 'ml--focus' : monthIdx !== calendarMonths.length-1 }" 
                 [tabindex]="monthIdx === calendarMonths.length-1 ? -1 : 0"
                 (click)="nextMonth()">
-                <i class="arrow-btn fas fa-chevron-right"></i>
+                <i class="ml-arrow-btn fas fa-chevron-right"></i>
             </button>
         </div>  
     </section>

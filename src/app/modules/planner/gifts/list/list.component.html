@@ -1,7 +1,7 @@
 <ml-heading [level]="headerLevel.H1" 
 	[text]="header">
 </ml-heading>
-<section class="task-list__selectors">
+<section class="ml-gifts">
 	<ml-sort-select mlFocus
 		[list]="giftSortOptions"
 		(sortSelected)="sortSelected($event)">
@@ -13,12 +13,12 @@
 	</ml-recipient-filter>
 </section>
 
-<section *ngIf="list$ | async as list" class="task-container--scrollable hide-scrollbar">
+<section *ngIf="list$ | async as list" class="ml-task-container--scrollable hide-scrollbar">
 	<section *ngIf="list && list.length > 0" 
-		class="task-list--scrollable">
-		<ul class="task-list">
+		class="ml-ml-task-list--scrollable">
+		<ul class="ml-task-list">
 			<li *ngFor="let gift of list"
-				class="task-list__item">
+				class="ml-ml-task-list__item">
 				<ng-container [ngTemplateOutlet]="giftList" 
 					[ngTemplateOutletContext]="{ 'gift': gift }">
 				</ng-container>   
@@ -32,10 +32,10 @@
 </section>
 
 <ng-template #giftList let-gift="gift">
-	<section class="task-list__info ml-form-container ml-flex-column--centered flex-stretch">
+	<section class="ml-ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
 		<ml-heading [level]="headerLevel.H2"
 			[text]="gift.recipient?.name">
-			<section post class="actions edit-actions">
+			<section post class="ml-actions ml-edit-actions">
 				<ml-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
@@ -48,23 +48,23 @@
 				</ml-action>
 			</section>
 		</ml-heading>
-		<p class="task-details__wrapper">
-			<span class="task-details__label">{{ gift.occasion }} - {{ gift.year }}</span>
-			<span class="task-details__description">${{ gift.price || 0 }}</span>
+		<p class="ml-gifts__details">
+			<span class="ml-gifts__details-label">{{ gift.occasion }} - {{ gift.year }}</span>
+			<span class="ml-gifts__details-description">${{ gift.price || 0 }}</span>
 		</p>
 		<p *ngIf="gift.description" 
-			class="task-details__wrapper">
-			<span class="task-details__description description"
+			class="ml-gifts__details">
+			<span class="ml-gifts__details-description description"
 				[innerText]="gift.description">
 			</span>
 		</p>
 	</section>
-	<section class="task-list__photo-container">
+	<section class="ml-photo-contianer">
 		<img *ngIf="gift.image"
-			class="task-list__item-photo"
+			class="ml-photo-contianer__photo"
 			src="{{ base64Prefix }}{{ gift.image }}"/>
 		<img *ngIf="!gift.image"
-			class="task-list__item-photo"
+			class="ml-photo-contianer__photo"
 			src="./assets/images/gift.png"/>
 	</section>
 </ng-template>

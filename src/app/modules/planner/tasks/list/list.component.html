@@ -1,4 +1,4 @@
-<section class="task-list__selectors">
+<section>
 	<ml-recurrence-filter (filterReset)="resetTasksFilters()"
 		(recurrenceSelected)="filterByRecurrence($event)">
 	</ml-recurrence-filter>
@@ -7,12 +7,12 @@
 	</ml-status-filter>
 </section>
 
-<section *ngIf="list$ | async as list" class="task-container--scrollable hide-scrollbar">
+<section *ngIf="list$ | async as list" class="ml-task-container--scrollable hide-scrollbar">
 	<section *ngIf="list && list.length > 0"
-		class="task-list--scrollable">
-		<ul class="task-list">
+		class="ml-ml-task-list--scrollable">
+		<ul class="ml-task-list">
 			<li *ngFor="let task of list"
-				class="task-list__item">
+				class="ml-ml-task-list__item">
 				<ng-container [ngTemplateOutlet]="taskList" 
 					[ngTemplateOutletContext]="{ 'task': task }">
 				</ng-container>   
@@ -26,14 +26,14 @@
 </section>
 
 <ng-template #taskList let-task="task">
-	<section class="task-list__info ml-form-container ml-flex-column--centered flex-stretch">
-		<p class="task-details__wrapper multi-line">
+	<section class="ml-ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
+		<p class="ml-tasks__details multi-line">
 			<ml-recurrence-indicator [recurrences]="task.recurrence"></ml-recurrence-indicator>
 			<ml-status-indicator [status]="task.status"></ml-status-indicator>
 		</p>
 		<ml-heading [level]="headerLevel.H2"
 			[text]="task.name">
-			<section post class="actions edit-actions">
+			<section post class="actions ml-edit-actions">
 				<ml-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
@@ -46,13 +46,13 @@
 				</ml-action>
 			</section>
 		</ml-heading>
-		<p class="task-details__wrapper">
-			<span class="task-details__label">Due</span>
-			<span class="task-details__description">{{ task | taskFormatter }}</span>
+		<p class="ml-tasks__details">
+			<span class="ml-tasks__details-label">Due</span>
+			<span class="ml-tasks__details-description">{{ task | taskFormatter }}</span>
 		</p>
-		<p *ngIf="task.description" class="task-details__wrapper description">
-			<span class="task-details__label">Details</span>
-			<span class="task-details__description" 
+		<p *ngIf="task.description" class="ml-tasks__details description">
+			<span class="ml-tasks__details-label">Details</span>
+			<span class="ml-tasks__details-description" 
 				[innerText]="task.description">
 			</span>
 		</p>

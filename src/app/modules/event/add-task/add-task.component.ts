@@ -40,7 +40,7 @@ import { TaskUtils } from "../../../utils/task.utils";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddTaskComponent implements OnInit, OnDestroy {
-	@HostBinding("class") containerClasses = "section-container";
+	@HostBinding("class") containerClasses = "ml-section-container ";
 
 	public calendarType: CalendarType = CalendarType.Solar;
 	public headerLevel = HeaderLevel;

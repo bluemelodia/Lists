@@ -11,17 +11,17 @@
                 placeholder="Name"
 				type="text"/>
             <div *ngIf="submitted && recipientFormControl.name.errors"
-				class="input-error">
+				class="ml-input__error">
                 <p *ngIf="recipientFormControl.name.errors?.required"
-					class="input-error_msg">
+					class="ml-input__error-msg">
                     Name is required.
                 </p>
                 <p *ngIf="recipientFormControl.name.errors?.minlength || recipientFormControl.name.errors?.invalidName"
-					class="input-error_msg">
+					class="ml-input__error-msg">
                     Please enter a valid name.
 				</p>
 				<p *ngIf="recipientFormControl.name.errors?.maxlength"
-					class="input-error_msg">
+					class="ml-input__error-msg">
                     Name cannot exceed {{ limit.Name.max }} characters.
                 </p>
             </div> 
@@ -50,7 +50,7 @@
                 placeholder="Email"
 				type="text"/>
             <div *ngIf="submitted && recipientFormControl.email.errors"
-				class="input-error">  
+				class="ml-input__error">  
                 <p *ngIf="recipientFormControl.email.errors?.invalidEmail">
                     Please enter a valid email address.
 				</p>
@@ -68,17 +68,17 @@
 			<span class="ml-form-instructions">Enter the recpient's mailing address.</span>
 			<ml-address [form]="recipientForm.controls.address"></ml-address>
 			<div *ngIf="submitted && recipientFormControl.address.errors"
-				class="input-error">
+				class="ml-input__error">
 				<p *ngIf="recipientFormControl.address.errors?.missingStreetAddress"
-					class="input-error_msg">
+					class="ml-input__error-msg">
 					Please enter a street address.
 				</p>
 				<p *ngIf="recipientFormControl.address.errors?.missingCity"
-					class="input-error_msg">
+					class="ml-input__error-msg">
 					Please enter a city.
 				</p>
 				<p *ngIf="recipientFormControl.address.errors?.missingZip"
-					class="input-error_msg">
+					class="ml-input__error-msg">
 					Please enter a zip code.
 				</p>
 			</div>
@@ -95,7 +95,7 @@
                 placeholder="Budget"
 				type="number"/>
 			<div *ngIf="submitted && recipientFormControl.budget.errors"
-				class="input-error">
+				class="ml-input__error">
 				<p *ngIf="recipientFormControl.budget.errors?.max">
 					Budget should not exceed {{ limit.Budget.max | currency }}.
 				</p>
@@ -134,7 +134,7 @@
                 [form]="recipientForm.controls.options">
             </ml-checkbox>
         </fieldset>
-        <fieldset class="form-actions">
+        <fieldset class="ml-form-actions">
             <button class="cancel"
 				type="button"
                 (click)="onCancel()">

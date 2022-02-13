@@ -1,9 +1,9 @@
 <section *ngIf="list && list.length > 0"
-	class="task-container--scrollable hide-scrollbar">
-	<section class="task-list--scrollable">
-		<ul class="task-list">
+	class="ml-task-container--scrollable hide-scrollbar">
+	<section class="ml-ml-task-list--scrollable">
+		<ul class="ml-task-list">
 			<li *ngFor="let meeting of list"
-				class="task-list__item">
+				class="ml-ml-task-list__item">
 				<ng-container [ngTemplateOutlet]="meetingList" 
 					[ngTemplateOutletContext]="{ 'meeting': meeting }">
 				</ng-container>   
@@ -18,8 +18,8 @@
 </section>
 
 <ng-template #meetingList let-meeting="meeting">
-	<section class="task-list__info ml-form-container ml-flex-column--centered flex-stretch">
-		<span class="task-list__badges">
+	<section class="ml-ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
+		<span class="ml-meetings__status">
 			<ml-meeting-indicator [isVirtual]="meeting.virtual"></ml-meeting-indicator>
 			<ml-date-indicator *ngIf="meeting.status"
 				[status]="meeting.status">
@@ -27,7 +27,7 @@
 		</span>
 		<ml-heading [level]="headerLevel.H2"
 			[text]="meeting.name">
-			<section post class="actions edit-actions">
+			<section post class="ml-actions ml-edit-actions">
 				<ml-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
@@ -40,21 +40,21 @@
 				</ml-action>
 			</section>
 		</ml-heading>
-		<p class="task-details__wrapper">
-			<span class="task-details__label">Start</span>
-			<span class="task-details__description">{{ meeting | meetingFormatter: true }}</span>
+		<p class="ml-meetings__details">
+			<span class="ml-meetings__details-label">Start</span>
+			<span class="ml-meetings__details-description">{{ meeting | meetingFormatter: true }}</span>
 		</p>
-		<p class="task-details__wrapper">
-			<span class="task-details__label">End</span>
-			<span class="task-details__description">{{ meeting | meetingFormatter: false }}</span>
+		<p class="ml-meetings__details">
+			<span class="ml-meetings__details-label">End</span>
+			<span class="ml-meetings__details-description">{{ meeting | meetingFormatter: false }}</span>
 		</p>
-		<p class="task-details__wrapper">
-			<span class="task-details__label">Location</span>
-			<span class="task-details__description">{{ meeting.location }}</span>
+		<p class="ml-meetings__details">
+			<span class="ml-meetings__details-label">Location</span>
+			<span class="ml-meetings__details-description">{{ meeting.location }}</span>
 		</p>
 		<p *ngIf="meeting.description">
-			<span class="task-details__label">Details</span>
-			<span class="task-details__description">{{ meeting.description }}</span>
+			<span class="ml-meetings__details-label">Details</span>
+			<span class="ml-meetings__details-description">{{ meeting.description }}</span>
 		</p>
 	</section>
 </ng-template>

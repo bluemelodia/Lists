@@ -22,7 +22,7 @@
 				placeholder="Year"
 				type="number"/>
             <div *ngIf="submitted && giftFormControl.year.errors"
-				class="input-error">
+				class="ml-input__error">
                 <p *ngIf="giftFormControl.year.errors?.required">
                     Year is required.
 				</p>
@@ -39,7 +39,7 @@
 				[max]="limit.Budget.max"
 				[min]="limit.Budget.min"/>
 			<div *ngIf="submitted && giftFormControl.price.errors"
-				class="input-error">
+				class="ml-input__error">
 				<p *ngIf="giftFormControl.price.errors?.max">
 					Price should not exceed {{ limit.Budget.max | currency }}.
 				</p>
@@ -61,7 +61,7 @@
 			[form]="giftForm"
 			[submitted]="submitted">
 		</ml-description>
-		<fieldset class="form-actions">
+		<fieldset class="ml-form-actions">
             <button class="cancel"
 				type="button"
                 (click)="onCancel()">

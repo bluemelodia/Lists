@@ -68,7 +68,7 @@ export class AddGiftComponent implements OnInit {
 
 	@HostBinding("class") public get hostClasses(): string {
 		const hostStyles = [
-			"section-container"
+			"ml-section-container "
 		];
 
 		if (this.isLoading) {
