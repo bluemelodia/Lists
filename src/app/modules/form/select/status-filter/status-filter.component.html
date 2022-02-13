@@ -1,10 +1,11 @@
 <section #select class="input-container">
-	<button *ngIf="selected" 
+	<app-action *ngIf="selected" 
+		ariaLabel="Clear Status Filter"
 		class="clear-filter-btn"
-		type="button" 
-		(click)="clearFilter()">
-		<i class="fas fa-times"></i>
-	</button>
+		[enabled]="true"
+		[icon]="icon.Close"
+		(actionSelected)="clearFilter()">
+	</app-action>
 	<ng-container [ngTemplateOutlet]="statusSelect"></ng-container>
 </section>
 

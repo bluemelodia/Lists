@@ -11,11 +11,12 @@
 		class="image-upload__preview">
         <img class="image-upload__preview-src" 
 			[src]="imgUrl"/>
-        <button class="delete-btn description"
-			type="button" 
-            (click)="deleteImage()">
-                <i class="fas fa-times"></i>
-            </button>
+		<app-action ariaLabel="Delete Image"
+			class="delete-btn description"
+			[enabled]="true"
+			[icon]="icon.Close"
+			(actionSelected)="deleteImage()">
+		</app-action>
     </section>
 </ng-container>
 

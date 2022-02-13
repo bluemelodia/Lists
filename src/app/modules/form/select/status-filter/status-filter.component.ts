@@ -7,6 +7,7 @@ import {
 
 import { SelectComponent } from '../select.component';
 
+import { Icon } from '../../../../constants/icons.constants';
 import { Status } from '../../../../constants/tasks.constants';
 
 import { FocusService } from '../../../../services/focus.service';
@@ -23,6 +24,7 @@ export class SelectFilterComponent extends SelectComponent {
 	@Output() statusSelect = new EventEmitter<Status>();
 	@Output() filterReset = new EventEmitter<void>();
 
+	public icon = Icon;
 	public selected: Status;
 	public status = Status;
 	public statusKeys = Object.keys(this.status);

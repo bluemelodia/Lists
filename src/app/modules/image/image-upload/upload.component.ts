@@ -11,6 +11,8 @@ import { FormGroup } from "@angular/forms";
 import { of, ReplaySubject, Subject } from "rxjs";
 import { catchError, switchMap, takeUntil } from "rxjs/operators";
 
+import { Icon } from "../../../constants/icons.constants";
+
 import { Dialog } from "../../../interfaces/dialog.interface";
 
 import { DialogService } from "../../../services/dialog.service";
@@ -31,6 +33,7 @@ export class ImageUploadComponent implements OnChanges, OnDestroy {
 
 	@ViewChild("imageInput") filePicker: ElementRef;
 
+	public icon = Icon;
 	public selectedImageUrl$ = new ReplaySubject<string>();
 	private ngUnsubscribe$ = new Subject<void>();
 
