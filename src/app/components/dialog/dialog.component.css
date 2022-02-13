@@ -1,19 +1,5 @@
-.dialog-overlay {
-	align-items: center;
-	background-color: #feecf2d5;
-	bottom: 0; 
-	display: flex;
-	justify-content: center;
-	left: 0;
-	opacity: 1;
-	position: fixed;
-	right: 0;
-	top: 0;
-  	z-index: 10000;
-}
-
-.dialog {
-    animation: appear 0.25s ease-in-out;
+.ml-dialog {
+	animation: appear 0.25s ease-in-out;
 	background-color: white;
 	border: 2px solid #dd2e44;
 	display: flex;
@@ -23,17 +9,31 @@
 	width: 95%;
 }
 
-.header {
-	align-items: center;
-  	display: flex;
-  	justify-content: space-between;
+.ml-dialog__overlay {
+  align-items: center;
+  background-color: #feecf2d5;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  opacity: 1;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10000;
 }
 
-.cancel-btn {
-  	align-self: flex-end;
-  	color: #dd2e44;
+.ml-dialog__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
-.message {
-  	padding: 10px;
+.ml-dialog__cancel-btn {
+  align-self: flex-end;
+  color: #dd2e44;
+}
+
+.ml-dialog__message {
+  padding: 10px;
 }

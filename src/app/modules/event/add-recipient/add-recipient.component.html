@@ -43,7 +43,7 @@
 		<fieldset>
 			<ml-heading text="Contact Information"
 				[level]="headerLevel.H3">
-                <span class="event-form__optional" post>Optional</span>
+                <span class="event-form--optional" post>Optional</span>
             </ml-heading>
 			<span class="form-instructions">Enter the recpient's contact details.</span>
 			<input formControlName="email"
@@ -63,7 +63,7 @@
 		<fieldset>
 			<ml-heading text="Address"
 				[level]="headerLevel.H3">
-				<span post class="event-form__optional">Optional</span>
+				<span post class="event-form--optional">Optional</span>
 			</ml-heading>
 			<span class="form-instructions">Enter the recpient's mailing address.</span>
 			<ml-address [form]="recipientForm.controls.address"></ml-address>
@@ -86,7 +86,7 @@
 		<fieldset>
             <ml-heading text="Budget"
 				[level]="headerLevel.H3" >
-                <span post class="event-form__optional">Optional</span>
+                <span post class="event-form--optional">Optional</span>
             </ml-heading>
 			<span class="form-instructions">Enter the maximum amount of money to spend on a gift.</span>
 			<input formControlName="budget"
@@ -107,7 +107,7 @@
         <fieldset>
             <ml-heading text="Profile Image"
 				[level]="headerLevel.H3">
-                <span post class="event-form__optional">Optional</span>
+                <span post class="event-form--optional">Optional</span>
             </ml-heading>
             <span class="form-instructions">Choose a profile image to represent the recipient.</span>
             <ml-img-upload [form]="recipientForm.controls.profile"></ml-img-upload>
@@ -115,7 +115,7 @@
         <fieldset class="event-options">
             <ml-heading text="Actions"
 				[level]="headerLevel.H3">
-                <span post class="event-form__optional">Optional</span>
+                <span post class="event-form--optional">Optional</span>
             </ml-heading>
             <span class="form-instructions">Select the actions you would like to perform on or close to the recipient's birthday.</span>
             <ml-checkbox

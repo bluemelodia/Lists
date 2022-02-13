@@ -1,17 +1,17 @@
 <section *ngIf="showDialog$ | async as dialog"
-	class="dialog-overlay">
-    <div class="dialog">
-        <header class="header">
+	class="ml-dialog__overlay">
+    <div class="ml-dialog">
+        <header class="ml-dialog__header">
             <span></span>
             {{ dialog.title }}
 			<ml-action ariaLabel="Close Dialog"
-				class="cancel-btn description"
+				class="ml-dialog__cancel-btn description"
 				[enabled]="true"
 				[icon]="icon.Close"
 				(actionSelected)="hideDialog()">
 			</ml-action>
         </header>
-        <p class="description message">{{ dialog.message }}</p>
+        <p class="ml-description ml-dialog__message">{{ dialog.message }}</p>
         <fieldset *ngIf="dialog.dialogType === dialogType.Confirm"
 			class="form-actions">
             <button class="cancel"

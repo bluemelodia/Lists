@@ -1,10 +1,10 @@
 .clear-filter-btn {
-	color: #dd2e44;
-	height: calc(100% - 8px);
-	position: absolute;
-    right: 8px;
+  color: #dd2e44;
+  height: calc(100% - 8px);
+  position: absolute;
+  right: 8px;
 }
 
-input.truncate {
-	padding-right: 44px;
+input.ml-truncate {
+  padding-right: 44px;
 }

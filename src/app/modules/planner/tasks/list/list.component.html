@@ -7,9 +7,9 @@
 	</ml-status-filter>
 </section>
 
-<section *ngIf="list$ | async as list" class="task-list__scrollable-container hide-scrollbar">
+<section *ngIf="list$ | async as list" class="task-container--scrollable hide-scrollbar">
 	<section *ngIf="list && list.length > 0"
-		class="task-list__scrollable-list">
+		class="task-list--scrollable">
 		<ul class="task-list">
 			<li *ngFor="let task of list"
 				class="task-list__item">
@@ -20,13 +20,13 @@
 		</ul>
 	</section>
 	<section *ngIf="list && list.length === 0"
-		class="no-results flex-centered__column">
+		class="no-results flex-column--centered">
 		<ml-no-items [config]="noItemsConfig"></ml-no-items>
 	</section>
 </section>
 
 <ng-template #taskList let-task="task">
-	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
+	<section class="task-list__info form-container flex-column--centered flex-stretch">
 		<p class="task-details__wrapper multi-line">
 			<ml-recurrence-indicator [recurrences]="task.recurrence"></ml-recurrence-indicator>
 			<ml-status-indicator [status]="task.status"></ml-status-indicator>

@@ -221,7 +221,7 @@ input + .input-error,
   width: 100%;
 }
 
-.event-form__optional {
+.event-form--optional {
   margin: 8px 0;
 }
 
@@ -238,7 +238,7 @@ input + .input-error,
   width: 100%;
 }
 
-.flex-centered__column {
+.flex-column--centered {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -260,7 +260,7 @@ input + .input-error,
 *
 * Source: https://medium.com/@stephenbunch/how-to-make-a-scrollable-container-with-dynamic-height-using-flexbox-5914a26ae336
 */
-.flex-container__dynamic-scroll {
+.flex-container--dynamic-scroll {
   flex-grow: 1;
   min-height: 0;
 }
@@ -336,26 +336,26 @@ button:disabled .arrow-btn {
   padding: 0;
 }
 
-.task-list__scrollable-container {
+.task-container--scrollable {
   overflow-y: auto;
   width: 100%;
 }
 
-.task-list__scrollable-container.hide-scrollbar {
+.task-container--scrollable.hide-scrollbar {
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
 
-.task-list__scrollable-container::-webkit-scrollbar {
+.task-container--scrollable::-webkit-scrollbar {
   display: none;
 }
 
-.task-list__scrollable-list::-webkit-scrollbar {
+.task-list--scrollable::-webkit-scrollbar {
   display: none;
 }
 
-.task-list__scrollable-list {
+.task-list--scrollable {
   overflow-y: scroll;
 
   /* Hide scrollbar for IE, Edge and Firefox */
@@ -374,7 +374,7 @@ button:disabled .arrow-btn {
   border-bottom: 1px solid pink;
 }
 
-.task-list__item-info {
+.task-list__info {
   margin: 4px;
   width: 100%;
 }
@@ -382,13 +382,13 @@ button:disabled .arrow-btn {
 /**
 * Modifiers
 */
-.truncate {
+.ml-truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.description {
+.ml-description {
   display: flex;
   flex-direction: column;
 }
