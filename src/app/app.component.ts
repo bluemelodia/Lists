@@ -1,4 +1,4 @@
-import { 
+import {
 	ChangeDetectorRef,
 	Component,
 	HostBinding,
@@ -15,13 +15,13 @@ import { NavService } from "./services/nav.service";
 import { UserService } from "./services/user.service";
 
 @Component({
-	selector: "app-root",
+	selector: "ml-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
 	@HostBinding("class") containerClasses = "flex-centered__column full-viewport";
-	
+
 	public loadingState$ = new BehaviorSubject<boolean>(false);
 	public loginState$ = new BehaviorSubject<boolean>(false)
 

@@ -19,7 +19,7 @@ import { DialogService } from "../../../services/dialog.service";
 import { CompressImageService } from "../../../services/image-compress.service";
 
 @Component({
-	selector: "app-img-upload",
+	selector: "ml-img-upload",
 	templateUrl: "./upload.component.html",
 	styleUrls: ["./upload.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,

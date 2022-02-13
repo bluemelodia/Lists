@@ -5,7 +5,7 @@ import { takeUntil } from "rxjs/operators";
 import { NavService } from "../../services/nav.service";
 
 @Component({
-	selector: "app-header",
+	selector: "ml-header",
 	templateUrl: "./header.component.html",
 	styleUrls: ["./header.component.css"]
 })

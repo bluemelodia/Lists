@@ -1,21 +1,21 @@
 <section class="form-container">
-    <app-heading text="User Settings"
+    <ml-heading text="User Settings"
 		[level]="headerLevel.H1" >
-	</app-heading>
+	</ml-heading>
     <form [formGroup]="settingsForm"
         (ngSubmit)="onSubmit()">
         <fieldset class="notification-channels">
-            <app-heading text="Channels"
+            <ml-heading text="Channels"
 				[level]="headerLevel.H3">
                 <span post class="event-form__optional">Optional</span>
-            </app-heading>
+            </ml-heading>
             <span class="form-instructions">Select the channels where you would like to receive upcoming reminders.</span>
-            <app-checkbox
+            <ml-checkbox
                 name="Email"
                 [checkboxName]="channel.email"
                 [form]="settingsForm.controls.channels"
 				(valueChanged)="setChannelValidationStatus(channel.email, $event)">
-            </app-checkbox>
+            </ml-checkbox>
             <fieldset *ngIf="isChannelChecked(channel.email)"
 				class="email">
                 <input formControlName="email"
@@ -31,36 +31,36 @@
 						</p>
                 </div>
             </fieldset>
-            <app-checkbox
+            <ml-checkbox
                 name="Text Message"
                 [checkboxName]="channel.text"
                 [form]="settingsForm.controls.channels"
 				(valueChanged)="setChannelValidationStatus(channel.text, $event)">
-            </app-checkbox>
+            </ml-checkbox>
             <fieldset *ngIf="isChannelChecked(channel.text)"
 				class="phone">
-				<app-phone-select appFocus
+				<ml-phone-select mlFocus
 					[form]="settingsForm.controls.phone"
 					[submitted]="submitted">
-				</app-phone-select>
+				</ml-phone-select>
             </fieldset>
         </fieldset>
 		<fieldset class="notification-options">
-            <app-heading text="Reminders"
+            <ml-heading text="Reminders"
 				[level]="headerLevel.H3">
                 <span post class="event-form__optional">Optional</span>
-            </app-heading>
+            </ml-heading>
             <span class="form-instructions">Select the events and tasks you would like to receive reminders for.</span>
-			<app-checkbox
+			<ml-checkbox
                 [name]="topic.Birthdays"
                 [checkboxName]="topic.Birthdays"
                 [form]="settingsForm.controls.tasks">
-            </app-checkbox>
-			<app-checkbox
+            </ml-checkbox>
+			<ml-checkbox
                 [name]="topic.Meetings"
                 [checkboxName]="topic.Meetings"
                 [form]="settingsForm.controls.tasks">
-            </app-checkbox>
+            </ml-checkbox>
         </fieldset>
         <fieldset class="form-actions">  
             <button type="submit">

@@ -1,4 +1,4 @@
-import { 
+import {
 	Component,
 	ElementRef,
 	HostListener,
@@ -31,7 +31,7 @@ interface CalendarData {
 }
 
 @Component({
-	selector: "app-datepicker",
+	selector: "ml-datepicker",
 	templateUrl: "./datepicker.component.html",
 	styleUrls: ["./datepicker.component.css"]
 })
@@ -60,7 +60,7 @@ export class DatepickerComponent implements OnInit, OnDestroy {
 	public cal: Calendar;
 
 	private uuid = UUID.UUID();
-	public calendarId = `app-calendar-${this.uuid}`;
+	public calendarId = `ml-calendar-${this.uuid}`;
 
 	private calendarData: CalendarData = {
 		isLoading: false,

@@ -11,12 +11,12 @@
 		class="image-upload__preview">
         <img class="image-upload__preview-src" 
 			[src]="imgUrl"/>
-		<app-action ariaLabel="Delete Image"
+		<ml-action ariaLabel="Delete Image"
 			class="delete-btn description"
 			[enabled]="true"
 			[icon]="icon.Close"
 			(actionSelected)="deleteImage()">
-		</app-action>
+		</ml-action>
     </section>
 </ng-container>
 

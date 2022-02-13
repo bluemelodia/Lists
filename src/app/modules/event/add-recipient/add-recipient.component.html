@@ -2,9 +2,9 @@
     <form class="event-form"
         [formGroup]="recipientForm"
         (ngSubmit)="onSubmit()">
-		<app-heading text="Recipient"
+		<ml-heading text="Recipient"
 			[level]="headerLevel.H2">
-		</app-heading>
+		</ml-heading>
         <span class="form-instructions">Provide the recipient's name and birthdate.</span>
         <fieldset class="name">
             <input formControlName="name"
@@ -25,7 +25,7 @@
                     Name cannot exceed {{ limit.Name.max }} characters.
                 </p>
             </div> 
-            <app-datepicker appFocus 
+            <ml-datepicker mlFocus 
                 class="datepicker-container"
 				controlName="day"
                 placeholder="Date"
@@ -33,18 +33,18 @@
                 [form]="recipientForm.controls.date"
                 [submitted]="submitted"
 				[topic]="topic">
-            </app-datepicker>
-            <app-checkbox checkboxName="lunar"
+            </ml-datepicker>
+            <ml-checkbox checkboxName="lunar"
                 id="action-lunar"
                 name="Lunar"
                 [form]="recipientForm.controls.options">
-            </app-checkbox>
+            </ml-checkbox>
         </fieldset>
 		<fieldset>
-			<app-heading text="Contact Information"
+			<ml-heading text="Contact Information"
 				[level]="headerLevel.H3">
                 <span class="event-form__optional" post>Optional</span>
-            </app-heading>
+            </ml-heading>
 			<span class="form-instructions">Enter the recpient's contact details.</span>
 			<input formControlName="email"
                 placeholder="Email"
@@ -55,18 +55,18 @@
                     Please enter a valid email address.
 				</p>
             </div>
-			<app-phone-select appFocus
+			<ml-phone-select mlFocus
 				[form]="recipientForm.controls.phone"
 				[submitted]="submitted">
-			</app-phone-select>
+			</ml-phone-select>
 		</fieldset>
 		<fieldset>
-			<app-heading text="Address"
+			<ml-heading text="Address"
 				[level]="headerLevel.H3">
 				<span post class="event-form__optional">Optional</span>
-			</app-heading>
+			</ml-heading>
 			<span class="form-instructions">Enter the recpient's mailing address.</span>
-			<app-address [form]="recipientForm.controls.address"></app-address>
+			<ml-address [form]="recipientForm.controls.address"></ml-address>
 			<div *ngIf="submitted && recipientFormControl.address.errors"
 				class="input-error">
 				<p *ngIf="recipientFormControl.address.errors?.missingStreetAddress"
@@ -84,10 +84,10 @@
 			</div>
 		</fieldset>
 		<fieldset>
-            <app-heading text="Budget"
+            <ml-heading text="Budget"
 				[level]="headerLevel.H3" >
                 <span post class="event-form__optional">Optional</span>
-            </app-heading>
+            </ml-heading>
 			<span class="form-instructions">Enter the maximum amount of money to spend on a gift.</span>
 			<input formControlName="budget"
 				min="0"
@@ -105,34 +105,34 @@
 			</div> 
 		</fieldset>
         <fieldset>
-            <app-heading text="Profile Image"
+            <ml-heading text="Profile Image"
 				[level]="headerLevel.H3">
                 <span post class="event-form__optional">Optional</span>
-            </app-heading>
+            </ml-heading>
             <span class="form-instructions">Choose a profile image to represent the recipient.</span>
-            <app-img-upload [form]="recipientForm.controls.profile"></app-img-upload>
+            <ml-img-upload [form]="recipientForm.controls.profile"></ml-img-upload>
         </fieldset>
         <fieldset class="event-options">
-            <app-heading text="Actions"
+            <ml-heading text="Actions"
 				[level]="headerLevel.H3">
                 <span post class="event-form__optional">Optional</span>
-            </app-heading>
+            </ml-heading>
             <span class="form-instructions">Select the actions you would like to perform on or close to the recipient's birthday.</span>
-            <app-checkbox
+            <ml-checkbox
                 name="Call"
                 [checkboxName]="recipientID.call"
                 [form]="recipientForm.controls.options">
-            </app-checkbox>
-            <app-checkbox
+            </ml-checkbox>
+            <ml-checkbox
                 name="Text"
                 [checkboxName]="recipientID.text"
                 [form]="recipientForm.controls.options">
-            </app-checkbox>
-            <app-checkbox
+            </ml-checkbox>
+            <ml-checkbox
                 name="Buy Present"
                 [checkboxName]="recipientID.gift"
                 [form]="recipientForm.controls.options">
-            </app-checkbox>
+            </ml-checkbox>
         </fieldset>
         <fieldset class="form-actions">
             <button class="cancel"

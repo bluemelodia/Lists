@@ -6,7 +6,7 @@ import { DialogConfig, DialogType } from "../../interfaces/dialog.interface";
 import { DialogService } from "../../services/dialog.service";
 
 @Component({
-	selector: "app-dialog",
+	selector: "ml-dialog",
 	templateUrl: "./dialog.component.html",
 	styleUrls: ["./dialog.component.css"]
 })

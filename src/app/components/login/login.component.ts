@@ -15,7 +15,7 @@ import { UserService } from '../../services/user.service';
 import { ValidationService } from '../../services/validation.service';
 
 @Component({
-	selector: 'app-login',
+	selector: 'ml-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
 				username: this.username,
 				password: this.password
 			}
-	
+
 			this.userService.login(this.user)
 				.subscribe((response: ResponseStatus) => {
 					if (response === ResponseStatus.ERROR) {

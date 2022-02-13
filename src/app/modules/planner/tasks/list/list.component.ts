@@ -1,4 +1,4 @@
-import { 
+import {
 	ChangeDetectionStrategy,
 	Component,
 	EventEmitter,
@@ -25,7 +25,7 @@ import { EditService } from "../../../../services/edit.service";
 import { TaskService } from "../../../../services/task.service";
 
 @Component({
-	selector: 'planner-tasks-list',
+	selector: 'ml-planner-tasks-list',
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -138,7 +138,7 @@ export class ListComponent implements OnDestroy {
 
 	public editTask(task: Task): void {
 		this.editService.editTask(task);
-		
+
 		void this.router.navigate(["/events/edit-task"], {
 			queryParams: { title: 'Edit Task' }
 		});

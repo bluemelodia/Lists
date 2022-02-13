@@ -8,7 +8,7 @@ import { SelectComponent } from '../select.component';
 import { FocusService } from '../../../../services/focus.service';
 
 @Component({
-	selector: 'app-recipient-select',
+	selector: 'ml-recipient-select',
 	templateUrl: './recipient-select.component.html',
 	styleUrls: [
 		"../select.component.css",

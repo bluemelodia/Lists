@@ -23,7 +23,7 @@ import { Key } from "../interfaces/focus.interface";
  * The tab stop should have the "tab-stop" CSS class.
  */
 @Directive({
-	selector: "[appFocus]"
+	selector: "[mlFocus]"
 })
 export class FocusDirective {
 	/**

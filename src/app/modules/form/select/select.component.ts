@@ -1,7 +1,7 @@
-import { 
+import {
 	ChangeDetectionStrategy,
-	Component, 
-	ElementRef, 
+	Component,
+	ElementRef,
 	HostListener,
 	Input,
 	OnDestroy,
@@ -18,7 +18,7 @@ import { FocusEvent, Key } from "../../../interfaces/focus.interface";
 import { FocusService } from "../../../services/focus.service";
 
 @Component({
-	selector: "app-select",
+	selector: "ml-select",
 	templateUrl: "./select.component.html",
 	styleUrls: ["./select.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,7 +43,7 @@ export class SelectComponent implements OnInit, OnDestroy {
 	@ViewChild("select", { read: ElementRef, static: false }) select: ElementRef;
 
 	public showOptionList = false;
-	
+
 	private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
 	constructor(

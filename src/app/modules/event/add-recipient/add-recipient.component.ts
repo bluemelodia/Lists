@@ -51,7 +51,7 @@ import { ValidationService } from "../../../services/validation.service";
 import { RecipientUtils } from "../../../utils/recipient.utils";
 
 @Component({
-	selector: "app-add-recipient",
+	selector: "ml-add-recipient",
 	templateUrl: "./add-recipient.component.html",
 	styleUrls: ["./add-recipient.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -135,14 +135,14 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				]
 			],
 		},
-		{
-			updateOn: "submit",
-			validators: [
-				this.customValidator.emailValidator("email", `channels.${Channel.email}`),
-				this.customValidator.phoneValidator("phone", `channels.${Channel.text}`),
-				this.customValidator.addressValidator("address"),
-			]
-		});
+			{
+				updateOn: "submit",
+				validators: [
+					this.customValidator.emailValidator("email", `channels.${Channel.email}`),
+					this.customValidator.phoneValidator("phone", `channels.${Channel.text}`),
+					this.customValidator.addressValidator("address"),
+				]
+			});
 
 		console.info("[Add Recipient] Routed to: ", this.router.url);
 		if (this.router.url.includes('events/add-recipient')) {

@@ -1,15 +1,15 @@
 <section class="form-container home-container">
-	<app-home-widget [list]="solar$ | async"
+	<ml-home-widget [list]="solar$ | async"
 		[type]="type.SolarBirthdays">
-	</app-home-widget>
-	<app-home-widget [list]="lunar$ | async"
+	</ml-home-widget>
+	<ml-home-widget [list]="lunar$ | async"
 		[type]="type.LunarBirthdays">
-	</app-home-widget>
-	<app-home-widget [list]="meetings$ | async"
+	</ml-home-widget>
+	<ml-home-widget [list]="meetings$ | async"
 		[type]="type.Meetings">
-	</app-home-widget>
-	<app-home-widget [list]="tasks$ | async"
+	</ml-home-widget>
+	<ml-home-widget [list]="tasks$ | async"
 		[type]="type.Tasks">
-	</app-home-widget>
+	</ml-home-widget>
 </section>
 

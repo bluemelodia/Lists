@@ -4,17 +4,17 @@
 		placeholder="Search"
 		(keyup)="onSearch()"
 		[(ngModel)]="query">
-	<app-decorator *ngIf="query.length === 0"
+	<ml-decorator *ngIf="query.length === 0"
 		ariaLabel="Search"
 		class="search-indicator"
 		iconClasses="icon-medium"
 		[icon]="icon.Search">
-	</app-decorator>
-	<app-action *ngIf="query.length > 0"
+	</ml-decorator>
+	<ml-action *ngIf="query.length > 0"
 		ariaLabel="Clear Search"
 		class="clear-search"
 		[enabled]="true"
 		[icon]="icon.Close"
 		(actionSelected)="onSearch()">
-	</app-action>
+	</ml-action>
 </section>

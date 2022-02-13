@@ -9,7 +9,7 @@ import { SelectComponent } from "../select.component";
 import { FocusService } from "../../../../services/focus.service";
 
 @Component({
-	selector: "app-phone-select",
+	selector: "ml-phone-select",
 	templateUrl: "./phone-select.component.html",
 	styleUrls: [
 		"../select.component.css",

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Icon } from '../../../constants/icons.constants';
 
 @Component({
-	selector: 'app-search',
+	selector: 'ml-search',
 	templateUrl: './search.component.html',
 	styleUrls: ['./search.component.css']
 })

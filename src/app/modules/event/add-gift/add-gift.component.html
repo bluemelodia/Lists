@@ -2,21 +2,21 @@
     <form class="event-form"
         [formGroup]="giftForm"
         (ngSubmit)="onSubmit()">
-		<app-heading text="Gift Details"
+		<ml-heading text="Gift Details"
 			[level]="headerLevel.H3">
-		</app-heading>
+		</ml-heading>
 		<span class="form-instructions">
 			Provide recipient and gift details.
 		</span>
-		<app-recipient-select appFocus 
+		<ml-recipient-select mlFocus 
 			[form]="giftForm.controls.recipients"
 			[list]="recipientList$ | async"
 			[submitted]="submitted">
-		</app-recipient-select>
-		<app-occasion-select appFocus
+		</ml-recipient-select>
+		<ml-occasion-select mlFocus
 			[form]="giftForm.controls.occasions"
 			[submitted]="submitted">
-		</app-occasion-select>
+		</ml-occasion-select>
 		<fieldset class="details">
             <input formControlName="year"
 				placeholder="Year"
@@ -49,18 +49,18 @@
 			</div>
         </fieldset>
 		<fieldset>
-            <app-heading text="Gift Image"
+            <ml-heading text="Gift Image"
 				[level]="headerLevel.H3">
                 <span post class="event-form__optional">Optional</span>
-            </app-heading>
+            </ml-heading>
             <span class="form-instructions">Upload an image of the gift.</span>
-            <app-img-upload [form]="giftForm.controls.gift"></app-img-upload>
+            <ml-img-upload [form]="giftForm.controls.gift"></ml-img-upload>
         </fieldset>
-		<app-description controlName="description"
+		<ml-description controlName="description"
 			formInstructions="Enter a description of the gift."
 			[form]="giftForm"
 			[submitted]="submitted">
-		</app-description>
+		</ml-description>
 		<fieldset class="form-actions">
             <button class="cancel"
 				type="button"

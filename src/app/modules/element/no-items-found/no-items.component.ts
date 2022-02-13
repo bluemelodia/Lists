@@ -10,7 +10,7 @@ import { NoItem } from '../../../interfaces/no-items.interface';
 import { EditService } from '../../../services/edit.service';
 
 @Component({
-	selector: 'app-no-items',
+	selector: 'ml-no-items',
 	templateUrl: './no-items.component.html',
 	styleUrls: ['./no-items.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,14 +23,14 @@ export class NoItemsComponent {
 	constructor(
 		private editService: EditService,
 		private router: Router,
-	) {}
+	) { }
 
 	/** 
 	* If the user is performing an add operation, clear
 	* the previously-stored item from session storage.
 	*/
 	public onActionItemClick(): void {
-		switch(this.config.action) {
+		switch (this.config.action) {
 			case GiftAction.Add:
 			case MeetingAction.Add:
 			case RecipientAction.Add:

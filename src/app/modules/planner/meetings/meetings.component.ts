@@ -1,4 +1,4 @@
-import { 
+import {
 	ChangeDetectionStrategy,
 	Component,
 	OnDestroy,
@@ -17,7 +17,7 @@ import { LoadingService } from '../../../services/loading.service';
 import { MeetingService } from '../../../services/meeting.service';
 
 @Component({
-	selector: 'planner-meetings',
+	selector: 'ml-planner-meetings',
 	templateUrl: './meetings.component.html',
 	styleUrls: ['./meetings.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,

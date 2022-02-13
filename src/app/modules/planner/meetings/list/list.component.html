@@ -14,32 +14,32 @@
 
 <section *ngIf="list && list.length === 0"
 	class="no-results flex-centered__column">
-    <app-no-items [config]="noItemsConfig"></app-no-items>
+    <ml-no-items [config]="noItemsConfig"></ml-no-items>
 </section>
 
 <ng-template #meetingList let-meeting="meeting">
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
 		<span class="task-list__badges">
-			<app-meeting-indicator [isVirtual]="meeting.virtual"></app-meeting-indicator>
-			<app-date-indicator *ngIf="meeting.status"
+			<ml-meeting-indicator [isVirtual]="meeting.virtual"></ml-meeting-indicator>
+			<ml-date-indicator *ngIf="meeting.status"
 				[status]="meeting.status">
-			</app-date-indicator>
+			</ml-date-indicator>
 		</span>
-		<app-heading [level]="headerLevel.H2"
+		<ml-heading [level]="headerLevel.H2"
 			[text]="meeting.name">
 			<section post class="actions edit-actions">
-				<app-action ariaLabel="Edit"
+				<ml-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
 					(actionSelected)="editMeeting(meeting)">
-				</app-action>
-				<app-action ariaLabel="Delete"
+				</ml-action>
+				<ml-action ariaLabel="Delete"
 					[enabled]="true"
 					[icon]="icon.Delete"
 					(actionSelected)="onDeleteClicked(meeting.uuid)">
-				</app-action>
+				</ml-action>
 			</section>
-		</app-heading>
+		</ml-heading>
 		<p class="task-details__wrapper">
 			<span class="task-details__label">Start</span>
 			<span class="task-details__description">{{ meeting | meetingFormatter: true }}</span>

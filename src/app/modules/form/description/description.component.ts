@@ -6,7 +6,7 @@ import { FormLimit } from '../../../constants/gifts.constants';
 import { HeaderLevel } from '../../../interfaces/header.interface';
 
 @Component({
-	selector: 'app-description',
+	selector: 'ml-description',
 	templateUrl: './description.component.html',
 	styleUrls: ['./description.component.css']
 })

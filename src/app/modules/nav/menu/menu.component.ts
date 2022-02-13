@@ -1,8 +1,8 @@
-import { 
-	ChangeDetectionStrategy, 
-	Component, 
-	EventEmitter, 
-	Input, 
+import {
+	ChangeDetectionStrategy,
+	Component,
+	EventEmitter,
+	Input,
 	Output,
 } from "@angular/core";
 
@@ -18,7 +18,7 @@ import { UserService } from "../../../services/user.service";
 import { NavUtils } from "../utils/nav.utils";
 
 @Component({
-	selector: "app-menu",
+	selector: "ml-menu",
 	templateUrl: "./menu.component.html",
 	styleUrls: ["./menu.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,7 +30,7 @@ export class MenuComponent {
 		this.lvl = lvl;
 		this.padding = 16 * (this.lvl + 1);
 	}
-	
+
 	@Output() menuChanged = new EventEmitter<void>();
 
 	public lvl = 0;

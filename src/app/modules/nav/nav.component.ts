@@ -5,7 +5,7 @@ import { takeUntil } from "rxjs/operators";
 import { NavService } from "../../services/nav.service";
 
 @Component({
-	selector: "app-nav",
+	selector: "ml-nav",
 	templateUrl: "./nav.component.html",
 	styleUrls: ["./nav.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,

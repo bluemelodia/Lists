@@ -26,7 +26,7 @@ import { DialogService } from "../../../../services/dialog.service";
 import { RecipientService } from "../../../../services/recipient.service";
 
 @Component({
-	selector: "planner-birthdays-list",
+	selector: "ml-planner-birthdays-list",
 	templateUrl: "./list.component.html",
 	styleUrls: ["./list.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -93,7 +93,7 @@ export class ListComponent implements OnDestroy {
 
 	public editBirthday(recipient: AddRecipient): void {
 		this.editService.editRecipient(recipient);
-		
+
 		void this.router.navigate(["/events/edit-recipient"], {
 			queryParams: { title: 'Edit Recipient' }
 		});

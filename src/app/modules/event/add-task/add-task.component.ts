@@ -34,7 +34,7 @@ import { TaskService } from "../../../services/task.service";
 import { TaskUtils } from "../../../utils/task.utils";
 
 @Component({
-	selector: "app-add-task",
+	selector: "ml-add-task",
 	templateUrl: "./add-task.component.html",
 	styleUrls: ["./add-task.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -91,13 +91,13 @@ export class AddTaskComponent implements OnInit, OnDestroy {
 				taskRecurrence: [{}, [Validators.required]],
 			}),
 			status: this.fb.group({
-				taskStatus: [ Status.NotStarted ],
+				taskStatus: [Status.NotStarted],
 			})
 		},
-		{
-			updateOn: "submit",
-			validators: []
-		});
+			{
+				updateOn: "submit",
+				validators: []
+			});
 
 		if (this.router.url.includes('events/add-task')) {
 			this.editService.clearItem(Topic.Tasks);
@@ -120,11 +120,11 @@ export class AddTaskComponent implements OnInit, OnDestroy {
 	private populateFormData(task: Task): void {
 		console.info("[Add Task] Populate form data: ", task);
 		this.taskForm.patchValue({
-			name: task.name, 
-			dueDate: { 
+			name: task.name,
+			dueDate: {
 				day: Object.keys(task.dueDate).length > 0 ? task.dueDate : null,
 			},
-			dueTime: task.dueTime, 
+			dueTime: task.dueTime,
 			description: task.description,
 			recurrence: {
 				taskRecurrence: task.recurrence,

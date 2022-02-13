@@ -2,9 +2,9 @@
     <form class="event-form"
         [formGroup]="registerForm"
         (ngSubmit)="onSubmit()">
-		<app-heading text="Sign Up"
+		<ml-heading text="Sign Up"
 			[level]="headerLevel.H1">
-		</app-heading>
+		</ml-heading>
 		<span class="form-instructions">Enter your email address and create a password.</span>
 		<fieldset class="username">
             <input formControlName="username"
@@ -30,12 +30,12 @@
             <input formControlName="password"
                 placeholder="Password"
 				[type]="showPassword ?  'text' : 'password'"/>
-			<app-action ariaLabel="Show Password"
+			<ml-action ariaLabel="Show Password"
 				class="show-password"
 				[enabled]="true"
 				[icon]="icon.View"
 				(actionSelected)="toggleShowPassword()">
-			</app-action>
+			</ml-action>
             <div *ngIf="submitted && registerFormControl.password.errors"
 				class="input-error">
                     <p *ngIf="registerFormControl.password.errors?.required"

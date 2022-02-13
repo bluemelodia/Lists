@@ -2,9 +2,9 @@
     <form class="event-form"
         [formGroup]="taskForm"
         (ngSubmit)="onSubmit()">
-		<app-heading text="Task Details"
+		<ml-heading text="Task Details"
 			[level]="headerLevel.H2">
-		</app-heading>
+		</ml-heading>
         <span class="form-instructions">Provide details about the task.</span>
 		<fieldset class="task-details">
             <input formControlName="name"
@@ -26,29 +26,29 @@
 					</p>
             </div> 
         </fieldset>
-		<app-recurrence-select appFocus
+		<ml-recurrence-select mlFocus
 			[form]="taskForm.controls.recurrence"
 			[submitted]="submitted">
-		</app-recurrence-select>
+		</ml-recurrence-select>
 		<fieldset *ngIf="isOneTimeTask()" class="status">
-			<app-heading text="Task Status"
+			<ml-heading text="Task Status"
 				[level]="headerLevel.H3">
-            </app-heading>
+            </ml-heading>
 			<span class="form-instructions"
 				for="event-description">Select the current status of the task.</span>
-			<app-status-select appFocus
+			<ml-status-select mlFocus
 				[form]="taskForm.controls.status"
 				[submitted]="submitted">
-			</app-status-select>
+			</ml-status-select>
 		</fieldset>
 		<fieldset class="due-date">
-			<app-heading text="Due Date"
+			<ml-heading text="Due Date"
 				[level]="headerLevel.H3">
 				<span class="event-form__optional" post>Optional</span>
-            </app-heading>
+            </ml-heading>
 			<span class="form-instructions"
 				for="event-description">Choose due date and time.</span>
-			<app-datepicker appFocus 
+			<ml-datepicker mlFocus 
 				class="datepicker-container"
 				controlName="day"
 				fieldName="Due date"
@@ -57,7 +57,7 @@
 				[form]="taskForm.controls.dueDate"
 				[submitted]="submitted"
 				[topic]="topic">
-			</app-datepicker>	
+			</ml-datepicker>	
 			<input readonly
 				aria-label="Due Time"
 				formControlName="dueTime" 
@@ -69,11 +69,11 @@
 				(timeChanged)="onDueTimeChanged($event)">
 			</ngx-material-timepicker>
 		</fieldset>
-		<app-description controlName="description"
+		<ml-description controlName="description"
 			formInstructions="Enter a description of the task."
 			[form]="taskForm"
 			[submitted]="submitted">
-		</app-description>
+		</ml-description>
         <fieldset class="form-actions">
             <button class="cancel"
 				type="button"

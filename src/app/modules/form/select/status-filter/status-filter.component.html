@@ -1,11 +1,11 @@
 <section #select class="input-container">
-	<app-action *ngIf="selected" 
+	<ml-action *ngIf="selected" 
 		ariaLabel="Clear Status Filter"
 		class="clear-filter-btn"
 		[enabled]="true"
 		[icon]="icon.Close"
 		(actionSelected)="clearFilter()">
-	</app-action>
+	</ml-action>
 	<ng-container [ngTemplateOutlet]="statusSelect"></ng-container>
 </section>
 

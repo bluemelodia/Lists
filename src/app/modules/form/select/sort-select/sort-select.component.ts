@@ -7,7 +7,7 @@ import { SelectComponent } from "../select.component";
 import { FocusService } from "../../../../services/focus.service";
 
 @Component({
-	selector: "app-sort-select",
+	selector: "ml-sort-select",
 	templateUrl: "./sort-select.component.html",
 	styleUrls: [
 		"../select.component.css",

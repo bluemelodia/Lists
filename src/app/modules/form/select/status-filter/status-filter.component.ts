@@ -13,7 +13,7 @@ import { Status } from '../../../../constants/tasks.constants';
 import { FocusService } from '../../../../services/focus.service';
 
 @Component({
-	selector: 'app-status-filter',
+	selector: 'ml-status-filter',
 	templateUrl: './status-filter.component.html',
 	styleUrls: [
 		"../select.component.css",

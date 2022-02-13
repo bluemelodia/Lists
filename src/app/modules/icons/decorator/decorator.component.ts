@@ -6,7 +6,7 @@ import { Icon } from '../../../constants/icons.constants';
 * Use for decorative icons that are not expected to be interactive.
 */
 @Component({
-	selector: 'app-decorator',
+	selector: 'ml-decorator',
 	templateUrl: './decorator.component.html',
 	styleUrls: ['./decorator.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,

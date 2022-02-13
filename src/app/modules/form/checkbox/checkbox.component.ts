@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, } from
 import { FormGroup } from "@angular/forms";
 
 @Component({
-	selector: "app-checkbox",
+	selector: "ml-checkbox",
 	templateUrl: "./checkbox.component.html",
 	styleUrls: ["./checkbox.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,

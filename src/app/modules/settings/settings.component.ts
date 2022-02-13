@@ -1,4 +1,4 @@
-import { 
+import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
@@ -27,7 +27,7 @@ import { SettingsService } from "./services/settings.service";
 import { ValidationService } from "../../services/validation.service";
 
 @Component({
-	selector: "app-settings",
+	selector: "ml-settings",
 	templateUrl: "./settings.component.html",
 	styleUrls: ["./settings.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -108,7 +108,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 						...settings?.tasks
 					}
 				});
-				
+
 				this.setChannelValidationStatus(Channel.email, !!settings?.email);
 				this.setChannelValidationStatus(Channel.text, !!settings?.phone);
 

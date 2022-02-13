@@ -8,7 +8,7 @@ import { SelectComponent } from '../select.component';
 import { FocusService } from '../../../../services/focus.service';
 
 @Component({
-	selector: 'app-status-select',
+	selector: 'ml-status-select',
 	templateUrl: './status-select.component.html',
 	styleUrls: [
 		'../select.component.css',
@@ -19,7 +19,7 @@ export class StatusSelectComponent extends SelectComponent implements AfterViewI
 	public selected: Status = Status.NotStarted;
 	public status = Status;
 	public statusKeys = Object.keys(this.status);
-	
+
 	constructor(
 		_element: ElementRef,
 		_focus: FocusService

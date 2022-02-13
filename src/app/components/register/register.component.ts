@@ -14,7 +14,7 @@ import { UserService } from '../../services/user.service';
 import { ValidationService } from '../../services/validation.service';
 
 @Component({
-	selector: 'app-register',
+	selector: 'ml-register',
 	templateUrl: './register.component.html',
 	styleUrls: ['./register.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,

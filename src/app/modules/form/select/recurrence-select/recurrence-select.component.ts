@@ -8,7 +8,7 @@ import { SelectComponent } from '../select.component';
 import { FocusService } from '../../../../services/focus.service';
 
 @Component({
-	selector: 'app-recurrence-select',
+	selector: 'ml-recurrence-select',
 	templateUrl: './recurrence-select.component.html',
 	styleUrls: [
 		'../select.component.css',
@@ -19,14 +19,14 @@ export class RecurrenceSelectComponent extends SelectComponent implements AfterV
 	public recurrence = Recurrence;
 	public recurrenceKeys = Object.keys(this.recurrence);
 	public selected: RecurrenceMap = {};
-	
+
 	constructor(
 		_element: ElementRef,
 		_focus: FocusService
 	) {
 		super(_element, _focus);
 
-		
+
 	}
 
 	public ngAfterViewInit(): void {
@@ -48,7 +48,7 @@ export class RecurrenceSelectComponent extends SelectComponent implements AfterV
 	}
 
 	private selectOne(selectedRecurrence: Recurrence): void {
-		for(const recurrence of Object.keys(this.selected)) {
+		for (const recurrence of Object.keys(this.selected)) {
 			if (recurrence !== selectedRecurrence) {
 				this.selected[recurrence] = false;
 			}
@@ -56,9 +56,9 @@ export class RecurrenceSelectComponent extends SelectComponent implements AfterV
 	}
 
 	private selectDaily(): void {
-		for(const recurrence of Object.keys(this.selected)) {
-			if (recurrence === Recurrence.Once 
-				|| recurrence === Recurrence.Daily 
+		for (const recurrence of Object.keys(this.selected)) {
+			if (recurrence === Recurrence.Once
+				|| recurrence === Recurrence.Daily
 				|| recurrence === Recurrence.Monthly) {
 				this.selected[recurrence] = false;
 			}
@@ -69,7 +69,7 @@ export class RecurrenceSelectComponent extends SelectComponent implements AfterV
 		this.showOptionList = false;
 		this.selected[recurrence] = !this.selected[recurrence];
 
-		switch(recurrence) {
+		switch (recurrence) {
 			case Recurrence.Once:
 			case Recurrence.Daily:
 			case Recurrence.Monthly:
@@ -83,7 +83,7 @@ export class RecurrenceSelectComponent extends SelectComponent implements AfterV
 			case Recurrence.Friday:
 			case Recurrence.Saturday:
 				this.selectDaily();
-				break;	
+				break;
 		}
 
 		this.recurrenceForm.patchValue(this.selected);
@@ -91,7 +91,7 @@ export class RecurrenceSelectComponent extends SelectComponent implements AfterV
 
 	public getSelectedOptions(): string {
 		const selected = [];
-		for(const recurrence of Object.keys(this.selected)) {
+		for (const recurrence of Object.keys(this.selected)) {
 			if (this.selected[recurrence]) {
 				selected.push(recurrence);
 			}

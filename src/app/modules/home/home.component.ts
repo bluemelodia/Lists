@@ -17,7 +17,7 @@ import { RecipientUtils } from "../../utils/recipient.utils";
 import { TaskUtils } from "../../utils/task.utils";
 
 @Component({
-	selector: "app-home",
+	selector: "ml-home",
 	templateUrl: "./home.component.html",
 	styleUrls: ["./home.component.scss"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,8 +35,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public meetings$ = this._meetings$.asObservable();
 
 	private _tasks$ = new Subject<Task[]>();
-	public tasks$ = this._tasks$.asObservable(); 
-	
+	public tasks$ = this._tasks$.asObservable();
+
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		private meetingService: MeetingService,
 		private recipientService: RecipientService,
 		private tasksService: TaskService,
-	) {}
+	) { }
 
 	public ngOnInit(): void {
 		this.getData();
@@ -72,8 +72,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				take(1),
 				takeUntil(this.ngUnsubscribe$)
 			)
-			.subscribe(([ birthdays, meetings, tasks]) => {
-				console.info("[Home] Received lists: ",birthdays, meetings, tasks);
+			.subscribe(([birthdays, meetings, tasks]) => {
+				console.info("[Home] Received lists: ", birthdays, meetings, tasks);
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 				this._solar$.next(RecipientUtils.getSummary(birthdays?.solar));
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

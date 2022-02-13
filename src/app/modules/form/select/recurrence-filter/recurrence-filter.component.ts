@@ -13,7 +13,7 @@ import { SelectComponent } from '../select.component';
 import { FocusService } from '../../../../services/focus.service';
 
 @Component({
-	selector: 'app-recurrence-filter',
+	selector: 'ml-recurrence-filter',
 	templateUrl: './recurrence-filter.component.html',
 	styleUrls: [
 		"../select.component.css",

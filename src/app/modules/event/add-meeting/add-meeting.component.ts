@@ -25,9 +25,9 @@ import { appTheme } from "../../form/timepicker/time-picker.constants";
 
 import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
 import { CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
-import { 
-	ConfirmDialogAction, 
-	DialogAction, 
+import {
+	ConfirmDialogAction,
+	DialogAction,
 	DialogPage,
 } from "../../../interfaces/dialog.interface";
 import {
@@ -46,7 +46,7 @@ import { ValidationService } from "../../../services/validation.service";
 import { MeetingUtils } from "../../../utils/meeting.utils";
 
 @Component({
-	selector: "app-add-meeting",
+	selector: "ml-add-meeting",
 	templateUrl: "./add-meeting.component.html",
 	styleUrls: ["./add-meeting.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -119,12 +119,12 @@ export class AddMeetingComponent implements OnInit, OnDestroy {
 				virtual: this.fb.control(false),
 			}),
 		},
-		{
-			updateOn: "submit",
-			validators: [
-				this.customValidators.dateAndTimeValidator("startDate.day", "endDate.day", "startTime", "endTime")
-			]
-		});
+			{
+				updateOn: "submit",
+				validators: [
+					this.customValidators.dateAndTimeValidator("startDate.day", "endDate.day", "startTime", "endTime")
+				]
+			});
 
 		console.info("[Add Meeting] Routed to: ", this.router.url);
 		if (this.router.url.includes('events/add-meeting')) {

@@ -1,16 +1,16 @@
-<app-heading [level]="headerLevel.H1" 
+<ml-heading [level]="headerLevel.H1" 
 	[text]="header">
-</app-heading>
+</ml-heading>
 <section class="task-list__selectors">
-	<app-sort-select appFocus
+	<ml-sort-select mlFocus
 		[list]="giftSortOptions"
 		(sortSelected)="sortSelected($event)">
-	</app-sort-select>
-	<app-recipient-filter appFocus
+	</ml-sort-select>
+	<ml-recipient-filter mlFocus
 		[list]="recipients"
 		(filterReset)="resetRecipientFilter()"
 		(recipientSelected)="filterByRecipient($event)">
-	</app-recipient-filter>
+	</ml-recipient-filter>
 </section>
 
 <section *ngIf="list$ | async as list" class="task-list__scrollable-container hide-scrollbar">
@@ -27,27 +27,27 @@
 	</section>
 	<section *ngIf="list && list.length === 0"
 		class="no-results flex-centered__column">
-    <app-no-items [config]="noItemsConfig"></app-no-items>
+    <ml-no-items [config]="noItemsConfig"></ml-no-items>
 </section>
 </section>
 
 <ng-template #giftList let-gift="gift">
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
-		<app-heading [level]="headerLevel.H2"
+		<ml-heading [level]="headerLevel.H2"
 			[text]="gift.recipient?.name">
 			<section post class="actions edit-actions">
-				<app-action ariaLabel="Edit"
+				<ml-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
 					(actionSelected)="editGift(gift)">
-				</app-action>
-				<app-action ariaLabel="Delete"
+				</ml-action>
+				<ml-action ariaLabel="Delete"
 					[enabled]="true"
 					[icon]="icon.Delete"
 					(actionSelected)="onDeleteClicked(recipient.uuid)">
-				</app-action>
+				</ml-action>
 			</section>
-		</app-heading>
+		</ml-heading>
 		<p class="task-details__wrapper">
 			<span class="task-details__label">{{ gift.occasion }} - {{ gift.year }}</span>
 			<span class="task-details__description">${{ gift.price || 0 }}</span>

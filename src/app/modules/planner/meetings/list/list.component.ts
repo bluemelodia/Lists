@@ -24,7 +24,7 @@ import { EditService } from '../../../../services/edit.service';
 import { MeetingService } from '../../../../services/meeting.service';
 
 @Component({
-	selector: 'planner-meetings-list',
+	selector: 'ml-planner-meetings-list',
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -80,7 +80,7 @@ export class ListComponent implements OnDestroy {
 
 	public editMeeting(meeting: AddMeeting): void {
 		this.editService.editMeeting(meeting);
-		
+
 		void this.router.navigate(["/events/edit-meeting"], {
 			queryParams: { title: 'Edit Meeting' }
 		});

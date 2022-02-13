@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-	selector: 'app-address',
+	selector: 'ml-address',
 	templateUrl: './address.component.html',
 	styleUrls: ['./address.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,

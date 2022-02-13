@@ -1,11 +1,11 @@
 <section #select class="input-container">
-	<app-action *ngIf="hasSelectedOptions()" 
+	<ml-action *ngIf="hasSelectedOptions()" 
 		ariaLabel="Clear Selected Recurrences"
 		class="clear-filter-btn"
 		[enabled]="true"
 		[icon]="icon.Close"
 		(actionSelected)="clearFilter()">
-	</app-action>
+	</ml-action>
 	<ng-container [ngTemplateOutlet]="recurrenceSelect"></ng-container>
 </section>
 

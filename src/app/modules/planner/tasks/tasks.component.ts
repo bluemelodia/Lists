@@ -12,7 +12,7 @@ import { LoadingService } from "../../../services/loading.service";
 import { TaskService } from "../../../services/task.service";
 
 @Component({
-	selector: 'planner-tasks',
+	selector: 'ml-planner-tasks',
 	templateUrl: './tasks.component.html',
 	styleUrls: ['./tasks.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,

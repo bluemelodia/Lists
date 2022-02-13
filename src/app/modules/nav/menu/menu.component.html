@@ -12,14 +12,14 @@
             [style.paddingLeft.px]="padding"
             (click)="onMenuClick(item)">
             <a>{{ item }}</a>
-            <app-direction *ngIf="menuItems[item].subMenu"
+            <li-direction *ngIf="menuItems[item].subMenu"
                 [expanded]="menuItems[item].expanded">
-            </app-direction>
+            </li-direction>
         </span>
-        <app-menu *ngIf="menuItems[item].subMenu && menuItems[item].expanded"
+        <ml-menu *ngIf="menuItems[item].subMenu && menuItems[item].expanded"
             [level]="lvl + 1" 
             [menu]="menuItems[item].subMenuList"
             [menuItems]="menuItems[item].subMenu">
-        </app-menu>
+        </ml-menu>
     </li>
 </ul>

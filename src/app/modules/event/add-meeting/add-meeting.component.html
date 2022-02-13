@@ -2,9 +2,9 @@
     <form class="event-form"
         [formGroup]="meetingForm"
         (ngSubmit)="onSubmit()">
-		<app-heading text="Meeting Details"
+		<ml-heading text="Meeting Details"
 			[level]="headerLevel.H2">
-		</app-heading>
+		</ml-heading>
         <span class="form-instructions">Provide details about the meeting.</span>
 		<fieldset class="event-details">
             <input formControlName="name"
@@ -34,19 +34,19 @@
 					Location should not exceed {{ limit.Name.max }} characters.
 				</p>
 			</div> 
-			<app-checkbox checkboxName="virtual"
+			<ml-checkbox checkboxName="virtual"
 				id="action-virtual"
 				name="Virtual"
 				[form]="meetingForm.controls.options">
-			</app-checkbox>
+			</ml-checkbox>
         </fieldset>
 		<fieldset class="start-date">
-			<app-heading text="Start Date"
+			<ml-heading text="Start Date"
 				[level]="headerLevel.H3">
-            </app-heading>
+            </ml-heading>
 			<span class="form-instructions"
 				for="event-description">Choose start date and time.</span>
-			<app-datepicker appFocus 
+			<ml-datepicker mlFocus 
 				class="datepicker-container"
 				controlName="day"
 				fieldName="Start date"
@@ -55,7 +55,7 @@
 				[form]="meetingForm.controls.startDate"
 				[submitted]="submitted"
 				[topic]="topic">
-			</app-datepicker>
+			</ml-datepicker>
 			<div *ngIf="submitted && startDateCtrl.errors"
 				class="input-error after-picker">
 				<p *ngIf="startDateCtrl.errors?.startDateAfterEnd">
@@ -80,14 +80,14 @@
             </div> 	
 		</fieldset>
 		<fieldset class="end-date">
-			<app-heading text="End Date"
+			<ml-heading text="End Date"
 				[level]="headerLevel.H3">
-            </app-heading>
+            </ml-heading>
 			<span class="form-instructions"
 				for="event-description">
 				Choose end date and time.
 			</span>
-			<app-datepicker appFocus 
+			<ml-datepicker mlFocus 
 				class="datepicker-container"
 				controlName="day"
 				fieldName="End date"
@@ -96,7 +96,7 @@
 				[form]="meetingForm.controls.endDate"
 				[submitted]="submitted"
 				[topic]="topic">
-			</app-datepicker>
+			</ml-datepicker>
 			<input readonly 
 				aria-label="End Time"
 				formControlName="endTime"
@@ -117,11 +117,11 @@
 				</p>
 			</div> 	
 		</fieldset>
-		<app-description controlName="description"
+		<ml-description controlName="description"
 			formInstructions="Enter a description of the meeting."
 			[form]="meetingForm"
 			[submitted]="submitted">
-		</app-description>
+		</ml-description>
         <fieldset class="form-actions">
             <button class="cancel"
 				type="button"

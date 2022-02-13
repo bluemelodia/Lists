@@ -8,7 +8,7 @@ import { SelectComponent } from '../select.component';
 import { FocusService } from '../../../../services/focus.service';
 
 @Component({
-	selector: 'app-occasion-select',
+	selector: 'ml-occasion-select',
 	templateUrl: './occasion-select.component.html',
 	styleUrls: [
 		'../select.component.css',
@@ -18,7 +18,7 @@ import { FocusService } from '../../../../services/focus.service';
 export class OccasionSelectComponent extends SelectComponent {
 	public occasions = Occasion;
 	public occasionKeys = Object.keys(Occasion);
-	
+
 	constructor(
 		_element: ElementRef,
 		_focus: FocusService

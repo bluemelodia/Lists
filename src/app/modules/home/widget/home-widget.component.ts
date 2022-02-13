@@ -12,7 +12,7 @@ import { CalendarService } from "../../../services/calendar.service";
 import { NavService } from "../../../services/nav.service";
 
 @Component({
-	selector: "app-home-widget",
+	selector: "ml-home-widget",
 	templateUrl: "./home-widget.component.html",
 	styleUrls: ["./home-widget.component.scss"],
 	changeDetection: ChangeDetectionStrategy.OnPush,

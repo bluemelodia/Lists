@@ -9,10 +9,10 @@
 				[ngClass]="{ 'options-open' : showOptionList }"
 				(click)="showHideOptions()"
 				(keydown)="onKeydownEvent($event)"/>
-			<app-decorator ariaLabel="Dial Code Selector"
+			<ml-decorator ariaLabel="Dial Code Selector"
 				iconClasses="icon-small"
 				[icon]="icon.Down">
-			</app-decorator>
+			</ml-decorator>
 			<input type="number"
 				formControlName="number"
 				placeholder="Number">
@@ -29,7 +29,7 @@
 		<section *ngIf="showOptionList"
 			class="options"
 			[ngClass]="{ 'show' : showOptionList }">
-			<app-search (search)="filterCountries($event)"></app-search>
+			<ml-search (search)="filterCountries($event)"></ml-search>
 			<button *ngFor="let country of countries; let i = index"
 				class="option focus-option"
 				type="button"

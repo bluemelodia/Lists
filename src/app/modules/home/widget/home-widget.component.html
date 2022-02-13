@@ -1,13 +1,13 @@
 <ng-container *ngIf="list" [ngSwitch]="displayList">
-	<app-heading [text]="title" [level]="headerLevel.H2">
+	<ml-heading [text]="title" [level]="headerLevel.H2">
 		<section post class="actions">
-			<app-action ariaLabel="ariaLabel"
+			<ml-action ariaLabel="ariaLabel"
 				[enabled]="true"
 				[icon]="icon.Nav"
 				(actionSelected)="navigateToPage(displayList)">
-			</app-action>
+			</ml-action>
 		</section>
-	</app-heading>
+	</ml-heading>
 	<ng-container *ngSwitchCase="listType.SolarBirthdays"
 		[ngTemplateOutlet]="solar" 
 		[ngTemplateOutletContext]="{ 'recipients': list }">
@@ -25,8 +25,8 @@
 		[ngTemplateOutletContext]="{ 'tasks': list }">
 	</ng-container>	
 	<section *ngIf="list && list.length < 1">
-		<app-no-results [message]="noResultsMsg">
-		</app-no-results>
+		<ml-no-results [message]="noResultsMsg">
+		</ml-no-results>
 	</section>
 </ng-container>
 
@@ -35,15 +35,15 @@
 		<ul class="widget-list">
 			<li *ngFor="let recipient of recipients"
 				class="widget-list__item">
-				<app-heading [level]="headerLevel.H3" 
+				<ml-heading [level]="headerLevel.H3" 
 					[text]="recipient.name">
-				</app-heading>
+				</ml-heading>
 				<section class="widget__birthday-status">
 					<p class="widget-list__birthday">
 						{{ recipient?.date?.month }}/{{ recipient?.date?.value }}
 					</p>
-					<app-date-indicator post [status]="recipient.status">
-					</app-date-indicator>
+					<ml-date-indicator post [status]="recipient.status">
+					</ml-date-indicator>
 					<span *ngIf="!recipient.status"></span>
 				</section>
 			</li>
@@ -55,21 +55,21 @@
 		<ul class="widget-list">
 			<li *ngFor="let recipient of recipients"
 				class="widget-list__item">
-				<app-heading [level]="headerLevel.H3" 
+				<ml-heading [level]="headerLevel.H3" 
 					[text]="recipient.name">
-				</app-heading>
+				</ml-heading>
 				<section class="widget__birthday-status">
 					<p *ngIf="recipient?.futureDates[currentYear] as cur"
 						class="widget__birthday">
-						<app-decorator ariaLabel="Solar"
+						<ml-decorator ariaLabel="Solar"
 							[icon]="icon.Solar">
-						</app-decorator>
+						</ml-decorator>
 						{{ cur?.month }}/{{ cur?.value }}
 					</p>
 					<p class="widget__birthday">
-						<app-decorator ariaLabel="Lunar"
+						<ml-decorator ariaLabel="Lunar"
 							[icon]="icon.Lunar">
-						</app-decorator>
+						</ml-decorator>
 						{{ recipient?.date?.cmonth }}/{{ recipient?.date?.cdate }} 
 					</p>
 				</section>
@@ -82,20 +82,20 @@
 		<ul class="widget-list">
 			<li *ngFor="let meeting of meetings"
 				class="widget-list__item widget-list_multi-line">
-				<app-heading [level]="headerLevel.H3"
+				<ml-heading [level]="headerLevel.H3"
 					[text]="meeting.name">
-				</app-heading>
+				</ml-heading>
 				<p class="widget-details widget__meeting-dates multi-line">
 					<span class="widget__meeting-date">
-						<app-decorator ariaLabel="Start"
+						<ml-decorator ariaLabel="Start"
 							[icon]="icon.Start">
-						</app-decorator>
+						</ml-decorator>
 						{{ meeting | meetingFormatter: true: 'shorthand' }}
 					</span>
 					<span class="widget__meeting-date">
-						<app-decorator ariaLabel="End"
+						<ml-decorator ariaLabel="End"
 							[icon]="icon.End">
-						</app-decorator>	
+						</ml-decorator>	
 						{{ meeting | meetingFormatter: false: 'shorthand' }}	
 					</span>
 				</p>
@@ -108,12 +108,12 @@
 		<ul class="widget-list">
 			<li *ngFor="let task of tasks"
 				class="widget-list__item widget-list_multi-line">
-				<app-heading [level]="headerLevel.H3"
+				<ml-heading [level]="headerLevel.H3"
 					[text]="task.name">
-				</app-heading>
+				</ml-heading>
 				<p class="widget-details multi-line">
 					<span>{{ task | taskFormatter:'shorthand' }}</span>
-					<app-status-indicator [status]="task.status"></app-status-indicator>
+					<ml-status-indicator [status]="task.status"></ml-status-indicator>
 				</p>
 			</li>
 		</ul>

@@ -1,4 +1,4 @@
-import { 
+import {
 	ChangeDetectionStrategy,
 	Component,
 	EventEmitter,
@@ -9,7 +9,7 @@ import {
 import { Icon } from '../../../constants/icons.constants';
 
 @Component({
-	selector: 'app-action',
+	selector: 'ml-action',
 	templateUrl: './action.component.html',
 	styleUrls: ['./action.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,

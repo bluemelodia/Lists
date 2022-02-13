@@ -5,7 +5,7 @@ import { CalendarType, Month } from "../../../interfaces/calendar/calendar.inter
 import { CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
 
 @Component({
-	selector: "app-calendar-month",
+	selector: "ml-calendar-month",
 	templateUrl: "./calendar-month.component.html",
 	styleUrls: ["./calendar-month.component.css"]
 })
@@ -24,15 +24,15 @@ export class CalendarMonthComponent {
 	}
 
 	isSelectedDate(day: CalendarDay): boolean {
-		switch(this.type) {
+		switch (this.type) {
 			case CalendarType.Solar:
 				if (this.topic === Topic.Birthdays) {
 					return this.selectedDate
-						&& day.month === this.selectedDate.month 
+						&& day.month === this.selectedDate.month
 						&& day.value === this.selectedDate.value;
 				} else {
 					return this.selectedDate
-						&& day.month === this.selectedDate.month 
+						&& day.month === this.selectedDate.month
 						&& day.value === this.selectedDate.value
 						&& day.year === this.selectedDate.year;
 				}

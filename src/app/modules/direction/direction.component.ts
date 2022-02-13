@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, } from "@angular/core";
 
 @Component({
-	selector: "app-direction",
+	selector: "ml-direction",
 	templateUrl: "./direction.component.html",
 	styleUrls: ["./direction.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,

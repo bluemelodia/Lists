@@ -1,6 +1,6 @@
-<app-heading [level]="headerLevel.H1"
+<ml-heading [level]="headerLevel.H1"
 	[text]="header">
-</app-heading>
+</ml-heading>
 
 <section *ngIf="list && list.length > 0"
 	class="task-list__scrollable-container hide-scrollbar">
@@ -18,7 +18,7 @@
 
 <section *ngIf="list && list.length === 0"
 	class="no-results flex-centered__column">
-    <app-no-items [config]="noItemsConfig"></app-no-items>
+    <ml-no-items [config]="noItemsConfig"></ml-no-items>
 </section>
 
 <ng-template #birthdayList let-recipient="recipient">
@@ -31,28 +31,28 @@
 			src="./assets/images/cake.png"/>
 	</section>
 	<section class="task-list__item-info form-container flex-centered__column flex-stretch">
-		<app-heading [level]="headerLevel.H2" 
+		<ml-heading [level]="headerLevel.H2" 
 			[text]="recipient.name">
 			<section post class="actions edit-actions">
-				<app-action ariaLabel="Edit"
+				<ml-action ariaLabel="Edit"
 					[enabled]="true"
 					[icon]="icon.Edit"
 					(actionSelected)="editBirthday(recipient)">
-				</app-action>
-				<app-action ariaLabel="Delete"
+				</ml-action>
+				<ml-action ariaLabel="Delete"
 					[enabled]="true"
 					[icon]="icon.Delete"
 					(actionSelected)="onDeleteClicked(recipient.uuid)">
-				</app-action>
+				</ml-action>
 			</section>
-		</app-heading>
+		</ml-heading>
 		<section class="task-list__birthday-container">
 			<ng-container *ngIf="!recipient.lunar">
 				<section class="task-list__birthday-status">
 					<p class="task-list__birthday">
-						<app-decorator ariaLabel="Recipient"
+						<ml-decorator ariaLabel="Recipient"
 							[icon]="icon.Recipient">
-						</app-decorator>
+						</ml-decorator>
 						{{ recipient?.date?.month }}/{{ recipient?.date?.value }}
 					</p>
 				</section>
@@ -61,22 +61,22 @@
 				<section class="task-list__birthday-status">
 					<p *ngIf="recipient?.futureDates[currentYear] as cur"
 						class="task-list__birthday">
-						<app-decorator ariaLabel="Solar"
+						<ml-decorator ariaLabel="Solar"
 							[icon]="icon.Solar">
-						</app-decorator>
+						</ml-decorator>
 						{{ cur?.month }}/{{ cur?.value }}/{{ cur?.year }} 
 					</p>
 					<p *ngIf="recipient?.futureDates[currentYear + 1] as next"
 						class="task-list__birthday">
-						<app-decorator ariaLabel="Solar"
+						<ml-decorator ariaLabel="Solar"
 							[icon]="icon.Solar">
-						</app-decorator>
+						</ml-decorator>
 						{{ next?.month }}/{{ next?.value }}/{{ next?.year }} 
 					</p>
 					<p class="task-list__birthday">
-						<app-decorator ariaLabel="Lunar"
+						<ml-decorator ariaLabel="Lunar"
 							[icon]="icon.Lunar">
-						</app-decorator>
+						</ml-decorator>
 						{{ recipient?.date?.cmonth }}/{{ recipient?.date?.cdate }} 
 					</p>
 				</section>
@@ -84,21 +84,21 @@
 		</section>
 		<section class="actions recipient-actions">
 			<section>
-				<app-action ariaLabel="Call"
+				<ml-action ariaLabel="Call"
 					[enabled]="recipient.options.call"
 					[icon]="icon.Call">
-				</app-action>
-				<app-action ariaLabel="Text"
+				</ml-action>
+				<ml-action ariaLabel="Text"
 					[enabled]="recipient.options.text"
 					[icon]="icon.Text">
-				</app-action>
-				<app-action ariaLabel="Gift"
+				</ml-action>
+				<ml-action ariaLabel="Gift"
 					[enabled]="recipient.options.gift"
 					[icon]="icon.Gift">
-				</app-action>
+				</ml-action>
 			</section>
-			<app-date-indicator post [status]="recipient.status">
-			</app-date-indicator>
+			<ml-date-indicator post [status]="recipient.status">
+			</ml-date-indicator>
 		</section>
 	</section>
 </ng-template>

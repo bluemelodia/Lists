@@ -27,7 +27,7 @@ import { EditService } from '../../../../services/edit.service';
 import { GiftService } from '../../../../services/gift.service';
 
 @Component({
-	selector: 'planner-gifts-list',
+	selector: 'ml-planner-gifts-list',
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,

@@ -8,7 +8,7 @@ import { Calendar, CalendarDay, CalendarMonth } from "../../interfaces/calendar/
 import { CalendarService } from "../../services/calendar.service";
 
 @Component({
-	selector: "app-calendar",
+	selector: "ml-calendar",
 	templateUrl: "./calendar.component.html",
 	styleUrls: ["./calendar.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,

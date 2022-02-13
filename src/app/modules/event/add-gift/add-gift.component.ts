@@ -46,7 +46,7 @@ import { RecipientService } from '../../../services/recipient.service';
 import { GiftUtils } from '../../../utils/gift.utils';
 
 @Component({
-	selector: 'app-add-gift',
+	selector: 'ml-add-gift',
 	templateUrl: './add-gift.component.html',
 	styleUrls: ['./add-gift.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -125,10 +125,10 @@ export class AddGiftComponent implements OnInit {
 				]
 			]
 		},
-		{
-			updateOn: "submit",
-			validators: []
-		});
+			{
+				updateOn: "submit",
+				validators: []
+			});
 
 		console.info("[Add Gift] Routed to: ", this.router.url);
 		if (this.router.url.includes('events/add-gift')) {

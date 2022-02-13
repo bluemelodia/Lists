@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input, } from "@angular/core";
 
 @Component({
-	selector: "app-loader",
+	selector: "ml-loader",
 	templateUrl: "./loader.component.html",
 	styleUrls: ["./loader.component.css"],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,6 +16,6 @@ export class LoaderComponent {
 
 		return hostStyles.join(" ");
 	}
-	
+
 	@Input() fullScreen = false;
 }

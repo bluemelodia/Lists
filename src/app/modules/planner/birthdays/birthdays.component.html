@@ -1,10 +1,10 @@
-<planner-birthdays-list header="Solar Birthdays"
+<ml-planner-birthdays-list header="Solar Birthdays"
 	[list]="solarList$ | async"
     (deletedBirthday)="getRecipients()">
-</planner-birthdays-list>
+</ml-planner-birthdays-list>
 
-<planner-birthdays-list header="Lunar Birthdays"
+<ml-planner-birthdays-list header="Lunar Birthdays"
 	[list]="lunarList$ | async"
     (deletedBirthday)="getRecipients()">
-</planner-birthdays-list>
+</ml-planner-birthdays-list>
 

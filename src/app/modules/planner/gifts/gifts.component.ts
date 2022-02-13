@@ -1,8 +1,8 @@
-import { 
-	ChangeDetectionStrategy, 
-	Component, 
-	HostBinding, 
-	OnDestroy, 
+import {
+	ChangeDetectionStrategy,
+	Component,
+	HostBinding,
+	OnDestroy,
 	OnInit,
 } from '@angular/core';
 import { forkJoin, of, Subject } from 'rxjs';
@@ -20,7 +20,7 @@ import { LoadingService } from '../../../services/loading.service';
 import { RecipientService } from '../../../services/recipient.service';
 
 @Component({
-	selector: 'planner-gifts',
+	selector: 'ml-planner-gifts',
 	templateUrl: './gifts.component.html',
 	styleUrls: ['./gifts.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
