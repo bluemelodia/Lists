@@ -6,6 +6,7 @@
         </div>
         <div class="ml-calendar__nav">
             <button aria-label="Previous Month"
+				class="ml-calendar__nav-btn"
 				id="previous-month"
 				type="button"
 				[attr.aria-hidden]="monthIdx === 0 ? true : false"
@@ -16,6 +17,7 @@
                 <i class="arrow-btn fas fa-chevron-left"></i>
             </button>
             <button aria-label="Next Month"
+				class="ml-calendar__nav-btn"
 				id="next-month"
 				type="button"
 				[attr.aria-hidden]="monthIdx === calendarMonths.length-1 ? true : false"
@@ -29,13 +31,13 @@
     </section>
     <section class="ml-calendar__container">
         <div class="ml-calendar__days">
-            <span>S</span>
-            <span>M</span>
-            <span>T</span>
-            <span>W</span>
-            <span>T</span>
-            <span>F</span>
-            <span>S</span>
+            <span class="ml-calendar__day">S</span>
+            <span class="ml-calendar__day">M</span>
+            <span class="ml-calendar__day">T</span>
+            <span class="ml-calendar__day">W</span>
+            <span class="ml-calendar__day">T</span>
+            <span class="ml-calendar__day">F</span>
+            <span class="ml-calendar__day">S</span>
         </div>
         <ml-calendar-month [month]="month" 
             [selectedDate]="selectedDate"

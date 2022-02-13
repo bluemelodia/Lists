@@ -26,13 +26,13 @@
 		</ul>
 	</section>
 	<section *ngIf="list && list.length === 0"
-		class="no-results flex-column--centered">
+		class="no-results ml-flex-column--centered">
     <ml-no-items [config]="noItemsConfig"></ml-no-items>
 </section>
 </section>
 
 <ng-template #giftList let-gift="gift">
-	<section class="task-list__info form-container flex-column--centered flex-stretch">
+	<section class="task-list__info ml-form-container ml-flex-column--centered flex-stretch">
 		<ml-heading [level]="headerLevel.H2"
 			[text]="gift.recipient?.name">
 			<section post class="actions edit-actions">

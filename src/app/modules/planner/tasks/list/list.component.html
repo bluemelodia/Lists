@@ -20,13 +20,13 @@
 		</ul>
 	</section>
 	<section *ngIf="list && list.length === 0"
-		class="no-results flex-column--centered">
+		class="no-results ml-flex-column--centered">
 		<ml-no-items [config]="noItemsConfig"></ml-no-items>
 	</section>
 </section>
 
 <ng-template #taskList let-task="task">
-	<section class="task-list__info form-container flex-column--centered flex-stretch">
+	<section class="task-list__info ml-form-container ml-flex-column--centered flex-stretch">
 		<p class="task-details__wrapper multi-line">
 			<ml-recurrence-indicator [recurrences]="task.recurrence"></ml-recurrence-indicator>
 			<ml-status-indicator [status]="task.status"></ml-status-indicator>

@@ -6,11 +6,11 @@
 	margin: 0;
 }
 
-.heading:not(:first-of-type) {
+.ml-heading:not(:first-of-type) {
   	margin-left: 8px;
 }
 
-.heading:not(:last-of-type) {
+.ml-heading:not(:last-of-type) {
  	margin-right: 8px;
 }
 

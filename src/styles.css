@@ -95,7 +95,7 @@ button.cancel:hover {
 /**
 * Form-relevant styles.
 */
-.form-container {
+.ml-form-container {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -113,7 +113,7 @@ button.cancel:hover {
   margin-right: 10px;
 }
 
-.form-instructions {
+.ml-form-instructions {
   margin-bottom: 12px;
 }
 
@@ -214,14 +214,14 @@ input + .input-error,
   margin-top: 0;
 }
 
-.event-form {
+.ml-event-form {
   display: flex;
   flex-direction: column;
   margin: 10px 0;
   width: 100%;
 }
 
-.event-form--optional {
+.ml-event-form--optional {
   margin: 8px 0;
 }
 
@@ -238,7 +238,7 @@ input + .input-error,
   width: 100%;
 }
 
-.flex-column--centered {
+.ml-flex-column--centered {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -382,7 +382,7 @@ button:disabled .arrow-btn {
 /**
 * Modifiers
 */
-.ml-truncate {
+.ml--truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

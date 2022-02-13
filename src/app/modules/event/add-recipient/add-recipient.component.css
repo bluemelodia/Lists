@@ -2,7 +2,7 @@
 * Lower the margins so there's more room for the calendar.
 */
 @media only screen and (max-width: 500px) {
-	.event-form {
-		margin: 0;
-	}
+  .ml-event-form {
+    margin: 0;
+  }
 }

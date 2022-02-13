@@ -1,17 +1,17 @@
-.search-container {
-	align-items: center;
-	display: flex;
-	position: relative;
+.ml-search {
+  align-items: center;
+  display: flex;
+  position: relative;
 }
 
-.search-input {
-	border-radius: 16px;
-	margin: 8px;
-	min-height: 35px;
+.ml-search__input {
+  border-radius: 16px;
+  margin: 8px;
+  min-height: 35px;
 }
 
-.clear-search,
-.search-indicator {
-	position: absolute;
-	right: 16px;
+.ml-search__close,
+.ml-search__indicator {
+  position: absolute;
+  right: 16px;
 }

@@ -1,11 +1,11 @@
-<section class="form-container">
-    <form class="event-form"
+<section class="ml-form-container">
+    <form class="ml-event-form"
         [formGroup]="meetingForm"
         (ngSubmit)="onSubmit()">
 		<ml-heading text="Meeting Details"
 			[level]="headerLevel.H2">
 		</ml-heading>
-        <span class="form-instructions">Provide details about the meeting.</span>
+        <span class="ml-form-instructions">Provide details about the meeting.</span>
 		<fieldset class="event-details">
             <input formControlName="name"
                 placeholder="Event Name"
@@ -44,7 +44,7 @@
 			<ml-heading text="Start Date"
 				[level]="headerLevel.H3">
             </ml-heading>
-			<span class="form-instructions"
+			<span class="ml-form-instructions"
 				for="event-description">Choose start date and time.</span>
 			<ml-datepicker mlFocus 
 				class="datepicker-container"
@@ -83,7 +83,7 @@
 			<ml-heading text="End Date"
 				[level]="headerLevel.H3">
             </ml-heading>
-			<span class="form-instructions"
+			<span class="ml-form-instructions"
 				for="event-description">
 				Choose end date and time.
 			</span>

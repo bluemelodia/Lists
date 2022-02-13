@@ -3,8 +3,7 @@ ml-decorator {
   position: absolute;
 }
 
-input,
-textarea {
+input {
   background-color: transparent;
   border: none;
   display: inline-block;
@@ -18,32 +17,32 @@ textarea {
 
 :focus,
 :focus-visible,
-input:focus-visible {
+.ml-phone-select__input:focus-visible {
   border: none;
   outline-color: none;
 }
 
-.narrow {
+.ml-phone-select__input--narrow {
   margin-left: 30px;
   max-width: 15%;
 }
 
 @media only screen and (max-width: 500px) {
-  fieldset.condensed {
+  .ml-phone-select__input.condensed {
     flex-direction: row;
   }
 
-  fieldset.condensed input {
+  .ml-phone-select__input.condensed input {
     margin-bottom: 0;
   }
 
-  .narrow {
+  .ml-phone-select__input--narrow {
     max-width: 25%;
   }
 }
 
 @media only screen and (max-width: 300px) {
-  .narrow {
+  .ml-phone-select__input--narrow {
     max-width: 35%;
   }
 }

@@ -1,5 +1,5 @@
 <form #picker 
-	class="input-container focus-origin"
+	class="ml-datepicker focus-origin"
 	[formGroup]="form">
 	<ng-container *ngIf="calendar$ | async as cal">
         <input readonly 
@@ -16,7 +16,7 @@
 			</p>
         </div> 
 		<section *ngIf="cal.showCal"
-			class="cal-container">
+			class="ml-cal-container">
 			<ml-loader *ngIf="cal.isLoading"></ml-loader>
 			<ml-calendar #calendar mlFocus
 				*ngIf="!cal.isLoading && cal.calendar"

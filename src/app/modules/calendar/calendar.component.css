@@ -37,7 +37,7 @@
   margin-bottom: 8px;
 }
 
-.ml-calendar__days span {
+.ml-calendar__days .ml-calendar__day {
   color: rgba(0, 0, 0, 0.38);
   font-size: 12px;
   margin-bottom: 5px;
@@ -52,10 +52,10 @@
   justify-content: space-between;
 }
 
-.ml-calendar__nav button {
+.ml-calendar__nav .ml-calendar__nav-btn {
   color: #dd2e44;
 }
 
-.ml-calendar__nav button[disabled] {
+.ml-calendar__nav .ml-calendar__nav-btn[disabled] {
   color: #9e9e9e;
 }

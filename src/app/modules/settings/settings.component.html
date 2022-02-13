@@ -1,4 +1,4 @@
-<section class="form-container">
+<section class="ml-form-container">
     <ml-heading text="User Settings"
 		[level]="headerLevel.H1" >
 	</ml-heading>
@@ -7,9 +7,9 @@
         <fieldset class="notification-channels">
             <ml-heading text="Channels"
 				[level]="headerLevel.H3">
-                <span post class="event-form--optional">Optional</span>
+                <span post class="ml-event-form--optional">Optional</span>
             </ml-heading>
-            <span class="form-instructions">Select the channels where you would like to receive upcoming reminders.</span>
+            <span class="ml-form-instructions">Select the channels where you would like to receive upcoming reminders.</span>
             <ml-checkbox
                 name="Email"
                 [checkboxName]="channel.email"
@@ -48,9 +48,9 @@
 		<fieldset class="notification-options">
             <ml-heading text="Reminders"
 				[level]="headerLevel.H3">
-                <span post class="event-form--optional">Optional</span>
+                <span post class="ml-event-form--optional">Optional</span>
             </ml-heading>
-            <span class="form-instructions">Select the events and tasks you would like to receive reminders for.</span>
+            <span class="ml-form-instructions">Select the events and tasks you would like to receive reminders for.</span>
 			<ml-checkbox
                 [name]="topic.Birthdays"
                 [checkboxName]="topic.Birthdays"

@@ -13,12 +13,12 @@
 </section>
 
 <section *ngIf="list && list.length === 0"
-	class="no-results flex-column--centered">
+	class="no-results ml-flex-column--centered">
     <ml-no-items [config]="noItemsConfig"></ml-no-items>
 </section>
 
 <ng-template #meetingList let-meeting="meeting">
-	<section class="task-list__info form-container flex-column--centered flex-stretch">
+	<section class="task-list__info ml-form-container ml-flex-column--centered flex-stretch">
 		<span class="task-list__badges">
 			<ml-meeting-indicator [isVirtual]="meeting.virtual"></ml-meeting-indicator>
 			<ml-date-indicator *ngIf="meeting.status"

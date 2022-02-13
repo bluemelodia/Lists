@@ -5,12 +5,12 @@
     justify-content: center;
 }
 
-.error-icon {
+.ml-no-results__indicator {
     color: #DD2E44;
     font-size: 2rem;
     margin: 8px;
 }
 
-.error-message {
+.ml-no-results__message {
 	text-align: center;
 }

@@ -1,11 +1,11 @@
-<section class="form-container">
-    <form class="event-form"
+<section class="ml-form-container">
+    <form class="ml-event-form"
         [formGroup]="registerForm"
         (ngSubmit)="onSubmit()">
 		<ml-heading text="Sign Up"
 			[level]="headerLevel.H1">
 		</ml-heading>
-		<span class="form-instructions">Enter your email address and create a password.</span>
+		<span class="ml-form-instructions">Enter your email address and create a password.</span>
 		<fieldset class="username">
             <input formControlName="username"
                 placeholder="Email"
@@ -58,5 +58,5 @@
             </button>
         </fieldset>
     </form>
-	<span class="form-instructions">Already have an account? <a class="quick-link" routerLink="/login">Sign in!</a></span>
+	<span class="ml-form-instructions">Already have an account? <a class="quick-link" routerLink="/login">Sign in!</a></span>
 </section>

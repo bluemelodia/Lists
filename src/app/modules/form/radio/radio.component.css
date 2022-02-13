@@ -1,50 +1,50 @@
-/* The container */
-.container {
-	cursor: pointer;
-	display: block;
-	margin: 0;
-	margin-bottom: 2px;
-	padding: 2px;
-	padding-left: 35px;
-	position: relative;
-	user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-webkit-user-select: none;
+/* The ml-radio */
+.ml-radio {
+  cursor: pointer;
+  display: block;
+  margin: 0;
+  margin-bottom: 2px;
+  padding: 2px;
+  padding-left: 35px;
+  position: relative;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Hide the browser's default radio button */
-.container input {
-	cursor: pointer;
-	position: absolute;
-	opacity: 0;
+.ml-radio input {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
 }
 
 /* Create a custom radio button */
-.checkmark {
-	background-color: #eee;
-	border: 2px solid #845f00;
-	border-radius: 50%;
-	left: 0;
-	height: 15px;
-	position: absolute;
-	top: 6.5px;
-	width: 15px;
+.ml-radio__checkmark {
+  background-color: #eee;
+  border: 2px solid #845f00;
+  border-radius: 50%;
+  left: 0;
+  height: 15px;
+  position: absolute;
+  top: 6.5px;
+  width: 15px;
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  	background-color: #bfa5a6;
+.ml-radio:hover input ~ .ml-radio__checkmark {
+  background-color: #bfa5a6;
 }
 
 /* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  	background-color: #845f00;
-  	border: 2px solid #845f00;
+.ml-radio input:checked ~ .ml-radio__checkmark {
+  background-color: #845f00;
+  border: 2px solid #845f00;
 }
 
 @media only screen and (max-width: 580px) {
-	.checkmark {
-		top: 4.5px;
-	}
+  .ml-radio__checkmark {
+    top: 4.5px;
+  }
 }

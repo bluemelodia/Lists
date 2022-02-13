@@ -1,11 +1,11 @@
-<section class="form-container">
-    <form class="event-form"
+<section class="ml-form-container">
+    <form class="ml-event-form"
         [formGroup]="taskForm"
         (ngSubmit)="onSubmit()">
 		<ml-heading text="Task Details"
 			[level]="headerLevel.H2">
 		</ml-heading>
-        <span class="form-instructions">Provide details about the task.</span>
+        <span class="ml-form-instructions">Provide details about the task.</span>
 		<fieldset class="task-details">
             <input formControlName="name"
                 placeholder="Task"
@@ -34,7 +34,7 @@
 			<ml-heading text="Task Status"
 				[level]="headerLevel.H3">
             </ml-heading>
-			<span class="form-instructions"
+			<span class="ml-form-instructions"
 				for="event-description">Select the current status of the task.</span>
 			<ml-status-select mlFocus
 				[form]="taskForm.controls.status"
@@ -44,9 +44,9 @@
 		<fieldset class="due-date">
 			<ml-heading text="Due Date"
 				[level]="headerLevel.H3">
-				<span class="event-form--optional" post>Optional</span>
+				<span class="ml-event-form--optional" post>Optional</span>
             </ml-heading>
-			<span class="form-instructions"
+			<span class="ml-form-instructions"
 				for="event-description">Choose due date and time.</span>
 			<ml-datepicker mlFocus 
 				class="datepicker-container"

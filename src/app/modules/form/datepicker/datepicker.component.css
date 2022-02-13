@@ -1,31 +1,31 @@
-.input-container {
-	display: flex;
-	flex-direction: column;
-	position: relative;
+.ml-datepicker {
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 input.picker-open {
-  	border-bottom: 0;
+  border-bottom: 0;
 }
 
-.cal-container {
-	background: white;
-	border: 2px solid pink;
-	border-top: none;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	min-height: 380px;
-	overflow: auto;
-	padding: 12px;
-	position: absolute;
-	top: 37px;
-	width: 100%;
-	z-index: 500;
+.ml-cal-container {
+  background: white;
+  border: 2px solid pink;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 380px;
+  overflow: auto;
+  padding: 12px;
+  position: absolute;
+  top: 37px;
+  width: 100%;
+  z-index: 500;
 }
 
 @media only screen and (max-width: 500px) {
-	.cal-container {
-		padding: 8px;
-	}
+  .ml-cal-container {
+    padding: 8px;
+  }
 }
