@@ -81,12 +81,23 @@
 	<section class="widget-container form-container flex-centered__column flex-stretch">
 		<ul class="widget-list">
 			<li *ngFor="let meeting of meetings"
-				class="widget-list__item">
+				class="widget-list__item widget-list_multi-line">
 				<app-heading [level]="headerLevel.H3"
 					[text]="meeting.name">
 				</app-heading>
-				<p class="widget-details">
-					<span class="task-details__description">{{ meeting | meetingFormatter: true: 'shorthand' }}</span>
+				<p class="widget-details widget__meeting-dates multi-line">
+					<span class="widget__meeting-date">
+						<app-decorator ariaLabel="Start"
+							[icon]="icon.Start">
+						</app-decorator>
+						{{ meeting | meetingFormatter: true: 'shorthand' }}
+					</span>
+					<span class="widget__meeting-date">
+						<app-decorator ariaLabel="End"
+							[icon]="icon.End">
+						</app-decorator>	
+						{{ meeting | meetingFormatter: false: 'shorthand' }}	
+					</span>
 				</p>
 			</li>
 		</ul>

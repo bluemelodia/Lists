@@ -38,9 +38,10 @@ How to make image upload easy with Angular
 - Encrypt usernames/passwords? Expire the session after 15 minutes.
 - Confirm that user sessions are lasting the expect amount of time.
 - Make it easier to find the phone area code.
-- Sort tasks by due date. Only show the upcoming ones (not all - limit to 10), filter out past ones.
+- Sort tasks by due date. Only show the upcoming ones (not all - limit to 10), filter out past ones. (Nah, let's show overdue and mark it as such until it's completed).
 - Make loading of home page (empty containers) less clunky.
-- Everyone who uses fas fa-times should switch to app-action.
+- Title bar sometimes disappears after user logs back in.
+- Fix CSS to use BEM.
 
 ## Navigation
 

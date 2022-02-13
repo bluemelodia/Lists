@@ -61,20 +61,52 @@
   	width: 100%;
 }
 
-@media only screen and (max-width: 850px) {
-  .widget__birthday-status {
-    align-items: flex-start;
-    width: 100%;
-  }
+.widget__meeting-date {
+	align-items: center;
+	display: flex;
+}
 
-  .widget-list__item {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+@media only screen and (max-width: 850px) {
+	.widget__birthday-status {
+		align-items: flex-start;
+		width: 100%;
+	}
+
+	.widget-list__item {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+  	.widget__meeting-dates {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.widget__meeting-date {
+		width: 100%;
+	}
 }
 
 @media only screen and (min-width: 600px) {
-  :host {
-    overflow: hidden;
-  }
+	:host {
+		overflow: hidden;
+	}
+}
+
+@media only screen and (max-width: 600px) { 
+	/** 
+	* Otherwise the meeting start/end 
+	* dates will each take its own row,
+	* and the cell will look sparse.
+	*/
+	.widget__meeting-dates {
+		flex-direction: row;
+	}
+}
+
+@media only screen and (max-width: 450px) { 
+	.widget__meeting-dates {
+		flex-direction: column;
+	}
 }
