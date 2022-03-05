@@ -39,6 +39,7 @@ How to make image upload easy with Angular
 - Make loading of home page (empty containers) less clunky.
 - Title bar sometimes disappears after user logs back in.
 - Give users session timeout warnings. 
+- Fix this issue on home: ERROR TypeError: object null is not iterable (cannot read property Symbol(Symbol.iterator))
 
 ## Navigation
 
