@@ -82,12 +82,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 			)
 			.subscribe(([birthdays, meetings, tasks]) => {
 				console.info("[Home] Received lists: ", birthdays, meetings, tasks);
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-				this._solar$.next(RecipientUtils.getSummary(birthdays?.solar));
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-				this._lunar$.next(RecipientUtils.getSummary(birthdays?.lunar));
-				this._meetings$.next(meetings);
-				this._tasks$.next(TaskUtils.getSummary(tasks));
+				if (birthdays) {
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+					this._solar$.next(RecipientUtils.getSummary(birthdays?.solar));
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+					this._lunar$.next(RecipientUtils.getSummary(birthdays?.lunar));
+				}
+
+				if (meetings) {
+					this._meetings$.next(meetings);
+				}
+
+				if (tasks) {
+					this._tasks$.next(TaskUtils.getSummary(tasks));
+				}
 			});
 	}
 

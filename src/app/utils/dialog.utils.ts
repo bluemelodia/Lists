@@ -1,5 +1,5 @@
 import { DialogMessage } from "../constants/messages.constants";
-import { ConfirmDialogAction, Dialog, DialogAction, DialogPage } from "../interfaces/dialog.interface";
+import { ConfirmDialogAction, Dialog, DialogAction, DialogPage, SessionDialogAction } from "../interfaces/dialog.interface";
 import { ResponseStatus } from "../interfaces/response.interface";
 
 export class DialogUtils {
@@ -12,12 +12,26 @@ export class DialogUtils {
 		}
 	}
 
+	public static titleForSessionDialog(action: SessionDialogAction): string {
+		switch (action) {
+			case SessionDialogAction.Timeout:
+				return "Logout";
+		}
+	}
+
 	public static messageforStatusDialog(status: ResponseStatus, action: DialogAction, page: DialogPage): string {
 		switch (status) {
 			case ResponseStatus.SUCCESS:
 				return DialogUtils.successStatusMessage(action, page);
 			case ResponseStatus.ERROR:
 				return DialogUtils.errorStatusMessage(action, page);
+		}
+	}
+
+	public static messageForSessionDialog(action: SessionDialogAction): string {
+		switch (action) {
+			case SessionDialogAction.Timeout:
+				return DialogMessage.SESSION_TIMEOUT;
 		}
 	}
 

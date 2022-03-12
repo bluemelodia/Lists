@@ -1,7 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
-import { ConfirmDialogAction, Dialog, DialogAction, DialogConfig, DialogPage, DialogType } from "../interfaces/dialog.interface";
+import { 
+	ConfirmDialogAction,
+	Dialog,
+	DialogAction,
+	DialogConfig,
+	DialogPage,
+	DialogType,
+	SessionDialogAction,
+} from "../interfaces/dialog.interface";
 import { ResponseStatus } from "../interfaces/response.interface";
 import { DialogUtils } from "../utils/dialog.utils";
 
@@ -11,6 +19,7 @@ import { DialogUtils } from "../utils/dialog.utils";
 export class DialogService {
 	private show$ = new Subject<DialogConfig>();
 	private onConfirmAction$ = new Subject<ConfirmDialogAction>();
+	private onSessionAction$ = new Subject<SessionDialogAction>();
 
 	get showDialog$(): Observable<DialogConfig> {
 		return this.show$.asObservable();
@@ -48,6 +57,14 @@ export class DialogService {
 			dialogType: DialogType.Error
 		});
 	}
+
+	showSessionDialog(action: SessionDialogAction): void {
+		this.show$.next({
+			title: DialogUtils.titleForSessionDialog(action),
+			message: DialogUtils.messageForSessionDialog(action),
+			dialogType: DialogType.Confirm
+		});
+	}	
 
 	hideDialog(): void {
 		this.show$.next(null);

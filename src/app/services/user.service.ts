@@ -73,6 +73,10 @@ export class UserService {
 		sessionStorage.removeItem(this.userKey);
 	}
 
+	public sessionTimeout(): void {
+		
+	}
+
 	public logout(): void {
 		this.clearUser();		
 

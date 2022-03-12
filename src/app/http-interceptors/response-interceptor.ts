@@ -18,7 +18,6 @@ import { ResponseStatus } from '../interfaces/response.interface';
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
 	constructor(
-		private router: Router,
 		private userService: UserService,
 	) {}
 
@@ -34,7 +33,7 @@ export class ResponseInterceptor implements HttpInterceptor {
 					 */
 					if (error.status === 401) {
 						console.log("[Response Interceptor] Invalid session, logout.");
-						this.userService.logout();
+						this.userService.sessionTimeout();
 
 						return throwError(ResponseStatus.LOGOUT);
 					}

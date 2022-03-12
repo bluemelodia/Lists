@@ -23,6 +23,10 @@ export enum ConfirmDialogAction {
 	Delete
 }
 
+export enum SessionDialogAction {
+	Timeout,
+}
+
 export enum Dialog {
 	CancelEdit,
 	LoadSettings,
