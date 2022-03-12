@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	HostBinding,
+	OnDestroy,
+	OnInit,
+} from "@angular/core";
 import { forkJoin, of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
@@ -23,6 +29,8 @@ import { TaskUtils } from "../../utils/task.utils";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
+	@HostBinding("class.loading") public isLoading = false;
+
 	public type = ListType;
 
 	private _solar$ = new Subject<AddRecipient[]>();
@@ -51,7 +59,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	public getData(): void {
-		this.loadingService.startLoading();
+		this.toggleLoading(true);
 
 		forkJoin([
 			this.recipientService.getRecipients(),
@@ -67,7 +75,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 					return of(null);
 				}),
 				finalize(() => {
-					this.loadingService.stopLoading();
+					this.toggleLoading(false);
 				}),
 				take(1),
 				takeUntil(this.ngUnsubscribe$)
@@ -81,6 +89,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 				this._meetings$.next(meetings);
 				this._tasks$.next(TaskUtils.getSummary(tasks));
 			});
+	}
+
+	private toggleLoading(isLoading: boolean): void {
+		this.isLoading = isLoading;
+
+		if (isLoading) {
+			this.loadingService.startLoading();
+		} else {
+			this.loadingService.stopLoading();
+		}
 	}
 
 	public ngOnDestroy(): void {

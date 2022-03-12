@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+:host.loading {
+	display: none;
+}
+
 .ml-home {
   display: grid;
   grid-column-gap: 8px;
