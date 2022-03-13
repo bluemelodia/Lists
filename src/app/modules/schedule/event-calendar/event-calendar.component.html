@@ -1,0 +1,10 @@
+<ng-container *ngIf="calendar$ | async as cal">
+	<ml-calendar #calendar mlFocus
+		*ngIf="!cal.isLoading && cal.calendar"
+		[calendar]="cal.calendar" 
+		[id]="calendarId"
+		[topic]="topic"
+		[type]="calendarType"
+		(dateSelected)="selectDate($event)">
+	</ml-calendar>
+</ng-container>
