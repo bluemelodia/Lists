@@ -1,15 +1,27 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { UUID } from 'angular2-uuid';
-import { of, ReplaySubject } from 'rxjs';
-import { catchError, map, takeUntil } from 'rxjs/operators';
+import { forkJoin, of, ReplaySubject } from 'rxjs';
+import { catchError, finalize, map, take, takeUntil } from 'rxjs/operators';
 
 import { Topic } from '../../../constants/topics.constants';
 
+import { AddMeeting, AddRecipient } from '../../../interfaces/service/service-objects.interface';
 import { CalendarType } from '../../../interfaces/calendar/calendar.interface';
-import { Calendar } from '../../../interfaces/calendar/calendar-response.interface';
+import { Calendar, CalendarDay, CalendarMonth, CalendarWeek } from '../../../interfaces/calendar/calendar-response.interface';
 import { noCalMessage } from '../../../interfaces/message.interface';
+import { RecipientList } from '../../../interfaces/event/recipient.interface';
+import { ResponseStatus } from '../../../interfaces/response.interface';
+import { Task } from '../../../interfaces/event/task.interface';
 
 import { CalendarService } from '../../../services/calendar.service';
+import { LoadingService } from '../../../services/loading.service';
+import { MeetingService } from '../../../services/meeting.service';
+import { RecipientService } from '../../../services/recipient.service';
+import { TaskService } from '../../../services/task.service';
+
+import { RecipientUtils } from '../../../utils/recipient.utils';
+import { TaskUtils } from '../../../utils/task.utils';
+import { DataType } from 'ajv/dist/compile/validate/dataType';
 
 interface CalendarData {
 	calendar: Calendar;
@@ -44,6 +56,10 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private readonly calendar: CalendarService,
+		private loadingService: LoadingService,
+		private meetingService: MeetingService,
+		private recipientService: RecipientService,
+		private tasksService: TaskService,
 	) { }
 
 	public ngOnInit(): void {
@@ -72,6 +88,9 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 						calendar: this.cal,
 					};
 					this.calendarData$.next(this.calendarData);
+
+					this.getData();
+
 					return of(null);
 				}),
 				catchError(() => {
@@ -81,6 +100,68 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 			)
 			.subscribe();
 	}
+
+	public getData(): void {
+		this.toggleLoading(true);
+
+		forkJoin([
+			this.recipientService.getRecipients(),
+			this.meetingService.getMeetings(),
+			this.tasksService.getTasks()
+		])
+			.pipe(
+				catchError((error: ResponseStatus) => {
+					if (error === ResponseStatus.ERROR) {
+						// TODO: don't show dialog here, instead show error message
+					}
+					this.loadingService.stopLoading();
+					return of(null);
+				}),
+				finalize(() => {
+					this.toggleLoading(false);
+				}),
+				take(1),
+				takeUntil(this.destroyed$)
+			)
+			.subscribe(([birthdays, meetings, tasks]) => {
+				this.createSchedule(birthdays, meetings, tasks);
+			});
+	}
+
+	private createSchedule(birthdays: RecipientList, meetings: AddMeeting[], tasks: Task[]): void {
+		const calendar = this.calendarData.calendar.months;
+
+		const solar = RecipientUtils.getSummary(birthdays?.solar);
+		solar.forEach((birthday: AddRecipient) => {
+			const month = calendar[this.calendar.getCalendarMonth(birthday.date)];
+			month.weeks.forEach((week: CalendarWeek) => {
+				week.days.forEach((day: CalendarDay) => {
+					if (birthday.date.value === day.value) {
+						if (!day.schedule) {
+							day.schedule = {
+								solar: [],
+								lunar: [],
+								meetings: [],
+								tasks: []
+							};
+						}
+						day.schedule.solar.push(birthday);
+					}
+				});
+			});
+		});
+		console.log("===> solar: ", calendar);
+
+		const lunar = RecipientUtils.getSummary(birthdays?.lunar);
+
+		const meetingsList = meetings;
+		const tasksList = TaskUtils.getSummary(tasks);
+
+		console.log("Calendar: ", this.calendarData);
+		console.log("Solar: ", solar, lunar, meetingsList, tasksList);
+	}
+
+
 
 	private toggleLoading(isLoading: boolean): void {
 		this.calendarData.isLoading = isLoading;

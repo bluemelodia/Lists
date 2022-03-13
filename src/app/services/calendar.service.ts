@@ -4,7 +4,7 @@ import { forkJoin, Observable, of, ReplaySubject, } from "rxjs";
 
 import { Endpoint } from "../constants/urls.constants";
 import { CalendarType } from "../interfaces/calendar/calendar.interface";
-import { CalendarYear, Calendar, CalendarMonth } from "../interfaces/calendar/calendar-response.interface";
+import { CalendarYear, Calendar, CalendarMonth, CalendarDay } from "../interfaces/calendar/calendar-response.interface";
 import { Response } from "../interfaces/response.interface";
 import { CalendarUtils } from "../utils/calendar.utils";
 
@@ -45,7 +45,7 @@ export class CalendarService {
 	/**
 	 * We want a two-year calendar, so wait until both requests complete.
 	 */
-	getCalendar(type: CalendarType): void {		
+	public getCalendar(type: CalendarType): void {		
 		forkJoin({
 			[this.currentYear]: this.getChineseCalendarForYear(this.currentYear),
 			[this.currentYear + 1]: this.getChineseCalendarForYear(this.currentYear + 1)
@@ -91,6 +91,14 @@ export class CalendarService {
 				this.calendar$.next(null);
 				return of(null);
 			});
+	}
+
+	public getCalendarMonth(day: CalendarDay): number {
+		if (this.year == day.year) {
+			return day.month - 1;
+		} else {
+			return 12 + day.month - 1;
+		}
 	}
 
 	private getChineseCalendarForYear(year: number): Observable<Response> {

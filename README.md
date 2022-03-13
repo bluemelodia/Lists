@@ -31,11 +31,13 @@ How to make image upload easy with Angular
 - Test in all browsers.
 - Users should be reminded of tasks (both recurring and one-time with due date).
 - Encrypt usernames/passwords? Expire the session after 15 minutes.
-- Confirm that user sessions are lasting the expect amount of time.
+- Confirm that user sessions are lasting the expected amount of time.
 - Sort tasks by due date. Only show the upcoming ones (not all - limit to 10), filter out past ones. (Nah, let's show overdue and mark it as such until it's completed).
+  - Only the ones with due dates should be shown on the dashboard...
 - Title bar sometimes disappears after user logs back in.
-- Give users session timeout warnings. 
 - Fix this issue on home: ERROR TypeError: object null is not iterable (cannot read property Symbol(Symbol.iterator))
+- Show user session warnings? The countdown would have to be on the client side from the time of login.
+- When the user clicks on the calendar date, show the list of events (if they exist).
 
 ## Navigation
 

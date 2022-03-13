@@ -1,4 +1,6 @@
 import { CalendarType } from "./calendar.interface";
+import { Task } from "../event/task.interface";
+import { AddMeeting, AddRecipient } from "../service/service-objects.interface";
 
 export enum CalendarKey {
 	Year = "ccal:year",
@@ -42,4 +44,12 @@ export interface CalendarDay {
 	cmonthname?: string,
 	month: number,
 	year: number,
+	schedule?: CalendarSchedule,
+}
+
+export interface CalendarSchedule {
+	lunar?: AddRecipient[],
+	meetings?: AddMeeting[],
+	solar?: AddRecipient[],
+	tasks?: Task[],
 }
