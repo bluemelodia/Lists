@@ -4,6 +4,10 @@
   flex: 1;
 }
 
+:host.fullscreen {
+	height: 100%;
+}
+
 .ml-calendar__container {
   display: flex;
   flex: 1;

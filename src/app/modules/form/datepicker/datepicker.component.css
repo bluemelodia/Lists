@@ -19,7 +19,7 @@ input.picker-open {
   overflow: auto;
   padding: 12px;
   position: absolute;
-  top: 37px;
+  top: 44px;
   width: 100%;
   z-index: 500;
 }

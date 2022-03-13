@@ -23,7 +23,7 @@ interface CalendarData {
 	styleUrls: ['./event-calendar.component.css']
 })
 export class EventCalendarComponent implements OnInit, OnDestroy {
-	@Input() calendarType: CalendarType = CalendarType.Lunar;
+	@Input() calendarType: CalendarType = CalendarType.Schedule;
 	@Input() topic: Topic;
 
 	public noCalMessage = noCalMessage;
