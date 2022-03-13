@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Output } from "@angular/core";
 
 import { Topic } from "../../constants/topics.constants";
 
@@ -14,7 +14,14 @@ import { CalendarService } from "../../services/calendar.service";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarComponent {
-	@Input() type: CalendarType;
+	@HostBinding("class.fullscreen") public fullScreen = false;
+
+	@Input() set type(type: CalendarType) {
+		this.fullScreen = type === CalendarType.Schedule;
+		this.calendarType = type;
+	}
+	public calendarType: CalendarType;
+
 	@Input() topic: Topic;
 	@Input() set selectedDay(selected: CalendarDay) {
 		/* If user selected a date, open the calendar to the selected month. */

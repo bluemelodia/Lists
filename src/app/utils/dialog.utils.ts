@@ -1,5 +1,5 @@
 import { DialogMessage } from "../constants/messages.constants";
-import { ConfirmDialogAction, Dialog, DialogAction, DialogPage, SessionDialogAction } from "../interfaces/dialog.interface";
+import { ConfirmDialogAction, Dialog, DialogAction, DialogPage } from "../interfaces/dialog.interface";
 import { ResponseStatus } from "../interfaces/response.interface";
 
 export class DialogUtils {
@@ -12,11 +12,17 @@ export class DialogUtils {
 		}
 	}
 
-	public static titleForSessionDialog(action: SessionDialogAction): string {
+	public static titleForConfirmDialog(action: ConfirmDialogAction): string {
+		let message: string;
 		switch (action) {
-			case SessionDialogAction.Timeout:
-				return "Logout";
+			case ConfirmDialogAction.Logout:
+				message = "Logout";
+				break;
+			default:
+				message = "Confirm";
+				break;
 		}
+		return message;
 	}
 
 	public static messageforStatusDialog(status: ResponseStatus, action: DialogAction, page: DialogPage): string {
@@ -25,13 +31,6 @@ export class DialogUtils {
 				return DialogUtils.successStatusMessage(action, page);
 			case ResponseStatus.ERROR:
 				return DialogUtils.errorStatusMessage(action, page);
-		}
-	}
-
-	public static messageForSessionDialog(action: SessionDialogAction): string {
-		switch (action) {
-			case SessionDialogAction.Timeout:
-				return DialogMessage.SESSION_TIMEOUT;
 		}
 	}
 
@@ -97,6 +96,9 @@ export class DialogUtils {
 				if (page === DialogPage.Recipient) {
 					message += `This will also delete this ${page}'s gifts.`;
 				}
+				break;
+			case ConfirmDialogAction.Logout:
+				message = DialogMessage.SESSION_TIMEOUT;
 				break;
 			default:
 				break;

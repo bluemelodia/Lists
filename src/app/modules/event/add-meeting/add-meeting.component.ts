@@ -78,7 +78,7 @@ export class AddMeetingComponent implements OnInit, OnDestroy {
 		private router: Router,
 	) { }
 
-	ngOnInit(): void {
+	public ngOnInit(): void {
 		/* Set the controls for the form. */
 		this.meetingForm = this.fb.group({
 			name: [
@@ -214,19 +214,19 @@ export class AddMeetingComponent implements OnInit, OnDestroy {
 		return this.meetingForm.get("options.virtual")?.value as boolean;
 	}
 
-	onStartTimeChanged($event): void {
+	public onStartTimeChanged($event): void {
 		this.meetingForm.patchValue({
 			startTime: $event,
 		});
 	}
 
-	onEndTimeChanged($event): void {
+	public onEndTimeChanged($event): void {
 		this.meetingForm.patchValue({
 			endTime: $event,
 		});
 	}
 
-	onSubmit(): void {
+	public onSubmit(): void {
 		this.submitted = true;
 
 		if (this.meetingForm.valid) {
@@ -266,7 +266,7 @@ export class AddMeetingComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	onCancel(): void {
+	public onCancel(): void {
 		this.dialogService.showConfirmDialog(ConfirmDialogAction.Cancel, DialogPage.Meeting)
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
@@ -282,7 +282,7 @@ export class AddMeetingComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	subscribeToDialogClose(): void {
+	private subscribeToDialogClose(): void {
 		this.dialogService.onConfirmDialogAction$
 			.pipe(
 				filter((action: ConfirmDialogAction) => action === ConfirmDialogAction.Close),
@@ -297,7 +297,7 @@ export class AddMeetingComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	ngOnDestroy(): void {
+	public ngOnDestroy(): void {
 		this.ngUnsubscribe$.next();
 		this.ngUnsubscribe$.complete();
 	}

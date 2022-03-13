@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 	constructor(private navService: NavService) { }
 
-	ngOnInit(): void {
+	public ngOnInit(): void {
 		this.navService.onMenuTitleChange$
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	ngOnDestroy(): void {
+	public ngOnDestroy(): void {
 		this.ngUnsubscribe$.next();
 		this.ngUnsubscribe$.complete();
 	}

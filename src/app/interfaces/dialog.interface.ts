@@ -2,6 +2,7 @@ export enum DialogType {
 	Confirm,
 	Error,
 	Info,
+	Session,
 }
 
 export enum DialogAction {
@@ -20,11 +21,8 @@ export enum ConfirmDialogAction {
 	Cancel,
 	Close,
 	Continue,
-	Delete
-}
-
-export enum SessionDialogAction {
-	Timeout,
+	Delete,
+	Logout,
 }
 
 export enum Dialog {
@@ -36,6 +34,7 @@ export enum Dialog {
 
 export enum DialogPage {
 	Login = 'login',
+	Logout = 'logout',
 	Meeting = 'meeting',
 	Gift = 'gift',
 	Recipient = 'recipient',

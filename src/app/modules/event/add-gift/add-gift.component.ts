@@ -2,6 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	HostBinding,
+	OnDestroy,
 	OnInit,
 } from '@angular/core';
 import {
@@ -51,7 +52,7 @@ import { GiftUtils } from '../../../utils/gift.utils';
 	styleUrls: ['./add-gift.component.css'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddGiftComponent implements OnInit {
+export class AddGiftComponent implements OnInit, OnDestroy {
 	public giftForm: FormGroup;
 	public giftConfig = GiftUtils.createGiftFormConfig(GiftAction.Add);
 	public headerLevel = HeaderLevel;
@@ -90,7 +91,7 @@ export class AddGiftComponent implements OnInit {
 		private router: Router,
 	) { }
 
-	ngOnInit(): void {
+	public ngOnInit(): void {
 		/* Set the controls for the form. */
 		this.giftForm = this.fb.group({
 			recipients: this.fb.group({
@@ -255,7 +256,7 @@ export class AddGiftComponent implements OnInit {
 		return this.giftFormControl.price.value as number;
 	}
 
-	onSubmit(): void {
+	public onSubmit(): void {
 		this.submitted = true;
 
 		if (this.giftForm.valid) {
@@ -294,7 +295,7 @@ export class AddGiftComponent implements OnInit {
 		}
 	}
 
-	onCancel(): void {
+	public onCancel(): void {
 		this.dialogService.showConfirmDialog(ConfirmDialogAction.Cancel, DialogPage.Gift)
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
@@ -310,7 +311,7 @@ export class AddGiftComponent implements OnInit {
 			});
 	}
 
-	subscribeToDialogClose(): void {
+	private subscribeToDialogClose(): void {
 		this.dialogService.onConfirmDialogAction$
 			.pipe(
 				filter((action: ConfirmDialogAction) => action === ConfirmDialogAction.Close),
@@ -323,5 +324,10 @@ export class AddGiftComponent implements OnInit {
 				*/
 				this.navService.navigateToTopic(Topic.Gifts, { relativeTo: this.route });
 			});
+	}
+
+	public ngOnDestroy(): void {
+		this.ngUnsubscribe$.next();
+		this.ngUnsubscribe$.complete();
 	}
 }

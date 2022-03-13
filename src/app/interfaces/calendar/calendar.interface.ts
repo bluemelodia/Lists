@@ -1,6 +1,7 @@
 export enum CalendarType {
 	Lunar = "lunar",
-	Solar = "solar"
+	Solar = "solar",
+	Schedule = "schedule"
 }
 
 export enum Month {
