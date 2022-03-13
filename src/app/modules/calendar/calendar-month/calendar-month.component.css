@@ -1,58 +1,79 @@
 :host,
 .ml-calendar__month,
 .ml-calendar__week {
-	display: flex;
-	flex: 1;
+  display: flex;
+  flex: 1;
+}
+
+/**
+* Fullscreen view styles.
+*/
+:host.fullscreen .ml-calendar__day {
+  position: relative;
+}
+
+:host.fullscreen .ml-calendar__week {
+	border: 1px solid rgba(0, 0, 0, 0.38);
+}
+
+:host.fullscreen .ml-calendar__solar-date {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+}
+
+:host.fullscreen .ml-calendar__day:not(:last-child) {
+	border-right: 1px solid rgba(0, 0, 0, 0.38);
 }
 
 .ml-calendar__month {
-	flex-direction: column;
-	justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .ml-calendar__week {
-  	justify-content: space-between;
+  justify-content: space-between;
 }
 
 .ml-calendar__week .ml-calendar__day {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 3px;
-	text-align: center;
-	width: 15%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3px;
+  text-align: center;
+  width: 15%;
 }
 
 .ml-calendar__day:focus {
-  	outline: none;
+  outline: none;
 }
 
 .ml-calendar__day:not(.ml-calendar--disabled):focus,
 .ml-calendar--selected {
-  	border: 2px solid #dd2e44;
+  border: 2px solid #dd2e44;
 }
 
 .ml-calendar__day:not(.ml-calendar--disabled):hover,
 .ml-calendar--selected {
-  	background-color: pink;
+  background-color: pink;
 }
 
 .ml-calendar__day:not(.ml-calendar--disabled):active {
-  	background-color: #ffd8e5;
+  background-color: #ffd8e5;
 }
 
 .ml-calendar__solar-date {
-  	font-size: 14px;
+  font-size: 14px;
 }
 
 .ml-calendar__day.ml-calendar--disabled,
 .ml-calendar--disabled .ml-calendar__lunar-date {
-  	color: #9e9e9e;
+  color: #9e9e9e;
 }
 
 /* Override the standard color so the lunar dates stand out. */
 .ml-calendar__lunar-date {
-  	font-size: 9px;
-  	color: #e91e63;
+  font-size: 9px;
+  color: #e91e63;
 }

@@ -38,7 +38,7 @@
   display: flex;
   height: 25px;
   justify-content: center;
-  margin-bottom: 8px;
+  padding-bottom: 8px;
 }
 
 .ml-calendar__days .ml-calendar__day {

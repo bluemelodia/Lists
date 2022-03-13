@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, HostBinding, Input, Output } from "@angular/core";
 
 import { Topic } from "../../../constants/topics.constants";
 import { CalendarType, Month } from "../../../interfaces/calendar/calendar.interface";
@@ -10,21 +10,27 @@ import { CalendarDay } from "../../../interfaces/calendar/calendar-response.inte
 	styleUrls: ["./calendar-month.component.css"]
 })
 export class CalendarMonthComponent {
+	@HostBinding("class.fullscreen") public fullScreen = false;
+
 	@Input() month: Month;
-	@Input() type: CalendarType = CalendarType.Lunar;
+	@Input() set type(type: CalendarType) {
+		this.fullScreen = type === CalendarType.Schedule;
+		this.calType = type;
+	}
+	public calType = CalendarType.Lunar;
+	public calendarType = CalendarType;
+
 	@Input() selectedDate: CalendarDay;
 	@Input() topic: Topic;
 
 	@Output() dateSelect = new EventEmitter<CalendarDay>();
-
-	public calendarType = CalendarType;
 
 	isSelectableDate(day: CalendarDay): boolean {
 		return day.value > 0;
 	}
 
 	isSelectedDate(day: CalendarDay): boolean {
-		switch (this.type) {
+		switch (this.calType) {
 			case CalendarType.Solar:
 				if (this.topic === Topic.Birthdays) {
 					return this.selectedDate
