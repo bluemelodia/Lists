@@ -131,12 +131,14 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	private createSchedule(birthdays: RecipientList, meetings: AddMeeting[], tasks: Task[]): void {
 		const calendar = this.calendarData.calendar.months;
 
-		const solar = RecipientUtils.getSummary(birthdays?.solar);
-		solar.forEach((birthday: AddRecipient) => {
+		/**
+		* Add the birthdays to the schedule. 
+		*/
+		[ ...birthdays?.solar, ...birthdays?.lunar ].forEach((birthday: AddRecipient) => {
 			const month = calendar[this.calendar.getCalendarMonth(birthday.date)];
 			month.weeks.forEach((week: CalendarWeek) => {
 				week.days.forEach((day: CalendarDay) => {
-					if (birthday.date.value === day.value) {
+					if (!birthday.lunar && birthday.date.value === day.value) {
 						if (!day.schedule) {
 							day.schedule = {
 								solar: [],
@@ -146,19 +148,29 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 							};
 						}
 						day.schedule.solar.push(birthday);
+					} else if (birthday.lunar) {
+						const futureDate = birthday.futureDates[month.year];
+						if (futureDate.value === day.value) {
+							if (!day.schedule) {
+								day.schedule = {
+									solar: [],
+									lunar: [],
+									meetings: [],
+									tasks: []
+								};
+							}
+							day.schedule.lunar.push(birthday);
+						}
 					}
 				});
 			});
 		});
-		console.log("===> solar: ", calendar);
-
-		const lunar = RecipientUtils.getSummary(birthdays?.lunar);
 
 		const meetingsList = meetings;
-		const tasksList = TaskUtils.getSummary(tasks);
+		const tasksList = tasks;
 
 		console.log("Calendar: ", this.calendarData);
-		console.log("Solar: ", solar, lunar, meetingsList, tasksList);
+		console.log("List: ", meetingsList, tasksList);
 	}
 
 
