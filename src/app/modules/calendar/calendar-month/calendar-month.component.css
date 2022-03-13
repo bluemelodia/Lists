@@ -8,12 +8,12 @@
 /**
 * Fullscreen view styles.
 */
-:host.fullscreen .ml-calendar__day {
-  position: relative;
+:host.fullscreen .ml-calendar__month {
+	border: 1px solid #f0f0f0;
 }
 
-:host.fullscreen .ml-calendar__week {
-	border: 1px solid rgba(0, 0, 0, 0.38);
+:host.fullscreen .ml-calendar__day {
+  position: relative;
 }
 
 :host.fullscreen .ml-calendar__solar-date {
@@ -22,10 +22,13 @@
 	left: 4px;
 }
 
-:host.fullscreen .ml-calendar__day:not(:last-child) {
-	border-right: 1px solid rgba(0, 0, 0, 0.38);
+:host.fullscreen .ml-calendar__day {
+	border: 1px solid #f0f0f0;;
 }
 
+/**
+* Regular calendar styles.
+*/
 .ml-calendar__month {
   flex-direction: column;
   justify-content: space-between;
