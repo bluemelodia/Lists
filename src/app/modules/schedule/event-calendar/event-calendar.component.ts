@@ -129,14 +129,24 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	}
 
 	private createSchedule(birthdays: RecipientList, meetings: AddMeeting[], tasks: Task[]): void {
+		this.addBirthdays(birthdays);
+
+		const meetingsList = meetings;
+		this.addMeetings(meetingsList);
+
+		const tasksList = tasks;
+		this.addTasks(tasksList);
+	}
+
+	/**
+	* Add the birthdays to the schedule. 
+	*/
+	private addBirthdays(birthdays: RecipientList): void {
 		const calendar = this.calendarData.calendar.months;
 
-		/**
-		* Add the birthdays to the schedule. 
-		*/
 		[ ...birthdays?.solar, ...birthdays?.lunar ].forEach((birthday: AddRecipient) => {
 			const month = calendar[this.calendar.getCalendarMonth(birthday.date)];
-			month.weeks.forEach((week: CalendarWeek) => {
+			month?.weeks?.forEach((week: CalendarWeek) => {
 				week.days.forEach((day: CalendarDay) => {
 					if (!birthday.lunar && birthday.date.value === day.value) {
 						if (!day.schedule) {
@@ -165,15 +175,66 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 				});
 			});
 		});
-
-		const meetingsList = meetings;
-		const tasksList = tasks;
-
-		console.log("Calendar: ", this.calendarData);
-		console.log("List: ", meetingsList, tasksList);
 	}
 
+	private addMeetings(meetings: AddMeeting[]): void {
+		const calendar = this.calendarData.calendar.months;
 
+		meetings.forEach((meeting: AddMeeting) => {
+			/* Convert the meeting start date back into a CalendarDay. */
+			const month = calendar[this.calendar.getCalendarMonth({
+				value: meeting.start_value,
+				cmonth: meeting.start_cmonth,
+				leap: !!meeting.start_leap,
+				cdate: meeting.start_cdate,
+				cmonthname: meeting.start_cmonthname,
+				month: meeting.start_month,
+				year: meeting.start_year,
+			})];
+
+			month?.weeks?.forEach((week: CalendarWeek) => {
+				week.days.forEach((day: CalendarDay) => {
+					if (meeting.start_value === day.value) {
+						if (!day.schedule) {
+							day.schedule = {
+								solar: [],
+								lunar: [],
+								meetings: [],
+								tasks: []
+							};
+						}
+						day.schedule.meetings.push(meeting);
+					}
+				});
+			});
+		});
+	}
+
+	private addTasks(tasks: Task[]): void {
+		const calendar = this.calendarData.calendar.months;
+
+		tasks.forEach((task: Task) => {
+			/* Convert the meeting start date back into a CalendarDay. */
+			if (task.dueDate?.value) {
+				const month = calendar[this.calendar.getCalendarMonth(task.dueDate)];
+				month?.weeks?.forEach((week: CalendarWeek) => {
+					week.days.forEach((day: CalendarDay) => {
+						if (task.dueDate.value === day.value) {
+							if (!day.schedule) {
+								day.schedule = {
+									solar: [],
+									lunar: [],
+									meetings: [],
+									tasks: []
+								};
+							}
+							day.schedule.tasks.push(task);
+						}
+					});
+				});
+			}
+		});
+	}
 
 	private toggleLoading(isLoading: boolean): void {
 		this.calendarData.isLoading = isLoading;
