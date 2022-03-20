@@ -80,3 +80,40 @@
   font-size: 0.8rem;
   color: #e91e63;
 }
+
+@media only screen and (max-width: 950px) {
+	:host.fullscreen {
+	}
+
+	:host.fullscreen .ml-calendar__month {
+		border: none;
+	}
+
+	:host.fullscreen .ml-calendar__week {
+		flex-direction: column;
+	}
+
+	:host.fullscreen .ml-calendar__day {
+		align-items: flex-start;
+		border: none;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
+	}
+
+	:host.fullscreen .ml-calendar__week:nth-child(even) {
+		background-color: #f9eeee;
+		margin: 8px 0;
+	}
+
+	:host.fullscreen .ml-calendar__week:nth-child(even) .ml-calendar__day:nth-child(even) {
+		background-color: #ffc0cb;
+	}
+
+	:host.fullscreen .ml-calendar__solar-date {
+		left: 4px;
+		position: relative;
+		top: 0;
+	}
+}
