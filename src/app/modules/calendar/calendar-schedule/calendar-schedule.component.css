@@ -4,7 +4,6 @@
   padding: 0;
 }
 
-
 .ml-calendar__todo-list:not(:last-child) {
 	margin-bottom: 4px;
 }
@@ -16,6 +15,10 @@
 
 .ml-calendar__todo-list-item:not(:last-child) {
 	margin-bottom: 2px;
+}
+
+.ml-calendar__todo-list-button {
+	font-size: inherit;
 }
 
 .ml-calendar__todo-list-pill {

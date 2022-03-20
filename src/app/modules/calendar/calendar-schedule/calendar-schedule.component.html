@@ -1,27 +1,34 @@
 <section class="ml-calendar__schedule">
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.solar">
-		<li class="ml-calendar__todo-list-item ml--focus" tabindex="0">
-			<span class="ml-calendar__todo-list-pill">Birthday</span>
-			{{ birthday.name }}
+		<li class="ml-calendar__todo-list-item">
+			<button type="button" class="ml-calendar__todo-list-button ml--focus" tabindex="0">
+				<span class="ml-calendar__todo-list-pill">Birthday</span>
+				{{ birthday.name }}
+			</button>
 		</li>
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.lunar">
-		<li class="ml-calendar__todo-list-item ml--focus" tabindex="0">
-			<span class="ml-calendar__todo-list-pill">Birthday</span>
-			{{ birthday.name }}
+		<li class="ml-calendar__todo-list-item">
+			<button type="button" class="ml-calendar__todo-list-button ml--focus" tabindex="0">
+				<span class="ml-calendar__todo-list-pill">Birthday</span>
+				{{ birthday.name }}
+			</button>
 		</li>
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let meeting of schedule.meetings">
-		<li class="ml-calendar__todo-list-item ml--focus" tabindex="0">
-			<span class="ml-calendar__todo-list-pill">Meeting</span>
-			{{ meeting | meetingCalendar }}
+		<li class="ml-calendar__todo-list-item">
+			<button type="button" class="ml-calendar__todo-list-button ml--focus" tabindex="0">
+				<span class="ml-calendar__todo-list-pill">Meeting</span>
+				{{ meeting | meetingCalendar }}
+			</button>
 		</li>
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let task of schedule.tasks">
-		<li class="ml-calendar__todo-list-item ml--focus" tabindex="0">
-			<span class="ml-calendar__todo-list-pill">Task</span>
-				{{ isSelected }}
-			{{ task | taskCalendar }}
+		<li class="ml-calendar__todo-list-item">
+			<button type="button" class="ml-calendar__todo-list-button ml--focus" tabindex="0">
+				<span class="ml-calendar__todo-list-pill">Task</span>
+				{{ task | taskCalendar }}
+			</button>
 		</li>
 	</ul>
 </section>
