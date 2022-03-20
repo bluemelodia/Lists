@@ -1,21 +1,21 @@
 .ml-calendar__schedule {
-
 }
 
 .ml-calendar__todo-list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .ml-calendar__todo-list-item {
-	font-size: 0.8rem;
-	text-align: left;
+  font-size: 0.7rem;
+  text-align: left;
 }
 
 .ml-calendar__todo-list-pill {
-	background-color: pink;
-	border-radius: 8px;
-	font-size: 0.8rem;
-	padding: 0 8px;
+  background-color: #dd2e44;
+  border-radius: 8px;
+  color: white;
+  font-size: inherit;
+  padding: 0 8px;
 }

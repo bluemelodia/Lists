@@ -14,6 +14,7 @@
 	<ul class="ml-calendar__todo-list" *ngFor="let task of schedule.tasks">
 		<li class="ml-calendar__todo-list-item">
 			<span class="ml-calendar__todo-list-pill">Task</span>
+				{{ isSelected }}
 			{{ task | taskCalendar }}
 		</li>
 	</ul>
