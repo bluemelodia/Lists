@@ -71,6 +71,7 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	private setupSubscriptions(): void {
 		this.calendar.onCalendarFetched$
 			.pipe(
+				take(1),
 				takeUntil(this.destroyed$),
 				map((calendar: Calendar) => {
 					if (!calendar) {
@@ -78,11 +79,11 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 					}
 
 					this.cal = calendar;
-					this.calendarData = {
+					this.calendarData = JSON.parse(JSON.stringify({
 						...this.calendarData,
 						isLoading: false,
 						calendar: this.cal,
-					};
+					}));
 					this.getData();
 
 					return of(null);
@@ -236,9 +237,5 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	private toggleLoading(isLoading: boolean): void {
 		this.calendarData.isLoading = isLoading;
 		this.calendarData$.next(this.calendarData);
-	}
-
-	public selectDate(): void {
-		
 	}
 }
