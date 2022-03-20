@@ -19,6 +19,7 @@
 
 .ml-calendar__todo-list-button {
 	font-size: inherit;
+	text-align: left;
 }
 
 .ml-calendar__todo-list-pill {

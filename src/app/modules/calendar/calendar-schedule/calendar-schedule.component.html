@@ -1,7 +1,10 @@
 <section class="ml-calendar__schedule">
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.solar">
 		<li class="ml-calendar__todo-list-item">
-			<button type="button" class="ml-calendar__todo-list-button ml--focus" tabindex="0">
+			<button type="button" 
+				class="ml-calendar__todo-list-button ml--focus"
+				tabindex="0"
+				(click)="navigate(topic.Birthdays)">
 				<span class="ml-calendar__todo-list-pill">Birthday</span>
 				{{ birthday.name }}
 			</button>
@@ -9,7 +12,10 @@
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.lunar">
 		<li class="ml-calendar__todo-list-item">
-			<button type="button" class="ml-calendar__todo-list-button ml--focus" tabindex="0">
+			<button type="button"
+				class="ml-calendar__todo-list-button ml--focus"
+				tabindex="0"
+				(click)="navigate(topic.Birthdays)">
 				<span class="ml-calendar__todo-list-pill">Birthday</span>
 				{{ birthday.name }}
 			</button>
@@ -17,7 +23,10 @@
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let meeting of schedule.meetings">
 		<li class="ml-calendar__todo-list-item">
-			<button type="button" class="ml-calendar__todo-list-button ml--focus" tabindex="0">
+			<button type="button"
+				class="ml-calendar__todo-list-button ml--focus"
+				tabindex="0"
+				(click)="navigate(topic.Meetings)">
 				<span class="ml-calendar__todo-list-pill">Meeting</span>
 				{{ meeting | meetingCalendar }}
 			</button>
@@ -25,7 +34,10 @@
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let task of schedule.tasks">
 		<li class="ml-calendar__todo-list-item">
-			<button type="button" class="ml-calendar__todo-list-button ml--focus" tabindex="0">
+			<button type="button"
+				class="ml-calendar__todo-list-button ml--focus"
+				tabindex="0"
+				(click)="navigate(topic.Tasks)">
 				<span class="ml-calendar__todo-list-pill">Task</span>
 				{{ task | taskCalendar }}
 			</button>
