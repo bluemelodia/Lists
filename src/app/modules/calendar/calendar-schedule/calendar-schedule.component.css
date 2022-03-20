@@ -10,4 +10,12 @@
 
 .ml-calendar__todo-list-item {
 	font-size: 0.8rem;
+	text-align: left;
+}
+
+.ml-calendar__todo-list-pill {
+	background-color: pink;
+	border-radius: 8px;
+	font-size: 0.8rem;
+	padding: 0 8px;
 }

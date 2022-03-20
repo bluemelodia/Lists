@@ -6,9 +6,15 @@
 		Lunar
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let meeting of schedule.meetings">
-		<li class="ml-calendar__todo-list-item">{{ meeting | meetingCalendar }}</li>
+		<li class="ml-calendar__todo-list-item">
+			<span class="ml-calendar__todo-list-pill">Meeting</span>
+			{{ meeting | meetingCalendar }}
+		</li>
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let task of schedule.tasks">
-		<li class="ml-calendar__todo-list-item">{{ task | taskCalendar }}</li>
+		<li class="ml-calendar__todo-list-item">
+			<span class="ml-calendar__todo-list-pill">Task</span>
+			{{ task | taskCalendar }}
+		</li>
 	</ul>
 </section>

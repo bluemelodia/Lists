@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-
 import { CalendarSchedule } from "../../../interfaces/calendar/calendar-response.interface";
 
 @Component({
