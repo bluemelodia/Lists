@@ -13,11 +13,14 @@
             <ng-container *ngIf="!isSelectableDate(day)"></ng-container>
             <ng-container *ngIf="isSelectableDate(day)">
                 <span *ngIf="calType === calendarType.Lunar" class="ml-calendar__lunar-date">{{ day.cmonthname }}</span>
-                <span class="ml-calendar__solar-date">{{ day.value }}</span>
+                <span class="ml-calendar__solar-date">
+					<span *ngIf="calType === calendarType.Schedule" class="ml-calendar__day-of-week">{{ day | dayOfWeek }}</span>
+					{{ day.value }}
+				</span>
                 <span *ngIf="calType === calendarType.Lunar" class="ml-calendar__lunar-date">
                     {{ day.cmonth }}/{{ day.cdate }}
                 </span>
-				<ml-calendar-schedule *ngIf="day.schedule"
+				<ml-calendar-schedule *ngIf="day.schedule && calType === calendarType.Schedule"
 					[schedule]="day.schedule">
 				</ml-calendar-schedule>
             </ng-container>

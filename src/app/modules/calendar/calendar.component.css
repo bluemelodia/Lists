@@ -2,6 +2,7 @@
 .ml-calendar {
   display: flex;
   flex: 1;
+  overflow: scroll;
 }
 
 :host.fullscreen {

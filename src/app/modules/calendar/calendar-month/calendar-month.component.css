@@ -9,21 +9,25 @@
 * Fullscreen view styles.
 */
 :host.fullscreen .ml-calendar__month {
-	border: 1px solid #f0f0f0;
+  border: 1px solid #f0f0f0;
 }
 
 :host.fullscreen .ml-calendar__day {
   position: relative;
 }
 
-:host.fullscreen .ml-calendar__solar-date {
-	position: absolute;
-	top: 4px;
-	left: 4px;
+:host.fullscreen .ml-calendar__week .ml-calendar__day {
+  align-items: flex-start;
+  border: 1px solid #f0f0f0;
+  justify-content: flex-start;
 }
 
-:host.fullscreen .ml-calendar__day {
-	border: 1px solid #f0f0f0;;
+:host.fullscreen .ml-calendar__week .ml-calendar__day .ml-calendar__solar-date {
+  margin-bottom: 4px;
+}
+
+:host.fullscreen .ml-calendar__day-of-week {
+  display: none;
 }
 
 /**
@@ -82,38 +86,49 @@
 }
 
 @media only screen and (max-width: 950px) {
-	:host.fullscreen {
-	}
+  :host.fullscreen ml-calendar-schedule {
+    width: 90%;
+  }
 
-	:host.fullscreen .ml-calendar__month {
-		border: none;
-	}
+  :host.fullscreen .ml-calendar__month {
+    border: none;
+  }
 
-	:host.fullscreen .ml-calendar__week {
-		flex-direction: column;
-	}
+  :host.fullscreen .ml-calendar__week {
+    flex-direction: column;
+  }
 
-	:host.fullscreen .ml-calendar__day {
-		align-items: flex-start;
-		border: none;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		width: 100%;
-	}
+  :host.fullscreen .ml-calendar__week .ml-calendar__day {
+    align-items: flex-start;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
 
-	:host.fullscreen .ml-calendar__week:nth-child(even) {
-		background-color: #f9eeee;
-		margin: 8px 0;
-	}
+  :host.fullscreen .ml-calendar__week .ml-calendar__day.ml-calendar--disabled {
+    display: none;
+  }
 
-	:host.fullscreen .ml-calendar__week:nth-child(even) .ml-calendar__day:nth-child(even) {
-		background-color: #ffc0cb;
-	}
+  :host.fullscreen .ml-calendar__week:nth-child(even) {
+    background-color: #f9eeee;
+  }
 
-	:host.fullscreen .ml-calendar__solar-date {
-		left: 4px;
-		position: relative;
-		top: 0;
-	}
+  :host.fullscreen
+    .ml-calendar__week:nth-child(even)
+    .ml-calendar__day:nth-child(even) {
+    background-color: #ffc0cb;
+  }
+
+  :host.fullscreen
+    .ml-calendar__week:nth-child(odd)
+    .ml-calendar__day:nth-child(even) {
+    background-color: #f9eeee;
+  }
+
+  :host.fullscreen .ml-calendar__day-of-week {
+    display: block;
+	font-size: inherit;
+  }
 }

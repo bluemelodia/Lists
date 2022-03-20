@@ -1,9 +1,15 @@
 <section class="ml-calendar__schedule">
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.solar">
-		Sonar
+		<li class="ml-calendar__todo-list-item">
+			<span class="ml-calendar__todo-list-pill">Birthday</span>
+			{{ birthday.name }}
+		</li>
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.lunar">
-		Lunar
+		<li class="ml-calendar__todo-list-item">
+			<span class="ml-calendar__todo-list-pill">Birthday</span>
+			{{ birthday.name }}
+		</li>
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let meeting of schedule.meetings">
 		<li class="ml-calendar__todo-list-item">
