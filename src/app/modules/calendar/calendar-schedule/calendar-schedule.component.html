@@ -1,0 +1,14 @@
+<section class="ml-calendar__schedule">
+	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.solar">
+		Sonar
+	</ul>
+	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.lunar">
+		Lunar
+	</ul>
+	<ul class="ml-calendar__todo-list" *ngFor="let meeting of schedule.meetings">
+		<li class="ml-calendar__todo-list-item">{{ meeting | meetingCalendar }}</li>
+	</ul>
+	<ul class="ml-calendar__todo-list" *ngFor="let task of schedule.tasks">
+		<li class="ml-calendar__todo-list-item">{{ task | taskCalendar }}</li>
+	</ul>
+</section>

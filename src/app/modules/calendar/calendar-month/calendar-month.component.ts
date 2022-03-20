@@ -1,8 +1,8 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from "@angular/core";
 
 import { Topic } from "../../../constants/topics.constants";
-import { CalendarType, Month } from "../../../interfaces/calendar/calendar.interface";
-import { CalendarDay } from "../../../interfaces/calendar/calendar-response.interface";
+import { CalendarType } from "../../../interfaces/calendar/calendar.interface";
+import { CalendarDay, CalendarMonth } from "../../../interfaces/calendar/calendar-response.interface";
 
 @Component({
 	selector: "ml-calendar-month",
@@ -12,7 +12,7 @@ import { CalendarDay } from "../../../interfaces/calendar/calendar-response.inte
 export class CalendarMonthComponent {
 	@HostBinding("class.fullscreen") public fullScreen = false;
 
-	@Input() month: Month;
+	@Input() month: CalendarMonth;
 	@Input() set type(type: CalendarType) {
 		this.fullScreen = type === CalendarType.Schedule;
 		this.calType = type;

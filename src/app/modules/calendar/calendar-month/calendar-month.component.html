@@ -17,6 +17,9 @@
                 <span *ngIf="calType === calendarType.Lunar" class="ml-calendar__lunar-date">
                     {{ day.cmonth }}/{{ day.cdate }}
                 </span>
+				<ml-calendar-schedule *ngIf="day.schedule"
+					[schedule]="day.schedule">
+				</ml-calendar-schedule>
             </ng-container>
         </td>
     </tr>

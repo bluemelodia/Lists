@@ -1,0 +1,13 @@
+.ml-calendar__schedule {
+
+}
+
+.ml-calendar__todo-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ml-calendar__todo-list-item {
+	font-size: 0.8rem;
+}

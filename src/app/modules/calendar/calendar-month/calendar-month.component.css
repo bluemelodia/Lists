@@ -67,7 +67,7 @@
 }
 
 .ml-calendar__solar-date {
-  font-size: 14px;
+  font-size: 0.8rem;
 }
 
 .ml-calendar__day.ml-calendar--disabled,
@@ -77,6 +77,6 @@
 
 /* Override the standard color so the lunar dates stand out. */
 .ml-calendar__lunar-date {
-  font-size: 9px;
+  font-size: 0.8rem;
   color: #e91e63;
 }

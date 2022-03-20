@@ -43,7 +43,7 @@
 
 .ml-calendar__days .ml-calendar__day {
   color: rgba(0, 0, 0, 0.38);
-  font-size: 12px;
+  font-size: 0.8rem;
   margin-bottom: 5px;
   padding: 3px;
   text-align: center;

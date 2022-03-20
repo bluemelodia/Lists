@@ -7,7 +7,7 @@ import { Topic } from '../../../constants/topics.constants';
 
 import { AddMeeting, AddRecipient } from '../../../interfaces/service/service-objects.interface';
 import { CalendarType } from '../../../interfaces/calendar/calendar.interface';
-import { Calendar, CalendarDay, CalendarMonth, CalendarWeek } from '../../../interfaces/calendar/calendar-response.interface';
+import { Calendar, CalendarDay, CalendarWeek } from '../../../interfaces/calendar/calendar-response.interface';
 import { noCalMessage } from '../../../interfaces/message.interface';
 import { RecipientList } from '../../../interfaces/event/recipient.interface';
 import { ResponseStatus } from '../../../interfaces/response.interface';
@@ -18,10 +18,6 @@ import { LoadingService } from '../../../services/loading.service';
 import { MeetingService } from '../../../services/meeting.service';
 import { RecipientService } from '../../../services/recipient.service';
 import { TaskService } from '../../../services/task.service';
-
-import { RecipientUtils } from '../../../utils/recipient.utils';
-import { TaskUtils } from '../../../utils/task.utils';
-import { DataType } from 'ajv/dist/compile/validate/dataType';
 
 interface CalendarData {
 	calendar: Calendar;
@@ -87,8 +83,6 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 						isLoading: false,
 						calendar: this.cal,
 					};
-					this.calendarData$.next(this.calendarData);
-
 					this.getData();
 
 					return of(null);
@@ -136,6 +130,9 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 
 		const tasksList = tasks;
 		this.addTasks(tasksList);
+
+		/* Only emit once the schedule data has been added. */
+		this.calendarData$.next(this.calendarData);
 	}
 
 	/**
@@ -239,5 +236,9 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	private toggleLoading(isLoading: boolean): void {
 		this.calendarData.isLoading = isLoading;
 		this.calendarData$.next(this.calendarData);
+	}
+
+	public selectDate(): void {
+		
 	}
 }
