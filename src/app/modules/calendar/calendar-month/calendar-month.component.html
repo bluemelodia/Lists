@@ -7,7 +7,7 @@
             [class.ml-calendar--disabled] = "!isSelectableDate(day)"
             [class.ml--focus] = "isSelectableDate(day)"
             [class.ml-calendar--selected] = "isSelectedDate(day)"
-			[tabindex]="isSelectableDate(day) ? 0 : -1"
+			[tabindex]="isSelectableDate(day) && calType !== calendarType.Schedule ? 0 : -1"
             (click)="isSelectableDate(day) ? selectDate(day) : null"
             (keydown)="isSelectableDate(day) ? onDateKeyPress($event, day) : null">
             <ng-container *ngIf="!isSelectableDate(day)"></ng-container>
