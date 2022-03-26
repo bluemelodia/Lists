@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe(([birthdays, meetings, tasks]) => {
-				console.info("[Home] Received lists: ", birthdays, meetings, tasks);
+				console.info("[Home] Received meetings: ", meetings);
 				if (birthdays) {
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 					this._solar$.next(RecipientUtils.getSummary(birthdays?.solar));

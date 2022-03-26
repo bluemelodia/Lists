@@ -7,7 +7,6 @@ import {
 } from "@angular/forms";
 import {
 	ActivatedRoute,
-	NavigationStart,
 	Router,
 } from '@angular/router';
 

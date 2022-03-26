@@ -160,7 +160,11 @@ export class ValidationService {
 			eTimeCtrl.setErrors(null);
 
 			const startingDate = new Date(sDate.year, sDate.month - 1, sDate.value);
+			sDateCtrl.setErrors(null);
+
 			const endingDate = new Date(eDate.year, eDate.month - 1, eDate.value);
+			eDateCtrl.setErrors(null);
+
 			if (startingDate > endingDate) {
 				sDateCtrl.setErrors({
 					"startDateAfterEnd": true
