@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-	constructor(private userService: UserService) { }
+	constructor(
+		private userService: UserService
+	) { }
 
-	canActivate(): boolean {
-		console.log("===> [Auth Guard] Can activate route: ", this.userService.getUser())
+	public canActivate(): boolean {
+		console.log("===> [Auth Guard] Can activate route: ", this.userService.getUser());
 		if (this.userService.getUser()) {
 			return true;
 		}
@@ -19,4 +21,11 @@ export class AuthGuard implements CanActivate {
 
 		return false;
 	}
+
+	private getResolvedUrl(route: ActivatedRouteSnapshot): string {
+		return route.pathFromRoot
+			.map(path => path.url.map(segment => segment.toString()).join('/'))
+			.join('/');
+	}
+
 }

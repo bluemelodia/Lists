@@ -4,8 +4,9 @@ import {
 	HostBinding,
 	OnInit,
 } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Data, Router, RoutesRecognized } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
+import { filter, map } from 'rxjs/operators';
 
 import { CalendarType } from "./interfaces/calendar/calendar.interface";
 
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
 		private loadingService: LoadingService,
 		private navService: NavService,
 		private ref: ChangeDetectorRef,
+		private router: Router,
 		private route: ActivatedRoute,
 		private userService: UserService,
 	) { }
@@ -44,6 +46,19 @@ export class AppComponent implements OnInit {
 	 */
 	setupSubscriptions(): void {
 		console.log("[App Component] Start subs.");
+
+		this.router.events
+			.pipe(
+				filter((event) => event instanceof RoutesRecognized),
+				map((event: RoutesRecognized) => {
+					return event?.state?.root?.firstChild?.data;
+				})
+			)
+			.subscribe((customData: Data) => {
+				if (customData?.title) {
+					this.navService.setTitle(customData.title);
+				}
+			});
 
 		this.route.queryParams.subscribe((params) => {
 			this.navService.setTitle(params?.title);

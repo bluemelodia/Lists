@@ -37,7 +37,6 @@ How to make image upload easy with Angular
 - Title bar sometimes disappears after user logs back in.
 - Fix this issue on home: ERROR TypeError: object null is not iterable (cannot read property Symbol(Symbol.iterator))
 - Show user session warnings? The countdown would have to be on the client side from the time of login.
-- The start date is incorrectly said to be after end date, even though it's correct - Meeting.
 
 ## Navigation
 
