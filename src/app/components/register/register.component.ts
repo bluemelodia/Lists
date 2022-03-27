@@ -85,9 +85,7 @@ export class RegisterComponent implements OnInit {
 			this.user = {
 				username: this.username,
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-				password: CryptoJS.AES.encrypt(this.password, password, {
-					format: this.jsonFormatter, mode: CryptoJS.mode.CBC
-				}).toString()
+				password: CryptoJS.AES.encrypt(this.password, password).toString()
 			}
 
 			this.userService.createUser(this.user)
@@ -95,49 +93,5 @@ export class RegisterComponent implements OnInit {
 					this.dialogService.showResponseStatusDialog(response, DialogAction.Register, DialogPage.Register);
 				});
 		}
-	}
-
-	/**
-	* Source: https://stackoverflow.com/questions/62442204/use-node-crypto-in-angular-9
-	*/
-	private get jsonFormatter() {
-		return {
-			stringify: (cipherParams: any) => {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-				const jsonObj = { ct: cipherParams.ciphertext.toString(CryptoJS.enc.Base64), iv: null, s: null };
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-				if (cipherParams.iv) {
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-					jsonObj.iv = cipherParams.iv.toString();
-				}
-
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-				if (cipherParams.salt) {
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-					jsonObj.s = cipherParams.salt.toString();
-				}
-				return JSON.stringify(jsonObj);
-			},
-			parse: (jsonStr) => {
-				const jsonObj = JSON.parse(jsonStr);
-				// extract ciphertext from json object, and create cipher params object
-				const cipherParams = CryptoJS.lib.CipherParams.create({
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-					ciphertext: CryptoJS.enc.Base64.parse(jsonObj.ct)
-				});
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-				if (jsonObj.iv) {
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-					cipherParams.iv = CryptoJS.enc.Hex.parse(jsonObj.iv);
-				}
-
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-				if (jsonObj.s) {
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-					cipherParams.salt = CryptoJS.enc.Hex.parse(jsonObj.s);
-				}
-				return cipherParams;
-			}
-		};
 	}
 }
