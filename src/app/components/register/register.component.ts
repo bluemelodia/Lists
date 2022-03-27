@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as CryptoJS from 'crypto-js';
 
+import { password } from '../../constants/crypto.constants';
 import { FormLimit } from '../../constants/gifts.constants';
 import { Icon } from '../../constants/icons.constants';
 
@@ -78,7 +80,8 @@ export class RegisterComponent implements OnInit {
 			this.submitted = false;
 			this.user = {
 				username: this.username,
-				password: this.password
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+				password: CryptoJS.AES.encrypt(this.password, password).toString()
 			}
 
 			this.userService.createUser(this.user)

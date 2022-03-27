@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
+import { password } from '../../constants/crypto.constants';
 import { Icon } from '../../constants/icons.constants';
 import { FormLimit } from '../../constants/gifts.constants';
 
@@ -81,7 +83,8 @@ export class LoginComponent implements OnInit {
 
 			this.user = {
 				username: this.username,
-				password: this.password
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+				password: CryptoJS.AES.encrypt(this.password, password).toString()
 			}
 
 			this.userService.login(this.user)

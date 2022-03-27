@@ -29,7 +29,7 @@ How to make image upload easy with Angular
 - Better network error handling.
 - Test in all browsers.
 - Users should be reminded of tasks (both recurring and one-time with due date).
-- Encrypt usernames/passwords? 
+- Encrypt usernames/passwords?
 
 ## Navigation
 
