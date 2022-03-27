@@ -31,7 +31,7 @@ How to make image upload easy with Angular
 - Test in all browsers.
 
 - Users should be reminded of tasks (both recurring and one-time with due date).
-- Encrypt usernames/passwords? Expire the session after 15 minutes.
+- Encrypt usernames/passwords? 
 - Confirm that user sessions are lasting the expected amount of time.
 - Fix this issue on home: ERROR TypeError: object null is not iterable (cannot read property Symbol(Symbol.iterator))
 

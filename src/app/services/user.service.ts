@@ -10,7 +10,7 @@ import { ConfirmDialogAction, DialogPage } from "../interfaces/dialog.interface"
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { User, UserAction } from "../interfaces/user.interface";
 import { UserUtils } from "../utils/user.utils";
-import { 
+import {
 	idleTimeout,
 	idleTimeoutWarning,
 	sessionTimeout,
@@ -131,7 +131,6 @@ export class UserService implements OnDestroy {
 	}
 
 	public resetIdleTimer(): void {
-		console.log("===> [User Service] Extend idle timer");
 		this.clearIdleTimers();
 		if (this.getUser()) {
 			this.startIdleTimers();
@@ -142,7 +141,8 @@ export class UserService implements OnDestroy {
 	* Don't show the idle timeout dialog if the user isn't logged in.
 	*/
 	private idleTimeoutWarning(): void {
-		this.dialogService.showConfirmDialog(ConfirmDialogAction.IdleTimeoutWarning, DialogPage.SessionTimeoutWarning)
+		this.dialogService.hideDialog();
+		this.dialogService.showConfirmDialog(ConfirmDialogAction.IdleTimeoutWarning, DialogPage.IdleTimeoutWarning)
 			.pipe(
 				take(1),
 				takeUntil(this.ngUnsubscribe$)
@@ -161,8 +161,14 @@ export class UserService implements OnDestroy {
 			});
 	}
 
+	/**
+	* Clear idle timers once this warning is shown. There will no longer
+	* be an option to extend the session. 
+	*/
 	private sessionTimeoutWarning(): void {
 		this.dialogService.hideDialog();
+		this.clearIdleTimers();
+
 		this.dialogService.showConfirmDialog(ConfirmDialogAction.SessionTimeoutWarning, DialogPage.SessionTimeoutWarning)
 			.pipe(
 				take(1),

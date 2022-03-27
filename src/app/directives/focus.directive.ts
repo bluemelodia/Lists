@@ -61,7 +61,6 @@ export class FocusDirective {
 					* then allow users to tab outside of the container.
 					*/
 					const firstElement = this.getFirstFocusableElement();
-					console.log("===> tab focus: ", firstElement);
 					if (firstElement) {
 						firstElement.focus();
 					}
