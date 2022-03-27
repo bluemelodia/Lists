@@ -27,6 +27,14 @@ export class DialogComponent {
 		this.dialogService.onContinue();
 	}
 
+	onExtend(): void {
+		this.dialogService.onExtend();
+	}
+
+	onLogout(): void {
+		this.dialogService.onLogout();
+	}
+
 	hideDialog(): void {
 		this.dialogService.hideDialog();
 	}

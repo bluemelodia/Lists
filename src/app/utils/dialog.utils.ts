@@ -15,10 +15,13 @@ export class DialogUtils {
 	public static titleForConfirmDialog(action: ConfirmDialogAction): string {
 		let message: string;
 		switch (action) {
+			case ConfirmDialogAction.IdleTimeoutWarning:
+				message = "Idle Warning";
+				break;
 			case ConfirmDialogAction.Logout:
 				message = "Logout";
 				break;
-			case ConfirmDialogAction.LogoutWarning:
+			case ConfirmDialogAction.SessionTimeoutWarning:
 				message = "Logout Warning";
 				break;
 			default:
@@ -100,10 +103,13 @@ export class DialogUtils {
 					message += `This will also delete this ${page}'s gifts.`;
 				}
 				break;
+			case ConfirmDialogAction.IdleTimeoutWarning:
+				message = DialogMessage.IDLE_TIMEOUT_WARNING;
+				break;
 			case ConfirmDialogAction.Logout:
 				message = DialogMessage.SESSION_TIMEOUT;
 				break;
-			case ConfirmDialogAction.LogoutWarning:
+			case ConfirmDialogAction.SessionTimeoutWarning:
 				message = DialogMessage.SESSION_TIMEOUT_WARNING;
 				break;
 			default:

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
-import { 
+import {
 	ConfirmDialogAction,
 	Dialog,
 	DialogAction,
@@ -38,17 +38,31 @@ export class DialogService {
 
 	showConfirmDialog(action: ConfirmDialogAction, page: DialogPage): Observable<ConfirmDialogAction> {
 		console.info('[Dialog Service] show confirm dialog: ', action, page);
+
+		let dialogType;
+		switch (action) {
+			case ConfirmDialogAction.IdleTimeoutWarning:
+				dialogType = DialogType.Idle;
+				break;
+			case ConfirmDialogAction.Logout:
+			case ConfirmDialogAction.SessionTimeoutWarning:
+				dialogType = DialogType.Session;
+				break;
+			default:
+				dialogType = DialogType.Confirm;
+				break;
+		}
+
 		this.show$.next({
 			title: DialogUtils.titleForConfirmDialog(action),
 			message: DialogUtils.messageforConfirmDialog(action, page),
-			dialogType: action !== ConfirmDialogAction.Logout ? DialogType.Confirm : DialogType.Session
+			dialogType: dialogType
 		});
 
 		return this.onConfirmDialogAction$;
 	}
 
-	showErrorDialog(dialogType: Dialog): void {
-		console.info('[Dialog Service] show error dialog: ', dialogType);
+	public showErrorDialog(dialogType: Dialog): void {
 		this.show$.next({
 			title: "Error",
 			message: DialogUtils.messageForErrorDialog(dialogType),
@@ -56,18 +70,28 @@ export class DialogService {
 		});
 	}
 
-	hideDialog(): void {
+	public hideDialog(): void {
 		this.show$.next(null);
 		this.onConfirmAction$.next(ConfirmDialogAction.Close);
 	}
 
-	onCancel(): void {
+	public onCancel(): void {
 		this.show$.next(null);
 		this.onConfirmAction$.next(ConfirmDialogAction.Cancel);
 	}
 
-	onContinue(): void {
+	public onContinue(): void {
 		this.show$.next(null);
 		this.onConfirmAction$.next(ConfirmDialogAction.Continue);
+	}
+
+	public onExtend(): void {
+		this.show$.next(null);
+		this.onConfirmAction$.next(ConfirmDialogAction.Extend);
+	}
+
+	public onLogout(): void {
+		this.show$.next(null);
+		this.onConfirmAction$.next(ConfirmDialogAction.Logout);
 	}
 }

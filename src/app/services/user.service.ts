@@ -10,7 +10,12 @@ import { ConfirmDialogAction, DialogPage } from "../interfaces/dialog.interface"
 import { Response, ResponseStatus } from "../interfaces/response.interface";
 import { User, UserAction } from "../interfaces/user.interface";
 import { UserUtils } from "../utils/user.utils";
-import { idleTimeout, sessionTimeout, sessionTimeoutWarning } from "../constants/session.constants";
+import { 
+	idleTimeout,
+	idleTimeoutWarning,
+	sessionTimeout,
+	sessionTimeoutWarning,
+} from "../constants/session.constants";
 
 @Injectable({
 	providedIn: "root"
@@ -19,7 +24,7 @@ export class UserService implements OnDestroy {
 	private headers = new HttpHeaders().set("Content-Type", "application/json");
 
 	private idleTimer;
-	private sessionStart;
+	private idleWarningTimer;
 	private sessionTimer;
 	private sessionWarningTimer;
 
@@ -79,7 +84,7 @@ export class UserService implements OnDestroy {
 
 	private startSession(username: string): void {
 		this.saveUser(username);
-		this.startIdleTimer();
+		this.startIdleTimers();
 		this.startSessionTimers();
 	}
 
@@ -87,19 +92,27 @@ export class UserService implements OnDestroy {
 		sessionStorage.setItem(this.userKey, username);
 	}
 
-	private startIdleTimer(): void {
-		this.idleTimer = setTimeout(this.sessionTimeout, idleTimeout);
+	private startIdleTimers(): void {
+		this.idleTimer = setTimeout(() => {
+			this.sessionTimeout();
+		}, idleTimeout);
+		this.idleWarningTimer = setTimeout(() => {
+			this.idleTimeoutWarning();
+		}, idleTimeoutWarning);
 	}
 
 	private startSessionTimers(): void {
-		this.sessionStart = new Date();
-		this.sessionTimer = setTimeout(this.sessionTimeout, sessionTimeout);
-		this.sessionWarningTimer = setTimeout(this.sessionTimeoutWarning, sessionTimeoutWarning);
+		this.sessionTimer = setTimeout(() => {
+			this.sessionTimeout();
+		}, sessionTimeout);
+		this.sessionWarningTimer = setTimeout(() => {
+			this.sessionTimeoutWarning()
+		}, sessionTimeoutWarning);
 	}
 
 	private endSession(): void {
 		this.clearUser();
-		this.clearIdleTimer();
+		this.clearIdleTimers();
 		this.clearSessionTimers();
 	}
 
@@ -107,34 +120,59 @@ export class UserService implements OnDestroy {
 		sessionStorage.removeItem(this.userKey);
 	}
 
-	private clearIdleTimer(): void {
+	private clearIdleTimers(): void {
 		clearTimeout(this.idleTimer);
+		clearTimeout(this.idleWarningTimer);
 	}
 
 	private clearSessionTimers(): void {
-		clearTimeout(this.idleTimer);
 		clearTimeout(this.sessionTimer);
 		clearTimeout(this.sessionWarningTimer);
 	}
 
 	public resetIdleTimer(): void {
 		console.log("===> [User Service] Extend idle timer");
-		this.clearIdleTimer();
-		this.startIdleTimer();
+		this.clearIdleTimers();
+		if (this.getUser()) {
+			this.startIdleTimers();
+		}
 	}
 
-	private sessionTimeoutWarning(): void {
-		this.dialogService.showConfirmDialog(ConfirmDialogAction.LogoutWarning, DialogPage.LogoutWarning)
+	/**
+	* Don't show the idle timeout dialog if the user isn't logged in.
+	*/
+	private idleTimeoutWarning(): void {
+		this.dialogService.showConfirmDialog(ConfirmDialogAction.IdleTimeoutWarning, DialogPage.SessionTimeoutWarning)
 			.pipe(
 				take(1),
 				takeUntil(this.ngUnsubscribe$)
 			)
-			.subscribe(() => {
-				this.logout();
+			.subscribe((action: ConfirmDialogAction) => {
+				switch (action) {
+					case ConfirmDialogAction.Extend:
+						this.resetIdleTimer();
+						break;
+					case ConfirmDialogAction.Logout:
+						this.sessionTimeout();
+						break;
+					default:
+						break;
+				}
 			});
 	}
 
+	private sessionTimeoutWarning(): void {
+		this.dialogService.hideDialog();
+		this.dialogService.showConfirmDialog(ConfirmDialogAction.SessionTimeoutWarning, DialogPage.SessionTimeoutWarning)
+			.pipe(
+				take(1),
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe();
+	}
+
 	public sessionTimeout(): void {
+		this.dialogService.hideDialog();
 		this.dialogService.showConfirmDialog(ConfirmDialogAction.Logout, DialogPage.Logout)
 			.pipe(
 				take(1),

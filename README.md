@@ -34,7 +34,6 @@ How to make image upload easy with Angular
 - Encrypt usernames/passwords? Expire the session after 15 minutes.
 - Confirm that user sessions are lasting the expected amount of time.
 - Fix this issue on home: ERROR TypeError: object null is not iterable (cannot read property Symbol(Symbol.iterator))
-- Show user session warnings? The countdown would have to be on the client side from the time of login.
 
 ## Navigation
 

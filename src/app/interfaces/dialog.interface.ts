@@ -1,6 +1,7 @@
 export enum DialogType {
 	Confirm,
 	Error,
+	Idle,
 	Info,
 	Session,
 }
@@ -22,8 +23,10 @@ export enum ConfirmDialogAction {
 	Close,
 	Continue,
 	Delete,
+	Extend,
+	IdleTimeoutWarning,
 	Logout,
-	LogoutWarning,
+	SessionTimeoutWarning,
 }
 
 export enum Dialog {
@@ -34,9 +37,10 @@ export enum Dialog {
 }
 
 export enum DialogPage {
+	IdleTimeoutWarning = 'idle-timeout-warning',
 	Login = 'login',
 	Logout = 'logout',
-	LogoutWarning = 'logout-warning',
+	SessionTimeoutWarning = 'session-timeout-warning',
 	Meeting = 'meeting',
 	Gift = 'gift',
 	Recipient = 'recipient',
