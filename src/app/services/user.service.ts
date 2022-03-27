@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, of, Subject, } from "rxjs";
-import { catchError, map, take, takeUntil } from "rxjs/operators";
+import { catchError, map, switchMap, take, takeUntil } from "rxjs/operators";
 
 import { DialogService } from "./dialog.service";
 
@@ -56,14 +56,18 @@ export class UserService implements OnDestroy {
 	}
 
 	public login(user: User): Observable<ResponseStatus> {
-		return this.http.post<Response>(
-			UserUtils.userURLForAction(UserAction.Login),
-			user,
-			{
-				headers: this.headers
-			}
-		)
+		return this.getEncryption()
 			.pipe(
+				switchMap((encryption: any) => {
+					console.log("===> encryption: ", encryption);
+					return this.http.post<Response>(
+						UserUtils.userURLForAction(UserAction.Login),
+						user,
+						{
+							headers: this.headers
+						}
+					)
+				}),
 				map((response: Response) => {
 					const responseCode = !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
 					if (responseCode === ResponseStatus.SUCCESS) {
@@ -72,10 +76,17 @@ export class UserService implements OnDestroy {
 
 					return responseCode;
 				}),
-				catchError(() => {
+				catchError((error) => {
+					console.log("===> error: ", error);
 					return of(ResponseStatus.ERROR);
 				})
 			);
+	}
+
+	private getEncryption(): Observable<any> {
+		return this.http.get<Response>(
+			UserUtils.userURLForAction(UserAction.Encrypt),
+		);
 	}
 
 	public getUser(): string {

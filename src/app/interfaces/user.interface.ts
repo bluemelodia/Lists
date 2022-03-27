@@ -1,5 +1,6 @@
 
 export enum UserAction {
+	Encrypt = "Encrypt",
 	Login = "Login",
 	Register = "Register",
 	Logout = "Logout",

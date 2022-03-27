@@ -4,6 +4,7 @@ import { UserAction } from "../interfaces/user.interface";
 
 export class UserUtils {
 	private static baseURL = Endpoint.USERS;
+	private static encryptURL = `${UserUtils.baseURL}/encrypt`;
 	private static loginURL = `${UserUtils.baseURL}/login`;
 	private static logoutURL = `${UserUtils.baseURL}/logout`;
 	private static signupURL = `${UserUtils.baseURL}/register`;
@@ -12,6 +13,9 @@ export class UserUtils {
 		let url: string;
 
 		switch (action) {
+			case UserAction.Encrypt:
+				url = UserUtils.encryptURL;
+				break;
 			case UserAction.Register:
 				url = UserUtils.signupURL;
 				break;
