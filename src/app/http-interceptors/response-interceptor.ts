@@ -25,6 +25,7 @@ export class ResponseInterceptor implements HttpInterceptor {
 		return next.handle(req)
 			.pipe(
 				map((event: HttpEvent<any>) => {
+					this.userService.resetIdleTimer();
 					return event;
 				}),
 				catchError((error: HttpErrorResponse) => {

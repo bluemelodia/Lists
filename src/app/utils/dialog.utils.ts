@@ -18,6 +18,9 @@ export class DialogUtils {
 			case ConfirmDialogAction.Logout:
 				message = "Logout";
 				break;
+			case ConfirmDialogAction.LogoutWarning:
+				message = "Logout Warning";
+				break;
 			default:
 				message = "Confirm";
 				break;
@@ -99,6 +102,9 @@ export class DialogUtils {
 				break;
 			case ConfirmDialogAction.Logout:
 				message = DialogMessage.SESSION_TIMEOUT;
+				break;
+			case ConfirmDialogAction.LogoutWarning:
+				message = DialogMessage.SESSION_TIMEOUT_WARNING;
 				break;
 			default:
 				break;

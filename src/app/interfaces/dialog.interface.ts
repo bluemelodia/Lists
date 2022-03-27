@@ -23,6 +23,7 @@ export enum ConfirmDialogAction {
 	Continue,
 	Delete,
 	Logout,
+	LogoutWarning,
 }
 
 export enum Dialog {
@@ -35,6 +36,7 @@ export enum Dialog {
 export enum DialogPage {
 	Login = 'login',
 	Logout = 'logout',
+	LogoutWarning = 'logout-warning',
 	Meeting = 'meeting',
 	Gift = 'gift',
 	Recipient = 'recipient',
