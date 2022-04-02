@@ -126,10 +126,10 @@ export class AddGiftComponent implements OnInit, OnDestroy {
 				]
 			]
 		},
-			{
-				updateOn: "submit",
-				validators: []
-			});
+		{
+			updateOn: "submit",
+			validators: []
+		});
 
 		console.info("[Add Gift] Routed to: ", this.router.url);
 		if (this.router.url.includes('events/add-gift')) {

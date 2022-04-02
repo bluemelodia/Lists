@@ -118,12 +118,12 @@ export class AddMeetingComponent implements OnInit, OnDestroy {
 				virtual: this.fb.control(false),
 			}),
 		},
-			{
-				updateOn: "submit",
-				validators: [
-					this.customValidators.dateAndTimeValidator("startDate.day", "endDate.day", "startTime", "endTime")
-				]
-			});
+		{
+			updateOn: "submit",
+			validators: [
+				this.customValidators.dateAndTimeValidator("startDate.day", "endDate.day", "startTime", "endTime")
+			]
+		});
 
 		console.info("[Add Meeting] Routed to: ", this.router.url);
 		if (this.router.url.includes('events/add-meeting')) {

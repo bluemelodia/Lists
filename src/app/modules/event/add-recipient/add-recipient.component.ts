@@ -135,14 +135,14 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 				]
 			],
 		},
-			{
-				updateOn: "submit",
-				validators: [
-					this.customValidator.emailValidator("email", `channels.${Channel.email}`),
-					this.customValidator.phoneValidator("phone", `channels.${Channel.text}`),
-					this.customValidator.addressValidator("address"),
-				]
-			});
+		{
+			updateOn: "submit",
+			validators: [
+				this.customValidator.emailValidator("email", `channels.${Channel.email}`),
+				this.customValidator.phoneValidator("phone", `channels.${Channel.text}`),
+				this.customValidator.addressValidator("address"),
+			]
+		});
 
 		console.info("[Add Recipient] Routed to: ", this.router.url);
 		if (this.router.url.includes('events/add-recipient')) {

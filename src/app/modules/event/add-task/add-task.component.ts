@@ -94,10 +94,10 @@ export class AddTaskComponent implements OnInit, OnDestroy {
 				taskStatus: [Status.NotStarted],
 			})
 		},
-			{
-				updateOn: "submit",
-				validators: []
-			});
+		{
+			updateOn: "submit",
+			validators: []
+		});
 
 		if (this.router.url.includes('events/add-task')) {
 			this.editService.clearItem(Topic.Tasks);
