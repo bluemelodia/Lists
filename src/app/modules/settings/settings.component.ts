@@ -69,6 +69,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 				tasks: this.fb.group({
 					[Topic.Birthdays]: this.fb.control(false),
 					[Topic.Meetings]: this.fb.control(false),
+					[Topic.Tasks]:this.fb.control(false),
 				})
 			},
 			{
