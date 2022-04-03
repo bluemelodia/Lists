@@ -1,14 +1,17 @@
-<section class="ml-form-container ml-home">
-	<ml-home-widget [list]="solar$ | async"
-		[type]="type.SolarBirthdays">
-	</ml-home-widget>
-	<ml-home-widget [list]="lunar$ | async"
-		[type]="type.LunarBirthdays">
-	</ml-home-widget>
-	<ml-home-widget [list]="meetings$ | async"
-		[type]="type.Meetings">
-	</ml-home-widget>
-	<ml-home-widget [list]="tasks$ | async"
-		[type]="type.Tasks">
-	</ml-home-widget>
-</section>
+<ng-container *ngIf="error$ | async as error">
+	<ml-error *ngIf="error"></ml-error>
+	<section *ngIf="!error" class="ml-form-container ml-home">
+		<ml-home-widget [list]="solar$ | async"
+			[type]="type.SolarBirthdays">
+		</ml-home-widget>
+		<ml-home-widget [list]="lunar$ | async"
+			[type]="type.LunarBirthdays">
+		</ml-home-widget>
+		<ml-home-widget [list]="meetings$ | async"
+			[type]="type.Meetings">
+		</ml-home-widget>
+		<ml-home-widget [list]="tasks$ | async"
+			[type]="type.Tasks">
+		</ml-home-widget>
+	</section>
+</ng-container>

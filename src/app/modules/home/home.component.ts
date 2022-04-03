@@ -5,7 +5,7 @@ import {
 	OnDestroy,
 	OnInit,
 } from "@angular/core";
-import { forkJoin, of, Subject } from "rxjs";
+import { BehaviorSubject, forkJoin, of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
 import { ListType } from "../../constants/list.constants";
@@ -30,6 +30,9 @@ import { TaskUtils } from "../../utils/task.utils";
 })
 export class HomeComponent implements OnInit, OnDestroy {
 	@HostBinding("class.loading") public isLoading = false;
+
+	public _error$ = new BehaviorSubject<boolean>(false);
+	public error$ = this._error$.asObservable();
 
 	public type = ListType;
 
@@ -68,8 +71,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 		])
 			.pipe(
 				catchError((error: ResponseStatus) => {
+					console.log("===> caught error: ", error);
 					if (error === ResponseStatus.ERROR) {
-						// don't show dialog here, instead show error message
+						this._error$.next(true);
 					}
 					this.loadingService.stopLoading();
 					return of(null);
@@ -81,7 +85,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe(([birthdays, meetings, tasks]) => {
-				console.info("[Home] Received meetings: ", meetings);
+				this._error$.next(false);
+
 				if (birthdays) {
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 					this._solar$.next(RecipientUtils.getSummary(birthdays?.solar));

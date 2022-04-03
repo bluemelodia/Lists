@@ -73,7 +73,6 @@ export class UserService implements OnDestroy {
 					return responseCode;
 				}),
 				catchError((error) => {
-					console.log("===> error: ", error);
 					return of(ResponseStatus.ERROR);
 				})
 			);
