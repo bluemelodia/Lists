@@ -5,7 +5,7 @@ import {
 	OnDestroy,
 	OnInit,
 } from "@angular/core";
-import { BehaviorSubject, forkJoin, of, Subject } from "rxjs";
+import { forkJoin, of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
 import { ListType } from "../../constants/list.constants";
@@ -22,6 +22,14 @@ import { TaskService } from "../../services/task.service";
 import { RecipientUtils } from "../../utils/recipient.utils";
 import { TaskUtils } from "../../utils/task.utils";
 
+interface HomeResponse {
+	error: boolean,
+	solar?: AddRecipient[],
+	lunar?: AddRecipient[],
+	meetings?: AddMeeting[],
+	tasks?: Task[]
+}
+
 @Component({
 	selector: "ml-home",
 	templateUrl: "./home.component.html",
@@ -31,22 +39,10 @@ import { TaskUtils } from "../../utils/task.utils";
 export class HomeComponent implements OnInit, OnDestroy {
 	@HostBinding("class.loading") public isLoading = false;
 
-	public _error$ = new BehaviorSubject<boolean>(false);
-	public error$ = this._error$.asObservable();
+	public _homeResponse$ = new Subject<HomeResponse>();
+	public homeResponse$ = this._homeResponse$.asObservable();
 
 	public type = ListType;
-
-	private _solar$ = new Subject<AddRecipient[]>();
-	public solar$ = this._solar$.asObservable();
-
-	private _lunar$ = new Subject<AddRecipient[]>();
-	public lunar$ = this._lunar$.asObservable();
-
-	private _meetings$ = new Subject<AddMeeting[]>();
-	public meetings$ = this._meetings$.asObservable();
-
-	private _tasks$ = new Subject<Task[]>();
-	public tasks$ = this._tasks$.asObservable();
 
 	private ngUnsubscribe$ = new Subject<void>();
 
@@ -71,9 +67,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 		])
 			.pipe(
 				catchError((error: ResponseStatus) => {
-					console.log("===> caught error: ", error);
 					if (error === ResponseStatus.ERROR) {
-						this._error$.next(true);
+						this._homeResponse$.next({
+							error: true
+						});
 					}
 					this.loadingService.stopLoading();
 					return of(null);
@@ -85,22 +82,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe(([birthdays, meetings, tasks]) => {
-				this._error$.next(false);
-
-				if (birthdays) {
+				this._homeResponse$.next({
+					error: false,
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-					this._solar$.next(RecipientUtils.getSummary(birthdays?.solar));
+					solar: birthdays ? RecipientUtils.getSummary(birthdays?.solar) : null,
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-					this._lunar$.next(RecipientUtils.getSummary(birthdays?.lunar));
-				}
-
-				if (meetings) {
-					this._meetings$.next(meetings);
-				}
-
-				if (tasks) {
-					this._tasks$.next(TaskUtils.getSummary(tasks));
-				}
+					lunar: birthdays ? RecipientUtils.getSummary(birthdays?.lunar) : null,
+					meetings: meetings,
+					tasks: tasks ? TaskUtils.getSummary(tasks) : null
+				});
 			});
 	}
 

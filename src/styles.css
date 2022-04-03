@@ -65,8 +65,8 @@ button.cancel {
   border: 2px solid pink;
 }
 
-button[type="submit"]:active,
-button[type="submit"]:focus,
+button[type="submit"]:active, 
+button[type="submit"]:focus, 
 button[type="submit"]:hover {
   background-color: #dd2e44;
   color: white;
