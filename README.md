@@ -17,6 +17,10 @@ How to make image upload easy with Angular
 	Angular Push Notifications: a Complete Step-by-Step Guide
 </a>
 
+<a href="https://dev.to/clairecodes/why-its-important-to-give-your-html-button-a-type-58k9">
+	Why it's important to give your HTML button a type
+</a>
+
 ## Known Issues
 
 - updateOn: "submit" does not work consistently with all input forms. dateAndTimeValidator runs in-between submits (ex. user updates the Add Meeting datepicker field, and the error will update in real time, instead of on the next submit).
@@ -26,8 +30,9 @@ How to make image upload easy with Angular
 - Ensure that all fields are propagating edits correctly (birthdays/settings).
 - Test in all browsers.
 - Recurrence is not correctly populated.
-- Port app to server-side, and make sure that cron jobs are schedule for multiple users.
-- Handle server interrupting mid-session.
+- Port app to server-side, and make sure that cron jobs are scheduled for multiple users.
+- Handle server interrupting mid-session (home is fixed, must fix rest of pages).
+- TODO: submit should not be used for buttons that aren't used to submit forms. Will need to refactor how we are handling buttons.
 
 ## Navigation
 
