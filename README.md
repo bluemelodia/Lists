@@ -23,11 +23,10 @@ How to make image upload easy with Angular
 
 ## TODO
 
-- Daily jobs scanning for upcoming birthdays and events. This should be done on the backend.
 - Ensure that all fields are propagating edits correctly (birthdays/settings).
-- Fix issue with undefined dates sent out in emails.
 - Test in all browsers.
-- Users should be reminded of tasks (both recurring and one-time with due date).
+- UI Incorrectly hides all meetings and recurrence is not correctly populated.
+- Port app to server-side, and make sure that cron jobs are schedule for multiple users.
 
 ## Navigation
 
