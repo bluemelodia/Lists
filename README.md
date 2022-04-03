@@ -25,8 +25,9 @@ How to make image upload easy with Angular
 
 - Ensure that all fields are propagating edits correctly (birthdays/settings).
 - Test in all browsers.
-- UI Incorrectly hides all meetings and recurrence is not correctly populated.
+- Recurrence is not correctly populated.
 - Port app to server-side, and make sure that cron jobs are schedule for multiple users.
+- Handle server interrupting mid-session.
 
 ## Navigation
 
