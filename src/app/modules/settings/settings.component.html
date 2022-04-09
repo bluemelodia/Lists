@@ -1,76 +1,79 @@
-<section class="ml-form-container">
-    <ml-heading text="User Settings"
-		[level]="headerLevel.H1" >
-	</ml-heading>
-    <form [formGroup]="settingsForm"
+<section *ngIf="settingsResponse$ | async as settings" class="ml-form-container">
+	<ml-error *ngIf="settings.error" (retry)="loadSettings()"></ml-error>
+	<ng-container *ngIf="!settings.error">
+		<ml-heading text="User Settings"
+			[level]="headerLevel.H1" >
+		</ml-heading>
+		<form [formGroup]="settingsForm"
         (ngSubmit)="onSubmit()">
-        <fieldset class="notification-channels">
-            <ml-heading text="Channels"
-				[level]="headerLevel.H3">
-                <span post class="ml-event-form--optional">Optional</span>
-            </ml-heading>
-            <span class="ml-form-instructions">Select the channels where you would like to receive upcoming reminders.</span>
-            <ml-checkbox
-                name="Email"
-                [checkboxName]="channel.email"
-                [form]="settingsForm.controls.channels"
-				(valueChanged)="setChannelValidationStatus(channel.email, $event)">
-            </ml-checkbox>
-            <fieldset *ngIf="isChannelChecked(channel.email)"
-				class="email">
-                <input formControlName="email"
-                    placeholder="Email"
-					type="email"/>
-                <div *ngIf="submitted && validateChannel[channel.email]"
-					class="ml-input__error">
-                        <p *ngIf="settingsFormControl.email.errors?.missingEmail">
-                            Please enter an email address.
-                        </p>    
-                        <p *ngIf="settingsFormControl.email.errors?.invalidEmail">
-                            Please enter a valid email address.
-						</p>
-                </div>
-            </fieldset>
-            <ml-checkbox
-                name="Text Message"
-                [checkboxName]="channel.text"
-                [form]="settingsForm.controls.channels"
-				(valueChanged)="setChannelValidationStatus(channel.text, $event)">
-            </ml-checkbox>
-            <fieldset *ngIf="isChannelChecked(channel.text)"
-				class="phone">
-				<ml-phone-select
-					[form]="settingsForm.controls.phone"
-					[submitted]="submitted">
-				</ml-phone-select>
-            </fieldset>
-        </fieldset>
-		<fieldset class="notification-options">
-            <ml-heading text="Reminders"
-				[level]="headerLevel.H3">
-                <span post class="ml-event-form--optional">Optional</span>
-            </ml-heading>
-            <span class="ml-form-instructions">Select the events and tasks you would like to receive reminders for.</span>
-			<ml-checkbox
-                [name]="topic.Birthdays"
-                [checkboxName]="topic.Birthdays"
-                [form]="settingsForm.controls.tasks">
-            </ml-checkbox>
-			<ml-checkbox
-                [name]="topic.Meetings"
-                [checkboxName]="topic.Meetings"
-                [form]="settingsForm.controls.tasks">
-            </ml-checkbox>
-			<ml-checkbox
-				[name]="topic.Tasks"
-				[checkboxName]="topic.Tasks"
-				[form]="settingsForm.controls.tasks">
-			</ml-checkbox>
-        </fieldset>
-        <fieldset class="ml-form-actions">  
-            <button type="submit">
-                Update
-            </button>
-        </fieldset>
-    </form>
+			<fieldset class="notification-channels">
+				<ml-heading text="Channels"
+					[level]="headerLevel.H3">
+					<span post class="ml-event-form--optional">Optional</span>
+				</ml-heading>
+				<span class="ml-form-instructions">Select the channels where you would like to receive upcoming reminders.</span>
+				<ml-checkbox
+					name="Email"
+					[checkboxName]="channel.email"
+					[form]="settingsForm.controls.channels"
+					(valueChanged)="setChannelValidationStatus(channel.email, $event)">
+				</ml-checkbox>
+				<fieldset *ngIf="isChannelChecked(channel.email)"
+					class="email">
+					<input formControlName="email"
+						placeholder="Email"
+						type="email"/>
+					<div *ngIf="submitted && validateChannel[channel.email]"
+						class="ml-input__error">
+							<p *ngIf="settingsFormControl.email.errors?.missingEmail">
+								Please enter an email address.
+							</p>    
+							<p *ngIf="settingsFormControl.email.errors?.invalidEmail">
+								Please enter a valid email address.
+							</p>
+					</div>
+				</fieldset>
+				<ml-checkbox
+					name="Text Message"
+					[checkboxName]="channel.text"
+					[form]="settingsForm.controls.channels"
+					(valueChanged)="setChannelValidationStatus(channel.text, $event)">
+				</ml-checkbox>
+				<fieldset *ngIf="isChannelChecked(channel.text)"
+					class="phone">
+					<ml-phone-select
+						[form]="settingsForm.controls.phone"
+						[submitted]="submitted">
+					</ml-phone-select>
+				</fieldset>
+			</fieldset>
+			<fieldset class="notification-options">
+				<ml-heading text="Reminders"
+					[level]="headerLevel.H3">
+					<span post class="ml-event-form--optional">Optional</span>
+				</ml-heading>
+				<span class="ml-form-instructions">Select the events and tasks you would like to receive reminders for.</span>
+				<ml-checkbox
+					[name]="topic.Birthdays"
+					[checkboxName]="topic.Birthdays"
+					[form]="settingsForm.controls.tasks">
+				</ml-checkbox>
+				<ml-checkbox
+					[name]="topic.Meetings"
+					[checkboxName]="topic.Meetings"
+					[form]="settingsForm.controls.tasks">
+				</ml-checkbox>
+				<ml-checkbox
+					[name]="topic.Tasks"
+					[checkboxName]="topic.Tasks"
+					[form]="settingsForm.controls.tasks">
+				</ml-checkbox>
+			</fieldset>
+			<fieldset class="ml-form-actions">  
+				<button type="submit">
+					Update
+				</button>
+			</fieldset>
+		</form>
+	</ng-container>
 </section>

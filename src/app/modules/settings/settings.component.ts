@@ -6,8 +6,8 @@ import {
 	OnInit,
 } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, } from "@angular/forms";
-import { Subject } from "rxjs";
-import { finalize, take, takeUntil } from "rxjs/operators";
+import { of, Subject } from "rxjs";
+import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
 import { Topic } from "../../constants/topics.constants";
 
@@ -26,6 +26,10 @@ import { LoadingService } from "../../services/loading.service";
 import { SettingsService } from "./services/settings.service";
 import { ValidationService } from "../../services/validation.service";
 
+interface SettingsResponse {
+	error: boolean;
+}
+
 @Component({
 	selector: "ml-settings",
 	templateUrl: "./settings.component.html",
@@ -39,6 +43,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
 	public submitted: boolean;
 	public topic = Topic;
 	public validateChannel = VALIDATE_CHANNEL;
+
+	private _settingsResponse$ = new Subject<SettingsResponse>();
+	public settingsResponse$ = this._settingsResponse$.asObservable();
 
 	private ngUnsubscribe$ = new Subject<void>();
 
@@ -83,18 +90,27 @@ export class SettingsComponent implements OnInit, OnDestroy {
 		this.loadSettings();
 	}
 
-	private loadSettings(): void {
+	public loadSettings(): void {
 		this.loadingService.startLoading();
 		this.settingsService.loadSettings()
 			.pipe(
 				take(1),
 				takeUntil(this.ngUnsubscribe$),
+				catchError((error: ResponseStatus) => {
+					console.log("===> [Settings] error: ", error);
+					if (error === ResponseStatus.ERROR) {
+						this._settingsResponse$.next({ error: true });
+					}
+					this.loadingService.stopLoading();
+					return of(null);
+				}),
 				finalize(() => {
 					this.loadingService.stopLoading();
 				})
 			)
 			.subscribe((settings: Settings) => {
 				console.info("[Settings] Populate form data: ", settings);
+				this._settingsResponse$.next({ error: !settings });
 				this.settingsForm.patchValue({
 					channels: {
 						[Channel.email]: !!settings?.email,
