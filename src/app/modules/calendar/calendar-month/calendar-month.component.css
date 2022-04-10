@@ -34,7 +34,9 @@
 }
 
 :host.fullscreen ml-calendar-schedule {
-    overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	width: 100%;
 }
 
 /**
