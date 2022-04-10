@@ -21,4 +21,9 @@ export class CalendarScheduleComponent {
 	public navigate(topic: Topic): void {
 		this.navService.navigateToTopic(topic);
 	}
+
+	public getTotalEvents(): string {
+		const total = this.schedule.solar.length + this.schedule.lunar.length + this.schedule.meetings.length + this.schedule.tasks.length;
+		return total > 10 ? '9+' : `${total}`;
+	}
 }

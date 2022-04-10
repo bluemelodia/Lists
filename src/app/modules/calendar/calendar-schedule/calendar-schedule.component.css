@@ -31,3 +31,22 @@
   font-size: inherit;
   padding: 0 8px;
 }
+
+.ml-calendar__badge-container {
+	align-items: center;
+	background-color: #dd2e44;
+    border-radius: 50%;
+	color: white;
+	display: flex;
+	height: 16px;
+	justify-content: center;
+    position: absolute;
+	right: 4px;
+    top: 4px;
+    width: 16px;
+}
+
+.ml-calendar__badge {
+	font-size: 0.6rem;
+	line-height: 1rem;
+}

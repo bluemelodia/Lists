@@ -1,4 +1,7 @@
 <section class="ml-calendar__schedule">
+	<button type="button" class="ml-calendar__badge-container">
+		<span class="ml-calendar__badge">{{ getTotalEvents() }}</span>
+	</button>
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.solar">
 		<li class="ml-calendar__todo-list-item">
 			<button type="button" 
