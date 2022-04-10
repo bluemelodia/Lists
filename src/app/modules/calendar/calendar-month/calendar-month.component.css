@@ -9,11 +9,14 @@
 * Fullscreen view styles.
 */
 :host.fullscreen .ml-calendar__month {
-  border: 1px solid #f0f0f0;
+	display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, minmax(16.6%, 20%));
 }
 
 :host.fullscreen .ml-calendar__day {
-  position: relative;
+	overflow: hidden;
+  	position: relative;
 }
 
 :host.fullscreen .ml-calendar__week .ml-calendar__day {
@@ -28,6 +31,10 @@
 
 :host.fullscreen .ml-calendar__day-of-week {
   display: none;
+}
+
+:host.fullscreen ml-calendar-schedule {
+    overflow: scroll;
 }
 
 /**
@@ -93,6 +100,7 @@
 
   :host.fullscreen .ml-calendar__month {
     border: none;
+	display: flex;
   }
 
   :host.fullscreen .ml-calendar__week {

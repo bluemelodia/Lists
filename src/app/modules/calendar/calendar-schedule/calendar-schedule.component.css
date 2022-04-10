@@ -9,8 +9,10 @@
 }
 
 .ml-calendar__todo-list-item {
-  font-size: 0.7rem;
-  text-align: left;
+	display: flex;
+	font-size: 0.7rem;
+	text-align: left;
+	white-space: nowrap
 }
 
 .ml-calendar__todo-list-item:not(:last-child) {

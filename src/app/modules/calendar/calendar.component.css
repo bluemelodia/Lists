@@ -2,7 +2,6 @@
 .ml-calendar {
   display: flex;
   flex: 1;
-  overflow: scroll;
 }
 
 :host.fullscreen {
@@ -67,6 +66,10 @@
 
 @media only screen and (max-width: 950px) {
 	:host.fullscreen .ml-calendar {
+		overflow: hidden;
+	}
+
+	:host.fullscreen .ml-calendar__container {
 		overflow: scroll;
 	}
 

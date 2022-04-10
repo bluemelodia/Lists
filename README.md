@@ -32,7 +32,6 @@ How to make image upload easy with Angular
 - Recurrence is not correctly populated.
 - Calendar mobile view header should be sticky.
 - Port app to server-side, and make sure that cron jobs are scheduled for multiple users.
-- Handle server interrupting mid-session (meetings/tasks are left).
 - TODO: submit should not be used for buttons that aren't used to submit forms. Will need to refactor how we are handling buttons.
 
 ## Navigation
