@@ -50,12 +50,14 @@ button[type="button"] {
 }
 
 button[type="submit"],
+button.continue,
 button.cancel {
   height: 40px;
   margin: 16px 0;
 }
 
-button[type="submit"] {
+button[type="submit"],
+button.continue {
   background-color: pink;
   border: 2px solid #dd2e44;
 }

@@ -21,7 +21,8 @@
                 (click)="onCancel()">
                 Cancel
             </button>        
-            <button type="submit"
+            <button class="continue"
+				type="button"
                 (click)="onContinue()">
 				Continue
             </button>
@@ -33,13 +34,15 @@
                 (click)="onLogout()">
                 No
             </button>        
-            <button type="submit"
+            <button class="continue"
+				type="button"
                 (click)="onExtend()">
 				Yes
             </button>
         </fieldset>
 		<fieldset *ngIf="dialog.dialogType === dialogType.Session">
-			<button type="submit"
+			<button class="continue"
+				type="button"
 				(click)="onContinue()">
 				Continue
 			</button>
