@@ -27,13 +27,15 @@ export class DialogService {
 		return this.onConfirmAction$.asObservable();
 	}
 
-	showResponseStatusDialog(status: ResponseStatus, action: DialogAction, page: DialogPage): void {
+	showResponseStatusDialog(status: ResponseStatus, action: DialogAction, page: DialogPage): Observable<ConfirmDialogAction> {
 		console.info('[Dialog Service] show status dialog: ', DialogUtils.titleForDialog(status), DialogUtils.messageforStatusDialog(status, action, page), page);
 		this.show$.next({
 			title: DialogUtils.titleForDialog(status),
 			message: DialogUtils.messageforStatusDialog(status, action, page),
 			dialogType: DialogType.Info
 		});
+
+		return this.onConfirmDialogAction$;
 	}
 
 	showConfirmDialog(action: ConfirmDialogAction, page: DialogPage): Observable<ConfirmDialogAction> {

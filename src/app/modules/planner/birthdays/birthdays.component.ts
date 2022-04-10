@@ -8,14 +8,18 @@ import {
 import { of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
-import { DialogService } from "../../../services/dialog.service";
 import { LoadingService } from "../../../services/loading.service";
 import { RecipientService } from "../../../services/recipient.service";
 
-import { DialogAction, DialogPage } from "../../../interfaces/dialog.interface";
 import { RecipientList } from "../../../interfaces/event/recipient.interface";
 import { ResponseStatus } from "../../../interfaces/response.interface";
 import { AddRecipient } from "../../../interfaces/service/service-objects.interface";
+
+interface RecipientResponse {
+	error: boolean,
+	solar?: AddRecipient[],
+	lunar?: AddRecipient[],
+}
 
 @Component({
 	selector: "ml-planner-birthdays",
@@ -34,17 +38,13 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 		return hostStyles.join(" ");
 	}
 
-	private solarRecipients$ = new Subject<AddRecipient[]>();
-	public solarList$ = this.solarRecipients$.asObservable();
-
-	private lunarRecipients$ = new Subject<AddRecipient[]>();
-	public lunarList$ = this.lunarRecipients$.asObservable();
+	private _recipientResponse$ = new Subject<RecipientResponse>();
+	public recipientResponse$ = this._recipientResponse$.asObservable();
 
 	private isLoading = false;
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
-		private dialogService: DialogService,
 		private loadingService: LoadingService,
 		private recipientService: RecipientService,
 	) { }
@@ -75,7 +75,9 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 			.pipe(
 				catchError((error: ResponseStatus) => {
 					if (error === ResponseStatus.ERROR) {
-						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Recipient);
+						this._recipientResponse$.next({
+							error: true
+						});
 					}
 					this.loadingService.stopLoading();
 					return of(null);
@@ -88,8 +90,11 @@ export class BirthdaysComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((birthdayList: RecipientList) => {
 				console.info("[Birthday List] Received birthday list: ", birthdayList);
-				this.solarRecipients$.next(birthdayList?.solar);
-				this.lunarRecipients$.next(birthdayList?.lunar);
+				this._recipientResponse$.next({
+					error: !birthdayList,
+					solar: birthdayList?.solar,
+					lunar: birthdayList?.lunar
+				});
 			});
 	}
 

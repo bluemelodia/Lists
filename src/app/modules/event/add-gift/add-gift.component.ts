@@ -190,7 +190,13 @@ export class AddGiftComponent implements OnInit, OnDestroy {
 			.pipe(
 				catchError((error: ResponseStatus) => {
 					if (error === ResponseStatus.ERROR) {
-						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift);
+						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift)
+							.pipe(
+								takeUntil(this.ngUnsubscribe$)
+							)
+							.subscribe(() => {
+								this.navService.navigateToTopic(Topic.Gifts, { relativeTo: this.route });
+							});
 					}
 					this.loadingService.stopLoading();
 					return of(null);

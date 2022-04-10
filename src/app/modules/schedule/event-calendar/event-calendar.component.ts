@@ -89,7 +89,6 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 						this.getData();
 					}
 
-					console.log("===> cal data: ", this.calendarData);
 					return of(null);
 				}),
 				catchError(() => {
@@ -114,8 +113,6 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 		])
 			.pipe(
 				catchError((error: ResponseStatus) => {
-					console.log("===> another cal error: ", error);
-
 					if (error === ResponseStatus.ERROR) {
 						this.emitCalendarError();
 					}
@@ -129,7 +126,6 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 				takeUntil(this.destroyed$)
 			)
 			.subscribe(([birthdays, meetings, tasks]) => {
-				console.log("===> no meeting or tasks: ", birthdays, meetings, tasks);
 				this.calendarData = {
 					...this.calendarData,
 					isError: false,
