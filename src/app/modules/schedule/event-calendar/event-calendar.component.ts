@@ -21,6 +21,7 @@ import { TaskService } from '../../../services/task.service';
 
 interface CalendarData {
 	calendar: Calendar;
+	isError: boolean;
 	isLoading: boolean;
 	showCal: boolean;
 }
@@ -42,6 +43,7 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 
 	private calendarData: CalendarData = {
 		isLoading: false,
+		isError: false,
 		calendar: null,
 		showCal: false,
 	};
@@ -60,7 +62,7 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 
 	public ngOnInit(): void {
 		this.setupSubscriptions();
-		this.calendar.getCalendar(this.calendarType);
+		this.getCalendar();
 	}
 
 	public ngOnDestroy(): void {
@@ -71,21 +73,23 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	private setupSubscriptions(): void {
 		this.calendar.onCalendarFetched$
 			.pipe(
-				take(1),
 				takeUntil(this.destroyed$),
 				map((calendar: Calendar) => {
 					if (!calendar) {
-						throw new Error('Unable to fetch calendar.');
+						this.emitCalendarError();
+					} else {
+						this.cal = calendar;
+						this.calendarData = JSON.parse(JSON.stringify({
+							...this.calendarData,
+							isLoading: false,
+							isError: false,
+							calendar: this.cal,
+						}));
+						this.calendarData$.next(this.calendarData);
+						this.getData();
 					}
 
-					this.cal = calendar;
-					this.calendarData = JSON.parse(JSON.stringify({
-						...this.calendarData,
-						isLoading: false,
-						calendar: this.cal,
-					}));
-					this.getData();
-
+					console.log("===> cal data: ", this.calendarData);
 					return of(null);
 				}),
 				catchError(() => {
@@ -94,6 +98,10 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 				})
 			)
 			.subscribe();
+	}
+
+	public getCalendar(): void {
+		this.calendar.getCalendar(this.calendarType);
 	}
 
 	public getData(): void {
@@ -106,8 +114,10 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 		])
 			.pipe(
 				catchError((error: ResponseStatus) => {
+					console.log("===> another cal error: ", error);
+
 					if (error === ResponseStatus.ERROR) {
-						// TODO: don't show dialog here, instead show error message
+						this.emitCalendarError();
 					}
 					this.loadingService.stopLoading();
 					return of(null);
@@ -119,8 +129,22 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 				takeUntil(this.destroyed$)
 			)
 			.subscribe(([birthdays, meetings, tasks]) => {
+				console.log("===> no meeting or tasks: ", birthdays, meetings, tasks);
+				this.calendarData = {
+					...this.calendarData,
+					isError: false,
+				};
+				this.calendarData$.next(this.calendarData);
 				this.createSchedule(birthdays, meetings, tasks);
 			});
+	}
+
+	private emitCalendarError():  void {
+		this.calendarData = {
+			...this.calendarData,
+			isError: true,
+		};
+		this.calendarData$.next(this.calendarData);
 	}
 
 	private createSchedule(birthdays: RecipientList, meetings: AddMeeting[], tasks: Task[]): void {
@@ -142,7 +166,7 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	private addBirthdays(birthdays: RecipientList): void {
 		const calendar = this.calendarData.calendar.months;
 
-		[ ...birthdays?.solar, ...birthdays?.lunar ].forEach((birthday: AddRecipient) => {
+		[...birthdays?.solar, ...birthdays?.lunar].forEach((birthday: AddRecipient) => {
 			const month = calendar[this.calendar.getCalendarMonth(birthday.date)];
 			month?.weeks?.forEach((week: CalendarWeek) => {
 				week.days.forEach((day: CalendarDay) => {

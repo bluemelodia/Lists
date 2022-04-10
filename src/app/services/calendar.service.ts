@@ -88,6 +88,7 @@ export class CalendarService {
 					type: type
 				});
 			}, () => {
+				console.log("===> cal next is null");
 				this.calendar$.next(null);
 				return of(null);
 			});

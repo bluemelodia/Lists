@@ -97,7 +97,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
 				take(1),
 				takeUntil(this.ngUnsubscribe$),
 				catchError((error: ResponseStatus) => {
-					console.log("===> [Settings] error: ", error);
 					if (error === ResponseStatus.ERROR) {
 						this._settingsResponse$.next({ error: true });
 					}

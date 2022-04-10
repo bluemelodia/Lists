@@ -34,11 +34,12 @@ export class RecipientService {
 		this.setupSubscriptions();
 	}
 
-	private setupSubscriptions() {
+	private setupSubscriptions(): void {
 		this.calendarService.onCalendarFetched$
 			.subscribe((calendar: Calendar) => {
 				if (!calendar) {
-					throw new Error('Unable to fetch calendar.');
+					console.error('[Recipient Service] Unable to fetch calendar.');
+					return;
 				}
 
 				this.calendar = calendar;
