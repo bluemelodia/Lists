@@ -1,7 +1,8 @@
 <section class="ml-calendar__schedule">
-	<button type="button" class="ml-calendar__badge-container">
+	<div class="ml-calendar__badge-container"
+		[attr.ariaLabel]="getTotalEventsLabel()">
 		<span class="ml-calendar__badge">{{ getTotalEvents() }}</span>
-	</button>
+	</div>
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.solar">
 		<li class="ml-calendar__todo-list-item">
 			<button type="button" 
@@ -9,7 +10,7 @@
 				tabindex="0"
 				(click)="navigate(topic.Birthdays)">
 				<span class="ml-calendar__todo-list-pill">Birthday</span>
-				{{ birthday.name }}
+				<span class="ml-calendar__todo-list-description">{{ birthday.name }}</span>
 			</button>
 		</li>
 	</ul>
@@ -20,7 +21,7 @@
 				tabindex="0"
 				(click)="navigate(topic.Birthdays)">
 				<span class="ml-calendar__todo-list-pill">Birthday</span>
-				{{ birthday.name }}
+				<span class="ml-calendar__todo-list-description">{{ birthday.name }}</span>
 			</button>
 		</li>
 	</ul>
@@ -31,7 +32,7 @@
 				tabindex="0"
 				(click)="navigate(topic.Meetings)">
 				<span class="ml-calendar__todo-list-pill">Meeting</span>
-				{{ meeting | meetingCalendar }}
+				<span class="ml-calendar__todo-list-description">{{ meeting | meetingCalendar }}</span>
 			</button>
 		</li>
 	</ul>
@@ -42,7 +43,7 @@
 				tabindex="0"
 				(click)="navigate(topic.Tasks)">
 				<span class="ml-calendar__todo-list-pill">Task</span>
-				{{ task | taskCalendar }}
+				<span class="ml-calendar__todo-list-description">{{ task | taskCalendar }}</span>
 			</button>
 		</li>
 	</ul>

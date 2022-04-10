@@ -24,12 +24,20 @@
 	text-align: left;
 }
 
+.ml-calendar__todo-list-button *:not(:last-child) {
+	margin-right: 4px;
+}
+
 .ml-calendar__todo-list-pill {
   background-color: #dd2e44;
   border-radius: 8px;
   color: white;
   font-size: inherit;
   padding: 0 8px;
+}
+
+.ml-calendar__todo-list-description {
+	font-size: inherit;
 }
 
 .ml-calendar__badge-container {

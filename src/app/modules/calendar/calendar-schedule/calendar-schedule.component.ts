@@ -26,4 +26,8 @@ export class CalendarScheduleComponent {
 		const total = this.schedule.solar.length + this.schedule.lunar.length + this.schedule.meetings.length + this.schedule.tasks.length;
 		return total > 10 ? '9+' : `${total}`;
 	}
+
+	public getTotalEventsLabel(): string {
+		return this.getTotalEvents() + ' events';
+	}
 }
