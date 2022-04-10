@@ -80,7 +80,6 @@ export class GiftsComponent implements OnInit, OnDestroy {
 		])
 			.pipe(
 				catchError((error: ResponseStatus) => {
-					console.log("==> error: ", error);
 					if (error === ResponseStatus.ERROR) {
 						this._giftResponse$.next({
 							error: true
@@ -96,7 +95,6 @@ export class GiftsComponent implements OnInit, OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((lists: [RecipientList, AddGift[]]) => {
-				console.info("[Gift List] Received gift list!: ", lists);
 				if (lists && lists[0]?.list?.length > 0 && lists[1]?.length > 0) {
 					this.mapGiftsToRecipients(lists[0].list, lists[1]);
 				} else {
@@ -120,7 +118,6 @@ export class GiftsComponent implements OnInit, OnDestroy {
 			});
 		});
 
-		console.log("===> map: ", giftDetails, recipients);
 		this._giftResponse$.next({
 			error: false,
 			gifts: giftDetails,

@@ -30,7 +30,7 @@ import { GiftService } from '../../../../services/gift.service';
 	selector: 'ml-planner-gifts-list',
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.css'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent implements OnDestroy {
 	@HostBinding("class") public get hostClasses(): string {
@@ -40,7 +40,7 @@ export class ListComponent implements OnDestroy {
 
 	@Input() set list(list: GiftDetails[]) {
 		this.fullList = list;
-		this.giftList$.next(list);
+		this.giftList = list;
 	}
 	@Input() recipients: AddRecipient[];
 	@Input() header: string;
@@ -53,8 +53,7 @@ export class ListComponent implements OnDestroy {
 	public icon = Icon;
 	public noItemsConfig = NO_ITEMS_CONFIG[Event.Gift];
 
-	private giftList$ = new Subject<GiftDetails[]>();
-	public list$ = this.giftList$.asObservable();
+	public giftList: GiftDetails[];
 
 	private fullList: GiftDetails[];
 	private ngUnsubscribe$ = new Subject<void>();
@@ -105,11 +104,11 @@ export class ListComponent implements OnDestroy {
 		const filteredList = this.fullList.filter((giftDetails: GiftDetails) => {
 			return giftDetails.recipientId === recipient.uuid;
 		});
-		this.giftList$.next(filteredList);
+		this.giftList = filteredList;
 	}
 
 	public resetRecipientFilter(): void {
-		this.giftList$.next(this.fullList);
+		this.giftList = this.fullList;
 	}
 
 	public onDeleteClicked(uuid: string): void {

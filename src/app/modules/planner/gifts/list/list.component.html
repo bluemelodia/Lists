@@ -13,25 +13,25 @@
 	</ml-recipient-filter>
 </section>
 
-<section *ngIf="list$ | async as list" class="ml-task-container--scrollable hide-scrollbar">
-	<section *ngIf="list && list.length > 0" 
+<section class="ml-task-container--scrollable hide-scrollbar">
+	<section *ngIf="giftList && giftList.length > 0" 
 		class="ml-ml-task-list--scrollable">
 		<ul class="ml-task-list">
-			<li *ngFor="let gift of list"
+			<li *ngFor="let gift of giftList"
 				class="ml-ml-task-list__item">
-				<ng-container [ngTemplateOutlet]="giftList" 
+				<ng-container [ngTemplateOutlet]="giftsList" 
 					[ngTemplateOutletContext]="{ 'gift': gift }">
 				</ng-container>   
 			</li>
 		</ul>
 	</section>
-	<section *ngIf="list && list.length === 0"
+	<section *ngIf="giftList && giftList.length === 0"
 		class="no-results ml-flex-column--centered">
     <ml-no-items [config]="noItemsConfig"></ml-no-items>
 </section>
 </section>
 
-<ng-template #giftList let-gift="gift">
+<ng-template #giftsList let-gift="gift">
 	<section class="ml-ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
 		<ml-heading [level]="headerLevel.H2"
 			[text]="gift.recipient?.name">
