@@ -2,14 +2,17 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/
 import { of, Subject } from "rxjs";
 import { catchError, finalize, take, takeUntil } from "rxjs/operators";
 
-import { DialogAction, DialogPage } from "../../../interfaces/dialog.interface";
 import { HeaderLevel } from "../../../interfaces/header.interface";
 import { Task } from "../../../interfaces/event/task.interface";
 import { ResponseStatus } from "../../../interfaces/response.interface";
 
-import { DialogService } from "../../../services/dialog.service";
 import { LoadingService } from "../../../services/loading.service";
 import { TaskService } from "../../../services/task.service";
+
+interface TasksResponse {
+	error: boolean,
+	tasks?: Task[]
+}
 
 @Component({
 	selector: 'ml-planner-tasks',
@@ -20,13 +23,12 @@ import { TaskService } from "../../../services/task.service";
 export class TasksComponent implements OnInit, OnDestroy {
 	public headerLevel = HeaderLevel;
 
-	private tasks$ = new Subject<Task[]>();
-	public tasksList$ = this.tasks$.asObservable();
+	private _tasksResponse$ = new Subject<TasksResponse>();
+	public tasksResponse$ = this._tasksResponse$.asObservable();
 
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
-		private dialogService: DialogService,
 		private loadingService: LoadingService,
 		private tasksService: TaskService,
 	) { }
@@ -39,8 +41,13 @@ export class TasksComponent implements OnInit, OnDestroy {
 		this.loadingService.startLoading();
 		this.tasksService.getTasks()
 			.pipe(
-				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Tasks);
+				catchError((error: ResponseStatus) => {
+					if (error === ResponseStatus.ERROR) {
+						this._tasksResponse$.next({
+							error: true
+						});
+					}
+
 					this.loadingService.stopLoading();
 					return of(null);
 				}),
@@ -51,7 +58,11 @@ export class TasksComponent implements OnInit, OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((tasks: Task[]) => {
-				this.tasks$.next(tasks);
+				console.log("===<> got tasks: ", tasks);
+				this._tasksResponse$.next({
+					error: !tasks,
+					tasks: tasks
+				})
 			});
 	}
 

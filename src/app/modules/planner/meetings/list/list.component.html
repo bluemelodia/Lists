@@ -3,7 +3,7 @@
 	<section class="ml-ml-task-list--scrollable">
 		<ul class="ml-task-list">
 			<li *ngFor="let meeting of list"
-				class="ml-ml-task-list__item">
+				class="ml-task-list__item">
 				<ng-container [ngTemplateOutlet]="meetingList" 
 					[ngTemplateOutletContext]="{ 'meeting': meeting }">
 				</ng-container>   

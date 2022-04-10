@@ -18,7 +18,7 @@
 		class="ml-ml-task-list--scrollable">
 		<ul class="ml-task-list">
 			<li *ngFor="let gift of giftList"
-				class="ml-ml-task-list__item">
+				class="ml-task-list__item">
 				<ng-container [ngTemplateOutlet]="giftsList" 
 					[ngTemplateOutletContext]="{ 'gift': gift }">
 				</ng-container>   

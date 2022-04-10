@@ -9,19 +9,19 @@
 	</ml-status-filter>
 </section>
 
-<section *ngIf="list$ | async as list" class="ml-task-container--scrollable hide-scrollbar">
-	<section *ngIf="list && list.length > 0"
+<section *ngIf="tasksList" class="ml-task-container--scrollable hide-scrollbar">
+	<section *ngIf="tasksList && tasksList.length > 0"
 		class="ml-ml-task-list--scrollable">
 		<ul class="ml-task-list">
-			<li *ngFor="let task of list"
-				class="ml-ml-task-list__item">
+			<li *ngFor="let task of tasksList"
+				class="ml-task-list__item">
 				<ng-container [ngTemplateOutlet]="taskList" 
 					[ngTemplateOutletContext]="{ 'task': task }">
 				</ng-container>   
 			</li>
 		</ul>
 	</section>
-	<section *ngIf="list && list.length === 0"
+	<section *ngIf="tasksList && tasksList.length === 0"
 		class="no-results ml-flex-column--centered">
 		<ml-no-items [config]="noItemsConfig"></ml-no-items>
 	</section>

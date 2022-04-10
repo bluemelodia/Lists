@@ -48,7 +48,7 @@ ml-action:not(:last-child) {
 .ml-actions {
   display: flex;
   flex: 1;
-  margin: 8px 0;
+  margin: 0;
 }
 
 .ml-edit-actions {

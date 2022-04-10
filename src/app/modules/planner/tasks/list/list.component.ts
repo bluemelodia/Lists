@@ -33,7 +33,7 @@ import { TaskService } from "../../../../services/task.service";
 export class ListComponent implements OnDestroy {
 	@Input() set list(list: Task[]) {
 		this.fullList = list;
-		this.tasksList$.next(list);
+		this.tasksList = list;
 	}
 
 	@Output() deletedTask = new EventEmitter();
@@ -42,8 +42,7 @@ export class ListComponent implements OnDestroy {
 	public icon = Icon;
 	public noItemsConfig = NO_ITEMS_CONFIG[Event.Task];
 
-	private tasksList$ = new Subject<Task[]>();
-	public list$ = this.tasksList$.asObservable();
+	public tasksList: Task[];
 
 	private filters = {
 		recurrence: null,
@@ -96,13 +95,13 @@ export class ListComponent implements OnDestroy {
 			});
 		}
 
-		this.tasksList$.next(filteredList);
+		this.tasksList = filteredList;
 	}
 
 	public resetTasksFilters(): void {
 		this.filters.recurrence = null;
 		this.filters.status = null;
-		this.tasksList$.next(this.fullList);
+		this.tasksList = this.fullList;
 	}
 
 	public onDeleteClicked(uuid: string): void {
