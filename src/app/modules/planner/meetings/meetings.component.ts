@@ -7,14 +7,17 @@ import {
 import { of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
-import { DialogAction, DialogPage } from '../../../interfaces/dialog.interface';
 import { HeaderLevel } from '../../../interfaces/header.interface';
 import { ResponseStatus } from '../../../interfaces/response.interface';
 import { AddMeeting } from '../../../interfaces/service/service-objects.interface';
 
-import { DialogService } from '../../../services/dialog.service';
 import { LoadingService } from '../../../services/loading.service';
 import { MeetingService } from '../../../services/meeting.service';
+
+interface MeetingResponse {
+	error: boolean,
+	meetings?: AddMeeting[]
+}
 
 @Component({
 	selector: 'ml-planner-meetings',
@@ -25,13 +28,12 @@ import { MeetingService } from '../../../services/meeting.service';
 export class MeetingsComponent implements OnInit, OnDestroy {
 	public headerLevel = HeaderLevel;
 
-	private meetings$ = new Subject<AddMeeting[]>();
-	public meetingList$ = this.meetings$.asObservable();
+	private _meetingsResponse$ = new Subject<MeetingResponse>();
+	public meetingResponse$ = this._meetingsResponse$.asObservable();
 
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
-		private dialogService: DialogService,
 		private loadingService: LoadingService,
 		private meetingService: MeetingService,
 	) { }
@@ -44,8 +46,12 @@ export class MeetingsComponent implements OnInit, OnDestroy {
 		this.loadingService.startLoading();
 		this.meetingService.getMeetings()
 			.pipe(
-				catchError(() => {
-					this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Meeting);
+				catchError((error: ResponseStatus) => {
+					if (error === ResponseStatus.ERROR) {
+						this._meetingsResponse$.next({
+							error: true
+						});
+					}
 					this.loadingService.stopLoading();
 					return of(null);
 				}),
@@ -56,7 +62,10 @@ export class MeetingsComponent implements OnInit, OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((meetings: AddMeeting[]) => {
-				this.meetings$.next(meetings);
+				this._meetingsResponse$.next({
+					error: !meetings,
+					meetings: meetings
+				});
 			});
 	}
 

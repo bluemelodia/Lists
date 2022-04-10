@@ -1,4 +1,7 @@
-<section class="ml-meetings ml-form-container">
-	<ml-planner-meetings-list [list]="meetingList$ | async"
-		(deletedMeeting)="getMeetings()"></ml-planner-meetings-list>
-</section>
+<ng-container *ngIf="meetingResponse$ | async as meetingResponse">
+	<ml-error *ngIf="meetingResponse.error" (retry)="getMeetings()"></ml-error>
+	<section *ngIf="!meetingResponse.error" class="ml-meetings ml-form-container">
+		<ml-planner-meetings-list [list]="meetingResponse.meetings"
+			(deletedMeeting)="getMeetings()"></ml-planner-meetings-list>
+	</section>
+</ng-container>
