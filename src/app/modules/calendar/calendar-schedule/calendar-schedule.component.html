@@ -27,7 +27,7 @@
 			</button>
 		</li>
 	</ul>
-	<ul class="ml-calendar__todo-list" *ngFor="let meeting of schedule.meetings">
+	<ul class="ml-calendar__todo-list" *ngFor="let meeting of schedule.meetings; let i = index">
 		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill_lg">Meetings</span>
 		<li class="ml-calendar__todo-list-item">
 			<button type="button"
@@ -39,7 +39,7 @@
 			</button>
 		</li>
 	</ul>
-	<ul class="ml-calendar__todo-list" *ngFor="let task of schedule.tasks">
+	<ul class="ml-calendar__todo-list" *ngFor="let task of schedule.tasks; let i = index">
 		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill_lg">Tasks</span>
 		<li class="ml-calendar__todo-list-item">
 			<button type="button"

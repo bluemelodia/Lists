@@ -80,7 +80,9 @@
 	.ml-calendar__todo-list-button {
 		display: flex;
 		margin: 0;
+		margin-left: 8px;
 		padding-left: 0;
+		width: 80%;
 	}
 
 	.ml-calendar__todo-list-pill_sm {
@@ -89,5 +91,11 @@
 
 	.ml-calendar__todo-list-pill_lg {
 		display: none;
+	}
+
+	.ml-calendar__todo-list-description {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 }
