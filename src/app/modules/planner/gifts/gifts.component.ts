@@ -8,16 +8,20 @@ import {
 import { forkJoin, of, Subject } from 'rxjs';
 import { catchError, finalize, take, takeUntil } from 'rxjs/operators';
 
-import { DialogAction, DialogPage } from '../../../interfaces/dialog.interface';
 import { AddGift, GiftDetails } from '../../../interfaces/event/gift.interface';
 import { RecipientList } from '../../../interfaces/event/recipient.interface';
 import { ResponseStatus } from '../../../interfaces/response.interface';
 import { AddRecipient } from '../../../interfaces/service/service-objects.interface';
 
-import { DialogService } from '../../../services/dialog.service';
 import { GiftService } from '../../../services/gift.service';
 import { LoadingService } from '../../../services/loading.service';
 import { RecipientService } from '../../../services/recipient.service';
+
+interface GiftResponse {
+	error: boolean,
+	gifts?: AddGift[],
+	recipients?: AddRecipient[]
+}
 
 @Component({
 	selector: 'ml-planner-gifts',
@@ -36,17 +40,13 @@ export class GiftsComponent implements OnInit, OnDestroy {
 		return hostStyles.join(" ");
 	}
 
-	private giftDetailsList$ = new Subject<GiftDetails[]>();
-	public giftList$ = this.giftDetailsList$.asObservable();
-
-	private recipientsList$ = new Subject<AddRecipient[]>();
-	public recipients$ = this.recipientsList$.asObservable();
+	private _giftResponse$ = new Subject<GiftResponse>();
+	public giftResponse$ = this._giftResponse$.asObservable();
 
 	private isLoading = false;
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
-		private dialogService: DialogService,
 		private giftService: GiftService,
 		private loadingService: LoadingService,
 		private recipientService: RecipientService,
@@ -80,8 +80,11 @@ export class GiftsComponent implements OnInit, OnDestroy {
 		])
 			.pipe(
 				catchError((error: ResponseStatus) => {
+					console.log("==> error: ", error);
 					if (error === ResponseStatus.ERROR) {
-						this.dialogService.showResponseStatusDialog(ResponseStatus.ERROR, DialogAction.Get, DialogPage.Gift);
+						this._giftResponse$.next({
+							error: true
+						});
 					}
 					this.loadingService.stopLoading();
 					return of(null);
@@ -93,13 +96,16 @@ export class GiftsComponent implements OnInit, OnDestroy {
 				takeUntil(this.ngUnsubscribe$)
 			)
 			.subscribe((lists: [RecipientList, AddGift[]]) => {
-				console.info("[Gift List] Received gift list: ", lists);
+				console.info("[Gift List] Received gift list!: ", lists);
 				if (lists && lists[0]?.list?.length > 0 && lists[1]?.length > 0) {
 					this.mapGiftsToRecipients(lists[0].list, lists[1]);
 				} else {
-					this.giftDetailsList$.next([]);
+					this._giftResponse$.next({
+						error: !lists,
+						gifts: lists ? lists[1] : [],
+						recipients: lists ? lists[0]?.list : []
+					});
 				}
-				this.recipientsList$.next(lists ? lists[0]?.list : []);
 			});
 	}
 
@@ -113,8 +119,13 @@ export class GiftsComponent implements OnInit, OnDestroy {
 				}
 			});
 		});
-		console.info("[Gift List] Display gift list: ", giftDetails);
-		this.giftDetailsList$.next(giftDetails);
+
+		console.log("===> map: ", giftDetails, recipients);
+		this._giftResponse$.next({
+			error: false,
+			gifts: giftDetails,
+			recipients: recipients
+		});
 	}
 
 	public ngOnDestroy(): void {

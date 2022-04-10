@@ -1,6 +1,7 @@
 :host {
 	display: flex;
     height: 100%;
+	justify-content: center;
     max-width: 950px;
     overflow: hidden;
 	width: 100%;
