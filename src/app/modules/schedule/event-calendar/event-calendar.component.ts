@@ -73,6 +73,7 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	private setupSubscriptions(): void {
 		this.calendar.onCalendarFetched$
 			.pipe(
+				take(1),
 				takeUntil(this.destroyed$),
 				map((calendar: Calendar) => {
 					if (!calendar) {
@@ -131,6 +132,7 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 					isError: false,
 				};
 				this.calendarData$.next(this.calendarData);
+				console.log("===, create schedule");
 				this.createSchedule(birthdays, meetings, tasks);
 			});
 	}
@@ -161,6 +163,7 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	*/
 	private addBirthdays(birthdays: RecipientList): void {
 		const calendar = this.calendarData.calendar.months;
+		console.log("===< birthdays: ", birthdays);
 
 		[...birthdays?.solar, ...birthdays?.lunar].forEach((birthday: AddRecipient) => {
 			const month = calendar[this.calendar.getCalendarMonth(birthday.date)];

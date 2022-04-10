@@ -4,49 +4,49 @@
 		<span class="ml-calendar__badge">{{ getTotalEvents() }}</span>
 	</div>
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.solar; let i = index">
-		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill_lg">Solar Birthdays</span>
+		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill lg">Solar Birthdays</span>
 		<li class="ml-calendar__todo-list-item">
 			<button type="button" 
 				class="ml-calendar__todo-list-button ml--focus"
 				tabindex="0"
 				(click)="navigate(topic.Birthdays)">
-				<span class="ml-calendar__todo-list-pill_sm">Birthday</span>
+				<span class="ml-calendar__todo-list-pill sm">Birthday</span>
 				<span class="ml-calendar__todo-list-description">{{ birthday.name }}</span>
 			</button>
 		</li>
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let birthday of schedule.lunar; let i = index">
-		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill_lg">Lunar Birthdays</span>
+		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill lg">Lunar Birthdays</span>
 		<li class="ml-calendar__todo-list-item">
 			<button type="button"
 				class="ml-calendar__todo-list-button ml--focus"
 				tabindex="0"
 				(click)="navigate(topic.Birthdays)">
-				<span class="ml-calendar__todo-list-pill_sm">Birthday</span>
+				<span class="ml-calendar__todo-list-pill sm">Birthday</span>
 				<span class="ml-calendar__todo-list-description">{{ birthday.name }}</span>
 			</button>
 		</li>
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let meeting of schedule.meetings; let i = index">
-		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill_lg">Meetings</span>
+		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill lg">Meetings</span>
 		<li class="ml-calendar__todo-list-item">
 			<button type="button"
 				class="ml-calendar__todo-list-button ml--focus"
 				tabindex="0"
 				(click)="navigate(topic.Meetings)">
-				<span class="ml-calendar__todo-list-pill_sm">Meetings</span>
+				<span class="ml-calendar__todo-list-pill sm">Meetings</span>
 				<span class="ml-calendar__todo-list-description">{{ meeting | meetingCalendar }}</span>
 			</button>
 		</li>
 	</ul>
 	<ul class="ml-calendar__todo-list" *ngFor="let task of schedule.tasks; let i = index">
-		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill_lg">Tasks</span>
+		<span *ngIf="i === 0" class="ml-calendar__todo-list-pill lg">Tasks</span>
 		<li class="ml-calendar__todo-list-item">
 			<button type="button"
 				class="ml-calendar__todo-list-button ml--focus"
 				tabindex="0"
 				(click)="navigate(topic.Tasks)">
-				<span class="ml-calendar__todo-list-pill_sm">Tasks</span>
+				<span class="ml-calendar__todo-list-pill sm">Tasks</span>
 				<span class="ml-calendar__todo-list-description">{{ task | taskCalendar }}</span>
 			</button>
 		</li>
