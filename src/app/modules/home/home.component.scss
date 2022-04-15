@@ -4,7 +4,7 @@
 	height: 100%;
 	justify-content: center;
 	max-width: 950px;
-	overflow: hidden;
+	overflow: scroll;
 	width: 100%;
 }
 
@@ -28,4 +28,12 @@
     grid-template-columns: 1fr;
     overflow: scroll;
   }
+}
+
+@media (orientation: landscape) and (max-width: 1024px) {
+	.ml-home {
+		grid-auto-rows: auto;
+		grid-template-columns: 1fr;
+		overflow: scroll;
+	}
 }

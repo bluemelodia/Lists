@@ -97,12 +97,6 @@
   }
 }
 
-@media only screen and (min-width: 600px) {
-  :host {
-    overflow: hidden;
-  }
-}
-
 @media only screen and (max-width: 600px) {
   /** 
 	* Otherwise the meeting start/end 
