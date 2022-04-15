@@ -104,7 +104,8 @@
   color: #e91e63;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 950px),
+		    screen and (max-height: 850px) {
   :host.fullscreen ml-calendar-schedule {
 	overflow: auto;
     width: 90%;

@@ -8,6 +8,12 @@
 	width: 100%;
 }
 
+:host::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+}
+
 :host.loading {
 	display: none;
 }
@@ -22,7 +28,8 @@
   max-width: 100%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px),
+	screen and (orientation: landscape) and (max-width: 1024px) {
   .ml-home {
     grid-auto-rows: auto;
     grid-template-columns: 1fr;
@@ -30,10 +37,3 @@
   }
 }
 
-@media (orientation: landscape) and (max-width: 1024px) {
-	.ml-home {
-		grid-auto-rows: auto;
-		grid-template-columns: 1fr;
-		overflow: scroll;
-	}
-}
