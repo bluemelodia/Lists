@@ -94,6 +94,12 @@ button.cancel:hover {
   width: 100%;
 }
 
+.ml-section-container::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+}
+
 /**
 * Form-relevant styles.
 */
