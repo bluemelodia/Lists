@@ -11,7 +11,7 @@
 :host.fullscreen .ml-calendar__month {
 	display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, minmax(16.6%, 20%));
+    grid-template-rows: repeat(6, minmax(16.6%, 25%));
 }
 
 :host.fullscreen .ml-calendar__day {

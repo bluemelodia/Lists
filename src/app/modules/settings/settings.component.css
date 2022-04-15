@@ -1,5 +1,13 @@
 :host {
 	background: white;
+	height: 100%;
     max-width: 900px;
+	overflow: scroll;
     width: 100%;
+}
+
+:host::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
 }
