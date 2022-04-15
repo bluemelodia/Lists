@@ -21,6 +21,9 @@
   overflow-y: scroll;
 }
 
+/**
+* Hide Safari scrollbar.
+*/
 .ml-home-widget__list::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 0;

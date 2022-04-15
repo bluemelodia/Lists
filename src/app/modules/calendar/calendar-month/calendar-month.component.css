@@ -40,6 +40,15 @@
 }
 
 /**
+* Hide Safari scrollbar
+*/
+:host.fullscreen ml-calendar-schedule::-webkit-scrollbar {
+	-webkit-appearance: none;
+    width: 0;
+    height: 0;
+}
+
+/**
 * Regular calendar styles.
 */
 .ml-calendar__month {
