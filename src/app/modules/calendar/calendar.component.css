@@ -12,6 +12,9 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  -ms-overflow-style: none; /* IE 11 */
+  overflow: scroll;
+  scrollbar-width: none; /* Firefox 64 */
 }
 
 /**

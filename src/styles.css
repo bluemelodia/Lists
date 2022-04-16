@@ -90,7 +90,9 @@ button.cancel:hover {
   flex-grow: 1;
   justify-content: center;
   min-height: 0;
+  -ms-overflow-style: none; /* IE 11 */
   overflow: auto;
+  scrollbar-width: none; /* Firefox 64 */
   width: 100%;
 }
 

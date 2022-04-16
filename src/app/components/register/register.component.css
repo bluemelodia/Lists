@@ -1,7 +1,9 @@
 :host {
 	display: flex;
 	height: 100%;
+	-ms-overflow-style: none; /* IE 11 */
 	overflow: scroll;
+	scrollbar-width: none; /* Firefox 64 */
   	width: 100%;
 }
 
