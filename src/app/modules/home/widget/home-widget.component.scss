@@ -15,10 +15,19 @@
   overflow: hidden;
 }
 
+.ml-home-widget__no-results {
+	align-items: center;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+}
+
 .ml-home-widget__list {
   margin: 0;
   padding: 0;
+  -ms-overflow-style: none; /* IE 11 */
   overflow-y: scroll;
+  scrollbar-width: none; /* Firefox 64 */
 }
 
 /**

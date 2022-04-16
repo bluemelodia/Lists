@@ -1,5 +1,17 @@
 # Lists
 
+## Architecture
+
+## Known Issues
+
+- updateOn: "submit" does not work consistently with all input forms. dateAndTimeValidator runs in-between submits (ex. user updates the Add Meeting datepicker field, and the error will update in real time, instead of on the next submit).
+
+## TODO
+
+- Ensure that all fields are propagating edits correctly (birthdays/settings).
+- Test in all browsers. And mobile.
+- Port app to server-side, and make sure that cron jobs are scheduled for multiple users.
+
 ## Credit
 
 Icons made by:
@@ -20,17 +32,6 @@ How to make image upload easy with Angular
 <a href="https://dev.to/clairecodes/why-its-important-to-give-your-html-button-a-type-58k9">
 	Why it's important to give your HTML button a type
 </a>
-
-## Known Issues
-
-- updateOn: "submit" does not work consistently with all input forms. dateAndTimeValidator runs in-between submits (ex. user updates the Add Meeting datepicker field, and the error will update in real time, instead of on the next submit).
-
-## TODO
-
-- Ensure that all fields are propagating edits correctly (birthdays/settings).
-- Test in all browsers.
-- Recurrence is not correctly populated.
-- Port app to server-side, and make sure that cron jobs are scheduled for multiple users.
 
 ## Navigation
 

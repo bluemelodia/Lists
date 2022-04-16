@@ -24,7 +24,7 @@
 		[ngTemplateOutlet]="tasks" 
 		[ngTemplateOutletContext]="{ 'tasks': list }">
 	</ng-container>	
-	<section *ngIf="list && list.length < 1">
+	<section class="ml-home-widget__no-results" *ngIf="list && list.length < 1">
 		<ml-no-results [message]="noResultsMsg">
 		</ml-no-results>
 	</section>
