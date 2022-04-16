@@ -41,6 +41,8 @@ export class DialogUtils {
 	}
 
 	private static successStatusMessage(action: DialogAction, page: DialogPage): string {
+		const pageName = page.endsWith('s') ? `${page}` : `${page}s`;
+
 		switch (action) {
 			case DialogAction.Add:
 				return `Added ${page}.`;
@@ -49,7 +51,7 @@ export class DialogUtils {
 			case DialogAction.Edit:
 				return `Saved ${page} changes.`;
 			case DialogAction.Get:
-				return `Fetched user ${page}s.`;
+				return `Fetched user ${pageName}.`;
 			case DialogAction.Register:
 				return `User created.`;
 			case DialogAction.Save:
@@ -61,6 +63,8 @@ export class DialogUtils {
 
 	private static errorStatusMessage(action: DialogAction, page: DialogPage): string {
 		let message = '';
+		const pageName = page.endsWith('s') ? `${page}` : `${page}s`;
+
 		switch (action) {
 			case DialogAction.Add:
 				message = `Unable to add ${page}.`;
@@ -72,7 +76,7 @@ export class DialogUtils {
 				message = `Unable to save ${page} changes.`;
 				break;
 			case DialogAction.Get:
-				message = `Unable to fetch user ${page}s.`;
+				message = `Unable to fetch user ${pageName}.`;
 				break;
 			case DialogAction.Login:
 				message = `Unable to login with this username and password.`;
@@ -81,7 +85,7 @@ export class DialogUtils {
 				message = `Unable to create user.`;
 				break;
 			case DialogAction.Save:
-				message = `Unable to save ${page}s.`;
+				message = `Unable to save ${pageName}.`;
 				break;
 			default:
 				message = `Unable to made changes at this time.`;
