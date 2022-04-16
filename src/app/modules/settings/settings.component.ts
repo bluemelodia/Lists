@@ -118,7 +118,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
 					},
 					email: settings?.email,
 					phone: {
-						countryCode: settings?.country,
+						country: settings?.country,
+						countryCode: settings?.countryCode,
 						number: settings?.phone
 					},
 					tasks: {
@@ -168,7 +169,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
 		if (!this.settingsFormControl.email.errors && !this.settingsFormControl.phone.errors) {
 			this.submitted = false;
 			const settings: Settings = {
-				country: this.phone?.countryCode,
+				country: this.phone?.country,
+				countryCode: this.phone?.countryCode,
 				email: this.isChannelChecked(Channel.email) ? this.email : null,
 				phone: this.isChannelChecked(Channel.text) ? this.phone?.number : null,
 				tasks: this.tasks,
