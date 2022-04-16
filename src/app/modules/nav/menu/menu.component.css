@@ -42,7 +42,6 @@
 .ml-menu__list-item {
   display: flex;
   flex-direction: column;
-  min-height: 44px;
 }
 
 .ml-menu__list-link {
