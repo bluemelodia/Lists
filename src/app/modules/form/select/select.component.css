@@ -14,8 +14,10 @@ input.ml-select__options--open {
   flex-direction: column;
   justify-content: flex-start;
   max-height: 200px;
+  -ms-overflow-style: none; /* IE 11 */
   overflow: auto;
   position: absolute;
+  scrollbar-width: none; /* Firefox 64 */
   top: 48px;
   visibility: hidden;
   width: 100%;

@@ -10,6 +10,8 @@
 
 - Ensure that all fields are propagating edits correctly (birthdays/settings).
 - Test in all browsers. And mobile.
+- Menu getting vertically squished.
+- Select (phone) option isn't getting selected.
 - Port app to server-side, and make sure that cron jobs are scheduled for multiple users.
 
 ## Credit
