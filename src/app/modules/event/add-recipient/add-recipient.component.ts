@@ -101,6 +101,7 @@ export class AddRecipientComponent implements OnInit, OnDestroy {
 			],
 			phone: this.fb.group({
 				countryCode: [""],
+				country: [""],
 				number: [""],
 			}),
 			address: this.fb.group({

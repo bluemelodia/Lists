@@ -71,6 +71,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 				],
 				phone: this.fb.group({
 					countryCode: [""],
+					country: [""],
 					number: [""],
 				}),
 				tasks: this.fb.group({

@@ -42,11 +42,13 @@ export class PhoneSelectComponent extends SelectComponent {
 		this.countries = allCountries;
 	}
 
-	public selectOption(option: CountryISO): void {
+	public selectOption(country: string, option: CountryISO): void {
 		this.showOptionList = false;
 		this.resetFilter();
 		this.form.patchValue({
-			countryCode: `+ ${option}`
+			countryCode: `+ ${option}`,
+			country
 		});
+		console.log("Selected: ", this.form);
 	}
 }

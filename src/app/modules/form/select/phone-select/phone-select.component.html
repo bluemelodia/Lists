@@ -40,8 +40,8 @@
 					class="ml-select__option ml--focus"
 					type="button"
 					[attr.aria-hidden]="showOptionList ? false : true"
-					
-					(click)="selectOption(country[2])">
+					[ngClass]="{ 'ml-select__option--selected' : form?.value?.country === country[1], 'ml-focus-origin' : i === 0 }"
+					(click)="selectOption(country[1], country[2])">
 					{{ country[0] }}
 				</button>
 			</section>
