@@ -1,6 +1,5 @@
-<section *ngIf="settingsResponse$ | async as settings" class="ml-form-container">
-	<ml-error *ngIf="settings.error" (retry)="loadSettings()"></ml-error>
-	<ng-container *ngIf="!settings.error">
+<section class="ml-form-container">
+	<ng-container>
 		<ml-heading text="User Settings"
 			[level]="headerLevel.H1" >
 		</ml-heading>

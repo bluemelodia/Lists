@@ -26,10 +26,6 @@ import { LoadingService } from "../../services/loading.service";
 import { SettingsService } from "./services/settings.service";
 import { ValidationService } from "../../services/validation.service";
 
-interface SettingsResponse {
-	error: boolean;
-}
-
 @Component({
 	selector: "ml-settings",
 	templateUrl: "./settings.component.html",
@@ -43,10 +39,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
 	public submitted: boolean;
 	public topic = Topic;
 	public validateChannel = VALIDATE_CHANNEL;
-
-	private _settingsResponse$ = new Subject<SettingsResponse>();
-	public settingsResponse$ = this._settingsResponse$.asObservable();
-
 	private ngUnsubscribe$ = new Subject<void>();
 
 	constructor(
@@ -97,10 +89,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 			.pipe(
 				take(1),
 				takeUntil(this.ngUnsubscribe$),
-				catchError((error: ResponseStatus) => {
-					if (error === ResponseStatus.ERROR) {
-						this._settingsResponse$.next({ error: true });
-					}
+				catchError(() => {
 					this.loadingService.stopLoading();
 					return of(null);
 				}),
@@ -110,7 +99,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
 			)
 			.subscribe((settings: Settings) => {
 				console.info("[Settings] Populate form data: ", settings);
-				this._settingsResponse$.next({ error: !settings });
 				this.settingsForm.patchValue({
 					channels: {
 						[Channel.email]: !!settings?.email,
