@@ -10,7 +10,6 @@
 
 - Ensure that all fields are propagating edits correctly (birthdays/settings).
 - Test in mobile.
-- Select (phone) option isn't getting selected.
 - Port app to server-side, and make sure that cron jobs are scheduled for multiple users.
 
 ## Credit

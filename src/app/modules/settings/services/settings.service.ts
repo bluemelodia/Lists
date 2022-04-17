@@ -39,6 +39,7 @@ export class SettingsService {
 					const settings: Settings = response.responseData?.length > 0 ? response.responseData[0] : null;
 					if (settings && settings["preferences"]) {
 						settings.tasks = settings["preferences"];
+						delete settings["preferences"];
 					}
 					return settings;
 				}),
