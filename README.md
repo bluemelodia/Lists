@@ -5,9 +5,9 @@
 1. npm i
 2. Install node v.16 locally:
    nvm install 16
-3. npm run build prod
+3. npm run build --prod
 4. Copy the contents of the dist folder to the www sub-directory:
-   cp \* ../../../www/list/ -r
+   cp dist/lists/* ../www/list/ -r
 5. Visit guacnbean.com/list
 
 ## Architecture
