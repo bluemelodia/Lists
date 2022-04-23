@@ -12,6 +12,11 @@ import { ElementModule } from './modules/element/element.module';
  */
 const routes: Routes = [
 	{
+		path: '',
+		redirectTo: '/login',
+		pathMatch: 'full'
+	},
+	{
 		path: 'login',
 		component: LoginComponent,
 		data: {
