@@ -16,7 +16,7 @@ import { NavService } from "./services/nav.service";
 import { UserService } from "./services/user.service";
 
 @Component({
-	selector: "ml-root",
+	selector: "app-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.css"],
 })
