@@ -10,5 +10,7 @@
 	flex-shrink: 0;
 	height: 44px;
 	justify-content: center;
+	position: fixed;
+	top: 0;
   	width: 100%;
 }
