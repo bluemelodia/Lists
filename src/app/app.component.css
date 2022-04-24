@@ -5,9 +5,9 @@
 	flex-direction: column;
 	height: 100%;
 	justify-content: center;
+	margin-top: 44px;
 	overflow: hidden;
 	padding: 16px;
-	padding-top: 44px;
 	width: 100%;
 }
 
