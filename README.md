@@ -46,6 +46,10 @@ Now using node v16.14.2 (npm v8.5.0)
 - Test in mobile.
 - Make sure that cron jobs are scheduled for multiple users.
 
+- Buttons and focus are blue on Mobile Safari 
+- top and bottom of screen are blocked (header is gone) - there needs to be a better solution than moving the header out of the flex hierarchy
+- add task button styling's gone
+
 ## Credit
 
 Icons made by:
