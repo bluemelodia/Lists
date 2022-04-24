@@ -5,10 +5,34 @@
 1. npm i
 2. Install node v.16 locally:
    nvm install 16
+
+Output:
+v16.14.2 is already installed.
+Now using node v16.14.2 (npm v8.5.0)
+
 3. npm run build --prod
 4. Copy the contents of the dist folder to the www sub-directory:
    cp dist/lists/* ../www/list/ -r
-5. Visit guacnbean.com/list
+5. Set the base href in index.html:
+	<base href="/list/">
+6. Modify the nginx configuration:
+
+	# Remove root, then use alias for each Angular app.
+
+	location ^~ / {
+		alias /home/guac/www/;		
+
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ /index.html =404;
+	}
+
+	location ^~ /list/ {
+		alias /home/guac/www/list/;
+		try_files $uri $uri/ /list/index.html =404;
+	}
+
+7. Visit guacnbean.com/list
 
 ## Architecture
 
