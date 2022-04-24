@@ -44,7 +44,7 @@ Now using node v16.14.2 (npm v8.5.0)
 
 - Ensure that all fields are propagating edits correctly (birthdays/settings).
 - Test in mobile.
-- Port app to server-side, and make sure that cron jobs are scheduled for multiple users.
+- Make sure that cron jobs are scheduled for multiple users.
 
 ## Credit
 
