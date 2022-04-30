@@ -18,7 +18,7 @@ input.ml-select__options--open {
   overflow: auto;
   position: absolute;
   scrollbar-width: none; /* Firefox 64 */
-  top: 48px;
+  top: 44px;
   visibility: hidden;
   width: 100%;
   z-index: 500;
