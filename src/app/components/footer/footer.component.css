@@ -1,6 +1,7 @@
 :host {
   background-color: white;
   bottom: 0;
+  height: 44px;
   position: fixed;
   width: 100%;
 }
