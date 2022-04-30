@@ -41,14 +41,7 @@ Now using node v16.14.2 (npm v8.5.0)
 - updateOn: "submit" does not work consistently with all input forms. dateAndTimeValidator runs in-between submits (ex. user updates the Add Meeting datepicker field, and the error will update in real time, instead of on the next submit).
 
 ## TODO
-
-- Ensure that all fields are propagating edits correctly (birthdays/settings).
-- Test in mobile.
 - Make sure that cron jobs are scheduled for multiple users.
-
-- Buttons and focus are blue on Mobile Safari 
-- top and bottom of screen are blocked (header is gone) - there needs to be a better solution than moving the header out of the flex hierarchy
-- add task button styling's gone
 
 ## Credit
 
