@@ -47,6 +47,7 @@ h6 {
 button[class="tab-stop"],
 button[type="button"] {
   background-color: transparent;
+  color: black;
   border: none;
 }
 
