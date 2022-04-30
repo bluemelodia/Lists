@@ -54,6 +54,7 @@
 }
 
 .ml-calendar__todo-list-description {
+	color: black;
 	font-size: inherit;
 }
 

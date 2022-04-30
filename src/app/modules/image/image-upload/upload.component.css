@@ -1,24 +1,25 @@
 :host {
-  display: flex;
-  flex-direction: column;
+  	display: flex;
+  	flex-direction: column;
 }
 
 .ml-image-upload__delete {
-  color: #dd2e44;
-  position: absolute;
-  right: 0;
+  	color: #dd2e44;
+  	position: absolute;
+  	right: 0;
 }
 
 .ml-image-upload__picker {
-  width: 100%;
+	display: flex;
+  	width: 100%;
 }
 
 .ml-image-upload__preview {
-  display: flex;
-  justify-content: center;
-  position: relative;
+  	display: flex;
+  	justify-content: center;
+  	position: relative;
 }
 
 .ml-image-upload__preview-src {
-  max-width: 40%;
+  	max-width: 40%;
 }
