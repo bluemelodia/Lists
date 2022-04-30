@@ -1,6 +1,14 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.12,
+* Autoprefixer: v10.4.4
+* Browsers: last 4 version
+*/
+
 /* Global styles. */
 
 * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 1rem;
   font-family: "Raleway", sans-serif;
@@ -23,8 +31,8 @@ body::-webkit-scrollbar {
 }
 
 /**
-* Reset user agent styles.
-*/
+  * Reset user agent styles.
+  */
 h1,
 p {
   margin: 0;
@@ -42,8 +50,8 @@ h6 {
 }
 
 /**
-* Button styles.
-*/
+  * Button styles.
+  */
 button[class="tab-stop"],
 button[type="button"] {
   background-color: transparent;
@@ -86,13 +94,21 @@ button.cancel:hover {
 }
 
 /**
-* Section-relevant styles.
-*/
+  * Section-relevant styles.
+  */
 .ml-section-container {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   min-height: 0;
   -ms-overflow-style: none; /* IE 11 */
@@ -108,12 +124,21 @@ button.cancel:hover {
 }
 
 /**
-* Form-relevant styles.
-*/
+  * Form-relevant styles.
+  */
 .ml-form-container {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   margin: auto;
   max-width: 700px;
@@ -140,13 +165,21 @@ button.cancel:hover {
 
 fieldset {
   border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin: 0;
   padding: 0;
 }
 
 fieldset.ml-form-actions {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
 }
 
@@ -155,9 +188,18 @@ fieldset.inner {
 }
 
 fieldset.condensed {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   margin-bottom: 8px;
 }
@@ -172,6 +214,9 @@ fieldset.condensed input:not(:last-of-type) {
 
 @media only screen and (max-width: 500px) {
   fieldset.condensed {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     margin: 0;
   }
@@ -192,6 +237,8 @@ fieldset.multi {
   background-color: #f9eeee;
   border: 2px solid pink;
   display: inline-block;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   font-size: inherit;
   margin: 0;
@@ -206,6 +253,8 @@ fieldset.multi {
 }
 
 fieldset.multi {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding: 0;
 }
@@ -236,7 +285,12 @@ input + .ml-input__error,
 }
 
 .ml-event-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   margin: 10px 0;
   width: 100%;
@@ -247,8 +301,8 @@ input + .ml-input__error,
 }
 
 /**
-* General container styles.
-*/
+  * General container styles.
+  */
 .ml-container--full-viewport {
   height: 100vh;
   width: 100vw;
@@ -260,28 +314,41 @@ input + .ml-input__error,
 }
 
 .ml-flex-column--centered {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .ml-flex-stretch {
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
   align-items: stretch;
 }
 
 /**
-* There’s a special case where the min-height of flex items defaults to the content
-* size rather than zero. According to the spec, this should only apply when overflow
-* is set to visible. For whatever reason, Firefox doesn’t implement it this way 
-* (as of 52.0.1 on Mac), and apparently thinks Chrome has it wrong. So for now,
-* we have to explicitly set the min height to zero, or else the content will overflow
-* its parent even though we’ve set it to scroll. This step needs to be done for every
-* flex-item parent all the way up to the outermost flex-box.
-*
-* Source: https://medium.com/@stephenbunch/how-to-make-a-scrollable-container-with-dynamic-height-using-flexbox-5914a26ae336
-*/
+  * There’s a special case where the min-height of flex items defaults to the content
+  * size rather than zero. According to the spec, this should only apply when overflow
+  * is set to visible. For whatever reason, Firefox doesn’t implement it this way 
+  * (as of 52.0.1 on Mac), and apparently thinks Chrome has it wrong. So for now,
+  * we have to explicitly set the min height to zero, or else the content will overflow
+  * its parent even though we’ve set it to scroll. This step needs to be done for every
+  * flex-item parent all the way up to the outermost flex-box.
+  *
+  * Source: https://medium.com/@stephenbunch/how-to-make-a-scrollable-container-with-dynamic-height-using-flexbox-5914a26ae336
+  */
 .ml-flex-container--dynamic-scroll {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
   min-height: 0;
 }
@@ -385,9 +452,18 @@ button:disabled .ml-arrow-btn {
 }
 
 .ml-task-list__item {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   padding: 8px;
 }
@@ -406,22 +482,37 @@ button:disabled .ml-arrow-btn {
 }
 
 /**
-* Modifiers
-*/
+  * Modifiers
+  */
 .ml--truncate {
   overflow: hidden;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .ml-description {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 /**
-* Animations
-*/
+  * Animations
+  */
+
+@-webkit-keyframes appear {
+  from {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 @keyframes appear {
   from {
@@ -432,9 +523,21 @@ button:disabled .ml-arrow-btn {
   }
 }
 
+@-webkit-keyframes expand {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes expand {
   from {
     opacity: 0;
+    -webkit-transform: translateY(-100%);
     transform: translateY(-100%);
   }
   100% {
@@ -443,16 +546,14 @@ button:disabled .ml-arrow-btn {
 }
 
 /**
-* Third-party library overrides.
-*/
+  * Third-party library overrides.
+  */
 input[type="tel"] {
   padding-left: 75px !important;
 }
 
 .fa-rotate-335 {
   -webkit-transform: rotate(335deg);
-  -moz-transform: rotate(335deg);
   -ms-transform: rotate(335deg);
-  -o-transform: rotate(335deg);
   transform: rotate(335deg);
 }
