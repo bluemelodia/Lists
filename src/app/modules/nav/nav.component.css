@@ -4,7 +4,7 @@
   left: 0;
   height: 44px;
   position: fixed;
-  top: 0;
+  top: env(safe-area-inset-top);
 
   /* Hide thing by pushing it outside by default */
   transform: translateX(-200px);

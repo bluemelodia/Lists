@@ -1,6 +1,6 @@
 :host {
   background-color: white;
-  bottom: 0;
+  bottom: env(safe-area-inset-bottom);
   height: 44px;
   position: fixed;
   width: 100%;

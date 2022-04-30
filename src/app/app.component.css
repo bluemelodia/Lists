@@ -3,7 +3,10 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  height: calc(100% - 88px); /* height - header - footer */
+  /* height - header - footer - safe area top - safe area bottom */
+  height: calc(
+    100% - 88px - env(safe-area-inset-top) - env(safe-area-inset-bottom)
+  );
   justify-content: center;
   overflow: hidden;
   padding: 16px;
