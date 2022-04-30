@@ -1,46 +1,46 @@
 .ml-calendar__schedule {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .ml-calendar__todo-list {
-	display: flex;
-	flex-direction: column;;
-	font-size: 0.7rem;
-	list-style: none;
-	margin: 0;
-	padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .ml-calendar__todo-list:not(:last-child) {
-	margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 .ml-calendar__todo-list-item {
-	display: flex;
-	font-size: 0.7rem;
-	text-align: left;
-	white-space: nowrap
+  display: flex;
+  font-size: 0.7rem;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .ml-calendar__todo-list-item:not(:last-child) {
-	margin-bottom: 2px;
+  margin-bottom: 2px;
 }
 
 .ml-calendar__todo-list-button {
-	font-size: inherit;
-	overflow: hidden;
-	text-align: left;
-	text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 100%;
+  font-size: inherit;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .ml-calendar__todo-list-button *:not(:last-child) {
-	margin-right: 4px;
+  margin-right: 4px;
 }
 
-.ml-calendar__todo-list-pill, 
+.ml-calendar__todo-list-pill,
 .ml-calendar__todo-list-pill {
   background-color: #dd2e44;
   border-radius: 8px;
@@ -50,54 +50,53 @@
 }
 
 .ml-calendar__todo-list-pill.sm {
-	display: none;
+  display: none;
 }
 
 .ml-calendar__todo-list-description {
-	color: black;
-	font-size: inherit;
+  color: black;
+  font-size: inherit;
 }
 
 .ml-calendar__badge-container {
-	align-items: center;
-	background-color: #dd2e44;
-    border-radius: 50%;
-	color: white;
-	display: flex;
-	height: 16px;
-	justify-content: center;
-    position: absolute;
-	right: 4px;
-    top: 4px;
-    width: 16px;
+  align-items: center;
+  background-color: #dd2e44;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  height: 16px;
+  justify-content: center;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 16px;
 }
 
 .ml-calendar__badge {
-	font-size: 0.6rem;
-	line-height: 1rem;
+  font-size: 0.6rem;
+  line-height: 1rem;
 }
 
-@media only screen and (max-width: 950px),
-		    screen and (max-height: 850px) {
-	.ml-calendar__todo-list-button {
-		display: flex;
-		margin: 0;
-		margin-left: 8px;
-		padding-left: 0;
-		width: 80%;
-	}
+@media only screen and (max-width: 950px), screen and (max-height: 850px) {
+  .ml-calendar__todo-list-button {
+    display: flex;
+    margin: 0;
+    margin-left: 8px;
+    padding-left: 0;
+    width: 80%;
+  }
 
-	.ml-calendar__todo-list-pill.sm {
-		display: block;
-	}
+  .ml-calendar__todo-list-pill.sm {
+    display: block;
+  }
 
-	.ml-calendar__todo-list-pill.lg {
-		display: none;
-	}
+  .ml-calendar__todo-list-pill.lg {
+    display: none;
+  }
 
-	.ml-calendar__todo-list-description {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
+  .ml-calendar__todo-list-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }

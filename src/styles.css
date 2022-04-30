@@ -50,12 +50,15 @@ h6 {
 }
 
 /**
-  * Button styles.
-  */
+* Button styles.
+*/
+button {
+  color: black;
+}
+
 button[class="tab-stop"],
 button[type="button"] {
   background-color: transparent;
-  color: black;
   border: none;
 }
 
@@ -63,7 +66,6 @@ button[type="submit"],
 button.continue,
 button.cancel,
 button.create {
-  color: black;
   height: 40px;
   margin: 16px 0;
 }
