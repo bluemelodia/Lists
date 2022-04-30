@@ -1,41 +1,41 @@
 :host {
-	background-color: transparent;
-	display: flex;
-	left: 0;
-	height: 44px;
-	position: fixed;
-	top: 0;
+  background-color: transparent;
+  display: flex;
+  left: 0;
+  height: 44px;
+  position: fixed;
+  top: 0;
 
-	/* Hide thing by pushing it outside by default */
-	transform: translateX(-200px);
+  /* Hide thing by pushing it outside by default */
+  transform: translateX(-200px);
 
-	/* This timing applies on the way OUT */
-	transition-timing-function: ease-in;
+  /* This timing applies on the way OUT */
+  transition-timing-function: ease-in;
 
-	/* Quick on the way out */
-	transition: 0.2s;
-	
-	z-index: 9001;
+  /* Quick on the way out */
+  transition: 0.2s;
+
+  z-index: 9001;
 }
 
 :host.open {
-	height: 100%;
+  height: 100%;
 
-	/* Move into place */
-	transform: translateX(0px);
+  /* Move into place */
+  transform: translateX(0px);
 
-	/* This timing applies on the way IN */
-	transition-timing-function: ease-out;
+  /* This timing applies on the way IN */
+  transition-timing-function: ease-out;
 
-	/* A litttttle slower on the way in */
-	transition: 0.25s;
+  /* A litttttle slower on the way in */
+  transition: 0.25s;
 }
 
 .ml-nav {
-	display: flex;
-	height: 44px;
+  display: flex;
+  height: 44px;
 }
 
 :host.open .ml-nav {
-  	display: none;
+  display: none;
 }
