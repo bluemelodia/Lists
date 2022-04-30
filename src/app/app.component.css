@@ -1,13 +1,14 @@
 .app-container {
   align-items: center;
   background-color: white;
+  bottom: calc(44px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: calc(44px + env(safe-area-inset-top));
-  margin-bottom: calc(44px + env(safe-area-inset-bottom));
+  top: calc(44px + env(safe-area-inset-top));
   overflow: hidden;
   padding: 16px;
+  position: fixed;
   width: 100%;
 }
 
