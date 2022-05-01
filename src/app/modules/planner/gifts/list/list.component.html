@@ -15,7 +15,7 @@
 
 <section class="ml-task-container--scrollable hide-scrollbar">
 	<section *ngIf="giftList && giftList.length > 0" 
-		class="ml-ml-task-list--scrollable">
+		class="ml-task-list--scrollable">
 		<ul class="ml-task-list">
 			<li *ngFor="let gift of giftList"
 				class="ml-task-list__item">
@@ -32,7 +32,7 @@
 </section>
 
 <ng-template #giftsList let-gift="gift">
-	<section class="ml-ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
+	<section class="ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
 		<ml-heading [level]="headerLevel.H2"
 			[text]="gift.recipient?.name">
 			<section post class="ml-actions ml-edit-actions">

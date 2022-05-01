@@ -1,6 +1,6 @@
 <section *ngIf="list && list.length > 0"
 	class="ml-task-container--scrollable hide-scrollbar">
-	<section class="ml-ml-task-list--scrollable">
+	<section class="ml-task-list--scrollable">
 		<ul class="ml-task-list">
 			<li *ngFor="let meeting of list"
 				class="ml-task-list__item">
@@ -18,7 +18,7 @@
 </section>
 
 <ng-template #meetingList let-meeting="meeting">
-	<section class="ml-ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
+	<section class="ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
 		<span class="ml-meetings__status">
 			<ml-meeting-indicator [isVirtual]="meeting.virtual"></ml-meeting-indicator>
 			<ml-date-indicator *ngIf="meeting.status"

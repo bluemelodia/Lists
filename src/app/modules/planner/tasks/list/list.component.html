@@ -11,7 +11,7 @@
 
 <section *ngIf="tasksList" class="ml-task-container--scrollable hide-scrollbar">
 	<section *ngIf="tasksList && tasksList.length > 0"
-		class="ml-ml-task-list--scrollable">
+		class="ml-task-list--scrollable">
 		<ul class="ml-task-list">
 			<li *ngFor="let task of tasksList"
 				class="ml-task-list__item">
@@ -28,7 +28,7 @@
 </section>
 
 <ng-template #taskList let-task="task">
-	<section class="ml-ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
+	<section class="ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
 		<p class="ml-tasks__details multi-line">
 			<ml-recurrence-indicator [recurrences]="task.recurrence"></ml-recurrence-indicator>
 			<ml-status-indicator [status]="task.status"></ml-status-indicator>

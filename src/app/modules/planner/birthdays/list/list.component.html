@@ -4,7 +4,7 @@
 
 <section *ngIf="list && list.length > 0"
 	class="ml-task-container--scrollable hide-scrollbar">
-	<section class="ml-ml-task-list--scrollable">
+	<section class="ml-task-list--scrollable">
 		<ul class="ml-task-list">
 			<li *ngFor="let recipient of list"
 				class="ml-task-list__item">
@@ -30,7 +30,7 @@
 			class="ml-photo-contianer__photo"
 			src="./assets/images/cake.png"/>
 	</section>
-	<section class="ml-ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
+	<section class="ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
 		<ml-heading [level]="headerLevel.H2" 
 			[text]="recipient.name">
 			<section post class="ml-actions ml-edit-actions">
