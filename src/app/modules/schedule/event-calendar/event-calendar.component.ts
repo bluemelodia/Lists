@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { forkJoin, of, ReplaySubject } from 'rxjs';
-import { catchError, finalize, map, take, takeUntil } from 'rxjs/operators';
+import { catchError, filter, finalize, map, take, takeUntil } from 'rxjs/operators';
 
 import { Topic } from '../../../constants/topics.constants';
 
@@ -73,6 +73,7 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	private setupSubscriptions(): void {
 		this.calendar.onCalendarFetched$
 			.pipe(
+				take(1),
 				takeUntil(this.destroyed$),
 				map((calendar: Calendar) => {
 					if (!calendar) {
@@ -101,6 +102,11 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 
 	public getCalendar(): void {
 		this.calendar.getCalendar(this.calendarType);
+	}
+
+	public resetCalendar(): void {
+		this.setupSubscriptions();
+		this.getCalendar();
 	}
 
 	public getData(): void {

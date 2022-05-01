@@ -1,5 +1,5 @@
 <ng-container *ngIf="calendar$ | async as cal">
-	<ml-error *ngIf="cal.isError" (retry)="getCalendar()"></ml-error>
+	<ml-error *ngIf="cal.isError" (retry)="resetCalendar()"></ml-error>
 	<ml-calendar #calendar mlFocus
 		*ngIf="!cal.isLoading && !cal.isError && cal.calendar"
 		[calendar]="cal.calendar" 
