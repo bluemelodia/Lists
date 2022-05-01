@@ -21,7 +21,7 @@ export const FormLimit = {
 	},
 	Password: {
 		min: 8,
-		max: 40
+		max: 50
 	},
 	Task: {
 		min: 3,
@@ -29,7 +29,7 @@ export const FormLimit = {
 	},
 	Username: {
 		min: 6,
-		max: 20
+		max: 50
 	},
 	Year: {
 		min: 1985,
