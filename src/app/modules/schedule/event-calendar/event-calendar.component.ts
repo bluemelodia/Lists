@@ -73,7 +73,6 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 	private setupSubscriptions(): void {
 		this.calendar.onCalendarFetched$
 			.pipe(
-				take(1),
 				takeUntil(this.destroyed$),
 				map((calendar: Calendar) => {
 					if (!calendar) {
@@ -137,7 +136,7 @@ export class EventCalendarComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	private emitCalendarError():  void {
+	private emitCalendarError(): void {
 		this.calendarData = {
 			...this.calendarData,
 			isError: true,
