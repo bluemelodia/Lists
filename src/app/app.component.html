@@ -1,5 +1,5 @@
 <ml-nav *ngIf="isLoggedIn()"></ml-nav>
-<ml-header></ml-header>
+<ml-header *ngIf="isLoggedIn()"></ml-header>
 <section class="app-container"
     (click)="closeMenu()">
     <ml-loader *ngIf="loadingState$ | async" 

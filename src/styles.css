@@ -96,6 +96,13 @@ button.cancel:hover {
 }
 
 /**
+* No results.
+*/
+.no-results {
+	flex: 1;
+}
+
+/**
 * Section-relevant styles.
 */
 .ml-section-container {
@@ -427,6 +434,8 @@ button:disabled .ml-arrow-btn {
 }
 
 .ml-task-container--scrollable {
+	flex: 1;
+	display: flex;
 	overflow-y: auto;
 	width: 100%;
 }
