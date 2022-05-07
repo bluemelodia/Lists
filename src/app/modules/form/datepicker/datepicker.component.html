@@ -1,0 +1,35 @@
+<form #picker 
+	class="ml-datepicker ml-focus-origin"
+	[formGroup]="form">
+	<ng-container *ngIf="calendar$ | async as cal">
+        <input readonly 
+			type="text"
+            [ngClass]="{ 'picker-open' : cal.showCal }"
+            [placeholder]="placeholder"
+            [value]="form.controls.day.value | pickerDateFormatter: calendarType"
+            (click)="showHideCal()"
+            (keydown)="onKeydownEvent($event)"/>
+        <div *ngIf="submitted && dateFormControl.day.errors?.required"
+			class="ml-input__error">
+            <p>
+				{{fieldName}} is required.
+			</p>
+        </div> 
+		<section *ngIf="cal.showCal"
+			class="ml-cal-container">
+			<ml-loader *ngIf="cal.isLoading"></ml-loader>
+			<ml-calendar #calendar mlFocus
+				*ngIf="!cal.isLoading && cal.calendar"
+				[calendar]="cal.calendar" 
+				[id]="calendarId"
+				[selectedDay]="form.controls[controlName]?.value"
+				[topic]="topic"
+				[type]="calendarType"
+				(dateSelected)="selectDate($event)">
+			</ml-calendar>
+			<ml-no-results *ngIf="!cal.isLoading && !cal.calendar" 
+				[message]="noCalMessage">
+			</ml-no-results>
+		</section>
+	</ng-container>
+</form>

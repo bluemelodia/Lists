@@ -1,0 +1,73 @@
+:host {
+  background: white;
+  display: grid;
+  grid-template-rows: 44px 1fr;
+  height: 100%;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.ml-birthdays {
+  align-items: center;
+  border-left: 4px solid pink;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.ml-birthday__container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ml-birthday {
+  align-items: center;
+  display: flex;
+  margin-right: 8px;
+}
+
+ml-action:not(:last-child) {
+  margin-right: 8px;
+}
+
+.ml-photo-contianer {
+  display: flex;
+  justify-content: center;
+  margin-right: 16px;
+  width: 25%;
+}
+
+.ml-photo-contianer__photo {
+  max-height: 100px;
+  max-width: 100%;
+}
+
+.ml-actions {
+  display: flex;
+  flex: 1;
+  margin: 0;
+}
+
+.ml-edit-actions {
+  border-right: 4px solid pink;
+  justify-content: flex-end;
+}
+
+.ml-recipient-actions {
+  border-left: 4px solid pink;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 500px) {
+  :host {
+    padding: 4px;
+  }
+
+  .ml-photo-contianer {
+    display: none;
+  }
+}
+

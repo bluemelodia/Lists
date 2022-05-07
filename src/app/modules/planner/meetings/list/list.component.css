@@ -1,0 +1,50 @@
+:host {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 16px;
+  width: 100%;
+}
+
+.ml-meetings__status {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  margin: 8px 0;
+}
+
+.ml-meetings__status *:not(:last-child) {
+  margin-right: 8px;
+}
+
+.ml-meetings__details {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 500px) {
+  .ml-meetings__details {
+    flex-direction: column;
+    margin-bottom: 8px;
+  }
+}
+
+.ml-meetings__details-label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.ml-meetings__details-description {
+  word-wrap: break-word;
+}
+
+.ml-edit-actions {
+  border-right: 4px solid pink;
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}

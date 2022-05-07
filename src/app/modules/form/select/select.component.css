@@ -1,0 +1,67 @@
+.ml-select {
+  position: relative;
+}
+
+input.ml-select__options--open {
+  border-bottom: 0;
+}
+
+.ml-select__options {
+  background: white;
+  border: 2px solid pink;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 200px;
+  -ms-overflow-style: none; /* IE 11 */
+  overflow: auto;
+  position: absolute;
+  scrollbar-width: none; /* Firefox 64 */
+  top: 44px;
+  visibility: hidden;
+  width: 100%;
+  z-index: 500;
+}
+
+.ml-select__options::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+}
+
+.ml-select__options.show {
+  border-top: none;
+  visibility: visible;
+}
+
+.ml-select__option {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.ml-select__option:hover,
+.ml-select__option--selected {
+  background-color: pink;
+}
+
+.sm-spacer {
+  display: none;
+}
+
+/**
+* z-index increases from top to bottom of the document. To ensure the border-bottom is 
+* visible for the element receiving focus, increase its z-index.
+*/
+.ml-select__option:focus-visible,
+.ml-select__option:focus-within {
+  z-index: 100;
+}
+
+.ml-select__option:focus-visible .sm-spacer,
+.ml-select__option:focus-within .sm-spacer {
+  display: block;
+}

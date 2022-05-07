@@ -1,0 +1,54 @@
+<form [formGroup]="form">
+	<section #select class="ml-select">
+		<fieldset class="ml-phone-select__input condensed multi">
+			<input readonly
+				class="ml-phone-select__input--narrow" 
+				formControlName="countryCode"
+				placeholder="Code"
+				type="text" 
+				[ngClass]="{ 'ml-select__options--open' : showOptionList }"
+				(click)="showHideOptions()"
+				(keydown)="onKeydownEvent($event)"/>
+			<ml-decorator ariaLabel="Dial Code Selector"
+				iconClasses="icon-small"
+				[icon]="icon.Down">
+			</ml-decorator>
+			<input type="number"
+				formControlName="number"
+				placeholder="Number">
+		</fieldset>
+		<div *ngIf="submitted && form.errors"
+			class="ml-input__error">  
+			<p *ngIf="form.errors?.missingPhone">
+				Please enter a phone number.
+			</p>
+			<p *ngIf="form.errors?.invalidPhone">
+				Please enter a valid phone number.
+			</p>
+		</div>
+		<section mlFocus
+			*ngIf="showOptionList"
+			class="ml-select__options"
+			[ngClass]="{ 'show' : showOptionList }">
+			<ml-search class="ml--focus ml-focus-origin"
+				[tabIndex]="showOptionList ? 0 : -1"
+				(clear)="resetFilter()"
+				(search)="filterCountries($event)">
+			</ml-search>
+			<section class="ml-select__options-list">
+				<button *ngFor="let country of countries; let i = index"
+					class="ml-select__option ml--focus"
+					type="button"
+					[attr.aria-hidden]="showOptionList ? false : true"
+					[ngClass]="{ 'ml-select__option--selected' : form?.value?.country === country[1], 'ml-focus-origin' : i === 0 }"
+					(click)="selectOption(country[1], country[2])">
+					{{ country[0] }}
+				</button>
+			</section>
+			<button class="tab-stop"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[tabindex]="showOptionList ? 0 : -1">
+			</button>
+		</section>
+	</section>
+</form>

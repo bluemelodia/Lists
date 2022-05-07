@@ -1,0 +1,31 @@
+.ml-datepicker {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+input.picker-open {
+  border-bottom: 0;
+}
+
+.ml-cal-container {
+  background: white;
+  border: 2px solid pink;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 380px;
+  overflow: auto;
+  padding: 12px;
+  position: absolute;
+  top: 44px;
+  width: 100%;
+  z-index: 500;
+}
+
+@media only screen and (max-width: 500px) {
+  .ml-cal-container {
+    padding: 8px;
+  }
+}

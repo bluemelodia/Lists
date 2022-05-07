@@ -1,0 +1,20 @@
+:host {
+	display: grid;
+	grid-gap: 8px;
+    grid-template-columns: 100%;
+    height: 100%;
+    max-width: 950px;
+    overflow: hidden;
+	width: 100%;
+}
+
+:host.hide-container {
+    opacity: 0;
+}
+
+@media only screen and (max-width: 500px) {
+	:host.show-borders {
+		border: none;
+		padding: 0;
+	}
+}

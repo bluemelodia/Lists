@@ -1,0 +1,10 @@
+.ml-filter__clear {
+  color: #dd2e44;
+  height: calc(100% - 8px);
+  position: absolute;
+  right: 8px;
+}
+
+input.ml--truncate {
+  padding-right: 44px;
+}

@@ -1,0 +1,34 @@
+<form [formGroup]="form">
+	<section #select class="ml-select">
+		<input readonly
+			type="text" 
+			placeholder="Select Occasion"
+			[ngClass]="{ 'ml-select__options--open' : showOptionList }"
+			[value]="occasions[occasionForm?.value] || ''"
+			(click)="showHideOptions()"
+			(keydown)="onKeydownEvent($event)"/>
+		<section *ngIf="showOptionList"
+			class="ml-select__options"
+			[ngClass]="{ 'show' : showOptionList }">
+			<button *ngFor="let occasion of occasionKeys; let i = index"
+				class="ml-select__option ml--focus"	
+				type="button"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[ngClass]="{ 'ml-select__option--selected' : occasionForm?.value === occasion, 'ml-focus-origin' : i === 0 }"
+				[tabindex]="showOptionList ? 0 : -1"
+				(click)="selectOption(occasion)">
+				{{ occasions[occasion] }}
+			</button>
+			<button class="tab-stop"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[tabindex]="showOptionList ? 0 : -1">
+			</button>
+		</section>
+		<div *ngIf="submitted && occasionForm?.errors"
+			class="ml-input__error">
+			<p *ngIf="occasionForm?.errors?.required">
+				Occasion is required.
+			</p>
+		</div> 
+	</section>
+</form>

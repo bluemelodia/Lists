@@ -1,0 +1,7 @@
+<ng-container *ngIf="tasksResponse$ | async as tasksResponse">
+	<ml-error *ngIf="tasksResponse.error" (retry)="getTasks()"></ml-error>
+	<section *ngIf="!tasksResponse.error" class="ml-tasks ml-form-container">
+		<ml-planner-tasks-list [list]="tasksResponse.tasks"
+			(deletedTask)="getTasks()"></ml-planner-tasks-list>
+	</section>
+</ng-container>

@@ -1,0 +1,66 @@
+ml-decorator {
+  pointer-events: none;
+  position: absolute;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+  flex: 1;
+  font-size: inherit;
+  margin: 0;
+  margin-bottom: 8px;
+  padding: 8px;
+  width: 100%;
+}
+
+.ml-select__options {
+	overflow: hidden;
+}
+
+.ml-select__options-list {
+	display: flex;
+	flex-direction: column;
+	-ms-overflow-style: none; /* IE 11 */
+	overflow: scroll;
+	scrollbar-width: none; /* Firefox 64 */
+}
+
+.ml-select__options-list::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+}
+
+:focus,
+:focus-visible,
+.ml-phone-select__input:focus-visible {
+  border: none;
+  outline-color: none;
+}
+
+.ml-phone-select__input--narrow {
+  margin-left: 30px;
+  max-width: 15%;
+}
+
+@media only screen and (max-width: 500px) {
+  .ml-phone-select__input.condensed {
+    flex-direction: row;
+  }
+
+  .ml-phone-select__input.condensed input {
+    margin-bottom: 0;
+  }
+
+  .ml-phone-select__input--narrow {
+    max-width: 25%;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .ml-phone-select__input--narrow {
+    max-width: 35%;
+  }
+}

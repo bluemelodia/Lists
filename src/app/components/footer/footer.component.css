@@ -1,0 +1,17 @@
+:host {
+  background-color: white;
+  bottom: env(safe-area-inset-bottom);
+  height: 44px;
+  position: fixed;
+  width: 100%;
+}
+
+.ml-footer__text {
+  margin: 1em;
+}
+
+@media only screen and (max-width: 500px) {
+  .ml-footer__text {
+    margin: 10px;
+  }
+}

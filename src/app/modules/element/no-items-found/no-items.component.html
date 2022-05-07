@@ -1,0 +1,12 @@
+<ml-heading class="ml__not-found"
+	[level]="headerLevel.H1" 
+	[text]="config.header">
+</ml-heading>
+<section class="ml-form-container ml-flex-column--centered">
+    <p class="ml__not-found-message">{{ config.body }}</p>
+    <button class="create"
+		type="button"
+		(click)="onActionItemClick()">
+		{{ config.actionText }}
+	</button>
+</section>

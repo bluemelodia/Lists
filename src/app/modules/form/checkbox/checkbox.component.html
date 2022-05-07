@@ -1,0 +1,8 @@
+<label class="ml-checkbox" [formGroup]="form">
+    <span class>{{ name }}</span>
+    <input type="checkbox" 
+        [checked]="checkboxValue"
+        [formControlName]="checkboxName"
+        (change)="toggleChecked($event)">
+    <span class="ml-checkbox__checkmark"></span>
+</label>

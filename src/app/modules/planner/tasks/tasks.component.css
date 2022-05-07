@@ -1,0 +1,12 @@
+:host {
+	display: flex;
+    justify-content: center;
+	height: 100%;
+	max-width: 950px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.ml-tasks {
+  	height: 100%;
+}

@@ -1,0 +1,38 @@
+<section #select class="ml-select">
+	<ml-action *ngIf="hasSelectedOptions()" 
+		ariaLabel="Clear Selected Recurrences"
+		class="ml-filter__clear"
+		[enabled]="true"
+		[icon]="icon.Close"
+		(actionSelected)="clearFilter()">
+	</ml-action>
+	<ng-container [ngTemplateOutlet]="recurrenceSelect"></ng-container>
+</section>
+
+<ng-template #recurrenceSelect>
+	<input readonly
+		class="ml--truncate"
+		placeholder="Filter by Recurrence(s)"
+		type="text"
+		[ngClass]="{ 'ml-select__options--open' : showOptionList }"
+		[value]="getSelectedOptions()"
+		(click)="showHideOptions()"
+		(keydown)="onKeydownEvent($event)"/>
+	<section *ngIf="showOptionList"
+		class="ml-select__options"
+		[ngClass]="{ 'show' : showOptionList }">
+		<button *ngFor="let key of recurrenceKeys; let i = index"
+			class="ml-select__option ml--focus"
+			type="button"
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[ngClass]="{ 'ml-select__option--selected' : selected[key], 'ml-focus-origin' : i === 0 }"
+			[tabindex]="showOptionList ? 0 : -1"
+			(click)="selectOption(key)">
+			{{ recurrence[key] }}
+		</button>
+		<button class="tab-stop"
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[tabindex]="showOptionList ? 0 : -1">
+		</button>
+	</section>
+</ng-template>

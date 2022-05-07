@@ -1,0 +1,62 @@
+<section>
+	<ml-recurrence-filter mlFocus
+		(filterReset)="resetTasksFilters()"
+		(recurrenceSelected)="filterByRecurrence($event)">
+	</ml-recurrence-filter>
+	<ml-status-filter mlFocus
+		(filterReset)="resetTasksFilters()"
+		(statusSelect)="filterByStatus($event)">
+	</ml-status-filter>
+</section>
+
+<section *ngIf="tasksList" class="ml-task-container--scrollable hide-scrollbar">
+	<section *ngIf="tasksList && tasksList.length > 0"
+		class="ml-task-list--scrollable">
+		<ul class="ml-task-list">
+			<li *ngFor="let task of tasksList"
+				class="ml-task-list__item">
+				<ng-container [ngTemplateOutlet]="taskList" 
+					[ngTemplateOutletContext]="{ 'task': task }">
+				</ng-container>   
+			</li>
+		</ul>
+	</section>
+	<section *ngIf="tasksList && tasksList.length === 0"
+		class="no-results ml-flex-column--centered">
+		<ml-no-items [config]="noItemsConfig"></ml-no-items>
+	</section>
+</section>
+
+<ng-template #taskList let-task="task">
+	<section class="ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
+		<p class="ml-tasks__details multi-line">
+			<ml-recurrence-indicator [recurrences]="task.recurrence"></ml-recurrence-indicator>
+			<ml-status-indicator [status]="task.status"></ml-status-indicator>
+		</p>
+		<ml-heading [level]="headerLevel.H2"
+			[text]="task.name">
+			<section post class="actions ml-edit-actions">
+				<ml-action ariaLabel="Edit"
+					[enabled]="true"
+					[icon]="icon.Edit"
+					(actionSelected)="editTask(task)">
+				</ml-action>
+				<ml-action ariaLabel="Delete"
+					[enabled]="true"
+					[icon]="icon.Delete"
+					(actionSelected)="onDeleteClicked(task.uuid)">
+				</ml-action>
+			</section>
+		</ml-heading>
+		<p class="ml-tasks__details">
+			<span class="ml-tasks__details-label">Due</span>
+			<span class="ml-tasks__details-description">{{ task | taskFormatter }}</span>
+		</p>
+		<p *ngIf="task.description" class="ml-tasks__details description">
+			<span class="ml-tasks__details-label">Details</span>
+			<span class="ml-tasks__details-description" 
+				[innerText]="task.description">
+			</span>
+		</p>
+	</section>
+</ng-template>

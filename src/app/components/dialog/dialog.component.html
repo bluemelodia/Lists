@@ -1,0 +1,51 @@
+<section *ngIf="showDialog$ | async as dialog"
+	class="ml-dialog__overlay">
+    <div class="ml-dialog">
+        <header class="ml-dialog__header">
+            <span></span>
+            {{ dialog.title }}
+			<ml-action *ngIf="dialog.dialogType !== dialogType.Session && dialog.dialogType !== dialogType.Idle"
+				ariaLabel="Close Dialog"
+				class="ml-dialog__cancel-btn description"
+				[enabled]="true"
+				[icon]="icon.Close"
+				(actionSelected)="hideDialog()">
+			</ml-action>
+			<span *ngIf="dialog.dialogType === dialogType.Session || dialog.dialogType === dialogType.Idle"></span>
+        </header>
+        <p class="ml-description ml-dialog__message">{{ dialog.message }}</p>
+        <fieldset *ngIf="dialog.dialogType === dialogType.Confirm"
+			class="ml-form-actions">
+            <button class="cancel"
+				type="button"
+                (click)="onCancel()">
+                Cancel
+            </button>        
+            <button class="continue"
+				type="button"
+                (click)="onContinue()">
+				Continue
+            </button>
+        </fieldset>
+		<fieldset *ngIf="dialog.dialogType === dialogType.Idle"
+			class="ml-form-actions">
+            <button class="cancel"
+				type="button"
+                (click)="onLogout()">
+                No
+            </button>        
+            <button class="continue"
+				type="button"
+                (click)="onExtend()">
+				Yes
+            </button>
+        </fieldset>
+		<fieldset *ngIf="dialog.dialogType === dialogType.Session">
+			<button class="continue"
+				type="button"
+				(click)="onContinue()">
+				Continue
+			</button>
+		</fieldset>
+    </div>
+</section>

@@ -1,0 +1,62 @@
+<section class="ml-form-container">
+    <form class="ml-event-form"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()">
+		<ml-heading text="Login"
+			[level]="headerLevel.H1">
+		</ml-heading>
+		<span class="ml-form-instructions">Enter your email and password.</span>
+		<fieldset class="username">
+            <input formControlName="username"
+                placeholder="Email"
+				type="text"/>
+            <div *ngIf="submitted && loginFormControl.username.errors"
+				class="ml-input__error">
+                    <p *ngIf="loginFormControl.username.errors?.required"
+						class="ml-input__error-msg">
+                        Email is required.
+					</p>
+                    <p *ngIf="loginFormControl.username.errors?.minlength || loginFormControl.username.errors?.maxlength"
+						class="ml-input__error-msg">
+                        Please enter {{ limit.Username.min }} to {{ limit.Username.max }} characters.
+					</p>
+					<p *ngIf="loginFormControl.username.errors?.invalidUsername"
+						class="ml-input__error-msg">
+                        Please enter a valid email.
+                    </p>
+            </div> 
+        </fieldset>
+		<fieldset class="ml-password">
+            <input formControlName="password"
+                placeholder="Password"
+				[type]="showPassword ?  'text' : 'password'"/>
+			<ml-action [ariaLabel]="showPassword ? 'Hide Password' : 'Show Password'"
+				class="ml-password--show"
+				[enabled]="true"
+				[icon]="icon.View"
+				(actionSelected)="toggleShowPassword()">
+			</ml-action>
+            <div *ngIf="submitted && loginFormControl.password.errors"
+				class="ml-input__error">
+                    <p *ngIf="loginFormControl.password.errors?.required"
+						class="ml-input__error-msg">
+                        Password is required.
+					</p>
+                    <p *ngIf="loginFormControl.password.errors?.minlength || loginFormControl.password.errors?.maxlength"
+						class="ml-input__error-msg">
+                        Please enter {{ limit.Password.min }} to {{ limit.Password.max }} characters.
+					</p>
+					<p *ngIf="loginFormControl.password.errors?.invalidPassword"
+						class="ml-input__error-msg">
+                        Password contains invalid characters. Please enter letters, numbers, and/or the following characters: !, @, #, $, %, &, *, _.
+                    </p>
+            </div> 
+        </fieldset>
+        <fieldset class="ml-form-actions"> 
+            <button type="submit">
+                Login
+            </button>
+        </fieldset>
+    </form>
+	<span class="ml-form-instructions">Don't have a username? <a class="ml-quick-link" routerLink="/signup">Sign up!</a></span>
+</section>

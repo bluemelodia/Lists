@@ -1,0 +1,88 @@
+<section class="ml-form-container">
+    <form class="ml-event-form"
+        [formGroup]="taskForm"
+        (ngSubmit)="onSubmit()">
+		<ml-heading text="Task Details"
+			[level]="headerLevel.H2">
+		</ml-heading>
+        <span class="ml-form-instructions">Provide details about the task.</span>
+		<fieldset class="task-details">
+            <input formControlName="name"
+                placeholder="Task"
+				type="text"/>
+            <div *ngIf="submitted && taskFormControl.name.errors"
+				class="ml-input__error">
+                    <p *ngIf="taskFormControl.name.errors?.required"
+						class="ml-input__error-msg">
+                        Task name is required.
+					</p>
+                    <p *ngIf="taskFormControl.name.errors?.minlength"
+						class="ml-input__error-msg">
+                        Please enter a longer task name.
+					</p>
+					<p *ngIf="taskFormControl.name.errors?.maxlength"
+						class="ml-input__error-msg">
+						Task name should not exceed {{ limit.Task.max }} characters.
+					</p>
+            </div> 
+        </fieldset>
+		<ml-recurrence-select mlFocus
+			[form]="taskForm.controls.recurrence"
+			[submitted]="submitted">
+		</ml-recurrence-select>
+		<fieldset *ngIf="isOneTimeTask()" class="status">
+			<ml-heading text="Task Status"
+				[level]="headerLevel.H3">
+            </ml-heading>
+			<span class="ml-form-instructions"
+				for="event-description">Select the current status of the task.</span>
+			<ml-status-select mlFocus
+				[form]="taskForm.controls.status"
+				[submitted]="submitted">
+			</ml-status-select>
+		</fieldset>
+		<fieldset *ngIf="isOneTimeTask()" class="due-date">
+			<ml-heading text="Due Date"
+				[level]="headerLevel.H3">
+				<span class="ml-event-form--optional" post>Optional</span>
+            </ml-heading>
+			<span class="ml-form-instructions"
+				for="event-description">Choose due date and time.</span>
+			<ml-datepicker mlFocus 
+				class="datepicker-container"
+				controlName="day"
+				fieldName="Due date"
+				placeholder="Due Date"
+				[calendarType]="calendarType"
+				[form]="taskForm.controls.dueDate"
+				[submitted]="submitted"
+				[topic]="topic">
+			</ml-datepicker>	
+			<input readonly
+				aria-label="Due Time"
+				formControlName="dueTime" 
+				placeholder="Due Time"
+                [ngxTimepicker]="startDial"/>
+            <ngx-material-timepicker #startDial
+				[appendToInput]="true"
+				[theme]="timePickerTheme"
+				(timeChanged)="onDueTimeChanged($event)">
+			</ngx-material-timepicker>
+		</fieldset>
+		<ml-description controlName="description"
+			formInstructions="Enter a description of the task."
+			[form]="taskForm"
+			[submitted]="submitted">
+		</ml-description>
+        <fieldset class="ml-form-actions">
+            <button class="cancel"
+				type="button"
+                (click)="onCancel()">
+                Cancel
+            </button>        
+            <button type="submit">
+                {{ taskConfig.buttonAction }}
+            </button>
+        </fieldset>
+    </form>
+</section>

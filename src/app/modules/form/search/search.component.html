@@ -1,0 +1,20 @@
+<section class="ml-search">
+	<input class="ml-search__input" 
+		type="text" 
+		placeholder="Search"
+		[(ngModel)]="query"
+		(keyup)="onSearch()">
+	<ml-decorator *ngIf="query.length === 0"
+		ariaLabel="Search"
+		class="ml-search__indicator"
+		iconClasses="icon-medium"
+		[icon]="icon.Search">
+	</ml-decorator>
+	<ml-action *ngIf="query.length > 0"
+		ariaLabel="Clear Search"
+		class="ml-search__clear"
+		[enabled]="true"
+		[icon]="icon.Close"
+		(actionSelected)="onClear()">
+	</ml-action>
+</section>

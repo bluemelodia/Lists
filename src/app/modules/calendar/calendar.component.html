@@ -1,0 +1,53 @@
+<div *ngIf="calendarMonths[monthIdx]"
+	class="ml-calendar">
+    <section class="ml-calendar__header">
+        <div>
+            <h4>{{ months[calendarMonths[monthIdx].value-1] }} {{ calendarMonths[monthIdx].year }}</h4>
+        </div>
+        <div class="ml-calendar__nav">
+            <button aria-label="Previous Month"
+				class="ml-calendar__nav-btn"
+				id="previous-month"
+				type="button"
+				[attr.aria-hidden]="monthIdx === 0 ? true : false"
+				[disabled]="monthIdx === 0"
+				[ngClass]="{ 'ml--focus' : monthIdx !== 0 }" 
+                [tabindex]="monthIdx === 0 ? -1 : 0"
+                (click)="previousMonth()">
+                <i class="ml-arrow-btn fas fa-chevron-left"></i>
+            </button>
+            <button aria-label="Next Month"
+				class="ml-calendar__nav-btn"
+				id="next-month"
+				type="button"
+				[attr.aria-hidden]="monthIdx === calendarMonths.length-1 ? true : false"
+				[disabled]="monthIdx === calendarMonths.length-1"
+				[ngClass]="{ 'ml--focus' : monthIdx !== calendarMonths.length-1 }" 
+                [tabindex]="monthIdx === calendarMonths.length-1 ? -1 : 0"
+                (click)="nextMonth()">
+                <i class="ml-arrow-btn fas fa-chevron-right"></i>
+            </button>
+        </div>  
+    </section>
+    <section class="ml-calendar__container">
+        <div class="ml-calendar__days">
+            <span class="ml-calendar__day">S</span>
+            <span class="ml-calendar__day">M</span>
+            <span class="ml-calendar__day">T</span>
+            <span class="ml-calendar__day">W</span>
+            <span class="ml-calendar__day">T</span>
+            <span class="ml-calendar__day">F</span>
+            <span class="ml-calendar__day">S</span>
+        </div>
+        <ml-calendar-month [month]="month" 
+            [selectedDate]="selectedDate"
+			[type]="calendarType"
+			[topic]="topic"
+            (dateSelect)="selectDate($event)">
+		</ml-calendar-month>
+        <button class="tab-stop"
+            tabindex="0"
+            [attr.aria-hidden]="false">
+        </button>
+    </section>
+</div>

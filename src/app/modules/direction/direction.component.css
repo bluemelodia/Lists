@@ -1,0 +1,7 @@
+:host {
+	/**
+	* Needed for the parent selector's height to match the
+	* image's height.
+	*/
+	display: flex;
+}

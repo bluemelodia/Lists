@@ -1,0 +1,35 @@
+<form [formGroup]="form">
+	<section #select class="ml-select">
+		<input readonly
+			class="ml-recurrence__select"
+			type="text" 
+			placeholder="Select Recurrence(s)"
+			[ngClass]="{ 'ml-select__options--open' : showOptionList }"
+			[value]="getSelectedOptions()"
+			(click)="showHideOptions()"
+			(keydown)="onKeydownEvent($event)"/>
+		<section *ngIf="showOptionList"
+			class="ml-select__options"
+			[ngClass]="{ 'show' : showOptionList }">
+			<button *ngFor="let key of recurrenceKeys; let i = index"
+				class="ml-select__option ml--focus"	
+				type="button"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[ngClass]="{ 'ml-select__option--selected' : selected[key], 'ml-focus-origin' : i === 0 }"
+				[tabindex]="showOptionList ? 0 : -1"
+				(click)="selectOption(key)">
+				{{ recurrence[key] }}
+			</button>
+			<button class="tab-stop"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[tabindex]="showOptionList ? 0 : -1">
+			</button>
+		</section>
+		<div *ngIf="submitted && recurrenceForm?.errors"
+			class="ml-input__error">
+			<p *ngIf="recurrenceForm?.errors?.required">
+				Recurrence is required.
+			</p>
+		</div> 
+	</section>
+</form>

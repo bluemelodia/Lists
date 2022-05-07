@@ -1,0 +1,26 @@
+	<section #select 
+		class="ml-select">
+		<input type="text" readonly
+			placeholder="Sort By"
+			[ngClass]="{ 'ml-select__options--open' : showOptionList }"
+			[value]="selectedSort?.displayName"
+			(click)="showHideOptions()"
+			(keydown)="onKeydownEvent($event)"/>
+		<section *ngIf="showOptionList"
+			class="ml-select__options"
+			[ngClass]="{ 'show' : showOptionList }">
+			<button *ngFor="let sort of list; let i = index"
+				class="ml-select__option ml--focus"
+				type="button"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[ngClass]="{ 'ml-select__option--selected' : sort.fieldName === selectedSort?.fieldName, 'ml-focus-origin' : i === 0 }"
+				[tabindex]="showOptionList ? 0 : -1"
+				(click)="selectOption(sort)">
+				{{ sort.displayName }}
+			</button>
+			<button class="tab-stop"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[tabindex]="showOptionList ? 0 : -1">
+			</button>
+		</section>
+	</section>

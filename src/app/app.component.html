@@ -1,0 +1,10 @@
+<ml-nav *ngIf="isLoggedIn()"></ml-nav>
+<ml-header *ngIf="isLoggedIn()"></ml-header>
+<section class="app-container"
+    (click)="closeMenu()">
+    <ml-loader *ngIf="loadingState$ | async" 
+		fullScreen="true"></ml-loader>
+    <router-outlet></router-outlet>
+</section>
+<ml-footer></ml-footer>
+<ml-dialog></ml-dialog>

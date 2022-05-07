@@ -1,0 +1,26 @@
+:host {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 0;
+}
+
+.ml-heading:not(:first-of-type) {
+  	margin-left: 8px;
+}
+
+.ml-heading:not(:last-of-type) {
+ 	margin-right: 8px;
+}
+
+@media only screen and (max-width: 500px) {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 4px 0;
+	}
+}

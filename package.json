@@ -1,0 +1,83 @@
+{
+  "name": "lists",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --proxy-config proxy.config.js",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@angular-devkit/core": "^12.1.1",
+    "@angular-eslint/builder": "^12.3.1",
+    "@angular-eslint/schematics": "^12.3.1",
+    "@angular-eslint/template-parser": "^12.2.0",
+    "@angular/animations": "^12.1.1",
+    "@angular/common": "^12.1.1",
+    "@angular/compiler": "^12.1.1",
+    "@angular/core": "^12.1.1",
+    "@angular/forms": "^12.1.1",
+    "@angular/platform-browser": "^12.1.1",
+    "@angular/platform-browser-dynamic": "^12.1.1",
+    "@angular/router": "^12.1.1",
+    "@ngtools/webpack": "^12.1.1",
+    "@types/crypto-js": "^4.1.1",
+    "acorn": "^8.4.1",
+    "ajv": "^8.0.0",
+    "angular2-uuid": "^1.1.1",
+    "bootstrap": "^4.5.3",
+    "bufferutil": "^4.0.3",
+    "cookie-parser": "^1.4.6",
+    "crypto-js": "^4.1.1",
+    "eslint-plugin-jsdoc": "^35.4.1",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "fibers": "^5.0.0",
+    "google-libphonenumber": "^3.2.22",
+    "html-webpack-plugin": "^5.3.2",
+    "image-file-resize": "^1.0.4",
+    "intl-tel-input": "^17.0.13",
+    "ngx-bootstrap": "^7.0.0",
+    "ngx-intl-tel-input": "^3.1.1",
+    "ngx-material-timepicker": "^5.5.3",
+    "node-sass": "^6.0.1",
+    "rxjs": "~6.5.5",
+    "tslib": "^2.0.0",
+    "utf-8-validate": "^5.0.5",
+    "webpack": "^5.42.0",
+    "zone": "^0.3.4",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^12.1.1",
+    "@angular/cli": "^12.1.1",
+    "@angular/compiler-cli": "^12.1.1",
+    "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "codelyzer": "^6.0.0",
+    "eslint": "^7.30.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.0.0",
+    "ts-node": "~8.3.0",
+    "tslint": "~6.1.0",
+    "typescript": "^4.2.3"
+  }
+}

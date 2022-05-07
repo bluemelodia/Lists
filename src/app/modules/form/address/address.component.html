@@ -1,0 +1,30 @@
+<form #picker 
+	class="input-container ml-focus-origin"
+	[formGroup]="form">
+	<fieldset class="inner">
+		<input formControlName="street"
+			placeholder="Street Address"
+			type="text"/>
+		<fieldset class="condensed">
+			<input formControlName="unit"
+				placeholder="Apartment Number"
+				type="text"/>
+			<input formControlName="city"
+				placeholder="City"
+				type="text"/>
+		</fieldset>
+		<!-- Some countries use alphanumeric zip codes. -->
+		<fieldset class="condensed">
+			<input formControlName="state"
+				placeholder="State / Province / Region"
+				type="text"/>
+			<input formControlName="zip"
+				placeholder="Zip Code"
+				type="text"/>
+		</fieldset>
+		<ml-country-select mlFocus
+			placeholder="Country"
+			[form]="form">
+		</ml-country-select>
+	</fieldset>
+</form>

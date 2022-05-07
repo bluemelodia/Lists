@@ -1,0 +1,17 @@
+.ml-search {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.ml-search__input {
+  border-radius: 16px;
+  margin: 8px;
+  min-height: 35px;
+}
+
+.ml-search__clear,
+.ml-search__indicator {
+  position: absolute;
+  right: 16px;
+}

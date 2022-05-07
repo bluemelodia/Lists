@@ -1,0 +1,70 @@
+<ml-heading [level]="headerLevel.H1" 
+	[text]="header">
+</ml-heading>
+<section class="ml-gifts">
+	<ml-sort-select mlFocus
+		[list]="giftSortOptions"
+		(sortSelected)="sortSelected($event)">
+	</ml-sort-select>
+	<ml-recipient-filter mlFocus
+		[list]="recipients"
+		(filterReset)="resetRecipientFilter()"
+		(recipientSelected)="filterByRecipient($event)">
+	</ml-recipient-filter>
+</section>
+
+<section class="ml-task-container--scrollable hide-scrollbar">
+	<section *ngIf="giftList && giftList.length > 0" 
+		class="ml-task-list--scrollable">
+		<ul class="ml-task-list">
+			<li *ngFor="let gift of giftList"
+				class="ml-task-list__item">
+				<ng-container [ngTemplateOutlet]="giftsList" 
+					[ngTemplateOutletContext]="{ 'gift': gift }">
+				</ng-container>   
+			</li>
+		</ul>
+	</section>
+	<section *ngIf="giftList && giftList.length === 0"
+		class="no-results ml-flex-column--centered">
+    <ml-no-items [config]="noItemsConfig"></ml-no-items>
+</section>
+</section>
+
+<ng-template #giftsList let-gift="gift">
+	<section class="ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
+		<ml-heading [level]="headerLevel.H2"
+			[text]="gift.recipient?.name">
+			<section post class="ml-actions ml-edit-actions">
+				<ml-action ariaLabel="Edit"
+					[enabled]="true"
+					[icon]="icon.Edit"
+					(actionSelected)="editGift(gift)">
+				</ml-action>
+				<ml-action ariaLabel="Delete"
+					[enabled]="true"
+					[icon]="icon.Delete"
+					(actionSelected)="onDeleteClicked(recipient.uuid)">
+				</ml-action>
+			</section>
+		</ml-heading>
+		<p class="ml-gifts__details">
+			<span class="ml-gifts__details-label">{{ gift.occasion }} - {{ gift.year }}</span>
+			<span class="ml-gifts__details-description">${{ gift.price || 0 }}</span>
+		</p>
+		<p *ngIf="gift.description" 
+			class="ml-gifts__details">
+			<span class="ml-gifts__details-description description"
+				[innerText]="gift.description">
+			</span>
+		</p>
+	</section>
+	<section class="ml-photo-contianer">
+		<img *ngIf="gift.image"
+			class="ml-photo-contianer__photo"
+			src="{{ base64Prefix }}{{ gift.image }}"/>
+		<img *ngIf="!gift.image"
+			class="ml-photo-contianer__photo"
+			src="./assets/images/gift.png"/>
+	</section>
+</ng-template>

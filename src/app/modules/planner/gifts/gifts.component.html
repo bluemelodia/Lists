@@ -1,0 +1,8 @@
+<ng-container *ngIf="giftResponse$ | async as giftResponse">
+	<ml-error *ngIf="giftResponse.error" (retry)="getRecipients()"></ml-error>
+	<ml-planner-gifts-list *ngIf="!giftResponse.error" header="Gifts"
+		[list]="giftResponse.gifts"
+		[recipients]="giftResponse.recipients"
+		(deletedGift)="getRecipients()">
+	</ml-planner-gifts-list>
+</ng-container>

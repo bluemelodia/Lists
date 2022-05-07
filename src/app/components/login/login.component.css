@@ -1,0 +1,27 @@
+:host {
+	display: flex;
+	height: 100%;
+	-ms-overflow-style: none; /* IE 11 */
+	overflow: auto;
+	scrollbar-width: none; /* Firefox 64 */
+  	width: 100%;
+}
+
+:host::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+}
+
+.ml-password {
+  position: relative;
+}
+
+.ml-password input {
+  margin: 0;
+}
+
+.ml-password--show {
+  position: absolute;
+  right: 8px;
+}

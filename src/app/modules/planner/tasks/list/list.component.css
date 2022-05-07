@@ -1,0 +1,45 @@
+:host {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 16px;
+  width: 100%;
+}
+
+.ml-tasks__details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ml-tasks__details.multi-line {
+  display: grid;
+}
+
+@media only screen and (max-width: 500px) {
+  .ml-tasks__details {
+    flex-direction: column;
+    margin-bottom: 8px;
+  }
+
+  .ml-tasks__details.multi-line {
+    align-items: flex-start;
+  }
+}
+
+.ml-tasks__details-label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.ml-tasks__details-description {
+  word-wrap: break-word;
+}
+
+.ml-edit-actions {
+  border-right: 4px solid pink;
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}

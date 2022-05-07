@@ -1,0 +1,16 @@
+<ng-container [ngSwitch]="status">
+    <span *ngSwitchCase="dateStatus.Passed" 
+		class="ml-recurrence_badge expired">Passed</span>
+	<span *ngSwitchCase="dateStatus.Ended"
+		class="ml-recurrence_badge expired">Ended</span>
+	<span *ngSwitchCase="dateStatus.Started"
+		class="ml-recurrence_badge started">Started</span>
+    <span *ngSwitchCase="dateStatus.ComingUp"
+		class="ml-recurrence_badge info">< 2 weeks</span>
+    <span *ngSwitchCase="dateStatus.ThisWeek"
+		class="ml-recurrence_badge warning">< 1 week</span>
+    <span *ngSwitchCase="dateStatus.Tomorrow"
+		class="ml-recurrence_badge priority">Tomorrow</span>
+    <span *ngSwitchCase="dateStatus.Today"
+		class="ml-recurrence_badge urgent">Today</span>
+</ng-container>

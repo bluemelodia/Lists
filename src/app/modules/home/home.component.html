@@ -1,0 +1,17 @@
+<ng-container *ngIf="homeResponse$ | async as home">
+	<ml-error *ngIf="home.error" (retry)="getData()"></ml-error>
+	<section *ngIf="!home.error" class="ml-form-container ml-home">
+		<ml-home-widget [list]="home.solar"
+			[type]="type.SolarBirthdays">
+		</ml-home-widget>
+		<ml-home-widget [list]="home.lunar"
+			[type]="type.LunarBirthdays">
+		</ml-home-widget>
+		<ml-home-widget [list]="home.meetings"
+			[type]="type.Meetings">
+		</ml-home-widget>
+		<ml-home-widget [list]="home.tasks"
+			[type]="type.Tasks">
+		</ml-home-widget>
+	</section>
+</ng-container>

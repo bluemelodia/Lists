@@ -1,0 +1,25 @@
+<nav *ngIf="lvl === 0" class="ml-menu__nav">
+    <button class="ml-menu-button ml-app-btn"
+        (click)="toggleMenu()">
+        <img src="./assets/images/nav.svg">
+    </button>
+</nav>
+<ul class="ml-menu__list"
+    [class.top-nav]="lvl === 0">
+    <li *ngFor="let item of menu"
+		class="ml-menu__list-item">
+        <span class="ml-menu__list-link"
+            [style.paddingLeft.px]="padding"
+            (click)="onMenuClick(item)">
+            <a>{{ item }}</a>
+            <ml-direction *ngIf="menuItems[item].subMenu"
+                [expanded]="menuItems[item].expanded">
+            </ml-direction>
+        </span>
+        <ml-menu *ngIf="menuItems[item].subMenu && menuItems[item].expanded"
+            [level]="lvl + 1" 
+            [menu]="menuItems[item].subMenuList"
+            [menuItems]="menuItems[item].subMenu">
+        </ml-menu>
+    </li>
+</ul>

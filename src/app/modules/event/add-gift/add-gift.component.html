@@ -1,0 +1,75 @@
+<section class="ml-form-container">
+    <form class="ml-event-form"
+        [formGroup]="giftForm"
+        (ngSubmit)="onSubmit()">
+		<ml-heading text="Gift Details"
+			[level]="headerLevel.H3">
+		</ml-heading>
+		<span class="ml-form-instructions">
+			Provide recipient and gift details.
+		</span>
+		<ml-recipient-select mlFocus 
+			[form]="giftForm.controls.recipients"
+			[list]="recipientList$ | async"
+			[submitted]="submitted">
+		</ml-recipient-select>
+		<ml-occasion-select mlFocus
+			[form]="giftForm.controls.occasions"
+			[submitted]="submitted">
+		</ml-occasion-select>
+		<fieldset class="details">
+            <input formControlName="year"
+				placeholder="Year"
+				type="number"/>
+            <div *ngIf="submitted && giftFormControl.year.errors"
+				class="ml-input__error">
+                <p *ngIf="giftFormControl.year.errors?.required">
+                    Year is required.
+				</p>
+				<p *ngIf="giftFormControl.year.errors?.min">
+                    Year must be {{ limit.Year.min }} or later.
+                </p>
+				<p *ngIf="giftFormControl.year.errors?.max">
+                    Year is too large.
+                </p>
+            </div>
+			<input formControlName="price"
+				type="number"
+				placeholder="Price"
+				[max]="limit.Budget.max"
+				[min]="limit.Budget.min"/>
+			<div *ngIf="submitted && giftFormControl.price.errors"
+				class="ml-input__error">
+				<p *ngIf="giftFormControl.price.errors?.max">
+					Price should not exceed {{ limit.Budget.max | currency }}.
+				</p>
+				<p *ngIf="giftFormControl.price.errors?.min">
+					Price cannot be negative.
+				</p>
+			</div>
+        </fieldset>
+		<fieldset>
+            <ml-heading text="Gift Image"
+				[level]="headerLevel.H3">
+                <span post class="ml-event-form--optional">Optional</span>
+            </ml-heading>
+            <span class="ml-form-instructions">Upload an image of the gift.</span>
+            <ml-img-upload [form]="giftForm.controls.gift"></ml-img-upload>
+        </fieldset>
+		<ml-description controlName="description"
+			formInstructions="Enter a description of the gift."
+			[form]="giftForm"
+			[submitted]="submitted">
+		</ml-description>
+		<fieldset class="ml-form-actions">
+            <button class="cancel"
+				type="button"
+                (click)="onCancel()">
+                Cancel
+            </button>        
+            <button type="submit">
+                {{ giftConfig.buttonAction }}
+            </button>
+        </fieldset>
+    </form>
+</section>

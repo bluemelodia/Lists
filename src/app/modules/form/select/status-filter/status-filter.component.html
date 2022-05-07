@@ -1,0 +1,38 @@
+<section #select class="ml-select">
+	<ml-action *ngIf="selected" 
+		ariaLabel="Clear Status Filter"
+		class="ml-filter__clear"
+		[enabled]="true"
+		[icon]="icon.Close"
+		(actionSelected)="clearFilter()">
+	</ml-action>
+	<ng-container [ngTemplateOutlet]="statusSelect"></ng-container>
+</section>
+
+<ng-template #statusSelect>
+	<input readonly
+		class="ml--truncate"
+		placeholder="Filter by Status"
+		type="text"
+		[ngClass]="{ 'ml-select__options--open' : showOptionList }"
+		[value]="status[selected] || ''"
+		(click)="showHideOptions()"
+		(keydown)="onKeydownEvent($event)"/>
+	<section *ngIf="showOptionList"
+		class="ml-select__options"
+		[ngClass]="{ 'show' : showOptionList }">
+		<button *ngFor="let key of statusKeys; let i = index"
+			class="ml-select__option ml--focus"
+			type="button"
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[ngClass]="{ 'ml-select__option--selected' : key === selected, 'ml-focus-origin' : i === 0 }"
+			[tabindex]="showOptionList ? 0 : -1"
+			(click)="selectOption(key)">
+			{{ status[key] }}
+		</button>
+		<button class="tab-stop"
+			[attr.aria-hidden]="showOptionList ? false : true"
+			[tabindex]="showOptionList ? 0 : -1">
+		</button>
+	</section>
+</ng-template>

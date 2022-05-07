@@ -1,0 +1,60 @@
+<section *ngIf="list && list.length > 0"
+	class="ml-task-container--scrollable hide-scrollbar">
+	<section class="ml-task-list--scrollable">
+		<ul class="ml-task-list">
+			<li *ngFor="let meeting of list"
+				class="ml-task-list__item">
+				<ng-container [ngTemplateOutlet]="meetingList" 
+					[ngTemplateOutletContext]="{ 'meeting': meeting }">
+				</ng-container>   
+			</li>
+		</ul>
+	</section>	
+</section>
+
+<section *ngIf="list && list.length === 0"
+	class="no-results ml-flex-column--centered">
+    <ml-no-items [config]="noItemsConfig"></ml-no-items>
+</section>
+
+<ng-template #meetingList let-meeting="meeting">
+	<section class="ml-task-list__info ml-form-container ml-flex-column--centered ml-flex-stretch">
+		<span class="ml-meetings__status">
+			<ml-meeting-indicator [isVirtual]="meeting.virtual"></ml-meeting-indicator>
+			<ml-date-indicator *ngIf="meeting.status"
+				[status]="meeting.status">
+			</ml-date-indicator>
+		</span>
+		<ml-heading [level]="headerLevel.H2"
+			[text]="meeting.name">
+			<section post class="ml-actions ml-edit-actions">
+				<ml-action ariaLabel="Edit"
+					[enabled]="true"
+					[icon]="icon.Edit"
+					(actionSelected)="editMeeting(meeting)">
+				</ml-action>
+				<ml-action ariaLabel="Delete"
+					[enabled]="true"
+					[icon]="icon.Delete"
+					(actionSelected)="onDeleteClicked(meeting.uuid)">
+				</ml-action>
+			</section>
+		</ml-heading>
+		<p class="ml-meetings__details">
+			<span class="ml-meetings__details-label">Start</span>
+			<span class="ml-meetings__details-description">{{ meeting | meetingFormatter: true }}</span>
+		</p>
+		<p class="ml-meetings__details">
+			<span class="ml-meetings__details-label">End</span>
+			<span class="ml-meetings__details-description">{{ meeting | meetingFormatter: false }}</span>
+		</p>
+		<p class="ml-meetings__details">
+			<span class="ml-meetings__details-label">Location</span>
+			<span class="ml-meetings__details-description">{{ meeting.location }}</span>
+		</p>
+		<p *ngIf="meeting.description">
+			<span class="ml-meetings__details-label">Details</span>
+			<span class="ml-meetings__details-description">{{ meeting.description }}</span>
+		</p>
+	</section>
+</ng-template>

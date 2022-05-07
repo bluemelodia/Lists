@@ -1,0 +1,44 @@
+:host {
+	align-items: center;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	max-width: 950px;
+	-ms-overflow-style: none; /* IE 11 */
+	overflow: scroll;
+	scrollbar-width: none; /* Firefox 64 */
+	width: 100%;
+}
+
+:host::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+}
+
+:host.loading {
+	display: none;
+}
+
+.ml-home {
+  display: grid;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+  max-width: 100%;
+  padding: 8px;
+}
+
+@media only screen and (max-width: 600px),
+	screen and (orientation: landscape) and (max-width: 1024px) {
+  .ml-home {
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr;
+	-ms-overflow-style: none;
+    overflow: scroll;
+	scrollbar-width: none;
+  }
+}
+

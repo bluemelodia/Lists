@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+	flex-wrap: wrap;
+}
+
+.ml-recurrence_badge {
+	margin-bottom: 4px;
+}
+
+.ml-recurrence_badge:not(:last-of-type) {
+	margin-right: 4px;
+}

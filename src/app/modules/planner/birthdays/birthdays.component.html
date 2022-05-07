@@ -1,0 +1,14 @@
+<ng-container *ngIf="recipientResponse$ | async as recipientResponse">
+	<ml-error *ngIf="recipientResponse.error" (retry)="getRecipients()"></ml-error>
+	<ng-container *ngIf="!recipientResponse.error">
+		<ml-planner-birthdays-list header="Solar Birthdays"
+			[list]="recipientResponse.solar"
+			(deletedBirthday)="getRecipients()">
+		</ml-planner-birthdays-list>
+
+		<ml-planner-birthdays-list header="Lunar Birthdays"
+			[list]="recipientResponse.lunar"
+			(deletedBirthday)="getRecipients()">
+		</ml-planner-birthdays-list>
+	</ng-container>
+</ng-container>

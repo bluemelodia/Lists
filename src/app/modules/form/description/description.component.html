@@ -1,0 +1,23 @@
+<form [formGroup]="form">
+	<fieldset class="description">
+		<ml-heading text="Additional Details"
+			[level]="headerLevel.H3">
+			<span post class="ml-event-form--optional">Optional</span>
+		</ml-heading>
+		<span class="ml-form-instructions"
+			for="event-description">
+			{{ formInstructions }}
+		</span>
+		<textarea id="event-description"
+			formControlName="description"
+			placeholder="Description"
+			rows="5"></textarea>
+		Max {{ maxChars }} characters.
+		<div *ngIf="submitted && form.controls[controlName]?.errors"
+			class="ml-input__error">
+			<p *ngIf="form.controls[controlName]?.errors?.maxlength">
+				Description should not exceed {{ maxChars }} characters.
+			</p>
+		</div> 
+	</fieldset>
+</form>

@@ -1,0 +1,59 @@
+:host {
+  background-color: #f9eeee;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.ml-menu__nav {
+  display: flex;
+  height: 44px;
+  position: absolute;
+  right: 0;
+}
+
+.ml-menu__list {
+  animation: appear 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  list-style: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0;
+  scrollbar-width: none; /* Firefox */
+  width: 100%;
+
+  /**
+	* Hide the scrollbar.
+	*/
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.ml-menu__list::-webkit-scrollbar {
+  display: none;
+}
+
+.ml-menu__list.top-nav {
+  margin-top: 44px;
+}
+
+.ml-menu__list-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.ml-menu__list-link {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.ml-menu__list-link:hover,
+.ml-menu__list-link:active,
+.ml-menu__list-link:focus,
+.ml-menu__list-link:focus-within {
+  background-color: pink;
+}

@@ -1,0 +1,16 @@
+:host {
+	align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ml-no-results__indicator {
+    color: #DD2E44;
+    font-size: 2rem;
+    margin: 8px;
+}
+
+.ml-no-results__message {
+	text-align: center;
+}

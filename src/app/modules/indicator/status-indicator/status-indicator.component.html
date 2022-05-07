@@ -1,0 +1,10 @@
+<ng-container [ngSwitch]="status">
+    <span *ngSwitchCase="taskStatus.Completed" 
+		class="ml-recurrence_badge expired">{{ taskStatus.Completed }}</span>
+	<span *ngSwitchCase="taskStatus.InProgress"
+		class="ml-recurrence_badge inprogress">{{ taskStatus.InProgress }}</span>
+	<span *ngSwitchCase="taskStatus.OnHold"
+		class="ml-recurrence_badge started">{{ taskStatus.OnHold }}</span>
+    <span *ngSwitchCase="taskStatus.NotStarted"
+		class="ml-recurrence_badge notstarted">{{ taskStatus.NotStarted }}</span>
+</ng-container>

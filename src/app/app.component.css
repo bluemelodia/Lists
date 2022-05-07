@@ -1,0 +1,19 @@
+.app-container {
+  align-items: center;
+  background-color: white;
+  bottom: calc(44px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: calc(44px + env(safe-area-inset-top));
+  overflow: hidden;
+  padding: 16px;
+  position: fixed;
+  width: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+  .app-container {
+    padding: 8px;
+  }
+}

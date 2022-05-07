@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+	<section #select class="ml-select">
+		<input readonly
+			type="text" 
+			[ngClass]="{ 'ml-select__options--open' : showOptionList }"
+			[placeholder]="placeholder"
+			[value]="this.form.get('country')?.value?.name"
+			(click)="showHideOptions()"
+			(keydown)="onKeydownEvent($event)"/>
+		<section *ngIf="showOptionList"
+			class="ml-select__options"
+			[ngClass]="{ 'show' : showOptionList }">
+			<button *ngFor="let country of countries; let i = index"
+				class="ml-select__option ml--focus"
+				type="button"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[ngClass]="{ 'ml-select__option--selected' : this.form.get('country')?.value?.code === country.code, 'ml-focus-origin' : i === 0 }"
+				[tabindex]="showOptionList ? 0 : -1"
+				(click)="selectOption(country)">
+				{{ country.name }}
+			</button>
+			<button class="tab-stop"
+				[attr.aria-hidden]="showOptionList ? false : true"
+				[tabindex]="showOptionList ? 0 : -1">
+			</button>
+		</section>
+	</section>
+</form>

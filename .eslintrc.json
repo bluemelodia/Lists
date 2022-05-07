@@ -1,0 +1,48 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"ignorePatterns": [ "**/*.spec.ts" ],
+	"overrides": [
+			{
+			"extends": [
+				// @angular-eslint uses typescript-eslint, which contains the standard rules, parser, and configs for ESLint with TS
+				"plugin:@angular-eslint/recommended",
+				"plugin:@angular-eslint/template/process-inline-templates",
+				// adds basic rules like no unused variables
+				"eslint:recommended",
+				// disables some conflicting rules from eslint:recommended for usage w/ TS, and adds some general TS rules
+				"plugin:@typescript-eslint/recommended",
+				// Adds some types rules
+				"plugin:@typescript-eslint/recommended-requiring-type-checking"
+			],
+			"files": [
+				"*.ts"
+			],
+			"parser": "@typescript-eslint/parser",
+			"parserOptions": {
+				"ecmaVersion": 12
+			},
+			"plugins": [
+				"@typescript-eslint",
+				"@angular-eslint"
+			],
+			"rules": {
+				"indent": ["error", "tab", { "SwitchCase": 1 }],
+				"@typescript-eslint/no-unsafe-assignment": ["off"],
+				"@typescript-eslint/unbound-method": ["off"]
+			}
+		},
+		{
+			"files": [
+			  "*.html"
+			],
+			"extends": [
+			  "plugin:@angular-eslint/template/recommended"
+			],
+			"rules": {}
+		}
+	]
+}

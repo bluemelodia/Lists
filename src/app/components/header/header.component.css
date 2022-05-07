@@ -1,0 +1,17 @@
+:host {
+	align-items: center;
+	background-color: #ffc0cb;
+	border-bottom: 1px solid #dd2e44;
+	display: flex;
+	flex-direction: row;
+  	/**
+	* Prevents the header from going below 44px.
+	*/
+	flex-shrink: 0;
+	height: 44px;
+	justify-content: center;
+	position: fixed;
+	top: env(safe-area-inset-top);
+	width: 100%;
+	z-index: 100;
+}

@@ -1,0 +1,19 @@
+.ml-decorator {
+  background: none;
+  border: none;
+  height: 44px;
+  width: 44px;
+}
+
+.ml-decorator__icon {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.icon-small {
+  font-size: 0.8rem;
+}
+
+.icon-medium {
+  font-size: 1rem;
+}

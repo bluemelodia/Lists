@@ -1,0 +1,22 @@
+<!-- type: file allows the user to choose 1+ files from device storage
+     accept: image/* means any image file -->
+<ng-container [formGroup]="uploadForm">
+    <input #imageInput
+		accept="image/*"
+        class="ml-image-upload__picker"
+		formControlName="fileName"
+        type="file"
+        (change)="processFile(imageInput)">
+    <section *ngIf="selectedImageUrl$ | async as imgUrl"
+		class="ml-image-upload__preview">
+        <img class="ml-image-upload__preview-src" 
+			[src]="imgUrl"/>
+		<ml-action ariaLabel="Delete Image"
+			class="ml-image-upload__delete description"
+			[enabled]="true"
+			[icon]="icon.Close"
+			(actionSelected)="deleteImage()">
+		</ml-action>
+    </section>
+</ng-container>
+
