@@ -1,39 +1,46 @@
 # List
+
 [Project] Remember upcoming birthdays (both solar and lunar), gifts, meetings, and tasks with this handy app. Users can opt into email and text notifications for upcoming events.
 
 ## Build
 
 1. npm i
 2. Install node v.16 locally:
+
    nvm install 16
 
 Output:
 v16.14.2 is already installed.
 Now using node v16.14.2 (npm v8.5.0)
 
-3. npm run build --prod
-4. Copy the contents of the dist folder to the www sub-directory:
-   cp dist/lists/* ../www/list/ -r
-5. Set the base href in index.html:
-	<base href="/list/">
-6. Modify the nginx configuration:
+3.  npm run build --prod
+4.  Copy the contents of the dist folder to the www sub-directory:
 
-	# Remove root, then use alias for each Angular app.
+    cp dist/lists/\* ../www/list/ -r
 
-	location ^~ / {
-		alias /home/guac/www/;		
+5.  Set the base href in index.html:
 
-		# First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		try_files $uri $uri/ /index.html =404;
-	}
+<base href="/list/">
 
-	location ^~ /list/ {
-		alias /home/guac/www/list/;
-		try_files $uri $uri/ /list/index.html =404;
-	}
+6.  Modify the nginx configuration:
 
-7. Visit guacnbean.com/list
+    ### Remove root, then use alias for each Angular app.
+
+    location ^~ / {
+    alias /home/guac/www/;
+
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri $uri/ /index.html =404;
+
+    }
+
+    location ^~ /list/ {
+    alias /home/guac/www/list/;
+    try_files $uri $uri/ /list/index.html =404;
+    }
+
+7.  Visit guacnbean.com/list
 
 ## Architecture
 
@@ -42,6 +49,7 @@ Now using node v16.14.2 (npm v8.5.0)
 - updateOn: "submit" does not work consistently with all input forms. dateAndTimeValidator runs in-between submits (ex. user updates the Add Meeting datepicker field, and the error will update in real time, instead of on the next submit).
 
 ## TODO
+
 - Make sure that cron jobs are scheduled for multiple users.
 
 ## Credit
