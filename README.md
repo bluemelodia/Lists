@@ -74,7 +74,7 @@ Now using node v16.14.2 (npm v8.5.0)
 3.  npm run build --prod
 4.  Copy the contents of the dist folder to the www sub-directory:
 
-    cp dist/lists/\* ../www/list/ -r
+    cp dist/lists/* ../www/list/ -r
 
 5.  Set the base href in index.html:
 

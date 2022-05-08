@@ -120,7 +120,7 @@ export class ListComponent implements OnDestroy {
 			});
 	}
 
-	public deleteTask(uuid: string): void {
+	private deleteTask(uuid: string): void {
 		this.taskService.deleteTask(uuid)
 			.pipe(
 				take(1),

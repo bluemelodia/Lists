@@ -14,7 +14,7 @@ import { take, takeUntil } from 'rxjs/operators';
 import { Event } from '../../../../constants/events.contants';
 import { Icon } from '../../../../constants/icons.constants';
 
-import { DialogAction, DialogPage } from '../../../../interfaces/dialog.interface';
+import { ConfirmDialogAction, DialogAction, DialogPage } from '../../../../interfaces/dialog.interface';
 import { SortOption } from '../../../../interfaces/event/event.interface';
 import { GiftDetails, GiftField, GiftSortOptions } from '../../../../interfaces/event/gift.interface';
 import { HeaderLevel } from '../../../../interfaces/header.interface';
@@ -112,6 +112,22 @@ export class ListComponent implements OnDestroy {
 	}
 
 	public onDeleteClicked(uuid: string): void {
+		this.dialogService.showConfirmDialog(ConfirmDialogAction.Delete, DialogPage.Tasks)
+			.pipe(
+				takeUntil(this.ngUnsubscribe$)
+			)
+			.subscribe((action: ConfirmDialogAction) => {
+				switch (action) {
+					case ConfirmDialogAction.Continue:
+						this.deleteGift(uuid);
+						break;
+					default:
+						break;
+				}
+			});
+	}
+
+	public deleteGift(uuid: string): void {
 		this.giftService.deleteGift(uuid)
 			.pipe(
 				take(1),
