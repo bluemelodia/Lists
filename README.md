@@ -53,6 +53,12 @@ Birthdays
 - Upcoming birthdays will be marked with an indicator of how close the birthday is.
 - On larger screens, the each recipient's profile image (if one was provided) will be displayed.
 
+Gifts
+
+Meetings
+
+Tasks
+
 Settings
 
 - Users who wish to receive e-mail and text notifications of upcoming events can provide their e-mail address and phone number, respectively.

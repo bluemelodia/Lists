@@ -172,9 +172,9 @@ export class MeetingUtils {
 				meeting.status = DateStatus.Ended;
 			} else if (diff < 0) { // already started
 				meeting.status = DateStatus.Started;
-			} else if (-1 < diffInDays && diffInDays <= 0) { // today
+			} else if (0 <= diffInDays && diffInDays < 1) { // today
 				meeting.status = DateStatus.Today;
-			} else if (0 < diffInDays && diffInDays <= 1) { // tomorrow
+			} else if (1 <= diffInDays && diffInDays < 2) { // tomorrow
 				meeting.status = DateStatus.Tomorrow;
 			} else if (diffInDays < 7) { // this week
 				meeting.status = DateStatus.ThisWeek;

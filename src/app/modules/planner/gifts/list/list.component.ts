@@ -112,7 +112,7 @@ export class ListComponent implements OnDestroy {
 	}
 
 	public onDeleteClicked(uuid: string): void {
-		this.dialogService.showConfirmDialog(ConfirmDialogAction.Delete, DialogPage.Tasks)
+		this.dialogService.showConfirmDialog(ConfirmDialogAction.Delete, DialogPage.Gift)
 			.pipe(
 				takeUntil(this.ngUnsubscribe$)
 			)
