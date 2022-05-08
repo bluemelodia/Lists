@@ -117,7 +117,9 @@ Settings
 
 Session
 
-- The user will recieve a dialog warning once the session is about to end. The session will automatically end after 15 minutes, or after 5 minutes of inactivity.
+- Users will be shown a dialog if they have been inactive for 4 minutes. If they do not action the dialog, or choose not to prolong their session, the session will be ended.
+- The idle timeout is reset each time a service request is completed. Once the session timeout warning is shown, the idle timeout will be cleared, with no option to renew it for the remainder of this session.
+- Users will recieve a dialog warning once the session is about to end. The session will automatically end after 15 minutes, or after 5 minutes of inactivity.
 
 <img src="./screenshots/session.png">
 
