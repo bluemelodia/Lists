@@ -4,6 +4,7 @@
 
 - change password
 - forgot password
+- add docs on lunar birthday propagation
 
 [Project] Remember upcoming birthdays (both solar and lunar), gifts, meetings, and tasks with this handy app. Users can opt into email and text notifications for upcoming events.
 
@@ -41,6 +42,7 @@ Menu
 Add Recipient
 
 - The Add Recipient form allows the user to provide information related to gift-giving, including the recipient's name, birthdate (including whether the birthday is lunar or solar), email, phone number, mailing address, and budget.
+- If the user chooses the option to add a lunar birthday, a date picker with a lunar calendar will be displayed.
 - Users can optionally upload a profile image that best represents the recipient.
 - Users can specify how they would like to contact the recipient on their birthday (ex. call, text), and whether they would like to send a gift.
 
