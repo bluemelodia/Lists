@@ -1,5 +1,6 @@
 :host {
 	background: white;
+	display: flex;
 	height: 100%;
     max-width: 900px;
 	-ms-overflow-style: none; /* IE 11 */
