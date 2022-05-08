@@ -1,5 +1,10 @@
 # List
 
+# TODO:
+
+- change password
+- forgot password
+
 [Project] Remember upcoming birthdays (both solar and lunar), gifts, meetings, and tasks with this handy app. Users can opt into email and text notifications for upcoming events.
 
 This app provides the user with the ability to keep all gift-giving information, such as a person's solar and/or lunar birthday, mailing address, email, phone number, and maximum budget, in one place. Users can also create records of gifts that they have given out in the past, create meetings and tasks, and receive e-mail and text reminders of upcoming birthdays, meetings, and tasks.
@@ -8,6 +13,8 @@ Login / Sign Up
 
 - Users can create an account using an e-mail address and password.
 - Once the account is created, users can log in with their credentials.
+
+<img src="./screenshots/created-user.png"/>
 
 Home
 
@@ -28,6 +35,9 @@ Add Recipient
 - The Add Recipient form allows the user to provide information related to gift-giving, including the recipient's name, birthdate (including whether the birthday is lunar or solar), email, phone number, mailing address, and budget.
 - Users can optionally upload a profile image that best represents the recipient.
 - Users can specify how they would like to contact the recipient on their birthday (ex. call, text), and whether they would like to send a gift.
+
+<img src="./screenshots/create-recipient.png"/>
+<img src="./screenshots/country-selector.png"/>
 
 Add Gift
 
@@ -78,9 +88,10 @@ Settings
 
 ## Architecture
 
-The client and server apps are hosted on the same server. 
+The client and server apps are hosted on the same server.
 
 The Node server is responsible for:
+
 - Handling calls to fetch the Chinese calendar (http://ccal.chinesebay.com/cgi-bin/ccal.cgi/).
 - Login / registration.
 - CRUD calls for the recipient, meeting, and task-related operations.

@@ -480,10 +480,6 @@ button:disabled .ml-arrow-btn {
   padding: 8px;
 }
 
-.ml-task-list__item *:not(:last-child) {
-  margin-bottom: 4px;
-}
-
 .ml-task-list__item:not(:last-child) {
   border-bottom: 1px solid pink;
 }
