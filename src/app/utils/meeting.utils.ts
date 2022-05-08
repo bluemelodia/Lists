@@ -177,7 +177,7 @@ export class MeetingUtils {
 				meeting.status = DateStatus.Started;
 			} else if (meeting.start_date === today.getDate() && (meeting.start_month - 1) === today.getMonth() && meeting.start_year === today.getFullYear()) { // today
 				meeting.status = DateStatus.Today;
-			} else if (meeting.start_date - 1 === (today.getDate() + 1) && (meeting.start_month - 1) === today.getMonth() && meeting.start_year === today.getFullYear()) { // tomorrow
+			} else if (meeting.start_date === (today.getDate() + 1) && (meeting.start_month - 1) === today.getMonth() && meeting.start_year === today.getFullYear()) { // tomorrow
 				meeting.status = DateStatus.Tomorrow;
 			} else if (diffInDays <= 7) { // this week
 				meeting.status = DateStatus.ThisWeek;
