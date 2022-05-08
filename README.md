@@ -55,9 +55,21 @@ Birthdays
 
 Gifts
 
+- Users can view and modify (edit, delete) a list of gifts they've registered.
+- There are options to sort by the recpient name, occasion, price, and year gifted.
+- Users can also filter the list of gifts by recipient.
+
 Meetings
 
+- Users can view and modify (edit, delete) their list of meetings.
+- Meetings with an imminent start date will show a badge based on their proximity to the current date and time.
+- Virtual meetings will be shown with a special badge.
+
 Tasks
+
+- Users can view and modify (edit, delete) their list of tasks.
+- Tasks will show a badge based on their recurrence (ex. one-time) and status (ex. not started).
+- Users can filter tasks based on recurrence and status.
 
 Settings
 
@@ -80,7 +92,7 @@ Now using node v16.14.2 (npm v8.5.0)
 3.  npm run build --prod
 4.  Copy the contents of the dist folder to the www sub-directory:
 
-    cp dist/lists/* ../www/list/ -r
+    cp dist/lists/\* ../www/list/ -r
 
 5.  Set the base href in index.html:
 
