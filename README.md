@@ -14,11 +14,14 @@ Login / Sign Up
 - Users can create an account using an e-mail address and password.
 - Once the account is created, users can log in with their credentials.
 
-<img src="./screenshots/created-user.png"/>
+<img src="./screenshots/sign-up.png"/>
+<img src="./screenshots/sign-up-small.png"/>
 
 Home
 
 - Provides a top-level view of the user's upcoming birthdays, meetings, and tasks.
+
+<img src="./screenshots/home.png"/>
 
 Calendar
 
@@ -26,9 +29,14 @@ Calendar
 - Users can see the number of significant events on a particular day, week, or month.
 - Clicking on an event type (ex. birthday) routes the user to the corresponding page.
 
+<img src="./screenshots/calendar.png"/>
+<img src="./screenshots/calendar-small.png"/>
+
 Menu
 
 - The menu is used for navigation between the app's major pages.
+
+<img src="./screenshots/menu.png"/>
 
 Add Recipient
 
