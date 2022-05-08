@@ -31,8 +31,8 @@ Add Recipient
 
 Add Gift
 
-- The Add Gift form allows users to record a gift that was previously given to a recipient. Only recipients that were added through the Add Recipient form will appear on the recipients drop-down.
-- The user can specify additional information about the gift, such as the occasion, and the year it was gifted.
+- The Add Gift form allows users to record a gift that was previously given to a recipient, or track future gifts they plan to give. Only recipients that were added through the Add Recipient form will appear on the recipients drop-down.
+- The user can specify additional information about the gift, such as the occasion and the year it was gifted.
 - The user can optionally upload an image of the gift and provide a description of the gift.
 
 Add Meeting
