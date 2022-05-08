@@ -61,6 +61,8 @@ Add Meeting
 - The Add Meeting form allows users to create a meeting.
 - Users can specify the name of the event, the location (including whether it is virtual), the start and end dates/times, and optionally provide a description of the meeting.
 
+<img src="./screenshots/create-meeting.png">
+
 Add Task
 
 - The Add Task form allows users to create a task.
@@ -88,6 +90,8 @@ Meetings
 - Users can view and modify (edit, delete) their list of meetings.
 - Meetings with an imminent start date will show a badge based on their proximity to the current date and time.
 - Virtual meetings will be shown with a special badge.
+
+<img src="./screenshots/meetings.png">
 
 Tasks
 
