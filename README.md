@@ -71,12 +71,17 @@ Add Task
 - Users can specify the name of the task, its recurrence, and optionally provide a description of the task.
 - Depending on the task recurrence, users can specify the status of the task (ex. whether it is completed or in progress), and the due date/time.
 
+<img src="./screenshots/create-task.png"/>
+
 Birthdays
 
 - Users can add (if no solar and/or lunar birthdays have been added), view, and modify a list of solar and lunar birthdays through this page.
 - Each birthday is marked with an indicator of whether the date has already passed in the current calendar year.
 - Upcoming birthdays will be marked with an indicator of how close the birthday is.
 - On larger screens, the each recipient's profile image (if one was provided) will be displayed.
+
+<img src="./screenshots/birthdays.png"/>
+<img src="./screenshots/birthdays-small.png"/>
 
 Gifts
 
@@ -101,10 +106,14 @@ Tasks
 - Tasks will show a badge based on their recurrence (ex. one-time) and status (ex. not started).
 - Users can filter tasks based on recurrence and status.
 
+<img src="./screenshots/task.png"/>
+
 Settings
 
 - Users who wish to receive e-mail and text notifications of upcoming events can provide their e-mail address and phone number, respectively.
 - Users can select which types of events they wish to receive notifications for.
+
+<img src="./screenshots/settings.png">
 
 Session
 
