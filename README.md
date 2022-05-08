@@ -94,6 +94,12 @@ Settings
 - Users who wish to receive e-mail and text notifications of upcoming events can provide their e-mail address and phone number, respectively.
 - Users can select which types of events they wish to receive notifications for.
 
+Session
+
+- The user will recieve a dialog warning once the session is about to end. The session will automatically end after 15 minutes, or after 5 minutes of inactivity.
+
+<img src="./screenshots/session.png">
+
 ## Architecture
 
 The client and server apps are hosted on the same server.
