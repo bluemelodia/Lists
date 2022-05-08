@@ -53,6 +53,9 @@ Add Gift
 - The user can specify additional information about the gift, such as the occasion and the year it was gifted.
 - The user can optionally upload an image of the gift and provide a description of the gift.
 
+<img src="./screenshots/add-gift.png">
+<img src="./screenshots/add-gift2.png">
+
 Add Meeting
 
 - The Add Meeting form allows users to create a meeting.
@@ -76,6 +79,9 @@ Gifts
 - Users can view and modify (edit, delete) a list of gifts they've registered.
 - There are options to sort by the recpient name, occasion, price, and year gifted.
 - Users can also filter the list of gifts by recipient.
+
+<img src="./screenshots/gift.png">
+<img src="./screenshots/gift2.png">
 
 Meetings
 
