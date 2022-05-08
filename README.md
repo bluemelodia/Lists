@@ -48,7 +48,7 @@ Add Task
 
 Birthdays
 
-- Users can add, view, and modify a list of solar and lunar birthdays through this page.
+- Users can add (if no solar and/or lunar birthdays have been added), view, and modify a list of solar and lunar birthdays through this page.
 - Each birthday is marked with an indicator of whether the date has already passed in the current calendar year.
 - Upcoming birthdays will be marked with an indicator of how close the birthday is.
 - On larger screens, the each recipient's profile image (if one was provided) will be displayed.

@@ -166,19 +166,22 @@ export class MeetingUtils {
 
 	private static tagMeetings(meetings: AddMeeting[]) {
 		meetings.forEach((meeting: AddMeeting) => {
-			const diff = MeetingUtils.getMeetingDiff(meeting)
+			const diff = MeetingUtils.getMeetingDiff(meeting);
 			const diffInDays = diff / (1000 * 3600 * 24);
+
+			const today = new Date();
+
 			if (MeetingUtils.isEnded(meeting)) {
 				meeting.status = DateStatus.Ended;
 			} else if (diff < 0) { // already started
 				meeting.status = DateStatus.Started;
-			} else if (0 <= diffInDays && diffInDays < 1) { // today
+			} else if (meeting.start_date === today.getDate() && (meeting.start_month - 1) === today.getMonth() && meeting.start_year === today.getFullYear()) { // today
 				meeting.status = DateStatus.Today;
-			} else if (1 <= diffInDays && diffInDays < 2) { // tomorrow
+			} else if (meeting.start_date - 1 === (today.getDate() + 1) && (meeting.start_month - 1) === today.getMonth() && meeting.start_year === today.getFullYear()) { // tomorrow
 				meeting.status = DateStatus.Tomorrow;
-			} else if (diffInDays < 7) { // this week
+			} else if (diffInDays <= 7) { // this week
 				meeting.status = DateStatus.ThisWeek;
-			} else if (diffInDays < 14) { // in two weeks
+			} else if (diffInDays <= 14) { // in two weeks
 				meeting.status = DateStatus.ComingUp;
 			}
 		});
