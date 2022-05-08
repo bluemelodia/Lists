@@ -46,6 +46,8 @@ Add Recipient
 
 <img src="./screenshots/create-recipient.png"/>
 <img src="./screenshots/country-selector.png"/>
+<img src="./screenshots/lunar-cal.png"/>
+<img src="./screenshots/lunar-cal-small.png"/>
 
 Add Gift
 
