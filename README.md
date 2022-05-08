@@ -78,6 +78,17 @@ Settings
 
 ## Architecture
 
+The client and server apps are hosted on the same server. 
+
+The Node server is responsible for:
+- Handling calls to fetch the Chinese calendar (http://ccal.chinesebay.com/cgi-bin/ccal.cgi/).
+- Login / registration.
+- CRUD calls for the recipient, meeting, and task-related operations.
+
+This server, along with a cron job that is run every 24 hours to send emails and/or texts about upcoming events to subscribed users, is kept active using the PM2 process manager.
+
+A SQLite database is used to store user data.
+
 ## Build
 
 1. npm i
