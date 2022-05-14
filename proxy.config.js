@@ -28,6 +28,7 @@ const PROXY_CONFIG = [
             "/todo/settings/loadSettings",
 			"/todo/settings/saveSettings",
 			"/todo/login",
+			"/todo/forgot",
 			"/todo/register",
 			"/todo/logout",
         ],
