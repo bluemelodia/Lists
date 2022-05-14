@@ -68,7 +68,7 @@ export class ForgotComponent implements OnInit {
 					if (response === ResponseStatus.ERROR) {
 						this.dialogService.showResponseStatusDialog(response, DialogAction.Forgot, DialogPage.Forgot);
 					} else {
-						void this.router.navigate(['/home']);
+						this.dialogService.showResponseStatusDialog(response, DialogAction.Forgot, DialogPage.Forgot);
 					}
 				});
 		}

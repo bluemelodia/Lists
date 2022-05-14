@@ -50,6 +50,8 @@ export class DialogUtils {
 				return `Deleted ${page}.`;
 			case DialogAction.Edit:
 				return `Saved ${page} changes.`;
+			case DialogAction.Forgot:
+				return `Reset instructions were sent to your email on file.`;
 			case DialogAction.Get:
 				return `Fetched user ${pageName}.`;
 			case DialogAction.Register:
@@ -75,6 +77,9 @@ export class DialogUtils {
 			case DialogAction.Edit:
 				message = `Unable to save ${page} changes.`;
 				break;
+			case DialogAction.Forgot:
+				message = `Unable to reset your password at this time.`;
+				break;
 			case DialogAction.Get:
 				message = `Unable to fetch user ${pageName}.`;
 				break;
@@ -83,9 +88,6 @@ export class DialogUtils {
 				break;
 			case DialogAction.Register:
 				message = `Unable to create user.`;
-				break;
-			case DialogAction.Forgot:
-				message = `Unable to reset password.`;
 				break;
 			case DialogAction.Save:
 				message = `Unable to save ${pageName}.`;
