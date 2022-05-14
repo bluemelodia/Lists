@@ -1,0 +1,36 @@
+<section class="ml-form-container">
+    <form class="ml-event-form"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()">
+		<ml-heading text="Login"
+			[level]="headerLevel.H1">
+		</ml-heading>
+		<span class="ml-form-instructions">Enter your email and password.</span>
+		<fieldset class="username">
+            <input formControlName="username"
+                placeholder="Email"
+				type="text"/>
+            <div *ngIf="submitted && loginFormControl.username.errors"
+				class="ml-input__error">
+                    <p *ngIf="loginFormControl.username.errors?.required"
+						class="ml-input__error-msg">
+                        Email is required.
+					</p>
+                    <p *ngIf="loginFormControl.username.errors?.minlength || loginFormControl.username.errors?.maxlength"
+						class="ml-input__error-msg">
+                        Please enter {{ limit.Username.min }} to {{ limit.Username.max }} characters.
+					</p>
+					<p *ngIf="loginFormControl.username.errors?.invalidUsername"
+						class="ml-input__error-msg">
+                        Please enter a valid email.
+                    </p>
+            </div> 
+        </fieldset>
+        <fieldset class="ml-form-actions"> 
+            <button type="submit">
+                Reset Password
+            </button>
+        </fieldset>
+    </form>
+	<span class="ml-form-instructions"><a class="ml-quick-link" routerLink="/login">Back to login</a></span>
+</section>

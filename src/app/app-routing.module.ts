@@ -31,6 +31,13 @@ const routes: Routes = [
 		}
 	},
 	{
+		path: 'forgot',
+		component: ForgotComponent,
+		data: {
+			title: 'Reset Password'
+		}
+	},
+	{
 		path: 'home',
 		canActivate: [AuthGuard],
 		loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
