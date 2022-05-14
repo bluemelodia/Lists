@@ -11,6 +11,7 @@ import { AppComponent } from "./app.component";
 import { NavModule } from "./modules/nav/nav.module";
 
 import { DialogComponent } from "./components/dialog/dialog.component";
+import { ForgotComponent } from "./components/forgot/forgot.component";
 import { LoginComponent } from "./components/login/login.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
@@ -25,6 +26,7 @@ import { httpInterceptorProviders } from "./http-interceptors";
 		AppComponent,
 		DialogComponent,
 		FooterComponent,
+		ForgotComponent,
 		HeaderComponent,
 		LoginComponent,
 		RegisterComponent,
