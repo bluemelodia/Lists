@@ -81,7 +81,7 @@ export class UserService implements OnDestroy {
 	public forgotPassword(username: string): Observable<ResponseStatus> {
 		return this.http.post<Response>(
 			UserUtils.userURLForAction(UserAction.Forgot),
-			username,
+			{ username: username },
 			{
 				headers: this.headers
 			},
