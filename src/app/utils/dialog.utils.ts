@@ -84,11 +84,14 @@ export class DialogUtils {
 			case DialogAction.Register:
 				message = `Unable to create user.`;
 				break;
+			case DialogAction.Forgot:
+				message = `Unable to reset password.`;
+				break;
 			case DialogAction.Save:
 				message = `Unable to save ${pageName}.`;
 				break;
 			default:
-				message = `Unable to made changes at this time.`;
+				message = `Unable to make changes at this time.`;
 				break;
 		}
 		return message + ' Please try again later.';
