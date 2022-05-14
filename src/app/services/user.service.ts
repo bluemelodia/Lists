@@ -78,6 +78,24 @@ export class UserService implements OnDestroy {
 			);
 	}
 
+	public forgotPassword(username: string): Observable<ResponseStatus> {
+		return this.http.post<Response>(
+			UserUtils.userURLForAction(UserAction.Forgot),
+			username,
+			{
+				headers: this.headers
+			},
+		)
+			.pipe(
+				map((response: Response) => {
+					return !response.statusCode ? ResponseStatus.SUCCESS : ResponseStatus.ERROR;
+				}),
+				catchError((error) => {
+					return of(ResponseStatus.ERROR);
+				})
+			);
+	}
+
 	public getUser(): string {
 		return sessionStorage.getItem(this.userKey);
 	}

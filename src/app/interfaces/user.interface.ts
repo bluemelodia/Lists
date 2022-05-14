@@ -1,6 +1,7 @@
 
 export enum UserAction {
 	Login = "Login",
+	Forgot = "Forgot",
 	Register = "Register",
 	Logout = "Logout",
 }

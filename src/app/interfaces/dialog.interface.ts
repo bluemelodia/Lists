@@ -12,6 +12,7 @@ export enum DialogAction {
 	Continue,
 	Delete,
 	Edit,
+	Forgot,
 	Get,
 	Login,
 	Register,
@@ -37,6 +38,7 @@ export enum Dialog {
 }
 
 export enum DialogPage {
+	Forgot = 'forgot',
 	IdleTimeoutWarning = 'idle-timeout-warning',
 	Login = 'login',
 	Logout = 'logout',
