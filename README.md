@@ -142,6 +142,28 @@ This server, along with a cron job that is run every 24 hours to send emails and
 
 A SQLite database is used to store user data.
 
+### Forgot Password Flow
+
+Users who have forgotten their passwords can initiate a forgot password flow from the Login page. The forgot password page contains a form where the user can enter the e-mail address that they use to login.
+
+A database table on the server is maintained for each forgot password request. Each user can only have one active forgot password request at a time, and each request is only valid for 24 hours.
+
+### Part I: Sending the Recovery Email
+- When the server receives a forgot password reqeust, it first generates a timestamp of when it received the request, and a hash. 
+- If the user has not initiated a forgot password request before, a record with the username, timestamp, and encrypted hash is added to the database. Otherwise, the user's existing database entry is updated with the new timestamp and hash.
+- On successful storage and/or update of the record, the Mailgun API is used to send a recovery email to the user. This email contains a link with the unencrypted hash.
+
+### Part II: Submitting the Reset Password Request
+- When the user clicks on the link in the email, a request is sent to the server.
+- The server re-creates the encrypted hash from the provided hash, then queries the forgot password database table for the user's record.
+- If a valid (non-expired) record is found, the server returns an HTML page containing the password reset form to the client. Otherwise, the server returns an HTML page containing an error.
+
+### Part III: Resetting the Password
+- The password reset form contains two fields: one for the user to enter a new password, and a hidden field whose value is set to the value of the hash.
+- Once the user submits a valid password (the password validation rules are the same as the ones used on the front-end List app), a request is sent to the server to reset the password.
+- The server validates the password and uses the encrypted version of the hash to query the forgot password database. If a valid (non-expired) record is found, the server then updates the user's password in the username table.
+- If the password was updated successfully, the server returns an HTML page containing a success message. Otherwise, it returns an HTML page containing an error message. Both pages contain a link to route the user back to the Login page.
+
 ## Build
 
 1. npm i
