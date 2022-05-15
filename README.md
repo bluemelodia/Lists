@@ -4,6 +4,18 @@
 
 This app provides the user with the ability to keep all gift-giving information, such as a person's solar and/or lunar birthday, mailing address, email, phone number, and maximum budget, in one place. Users can also create records of gifts that they have given out in the past, create meetings and tasks, and receive e-mail and text reminders of upcoming birthdays, meetings, and tasks.
 
+# Table of Contents
+[Features](#features)
+[Demo](#demo)
+[Architecture](#arch)
+[Build](#build)
+[Known Issues](#issues)
+[Credit](#credit)
+
+<a name="features"></a>
+
+# Features
+
 Login / Sign Up
 
 - Users can create an account using an e-mail address and password.
@@ -125,7 +137,15 @@ Session
 
 <img src="./screenshots/session.png">
 
-## Architecture
+<a name="demo"></a>
+
+# Demo 
+
+TODO: add videos
+
+<a name="arch"></a>
+
+# Architecture
 
 The client and server apps are hosted on the same server.
 
@@ -139,33 +159,35 @@ This server, along with a cron job that is run every 24 hours to send emails and
 
 A SQLite database is used to store user data.
 
-### Forgot Password Flow
+## Forgot Password Flow
 
 Users who have forgotten their passwords can initiate a forgot password flow from the Login page. The forgot password page contains a form where the user can enter the e-mail address that they use to login.
 
 A database table on the server is maintained for each forgot password request. Each user can only have one active forgot password request at a time, and each request is only valid for 24 hours.
 
-#### Part I: Sending the Recovery Email
+### Part I: Sending the Recovery Email
 - When the server receives a forgot password reqeust, it generates a hash and a timestamp of when it received the request.
 - If this is the user's first time initiating a forgot password request, a record with the username, timestamp, and encrypted hash is added to the forgot password database. Otherwise, the user's existing database entry is updated with the newly computed timestamp and hash.
 - On successful storage and/or update of the user's database record, the Mailgun API is used to send a recovery email to the user. This email contains directions on how to reset the user's password and a link that contains the unencrypted hash.
 
-#### Part II: Submitting the Reset Password Request
+### Part II: Submitting the Reset Password Request
 - When the user clicks on the link in the email, a request is sent to the server.
 - The server re-creates the encrypted hash from the provided hash, then queries the forgot password database table for the user's record.
 - If a valid (non-expired) record is found, the server returns an HTML page containing the password reset form to the client. Otherwise, the server returns an HTML page containing an error.
 
-#### Part III: Resetting the Password
+### Part III: Resetting the Password
 - The password reset form contains two fields: one for the user to enter a new password, and a hidden field whose value is set to the value of the hash.
 - Once the user submits a valid password (the password validation rules are the same as the ones used on the front-end List app), a form post request is sent to the server.
 - The server validates the password and uses the encrypted version of the hash to query the forgot password database. If a valid (non-expired) record is found, the server then updates the user's password in the username table.
 - If the password is updated successfully, the server returns an HTML page containing a success message. Otherwise, it returns an HTML page containing an error message. Both pages contain a link to route the user back to the Login page.
 
-### Computing Lunar Birthdays
+## Computing Lunar Birthdays
 
 TODO: add docs.
 
-## Build
+<a name="build"></a>
+
+# Build
 
 1. npm i
 2. Install node v.16 locally:
@@ -187,7 +209,7 @@ Now using node v16.14.2 (npm v8.5.0)
 
 6.  Modify the nginx configuration:
 
-    ### Remove root, then use alias for each Angular app.
+    ## Remove root, then use alias for each Angular app.
 
     location ^~ / {
     alias /home/guac/www/;
@@ -205,11 +227,15 @@ Now using node v16.14.2 (npm v8.5.0)
 
 7.  Visit guacnbean.com/list
 
-## Known Issues
+<a name="issues"></a>
+
+# Known Issues
 
 - updateOn: "submit" does not work consistently with all input forms. dateAndTimeValidator runs in-between submits (ex. user updates the Add Meeting datepicker field, and the error will update in real time, instead of on the next submit).
 
-## Credit
+<a name="credit"></a>
+
+# Credit
 
 Icons made by:
 <a href="https://www.flaticon.com/authors/dmitri13" title="dmitri13">dmitri13</a>
