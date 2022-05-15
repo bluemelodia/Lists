@@ -7,15 +7,10 @@ This app provides the user with the ability to keep all gift-giving information,
 # Table of Contents
 
 [Features](#features)
-
 [Demo](#demo)
-
 [Architecture](#arch)
-
 [Build](#build)
-
 [Known Issues](#issues)
-
 [Credit](#credit)
 
 <a name="features"></a>
