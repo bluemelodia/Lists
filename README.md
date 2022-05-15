@@ -1,9 +1,6 @@
 # List
 
 # TODO:
-
-- change password
-- forgot password
 - add docs on lunar birthday propagation
 
 [Project] Remember upcoming birthdays (both solar and lunar), gifts, meetings, and tasks with this handy app. Users can opt into email and text notifications for upcoming events.
@@ -17,6 +14,12 @@ Login / Sign Up
 
 <img src="./screenshots/sign-up.png"/>
 <img src="./screenshots/sign-up-small.png"/>
+
+- Users who have forgotten their passwords can initiate recovery through the forgot password flow. A recovery e-mail with a unique, temporary link will be sent to the provided e-mail address.
+
+<img src="./screenshots/login.png"/>
+<img src="./screenshots/forgot.png"/>
+<img src="./screenshots/forgot2.png"/>
 
 Home
 
