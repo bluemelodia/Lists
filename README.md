@@ -6,12 +6,12 @@ This app provides the user with the ability to keep all gift-giving information,
 
 # Table of Contents
 
-[Features](#features)
-[Demo](#demo)
-[Architecture](#arch)
-[Build](#build)
-[Known Issues](#issues)
-[Credit](#credit)
+1. [Features](#features)
+2. [Demo](#demo)
+3. [Architecture](#arch)
+4. [Build](#build)
+5. [Known Issues](#issues)
+6. [Credit](#credit)
 
 <a name="features"></a>
 
