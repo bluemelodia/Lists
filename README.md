@@ -5,12 +5,13 @@
 This app provides the user with the ability to keep all gift-giving information, such as a person's solar and/or lunar birthday, mailing address, email, phone number, and maximum budget, in one place. Users can also create records of gifts that they have given out in the past, create meetings and tasks, and receive e-mail and text reminders of upcoming birthdays, meetings, and tasks.
 
 # Table of Contents
-[Features](#features)
-[Demo](#demo)
-[Architecture](#arch)
-[Build](#build)
-[Known Issues](#issues)
-[Credit](#credit)
+
+	[Features](#features)
+	[Demo](#demo)
+	[Architecture](#arch)
+	[Build](#build)
+	[Known Issues](#issues)
+	[Credit](#credit)
 
 <a name="features"></a>
 
@@ -211,6 +212,7 @@ Now using node v16.14.2 (npm v8.5.0)
 
     ## Remove root, then use alias for each Angular app.
 
+```
     location ^~ / {
     alias /home/guac/www/;
 
@@ -224,6 +226,7 @@ Now using node v16.14.2 (npm v8.5.0)
     alias /home/guac/www/list/;
     try_files $uri $uri/ /list/index.html =404;
     }
+```
 
 7.  Visit guacnbean.com/list
 
