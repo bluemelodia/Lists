@@ -184,7 +184,11 @@ A database table on the server is maintained for each forgot password request. E
 
 ## Computing Lunar Birthdays
 
-TODO: add docs.
+- Each time the list of recipients is fetched, iterate through the list of lunar birthdays. Find all occurrences of the recipient's lunar birthday over a 24-month period (matching month and date according to the Chinese calendar).
+- Check the futureDates property on the recipient object to see if previous occurrences of the recipient's birthday are already stored on the server. Delete any ocurrences from previous years.
+- Otherwise, if the occurence is not already stored on the futureDates object, add the object.
+- If any additions or deletions have been made to the futureDates object, silently propagate these changes to the server.
+- The next time a call is made to fetch the recipients list, the recipient's latest computed lunar birthdays will be fetched as well.  
 
 <a name="build"></a>
 
