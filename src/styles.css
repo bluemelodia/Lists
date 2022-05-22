@@ -404,6 +404,7 @@ button:disabled .ml-arrow-btn {
 .ml-recurrence_badge.notstarted,
 .ml-recurrence_badge.urgent {
   background-color: #dd2e44;
+  color: white;
 }
 
 .ml-recurrence_badge.virtual {
