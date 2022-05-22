@@ -140,9 +140,9 @@ Session
 
 <a name="demo"></a>
 
-# Demo 
+# Demo
 
-TODO: add videos
+<a href="https://youtu.be/lO2Ge2P-x_8">Forgot Password</a>
 
 <a name="arch"></a>
 
@@ -167,16 +167,19 @@ Users who have forgotten their passwords can initiate a forgot password flow fro
 A database table on the server is maintained for each forgot password request. Each user can only have one active forgot password request at a time, and each request is only valid for 24 hours.
 
 ### Part I: Sending the Recovery Email
+
 - When the server receives a forgot password reqeust, it generates a hash and a timestamp of when it received the request.
 - If this is the user's first time initiating a forgot password request, a record with the username, timestamp, and encrypted hash is added to the forgot password database. Otherwise, the user's existing database entry is updated with the newly computed timestamp and hash.
 - On successful storage and/or update of the user's database record, the Mailgun API is used to send a recovery email to the user. This email contains directions on how to reset the user's password and a link that contains the unencrypted hash.
 
 ### Part II: Submitting the Reset Password Request
+
 - When the user clicks on the link in the email, a request is sent to the server.
 - The server re-creates the encrypted hash from the provided hash, then queries the forgot password database table for the user's record.
 - If a valid (non-expired) record is found, the server returns an HTML page containing the password reset form to the client. Otherwise, the server returns an HTML page containing an error.
 
 ### Part III: Resetting the Password
+
 - The password reset form contains two fields: one for the user to enter a new password, and a hidden field whose value is set to the value of the hash.
 - Once the user submits a valid password (the password validation rules are the same as the ones used on the front-end List app), a form post request is sent to the server.
 - The server validates the password and uses the encrypted version of the hash to query the forgot password database. If a valid (non-expired) record is found, the server then updates the user's password in the username table.
@@ -188,7 +191,7 @@ A database table on the server is maintained for each forgot password request. E
 - Check the futureDates property on the recipient object to see if previous occurrences of the recipient's birthday are already stored on the server. Delete any ocurrences from previous years.
 - Otherwise, if the occurence is not already stored on the futureDates object, add the object.
 - If any additions or deletions have been made to the futureDates object, silently propagate these changes to the server.
-- The next time a call is made to fetch the recipients list, the recipient's latest computed lunar birthdays will be fetched as well.  
+- The next time a call is made to fetch the recipients list, the recipient's latest computed πrealunar birthdays will be fetched as well.
 
 <a name="build"></a>
 
