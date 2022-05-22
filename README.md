@@ -142,8 +142,8 @@ Session
 
 # Demo
 
-<a href="https://youtu.be/lO2Ge2P-x_8">Forgot Password</a>
-<a href="https://youtu.be/FNtBglV5cX8">Gifts and Recipients</a>
+- <a href="https://youtu.be/lO2Ge2P-x_8">Forgot Password</a>
+- <a href="https://youtu.be/FNtBglV5cX8">Gifts and Recipients</a>
 
 <a name="arch"></a>
 
