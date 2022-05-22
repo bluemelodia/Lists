@@ -50,7 +50,7 @@
 		</ml-heading>
 		<p class="ml-gifts__details">
 			<span class="ml-gifts__details-label">{{ gift.occasion }} - {{ gift.year }}</span>
-			<span class="ml-gifts__details-description">${{ gift.price || 0 | currency }}</span>
+			<span class="ml-gifts__details-description">{{ gift.price || 0 | currency }}</span>
 		</p>
 		<p *ngIf="gift.description" 
 			class="ml-gifts__details">
